@@ -27,7 +27,7 @@
       "type": "item",
       "sortid": 3,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mint_seeds",
       "metadata": {
         "files": [
@@ -477,14 +477,14 @@
   "variable_elements": [],
   "sound_elements": [],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint"
-    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint"
     ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint"

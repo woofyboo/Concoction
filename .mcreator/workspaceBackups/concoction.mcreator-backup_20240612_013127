@@ -26,8 +26,8 @@
       "name": "MintSeeds",
       "type": "item",
       "sortid": 3,
-      "compiles": true,
-      "locked_code": false,
+      "compiles": false,
+      "locked_code": true,
       "registry_name": "mint_seeds",
       "metadata": {
         "files": [
@@ -455,38 +455,6 @@
       "path": "~/mint/mintCrop"
     },
     {
-      "name": "CropMintOnTickUpdate",
-      "type": "procedure",
-      "sortid": 26,
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "crop_mint_on_tick_update",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/CropMintOnTickUpdateProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/mint/mintCrop"
-    },
-    {
       "name": "CropMint",
       "type": "block",
       "sortid": 27,
@@ -509,14 +477,14 @@
   "variable_elements": [],
   "sound_elements": [],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint"
-    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint"
     ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint"

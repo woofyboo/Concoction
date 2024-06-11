@@ -17,6 +17,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -59,6 +61,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 
 import net.mcreator.concoction.procedures.CropMintNeighbourBlockChangesProcedure;
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.block.entity.CropMintBlockEntity;
 
 public class CropMintBlock extends CropBlock {
@@ -110,7 +113,27 @@ public class CropMintBlock extends CropBlock {
 //
 //		};
 //	}
-
+	@Override
+    public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
+        int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
+        int maxAge = this.getMaxAge();
+        if(nextAge > maxAge) {
+            nextAge = maxAge;
+        }
+		 
+        if(this.getAge(pState) == (maxAge-1) && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+            pLevel.setBlock(pPos, ConcoctionModBlocks.MINT.get().defaultBlockState(), 2);
+            pLevel.setBlock(pPos.above(1), (new Object() {
+			public BlockState with(BlockState _bs, String _property, String _newValue) {
+				Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty(_property);
+				return _prop instanceof EnumProperty _ep && _ep.getValue(_newValue).isPresent() ? _bs.setValue(_ep, (Enum) _ep.getValue(_newValue).get()) : _bs;
+				}
+			}.with(ConcoctionModBlocks.MINT.get().defaultBlockState(), "half", "upper")), 2);
+        } else {
+            pLevel.setBlock(pPos, this.getStateForAge(nextAge - 1), 2);
+        }
+    }
+    
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(AGE);
