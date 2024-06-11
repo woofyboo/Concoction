@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "cherry_grove",
+    "meadow"
+  ],
+  "features": "concoction:mint",
+  "step": "vegetal_decoration"
+}

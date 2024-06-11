@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "concoction:block/mint"
+    },
+    "half=lower": {
+      "model": "concoction:block/mint_bottom"
+    }
+  }
+}

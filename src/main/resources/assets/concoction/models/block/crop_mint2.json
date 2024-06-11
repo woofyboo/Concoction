@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/mint_phase3",
+    "particle": "concoction:block/mint_phase3"
+  },
+  "render_type": "cutout"
+}
