@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:wheat"
+    },
+    "b": {
+      "item": "concoction:mint"
+    }
+  },
+  "result": {
+    "item": "concoction:mint_cookie",
+    "count": 8
+  }
+}

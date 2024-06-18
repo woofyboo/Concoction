@@ -22,10 +22,5 @@ public class ConcoctionModTrades {
 
 					new ItemStack(ConcoctionModBlocks.MINT.get()), 5, 5, 0.17f));
 		}
-		if (event.getType() == VillagerProfession.FARMER) {
-			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(Items.EMERALD),
-
-					new ItemStack(ConcoctionModItems.MINT_SEEDS.get(), 2), 10, 5, 0.05f));
-		}
 	}
 }

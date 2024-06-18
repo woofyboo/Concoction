@@ -1,19 +1,3 @@
-/locate structure minecraft:pillager_outpost
-/tp @s 2240 ~ 436592
-/weather clear 99999999999999999999999d
-/effect clear
-/time set day
-/gamemode survival
-/locate biome minecraft:cherry_grove
-/tp @s 1049 80 435334
-/gamemode survival
-/time set day
-/gamemode survival
-/give @a concoction:farmland_mint
-/give @a concoction:corn
-/give @a concoction:corn_seeds
-/give Dev concoction:crop_mint
-/give Dev minecraft:debug_stick
 /time set day
 /give @a concoction:crop_mint
 /gamerule randomTickSpeed
@@ -48,3 +32,19 @@
 /locate biome minecraft:cherry_grove
 /tp @s 2752 149 2150
 /give @a concoction:crop_mint
+/give @a concoction:mint_seed
+/time set day
+/give Dev concoction:mint_seed
+/tp 5795 556 55656
+/locate biome minecraft:plains
+/tp @s 6115 139 55400
+/locate biome minecraft:meadow
+/tp @s 5959 103 54672
+/gamemode creative
+/locate biome minecraft:plains
+/tp @s -14 91 407
+/tp 4759457 100 5475
+/locate biome minecraft:plains
+/tp @s 4759566 145 5260
+/give Dev concoction:cotton_block
+/give Dev minecraft:light

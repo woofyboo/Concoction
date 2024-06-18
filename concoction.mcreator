@@ -5,7 +5,7 @@
       "type": "plant",
       "sortid": 2,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mint",
       "metadata": {
         "files": [
@@ -18,21 +18,6 @@
           "src/main/java/net/mcreator/concoction/block/MintBlock.java",
           "src/main/resources/assets/concoction/models/item/mint.json",
           "src/main/resources/assets/concoction/models/block/mint.json"
-        ]
-      },
-      "path": "~/mint"
-    },
-    {
-      "name": "MintSeeds",
-      "type": "item",
-      "sortid": 3,
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "mint_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/MintSeedsItem.java",
-          "src/main/resources/assets/concoction/models/item/mint_seeds.json"
         ]
       },
       "path": "~/mint"
@@ -386,17 +371,6 @@
       "path": "~/mint"
     },
     {
-      "name": "Concoction",
-      "type": "tab",
-      "sortid": 21,
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "concoction",
-      "metadata": {
-        "files": []
-      }
-    },
-    {
       "name": "Cherry",
       "type": "item",
       "sortid": 22,
@@ -472,19 +446,81 @@
         ]
       },
       "path": "~/mint/mintCrop"
+    },
+    {
+      "name": "CustomTab",
+      "type": "code",
+      "sortid": 28,
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "custom_tab",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/CustomTab.java"
+        ]
+      }
+    },
+    {
+      "name": "MintCookie",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mint_cookie",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/MintCookieItem.java",
+          "src/main/resources/assets/concoction/models/item/mint_cookie.json"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "MintCookieCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mint_cookie_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipes/mint_cookie_craft.json"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "MintCookiePlayerFinishesUsingItem",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mint_cookie_player_finishes_using_item",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/MintCookiePlayerFinishesUsingItemProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/mint"
     }
   ],
   "variable_elements": [],
   "sound_elements": [],
   "tag_elements": {
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint"
+    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint"
     ],
+    "BLOCKS:forge:farmland": [
+      "Blocks.FARMLAND"
+    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint"
@@ -496,6 +532,7 @@
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.mint_seeds": "Mint Seeds",
       "block.concoction_brew.mint": "Mint",
+      "item.concoction.mint_cookie": "Mint Cookie",
       "item.concoction.cherry": "Cherry",
       "effect.concoction.minty_breath": "Minty Breath",
       "block.concoction.crop_mint": "Crop Mint",
@@ -516,6 +553,10 @@
       },
       {
         "name": "cherry",
+        "children": []
+      },
+      {
+        "name": "cotton",
         "children": []
       }
     ]

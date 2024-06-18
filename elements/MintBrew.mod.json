@@ -10,7 +10,7 @@
     "name": "Mint Brew",
     "rarity": "COMMON",
     "creativeTab": {
-      "value": "CUSTOM:Concoction"
+      "value": "No creative tab entry"
     },
     "stackSize": 1,
     "enchantability": 0,

@@ -18,10 +18,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.FriendlyByteBuf;
 
-import net.mcreator.concoction.init.ConcoctionModTabs;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.init.ConcoctionModCustomTabs;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 
@@ -42,18 +42,13 @@ public class ConcoctionMod {
 		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::registerNetworking);
-
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.register(modEventBus);
-
-		ConcoctionModTabs.REGISTRY.register(modEventBus);
-
 		ConcoctionModMobEffects.REGISTRY.register(modEventBus);
-
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
-
 		// Start of user code block mod init
+		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		// End of user code block mod init
 	}
 

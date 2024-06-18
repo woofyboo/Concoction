@@ -33,7 +33,7 @@
       "fixedValue": []
     },
     "creativeTab": {
-      "value": "CUSTOM:Concoction"
+      "value": "No creative tab entry"
     },
     "hardness": 0.0,
     "resistance": 0.0,
@@ -88,6 +88,12 @@
       },
       {
         "value": "meadow"
+      },
+      {
+        "value": "plains"
+      },
+      {
+        "value": "mutated_plains"
       }
     ],
     "generationType": "Flower",

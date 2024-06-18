@@ -10,7 +10,7 @@
     "name": "Cherry",
     "rarity": "COMMON",
     "creativeTab": {
-      "value": "CUSTOM:Concoction"
+      "value": "No creative tab entry"
     },
     "stackSize": 64,
     "enchantability": 0,
