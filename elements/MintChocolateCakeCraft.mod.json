@@ -1,0 +1,48 @@
+{
+  "_fv": 60,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "mint_chocolate_cake_craft",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "Items.DYE#3"
+      },
+      {
+        "value": "Items.DYE#3"
+      },
+      {
+        "value": "Items.DYE#3"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "Items.EGG"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "Blocks.WHEAT"
+      },
+      {
+        "value": "Blocks.WHEAT"
+      },
+      {
+        "value": "Blocks.WHEAT"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:MintChocolateCake"
+    },
+    "name": "mint_chocolate_cake_craft",
+    "namespace": "mod"
+  }
+}

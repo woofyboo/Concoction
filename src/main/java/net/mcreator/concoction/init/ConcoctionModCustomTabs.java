@@ -16,9 +16,12 @@ public class ConcoctionModCustomTabs {
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.concoction.concoction")).icon(() -> new ItemStack(ConcoctionModBlocks.MINT.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
+				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.CHERRY.get());
+				tabData.accept(ConcoctionModItems.COTTON.get());
+				tabData.accept(ConcoctionModItems.FABRIC.get());
 				
 			})
 

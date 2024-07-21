@@ -1,32 +1,3 @@
-/time set day
-/give @a concoction:crop_mint
-/gamerule randomTickSpeed
-/gamerule randomTickSpeed3
-/gamerule randomTickSpeed 3
-/gamerule randomTickSpeed 20
-/gamerule randomTickSpeed 100
-/gamerule randomTickSpeed 20
-/gamerule randomTickSpeed 100
-/gamerule randomTickSpeed 10
-/gamerule randomTickSpeed 0
-/summon bee ~ ~ ~ {HasNectar:1}
-/gamerule randomTickSpeed 1
-/gamerule randomTickSpeed 3
-/time set day
-/kill @e[type=minecraft:bee]
-/summon bee ~ ~ ~ {TicksSincePollination:100000,CropsGrownSincePollination:0}
-/kill @e[type=minecraft:bee]
-/summon bee ~ ~ ~ {TicksSincePollination:100000,CropsGrownSincePollination:0}
-/kill @e[type=minecraft:bee]
-/summon bee ~ ~ ~ {HasNectar:1,TicksSincePollination:100000,CropsGrownSincePollination:0}
-/gamerule randomTickSpeed 0
-/tick sprint 1d
-/time set day
-/tick sprint 60s
-/tick sprint 360s
-/gamerule randomTickSpeed
-/time set day
-/gamerule randomTickSpeed 3
 /tick sprint 120s
 /gamemode survival
 /locate biome minecraft:cherry_grove
@@ -48,3 +19,32 @@
 /tp @s 4759566 145 5260
 /give Dev concoction:cotton_block
 /give Dev minecraft:light
+/locate biome minecraft:meadow
+/tp @s -301 125 -554
+/give Dev minecraft:debug_stick
+/gamerule randomTickSpeed 0
+/tick freeze
+/tick unfreeze
+/particle concoction:mint_leaf_particle_variant_1
+/particle concoction:mint_leaf_particle_variant_2
+/particle concoction:mint_leaf_particle_variant_2 ~ ~10 ~
+/give Dev minecraft:command_block
+/give Dev concoction:mint_chocolate_cake
+/time set day
+/give Dev minecraft:debug_stick
+/gamemode survival
+/effect give Dev minecraft:hunger 3 255 true
+/gamemode survival
+/effect give Dev minecraft:saturation infinite 255 true
+/effect clear
+/effect give Dev minecraft:hunger 3 255 true
+/effect clear
+/effect give Dev minecraft:hunger 1 255 true
+/gamemode survival
+/effect give Dev minecraft:hunger 1 255 true
+/time set day
+/gamemode survival
+/effect give Dev minecraft:hunger 1 255 true
+/give Dev concoction:crop_cotton
+/give Dev minecraft:debug_stick
+/gamemode survival

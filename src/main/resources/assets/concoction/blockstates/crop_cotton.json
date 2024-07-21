@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "concoction:block/crop_cotton0"
+    },
+    "age=1": {
+      "model": "concoction:block/crop_cotton1"
+    },
+    "age=2": {
+      "model": "concoction:block/crop_cotton2"
+    },
+    "age=3": {
+      "model": "concoction:block/crop_cotton3"
+    },
+    "age=4": {
+      "model": "concoction:block/crop_cotton4"
+    },
+    "age=5": {
+      "model": "concoction:block/crop_cotton5"
+    },
+    "age=6": {
+      "model": "concoction:block/crop_cotton6"
+    },
+    "age=7": {
+      "model": "concoction:block/crop_cotton7"
+    }
+  }
+}

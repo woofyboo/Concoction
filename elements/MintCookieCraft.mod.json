@@ -4,7 +4,7 @@
   "definition": {
     "recipeType": "Crafting",
     "recipeRetstackSize": 8,
-    "group": "",
+    "group": "mint_cookie_craft",
     "cookingBookCategory": "MISC",
     "xpReward": 0.0,
     "cookingTime": 200,

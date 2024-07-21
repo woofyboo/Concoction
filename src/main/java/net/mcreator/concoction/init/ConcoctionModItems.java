@@ -18,6 +18,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 
 import net.mcreator.concoction.item.MintCookieItem;
 import net.mcreator.concoction.item.MintBrewItem;
+import net.mcreator.concoction.item.FabricItem;
+import net.mcreator.concoction.item.CottonItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.ConcoctionMod;
 
@@ -28,6 +30,10 @@ public class ConcoctionModItems {
 	public static final DeferredHolder<Item, Item> CHERRY = REGISTRY.register("cherry", () -> new CherryItem());
 	public static final DeferredHolder<Item, Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
 	public static final DeferredHolder<Item, Item> MINT_COOKIE = REGISTRY.register("mint_cookie", () -> new MintCookieItem());
+	public static final DeferredHolder<Item, Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
+	public static final DeferredHolder<Item, Item> COTTON = REGISTRY.register("cotton", () -> new CottonItem());
+	public static final DeferredHolder<Item, Item> FABRIC = REGISTRY.register("fabric", () -> new FabricItem());
+	public static final DeferredHolder<Item, Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
 	// Start of user code block custom items
 	public static final DeferredHolder<Item, Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 

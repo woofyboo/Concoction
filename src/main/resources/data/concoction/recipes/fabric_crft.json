@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "fabric",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cotton"
+    }
+  },
+  "result": {
+    "item": "concoction:fabric",
+    "count": 1
+  }
+}
