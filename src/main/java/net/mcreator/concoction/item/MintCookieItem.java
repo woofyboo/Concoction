@@ -12,7 +12,7 @@ import net.mcreator.concoction.procedures.MintCookiePlayerFinishesUsingItemProce
 
 public class MintCookieItem extends Item {
 	public MintCookieItem() {
-		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.2f).build()));
+		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
 	}
 
 	@Override

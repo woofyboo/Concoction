@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="Not specified"
+
+[[mods]]
+modId="concoction"
+version="1.0.0"
+displayName="Concoction"
+displayURL="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+credits="Sebsish, woofyboo"
+authors="Sebsish, woofyboo"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.concoction]]
+    modId="neoforge"
+    type="required"
+    versionRange="[20.6.117,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.concoction]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.20.6]"
+    ordering="AFTER"
+    side="BOTH"
+
+
+
+
+# Start of user code block dependencies configuration
+# End of user code block dependencies configuration

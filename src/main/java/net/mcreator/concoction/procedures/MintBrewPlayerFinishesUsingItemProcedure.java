@@ -11,6 +11,6 @@ public class MintBrewPlayerFinishesUsingItemProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH.get(), 1800, 0, false, true));
+			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 1800, 0, false, true));
 	}
 }

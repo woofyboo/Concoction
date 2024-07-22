@@ -1,0 +1,48 @@
+{
+  "_fv": 66,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 2,
+    "group": "pillow_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:Fabric"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:Fabric"
+      },
+      {
+        "value": "Blocks.BAMBOO"
+      },
+      {
+        "value": "CUSTOM:Fabric"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:Fabric"
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:PillowBlock"
+    },
+    "name": "pillow_block_craft_3",
+    "namespace": "mod"
+  }
+}

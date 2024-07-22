@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:crop_mint"
+    "concoction:crop_mint",
+    "concoction:crop_cotton"
   ]
 }

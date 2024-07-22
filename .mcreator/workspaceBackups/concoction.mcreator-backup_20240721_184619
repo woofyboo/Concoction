@@ -3,7 +3,6 @@
     {
       "name": "Mint",
       "type": "plant",
-      "sortid": 2,
       "compiles": true,
       "locked_code": true,
       "registry_name": "mint",
@@ -25,7 +24,6 @@
     {
       "name": "PurpleDyeCraft",
       "type": "recipe",
-      "sortid": 4,
       "compiles": true,
       "locked_code": false,
       "registry_name": "purple_dye_craft",
@@ -39,9 +37,8 @@
     {
       "name": "MintPlantDestroyedByPlayer",
       "type": "procedure",
-      "sortid": 5,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mint_plant_destroyed_by_player",
       "metadata": {
         "files": [
@@ -75,9 +72,8 @@
     {
       "name": "MintPlantDestroyedByExplosion",
       "type": "procedure",
-      "sortid": 6,
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mint_plant_destroyed_by_explosion",
       "metadata": {
         "files": [
@@ -107,7 +103,6 @@
     {
       "name": "MintBargain",
       "type": "villagertrade",
-      "sortid": 7,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_bargain",
@@ -119,7 +114,6 @@
     {
       "name": "MintCompost",
       "type": "itemextension",
-      "sortid": 8,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_compost",
@@ -131,7 +125,6 @@
     {
       "name": "MintSeedsCompost",
       "type": "itemextension",
-      "sortid": 9,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_seeds_compost",
@@ -143,7 +136,6 @@
     {
       "name": "MintLeafParticleVariant1",
       "type": "particle",
-      "sortid": 10,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_leaf_particle_variant_1",
@@ -158,7 +150,6 @@
     {
       "name": "MintLeafParticleVariant2",
       "type": "particle",
-      "sortid": 11,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_leaf_particle_variant_2",
@@ -173,7 +164,6 @@
     {
       "name": "MintOnTickUpdate",
       "type": "procedure",
-      "sortid": 12,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_on_tick_update",
@@ -205,7 +195,6 @@
     {
       "name": "MintLeafParticleVariant1AdditionalParticleExpiryCondition",
       "type": "procedure",
-      "sortid": 13,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_leaf_particle_variant_1_additional_particle_expiry_condition",
@@ -226,7 +215,6 @@
     {
       "name": "MintyBreath",
       "type": "potioneffect",
-      "sortid": 14,
       "compiles": true,
       "locked_code": false,
       "registry_name": "minty_breath",
@@ -240,8 +228,7 @@
     {
       "name": "FireDamageTakenMintyBreath",
       "type": "procedure",
-      "sortid": 15,
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "fire_damage_taken_minty_breath",
       "metadata": {
@@ -272,7 +259,6 @@
     {
       "name": "HealingBonusMinty",
       "type": "procedure",
-      "sortid": 16,
       "compiles": true,
       "locked_code": false,
       "registry_name": "healing_bonus_minty",
@@ -292,7 +278,6 @@
     {
       "name": "MintEffectParticles",
       "type": "procedure",
-      "sortid": 17,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_effect_particles",
@@ -324,8 +309,7 @@
     {
       "name": "MintBrew",
       "type": "item",
-      "sortid": 18,
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "mint_brew",
       "metadata": {
@@ -339,7 +323,6 @@
     {
       "name": "MintBrewPlayerFinishesUsingItem",
       "type": "procedure",
-      "sortid": 19,
       "compiles": true,
       "locked_code": false,
       "registry_name": "mint_brew_player_finishes_using_item",
@@ -359,7 +342,6 @@
     {
       "name": "MintyBrewCraft",
       "type": "recipe",
-      "sortid": 20,
       "compiles": true,
       "locked_code": false,
       "registry_name": "minty_brew_craft",
@@ -373,7 +355,6 @@
     {
       "name": "Cherry",
       "type": "item",
-      "sortid": 22,
       "compiles": true,
       "locked_code": false,
       "registry_name": "cherry",
@@ -388,7 +369,6 @@
     {
       "name": "Cherrydrop",
       "type": "loottable",
-      "sortid": 23,
       "compiles": true,
       "locked_code": false,
       "registry_name": "cherrydrop",
@@ -402,8 +382,7 @@
     {
       "name": "LootHandler",
       "type": "code",
-      "sortid": 24,
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "loot_handler",
       "metadata": {
@@ -415,7 +394,6 @@
     {
       "name": "CropMintNeighbourBlockChanges",
       "type": "procedure",
-      "sortid": 25,
       "compiles": true,
       "locked_code": false,
       "registry_name": "crop_mint_neighbour_block_changes",
@@ -431,8 +409,7 @@
     {
       "name": "CropMint",
       "type": "block",
-      "sortid": 27,
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "crop_mint",
       "metadata": {
@@ -450,7 +427,6 @@
     {
       "name": "CustomTab",
       "type": "code",
-      "sortid": 28,
       "compiles": true,
       "locked_code": true,
       "registry_name": "custom_tab",
@@ -631,7 +607,7 @@
     {
       "name": "CropCotton",
       "type": "block",
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "crop_cotton",
       "metadata": {
@@ -641,6 +617,62 @@
           "src/main/resources/assets/concoction/models/item/crop_cotton.json",
           "src/main/resources/assets/concoction/blockstates/crop_cotton.json",
           "src/main/resources/assets/concoction/models/block/crop_cotton.json"
+        ]
+      },
+      "path": "~/Cotton"
+    },
+    {
+      "name": "CropCottonDrop",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "crop_cotton_drop",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CropCottonDropProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/Cotton"
+    },
+    {
+      "name": "PillowBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pillow_block",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/PillowBlockBlock.java",
+          "src/main/resources/assets/concoction/blockstates/pillow_block.json",
+          "src/main/resources/data/concoction/loot_tables/blocks/pillow_block.json",
+          "src/main/resources/assets/concoction/models/block/pillow_block.json",
+          "src/main/resources/assets/concoction/models/item/pillow_block.json"
         ]
       },
       "path": "~/Cotton"
@@ -659,16 +691,19 @@
       "Blocks.FARMLAND"
     ],
     "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint"
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint"
     ]
   },
+  "tab_element_order": {},
   "language_map": {
     "en_us": {
       "item.concoction.mint_brew": "Mint Brew",
       "item_group.concoction.concoction": "Concoction",
+      "block.concoction.pillow_block": "Pillow Block",
       "item.concoction.cotton": "Cotton",
       "item.concoction.mint_cookie": "Mint Cookie",
       "item.concoction.cherry": "Cherry",
@@ -716,9 +751,9 @@
     "dependencies": [],
     "dependants": [],
     "mcreatorDependencies": [],
-    "currentGenerator": "neoforge-1.20.4",
+    "currentGenerator": "neoforge-1.20.6",
     "credits": "Sebsish, woofyboo",
     "modElementsPackage": "net.mcreator.concoction"
   },
-  "mcreatorVersion": 202400118518
+  "mcreatorVersion": 202400229712
 }

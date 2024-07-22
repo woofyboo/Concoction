@@ -11,6 +11,6 @@ public class MintCookiePlayerFinishesUsingItemProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH.get(), 600, 0, false, true));
+			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 600, 0, false, true));
 	}
 }

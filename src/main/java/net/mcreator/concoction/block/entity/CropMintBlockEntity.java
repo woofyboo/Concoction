@@ -1,5 +1,6 @@
 package net.mcreator.concoction.block.entity;
 
+import net.minecraft.core.HolderLookup;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,18 +33,18 @@ public class CropMintBlockEntity extends RandomizableContainerBlockEntity implem
 	}
 
 	@Override
-	public void load(CompoundTag compound) {
-		super.load(compound);
+	public void loadAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+		super.loadAdditional(compound, provider);
 		if (!this.tryLoadLootTable(compound))
 			this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(compound, this.stacks);
+		ContainerHelper.loadAllItems(compound, this.stacks, provider);
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag compound) {
-		super.saveAdditional(compound);
+	public void saveAdditional(CompoundTag compound, HolderLookup.Provider provider) {
+		super.saveAdditional(compound,provider);
 		if (!this.trySaveLootTable(compound)) {
-			ContainerHelper.saveAllItems(compound, this.stacks);
+			ContainerHelper.saveAllItems(compound, this.stacks, provider);
 		}
 	}
 
@@ -53,9 +54,12 @@ public class CropMintBlockEntity extends RandomizableContainerBlockEntity implem
 	}
 
 	@Override
-	public CompoundTag getUpdateTag() {
-		return this.saveWithFullMetadata();
+	public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+		return this.saveWithFullMetadata(provider);
 	}
+//	public CompoundTag getUpdateTag() {
+//		return this.saveWithFullMetadata();
+//	}
 
 	@Override
 	public int getContainerSize() {

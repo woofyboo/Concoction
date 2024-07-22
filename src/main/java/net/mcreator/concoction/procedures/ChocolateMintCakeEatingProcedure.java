@@ -1,7 +1,7 @@
 package net.mcreator.concoction.procedures;
 
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.bus.api.ICancellableEvent;
 import net.neoforged.bus.api.Event;
@@ -25,7 +25,7 @@ import net.mcreator.concoction.init.ConcoctionModBlocks;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class ChocolateMintCakeEatingProcedure {
 	@SubscribeEvent
 	public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
@@ -69,7 +69,7 @@ public class ChocolateMintCakeEatingProcedure {
 						if (entity instanceof Player _player)
 							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
 						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH.get(), 600, 0));
+							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 600, 0));
 						if (event instanceof ICancellableEvent _cancellable) {
 							_cancellable.setCanceled(true);
 						}
@@ -83,7 +83,7 @@ public class ChocolateMintCakeEatingProcedure {
 					if (entity instanceof Player _player)
 						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
 					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH.get(), 600, 0));
+						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 600, 0));
 					if (event instanceof ICancellableEvent _cancellable) {
 						_cancellable.setCanceled(true);
 					}

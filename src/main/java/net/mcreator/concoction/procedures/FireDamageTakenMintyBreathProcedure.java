@@ -1,7 +1,7 @@
 package net.mcreator.concoction.procedures;
 
 import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.bus.api.ICancellableEvent;
 import net.neoforged.bus.api.Event;
@@ -20,7 +20,7 @@ import net.mcreator.concoction.ConcoctionMod;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber
+@EventBusSubscriber
 public class FireDamageTakenMintyBreathProcedure {
 	@SubscribeEvent
 	public static void onEntityAttacked(LivingHurtEvent event) {
@@ -36,7 +36,7 @@ public class FireDamageTakenMintyBreathProcedure {
 	private static void execute(@Nullable LivingHurtEvent event, LevelAccessor world, DamageSource damagesource, Entity entity, double amount) {
 		if (damagesource == null || entity == null)
 			return;
-		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.MINTY_BREATH.get())) {
+		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.MINTY_BREATH)) {
 			if (damagesource.is(TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("minecraft:is_fire")))) {
 				event.setAmount((float) (amount * 0.9));
 			}
