@@ -551,20 +551,6 @@
       "path": "~/mint"
     },
     {
-      "name": "Cotton",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "cotton",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/CottonItem.java",
-          "src/main/resources/assets/concoction/models/item/cotton.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
       "name": "CottonString",
       "type": "recipe",
       "compiles": true,

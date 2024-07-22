@@ -14,9 +14,11 @@
 */
 package net.mcreator.concoction;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -63,14 +65,9 @@ public class LootHandler {
 	private static LootPool.Builder getInjectPool(String entryName) {
 		return LootPool.lootPool().add(getInjectEntry(entryName, 5));
 	}
-	private static ResourceLocation prefix(String path) {
-		return new ResourceLocation("concoction", path);
-	}
 
 	private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name, int weight) {
-		ResourceLocation table = prefix("inject/" + name);
 		return NestedLootTable.lootTableReference(
-				(ResourceKey.create(ResourceKey.createRegistryKey(
-						new ResourceLocation("minecraft:loot_tables/")), table))).setWeight(weight);
+				ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation("concoction", "inject/" + name))).setWeight(weight);
 	}
 }
