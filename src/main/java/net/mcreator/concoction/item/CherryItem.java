@@ -1,9 +1,9 @@
 
 package net.mcreator.concoction.item;
 
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 public class CherryItem extends Item {
 	public CherryItem() {

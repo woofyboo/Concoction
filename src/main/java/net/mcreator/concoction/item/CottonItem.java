@@ -1,8 +1,8 @@
 
 package net.mcreator.concoction.item;
 
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 public class CottonItem extends Item {
 	public CottonItem() {

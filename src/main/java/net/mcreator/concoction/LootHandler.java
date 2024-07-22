@@ -14,28 +14,14 @@
 */
 package net.mcreator.concoction;
 
-import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
-import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
-
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryType;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-
-import net.neoforged.neoforge.event.LootTableLoadEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.LootTableLoadEvent;
 
 import java.util.function.Consumer;
 
@@ -85,6 +71,6 @@ public class LootHandler {
 		ResourceLocation table = prefix("inject/" + name);
 		return NestedLootTable.lootTableReference(
 				(ResourceKey.create(ResourceKey.createRegistryKey(
-						new ResourceLocation("minecraft:/loot_tables")), table))).setWeight(weight);
+						new ResourceLocation("minecraft:loot_tables/")), table))).setWeight(weight);
 	}
 }

@@ -1,5 +1,3 @@
-/time set day
-/give Dev concoction:mint_seed
 /tp 5795 556 55656
 /locate biome minecraft:plains
 /tp @s 6115 139 55400
@@ -48,3 +46,5 @@
 /gamerule randomTickSpeed 300
 /gamerule randomTickSpeed 3\
 /gamerule randomTickSpeed 3
+/attribute @a[
+/locate biome minecraft:meadow

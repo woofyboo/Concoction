@@ -1,22 +1,21 @@
 package net.mcreator.concoction.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.GameType;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.client.Minecraft;
-
-import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModItems;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.LevelAccessor;
 
 public class MintPlantDestroyedByPlayerProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {

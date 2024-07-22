@@ -1,28 +1,26 @@
 
 package net.mcreator.concoction.block;
 
-import net.neoforged.neoforge.common.PlantType;
-import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.api.distmarker.Dist;
-
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.util.RandomSource;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
-
-import net.mcreator.concoction.procedures.MintPlantDestroyedByPlayerProcedure;
-import net.mcreator.concoction.procedures.MintPlantDestroyedByExplosionProcedure;
 import net.mcreator.concoction.procedures.MintOnTickUpdateProcedure;
+import net.mcreator.concoction.procedures.MintPlantDestroyedByExplosionProcedure;
+import net.mcreator.concoction.procedures.MintPlantDestroyedByPlayerProcedure;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.neoforge.common.PlantType;
 
 public class MintBlock extends DoublePlantBlock {
 	public MintBlock() {

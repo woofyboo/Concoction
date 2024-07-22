@@ -1,11 +1,10 @@
 package net.mcreator.concoction.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.server.level.ServerLevel;
-
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
 
 public class MintPlantDestroyedByExplosionProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {

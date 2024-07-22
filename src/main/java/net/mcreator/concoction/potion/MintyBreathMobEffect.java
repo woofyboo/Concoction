@@ -1,11 +1,10 @@
 
 package net.mcreator.concoction.potion;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffect;
-
 import net.mcreator.concoction.procedures.MintEffectParticlesProcedure;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
 public class MintyBreathMobEffect extends MobEffect {
 	public MintyBreathMobEffect() {

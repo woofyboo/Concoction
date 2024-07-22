@@ -1,22 +1,16 @@
 package net.mcreator.concoction.procedures;
 
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.bus.api.ICancellableEvent;
-import net.neoforged.bus.api.Event;
-
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.tags.TagKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.registries.Registries;
-
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.ConcoctionMod;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.LevelAccessor;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
 
 import javax.annotation.Nullable;
 

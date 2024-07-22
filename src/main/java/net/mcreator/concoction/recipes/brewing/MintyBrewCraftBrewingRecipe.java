@@ -1,23 +1,21 @@
 
 package net.mcreator.concoction.recipes.brewing;
 
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
-import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.Holder;
-
-import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModItems;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
 import java.util.Optional;
 

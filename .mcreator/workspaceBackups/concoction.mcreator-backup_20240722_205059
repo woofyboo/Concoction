@@ -228,7 +228,7 @@
     {
       "name": "FireDamageTakenMintyBreath",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "fire_damage_taken_minty_breath",
       "metadata": {
@@ -309,7 +309,7 @@
     {
       "name": "MintBrew",
       "type": "item",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "mint_brew",
       "metadata": {
@@ -382,7 +382,7 @@
     {
       "name": "LootHandler",
       "type": "code",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "loot_handler",
       "metadata": {
@@ -409,7 +409,7 @@
     {
       "name": "CropMint",
       "type": "block",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "crop_mint",
       "metadata": {
@@ -607,7 +607,7 @@
     {
       "name": "CropCotton",
       "type": "block",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "crop_cotton",
       "metadata": {
@@ -673,6 +673,45 @@
           "src/main/resources/data/concoction/loot_tables/blocks/pillow_block.json",
           "src/main/resources/assets/concoction/models/block/pillow_block.json",
           "src/main/resources/assets/concoction/models/item/pillow_block.json"
+        ]
+      },
+      "path": "~/Cotton"
+    },
+    {
+      "name": "PillowBlockCraft1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pillow_block_craft_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipes/pillow_block_craft_1.json"
+        ]
+      },
+      "path": "~/Cotton"
+    },
+    {
+      "name": "PillowBlockCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pillow_block_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipes/pillow_block_craft_2.json"
+        ]
+      },
+      "path": "~/Cotton"
+    },
+    {
+      "name": "PillowBlockCraft3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pillow_block_craft_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipes/pillow_block_craft_3.json"
         ]
       },
       "path": "~/Cotton"

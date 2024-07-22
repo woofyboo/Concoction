@@ -568,7 +568,7 @@
       "name": "CottonString",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "cotton_string",
       "metadata": {
         "files": [
@@ -595,7 +595,7 @@
       "name": "FabricCrft",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "fabric_crft",
       "metadata": {
         "files": [
@@ -625,7 +625,7 @@
       "name": "CropCottonDrop",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "crop_cotton_drop",
       "metadata": {
         "files": [
@@ -681,7 +681,7 @@
       "name": "PillowBlockCraft1",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pillow_block_craft_1",
       "metadata": {
         "files": [
@@ -694,7 +694,7 @@
       "name": "PillowBlockCraft2",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pillow_block_craft_2",
       "metadata": {
         "files": [
@@ -707,7 +707,7 @@
       "name": "PillowBlockCraft3",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pillow_block_craft_3",
       "metadata": {
         "files": [
