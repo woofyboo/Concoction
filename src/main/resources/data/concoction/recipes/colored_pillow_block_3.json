@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brown_pillow",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:brown_dye"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    }
+  ],
+  "result": {
+    "id": "concoction:brown_pillow_block",
+    "count": 8
+  }
+}

@@ -1,5 +1,5 @@
 version:3839
-ao:false
+ao:true
 biomeBlendRadius:2
 enableVsync:false
 entityDistanceScaling:1.0
@@ -13,8 +13,8 @@ glintSpeed:0.5
 glintStrength:0.75
 prioritizeChunkUpdates:0
 fullscreen:false
-gamma:0.5
-graphicsMode:0
+gamma:1.0
+graphicsMode:2
 guiScale:0
 maxFps:260
 mipmapLevels:2
@@ -22,7 +22,7 @@ narrator:0
 particles:0
 reducedDebugInfo:false
 renderClouds:"false"
-renderDistance:5
+renderDistance:12
 simulationDistance:12
 screenEffectScale:1.0
 soundDevice:""

@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "black_pillow",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    }
+  ],
+  "result": {
+    "id": "concoction:black_pillow_block",
+    "count": 8
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "_fv": 66,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 8,
+    "group": "orange_pillow",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "Items.DYE#14"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      },
+      {
+        "value": "CUSTOM:PillowBlock"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:OrangePillowBlock"
+    },
+    "name": "colored_pillow_block_2",
+    "namespace": "mod"
+  }
+}

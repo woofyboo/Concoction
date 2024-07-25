@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pink_pillow",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:pink_dye"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    }
+  ],
+  "result": {
+    "id": "concoction:pink_pillow_block",
+    "count": 8
+  }
+}

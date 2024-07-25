@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lime_pillow",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:lime_dye"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    },
+    {
+      "item": "concoction:pillow_block"
+    }
+  ],
+  "result": {
+    "id": "concoction:lime_pillow_block",
+    "count": 8
+  }
+}

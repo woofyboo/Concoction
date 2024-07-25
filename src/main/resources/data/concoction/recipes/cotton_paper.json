@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "paper",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cotton"
+    }
+  },
+  "result": {
+    "id": "minecraft:paper",
+    "count": 1
+  }
+}

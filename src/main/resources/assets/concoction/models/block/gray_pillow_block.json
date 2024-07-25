@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "concoction:block/pillow_grey",
+    "particle": "concoction:block/pillow_grey"
+  },
+  "render_type": "solid"
+}

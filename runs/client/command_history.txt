@@ -1,50 +1,50 @@
-/tp 5795 556 55656
-/locate biome minecraft:plains
-/tp @s 6115 139 55400
-/locate biome minecraft:meadow
-/tp @s 5959 103 54672
-/gamemode creative
-/locate biome minecraft:plains
-/tp @s -14 91 407
-/tp 4759457 100 5475
-/locate biome minecraft:plains
-/tp @s 4759566 145 5260
-/give Dev concoction:cotton_block
-/give Dev minecraft:light
-/locate biome minecraft:meadow
-/tp @s -301 125 -554
-/give Dev minecraft:debug_stick
-/gamerule randomTickSpeed 0
-/tick freeze
-/tick unfreeze
-/particle concoction:mint_leaf_particle_variant_1
-/particle concoction:mint_leaf_particle_variant_2
-/particle concoction:mint_leaf_particle_variant_2 ~ ~10 ~
-/give Dev minecraft:command_block
-/give Dev concoction:mint_chocolate_cake
+/locate biome minecraft:stony_shore
+/tp @s -46916 165 45774
+/locate biome minecraft:stony_peaks
+/tp @s -46750 93 46672
+/summon tnt
+/locate biome concoction:sparse_beach_hills
+/tp @s -46198 91 46618
 /time set day
-/give Dev minecraft:debug_stick
+/tp 56874574754 64 5656
+/tp 568754 64 5656
+/locate biome concoction:sparse_beach_hills
+/tp @s 566578 199 4920
+/tp -45648564 565 565674
+/tp -456485 565 565674
+/locate biome concoction:sparse_beach_hills
+/tp @s -456357 263 566282
+/tp ~12919 ~ ~
+/locate biome concoction:sparse_beach_hills
+/tp @s -443791 -18 564801
+/tp ~-456745 ~ ~
+/locate biome concoction:sparse_beach_hills
+/tp @s -899171 -45 565143
+/locate biome concoction:sparse_beach_hills
+/tp @s -887 75 -598
+/place feature concoction:grass_block_patch
+/setblock ~ ~ ~ stone
+/place feature concoction:grass_block_patch
+/tp 99999 99 569496
+/locate biome concoction:sparse_beach_hills
+/tp @s 99007 99 571064
+/tp -99999 56 99999
+/locate biome concoction:sparse_beach_hills
+/tp @s -100737 65 100735
+/tp @p ~-100000 ~ ~-10
+/locate biome concoction:sparse_beach_hills
+/tp @s -201792 103 100384
+/place feature concoction:grass_block_patch
+/summon tnt
+/locate biome minecraft:sparse_jungle
+/tp @s -20 69 237
+/locate biome minecraft:savanna_plateau
+/tp @s -1645 97 1155
+/place feature concoction:wild_cotton_patch
+/locate structure #c:hidden_from_displayers
+/locate structure #c:hidden_from_locator_selection
+/place feature concoction:wild_cotton_patch
+/tp @p 485475 190 455
 /gamemode survival
-/effect give Dev minecraft:hunger 3 255 true
-/gamemode survival
-/effect give Dev minecraft:saturation infinite 255 true
-/effect clear
-/effect give Dev minecraft:hunger 3 255 true
-/effect clear
-/effect give Dev minecraft:hunger 1 255 true
-/gamemode survival
-/effect give Dev minecraft:hunger 1 255 true
-/time set day
-/gamemode survival
-/effect give Dev minecraft:hunger 1 255 true
-/give Dev concoction:crop_cotton
-/give Dev minecraft:debug_stick
-/gamemode survival
-/time set day
-/gamemode survival
-/gamerule randomTickSpeed 30
-/gamerule randomTickSpeed 300
-/gamerule randomTickSpeed 3\
-/gamerule randomTickSpeed 3
-/attribute @a[
-/locate biome minecraft:meadow
+/spawnpoint
+/give Dev minecraft:flint_and_steel
