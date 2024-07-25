@@ -31,6 +31,10 @@ public class ConcoctionModItems {
 	public static final DeferredHolder<Item, Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
 	public static final DeferredHolder<Item, Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
 	public static final DeferredHolder<Item, Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
+	public static final DeferredHolder<Item, Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
+	// Start of user code block custom items
+	public static final DeferredHolder<Item, Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
+	public static final DeferredHolder<Item, Item> COTTON = REGISTRY.register("cotton", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_COTTON.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredHolder<Item, Item> RED_PILLOW_BLOCK = block(ConcoctionModBlocks.RED_PILLOW_BLOCK);
 	public static final DeferredHolder<Item, Item> ORANGE_PILLOW_BLOCK = block(ConcoctionModBlocks.ORANGE_PILLOW_BLOCK);
 	public static final DeferredHolder<Item, Item> BROWN_PILLOW_BLOCK = block(ConcoctionModBlocks.BROWN_PILLOW_BLOCK);
@@ -46,10 +50,6 @@ public class ConcoctionModItems {
 	public static final DeferredHolder<Item, Item> LIGHT_GRAY_PILLOW_BLOCK = block(ConcoctionModBlocks.LIGHT_GRAY_PILLOW_BLOCK);
 	public static final DeferredHolder<Item, Item> GRAY_PILLOW_BLOCK = block(ConcoctionModBlocks.GRAY_PILLOW_BLOCK);
 	public static final DeferredHolder<Item, Item> BLACK_PILLOW_BLOCK = block(ConcoctionModBlocks.BLACK_PILLOW_BLOCK);
-	public static final DeferredHolder<Item, Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
-	// Start of user code block custom items
-	public static final DeferredHolder<Item, Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
-	public static final DeferredHolder<Item, Item> COTTON = REGISTRY.register("cotton", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_COTTON.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 
 	// End of user code block custom items
 	private static DeferredHolder<Item, Item> block(DeferredHolder<Block, Block> block) {

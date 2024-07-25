@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:pillow_block",
+    "concoction:pink_pillow_block",
+    "concoction:cyan_pillow_block",
+    "concoction:light_blue_pillow_block",
+    "concoction:magenta_pillow_block",
+    "concoction:black_pillow_block",
+    "concoction:lime_pillow_block",
+    "concoction:orange_pillow_block",
+    "concoction:green_pillow_block",
+    "concoction:red_pillow_block",
+    "concoction:purple_pillow_block",
+    "concoction:light_gray_pillow_block",
+    "concoction:brown_pillow_block",
+    "concoction:yellow_pillow_block",
+    "concoction:blue_pillow_block",
+    "concoction:gray_pillow_block"
+  ]
+}

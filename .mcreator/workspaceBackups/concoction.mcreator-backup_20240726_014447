@@ -650,7 +650,7 @@
       "name": "PillowBlock",
       "type": "block",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pillow_block",
       "metadata": {
         "files": [
@@ -727,261 +727,6 @@
       "path": "~/Cotton"
     },
     {
-      "name": "RedPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "red_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/loot_tables/blocks/red_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/red_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/RedPillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/block/red_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/red_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "OrangePillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "orange_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/blockstates/orange_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/OrangePillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/item/orange_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/orange_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/orange_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "BrownPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "brown_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/BrownPillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/item/brown_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/brown_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/brown_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/brown_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "YellowPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "yellow_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/loot_tables/blocks/yellow_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/yellow_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/YellowPillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/item/yellow_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/yellow_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "LimePillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "lime_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/LimePillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/item/lime_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/lime_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/lime_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/lime_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "GreenPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "green_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/loot_tables/blocks/green_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/green_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/green_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/green_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/GreenPillowBlockBlock.java"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "CyanPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "cyan_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/CyanPillowBlockBlock.java",
-          "src/main/resources/data/concoction/loot_tables/blocks/cyan_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/cyan_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/cyan_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/cyan_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "LightBluePillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "light_blue_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/block/light_blue_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/light_blue_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/light_blue_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/light_blue_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/LightBluePillowBlockBlock.java"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "BluePillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "blue_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/blockstates/blue_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/BluePillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/item/blue_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/blue_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/blue_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "PurplePillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "purple_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/PurplePillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/block/purple_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/purple_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/purple_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/purple_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "MagentaPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "magenta_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/loot_tables/blocks/magenta_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/magenta_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/MagentaPillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/block/magenta_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/magenta_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "PinkPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "pink_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/loot_tables/blocks/pink_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/pink_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/pink_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/pink_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/PinkPillowBlockBlock.java"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "LightGrayPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "light_gray_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/LightGrayPillowBlockBlock.java",
-          "src/main/resources/assets/concoction/models/block/light_gray_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/light_gray_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/light_gray_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/light_gray_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "GrayPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "gray_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/block/gray_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/gray_pillow_block.json",
-          "src/main/resources/data/concoction/loot_tables/blocks/gray_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/gray_pillow_block.json",
-          "src/main/java/net/mcreator/concoction/block/GrayPillowBlockBlock.java"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
-      "name": "BlackPillowBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "black_pillow_block",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/block/BlackPillowBlockBlock.java",
-          "src/main/resources/data/concoction/loot_tables/blocks/black_pillow_block.json",
-          "src/main/resources/assets/concoction/models/item/black_pillow_block.json",
-          "src/main/resources/assets/concoction/blockstates/black_pillow_block.json",
-          "src/main/resources/assets/concoction/models/block/black_pillow_block.json"
-        ]
-      },
-      "path": "~/Cotton"
-    },
-    {
       "name": "CottonPaper",
       "type": "recipe",
       "compiles": true,
@@ -998,7 +743,7 @@
       "name": "ColoredPillowBlock1",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_1",
       "metadata": {
         "files": [
@@ -1011,7 +756,7 @@
       "name": "ColoredPillowBlock2",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_2",
       "metadata": {
         "files": [
@@ -1024,7 +769,7 @@
       "name": "ColoredPillowBlock3",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_3",
       "metadata": {
         "files": [
@@ -1037,7 +782,7 @@
       "name": "ColoredPillowBlock4",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_4",
       "metadata": {
         "files": [
@@ -1050,7 +795,7 @@
       "name": "ColoredPillowBlock5",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_5",
       "metadata": {
         "files": [
@@ -1063,7 +808,7 @@
       "name": "ColoredPillowBlock6",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_6",
       "metadata": {
         "files": [
@@ -1076,7 +821,7 @@
       "name": "ColoredPillowBlock7",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_7",
       "metadata": {
         "files": [
@@ -1089,7 +834,7 @@
       "name": "ColoredPillowBlock8",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_8",
       "metadata": {
         "files": [
@@ -1102,7 +847,7 @@
       "name": "ColoredPillowBlock9",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_9",
       "metadata": {
         "files": [
@@ -1115,7 +860,7 @@
       "name": "ColoredPillowBlock10",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_10",
       "metadata": {
         "files": [
@@ -1128,7 +873,7 @@
       "name": "ColoredPillowBlock11",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_11",
       "metadata": {
         "files": [
@@ -1141,7 +886,7 @@
       "name": "ColoredPillowBlock12",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_12",
       "metadata": {
         "files": [
@@ -1154,7 +899,7 @@
       "name": "ColoredPillowBlock13",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_13",
       "metadata": {
         "files": [
@@ -1167,7 +912,7 @@
       "name": "ColoredPillowBlock14",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_14",
       "metadata": {
         "files": [
@@ -1180,7 +925,7 @@
       "name": "ColoredPillowBlock15",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "colored_pillow_block_15",
       "metadata": {
         "files": [
@@ -1226,6 +971,9 @@
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint"
     ],
+    "BLOCKS:minecraft:wool": [
+      "CUSTOM:PillowBlock"
+    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint"
     ],
@@ -1243,16 +991,7 @@
   "tab_element_order": {},
   "language_map": {
     "en_us": {
-      "block.concoction.cyan_pillow_block": "Cyan Pillow Block",
-      "block.concoction.pink_pillow_block": "Pink Pillow Block",
-      "block.concoction.light_blue_pillow_block": "Light Blue Pillow Block",
-      "block.concoction.magenta_pillow_block": "Magenta Pillow Block",
-      "block.concoction.black_pillow_block": "Black Pillow Block",
-      "block.concoction.lime_pillow_block": "Lime Pillow Block",
-      "block.concoction.orange_pillow_block": "Orange Pillow Block",
-      "block.concoction.green_pillow_block": "Green Pillow Block",
       "block.concoction.mint": "Mint",
-      "block.concoction.red_pillow_block": "Red Pillow Block",
       "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
       "item.concoction.mint_seeds": "Mint Seeds",
       "block.concoction.crop_mint": "Crop Mint",
@@ -1264,15 +1003,9 @@
       "block.concoction.crop_cotton": "Crop Cotton",
       "item.concoction.cherry": "Cherry",
       "item.concoction.fabric": "Fabric",
-      "block.concoction.purple_pillow_block": "Purple Pillow Block",
-      "block.concoction.light_gray_pillow_block": "Light Gray Pillow Block",
-      "block.concoction.brown_pillow_block": "Brown Pillow Block",
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction_brew.mint": "Mint",
-      "block.concoction.yellow_pillow_block": "Yellow Pillow Block",
-      "effect.concoction.minty_breath": "Minty Breath",
-      "block.concoction.blue_pillow_block": "Blue Pillow Block",
-      "block.concoction.gray_pillow_block": "Gray Pillow Block"
+      "effect.concoction.minty_breath": "Minty Breath"
     }
   },
   "foldersRoot": {
