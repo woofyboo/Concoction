@@ -2,8 +2,8 @@
   "_fv": 66,
   "_type": "potioneffect",
   "definition": {
-    "effectName": "Minty Breath",
-    "icon": "minty_pe.png",
+    "effectName": "Freshness",
+    "icon": "minty_pe",
     "color": {
       "value": -6684724,
       "falpha": 0.0

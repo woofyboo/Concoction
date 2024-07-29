@@ -1,8 +1,12 @@
 
 package net.mcreator.concoction.block;
 
+import net.mcreator.concoction.ConcoctionMod;
+import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ShearsItem;
@@ -21,19 +25,36 @@ public class PillowBlockBlock extends SlimeBlock {
 	}
 
 	@Override
-	public void updateEntityAfterFallOn(BlockGetter p_56406_, Entity p_56407_) {
-		if (p_56407_.isSuppressingBounce()) {
-			super.updateEntityAfterFallOn(p_56406_, p_56407_);
+	public void updateEntityAfterFallOn(BlockGetter block, Entity player) {
+		if (player.isSuppressingBounce()) {
+			super.updateEntityAfterFallOn(block, player);
 		} else {
-			this.bounceUp(p_56407_);
+			this.bounceUp(player);
 		}
+		summonLeafParticles(player);
 	}
 
-	private void bounceUp(Entity p_56404_) {
-		Vec3 vec3 = p_56404_.getDeltaMovement();
+	private void summonLeafParticles(Entity player) {
+		if (player.level() instanceof ServerLevel _level) {
+			Vec3 pos = player.position();
+			int particlesCount = calcAmpl(player.getDeltaMovement());
+			if (particlesCount != 0)
+			_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
+					pos.x, pos.y, pos.z,
+					particlesCount, 0, 0.1, 0, 0.4);
+		}
+	}
+	private int calcAmpl(Vec3 ampl) {
+		if (ampl.y < 0.3d)
+			return 0;
+		else return (int) (Math.min((float) ampl.y, 2f) * 50);
+	}
+
+	private void bounceUp(Entity player) {
+		Vec3 vec3 = player.getDeltaMovement();
 		if (vec3.y < 0.0) {
-			double d0 = p_56404_ instanceof LivingEntity ? 1.0 : 0.8;
-			p_56404_.setDeltaMovement(vec3.x, -vec3.y * 0.66F * d0, vec3.z);
+			double d0 = player instanceof LivingEntity ? 1.0 : 0.8;
+			player.setDeltaMovement(vec3.x, -vec3.y * 0.66F * d0, vec3.z);
 		}
 	}
 

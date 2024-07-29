@@ -1,0 +1,26 @@
+{
+  "_fv": 66,
+  "_type": "particle",
+  "definition": {
+    "texture": "feather_particle",
+    "animate": false,
+    "frameDuration": 1,
+    "width": 0.6,
+    "height": 0.6,
+    "scale": {
+      "fixedValue": 1.0
+    },
+    "speedFactor": 0.6,
+    "gravity": 0.05,
+    "maxAge": 40,
+    "maxAgeDiff": 5,
+    "angularVelocity": 0.19999999999999998,
+    "angularAcceleration": -0.01,
+    "canCollide": true,
+    "alwaysShow": false,
+    "renderType": "OPAQUE",
+    "additionalExpiryCondition": {
+      "name": "FeatherParticleAdditionalParticleExpiryCondition"
+    }
+  }
+}

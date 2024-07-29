@@ -1,50 +1,50 @@
-/locate biome minecraft:stony_shore
-/tp @s -46916 165 45774
-/locate biome minecraft:stony_peaks
-/tp @s -46750 93 46672
-/summon tnt
-/locate biome concoction:sparse_beach_hills
-/tp @s -46198 91 46618
-/time set day
-/tp 56874574754 64 5656
-/tp 568754 64 5656
-/locate biome concoction:sparse_beach_hills
-/tp @s 566578 199 4920
-/tp -45648564 565 565674
-/tp -456485 565 565674
-/locate biome concoction:sparse_beach_hills
-/tp @s -456357 263 566282
-/tp ~12919 ~ ~
-/locate biome concoction:sparse_beach_hills
-/tp @s -443791 -18 564801
-/tp ~-456745 ~ ~
-/locate biome concoction:sparse_beach_hills
-/tp @s -899171 -45 565143
-/locate biome concoction:sparse_beach_hills
-/tp @s -887 75 -598
-/place feature concoction:grass_block_patch
-/setblock ~ ~ ~ stone
-/place feature concoction:grass_block_patch
-/tp 99999 99 569496
-/locate biome concoction:sparse_beach_hills
-/tp @s 99007 99 571064
-/tp -99999 56 99999
-/locate biome concoction:sparse_beach_hills
-/tp @s -100737 65 100735
-/tp @p ~-100000 ~ ~-10
-/locate biome concoction:sparse_beach_hills
-/tp @s -201792 103 100384
-/place feature concoction:grass_block_patch
-/summon tnt
-/locate biome minecraft:sparse_jungle
-/tp @s -20 69 237
+/effect give Dev concoction:minty_breath
 /locate biome minecraft:savanna_plateau
-/tp @s -1645 97 1155
-/place feature concoction:wild_cotton_patch
-/locate structure #c:hidden_from_displayers
-/locate structure #c:hidden_from_locator_selection
-/place feature concoction:wild_cotton_patch
-/tp @p 485475 190 455
+/tp @s 42 102 739
 /gamemode survival
 /spawnpoint
-/give Dev minecraft:flint_and_steel
+/gamerule keepInventory true
+/gamerule doDaylightCycle false
+/time set day
+/gamerule doWeatherCycle false
+/gamemode survival
+/gamerule doDaylightCycle true
+/tick sprint 1d
+/gamemode survival
+/time set day
+/data get entity Dev
+/time set day
+/locate biome minecraft:deep_dark
+/tp @s 267 -54 1230
+/effect give Dev minecraft:night_vision infinite
+/tp @s 267 -54 1230
+/data get entity Dev
+/kill 1bb0859e-4a10-42a5-8936-de83fb6dfcc6
+/kill df6680de-bfe5-450a-9323-83dc083df51b
+/kill 5409206f-673c-4c6b-b308-ce2ccf510b4b
+/fill ~3 ~3 ~3 ~-3 ~-3 ~-3 minecraft:acacia_slab
+/setblock ~ ~ ~ minecraft:sculk_shrieker
+/fill ~10 ~10 ~10 ~-10 ~-10 ~-10 air replace minecraft:sculk_sensor
+/tp @p 362 -2 191626
+/fill ~10 ~10 ~10 ~-10 ~-10 ~-10 air replace minecraft:sculk_sensor
+/locate biome minecraft:deep_dark
+/tp @s -2679 -5 190992
+/tp -2637 -40 190977
+/locate structure minecraft:ancient_city
+/tp @s -3056 ~ 190640
+/particle concoction:feather_particle
+/effect clear
+/gamemode survivalw
+/gamemode survival
+/time set day
+/effect clear
+/time set day
+/gamemode survival
+/time set day
+/particle concoction:feather_particle
+/time set day
+/locate biome minecraft:windswept_savanna
+/tp @s -6543 94 188809
+/locate biome minecraft:windswept_savanna
+/locate biome minecraft:savanna_plateau
+/tp @s -940 118 -591

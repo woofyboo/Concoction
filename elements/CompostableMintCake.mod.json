@@ -3,13 +3,13 @@
   "_type": "itemextension",
   "definition": {
     "item": {
-      "value": "CUSTOM:Mint"
+      "value": "CUSTOM:MintChocolateCake"
     },
     "enableFuel": false,
     "fuelPower": {
       "fixedValue": 1600.0
     },
     "hasDispenseBehavior": false,
-    "compostLayerChance": 0.35
+    "compostLayerChance": 1.0
   }
 }

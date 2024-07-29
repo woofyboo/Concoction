@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "savanna_plateau",
+    "windswept_savanna",
+    "stony_shore"
+  ],
+  "features": "concoction:wild_cotton",
+  "step": "vegetal_decoration"
+}
