@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "purple_dye",
+  "group": "mint_seeds",
   "category": "misc",
   "ingredients": [
     {
@@ -8,7 +8,7 @@
     }
   ],
   "result": {
-    "id": "minecraft:purple_dye",
+    "id": "concoction:mint_seeds",
     "count": 2
   }
 }

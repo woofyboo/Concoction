@@ -2,21 +2,44 @@
   "_fv": 66,
   "_type": "recipe",
   "definition": {
-    "recipeType": "Brewing",
+    "recipeType": "Crafting",
     "recipeRetstackSize": 1,
-    "group": "",
+    "group": "minty_brew",
     "cookingBookCategory": "MISC",
     "xpReward": 0.0,
     "cookingTime": 200,
     "craftingBookCategory": "MISC",
-    "recipeShapeless": false,
-    "brewingInputStack": {
-      "value": "POTION:WATER"
-    },
-    "brewingIngredientStack": {
-      "value": "CUSTOM:Mint"
-    },
-    "brewingReturnStack": {
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "Items.GLASS_BOTTLE"
+      },
+      {
+        "value": "Items.SUGAR"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
       "value": "CUSTOM:MintBrew"
     },
     "name": "minty_brew_craft",

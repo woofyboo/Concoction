@@ -9,10 +9,10 @@
   ],
   "key": {
     "a": {
-      "item": "minecraft:cocoa_beans"
+      "item": "concoction:mint"
     },
     "b": {
-      "item": "concoction:mint"
+      "item": "minecraft:cocoa_beans"
     },
     "c": {
       "item": "minecraft:egg"

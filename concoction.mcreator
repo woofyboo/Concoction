@@ -25,77 +25,11 @@
       "name": "PurpleDyeCraft",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "purple_dye_craft",
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/recipes/purple_dye_craft.json"
-        ]
-      },
-      "path": "~/mint"
-    },
-    {
-      "name": "MintPlantDestroyedByPlayer",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "mint_plant_destroyed_by_player",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/MintPlantDestroyedByPlayerProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/mint"
-    },
-    {
-      "name": "MintPlantDestroyedByExplosion",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "mint_plant_destroyed_by_explosion",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/MintPlantDestroyedByExplosionProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
         ]
       },
       "path": "~/mint"
@@ -343,11 +277,11 @@
       "name": "MintyBrewCraft",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "minty_brew_craft",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/recipes/brewing/MintyBrewCraftBrewingRecipe.java"
+          "src/main/resources/data/concoction/recipes/minty_brew_craft.json"
         ]
       },
       "path": "~/mint"
@@ -603,45 +537,6 @@
           "src/main/resources/assets/concoction/models/item/crop_cotton.json",
           "src/main/resources/assets/concoction/blockstates/crop_cotton.json",
           "src/main/resources/assets/concoction/models/block/crop_cotton.json"
-        ]
-      },
-      "path": "~/cotton"
-    },
-    {
-      "name": "CropCottonDrop",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "crop_cotton_drop",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/CropCottonDropProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "blockstate",
-            "type": "blockstate"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
         ]
       },
       "path": "~/cotton"
@@ -1084,8 +979,8 @@
   "tab_element_order": {},
   "language_map": {
     "en_us": {
-      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.pink_pillow_block": "Pink Pillow",
+      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "block.concoction.black_pillow_block": "Black Pillow",

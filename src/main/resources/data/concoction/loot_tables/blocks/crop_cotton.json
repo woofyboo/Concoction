@@ -6,46 +6,46 @@
     }
   ],
   "pools": [
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:cotton"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "minecraft:cotton",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "7"
+      {
+        "bonus_rolls": 0.0,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "concoction:cotton"
           }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "extra": 3,
-                "probability": 0.5714286
-              }
+        ],
+        "rolls": 1.0
+      },
+      {
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:crop_cotton",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "age": "7"
             }
-          ],
-          "name": "minecraft:cotton"
-        }
-      ],
-      "rolls": 1.0
-    }
-  ],
+          }
+        ],
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "enchantment": "minecraft:fortune",
+                "formula": "minecraft:binomial_with_bonus_count",
+                "function": "minecraft:apply_bonus",
+                "parameters": {
+                  "extra": 3,
+                  "probability": 0.5714286
+                }
+              }
+            ],
+            "name": "concoction:cotton"
+          }
+        ],
+        "rolls": 1.0
+      }
+    ],
   "random_sequence": "concoction:blocks/crop_cotton"
 }

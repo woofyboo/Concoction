@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "concoction:block/cotton_phase8"
+    "layer0": "concoction:block/wildcotton"
   }
 }

@@ -2,8 +2,8 @@
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.procedures.MintOnTickUpdateProcedure;
-import net.mcreator.concoction.procedures.MintPlantDestroyedByExplosionProcedure;
-import net.mcreator.concoction.procedures.MintPlantDestroyedByPlayerProcedure;
+//import net.mcreator.concoction.procedures.MintPlantDestroyedByExplosionProcedure;
+//import net.mcreator.concoction.procedures.MintPlantDestroyedByPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -48,17 +48,17 @@ public class MintBlock extends DoublePlantBlock {
 		super.animateTick(blockstate, world, pos, random);
 		MintOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
-
-	@Override
-	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
-		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-		MintPlantDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
-		return retval;
-	}
-
-	@Override
-	public void wasExploded(Level world, BlockPos pos, Explosion e) {
-		super.wasExploded(world, pos, e);
-		MintPlantDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
-	}
+//
+//	@Override
+//	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
+//		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
+//		MintPlantDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), entity);
+//		return retval;
+//	}
+//
+//	@Override
+//	public void wasExploded(Level world, BlockPos pos, Explosion e) {
+//		super.wasExploded(world, pos, e);
+//		MintPlantDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+//	}
 }

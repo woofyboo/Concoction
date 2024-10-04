@@ -12,22 +12,22 @@
     "recipeShapeless": false,
     "recipeSlots": [
       {
-        "value": "Items.DYE#3"
-      },
-      {
-        "value": "Items.DYE#3"
-      },
-      {
-        "value": "Items.DYE#3"
+        "value": "CUSTOM:Mint"
       },
       {
         "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "Items.DYE#3"
       },
       {
         "value": "Items.EGG"
       },
       {
-        "value": "CUSTOM:Mint"
+        "value": "Items.DYE#3"
       },
       {
         "value": "Blocks.WHEAT"

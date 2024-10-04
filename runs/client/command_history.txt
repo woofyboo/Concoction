@@ -1,31 +1,3 @@
-/effect give Dev concoction:minty_breath
-/locate biome minecraft:savanna_plateau
-/tp @s 42 102 739
-/gamemode survival
-/spawnpoint
-/gamerule keepInventory true
-/gamerule doDaylightCycle false
-/time set day
-/gamerule doWeatherCycle false
-/gamemode survival
-/gamerule doDaylightCycle true
-/tick sprint 1d
-/gamemode survival
-/time set day
-/data get entity Dev
-/time set day
-/locate biome minecraft:deep_dark
-/tp @s 267 -54 1230
-/effect give Dev minecraft:night_vision infinite
-/tp @s 267 -54 1230
-/data get entity Dev
-/kill 1bb0859e-4a10-42a5-8936-de83fb6dfcc6
-/kill df6680de-bfe5-450a-9323-83dc083df51b
-/kill 5409206f-673c-4c6b-b308-ce2ccf510b4b
-/fill ~3 ~3 ~3 ~-3 ~-3 ~-3 minecraft:acacia_slab
-/setblock ~ ~ ~ minecraft:sculk_shrieker
-/fill ~10 ~10 ~10 ~-10 ~-10 ~-10 air replace minecraft:sculk_sensor
-/tp @p 362 -2 191626
 /fill ~10 ~10 ~10 ~-10 ~-10 ~-10 air replace minecraft:sculk_sensor
 /locate biome minecraft:deep_dark
 /tp @s -2679 -5 190992
@@ -48,3 +20,31 @@
 /locate biome minecraft:windswept_savanna
 /locate biome minecraft:savanna_plateau
 /tp @s -940 118 -591
+/enchant @a minecraft:fortune 3
+/time set day
+/gamemode survival
+/gamemode spectator
+/time set day
+/gamemode survival
+/gamerule randomTickSpeed 0
+/gamerule doDaylightCycle false
+/time set day
+/summon minecraft:husk -1032.00 99.85 -731.50
+/summon minecraft:husk -1032.00 94.57 -731.64
+/summon minecraft:husk -1032.00 94. -731
+/summon minecraft:husk -1031.24 96.00 -732.62
+/difficulty peaceful
+/summon minecraft:husk -1032.00 99.85 -731.50
+/difficulty easy
+/summon minecraft:husk -1032.00 99.85 -731.50
+/summon minecraft:husk -1032.00 99.85 -731
+/summon minecraft:husk -1032.00 99.85 -730
+/summon minecraft:husk -1032.00 99.85 -733
+/difficulty peaceful
+/summon minecraft:husk -1032.00 99.85 -733
+/difficulty hard
+/summon minecraft:husk -1032.00 99.85 -733
+/difficulty 0
+/difficulty peaceful
+/difficulty easy
+/summon minecraft:husk -1032.00 99.85 -733
