@@ -42,7 +42,7 @@ public class BrainfreezeProcedure {
 			if (itemstack.getItem() == Items.POTION) {
 				entity.setTicksFrozen(200);
 				if (entity instanceof ServerPlayer _player) {
-					AdvancementHolder _adv = _player.server.getAdvancements().get(new ResourceLocation("concoction:brain_freeze_obtain_achievement"));
+					AdvancementHolder _adv = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:brain_freeze_obtain_achievement"));
 					if (_adv != null) {
 						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
 						if (!_ap.isDone()) {

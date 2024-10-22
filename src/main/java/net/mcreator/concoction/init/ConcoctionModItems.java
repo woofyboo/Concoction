@@ -5,6 +5,7 @@
 package net.mcreator.concoction.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 import net.minecraft.world.level.block.Block;
@@ -22,16 +23,16 @@ import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ConcoctionMod.MODID);
-	public static final DeferredHolder<Item, Item> MINT = doubleBlock(ConcoctionModBlocks.MINT);
-	public static final DeferredHolder<Item, Item> MINT_BREW = REGISTRY.register("mint_brew", MintBrewItem::new);
-	public static final DeferredHolder<Item, Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
-	public static final DeferredHolder<Item, Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
-	public static final DeferredHolder<Item, Item> MINT_COOKIE = REGISTRY.register("mint_cookie", MintCookieItem::new);
-	public static final DeferredHolder<Item, Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
-	public static final DeferredHolder<Item, Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
-	public static final DeferredHolder<Item, Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
-	public static final DeferredHolder<Item, Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
-	public static final DeferredHolder<Item, Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
+	public static final DeferredItem<Item> MINT = doubleBlock(ConcoctionModBlocks.MINT);
+	public static final DeferredItem<Item> MINT_BREW = REGISTRY.register("mint_brew", MintBrewItem::new);
+	public static final DeferredItem<Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
+	public static final DeferredItem<Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
+	public static final DeferredItem<Item> MINT_COOKIE = REGISTRY.register("mint_cookie", MintCookieItem::new);
+	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
+	public static final DeferredItem<Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
+	public static final DeferredItem<Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
+	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
+	public static final DeferredItem<Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
 	// Start of user code block custom items
 	public static final DeferredHolder<Item, Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredHolder<Item, Item> COTTON = REGISTRY.register("cotton", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_COTTON.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
@@ -52,11 +53,11 @@ public class ConcoctionModItems {
 	public static final DeferredHolder<Item, Item> BLACK_PILLOW_BLOCK = block(ConcoctionModBlocks.BLACK_PILLOW_BLOCK);
 
 	// End of user code block custom items
-	private static DeferredHolder<Item, Item> block(DeferredHolder<Block, Block> block) {
+	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
 	}
 
-	private static DeferredHolder<Item, Item> doubleBlock(DeferredHolder<Block, Block> block) {
+	private static DeferredItem<Item> doubleBlock(DeferredHolder<Block, Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new DoubleHighBlockItem(block.get(), new Item.Properties()));
 	}
 }

@@ -1,11 +1,11 @@
 {
-  "_fv": 66,
+  "_fv": 69,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Brain Freeze",
-    "achievementDescription": "Get the Brain Freeze after drinking Water Bottle or any Potion while under Freshness effect",
+    "achievementName": "Frosty Breath",
+    "achievementDescription": "Feel the pain of brain freeze.",
     "achievementIcon": {
-      "value": "CUSTOM:MintBrew"
+      "value": "CUSTOM:Mint"
     },
     "background": "Default",
     "disableDisplay": false,

@@ -6,6 +6,7 @@ package net.mcreator.concoction.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import net.minecraft.world.level.block.Block;
 
@@ -19,12 +20,12 @@ import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ConcoctionMod.MODID);
-	public static final DeferredHolder<Block, Block> MINT = REGISTRY.register("mint", MintBlock::new);
-	public static final DeferredHolder<Block, Block> CROP_MINT = REGISTRY.register("crop_mint", CropMintBlock::new);
-	public static final DeferredHolder<Block, Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
-	public static final DeferredHolder<Block, Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
-	public static final DeferredHolder<Block, Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlockBlock::new);
-	public static final DeferredHolder<Block, Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
+	public static final DeferredBlock<Block> MINT = REGISTRY.register("mint", MintBlock::new);
+	public static final DeferredBlock<Block> CROP_MINT = REGISTRY.register("crop_mint", CropMintBlock::new);
+	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
+	public static final DeferredBlock<Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
+	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlockBlock::new);
+	public static final DeferredBlock<Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredHolder<Block, Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
 	public static final DeferredHolder<Block, Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlockBlock::new);

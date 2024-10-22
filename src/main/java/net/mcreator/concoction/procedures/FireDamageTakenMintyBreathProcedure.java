@@ -10,14 +10,14 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.living.LivingHurtEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 import javax.annotation.Nullable;
 
 @EventBusSubscriber
 public class FireDamageTakenMintyBreathProcedure {
 	@SubscribeEvent
-	public static void onEntityAttacked(LivingHurtEvent event) {
+	public static void onEntityAttacked(LivingIncomingDamageEvent event) {
 		if (event != null && event.getEntity() != null) {
 			execute(event, event.getEntity().level(), event.getSource(), event.getEntity(), event.getAmount());
 		}
@@ -27,11 +27,11 @@ public class FireDamageTakenMintyBreathProcedure {
 		execute(null, world, damagesource, entity, amount);
 	}
 
-	private static void execute(@Nullable LivingHurtEvent event, LevelAccessor world, DamageSource damagesource, Entity entity, double amount) {
+	private static void execute(@Nullable LivingIncomingDamageEvent event, LevelAccessor world, DamageSource damagesource, Entity entity, double amount) {
 		if (damagesource == null || entity == null)
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.MINTY_BREATH)) {
-			if (damagesource.is(TagKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("minecraft:is_fire")))) {
+			if (damagesource.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("is_fire")))) {
 				event.setAmount((float) (amount * 0.9));
 			}
 		}

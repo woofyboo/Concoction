@@ -1,9 +1,10 @@
 package net.mcreator.concoction.procedures;
 
-import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffectInstance;
+
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
 
 public class MintBrewPlayerFinishesUsingItemProcedure {
 	public static void execute(Entity entity) {

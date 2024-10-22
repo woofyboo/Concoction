@@ -68,6 +68,6 @@ public class LootHandler {
 
 	private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name, int weight) {
 		return NestedLootTable.lootTableReference(
-				ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation("concoction", "inject/" + name))).setWeight(weight);
+				ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("concoction", "inject/" + name))).setWeight(weight);
 	}
 }

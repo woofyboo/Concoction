@@ -3,7 +3,7 @@
   "biomes": [
     "savanna_plateau",
     "windswept_savanna",
-    "stony_shore"
+    "savanna"
   ],
   "features": "concoction:wild_cotton",
   "step": "vegetal_decoration"

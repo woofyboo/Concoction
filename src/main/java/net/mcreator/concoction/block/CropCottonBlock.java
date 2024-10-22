@@ -22,7 +22,7 @@ import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.SpecialPlantable;
 
 public class CropCottonBlock extends CropBlock {
 	public static final int MAX_AGE = 7;
@@ -89,11 +89,6 @@ public class CropCottonBlock extends CropBlock {
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
 		return PathType.BLOCKED;
 	}
-
-    @Override
-    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
-        return super.mayPlaceOn(state, world, pos);
-    }
 
 	@Override
     public int getMaxAge() {

@@ -1,10 +1,11 @@
 package net.mcreator.concoction.procedures;
 
-import net.mcreator.concoction.init.ConcoctionModParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.Mth;
+import net.minecraft.core.particles.SimpleParticleType;
+
+import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 
 public class MintEffectParticlesProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {

@@ -20,7 +20,6 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.neoforge.common.PlantType;
 
 public class MintBlock extends DoublePlantBlock {
 	public MintBlock() {
@@ -38,17 +37,12 @@ public class MintBlock extends DoublePlantBlock {
 	}
 
 	@Override
-	public PlantType getPlantType(BlockGetter world, BlockPos pos) {
-		return PlantType.PLAINS;
-	}
-
-	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState blockstate, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(blockstate, world, pos, random);
 		MintOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
-//
+
 //	@Override
 //	public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
 //		boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);

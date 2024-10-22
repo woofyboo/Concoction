@@ -23,6 +23,8 @@ public class ConcoctionModBlockEntities {
 	public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ConcoctionMod.MODID);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CROP_MINT = register("crop_mint", ConcoctionModBlocks.CROP_MINT, CropMintBlockEntity::new);
 
+	// Start of user code block custom block entities
+	// End of user code block custom block entities
 	private static DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> register(String registryname, DeferredHolder<Block, Block> block, BlockEntityType.BlockEntitySupplier<?> supplier) {
 		return REGISTRY.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
