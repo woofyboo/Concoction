@@ -1046,6 +1046,56 @@
         ]
       },
       "path": "~/achivements/recipes"
+    },
+    {
+      "name": "CherryCookie",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cherry_cookie",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CherryCookieItem.java",
+          "src/main/resources/assets/concoction/models/item/cherry_cookie.json"
+        ]
+      },
+      "path": "~/cherry"
+    },
+    {
+      "name": "CherryCookieCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cherry_cookie_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cherry_cookie_craft.json"
+        ]
+      },
+      "path": "~/cherry"
+    },
+    {
+      "name": "RecipeCherries",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "recipe_cherries",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/RecipeCherriesProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/achivements/recipes"
     }
   ],
   "variable_elements": [],
@@ -1085,6 +1135,7 @@
       "item.concoction.mint_seeds": "Mint Seeds",
       "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
       "block.concoction.crop_mint": "Crop Mint",
+      "item.concoction.cherry_cookie": "Cherry Cookie",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.mint_brew": "Mint Brew",
       "item_group.concoction.concoction": "Concoction",

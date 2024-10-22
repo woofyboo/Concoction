@@ -24,6 +24,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
+				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());
