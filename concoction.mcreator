@@ -1054,6 +1054,150 @@
         ]
       },
       "path": "~/cotton"
+    },
+    {
+      "name": "CompostTempMintSeeds",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "compost_temp_mint_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CompostTempMintSeedsProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostTempCotton",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "compost_temp_cotton",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CompostTempCottonProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostMint",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_mint",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostCherry",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_cherry",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostMintCookie",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_mint_cookie",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostMintCake",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_mint_cake",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostCherryCookie",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_cherry_cookie",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostWildCotton",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_wild_cotton",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
     }
   ],
   "variable_elements": [],
@@ -1155,7 +1299,12 @@
       },
       {
         "name": "general",
-        "children": []
+        "children": [
+          {
+            "name": "compost",
+            "children": []
+          }
+        ]
       },
       {
         "name": "sunflower",

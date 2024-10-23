@@ -1,0 +1,22 @@
+{
+  "values": {
+    "concoction:mint": {
+      "chance": 0.5
+    },
+    "concoction:cherry": {
+      "chance": 0.65
+    },
+    "concoction:mint_cookie": {
+      "chance": 0.85
+    },
+    "concoction:mint_chocolate_cake": {
+      "chance": 1
+    },
+    "concoction:cherry_cookie": {
+      "chance": 0.85
+    },
+    "concoction:wild_cotton": {
+      "chance": 0.65
+    }
+  }
+}
