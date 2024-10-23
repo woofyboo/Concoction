@@ -1,6 +1,6 @@
 {
-  "block.concoction.cyan_pillow_block": "Cyan Pillow",
   "block.concoction.pink_pillow_block": "Pink Pillow",
+  "block.concoction.cyan_pillow_block": "Cyan Pillow",
   "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
   "block.concoction.magenta_pillow_block": "Magenta Pillow",
   "block.concoction.black_pillow_block": "Black Pillow",
@@ -17,7 +17,7 @@
   "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
   "item.concoction.mint_brew": "Mint Brew",
   "item_group.concoction.concoction": "Concoction",
-  "block.concoction.pillow_block": "Pillow",
+  "block.concoction.pillow_block": "White Pillow",
   "item.concoction.cotton": "Cotton",
   "item.concoction.mint_cookie": "Mint Cookie",
   "item.concoction.cherry": "Cherry",

@@ -7,28 +7,28 @@
       "item": "minecraft:black_dye"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     },
     {
-      "item": "concoction:pillow_block"
+      "tag": "concoction:pillows"
     }
   ],
   "result": {

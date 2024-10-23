@@ -61,6 +61,8 @@ public class RecipePillowsProcedure {
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_14")));
 			if (entity instanceof ServerPlayer _serverPlayer)
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_15")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_16")));
 		}
 	}
 }

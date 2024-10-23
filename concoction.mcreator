@@ -46,28 +46,6 @@
       "path": "~/mint"
     },
     {
-      "name": "MintCompost",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mint_compost",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/mint"
-    },
-    {
-      "name": "MintSeedsCompost",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mint_seeds_compost",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/mint"
-    },
-    {
       "name": "MintLeafParticleVariant1",
       "type": "particle",
       "compiles": true,
@@ -877,39 +855,6 @@
       "path": "~/achivements"
     },
     {
-      "name": "CompostableCherry",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compostable_cherry",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general"
-    },
-    {
-      "name": "CompostableMintCake",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compostable_mint_cake",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general"
-    },
-    {
-      "name": "CompostableMintCookie",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compostable_mint_cookie",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general"
-    },
-    {
       "name": "FeatherParticle",
       "type": "particle",
       "compiles": true,
@@ -1096,6 +1041,19 @@
         ]
       },
       "path": "~/achivements/recipes"
+    },
+    {
+      "name": "ColoredPillowBlock16",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "colored_pillow_block_16",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/colored_pillow_block_16.json"
+        ]
+      },
+      "path": "~/cotton"
     }
   ],
   "variable_elements": [],
@@ -1104,8 +1062,16 @@
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint"
     ],
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint"
+    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint"
+    ],
+    "BLOCKS:minecraft:axe/mineable": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton"
     ],
     "BLOCKS:forge:farmland": [
       "Blocks.FARMLAND"
@@ -1114,15 +1080,20 @@
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton"
     ],
-    "BLOCKS:minecraft:sword_efficient": [
+    "BLOCKS:minecraft:crops": [
+      "CUSTOM:CropCotton",
       "CUSTOM:CropMint"
+    ],
+    "BLOCKS:minecraft:sword_efficient": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton"
     ]
   },
   "tab_element_order": {},
   "language_map": {
     "en_us": {
-      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.pink_pillow_block": "Pink Pillow",
+      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "block.concoction.black_pillow_block": "Black Pillow",
@@ -1139,7 +1110,7 @@
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.mint_brew": "Mint Brew",
       "item_group.concoction.concoction": "Concoction",
-      "block.concoction.pillow_block": "Pillow",
+      "block.concoction.pillow_block": "White Pillow",
       "item.concoction.cotton": "Cotton",
       "item.concoction.mint_cookie": "Mint Cookie",
       "item.concoction.cherry": "Cherry",
