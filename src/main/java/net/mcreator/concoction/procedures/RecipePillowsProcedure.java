@@ -7,10 +7,9 @@ import net.neoforged.bus.api.Event;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.resources.ResourceLocation;
-
-import net.mcreator.concoction.init.ConcoctionModBlocks;
 
 import javax.annotation.Nullable;
 
@@ -30,7 +29,7 @@ public class RecipePillowsProcedure {
 	private static void execute(@Nullable Event event, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return;
-		if (itemstack.getItem() == ConcoctionModBlocks.PILLOW_BLOCK.get().asItem()) {
+		if (itemstack.is(ItemTags.create(ResourceLocation.parse("concoction:pillows")))) {
 			if (entity instanceof ServerPlayer _serverPlayer)
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_1")));
 			if (entity instanceof ServerPlayer _serverPlayer)

@@ -1073,9 +1073,6 @@
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton"
     ],
-    "BLOCKS:forge:farmland": [
-      "Blocks.FARMLAND"
-    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton"
