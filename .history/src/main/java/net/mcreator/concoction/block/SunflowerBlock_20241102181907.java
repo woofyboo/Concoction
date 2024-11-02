@@ -75,27 +75,7 @@ public class SunflowerBlock extends CropBlock {
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }
-	
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (!pLevel.isAreaLoaded(pPos, 1)) return;
-        if (pLevel.getRawBrightness(pPos, 0) >= 9) {
-            int currentAge = this.getAge(pState);
-            if (currentAge < this.getMaxAge()) {
-                float growthSpeed = getGrowthSpeed(pState, pLevel, pPos);
-                if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(pLevel, pPos, pState, pRandom.nextInt((int)(25.0F / growthSpeed) + 1) == 0)) {
-                    if(currentAge == FIRST_STAGE_MAX_AGE) {
-                        if(pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
-                            pLevel.setBlock(pPos.above(1), this.getStateForAge(currentAge + 1), 2);
-                        }
-                    } else {
-                        pLevel.setBlock(pPos, this.getStateForAge(currentAge + 1), 2);
-                    }
-                    net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(pLevel, pPos, pState);
-                }
-            }
-        }
-		SunflowerOnTickUpdateProcedure.execute(pLevel, pPos.getX(), pPos.getY(), pPos.getZ());
-    }
+
 	@Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
         int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
@@ -104,10 +84,10 @@ public class SunflowerBlock extends CropBlock {
             nextAge = maxAge;
         }
 
-        if(nextAge >= FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+        if(this.getAge(pState) == FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
             pLevel.setBlock(pPos.above(1), this.getStateForAge(nextAge), 2);
         } else {
-            pLevel.setBlock(pPos, this.getStateForAge(nextAge), 2);
+            pLevel.setBlock(pPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
         }
 
         // if(this.getAge(pState) == (maxAge-1) && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
@@ -123,12 +103,6 @@ public class SunflowerBlock extends CropBlock {
         // }
     }
 
-    @Override
-    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return super.canSurvive(pState, pLevel, pPos) || (pLevel.getBlockState(pPos.below(1)).is(this) &&
-                pLevel.getBlockState(pPos.below(1)).getValue(AGE) == 7);
-    }
-	
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		// super.createBlockStateDefinition(builder);
@@ -153,6 +127,12 @@ public class SunflowerBlock extends CropBlock {
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
 		return PathType.OPEN;
+	}
+
+	@Override
+	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.randomTick(blockstate, world, pos, random);
+		SunflowerOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

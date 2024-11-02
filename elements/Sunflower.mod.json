@@ -35,13 +35,6 @@
     ],
     "customProperties": [
       {
-        "min": 0,
-        "max": 5,
-        "name": "CUSTOM:stage",
-        "type": "integer",
-        "value": 0
-      },
-      {
         "arrayData": [
           "upper",
           "bottom"

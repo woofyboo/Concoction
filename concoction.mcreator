@@ -1208,9 +1208,9 @@
       "metadata": {
         "files": [
           "src/main/resources/assets/concoction/models/item/sunflower.json",
-          "src/main/resources/assets/concoction/blockstates/sunflower.json",
           "src/main/resources/assets/concoction/models/block/sunflower.json",
-          "src/main/java/net/mcreator/concoction/block/SunflowerBlock.java"
+          "src/main/java/net/mcreator/concoction/block/SunflowerBlock.java",
+          "src/main/resources/assets/concoction/blockstates/sunflower.json"
         ]
       },
       "path": "~/sunflower"
@@ -1286,8 +1286,8 @@
   "tab_element_order": {},
   "language_map": {
     "en_us": {
-      "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
+      "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.sunflower": "Sunflower",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",

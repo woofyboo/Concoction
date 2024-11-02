@@ -104,10 +104,10 @@ public class SunflowerBlock extends CropBlock {
             nextAge = maxAge;
         }
 
-        if(nextAge >= FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+        if(this.getAge(pState) == FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
             pLevel.setBlock(pPos.above(1), this.getStateForAge(nextAge), 2);
         } else {
-            pLevel.setBlock(pPos, this.getStateForAge(nextAge), 2);
+            pLevel.setBlock(pPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
         }
 
         // if(this.getAge(pState) == (maxAge-1) && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
@@ -123,12 +123,6 @@ public class SunflowerBlock extends CropBlock {
         // }
     }
 
-    @Override
-    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return super.canSurvive(pState, pLevel, pPos) || (pLevel.getBlockState(pPos.below(1)).is(this) &&
-                pLevel.getBlockState(pPos.below(1)).getValue(AGE) == 7);
-    }
-	
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		// super.createBlockStateDefinition(builder);

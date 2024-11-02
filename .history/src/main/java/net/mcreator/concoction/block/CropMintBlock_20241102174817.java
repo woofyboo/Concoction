@@ -62,7 +62,7 @@ public class CropMintBlock extends CropBlock {
 		return Shapes.empty();
 	}
 
-	@Override
+@Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }

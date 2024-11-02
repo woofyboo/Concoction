@@ -1,11 +1,15 @@
 
 package net.mcreator.concoction.block;
 
-import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.procedures.SunflowerOnTickUpdateProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -19,31 +23,36 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.SpecialPlantable;
 
-public class CropMintBlock extends CropBlock {
-	public static final int MAX_AGE = 3;
-	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
-//	public static final TagKey<Block> beeGrowables = BlockTags.create(new ResourceLocation("minecraft", "bee_growables‌"));
-//	public static final TagKey<Block> swordEfficient = BlockTags.create(new ResourceLocation("minecraft", "sword_efficient‌‌"));
+public class SunflowerBlock extends CropBlock {
+	public static final int FIRST_STAGE_MAX_AGE = 4;
+    public static final int SECOND_STAGE_MAX_AGE = 4;
+	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, FIRST_STAGE_MAX_AGE+SECOND_STAGE_MAX_AGE);
+	public static final EnumProperty<HalfProperty> HALF = EnumProperty.create("half", HalfProperty.class);
+	public static final EnumProperty<FacingProperty> FACING = EnumProperty.create("facing", FacingProperty.class);
+	
+
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D),
-            Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D),
-            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D),
-            Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D)};
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
+            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
-
-	public CropMintBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).strength(0f, 1f).noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
-		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
+	public SunflowerBlock() {
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.GRASS).sound(SoundType.GRASS).strength(0f, 10f).noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(HALF, HalfProperty.UPPER).setValue(FACING, FacingProperty.EAST));
 	}
 
 	@Override
@@ -56,7 +65,6 @@ public class CropMintBlock extends CropBlock {
 		return 0;
 	}
 
-	
 	@Override
 	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return Shapes.empty();
@@ -67,43 +75,31 @@ public class CropMintBlock extends CropBlock {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }
     
-//	@Override
-//	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-//		return switch (state.getValue(AGE)) {
-//			default -> box(4, 0, 4, 12, 8, 12);
-//			case 0 -> box(4, 0, 4, 12, 8, 12);
-//			case 1 -> box(3, 0, 3, 13, 10, 13);
-//			case 2 -> box(1, 0, 1, 15, 15, 15);
-//			case 3 -> box(1, 0, 1, 15, 15, 15);
-//
-//		};
-//	}
-
-	@Override
+    @Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
         int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
         int maxAge = this.getMaxAge();
         if(nextAge > maxAge) {
             nextAge = maxAge;
         }
-		 
-        if(this.getAge(pState) == (maxAge-1) && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
-            pLevel.setBlock(pPos, ConcoctionModBlocks.MINT.get().defaultBlockState(), 2);
-            pLevel.setBlock(pPos.above(1), (new Object() {
-			public BlockState with(BlockState _bs, String _property, String _newValue) {
-				Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty(_property);
-				return _prop instanceof EnumProperty _ep && _ep.getValue(_newValue).isPresent() ? _bs.setValue(_ep, (Enum) _ep.getValue(_newValue).get()) : _bs;
-				}
-			}.with(ConcoctionModBlocks.MINT.get().defaultBlockState(), "half", "upper")), 2);
+        if(this.getAge(pState) == FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+            pLevel.setBlock(pPos.above(1), this.getStateForAge(nextAge), 2);
         } else {
-            pLevel.setBlock(pPos, this.getStateForAge(nextAge - 1), 2);
+            pLevel.setBlock(pPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
         }
     }
-    
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(AGE);
+		super.createBlockStateDefinition(builder);
+		builder.add(AGE, HALF, FACING);
 	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		return super.getStateForPlacement(context).setValue(AGE, 0).setValue(HALF, HalfProperty.UPPER).setValue(FACING, FacingProperty.EAST);
+	}
+
 	@Override
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		return 100;
@@ -119,11 +115,11 @@ public class CropMintBlock extends CropBlock {
 		return PathType.OPEN;
 	}
 
-//	@Override
-//	public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
-//		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-//		return tileEntity instanceof MenuProvider menuProvider ? menuProvider : null;
-//	}
+	@Override
+	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.randomTick(blockstate, world, pos, random);
+		SunflowerOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+	}
 
 	@Override
 	public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
@@ -139,7 +135,7 @@ public class CropMintBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ConcoctionModItems.MINT_SEEDS.get();
+        return ConcoctionModItems.SUNFLOWER.get();
     }
 
     @Override
@@ -147,4 +143,33 @@ public class CropMintBlock extends CropBlock {
         return AGE;
     }
 
+	public enum HalfProperty implements StringRepresentable {
+		UPPER("upper"), BOTTOM("bottom");
+
+		private final String name;
+
+		private HalfProperty(String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
+	}
+
+	public enum FacingProperty implements StringRepresentable {
+		EAST("east"), EASTISH("eastish"), WESTISH("westish"), WEST("west");
+
+		private final String name;
+
+		private FacingProperty(String name) {
+			this.name = name;
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
+	}
 }
