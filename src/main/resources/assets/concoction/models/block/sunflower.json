@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/sunflower_stage0",
+    "particle": "concoction:block/sunflower_stage0"
+  },
+  "render_type": "cutout"
+}

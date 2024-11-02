@@ -116,7 +116,7 @@ public class CropMintBlock extends CropBlock {
 
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
-		return PathType.BLOCKED;
+		return PathType.OPEN;
 	}
 
 //	@Override

@@ -22,9 +22,109 @@
             },
             "countOffer": 1,
             "level": 1,
-            "maxTrades": 5,
+            "maxTrades": 16,
             "xp": 5,
-            "priceMultiplier": 0.17
+            "priceMultiplier": 0.05
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "FARMER"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "CUSTOM:Cherry"
+            },
+            "countPrice1": 8,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "Items.EMERALD"
+            },
+            "countOffer": 1,
+            "level": 1,
+            "maxTrades": 16,
+            "xp": 5,
+            "priceMultiplier": 0.05
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "FARMER"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "Items.EMERALD"
+            },
+            "countPrice1": 1,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "CUSTOM:MintChocolateCake"
+            },
+            "countOffer": 1,
+            "level": 4,
+            "maxTrades": 12,
+            "xp": 15,
+            "priceMultiplier": 0.049999999999999996
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "SHEPHERD"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "CUSTOM:Fabric"
+            },
+            "countPrice1": 28,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "Items.EMERALD"
+            },
+            "countOffer": 1,
+            "level": 1,
+            "maxTrades": 16,
+            "xp": 5,
+            "priceMultiplier": 0.05
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "SHEPHERD"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "Items.EMERALD"
+            },
+            "countPrice1": 1,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "CUSTOM:PillowBlock"
+            },
+            "countOffer": 14,
+            "level": 5,
+            "maxTrades": 8,
+            "xp": 30,
+            "priceMultiplier": 0.05
           }
         ]
       }

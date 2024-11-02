@@ -1,0 +1,12 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "cross": "sunflower_stage1",
+        "back": "sunflower_stage4_back",
+        "front": "sunflower_stage5"
+      },
+      "name": "default"
+    }
+  }
+}

@@ -11,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.minecraft.world.level.block.Block;
 
 import net.mcreator.concoction.block.WildCottonBlock;
+import net.mcreator.concoction.block.SunflowerBlock;
 import net.mcreator.concoction.block.PillowBlockBlock;
 import net.mcreator.concoction.block.MintChocolateCakeBlock;
 import net.mcreator.concoction.block.MintBlock;
@@ -26,6 +27,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
 	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
+	public static final DeferredBlock<Block> SUNFLOWER = REGISTRY.register("sunflower", SunflowerBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredHolder<Block, Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
 	public static final DeferredHolder<Block, Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlockBlock::new);

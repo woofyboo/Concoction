@@ -1198,6 +1198,53 @@
         "files": []
       },
       "path": "~/general/compost"
+    },
+    {
+      "name": "Sunflower",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunflower",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/sunflower.json",
+          "src/main/resources/assets/concoction/blockstates/sunflower.json",
+          "src/main/resources/assets/concoction/models/block/sunflower.json",
+          "src/main/java/net/mcreator/concoction/block/SunflowerBlock.java"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "SunflowerOnTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sunflower_on_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SunflowerOnTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
@@ -1208,26 +1255,32 @@
     ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
-      "CUSTOM:CropMint"
+      "CUSTOM:CropMint",
+      "CUSTOM:Sunflower"
     ],
     "ITEMS:minecraft:flowers": [
-      "CUSTOM:Mint"
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
-      "CUSTOM:CropCotton"
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
-      "CUSTOM:CropCotton"
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
-      "CUSTOM:CropMint"
+      "CUSTOM:CropMint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
-      "CUSTOM:CropCotton"
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
     ]
   },
   "tab_element_order": {},
@@ -1235,6 +1288,7 @@
     "en_us": {
       "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
+      "block.concoction.sunflower": "Sunflower",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "block.concoction.black_pillow_block": "Black Pillow",
@@ -1315,7 +1369,7 @@
   "workspaceSettings": {
     "modid": "concoction",
     "modName": "Concoction",
-    "version": "1.2.0",
+    "version": "1.2.2",
     "author": "Sebsish, woofyboo",
     "websiteURL": "https://www.youtube.com/watch?v\u003ddQw4w9WgXcQ",
     "license": "Not specified",
