@@ -21,7 +21,7 @@
     "hasTransparency": true,
     "connectedSides": false,
     "transparencyType": "CUTOUT",
-    "disableOffset": true,
+    "disableOffset": false,
     "boundingBoxes": [
       {
         "mx": 4.0,
@@ -35,22 +35,6 @@
     ],
     "customProperties": [
       {
-        "min": 0,
-        "max": 5,
-        "name": "CUSTOM:stage",
-        "type": "integer",
-        "value": 0
-      },
-      {
-        "arrayData": [
-          "upper",
-          "bottom"
-        ],
-        "name": "CUSTOM:half",
-        "type": "string",
-        "value": "upper"
-      },
-      {
         "arrayData": [
           "east",
           "eastish",
@@ -60,6 +44,22 @@
         "name": "CUSTOM:facing",
         "type": "string",
         "value": "east"
+      },
+      {
+        "min": 0,
+        "max": 5,
+        "name": "CUSTOM:age",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "arrayData": [
+          "bottom",
+          "upper"
+        ],
+        "name": "CUSTOM:half",
+        "type": "string",
+        "value": "bottom"
       }
     ],
     "name": "Sunflower",

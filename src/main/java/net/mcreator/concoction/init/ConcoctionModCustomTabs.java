@@ -42,6 +42,9 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PURPLE_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PINK_PILLOW_BLOCK.get());
+//Особое
+				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
+				
 			})
 
 					.build());

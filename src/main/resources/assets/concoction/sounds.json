@@ -1,0 +1,10 @@
+{
+  "music_disc_hotice": {
+    "sounds": [
+      {
+        "name": "concoction:hot-ice",
+        "stream": true
+      }
+    ]
+  }
+}

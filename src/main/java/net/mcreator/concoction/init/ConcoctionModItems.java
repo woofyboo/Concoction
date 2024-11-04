@@ -15,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.BlockItem;
 
+import net.mcreator.concoction.item.MusicDiscHotIceItem;
 import net.mcreator.concoction.item.MintCookieItem;
 import net.mcreator.concoction.item.MintBrewItem;
 import net.mcreator.concoction.item.FabricItem;
@@ -36,6 +37,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
 	public static final DeferredItem<Item> CHERRY_COOKIE = REGISTRY.register("cherry_cookie", CherryCookieItem::new);
 	public static final DeferredItem<Item> SUNFLOWER = block(ConcoctionModBlocks.SUNFLOWER);
+	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
 	// Start of user code block custom items
 	public static final DeferredHolder<Item, Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredHolder<Item, Item> COTTON = REGISTRY.register("cotton", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_COTTON.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

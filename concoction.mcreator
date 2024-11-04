@@ -1227,6 +1227,10 @@
         ],
         "dependencies": [
           {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
             "name": "x",
             "type": "number"
           },
@@ -1245,10 +1249,73 @@
         ]
       },
       "path": "~/sunflower"
+    },
+    {
+      "name": "MusicDiscHotIce",
+      "type": "musicdisc",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "music_disc_hot_ice",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/jukebox_song/music_disc_hot_ice.json",
+          "src/main/java/net/mcreator/concoction/item/MusicDiscHotIceItem.java",
+          "src/main/resources/assets/concoction/models/item/music_disc_hot_ice.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MusicDiscObtian",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "music_disc_obtian",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/MusicDiscObtianProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
-  "sound_elements": [],
+  "sound_elements": [
+    {
+      "name": "music_disc_hotice",
+      "files": [
+        "hot-ice"
+      ],
+      "category": "music",
+      "subtitle": ""
+    }
+  ],
   "tag_elements": {
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint"
@@ -1266,6 +1333,9 @@
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
@@ -1291,6 +1361,7 @@
       "block.concoction.sunflower": "Sunflower",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
+      "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.black_pillow_block": "Black Pillow",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
@@ -1304,6 +1375,7 @@
       "item.concoction.cherry_cookie": "Cherry Cookie",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.mint_brew": "Mint Brew",
+      "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.pillow_block": "White Pillow",
       "item.concoction.cotton": "Cotton",
@@ -1316,6 +1388,7 @@
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "block.concoction_brew.mint": "Mint",
+      "subtitles.music_disc_hotice": "",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
       "block.concoction.blue_pillow_block": "Blue Pillow",

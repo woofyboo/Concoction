@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "musicdisc",
+  "definition": {
+    "name": "Music Disc",
+    "rarity": "RARE",
+    "texture": "music_disc",
+    "description": "??? - Hot Ice",
+    "creativeTabs": [],
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "music": {
+      "value": "CUSTOM:music_disc_hotice"
+    },
+    "lengthInTicks": 3260,
+    "analogOutput": 7
+  }
+}

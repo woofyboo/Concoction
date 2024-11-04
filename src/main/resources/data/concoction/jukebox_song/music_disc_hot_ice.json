@@ -1,0 +1,8 @@
+{
+  "comparator_output": 7,
+  "description": {
+    "translate": "item.concoction.music_disc_hot_ice.desc"
+  },
+  "length_in_seconds": 163,
+  "sound_event": "concoction:music_disc_hotice"
+}

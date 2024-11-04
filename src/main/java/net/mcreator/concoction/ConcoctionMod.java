@@ -18,6 +18,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModItems;
@@ -42,6 +43,7 @@ public class ConcoctionMod {
 		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
 		modEventBus.addListener(this::registerNetworking);
+		ConcoctionModSounds.REGISTRY.register(modEventBus);
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.REGISTRY.register(modEventBus);
