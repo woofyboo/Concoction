@@ -78,22 +78,52 @@ public class SunflowerBlock extends CropBlock {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }
 
+    @Override
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource random) {
+        if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        if (pLevel.getRawBrightness(pPos, 0) >= 9 && (pState.getValue(HALF) == DoubleBlockHalf.LOWER)) {
+            int nextAge = this.getAge(pState) + (pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0);
+            if (nextAge < this.getMaxAge()) {
+                float f = getGrowthSpeed(pState, pLevel, pPos);
+                if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(pLevel, pPos, pState, random.nextInt((int)(25.0F / f) + 1) == 0)) {
+        			if (nextAge < FIRST_STAGE_MAX_AGE) 
+						pLevel.setBlock(pPos, this.getState(pState, nextAge+1, DoubleBlockHalf.LOWER), 2);
+	        		else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
+        			(pLevel.getBlockState(pPos.above(1)).is(this)))) {
+				        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge+1, DoubleBlockHalf.UPPER), 2);
+				        pLevel.setBlock(pPos, this.getState(pState, nextAge+1, DoubleBlockHalf.LOWER), 2);
+        			}
+                    net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(pLevel, pPos, pState);
+                }
+            }
+        }
+        SunflowerOnTickUpdateProcedure.execute(pLevel, pPos.getX(), pPos.getY(), pPos.getZ());
+    }
+    
 	@Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
-        int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
-        int maxAge = this.getMaxAge();
-        if(nextAge > maxAge) {
-            nextAge = maxAge;
+    	int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
+    	int maxAge = this.getMaxAge();
+        if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
+			if (nextAge > maxAge) nextAge = maxAge;
+			if (nextAge < FIRST_STAGE_MAX_AGE) 
+				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+	        else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
+        	(pLevel.getBlockState(pPos.above(1)).is(this)))) {
+		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
+		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+        	}
         }
-        if (nextAge >= FIRST_STAGE_MAX_AGE && pState.getValue(HALF) == DoubleBlockHalf.LOWER && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
-        	
-            pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge - FIRST_STAGE_MAX_AGE, DoubleBlockHalf.UPPER), 2);
-            pLevel.setBlock(pPos, this.getState(pState, FIRST_STAGE_MAX_AGE, DoubleBlockHalf.LOWER), 2);
-            
-        } else if (nextAge < FIRST_STAGE_MAX_AGE && pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-            pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
-            
-        }
+    
+//    	else {
+//    		nextAge += pLevel.getBlockState(pPos.below(1)).is(this) : this.getAge(pLevel.getBlockState(pPos.below(1))) ? 0;
+//    		if (nextAge > maxAge) nextAge = maxAge;
+//    		if (nextAge >= FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+//		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
+//		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+//    		}
+//    	}
     }
 
     public BlockState getState(BlockState pState, int age, DoubleBlockHalf half) {
@@ -101,20 +131,18 @@ public class SunflowerBlock extends CropBlock {
         		setValue(FACING, pState.getValue(FACING)).setValue(HALF, half);
     }
     
-//    @Override
-//    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
-//    		if (pState.getValue(HALF) == DoubleBlockHalf.LOWER)
-//    			return pState.getValue(AGE) != FIRST_STAGE_MAX_AGE;
-//    		else if (pState.getValue(HALF) == DoubleBlockHalf.UPPER)
-//    			return pState.getValue(AGE) != SECOND_STAGE_MAX_AGE;
-//		else
-//        		return !this.isMaxAge(pState);
-//    }
+    @Override
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+		if (pState.getValue(HALF) == DoubleBlockHalf.LOWER)
+			return pState.getValue(AGE) != this.getMaxAge();
+		else
+        	return false;
+    }
     
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return super.canSurvive(pState, pLevel, pPos) || (pLevel.getBlockState(pPos.below(1)).is(this) &&
-                pLevel.getBlockState(pPos.below(1)).getValue(AGE) == FIRST_STAGE_MAX_AGE);
+                pLevel.getBlockState(pPos.below(1)).getValue(AGE) >= FIRST_STAGE_MAX_AGE);
     }
 
     @Override
@@ -131,7 +159,7 @@ public class SunflowerBlock extends CropBlock {
 		           BlockState blockBelow = pLevel.getBlockState(pPos.below(1));
 	
 		           if (blockBelow.getBlock() == pState.getBlock() && blockBelow.getValue(HALF) == DoubleBlockHalf.LOWER) {
-		              pLevel.setBlock(pPos.below(1), Blocks.AIR.defaultBlockState(), 35);
+		              pLevel.setBlock(pPos.below(1), Blocks.AIR.defaultBlockState(), 2);
 		           }
 		        }
 	    		}
@@ -157,12 +185,6 @@ public class SunflowerBlock extends CropBlock {
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
 		return PathType.OPEN;
-	}
-
-	@Override
-	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-		super.randomTick(blockstate, world, pos, random);
-		SunflowerOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 	
     public int getMaxAge() {

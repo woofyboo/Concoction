@@ -53,8 +53,8 @@
       "registry_name": "mint_leaf_particle_variant_1",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/client/particle/MintLeafParticleVariant1Particle.java",
-          "src/main/resources/assets/concoction/particles/mint_leaf_particle_variant_1.json"
+          "src/main/resources/assets/concoction/particles/mint_leaf_particle_variant_1.json",
+          "src/main/java/net/mcreator/concoction/client/particle/MintLeafParticleVariant1Particle.java"
         ]
       },
       "path": "~/mint"
@@ -862,8 +862,8 @@
       "registry_name": "feather_particle",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/client/particle/FeatherParticleParticle.java",
-          "src/main/resources/assets/concoction/particles/feather_particle.json"
+          "src/main/resources/assets/concoction/particles/feather_particle.json",
+          "src/main/java/net/mcreator/concoction/client/particle/FeatherParticleParticle.java"
         ]
       },
       "path": "~/general"
@@ -1000,8 +1000,8 @@
       "registry_name": "cherry_cookie",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/item/CherryCookieItem.java",
-          "src/main/resources/assets/concoction/models/item/cherry_cookie.json"
+          "src/main/resources/assets/concoction/models/item/cherry_cookie.json",
+          "src/main/java/net/mcreator/concoction/item/CherryCookieItem.java"
         ]
       },
       "path": "~/cherry"
@@ -1255,8 +1255,8 @@
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/jukebox_song/music_disc_hot_ice.json",
-          "src/main/java/net/mcreator/concoction/item/MusicDiscHotIceItem.java",
-          "src/main/resources/assets/concoction/models/item/music_disc_hot_ice.json"
+          "src/main/resources/assets/concoction/models/item/music_disc_hot_ice.json",
+          "src/main/java/net/mcreator/concoction/item/MusicDiscHotIceItem.java"
         ]
       },
       "path": "~/general"
@@ -1335,13 +1335,13 @@
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint"
     ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
