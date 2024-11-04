@@ -82,16 +82,16 @@ public class SunflowerBlock extends CropBlock {
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource random) {
         if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         if (pLevel.getRawBrightness(pPos, 0) >= 9 && (pState.getValue(HALF) == DoubleBlockHalf.LOWER)) {
-            int nextAge = this.getAge(pState) + (pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0);
-            if (nextAge < this.getMaxAge()) {
+            int nextAge = this.getAge(pState) + 1;
+            if (nextAge <= this.getMaxAge()) {
                 float f = getGrowthSpeed(pState, pLevel, pPos);
                 if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(pLevel, pPos, pState, random.nextInt((int)(25.0F / f) + 1) == 0)) {
         			if (nextAge < FIRST_STAGE_MAX_AGE) 
-						pLevel.setBlock(pPos, this.getState(pState, nextAge+1, DoubleBlockHalf.LOWER), 2);
+						pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
 	        		else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
         			(pLevel.getBlockState(pPos.above(1)).is(this)))) {
-				        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge+1, DoubleBlockHalf.UPPER), 2);
-				        pLevel.setBlock(pPos, this.getState(pState, nextAge+1, DoubleBlockHalf.LOWER), 2);
+				        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
+				        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
         			}
                     net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(pLevel, pPos, pState);
                 }
@@ -105,7 +105,7 @@ public class SunflowerBlock extends CropBlock {
     	int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
     	int maxAge = this.getMaxAge();
         if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
+//        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
 			if (nextAge > maxAge) nextAge = maxAge;
 			if (nextAge < FIRST_STAGE_MAX_AGE) 
 				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
