@@ -1,7 +1,70 @@
 {
   "variants": {
-    "": {
-      "model": "concoction:block/sunflower"
-    }
+    "age=0": {
+      "model": "concoction:block/sunflower_stage0"
+    },
+    "age=1": {
+      "model": "concoction:block/sunflower_stage1"
+    },
+    "age=2,half=lower": {
+      "model": "concoction:block/sunflower_bottom"
+    },
+    "age=3,half=lower": {
+      "model": "concoction:block/sunflower_bottom"
+    },
+    "age=4,half=lower": {
+      "model": "concoction:block/sunflower_bottom"
+    },
+    "age=5,half=lower": {
+      "model": "concoction:block/sunflower_bottom"
+    },
+    "age=2,half=upper,facing=east": {
+      "model": "concoction:block/sunflower_stage2_top"
+    },
+    "age=3,half=upper,facing=east": {
+      "model": "concoction:block/sunflower_stage3_top0"
+    },
+    "age=4,half=upper,facing=east": {
+      "model": "concoction:block/sunflower_stage4_top0"
+    },
+    "age=5,half=upper,facing=east": {
+      "model": "concoction:block/sunflower_stage5_top0"
+    },
+    "age=2,half=upper,facing=eastish": {
+      "model": "concoction:block/sunflower_stage2_top"
+    },
+    "age=3,half=upper,facing=eastish": {
+      "model": "concoction:block/sunflower_stage3_top1"
+    },
+    "age=4,half=upper,facing=eastish": {
+      "model": "concoction:block/sunflower_stage4_top1"
+    },
+    "age=5,half=upper,facing=eastish": {
+      "model": "concoction:block/sunflower_stage5_top1"
+    },
+    "age=2,half=upper,facing=westish": {
+      "model": "concoction:block/sunflower_stage2_top"
+    },
+    "age=3,half=upper,facing=westish": {
+      "model": "concoction:block/sunflower_stage3_top2"
+    },
+    "age=4,half=upper,facing=westish": {
+      "model": "concoction:block/sunflower_stage4_top2"
+    },
+    "age=5,half=upper,facing=westish": {
+      "model": "concoction:block/sunflower_stage5_top2"
+    },
+    "age=2,half=upper,facing=west": {
+      "model": "concoction:block/sunflower_stage2_top"
+    },
+    "age=3,half=upper,facing=west": {
+      "model": "concoction:block/sunflower_stage3_top3"
+    },
+    "age=4,half=upper,facing=west": {
+      "model": "concoction:block/sunflower_stage4_top3"
+    },
+    "age=5,half=upper,facing=west": {
+      "model": "concoction:block/sunflower_stage5_top3"
   }
+}
 }

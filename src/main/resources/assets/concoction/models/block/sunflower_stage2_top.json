@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/sunflower_top",
+  "textures": {
+        "front": "concoction:block/sunflower_stage2",
+        "back":  "concoction:block/sunflower_stage2"
+    }
+}

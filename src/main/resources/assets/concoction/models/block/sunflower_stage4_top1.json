@@ -1,0 +1,7 @@
+{
+  "parent": "concoction:block/template_sunflower_top1",
+  "textures": {
+        "front": "concoction:block/sunflower_stage4",
+        "back":  "concoction:block/sunflower_stage4_back"
+    }
+}

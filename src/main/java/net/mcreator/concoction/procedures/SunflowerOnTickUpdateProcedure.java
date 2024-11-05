@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 
 public class SunflowerOnTickUpdateProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
-		if (world.canSeeSkyFromBelowWater(BlockPos.containing(x, y + 2, z))) {
+		if (world.canSeeSkyFromBelowWater(BlockPos.containing(x, y + 3, z))) {
 			if (world.dayTime() >= 0 && world.dayTime() < 3000) {
 				{
 					String _value = "east";
