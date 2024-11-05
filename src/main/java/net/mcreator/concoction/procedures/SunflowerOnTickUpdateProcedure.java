@@ -5,9 +5,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 
+import net.mcreator.concoction.init.ConcoctionModBlocks;
+
 public class SunflowerOnTickUpdateProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
-		if (world.canSeeSkyFromBelowWater(BlockPos.containing(x, y + 3, z))) {
+		if (world.canSeeSkyFromBelowWater(BlockPos.containing(x, y + 1, z))
+				|| (world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == ConcoctionModBlocks.SUNFLOWER.get() && world.canSeeSkyFromBelowWater(BlockPos.containing(x, y + 2, z))) {
 			if (world.dayTime() >= 0 && world.dayTime() < 3000) {
 				{
 					String _value = "east";
