@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "concoction:block/sunflower_bottom"
-  }
+  },
+  "render_type": "cutout"
 }

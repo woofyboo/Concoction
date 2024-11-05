@@ -3,5 +3,6 @@
   "textures": {
         "front": "concoction:block/sunflower_stage3",
         "back":  "concoction:block/sunflower_stage3"
-    }
+    },
+  "render_type": "cutout"
 }

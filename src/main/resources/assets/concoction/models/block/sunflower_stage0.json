@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "concoction:block/sunflower_stage0"
-  }
+  },
+  "render_type": "cutout"
 }
