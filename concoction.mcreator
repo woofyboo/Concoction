@@ -1216,37 +1216,6 @@
       "path": "~/sunflower"
     },
     {
-      "name": "SunflowerOnTickUpdate",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "sunflower_on_tick_update",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/SunflowerOnTickUpdateProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/sunflower"
-    },
-    {
       "name": "MusicDiscHotIce",
       "type": "musicdisc",
       "compiles": true,
@@ -1299,6 +1268,41 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "SunflowerRightClick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunflower_right_click",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SunflowerRightClickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
@@ -1313,6 +1317,9 @@
     }
   ],
   "tag_elements": {
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint"
+    ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
@@ -1327,16 +1334,13 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
+    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint"
-    ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
