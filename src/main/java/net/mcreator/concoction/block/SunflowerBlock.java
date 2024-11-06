@@ -20,6 +20,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.entity.Mob;
@@ -32,10 +33,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.SpecialPlantable;
 
+import java.lang.Math;
+import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.procedures.SunflowerOnTickUpdateProcedure;
 import net.minecraft.world.level.block.CropBlock;
 
 public class SunflowerBlock extends CropBlock {
+	public boolean canRotate = true;
 	public static final EnumProperty<FacingProperty> FACING = EnumProperty.create("facing", FacingProperty.class);
 	public static final int FIRST_STAGE_MAX_AGE = 2;
     public static final int SECOND_STAGE_MAX_AGE = 3;
@@ -77,10 +81,17 @@ public class SunflowerBlock extends CropBlock {
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }
-
+    
+    @Override
+    public boolean isRandomlyTicking(BlockState p_52288_) {
+        return true;
+    }
+    
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource random) {
-        if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        	if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) 
+			this.rotate(pLevel, pPos, pState);
         if (pLevel.getRawBrightness(pPos, 0) >= 9 && (pState.getValue(HALF) == DoubleBlockHalf.LOWER)) {
             int nextAge = this.getAge(pState) + 1;
             if (nextAge <= this.getMaxAge()) {
@@ -97,9 +108,32 @@ public class SunflowerBlock extends CropBlock {
                 }
             }
         }
-        SunflowerOnTickUpdateProcedure.execute(pLevel, pPos.getX(), pPos.getY(), pPos.getZ());
     }
     
+    @Override
+    public void handlePrecipitation(BlockState p_152935_, Level p_152936_, BlockPos p_152937_, Biome.Precipitation weather) {
+    		if (weather == Biome.Precipitation.RAIN)
+			this.canRotate = false;
+		else
+			this.canRotate = true;
+    }
+    
+	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {
+		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
+		if (world.canSeeSkyFromBelowWater(pPos) && this.canRotate) {
+			String _value = "";
+			int dayTime = Math.floorMod(world.dayTime(),24000);
+			if (dayTime >= 0 && dayTime < 3000) _value = "east";
+			else if (dayTime >= 3000 && dayTime < 6000) _value = "eastish";
+			else if (dayTime >= 6000 && dayTime < 9000) _value = "westish";
+			else if (dayTime >= 9000 && dayTime < 12000) _value = "west";
+			
+			if (pState.getBlock().getStateDefinition().getProperty("facing") instanceof EnumProperty _enumProp 
+				&& _enumProp.getValue(_value).isPresent())
+				world.setBlock(pPos, pState.setValue(_enumProp, (Enum) _enumProp.getValue(_value).get()), 3);
+		}
+	}
+
 	@Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
     	int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
