@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smoking",
+    "recipeRetstackSize": 1,
+    "group": "roasted_sunflower_seeds",
+    "cookingBookCategory": "FOOD",
+    "xpReward": 1.0,
+    "cookingTime": 100,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smokingInputStack": {
+      "value": "Items.WHEAT_SEEDS"
+    },
+    "smokingReturnStack": {
+      "value": "CUSTOM:RoastedSunflowerSeeds"
+    },
+    "name": "roasted_sunflower_seeds_smoker",
+    "namespace": "mod"
+  }
+}

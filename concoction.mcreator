@@ -1219,7 +1219,7 @@
       "name": "SunflowerOnTickUpdate",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "sunflower_on_tick_update",
       "metadata": {
         "files": [
@@ -1299,6 +1299,132 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "RoastedSunflowerSeeds",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "roasted_sunflower_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/RoastedSunflowerSeedsItem.java",
+          "src/main/resources/assets/concoction/models/item/roasted_sunflower_seeds.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "RoastedSunflowerSeedsFurnace",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "roasted_sunflower_seeds_furnace",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_sunflower_seeds_furnace.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "RoastedSunflowerSeedsSmoker",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "roasted_sunflower_seeds_smoker",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_sunflower_seeds_smoker.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "RoastedSunflowerSeedsCapmfire",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "roasted_sunflower_seeds_capmfire",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_sunflower_seeds_capmfire.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "CompostRoastedSeeds",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "compost_roasted_seeds",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "CompostTempSunflowerSeeds",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "compost_temp_sunflower_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CompostTempSunflowerSeedsProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "RecipeSunflowerSeeds",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "recipe_sunflower_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/RecipeSunflowerSeedsProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/achivements/recipes"
     }
   ],
   "variable_elements": [],
@@ -1313,6 +1439,10 @@
     }
   ],
   "tag_elements": {
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
@@ -1327,16 +1457,13 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
+    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint"
-    ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
@@ -1381,10 +1508,12 @@
       "item.concoction.fabric": "Fabric",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
+      "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.brown_pillow_block": "Brown Pillow",
+      "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "block.concoction_brew.mint": "Mint",
-      "subtitles.music_disc_hotice": "",
+      "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
       "block.concoction.blue_pillow_block": "Blue Pillow",

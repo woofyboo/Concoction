@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smoking",
+  "group": "roasted_sunflower_seeds",
+  "category": "food",
+  "experience": 1,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "concoction:sunflower_seeds"
+  },
+  "result": {
+    "id": "concoction:roasted_sunflower_seeds"
+  }
+}

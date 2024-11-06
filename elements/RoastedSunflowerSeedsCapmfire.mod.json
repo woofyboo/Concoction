@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Campfire cooking",
+    "recipeRetstackSize": 1,
+    "group": "roasted_sunflower_seeds",
+    "cookingBookCategory": "FOOD",
+    "xpReward": 1.0,
+    "cookingTime": 600,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "campfireCookingInputStack": {
+      "value": "Items.WHEAT_SEEDS"
+    },
+    "campfireCookingReturnStack": {
+      "value": "CUSTOM:RoastedSunflowerSeeds"
+    },
+    "name": "roasted_sunflower_seeds_capmfire",
+    "namespace": "mod"
+  }
+}

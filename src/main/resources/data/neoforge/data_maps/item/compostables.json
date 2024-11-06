@@ -17,6 +17,9 @@
     },
     "concoction:wild_cotton": {
       "chance": 0.65
+    },
+    "concoction:roasted_sunflower_seeds": {
+      "chance": 0.65
     }
   }
 }
