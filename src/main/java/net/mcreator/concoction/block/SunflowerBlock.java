@@ -1,6 +1,8 @@
 
 package net.mcreator.concoction.block;
 
+import net.mcreator.concoction.init.ConcoctionModItems;
+
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.StringRepresentable;
@@ -35,7 +38,6 @@ import net.neoforged.neoforge.common.SpecialPlantable;
 
 import java.lang.Math;
 import net.mcreator.concoction.ConcoctionMod;
-import net.mcreator.concoction.procedures.SunflowerOnTickUpdateProcedure;
 import net.minecraft.world.level.block.CropBlock;
 
 public class SunflowerBlock extends CropBlock {
@@ -228,6 +230,11 @@ public class SunflowerBlock extends CropBlock {
     @Override
     public IntegerProperty getAgeProperty() {
         return AGE;
+    }
+
+	@Override
+    public ItemLike getBaseSeedId() {
+        return ConcoctionModItems.SUNFLOWER_SEEDS.get();
     }
     
 	public enum FacingProperty implements StringRepresentable {
