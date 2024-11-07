@@ -8,6 +8,16 @@
   "pools": [
       {
         "bonus_rolls": 0.0,
+         "conditions": [
+          {
+            "block": "concoction:sunflower",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "half": "lower"
+            }
+          }
+        ],
+
         "entries": [
           {
             "type": "minecraft:item",
@@ -23,8 +33,7 @@
             "block": "concoction:sunflower",
             "condition": "minecraft:block_state_property",
             "properties": {
-              "age": "5",
-              "half": "upper"
+              "age": "5"
             }
           }
         ],
