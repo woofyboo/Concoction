@@ -1439,10 +1439,6 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
@@ -1457,13 +1453,17 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",

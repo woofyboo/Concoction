@@ -9,6 +9,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
+
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -22,14 +23,18 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.util.RandomSource;
+import javax.annotation.Nullable;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
@@ -121,7 +126,7 @@ public class SunflowerBlock extends CropBlock {
     }
     
 	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {
-		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
+//		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
 		if (world.canSeeSkyFromBelowWater(pPos) && this.canRotate) {
 			String _value = "";
 			int dayTime = Math.floorMod(world.dayTime(),24000);
@@ -186,19 +191,45 @@ public class SunflowerBlock extends CropBlock {
         return pState.is(BlockTags.DIRT) || pState.getBlock() instanceof net.minecraft.world.level.block.FarmBlock;
     }
 
-	@Override
-	public void destroy(LevelAccessor level, BlockPos pPos, BlockState pState) {
-	    Level pLevel = (Level)level;
-	    
-	    	if (!pLevel.isClientSide) {
+    @Override
+    public BlockState playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player player) {
+        if (!pLevel.isClientSide) {
+            if (player.isCreative()) {
+                preventDrop(pLevel, pPos, pState, player);
+            } else {
 		        if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-		           BlockState blockBelow = pLevel.getBlockState(pPos.below(1));
-	
-		           if (blockBelow.getBlock() == pState.getBlock() && blockBelow.getValue(HALF) == DoubleBlockHalf.LOWER) {
-		              pLevel.setBlock(pPos.below(1), Blocks.AIR.defaultBlockState(), 2);
-		           }
-		        }
-	    		}
+	           	BlockState blockBelow = pLevel.getBlockState(pPos.below(1));
+				
+	           	if (blockBelow.getBlock() == pState.getBlock() && blockBelow.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				  	BlockState blockstate = blockBelow.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+	              	pLevel.setBlock(pPos.below(1), blockstate, 35);
+	              	dropResources(blockBelow, pLevel, pPos.below(), null, player, player.getMainHandItem());
+	           		}
+	        	}
+	        	else
+                	dropResources(pState, pLevel, pPos, null, player, player.getMainHandItem());
+            }
+        }
+
+        return super.playerWillDestroy(pLevel, pPos, pState, player);
+    }
+
+    @Override
+    public void playerDestroy(Level p_52865_, Player p_52866_, BlockPos p_52867_, BlockState p_52868_, @Nullable BlockEntity p_52869_, ItemStack p_52870_) {
+        super.playerDestroy(p_52865_, p_52866_, p_52867_, Blocks.AIR.defaultBlockState(), p_52869_, p_52870_);
+    }
+  
+    protected static void preventDrop(Level pLevel, BlockPos pPos, BlockState pState, Player player) {
+        DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
+        if (doubleblockhalf == DoubleBlockHalf.UPPER) {
+            BlockPos blockpos = pPos.below();
+            BlockState blockstate = pLevel.getBlockState(blockpos);
+            if (blockstate.is(pState.getBlock()) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                BlockState blockstate1 = blockstate.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                pLevel.setBlock(blockpos, blockstate1, 35);
+                pLevel.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+            }
+        }
     }
     
 	@Override
