@@ -1570,7 +1570,7 @@
     "version": "1.2.2",
     "author": "Sebsish, woofyboo",
     "websiteURL": "https://www.youtube.com/watch?v\u003ddQw4w9WgXcQ",
-    "license": "Not specified",
+    "license": "GNU General Public License version 3 (GPLv3)",
     "serverSideOnly": false,
     "requiredMods": [],
     "dependencies": [],
