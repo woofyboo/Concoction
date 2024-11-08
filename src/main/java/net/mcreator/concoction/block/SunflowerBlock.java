@@ -53,7 +53,7 @@ public class SunflowerBlock extends CropBlock {
     public static final int MAX_AGE = FIRST_STAGE_MAX_AGE + SECOND_STAGE_MAX_AGE;
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
-	
+
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D),
@@ -82,7 +82,6 @@ public class SunflowerBlock extends CropBlock {
 	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		return Shapes.empty();
 	}
-
 
 	@Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -119,10 +118,9 @@ public class SunflowerBlock extends CropBlock {
     
     @Override
     public void handlePrecipitation(BlockState p_152935_, Level p_152936_, BlockPos p_152937_, Biome.Precipitation weather) {
-    		if (weather == Biome.Precipitation.RAIN)
+		if (weather == Biome.Precipitation.RAIN)
 			this.canRotate = false;
-		else
-			this.canRotate = true;
+		else this.canRotate = true;
     }
     
 	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {

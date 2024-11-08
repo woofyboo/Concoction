@@ -23,6 +23,27 @@
         ]
       },
       {
+        "rolls": 1.0,
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:sunflower",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "half": "lower",
+              "age": "5"
+            }
+          }
+        ],
+
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:sunflower"
+          }
+        ]
+      },
+      {
       	"rolls": 1.0,
         "bonus_rolls": 0.0,
         "conditions": [
@@ -30,7 +51,7 @@
             "block": "concoction:sunflower",
             "condition": "minecraft:block_state_property",
             "properties": {
-              "age": "5",
+              "age": "5",
               "half": "lower"
             }
           }
