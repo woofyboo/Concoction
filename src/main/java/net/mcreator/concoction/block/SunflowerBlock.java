@@ -182,44 +182,48 @@ public class SunflowerBlock extends CropBlock {
     
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        return super.canSurvive(pState, pLevel, pPos) || (pLevel.getBlockState(pPos.below(1)).is(this) &&
-                pLevel.getBlockState(pPos.below(1)).getValue(AGE) >= FIRST_STAGE_MAX_AGE);
+    	if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+    		if (pState.getValue(AGE) >= FIRST_STAGE_MAX_AGE)
+	        	return super.canSurvive(pState, pLevel, pPos) && pLevel.getBlockState(pPos.above(1)).is(this);	
+	        else
+	        	return super.canSurvive(pState, pLevel, pPos);
+    	} 
+    	else {
+	        return super.canSurvive(pState, pLevel, pPos) || (pLevel.getBlockState(pPos.below(1)).is(this) &&
+                pLevel.getBlockState(pPos.below(1)).getValue(AGE) >= FIRST_STAGE_MAX_AGE &&
+                pLevel.getBlockState(pPos.below(1)).getValue(HALF) != pState.getValue(HALF));
+    	}
+
     }
 
     @Override
     public boolean mayPlaceOn(BlockState pState, BlockGetter p_52303_, BlockPos p_52304_) {
-        return pState.is(BlockTags.DIRT) || pState.getBlock() instanceof net.minecraft.world.level.block.FarmBlock;
+        return ((pState.is(BlockTags.DIRT) || pState.getBlock() instanceof net.minecraft.world.level.block.FarmBlock) &&
+        	!(pState.getBlock() instanceof SunflowerBlock));
     }
 
     @Override
     public BlockState playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player player) {
         if (!pLevel.isClientSide) {
-            if (player.isCreative()) {
-                preventDrop(pLevel, pPos, pState, player);
-            } else {
-		        if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-	           	BlockState blockBelow = pLevel.getBlockState(pPos.below(1));
-				
-	           	if (blockBelow.getBlock() == pState.getBlock() && blockBelow.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				  	BlockState blockstate = blockBelow.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
-	              	pLevel.setBlock(pPos.below(1), blockstate, 35);
-	              	dropResources(blockBelow, pLevel, pPos.below(), null, player, player.getMainHandItem());
-	           		}
-	        	}
-	        	else
-                	dropResources(pState, pLevel, pPos, null, player, player.getMainHandItem());
-            }
+            if (player.isCreative()) breakBlock(false, pLevel, pPos, pState, player);
+            else breakBlock(true, pLevel, pPos, pState, player);
         }
-
         return super.playerWillDestroy(pLevel, pPos, pState, player);
     }
+
+//	@Override
+//	public void destroy(LevelAccessor level, BlockPos pPos, BlockState pState) {
+//    	if (level instanceof Level pLevel && !pLevel.isClientSide) {
+//    		breakBlock(true, pLevel, pPos, pState, null);
+//    	}
+//	}
 
     @Override
     public void playerDestroy(Level p_52865_, Player p_52866_, BlockPos p_52867_, BlockState p_52868_, @Nullable BlockEntity p_52869_, ItemStack p_52870_) {
         super.playerDestroy(p_52865_, p_52866_, p_52867_, Blocks.AIR.defaultBlockState(), p_52869_, p_52870_);
     }
   
-    protected static void preventDrop(Level pLevel, BlockPos pPos, BlockState pState, Player player) {
+    protected static void breakBlock(boolean dropItems, Level pLevel, BlockPos pPos, BlockState pState, Player player) {
         DoubleBlockHalf doubleblockhalf = pState.getValue(HALF);
         if (doubleblockhalf == DoubleBlockHalf.UPPER) {
             BlockPos blockpos = pPos.below();
@@ -228,8 +232,10 @@ public class SunflowerBlock extends CropBlock {
                 BlockState blockstate1 = blockstate.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
                 pLevel.setBlock(blockpos, blockstate1, 35);
                 pLevel.levelEvent(player, 2001, blockpos, Block.getId(blockstate));
+                if (dropItems) dropResources(blockstate, pLevel, blockpos, null, player, player.getMainHandItem());
             }
-        }
+        } 
+        else if (dropItems) dropResources(pState, pLevel, pPos, null, player, player.getMainHandItem());
     }
     
 	@Override
