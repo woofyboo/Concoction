@@ -1,0 +1,10 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "concoction:block/pillow_black",
+    "bottom": "concoction:block/pillow_black",
+    "top": "concoction:block/pillow_black",
+    "side": "concoction:block/small_black_pillow"
+  },
+  "render_type": "solid"
+}

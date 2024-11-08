@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "concoction:block/small_yellow_pillow"
+    },
+    "type=top": {
+      "model": "concoction:block/small_yellow_pillow_top"
+    },
+    "type=double": {
+      "model": "concoction:block/small_yellow_pillow_full"
+    }
+  }
+}

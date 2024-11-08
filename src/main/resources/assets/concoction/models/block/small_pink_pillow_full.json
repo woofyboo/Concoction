@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "particle": "concoction:block/pillow_pink",
+    "bottom": "concoction:block/pillow_pink",
+    "top": "concoction:block/pillow_pink",
+    "side": "concoction:block/small_pink_pillow"
+  },
+  "render_type": "solid"
