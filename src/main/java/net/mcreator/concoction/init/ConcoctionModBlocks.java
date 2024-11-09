@@ -47,20 +47,20 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> BLACK_PILLOW_BLOCK = REGISTRY.register("black_pillow_block", PillowBlock::new);
 
 	public static final DeferredBlock<Block> SMALL_PILLOW_BLOCK = REGISTRY.register("small_pillow_block", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_RED_PILLOW_BLOCK = REGISTRY.register("small_red_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_ORANGE_PILLOW_BLOCK = REGISTRY.register("small_orange_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_BROWN_PILLOW_BLOCK = REGISTRY.register("small_brown_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_YELLOW_PILLOW_BLOCK = REGISTRY.register("small_yellow_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_LIME_PILLOW_BLOCK = REGISTRY.register("small_lime_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_GREEN_PILLOW_BLOCK = REGISTRY.register("small_green_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_CYAN_PILLOW_BLOCK = REGISTRY.register("small_cyan_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("small_light_blue_pillow", PillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_BLUE_PILLOW_BLOCK = REGISTRY.register("small_blue_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_PURPLE_PILLOW_BLOCK = REGISTRY.register("small_purple_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_MAGENTA_PILLOW_BLOCK = REGISTRY.register("small_magenta_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_PINK_PILLOW_BLOCK = REGISTRY.register("small_pink_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("small_light_gray_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_GRAY_PILLOW_BLOCK = REGISTRY.register("small_gray_pillow", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_BLACK_PILLOW_BLOCK = REGISTRY.register("small_black_pillow", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_RED_PILLOW_BLOCK = REGISTRY.register("small_red_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_ORANGE_PILLOW_BLOCK = REGISTRY.register("small_orange_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_BROWN_PILLOW_BLOCK = REGISTRY.register("small_brown_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_YELLOW_PILLOW_BLOCK = REGISTRY.register("small_yellow_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_LIME_PILLOW_BLOCK = REGISTRY.register("small_lime_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_GREEN_PILLOW_BLOCK = REGISTRY.register("small_green_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_CYAN_PILLOW_BLOCK = REGISTRY.register("small_cyan_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("small_light_blue_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_BLUE_PILLOW_BLOCK = REGISTRY.register("small_blue_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_PURPLE_PILLOW_BLOCK = REGISTRY.register("small_purple_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_MAGENTA_PILLOW_BLOCK = REGISTRY.register("small_magenta_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_PINK_PILLOW_BLOCK = REGISTRY.register("small_pink_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("small_light_gray_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_GRAY_PILLOW_BLOCK = REGISTRY.register("small_gray_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_BLACK_PILLOW_BLOCK = REGISTRY.register("small_black_pillow_block", SmallPillowBlock::new);
 	// End of user code block custom blocks
 }

@@ -1,9 +1,0 @@
-{
-  "parent": "block/slab",
-  "textures": {
-    "particle": "concoction:block/pillow_magenta",
-    "bottom": "concoction:block/pillow_magenta",
-    "top": "concoction:block/pillow_magenta",
-    "side": "concoction:block/small_magenta_pillow"
-  },
-  "render_type": "solid"

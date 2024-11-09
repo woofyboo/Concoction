@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "concoction:block/illustration4",
+    "bottom": "concoction:block/illustration4",
+    "top": "concoction:block/illustration4",
+    "side": "concoction:block/small_white_pillow"
+  },
+  "render_type": "solid"
+}
