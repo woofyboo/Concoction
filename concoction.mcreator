@@ -527,7 +527,7 @@
       "registry_name": "pillow_block",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/block/PillowBlockBlock.java",
+          "src/main/java/net/mcreator/concoction/block/PillowBlock.java",
           "src/main/resources/assets/concoction/blockstates/pillow_block.json",
           "src/main/resources/data/concoction/loot_tables/blocks/pillow_block.json",
           "src/main/resources/assets/concoction/models/block/pillow_block.json",
@@ -1216,37 +1216,6 @@
       "path": "~/sunflower"
     },
     {
-      "name": "SunflowerOnTickUpdate",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "sunflower_on_tick_update",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/SunflowerOnTickUpdateProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/sunflower"
-    },
-    {
       "name": "MusicDiscHotIce",
       "type": "musicdisc",
       "compiles": true,
@@ -1308,8 +1277,8 @@
       "registry_name": "roasted_sunflower_seeds",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/item/RoastedSunflowerSeedsItem.java",
-          "src/main/resources/assets/concoction/models/item/roasted_sunflower_seeds.json"
+          "src/main/resources/assets/concoction/models/item/roasted_sunflower_seeds.json",
+          "src/main/java/net/mcreator/concoction/item/RoastedSunflowerSeedsItem.java"
         ]
       },
       "path": "~/sunflower"
@@ -1462,13 +1431,13 @@
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",

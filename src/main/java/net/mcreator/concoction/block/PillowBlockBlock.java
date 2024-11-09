@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 
-public class PillowBlock extends SlimeBlock {
-	public PillowBlock() {
+public class PillowBlockBlock extends SlimeBlock {
+	public PillowBlockBlock() {
 		super(BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.WOOL).sound(SoundType.WOOL).strength(0.2f, 1f));
 	}
 
