@@ -3,28 +3,71 @@
   "config": {
     "feature": {
       "feature": {
-        "type": "minecraft:simple_block",
+        "type": "minecraft:block_column",
         "config": {
-          "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "minecraft:air"
+          "direction": "up",
+          "allowed_placement": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          },
+          "prioritize_tip": false,
+          "layers": [
+            {
+              "height": 1,
+              "provider": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                  "Name": "concoction:sunflower",
+                  "Properties": {
+                    "half": "lower",
+                    "age": "5"
+                  }
+                }
+              }
+            },
+            {
+              "height": 1,
+              "provider": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                  "Name": "concoction:sunflower",
+                  "Properties": {
+                    "half": "upper",
+                    "age": "5"
+                  }
+                }
+              }
             }
-          }
+          ]
         }
       },
       "placement": [
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              },
+              {
+                "type": "minecraft:would_survive",
+                "state": {
+                  "Name": "concoction:sunflower",
+                  "Properties": {
+                    "half": "lower",
+                    "age": "0"
+                  }
+                }
+              }
+            ]
           }
         }
       ]
     },
-    "tries": 96,
-    "xz_spread": 7,
-    "y_spread": 3
+    "tries": 1024,
+    "xz_spread": 20,
+    "y_spread": 5
   }
 }

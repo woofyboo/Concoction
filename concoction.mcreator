@@ -1881,9 +1881,9 @@
       "registry_name": "sunflower_in_wild",
       "metadata": {
         "files": [
+          "src/main/resources/data/concoction/neoforge/biome_modifier/sunflower_in_wild_biome_modifier.json",
           "src/main/resources/data/concoction/worldgen/configured_feature/sunflower_in_wild.json",
-          "src/main/resources/data/concoction/worldgen/placed_feature/sunflower_in_wild.json",
-          "src/main/resources/data/concoction/neoforge/biome_modifier/sunflower_in_wild_biome_modifier.json"
+          "src/main/resources/data/concoction/worldgen/placed_feature/sunflower_in_wild.json"
         ],
         "has_nbt_structure": true
       },
@@ -1902,10 +1902,6 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
@@ -1920,13 +1916,17 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",

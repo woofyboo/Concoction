@@ -2,5 +2,5 @@
   "type": "neoforge:add_features",
   "biomes": "sunflower_plains",
   "features": "concoction:sunflower_in_wild",
-  "step": "surface_structures"
+  "step": "vegetal_decoration"
 }

@@ -3,7 +3,7 @@
   "_type": "feature",
   "definition": {
     "skipPlacement": false,
-    "generationStep": "SURFACE_STRUCTURES",
+    "generationStep": "VEGETAL_DECORATION",
     "restrictionBiomes": [
       {
         "value": "mutated_plains"

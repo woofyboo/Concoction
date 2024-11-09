@@ -14,21 +14,24 @@ authors="Sebsish, woofyboo"
 # End of user code block mod configuration
 
 [[dependencies.concoction]]
-    modId="neoforge"
-    type="required"
-    versionRange="[21.1.65,)"
-    ordering="AFTER"
-    side="BOTH"
+modId="neoforge"
+type="required"
+versionRange="[21.1.65,)"
+ordering="AFTER"
+side="BOTH"
 
 [[dependencies.concoction]]
-    modId="minecraft"
-    type="required"
-    versionRange="[1.21.1]"
-    ordering="AFTER"
-    side="BOTH"
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="AFTER"
+side="BOTH"
 
 
 
+
+[[mixins]]
+    config="mixins.concoction.json"
 
 # Start of user code block dependencies configuration
 # End of user code block dependencies configuration
