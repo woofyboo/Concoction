@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "tag": "concoction:small_pillows"
+    },
+    {
+      "item": "minecraft:green_dye"
+    }
+  ],
+  "result": {
+    "id": "concoction:small_green_pillow_block",
+    "count": 8
+  }
+}

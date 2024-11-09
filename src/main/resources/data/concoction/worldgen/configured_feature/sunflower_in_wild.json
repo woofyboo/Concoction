@@ -1,0 +1,12 @@
+{
+  "type": "concoction:structure_feature",
+  "config": {
+    "structure": "concoction:sunflower_wild",
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      0,
+      -1,
+      0
+    ]
+  }
+}

@@ -62,6 +62,70 @@ public class RecipePillowsProcedure {
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_15")));
 			if (entity instanceof ServerPlayer _serverPlayer)
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_block_16")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_1")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_2")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_3")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_4")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_5")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_6")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_7")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_8")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_9")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_10")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_11")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_12")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_13")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_14")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_15")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:colored_pillow_slab_16")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_white_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_black_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_gray_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_light_gray_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_brown_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_red_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_orange_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_yellow_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_lime_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_cyan_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_green_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_light_blue_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_blue_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_purple_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_magenta_pillow_from_pillow")));
+			if (entity instanceof ServerPlayer _serverPlayer)
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_pink_pillow_from_pillow")));
 		}
 	}
 }

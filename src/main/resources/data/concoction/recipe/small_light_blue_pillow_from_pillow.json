@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:light_blue_pillow_block"
+    }
+  },
+  "result": {
+    "id": "concoction:small_light_blue_pillow_block",
+    "count": 6
+  }
+}
