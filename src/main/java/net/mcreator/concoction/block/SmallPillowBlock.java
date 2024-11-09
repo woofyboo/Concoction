@@ -1,27 +1,33 @@
 
 package net.mcreator.concoction.block;
 
-import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BedBlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SlimeBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 
-public class PillowBlockBlock extends SlimeBlock {
-	public PillowBlockBlock() {
-		super(BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.WOOL).sound(SoundType.WOOL).strength(0.2f, 1f));
+public class SmallPillowBlock extends SlabBlock {
+	public SmallPillowBlock() {
+		super(Properties.of().ignitedByLava().mapColor(MapColor.WOOL).sound(SoundType.WOOL).strength(0.2f, 1f));
+	}
+
+	@Override
+	public void fallOn(Level p_154567_, BlockState p_154568_, BlockPos p_154569_, Entity p_154570_, float p_154571_) {
+		if (p_154570_.isSuppressingBounce()) {
+			super.fallOn(p_154567_, p_154568_, p_154569_, p_154570_, p_154571_);
+		} else {
+			p_154570_.causeFallDamage(p_154571_, 0.0F, p_154567_.damageSources().fall());
+		}
 	}
 
 	@Override
@@ -39,7 +45,7 @@ public class PillowBlockBlock extends SlimeBlock {
 			Vec3 pos = player.position();
 			int particlesCount = calcAmpl(player.getDeltaMovement());
 			if (particlesCount != 0)
-			_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
+				_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
 					pos.x, pos.y, pos.z,
 					particlesCount, 0, 0.1, 0, 0.4);
 		}

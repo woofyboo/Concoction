@@ -44,6 +44,23 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PURPLE_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PINK_PILLOW_BLOCK.get());
+
+				tabData.accept(ConcoctionModItems.SMALL_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_LIGHT_GRAY_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_GRAY_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_BLACK_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_BROWN_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_RED_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_ORANGE_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_YELLOW_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_LIME_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_GREEN_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_CYAN_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_LIGHT_BLUE_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_BLUE_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_PURPLE_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_MAGENTA_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 //Особое
 				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
 				
