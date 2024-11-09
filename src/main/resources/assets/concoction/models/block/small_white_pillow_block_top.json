@@ -5,6 +5,5 @@
         "bottom": "concoction:block/pillow_white",
         "top": "concoction:block/pillow_white",
         "side": "concoction:block/small_white_pillow_block"
-    },
-    "render_type": "cutout"
+    }
 }
