@@ -9,12 +9,19 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SlimeBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SmallPillowBlock extends SlabBlock {
 	public SmallPillowBlock() {
@@ -69,9 +76,34 @@ public class SmallPillowBlock extends SlabBlock {
 	}
 
 	@Override
-	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return 15;
+	public boolean useShapeForLightOcclusion(BlockState p_56395_) {
+		return p_56395_.getValue(TYPE) != SlabType.DOUBLE;
 	}
+
+	@Override
+	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_56388_) {
+		p_56388_.add(new Property[]{TYPE, WATERLOGGED});
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState p_56390_, BlockGetter p_56391_, BlockPos p_56392_, CollisionContext p_56393_) {
+		SlabType slabtype = (SlabType)p_56390_.getValue(TYPE);
+		switch (slabtype) {
+            case DOUBLE -> {
+                return Shapes.block();
+            }
+            case TOP -> {
+                return TOP_AABB;
+            }
+            default -> {
+                return BOTTOM_AABB;
+            }
+        }
+	}
+//	@Override
+//	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+//		return 15;
+//	}
 
 	@Override
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
