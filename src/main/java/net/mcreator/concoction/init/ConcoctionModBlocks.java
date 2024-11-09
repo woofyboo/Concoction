@@ -44,6 +44,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("light_gray_pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> GRAY_PILLOW_BLOCK = REGISTRY.register("gray_pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> BLACK_PILLOW_BLOCK = REGISTRY.register("black_pillow_block", PillowBlockBlock::new);
+
 	public static final DeferredBlock<Block> SMALL_WHITE_PILLOW_BLOCK = REGISTRY.register("small_white_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_RED_PILLOW_BLOCK = REGISTRY.register("small_red_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_ORANGE_PILLOW_BLOCK = REGISTRY.register("small_orange_pillow_block", SmallPillowBlock::new);
@@ -52,7 +53,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> SMALL_LIME_PILLOW_BLOCK = REGISTRY.register("small_lime_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_GREEN_PILLOW_BLOCK = REGISTRY.register("small_green_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_CYAN_PILLOW_BLOCK = REGISTRY.register("small_cyan_pillow_block", SmallPillowBlock::new);
-	public static final DeferredBlock<Block> SMALL_LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("small_light_blue_pillow_block", PillowBlockBlock::new);
+	public static final DeferredBlock<Block> SMALL_LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("small_light_blue_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_BLUE_PILLOW_BLOCK = REGISTRY.register("small_blue_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_PURPLE_PILLOW_BLOCK = REGISTRY.register("small_purple_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_MAGENTA_PILLOW_BLOCK = REGISTRY.register("small_magenta_pillow_block", SmallPillowBlock::new);
