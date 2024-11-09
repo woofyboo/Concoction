@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube_bottom_top",
+  "parent": "block/slab",
   "textures": {
     "particle": "concoction:block/pillow_light_grey",
     "bottom": "concoction:block/pillow_light_grey",
