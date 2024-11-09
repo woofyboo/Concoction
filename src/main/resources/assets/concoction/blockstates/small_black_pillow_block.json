@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "concoction:block/small_black_pillow"
-    },
-    "type=top": {
-      "model": "concoction:block/small_black_pillow_top"
-    },
-    "type=double": {
-      "model": "concoction:block/small_black_pillow_full"
+    "variants": {
+        "type=bottom": {
+            "model": "concoction:block/small_black_pillow_block"
+        },
+        "type=top": {
+            "model": "concoction:block/small_black_pillow_block_top"
+        },
+        "type=double": {
+            "model": "concoction:block/small_black_pillow_block_full"
+        }
     }
-  }
 }

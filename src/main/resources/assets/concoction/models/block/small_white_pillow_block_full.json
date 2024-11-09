@@ -1,10 +1,10 @@
 {
-  "parent": "block/cube_bottom_top",
-  "textures": {
-    "particle": "concoction:block/illustration4",
-    "bottom": "concoction:block/illustration4",
-    "top": "concoction:block/illustration4",
-    "side": "concoction:block/small_white_pillow"
-  },
-  "render_type": "solid"
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "concoction:block/illustration4",
+        "bottom": "concoction:block/illustration4",
+        "top": "concoction:block/illustration4",
+        "side": "concoction:block/small_white_pillow_block"
+    },
+    "render_type": "solid"
 }

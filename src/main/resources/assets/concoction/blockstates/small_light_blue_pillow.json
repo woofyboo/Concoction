@@ -1,13 +1,13 @@
 {
   "variants": {
     "type=bottom": {
-      "model": "concoction:block/small_light_blue_pillow"
+      "model": "concoction:block/small_light_blue_pillow_block"
     },
     "type=top": {
-      "model": "concoction:block/small_light_blue_pillow_top"
+      "model": "concoction:block/small_light_blue_pillow_block_top"
     },
     "type=double": {
-      "model": "concoction:block/small_light_blue_pillow_full"
+      "model": "concoction:block/small_light_blue_pillow_block_full"
     }
   }
 }

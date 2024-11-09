@@ -4,7 +4,7 @@
     "particle": "concoction:block/pillow_light_blue",
     "bottom": "concoction:block/pillow_light_blue",
     "top": "concoction:block/pillow_light_blue",
-    "side": "concoction:block/small_light_blue_pillow"
+    "side": "concoction:block/small_light_blue_pillow_block"
   },
   "render_type": "solid"
 }

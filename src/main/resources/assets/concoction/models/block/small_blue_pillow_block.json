@@ -1,10 +1,10 @@
 {
-  "parent": "block/slab",
-  "textures": {
-    "particle": "concoction:block/pillow_blue",
-    "bottom": "concoction:block/pillow_blue",
-    "top": "concoction:block/pillow_blue",
-    "side": "concoction:block/small_blue_pillow"
-  },
-  "render_type": "solid"
+    "parent": "block/slab",
+    "textures": {
+        "particle": "concoction:block/pillow_blue",
+        "bottom": "concoction:block/pillow_blue",
+        "top": "concoction:block/pillow_blue",
+        "side": "concoction:block/small_blue_pillow_block"
+    },
+    "render_type": "solid"
 }
