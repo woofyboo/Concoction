@@ -34,7 +34,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
 	public static final DeferredItem<Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
 	public static final DeferredItem<Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
-	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
+	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.WHITE_PILLOW_BLOCK);
 	public static final DeferredItem<Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
 	public static final DeferredItem<Item> CHERRY_COOKIE = REGISTRY.register("cherry_cookie", CherryCookieItem::new);
 	public static final DeferredItem<Item> SUNFLOWER = block(ConcoctionModBlocks.SUNFLOWER);
@@ -60,7 +60,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> GRAY_PILLOW_BLOCK = block(ConcoctionModBlocks.GRAY_PILLOW_BLOCK);
 	public static final DeferredItem<Item> BLACK_PILLOW_BLOCK = block(ConcoctionModBlocks.BLACK_PILLOW_BLOCK);
 
-	public static final DeferredItem<Item> SMALL_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_PILLOW_BLOCK);
+	public static final DeferredItem<Item> SMALL_WHITE_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_WHITE_PILLOW_BLOCK);
 	public static final DeferredItem<Item> SMALL_RED_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_RED_PILLOW_BLOCK);
 	public static final DeferredItem<Item> SMALL_ORANGE_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_ORANGE_PILLOW_BLOCK);
 	public static final DeferredItem<Item> SMALL_BROWN_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_BROWN_PILLOW_BLOCK);

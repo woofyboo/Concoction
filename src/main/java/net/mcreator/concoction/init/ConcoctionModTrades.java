@@ -30,7 +30,7 @@ public class ConcoctionModTrades {
 			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(ConcoctionModItems.FABRIC.get(), 28), new ItemStack(Items.EMERALD), 16, 5, 0.05f));
 		}
 		if (event.getType() == VillagerProfession.SHEPHERD) {
-			event.getTrades().get(5).add(new BasicItemListing(new ItemStack(Items.EMERALD), new ItemStack(ConcoctionModBlocks.PILLOW_BLOCK.get(), 14), 8, 30, 0.05f));
+			event.getTrades().get(5).add(new BasicItemListing(new ItemStack(Items.EMERALD), new ItemStack(ConcoctionModBlocks.WHITE_PILLOW_BLOCK.get(), 14), 8, 30, 0.05f));
 		}
 		if (event.getType() == VillagerProfession.LEATHERWORKER) {
 			event.getTrades().get(4).add(new BasicItemListing(new ItemStack(Items.EMERALD, 3), new ItemStack(ConcoctionModItems.FABRIC.get(), 8), 10, 5, 0.15f));

@@ -5,7 +5,6 @@
 package net.mcreator.concoction.init;
 
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import net.minecraft.world.level.block.Block;
@@ -26,7 +25,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> CROP_MINT = REGISTRY.register("crop_mint", CropMintBlock::new);
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
-	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("white_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> WHITE_PILLOW_BLOCK = REGISTRY.register("white_pillow_block", PillowBlock::new);
 	public static final DeferredBlock<Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
 	public static final DeferredBlock<Block> SUNFLOWER = REGISTRY.register("sunflower", SunflowerBlock::new);
 	// Start of user code block custom blocks
@@ -46,7 +45,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> GRAY_PILLOW_BLOCK = REGISTRY.register("gray_pillow_block", PillowBlock::new);
 	public static final DeferredBlock<Block> BLACK_PILLOW_BLOCK = REGISTRY.register("black_pillow_block", PillowBlock::new);
 
-	public static final DeferredBlock<Block> SMALL_PILLOW_BLOCK = REGISTRY.register("small_white_pillow_block", SmallPillowBlock::new);
+	public static final DeferredBlock<Block> SMALL_WHITE_PILLOW_BLOCK = REGISTRY.register("small_white_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_RED_PILLOW_BLOCK = REGISTRY.register("small_red_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_ORANGE_PILLOW_BLOCK = REGISTRY.register("small_orange_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_BROWN_PILLOW_BLOCK = REGISTRY.register("small_brown_pillow_block", SmallPillowBlock::new);

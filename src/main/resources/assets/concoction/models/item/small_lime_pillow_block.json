@@ -1,5 +1,5 @@
 {
-    "parent": "concoction:block/small_lime_pillow",
+    "parent": "concoction:block/small_lime_pillow_block",
     "display": {
         "thirdperson": {
             "rotation": [

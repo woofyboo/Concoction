@@ -45,7 +45,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PINK_PILLOW_BLOCK.get());
 
-				tabData.accept(ConcoctionModItems.SMALL_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SMALL_WHITE_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_LIGHT_GRAY_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_GRAY_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_BLACK_PILLOW_BLOCK.get());

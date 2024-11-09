@@ -1,5 +1,5 @@
 {
-    "parent": "concoction:block/small_green_pillow",
+    "parent": "concoction:block/small_green_pillow_block",
     "display": {
         "thirdperson": {
             "rotation": [
