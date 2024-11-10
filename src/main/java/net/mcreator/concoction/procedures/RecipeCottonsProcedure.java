@@ -42,7 +42,7 @@ public class RecipeCottonsProcedure {
 			if (entity instanceof ServerPlayer _serverPlayer)
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:fabric_banner_craft")));
 			if (entity instanceof ServerPlayer _serverPlayer)
-				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:fabric_painting_craft")));
+				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:fabric_painiting_craft")));
 			if (entity instanceof ServerPlayer _serverPlayer)
 				_serverPlayer.awardRecipesByKey(Collections.singletonList(ResourceLocation.parse("concoction:small_white_pillow_from_pillow")));
 			if (entity instanceof ServerPlayer _serverPlayer)

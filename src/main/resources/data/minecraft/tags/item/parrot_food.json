@@ -2,7 +2,9 @@
   "replace": false,
   "values": [
     "concoction:mint_seeds",
-    "concoction:cherry_cookie",
-    "concoction:sunflower_seeds"
+    "concoction:cherry_cookie"
+,
+    "concoction:sunflower_seeds",
+    "minecraft:sunflower"
   ]
 }
