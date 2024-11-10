@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:red_pillow_block"
+    },
+    "title": {
+      "translate": "advancements.get_folded.title"
+    },
+    "description": {
+      "translate": "advancements.get_folded.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "get_folded_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:mount_ever_rest"
+}
