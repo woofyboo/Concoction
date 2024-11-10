@@ -28,10 +28,7 @@ ordering="AFTER"
 side="BOTH"
 
 
-
-
-[[mixins]]
-    config="mixins.concoction.json"
-
 # Start of user code block dependencies configuration
+[[mixins]]
+    config="concoction.mixins.json"
 # End of user code block dependencies configuration

@@ -1,4 +1,4 @@
-package net.mcreator.concoction.mixin;
+package net.mcreator.concoction.mixins;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;

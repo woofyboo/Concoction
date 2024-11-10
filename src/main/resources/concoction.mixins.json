@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.mcreator.concoction.mixin",
+  "package": "net.mcreator.concoction.mixins",
   "compatibilityLevel": "JAVA_21",
 
   "mixins": [
