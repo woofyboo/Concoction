@@ -3,9 +3,9 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "Get Folded!",
-    "achievementDescription": "Take fatal damage by falling on a pillow.",
+    "achievementDescription": "Barely survive the damage by falling on a pillow.",
     "achievementIcon": {
-      "value": "CUSTOM:PillowBlock"
+      "value": "Items.FEATHER"
     },
     "background": "Default",
     "disableDisplay": false,

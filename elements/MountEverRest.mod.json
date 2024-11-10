@@ -5,7 +5,7 @@
     "achievementName": "Not-so-Soft Landing",
     "achievementDescription": "Take damage by falling on a pillow.",
     "achievementIcon": {
-      "value": "CUSTOM:PillowBlock"
+      "value": "Items.FEATHER"
     },
     "background": "Default",
     "disableDisplay": false,

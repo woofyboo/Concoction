@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:red_pillow_block"
+      "id": "minecraft:feather"
     },
     "title": {
       "translate": "advancements.get_folded.title"
