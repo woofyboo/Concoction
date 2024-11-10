@@ -2,9 +2,13 @@
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
@@ -28,6 +32,30 @@ public class PillowBlockBlock extends SlimeBlock {
 			this.bounceUp(player);
 		}
 		summonLeafParticles(player);
+	}
+
+	@Override
+  	public void fallOn(Level p_154567_, BlockState p_154568_, BlockPos p_154569_, Entity player, float damage) {
+		if (player.isSuppressingBounce()) {
+			super.fallOn(p_154567_, p_154568_, p_154569_, player, damage);
+			if (player instanceof ServerPlayer _player) {
+				AdvancementHolder _advTask = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:mount_ever_rest"));
+				if (_advTask != null) {
+					AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_advTask);
+					if (!_ap.isDone())  _player.getAdvancements().award(_advTask, _ap.getRemainingCriteria().iterator().next());
+				}
+				AdvancementHolder _advChallenge = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:get_folded"));
+				if (_advChallenge != null) {
+					if (_player.getHealth() > 0f && _player.getHealth() < 1.5f) {
+						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_advChallenge);
+						if (!_ap.isDone())
+							_player.getAdvancements().award(_advChallenge, _ap.getRemainingCriteria().iterator().next());
+					}
+				}
+			}
+		} else {
+			player.causeFallDamage(damage, 0.0F, p_154567_.damageSources().fall());
+		}
 	}
 
 	private void summonLeafParticles(Entity player) {
