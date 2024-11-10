@@ -1,30 +1,31 @@
 modLoader="javafml"
-loaderVersion="[4,)"
-license="GNU General Public License version 3 (GPLv3)"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 
 [[mods]]
-modId="concoction"
-version="1.3.0"
-displayName="Concoction"
-displayURL="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-credits="Sebsish, woofyboo"
-authors="Sebsish, woofyboo"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="${display_url}"
+credits="${mod_authors}"
+authors="${mod_authors}"
 
 # Start of user code block mod configuration
+description='''${mod_description}'''
 # End of user code block mod configuration
 
 [[dependencies.concoction]]
 modId="neoforge"
 type="required"
-versionRange="[21.0.167,)"
-ordering="AFTER"
+versionRange="${neo_version_range}"
+ordering="NONE"
 side="BOTH"
 
 [[dependencies.concoction]]
 modId="minecraft"
 type="required"
-versionRange="[1.21, 1.21.1]"
-ordering="AFTER"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
 side="BOTH"
 
 
