@@ -18,7 +18,6 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
 
-import net.mcreator.concoction.world.features.StructureFeature;
 import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
@@ -48,7 +47,6 @@ public class ConcoctionMod {
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.REGISTRY.register(modEventBus);
-		StructureFeature.REGISTRY.register(modEventBus);
 		ConcoctionModMobEffects.REGISTRY.register(modEventBus);
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
 		// Start of user code block mod init

@@ -1872,22 +1872,6 @@
         ]
       },
       "path": "~/cotton"
-    },
-    {
-      "name": "SunflowerInWild",
-      "type": "feature",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "sunflower_in_wild",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/neoforge/biome_modifier/sunflower_in_wild_biome_modifier.json",
-          "src/main/resources/data/concoction/worldgen/configured_feature/sunflower_in_wild.json",
-          "src/main/resources/data/concoction/worldgen/placed_feature/sunflower_in_wild.json"
-        ],
-        "has_nbt_structure": true
-      },
-      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
