@@ -11,9 +11,13 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.concoction.potion.MintyBreathMobEffect;
+import net.mcreator.concoction.potion.FrostTouchMobEffect;
+import net.mcreator.concoction.potion.FieryTouchMobEffect;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModMobEffects {
 	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(Registries.MOB_EFFECT, ConcoctionMod.MODID);
 	public static final DeferredHolder<MobEffect, MobEffect> MINTY_BREATH = REGISTRY.register("minty_breath", () -> new MintyBreathMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> FROST_TOUCH = REGISTRY.register("frost_touch", () -> new FrostTouchMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> FIERY_TOUCH = REGISTRY.register("fiery_touch", () -> new FieryTouchMobEffect());
 }

@@ -1,0 +1,21 @@
+{
+  "_fv": 69,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Flame",
+    "splashName": "Splash Potion of Flame",
+    "lingeringName": "Lingering Potion of Flame",
+    "arrowName": "Arrow of Flame",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:FieryTouch"
+        },
+        "duration": 9600,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

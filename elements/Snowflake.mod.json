@@ -1,0 +1,21 @@
+{
+  "_fv": 69,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Snowflake",
+    "splashName": "Splash Potion of Snowflake",
+    "lingeringName": "Lingering Potion of Snowflake",
+    "arrowName": "Arrow of Snowflake",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:FrostTouch"
+        },
+        "duration": 3600,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}
