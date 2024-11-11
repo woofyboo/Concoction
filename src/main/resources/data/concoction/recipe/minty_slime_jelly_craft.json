@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sweet_slime_jelly",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "concoction:mint"
+    }
+  ],
+  "result": {
+    "id": "concoction:minty_slime_jelly",
+    "count": 2
+  }
+}

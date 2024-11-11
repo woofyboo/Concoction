@@ -1898,6 +1898,79 @@
         ]
       },
       "path": "~/achivements"
+    },
+    {
+      "name": "SweetSlimeJelly",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_slime_jelly",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/SweetSlimeJellyItem.java",
+          "src/main/resources/assets/concoction/models/item/sweet_slime_jelly.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MintySlimeJelly",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "minty_slime_jelly",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/MintySlimeJellyItem.java",
+          "src/main/resources/assets/concoction/models/item/minty_slime_jelly.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "SweetSlimeJellyCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_slime_jelly_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/sweet_slime_jelly_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MintySlimeJellyCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "minty_slime_jelly_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/minty_slime_jelly_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MintySlimeJellyPlayerFinishesUsingItem",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "minty_slime_jelly_player_finishes_using_item",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/MintySlimeJellyPlayerFinishesUsingItemProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -1960,10 +2033,12 @@
       "block.concoction.mint": "Мята",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
+      "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "block.concoction.crop_mint": "Мята",
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
+      "item.concoction.minty_slime_jelly": "Sweet Slime Jelly",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "item.concoction.mint_brew": "Мятный отвар",
@@ -2021,10 +2096,12 @@
       "block.concoction.mint": "Mint",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
       "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
+      "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
       "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
       "block.concoction.crop_mint": "Crop Mint",
       "item.concoction.cherry_cookie": "Cherry Cookie",
+      "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
       "item.concoction.mint_brew": "Mint Brew",
