@@ -14,6 +14,9 @@
     "renderStatusInHUD": true,
     "isCuredByMilk": true,
     "isProtectedByTotem": true,
-    "isCuredbyHoney": false
+    "isCuredbyHoney": false,
+    "onActiveTick": {
+      "name": "FieryTouchActiveTick"
+    }
   }
 }

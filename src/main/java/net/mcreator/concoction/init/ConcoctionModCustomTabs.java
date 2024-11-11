@@ -12,13 +12,14 @@ public class ConcoctionModCustomTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ConcoctionMod.MODID);
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONCOCTION = REGISTRY.register("concoction",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.concoction.concoction")).icon(() -> new ItemStack(ConcoctionModBlocks.MINT.get())).displayItems((parameters, tabData) -> {
-//Семена, Растения, Дикие вариации, Плоды
+//Семена, Растения, Плоды
 				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
 				tabData.accept(ConcoctionModItems.CHERRY.get());
-				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
+//Дикие Растения
+				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
 
 // Материалы
@@ -26,10 +27,10 @@ public class ConcoctionModCustomTabs {
 //Еда и напитки
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
+				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
-				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
@@ -65,6 +66,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PURPLE_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
+//Инструменты, оружие, броня
+				
 //Особое
 				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
 				

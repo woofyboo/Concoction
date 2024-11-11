@@ -2127,6 +2127,135 @@
         ]
       },
       "path": "~/potion"
+    },
+    {
+      "name": "FrostTouchActiveTickCondition",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "frost_touch_active_tick_condition",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/FrostTouchActiveTickConditionProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/potion"
+    },
+    {
+      "name": "FieryTouchActiveTick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fiery_touch_active_tick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/FieryTouchActiveTickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/potion"
+    },
+    {
+      "name": "FieryTouchAttack",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fiery_touch_attack",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/FieryTouchAttackProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/potion"
+    },
+    {
+      "name": "FrostTouchAttack",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "frost_touch_attack",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/FrostTouchAttackProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/potion"
+    },
+    {
+      "name": "Screenshot",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "screenshot",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/screenshot.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -2210,6 +2339,7 @@
       "item.concoction.fabric": "Ткань",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
+      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both.",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
       "block.concoction.wild_cotton": "Дикий хлопок",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
@@ -2241,6 +2371,7 @@
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
       "block.concoction.small_light_blue_pillow_block": "Маленькая голубая подушка",
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
+      "advancements.screenshot.title": "Screenshot",
       "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item_group.concoction.concoction": "Concoction",
@@ -2292,6 +2423,7 @@
       "item.concoction.fabric": "Fabric",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
+      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both.",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.brown_pillow_block": "Brown Pillow",
@@ -2323,6 +2455,7 @@
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
+      "advancements.screenshot.title": "Screenshot",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
