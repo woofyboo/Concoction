@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "concoction:block/wild_carrot"
+    },
+    "half=lower": {
+      "model": "concoction:block/wild_carrot_bottom"
+    }
+  }
+}

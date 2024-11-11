@@ -1971,6 +1971,27 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "WildCarrot",
+      "type": "plant",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "wild_carrot",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/configured_feature/wild_carrot.json",
+          "src/main/resources/data/concoction/loot_table/blocks/wild_carrot.json",
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_carrot.json",
+          "src/main/resources/assets/concoction/models/item/wild_carrot.json",
+          "src/main/resources/assets/concoction/models/block/wild_carrot.json",
+          "src/main/resources/assets/concoction/models/block/wild_carrot_bottom.json",
+          "src/main/resources/assets/concoction/blockstates/wild_carrot.json",
+          "src/main/java/net/mcreator/concoction/block/WildCarrotBlock.java",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/wild_carrot_biome_modifier.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2033,12 +2054,12 @@
       "block.concoction.mint": "Мята",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
-      "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
+      "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "block.concoction.crop_mint": "Мята",
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
-      "item.concoction.minty_slime_jelly": "Sweet Slime Jelly",
+      "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "item.concoction.mint_brew": "Мятный отвар",
@@ -2050,6 +2071,7 @@
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
+      "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction_brew.mint": "Мята",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
@@ -2113,6 +2135,7 @@
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
+      "block.concoction.wild_carrot": "Wild Carrot",
       "block.concoction_brew.mint": "Mint",
       "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",

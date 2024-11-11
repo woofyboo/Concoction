@@ -19,6 +19,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
+
 // Материалы
 				tabData.accept(ConcoctionModItems.FABRIC.get());
 //Еда и напитки

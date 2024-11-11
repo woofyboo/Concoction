@@ -44,6 +44,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ROASTED_SUNFLOWER_SEEDS = REGISTRY.register("roasted_sunflower_seeds", RoastedSunflowerSeedsItem::new);
 	public static final DeferredItem<Item> SWEET_SLIME_JELLY = REGISTRY.register("sweet_slime_jelly", SweetSlimeJellyItem::new);
 	public static final DeferredItem<Item> MINTY_SLIME_JELLY = REGISTRY.register("minty_slime_jelly", MintySlimeJellyItem::new);
+	public static final DeferredItem<Item> WILD_CARROT = doubleBlock(ConcoctionModBlocks.WILD_CARROT);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
