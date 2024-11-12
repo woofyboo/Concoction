@@ -1,12 +1,23 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.ConcoctionMod;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 public class ConcoctionModCustomTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ConcoctionMod.MODID);
@@ -67,11 +78,15 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 //Инструменты, оружие, броня
-				
-//Особое
-				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
-				
-			})
 
-					.build());
+//Особое
+				for (Item toAdd : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {
+					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.FLAME), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.FLAME_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.SNOWFLAKE), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.SNOWFLAKE_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+				}
+				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
+
+			}).build());
 }
