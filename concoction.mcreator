@@ -1409,29 +1409,6 @@
       "path": "~/general"
     },
     {
-      "name": "BeetrootSugarCraftRecipe",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "beetroot_sugar_craft_recipe",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/BeetrootSugarCraftRecipeProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
-    },
-    {
       "name": "FabricPainitingCraft",
       "type": "recipe",
       "compiles": true,
