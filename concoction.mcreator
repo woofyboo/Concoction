@@ -2233,6 +2233,42 @@
         ]
       },
       "path": "~/achivements"
+    },
+    {
+      "name": "Sweetness",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweetness",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/potion/SweetnessMobEffect.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "SweetnessFoodEaten",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sweetness_food_eaten",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SweetnessFoodEatenProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2302,6 +2338,7 @@
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
+      "effect.concoction.sweetness": "Sweetness",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "block.concoction.crop_mint": "Мята",
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
@@ -2386,6 +2423,7 @@
       "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
+      "effect.concoction.sweetness": "Sweetness",
       "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
       "block.concoction.crop_mint": "Crop Mint",
       "item.concoction.cherry_cookie": "Cherry Cookie",
