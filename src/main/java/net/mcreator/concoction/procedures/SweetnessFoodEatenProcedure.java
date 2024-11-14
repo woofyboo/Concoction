@@ -34,9 +34,12 @@ public class SweetnessFoodEatenProcedure {
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.SWEETNESS)) {
 			if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:foods")))) {
-				if (entity instanceof Player _player)
-					_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0)
-							+ (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ConcoctionModMobEffects.SWEETNESS) ? _livEnt.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier() : 0) + 1));
+				if (!(itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetened_foods"))) || itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweet_foods"))) || itemstack.is(ItemTags.create(ResourceLocation.parse("c:sugary_foods")))
+						|| itemstack.is(ItemTags.create(ResourceLocation.parse("c:candied_foods"))))) {
+					if (entity instanceof Player _player)
+						_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0)
+								+ (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ConcoctionModMobEffects.SWEETNESS) ? _livEnt.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier() : 0) + 1));
+				}
 			}
 		}
 	}

@@ -2251,11 +2251,34 @@
       "name": "SweetnessFoodEaten",
       "type": "procedure",
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "registry_name": "sweetness_food_eaten",
       "metadata": {
         "files": [
           "src/main/java/net/mcreator/concoction/procedures/SweetnessFoodEatenProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "SweetFoodList",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_food_list",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SweetFoodListProcedure.java"
         ],
         "dependencies": [
           {
@@ -2287,10 +2310,11 @@
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
     ],
-    "BLOCKS:minecraft:maintains_farmland": [
-      "CUSTOM:CropCotton",
-      "CUSTOM:CropMint",
-      "CUSTOM:Sunflower"
+    "ITEMS:c:sweetened_foods": [
+      "Items.MELON"
+    ],
+    "ITEMS:c:foods/edible_when_placed": [
+      "CUSTOM:MintChocolateCake"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -2301,13 +2325,12 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:c:sugary_foods": [
+      "Items.HONEY_BOTTLE"
+    ],
+    "ITEMS:c:candied_foods": [],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
-    ],
-    "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
@@ -2315,6 +2338,28 @@
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:sword_efficient": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:foods": [
+      "CUSTOM:Cherry",
+      "CUSTOM:MintCookie",
+      "CUSTOM:RoastedSunflowerSeeds",
+      "CUSTOM:CherryCookie",
+      "CUSTOM:MintySlimeJelly",
+      "CUSTOM:SweetSlimeJelly"
+    ],
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:sweet_foods": [
+      "Items.SWEET_BERRIES",
+      "CUSTOM:SweetSlimeJelly"
+    ],
+    "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
