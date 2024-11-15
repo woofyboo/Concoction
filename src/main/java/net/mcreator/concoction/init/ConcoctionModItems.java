@@ -17,6 +17,7 @@ import net.minecraft.world.item.BlockItem;
 
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
+import net.mcreator.concoction.item.ObsidianTearsBottleItem;
 import net.mcreator.concoction.item.MusicDiscHotIceItem;
 import net.mcreator.concoction.item.MintySlimeJellyItem;
 import net.mcreator.concoction.item.MintCookieItem;
@@ -45,6 +46,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> SWEET_SLIME_JELLY = REGISTRY.register("sweet_slime_jelly", SweetSlimeJellyItem::new);
 	public static final DeferredItem<Item> MINTY_SLIME_JELLY = REGISTRY.register("minty_slime_jelly", MintySlimeJellyItem::new);
 	public static final DeferredItem<Item> WILD_CARROT = doubleBlock(ConcoctionModBlocks.WILD_CARROT);
+	public static final DeferredItem<Item> OBSIDIAN_TEARS_BOTTLE = REGISTRY.register("obsidian_tears_bottle", ObsidianTearsBottleItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

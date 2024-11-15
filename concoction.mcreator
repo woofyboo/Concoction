@@ -2388,6 +2388,74 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "ObsidianTearsBottle",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "obsidian_tears_bottle",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/ObsidianTearsBottleItem.java",
+          "src/main/resources/assets/concoction/models/item/obsidian_tears_bottle.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "ObsidianTearsBottlePlayerFinishesUsingItem",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "obsidian_tears_bottle_player_finishes_using_item",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/ObsidianTearsBottlePlayerFinishesUsingItemProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CryingObsidianRightClick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "crying_obsidian_right_click",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CryingObsidianRightClickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2507,6 +2575,7 @@
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
+      "item.concoction.obsidian_tears_bottle": "Bottle of Obsidian Tears",
       "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
@@ -2596,6 +2665,7 @@
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
       "block.concoction.small_red_pillow_block": "Small Red Pillow",
       "advancements.mount_ever_rest.title": "Not-so-Soft Landing",
+      "item.concoction.obsidian_tears_bottle": "Bottle of Obsidian Tears",
       "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",

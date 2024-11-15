@@ -79,7 +79,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 //Инструменты, оружие, броня
 
-//Особое
+//Особое		
+				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 				for (Item toAdd : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.FLAME), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.FLAME_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
@@ -87,6 +88,7 @@ public class ConcoctionModCustomTabs {
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.SNOWFLAKE_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 				}
 				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
+
 
 			}).build());
 }
