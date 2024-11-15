@@ -1,0 +1,12 @@
+{
+  "_fv": 69,
+  "_type": "damagetype",
+  "definition": {
+    "exhaustion": 0.0,
+    "scaling": "always",
+    "effects": "hurt",
+    "normalDeathMessage": "%1$s suffered interdimensional rift quartering",
+    "itemDeathMessage": "%1$s was interdimensionally sliced by %2$s using %3$s",
+    "playerDeathMessage": "%1$s was interdimensionally sliced whilst trying to escape %2$s"
+  }
+}

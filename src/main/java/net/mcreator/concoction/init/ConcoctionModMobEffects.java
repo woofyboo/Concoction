@@ -12,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 
 import net.mcreator.concoction.potion.SweetnessMobEffect;
 import net.mcreator.concoction.potion.MintyBreathMobEffect;
+import net.mcreator.concoction.potion.InstabilityMobEffect;
 import net.mcreator.concoction.potion.FrostTouchMobEffect;
 import net.mcreator.concoction.potion.FieryTouchMobEffect;
 import net.mcreator.concoction.ConcoctionMod;
@@ -22,4 +23,5 @@ public class ConcoctionModMobEffects {
 	public static final DeferredHolder<MobEffect, MobEffect> FROST_TOUCH = REGISTRY.register("frost_touch", () -> new FrostTouchMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> FIERY_TOUCH = REGISTRY.register("fiery_touch", () -> new FieryTouchMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> SWEETNESS = REGISTRY.register("sweetness", () -> new SweetnessMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> INSTABILITY = REGISTRY.register("instability", () -> new InstabilityMobEffect());
 }
