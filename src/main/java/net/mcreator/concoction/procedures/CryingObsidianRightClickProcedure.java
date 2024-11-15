@@ -45,23 +45,51 @@ public class CryingObsidianRightClickProcedure {
 			return;
 		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == Blocks.CRYING_OBSIDIAN) {
 			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.GLASS_BOTTLE) {
-				if (!(new Object() {
-					public boolean checkGamemode(Entity _ent) {
-						if (_ent instanceof ServerPlayer _serverPlayer) {
-							return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
-						} else if (_ent.level().isClientSide() && _ent instanceof Player _player) {
-							return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null
-									&& Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.CREATIVE;
+				if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getCount() > 1) {
+					if (!(new Object() {
+						public boolean checkGamemode(Entity _ent) {
+							if (_ent instanceof ServerPlayer _serverPlayer) {
+								return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
+							} else if (_ent.level().isClientSide() && _ent instanceof Player _player) {
+								return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null
+										&& Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.CREATIVE;
+							}
+							return false;
 						}
-						return false;
+					}.checkGamemode(entity))) {
+						(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 					}
-				}.checkGamemode(entity))) {
-					(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
-				}
-				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get()).copy();
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					if (entity instanceof Player _player) {
+						ItemStack _setstack = new ItemStack(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get()).copy();
+						_setstack.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+					}
+				} else {
+					if (!(new Object() {
+						public boolean checkGamemode(Entity _ent) {
+							if (_ent instanceof ServerPlayer _serverPlayer) {
+								return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
+							} else if (_ent.level().isClientSide() && _ent instanceof Player _player) {
+								return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null
+										&& Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.CREATIVE;
+							}
+							return false;
+						}
+					}.checkGamemode(entity))) {
+						if (entity instanceof LivingEntity _entity) {
+							ItemStack _setstack = new ItemStack(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get()).copy();
+							_setstack.setCount(1);
+							_entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+							if (_entity instanceof Player _player)
+								_player.getInventory().setChanged();
+						}
+					} else {
+						if (entity instanceof Player _player) {
+							ItemStack _setstack = new ItemStack(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get()).copy();
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+						}
+					}
 				}
 				if (entity instanceof LivingEntity _entity)
 					_entity.swing(InteractionHand.MAIN_HAND, true);
