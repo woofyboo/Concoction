@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 public class MintBrewItem extends Item {
 	public MintBrewItem() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
 	}
 
 	@Override

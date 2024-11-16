@@ -58,9 +58,9 @@ public class InstabilityWentThroughPortalProcedure {
 				}
 				if (((world.getBlockState(BlockPos.containing(x, y, z))).getBlock().getStateDefinition().getProperty("axis") instanceof EnumProperty _getep8 ? (world.getBlockState(BlockPos.containing(x, y, z))).getValue(_getep8).toString() : "")
 						.equals("z")) {
-					entity.push((-1), 2, 1);
+					entity.push((-1.5), 2, 1.5);
 				} else {
-					entity.push(1, 2, (-1));
+					entity.push(1.5, 2, (-1.5));
 				}
 			}
 		}
