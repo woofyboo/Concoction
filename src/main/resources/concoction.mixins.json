@@ -2,17 +2,13 @@
   "required": true,
   "package": "net.mcreator.concoction.mixins",
   "compatibilityLevel": "JAVA_21",
-
   "mixins": [
+    "BlocksMixin",
     "ItemsMixin",
     "LevelMixin"
   ],
-
   "client": [
-
   ],
-
   "injectors": {
-
   }
 }

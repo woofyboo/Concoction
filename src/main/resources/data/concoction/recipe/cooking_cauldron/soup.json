@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "food",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "tag": "concoction:potato"
+    },
+    {
+      "tag": "concoction:chicken"
+    }
+  ],
+  "result": {
+    "id": "concoction:beetroot_soup",
+    "count": 1
+  }
+}

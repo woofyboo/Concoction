@@ -116,16 +116,9 @@ public class SunflowerBlock extends CropBlock {
         }
     }
     
-    @Override
-    public void handlePrecipitation(BlockState p_152935_, Level p_152936_, BlockPos p_152937_, Biome.Precipitation weather) {
-		if (weather == Biome.Precipitation.RAIN)
-			this.canRotate = false;
-		else this.canRotate = true;
-    }
-    
 	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {
 //		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
-		if (world.canSeeSkyFromBelowWater(pPos) && this.canRotate) {
+		if (world.canSeeSkyFromBelowWater(pPos) && world instanceof ServerLevel sLevel && sLevel.isRainingAt(pPos)) { // TODO Check if it's does rotate in raining
 			String _value = "";
 			int dayTime = Math.floorMod(world.dayTime(),24000);
 			if (dayTime >= 0 && dayTime < 3000) _value = "east";
