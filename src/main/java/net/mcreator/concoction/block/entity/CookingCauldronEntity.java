@@ -1,5 +1,6 @@
 package net.mcreator.concoction.block.entity;
 
+import com.mojang.datafixers.kinds.IdF;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +20,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.HopperMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.HopperBlock;
@@ -34,7 +37,7 @@ import java.util.function.BooleanSupplier;
 
 import static net.minecraft.world.level.block.entity.HopperBlockEntity.suckInItems;
 
-public class CookingCauldronEntity extends RandomizableContainerBlockEntity implements Hopper, MenuProvider {
+public class CookingCauldronEntity extends RandomizableContainerBlockEntity implements Hopper {
     // This can be any value of any type you want, so long as you can somehow serialize it to NBT.
     // We will use an int for the sake of example.
     // Container methods and fields
@@ -129,70 +132,74 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
         }
     }
 
-//    private static boolean tryMoveItems(Level p_155579_, BlockPos p_155580_, BlockState p_155581_, CookingCauldronEntity p_155582_, BooleanSupplier p_155583_) {
-//        if (!p_155582_.isOnCooldown()) {
-//            boolean flag = false;
+    private static boolean tryMoveItems(Level p_155579_, BlockPos p_155580_, BlockState p_155581_, CookingCauldronEntity p_155582_, BooleanSupplier p_155583_) {
+        if (!p_155582_.isOnCooldown()) {
+            boolean flag = false;
 //            if (!p_155582_.isEmpty()) {
 //                flag = ejectItems(p_155579_, p_155580_, p_155582_);
 //            }
-//
-//            if (!p_155582_.inventoryFull()) {
-//                flag |= p_155583_.getAsBoolean();
-//            }
-//
-//            if (flag) {
-//                p_155582_.setCooldown(8);
-//                setChanged(p_155579_, p_155580_, p_155581_);
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//
-//    }
-//    private boolean inventoryFull() {
-//        for (ItemStack itemstack : this.items) {
-//            if (itemstack.isEmpty() || itemstack.getCount() != itemstack.getMaxStackSize()) {
-//                return false;
-//            }
-//        }
-//
-//        return true;
-//    }
-//
-//    private static boolean ejectItems(Level p_155563_, BlockPos p_155564_, CookingCauldronEntity p_326256_) {
-//        if (net.neoforged.neoforge.items.VanillaInventoryCodeHooks.insertHook(p_326256_)) return true;
-//        Container container = getAttachedContainer(p_155563_, p_155564_, p_326256_);
-//        if (container == null) {
-//            return false;
-//        } else {
-//            Direction direction = p_326256_.facing.getOpposite();
-//            if (isFullContainer(container, direction)) {
-//                return false;
-//            } else {
-//                for (int i = 0; i < p_326256_.getContainerSize(); i++) {
-//                    ItemStack itemstack = p_326256_.getItem(i);
-//                    if (!itemstack.isEmpty()) {
-//                        int j = itemstack.getCount();
-//                        ItemStack itemstack1 = addItem(p_326256_, container, p_326256_.removeItem(i, 1), direction);
-//                        if (itemstack1.isEmpty()) {
-//                            container.setChanged();
-//                            return true;
-//                        }
-//
-//                        itemstack.setCount(j);
-//                        if (j == 1) {
-//                            p_326256_.setItem(i, itemstack);
-//                        }
-//                    }
+
+            if (!p_155582_.inventoryFull()) {
+                flag |= p_155583_.getAsBoolean();
+            }
+
+            if (flag) {
+                p_155582_.setCooldown(8);
+                setChanged(p_155579_, p_155580_, p_155581_);
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private boolean inventoryFull() {
+        for (ItemStack itemstack : this.items) {
+            if (itemstack.isEmpty() || itemstack.getCount() != itemstack.getMaxStackSize()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean addItemOnClick(ItemStack addedItem, int count, boolean isCreative) {
+        boolean flag = false;
+        for (int i = 0; i < this.items.size(); i++) {
+            ItemStack itemstack = this.items.get(i);
+            if (itemstack.isEmpty()) {
+                this.items.set(i, isCreative ? addedItem.copyWithCount(1) : addedItem.split(count));
+                this.setChanged();
+                flag = true;
+                break;
+//            } else if ( itemstack.getItem().equals(addedItem.getItem()) ) {
+//                int to_add = Math.min(count, itemstack.getMaxStackSize()-itemstack.getCount());
+//                if (isCreative || addedItem.getCount() - addedItem.split(to_add).getCount() != 0) {
+//                    this.items.get(i).grow(to_add);
+//                    this.setChanged();
+//                    flag = true;
+//                    break;
 //                }
-//
-//                return false;
-//            }
-//        }
-//    }
+            }
+        }
+        return flag;
+    }
 
-
+    public ItemStack takeItemOnClick(boolean takeAll) {
+        ItemStack returnStack = ItemStack.EMPTY;
+        for (int i = this.items.size()-1; i >= 0; i--) {
+            ItemStack itemstack = this.items.get(i);
+            if (!itemstack.isEmpty()) {
+                if (takeAll) {
+                    returnStack = itemstack.copy();
+                    this.items.set(i, ItemStack.EMPTY);
+                } else {
+                    returnStack = itemstack.split(1);
+                }
+                this.setChanged();
+                return returnStack;
+            }
+        }
+        return returnStack;
+    }
 
 //    public boolean addItem(Container container, ItemEntity itemEntity) {
 //        boolean flag = false;
@@ -204,61 +211,6 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 //            itemEntity.discard();
 //        } else itemEntity.setItem(itemstack1);
 //        return flag;
-//    }
-//
-//    public ItemStack addItem(Container p_59328_, ItemStack p_59329_) {
-////        if (p_59328_ instanceof WorldlyContainer worldlycontainer && p_59330_ != null) {
-////            int[] aint = worldlycontainer.getSlotsForFace(p_59330_);
-////
-////            for (int k = 0; k < aint.length && !p_59329_.isEmpty(); k++) {
-////                p_59329_ = tryMoveInItem(p_59327_, p_59328_, p_59329_, aint[k], p_59330_);
-////            }
-////            return p_59329_;
-////        }
-//        int i = p_59328_.getContainerSize();
-//
-//        for (int j = 0; j < i && !p_59329_.isEmpty(); j++) {
-//            p_59329_ = tryMoveItems(p_59328_, p_59329_, j);
-//        }
-//        return p_59329_;
-//    }
-//
-//    private boolean canMergeItems(ItemStack p_59345_, ItemStack p_59346_) {
-//        return p_59345_.getCount() <= p_59345_.getMaxStackSize() && ItemStack.isSameItemSameComponents(p_59345_, p_59346_);
-//    }
-//
-//    private void tryMoveItems(Level level, BlockPos blockPos, BlockState blockState) {
-//        ItemStack itemstack = p_59322_.getItem(p_59324_);
-//        if (canPlaceItemInContainer(p_59322_, p_59323_, p_59324_, p_59325_)) {
-//            boolean flag = false;
-//            boolean flag1 = p_59322_.isEmpty();
-//            if (itemstack.isEmpty()) {
-//                p_59322_.setItem(p_59324_, p_59323_);
-//                p_59323_ = ItemStack.EMPTY;
-//                flag = true;
-//            } else if (canMergeItems(itemstack, p_59323_)) {
-//                int i = p_59323_.getMaxStackSize() - itemstack.getCount();
-//                int j = Math.min(p_59323_.getCount(), i);
-//                p_59323_.shrink(j);
-//                itemstack.grow(j);
-//                flag = j > 0;
-//            }
-//
-//            if (flag) {
-//                if (flag1 && p_59322_ instanceof HopperBlockEntity hopperblockentity1 && !hopperblockentity1.isOnCustomCooldown()) {
-//                    int k = 0;
-//                    if (p_59321_ instanceof HopperBlockEntity hopperblockentity && hopperblockentity1.tickedGameTime >= hopperblockentity.tickedGameTime) {
-//                        k = 1;
-//                    }
-//
-//                    hopperblockentity1.setCooldown(8 - k);
-//                }
-//
-//                p_59322_.setChanged();
-//            }
-//        }
-//
-//        return p_59323_;
 //    }
 
 
@@ -341,7 +293,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
     @Override
     protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-        return null;
+        return new HopperMenu(p_58627_, p_58628_, this);
     }
 
     // Hopper methods

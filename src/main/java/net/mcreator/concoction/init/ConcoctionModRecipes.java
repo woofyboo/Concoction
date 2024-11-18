@@ -19,10 +19,10 @@ public class ConcoctionModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CauldronBrewingRecipe>> CAULDRON_BREWING_RECIPE_SERIALIZER =
             SERIALIZERS.register("cauldron_brewing", CauldronBrewingRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>, RecipeType<CauldronBrewingRecipe>> CAULDRON_BREWING_RECIPE_TYPE =
-            TYPES.register("cauldron_brewing", () -> new RecipeType<CauldronBrewingRecipe>() {
+            TYPES.register("cauldron_brewing", () -> new RecipeType<>() {
                 @Override
                 public String toString() {
-                    return "crystallizing";
+                    return "cauldron_brewing";
                 }
             });
     public static void register(IEventBus eventBus) {
