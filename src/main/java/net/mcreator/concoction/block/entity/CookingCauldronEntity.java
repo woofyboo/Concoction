@@ -1,7 +1,11 @@
 package net.mcreator.concoction.block.entity;
 
 import com.mojang.datafixers.kinds.IdF;
+import net.mcreator.concoction.block.CookingCauldron;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.init.ConcoctionModRecipes;
+import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
+import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -23,26 +27,35 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.HopperMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.HopperBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.Hopper;
 import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.function.BooleanSupplier;
 
 import static net.minecraft.world.level.block.entity.HopperBlockEntity.suckInItems;
 
-public class CookingCauldronEntity extends RandomizableContainerBlockEntity implements Hopper {
+public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     // This can be any value of any type you want, so long as you can somehow serialize it to NBT.
     // We will use an int for the sake of example.
     // Container methods and fields
     private final int ContainerSize = 6;
-    private int cooldownTime = -1;
+    private boolean isCooking = false;
+    private RecipeHolder<CauldronBrewingRecipe> recipe = null;
+    private ItemStack output = ItemStack.EMPTY;
+
+    private int progress = 0;
+    private int maxProgress = 72;
+    private final int DEFAULT_MAX_PROGRESS = 72;
     private NonNullList<ItemStack> items = NonNullList.withSize(
             this.ContainerSize,
             ItemStack.EMPTY
@@ -56,6 +69,8 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
+        this.progress = tag.getInt("cooking.progress");
+        this.maxProgress = tag.getInt("cooking.max_progress");
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
@@ -66,9 +81,107 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
+        tag.putInt("cooking.progress", this.progress);
+        tag.putInt("cooking.max_progress", this.maxProgress);
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
         }
+    }
+
+
+
+    // craft logic
+    // The signature of this method matches the signature of the BlockEntityTicker functional interface.
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    public void tick(Level level, BlockPos pPos, BlockState pState) {
+        if (!level.isClientSide) {
+            Block blockBelow = level.getBlockState(pPos.below()).getBlock();
+            if (level.getFluidState(pPos.below()).is(Fluids.LAVA.getSource()) || blockBelow instanceof FireBlock ||
+                    blockBelow instanceof MagmaBlock || blockBelow instanceof CampfireBlock) {
+                if (!pState.getValue(CookingCauldron.LIT)) {
+                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, true));
+                    setChanged(level, pPos, pState);
+                }
+
+            } else {
+                if (pState.getValue(CookingCauldron.LIT)) {
+                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, false));
+                    setChanged(level, pPos, pState);
+                }
+            }
+            if (pState.getValue(CookingCauldron.LIT) && (this.isCooking || (hasRecipe() && isOutputSlotEmptyOrReceivable()))) {
+                if (!this.isCooking) this.isCooking = true;
+
+                increaseCraftingProgress();
+                setChanged(level, pPos, pState);
+
+                if (hasCraftingFinished()) {
+                    craftItem();
+                    resetProgress();
+                }
+
+            } else {
+                resetProgress();
+            }
+        }
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+        this.maxProgress = DEFAULT_MAX_PROGRESS;
+        this.isCooking = false;
+        this.recipe = null;
+        this.output = ItemStack.EMPTY;
+    }
+
+    private void craftItem() {
+            this.clearContent();
+            this.setItem(0, this.output);
+    }
+
+    private boolean hasCraftingFinished() {
+        return this.progress >= this.maxProgress;
+    }
+
+    private void increaseCraftingProgress() {
+        progress++;
+    }
+
+    private boolean isOutputSlotEmptyOrReceivable() {
+        return true;
+//        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
+//                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    }
+
+    private boolean hasRecipe() {
+        Optional<RecipeHolder<CauldronBrewingRecipe>> recipe = getCurrentRecipe();
+        if(recipe.isEmpty()) {
+            return false;
+        }
+
+        this.recipe = recipe.get();
+        this.output = this.recipe.value().getResultItem(null);
+        return canInsertAmountIntoOutputSlot(this.output.getCount()) && canInsertItemIntoOutputSlot(this.output);
+    }
+
+    private Optional<RecipeHolder<CauldronBrewingRecipe>> getCurrentRecipe() {
+        return this.level.getRecipeManager()
+                .getRecipeFor(ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_TYPE.get(),
+                        new CauldronBrewingRecipeInput(this.getBlockState(), this.getItems(), this.isCooking), level);
+    }
+
+    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
+        return true;
+//        return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
+//                itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
+    }
+
+    private boolean canInsertAmountIntoOutputSlot(int count) {
+        return true;
+//        int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+//        int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
+//
+//        return maxCount >= currentCount + count;
     }
 
     @Override
@@ -92,19 +205,6 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     }
 
     @Override
-    public ItemStack removeItem(int slot, int amount) {
-        ItemStack stack = ContainerHelper.removeItem(this.items, slot, amount);
-        this.setChanged();
-        return stack;
-    }
-
-    @Override
-    public ItemStack removeItemNoUpdate(int slot) {
-        ItemStack stack = ContainerHelper.takeItem(this.items, slot);
-        this.setChanged();
-        return stack;
-    }
-    @Override
     public void setItem(int slot, ItemStack stack) {
         stack.limitSize(this.getMaxStackSize(stack));
         this.items.set(slot, stack);
@@ -116,58 +216,15 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
         this.items = Items;
     }
 
-    //Hopper block entity methods
-    // The signature of this method matches the signature of the BlockEntityTicker functional interface.
-    public static <T extends BlockEntity> void tick(Level level, BlockPos blockPos, BlockState blockState, T blockEntity) {
-        if (!level.isClientSide && blockEntity instanceof CookingCauldronEntity cauldronEntity) {
-            tryMoveItems(level, blockPos, blockState, cauldronEntity, () -> suckInItems(level, cauldronEntity));
-
-//            if (!this.level().isClientSide && this.isAlive() && this.isEnabled() && this.suckInItems()) {
-//                this.setChanged();
-//            }
-//            if (!cauldronEntity.isOnCooldown()) {
-//                cauldronEntity.setCooldown(8);
-//                HopperBlockEntity.tryMoveInItems(level, blockPos, blockState);
-//            }
-        }
-    }
-
-    private static boolean tryMoveItems(Level p_155579_, BlockPos p_155580_, BlockState p_155581_, CookingCauldronEntity p_155582_, BooleanSupplier p_155583_) {
-        if (!p_155582_.isOnCooldown()) {
-            boolean flag = false;
-//            if (!p_155582_.isEmpty()) {
-//                flag = ejectItems(p_155579_, p_155580_, p_155582_);
-//            }
-
-            if (!p_155582_.inventoryFull()) {
-                flag |= p_155583_.getAsBoolean();
-            }
-
-            if (flag) {
-                p_155582_.setCooldown(8);
-                setChanged(p_155579_, p_155580_, p_155581_);
-                return true;
-            }
-        }
-        return false;
-
-    }
-    private boolean inventoryFull() {
-        for (ItemStack itemstack : this.items) {
-            if (itemstack.isEmpty() || itemstack.getCount() != itemstack.getMaxStackSize()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
+    //Item add to container methods
+    @SuppressWarnings("UnusedReturnValue")
     public boolean addItemOnClick(ItemStack addedItem, int count, boolean isCreative) {
+//        if (this.isCooking) return false;
         boolean flag = false;
-        for (int i = 0; i < this.items.size(); i++) {
-            ItemStack itemstack = this.items.get(i);
+        for (int i = 0; i < this.getContainerSize(); i++) {
+            ItemStack itemstack = this.getItem(i);
             if (itemstack.isEmpty()) {
-                this.items.set(i, isCreative ? addedItem.copyWithCount(1) : addedItem.split(count));
-                this.setChanged();
+                this.setItem(i, isCreative ? addedItem.copyWithCount(1) : addedItem.split(count));
                 flag = true;
                 break;
 //            } else if ( itemstack.getItem().equals(addedItem.getItem()) ) {
@@ -180,49 +237,29 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 //                }
             }
         }
+        if (flag) this.resetProgress();
         return flag;
     }
 
     public ItemStack takeItemOnClick(boolean takeAll) {
+//        if (this.isCooking) return ItemStack.EMPTY;
         ItemStack returnStack = ItemStack.EMPTY;
         for (int i = this.items.size()-1; i >= 0; i--) {
             ItemStack itemstack = this.items.get(i);
             if (!itemstack.isEmpty()) {
                 if (takeAll) {
                     returnStack = itemstack.copy();
-                    this.items.set(i, ItemStack.EMPTY);
+                    this.setItem(i, ItemStack.EMPTY);
                 } else {
                     returnStack = itemstack.split(1);
                 }
                 this.setChanged();
+                this.resetProgress();
                 return returnStack;
             }
         }
         return returnStack;
     }
-
-//    public boolean addItem(Container container, ItemEntity itemEntity) {
-//        boolean flag = false;
-//        ItemStack itemstack = itemEntity.getItem().copy();
-//        ItemStack itemstack1 = addItem(container, itemstack);
-//        if (itemstack1.isEmpty()) {
-//            flag = true;
-//            itemEntity.setItem(ItemStack.EMPTY);
-//            itemEntity.discard();
-//        } else itemEntity.setItem(itemstack1);
-//        return flag;
-//    }
-
-
-    private boolean isOnCooldown() {
-        return this.cooldownTime > 0;
-    }
-
-    private void setCooldown(int cooldownTime) {
-        this.cooldownTime = cooldownTime;
-    }
-
-
 
 
 
@@ -293,27 +330,27 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
     @Override
     protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-        return new HopperMenu(p_58627_, p_58628_, this);
+        return null;
     }
 
     // Hopper methods
-    @Override
-    public double getLevelX() {
-        return (double)this.worldPosition.getX() + 0.5;
-    }
-
-    @Override
-    public double getLevelY() {
-        return (double)this.worldPosition.getY() + 0.5;
-    }
-
-    @Override
-    public double getLevelZ() {
-        return (double)this.worldPosition.getZ() + 0.5;
-    }
-
-    @Override
-    public boolean isGridAligned() {
-        return true;
-    }
+//    @Override
+//    public double getLevelX() {
+//        return (double)this.worldPosition.getX() + 0.5;
+//    }
+//
+//    @Override
+//    public double getLevelY() {
+//        return (double)this.worldPosition.getY() + 0.5;
+//    }
+//
+//    @Override
+//    public double getLevelZ() {
+//        return (double)this.worldPosition.getZ() + 0.5;
+//    }
+//
+//    @Override
+//    public boolean isGridAligned() {
+//        return true;
+//    }
 }

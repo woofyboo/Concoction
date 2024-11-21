@@ -1,0 +1,24 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+  "isCooking": false,
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+        "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+
+  "result": {
+    "id": "minecraft:potion",
+    "count": 1
+  }
+}

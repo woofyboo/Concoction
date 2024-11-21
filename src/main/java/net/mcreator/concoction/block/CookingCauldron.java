@@ -4,8 +4,12 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +20,9 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
@@ -25,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 import static java.lang.Math.pow;
 
 public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock {
-
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
     }
@@ -33,9 +40,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pSource) {
-        Block blockBelow = pLevel.getBlockState(pPos.below()).getBlock();
-        if (pLevel.getFluidState(pPos.below()).is(Fluids.LAVA.getSource()) || blockBelow instanceof FireBlock ||
-            blockBelow instanceof MagmaBlock || blockBelow instanceof CampfireBlock) {
+        if (pState.getValue(LIT)) {
             if (pSource.nextInt(2) == 0) {
                 pLevel.addParticle(ParticleTypes.BUBBLE,
                         pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
@@ -54,7 +59,35 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         0.0,0.06,0.0);
             }
         }
+
+//        if (pState.getValue(LIT)) {
+//            double xPos = (double) pPos.getX() + 0.5;
+//            double yPos = pPos.getY();
+//            double zPos = (double) pPos.getZ() + 0.5;
+//            if (random.nextDouble() < 0.15) {
+//                pLevel.playLocalSound(xPos, yPos, zPos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0f, 1.0f, false);
+//            }
+//
+//            double defaultOffset = random.nextDouble() * 0.6 - 0.3;
+//            double xOffsets = axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : defaultOffset;
+//            double yOffset = random.nextDouble() * 6.0 / 8.0;
+//            double zOffset = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : defaultOffset;
+//
+//            level.addParticle(ParticleTypes.SMOKE, xPos + xOffsets, yPos + yOffset, zPos + zOffset, 0.0, 0.0, 0.0);
+//
+//            if (level.getBlockEntity(pos) instanceof CrystallizerBlockEntity crystallizerBlockEntity && !crystallizerBlockEntity.itemHandler.getStackInSlot(1).isEmpty()) {
+//                level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, crystallizerBlockEntity.itemHandler.getStackInSlot(1)),
+//                        xPos + xOffsets, yPos + yOffset, zPos + zOffset, 0.0, 0.0, 0.0);
+//            }
+//        }
         super.animateTick(pState, pLevel, pPos, pSource);
+    }
+
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(LIT);
     }
 
     @Override
@@ -69,13 +102,16 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
         return new CookingCauldronEntity(pPos, pState);
     }
 
-    @SuppressWarnings("unchecked") // Due to generics, an unchecked cast is necessary here.
+    @Nullable // Due to generics, an unchecked cast is necessary here.
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> type) {
+        if(pLevel.isClientSide()) {
+            return null;
+        }
         // You can return different tickers here, depending on whatever factors you want. A common use case would be
         // to return different tickers on the client or server, only tick one side to begin with,
         // or only return a ticker for some blockstates (e.g. when using a "my machine is working" blockstate property).
-        return type == ConcoctionModBlockEntities.COOKING_CAULDRON.get() ? (BlockEntityTicker<T>) CookingCauldronEntity::tick : null;
+        return (type == ConcoctionModBlockEntities.COOKING_CAULDRON.get()) ? (level, pPos, pState1, pEntity) -> ((CookingCauldronEntity)pEntity).tick(level, pPos, pState1) : null;
     }
 
     @Override

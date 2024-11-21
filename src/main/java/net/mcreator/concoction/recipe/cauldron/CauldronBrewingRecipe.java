@@ -1,33 +1,109 @@
 package net.mcreator.concoction.recipe.cauldron;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.mcreator.concoction.block.CookingCauldron;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public record CauldronBrewingRecipe(Ingredient inputItem, ItemStack output) implements Recipe<CauldronBrewingRecipeInput> {
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> list = NonNullList.create();
-        list.add(inputItem);
-        return list;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput> {
+    private final BlockState inputState;
+    private final Boolean isCooking;
+    private final List<Ingredient> inputItems;
+    private final ItemStack result;
+
+    public BlockState getInputState() {
+        return inputState;
     }
+
+    public List<Ingredient> getInputItems() {
+        return inputItems;
+    }
+
+    public ItemStack getResult() {
+        return result;
+    }
+
+    public Boolean isCooking() {
+        return isCooking;
+    }
+
+    public CauldronBrewingRecipe(BlockState inputState, Boolean isCooking, List<Ingredient> inputItems, ItemStack result) {
+        this.inputState = inputState;
+        this.isCooking = isCooking;
+        this.inputItems = inputItems;
+        this.result = result;
+    }
+
     @Override
     public boolean matches(CauldronBrewingRecipeInput pInput, Level pLevel) {
         if(pLevel.isClientSide()) {
             return false;
         }
-        return inputItem.test(pInput.getItem(0));
+        if (this.isCooking == pInput.isCooking()
+                && this.inputState.getValue(CookingCauldron.LEVEL).equals(pInput.state().getValue(CookingCauldron.LEVEL))) {
+            return containsAllElements(pInput.stack(), this.inputItems);
+//            for (Ingredient inputItem : this.inputItems) {
+//                ItemStack[] checkItems = inputItem.getItems();
+//                ItemStack checkItem = checkItems[0];
+//                if (!pInput.stack().contains(checkItem))
+//                    return false;
+//            }
+//            return true;
+        }
+        return false;
     }
+
+    public static boolean containsAllElements(NonNullList<ItemStack> list1, List<Ingredient> list2) {
+        // Подсчитываем количество каждого объекта в первом списке
+        Map<Item, Integer> countMap1 = new HashMap<>();
+        for (ItemStack item : list1) {
+            if (item.getItem() != Items.AIR)
+                countMap1.put(item.getItem(), countMap1.getOrDefault(item.getItem(), 0) + 1);
+        }
+
+        // Подсчитываем количество каждого объекта во втором списке
+        Map<Item, Integer> countMap2 = new HashMap<>();
+        for (Ingredient ingr : list2) {
+            countMap2.put(ingr.getItems()[0].getItem(), countMap2.getOrDefault(ingr.getItems()[0].getItem(), 0) + 1);
+        }
+
+        // Проверяем, что каждый объект из второго списка содержится в первом в нужном количестве
+        if (countMap1.size() != countMap2.size()) return false; // Если количество различается
+        for (Map.Entry<Item, Integer> entry : countMap2.entrySet()) {
+            Item key = entry.getKey();
+            int requiredCount = entry.getValue();
+            int availableCount = countMap1.getOrDefault(key, 0);
+
+            if (availableCount != requiredCount) return false; // Если объектов недостаточно
+
+        }
+
+        return true; // Все объекты содержатся в нужном количестве
+    }
+
+
     @Override
     public ItemStack assemble(CauldronBrewingRecipeInput pInput, HolderLookup.Provider pRegistries) {
-        return output.copy();
+        return result;
     }
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
@@ -35,8 +111,14 @@ public record CauldronBrewingRecipe(Ingredient inputItem, ItemStack output) impl
     }
     @Override
     public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
-        return output;
+        return result.copy();
     }
+
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_SERIALIZER.get();
@@ -47,14 +129,20 @@ public record CauldronBrewingRecipe(Ingredient inputItem, ItemStack output) impl
     }
     public static class Serializer implements RecipeSerializer<CauldronBrewingRecipe> {
         public static final MapCodec<CauldronBrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(CauldronBrewingRecipe::inputItem),
-                ItemStack.CODEC.fieldOf("result").forGetter(CauldronBrewingRecipe::output)
+                BlockState.CODEC.fieldOf("state").forGetter(CauldronBrewingRecipe::getInputState),
+                Codec.BOOL.fieldOf("isCooking").forGetter(CauldronBrewingRecipe::isCooking),
+                Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").forGetter(CauldronBrewingRecipe::getInputItems),
+                ItemStack.CODEC.fieldOf("result").forGetter(CauldronBrewingRecipe::getResult)
         ).apply(inst, CauldronBrewingRecipe::new));
+
         public static final StreamCodec<RegistryFriendlyByteBuf, CauldronBrewingRecipe> STREAM_CODEC =
                 StreamCodec.composite(
-                        Ingredient.CONTENTS_STREAM_CODEC, CauldronBrewingRecipe::inputItem,
-                        ItemStack.STREAM_CODEC, CauldronBrewingRecipe::output,
+                        ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), CauldronBrewingRecipe::getInputState,
+                        ByteBufCodecs.BOOL, CauldronBrewingRecipe::isCooking,
+                        Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), CauldronBrewingRecipe::getInputItems,
+                        ItemStack.STREAM_CODEC, CauldronBrewingRecipe::getResult,
                         CauldronBrewingRecipe::new);
+
         @Override
         public MapCodec<CauldronBrewingRecipe> codec() {
             return CODEC;
@@ -64,4 +152,8 @@ public record CauldronBrewingRecipe(Ingredient inputItem, ItemStack output) impl
             return STREAM_CODEC;
         }
     }
+
+//    private Boolean isLit() {
+//        return LIT;
+//    }
 }

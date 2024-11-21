@@ -37,3 +37,13 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 apply from: 'mcreator.gradle'
+
+dependencies {
+    implementation 'com.mojang:datafixerupper:1.0.20'
+}
+
+task idePostSync {
+    doLast {
+        println 'Running idePostSync task'
+    }
+}

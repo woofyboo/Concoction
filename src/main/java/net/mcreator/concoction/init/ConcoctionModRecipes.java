@@ -3,7 +3,6 @@ package net.mcreator.concoction.init;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.bus.api.IEventBus;

@@ -26,6 +26,7 @@ import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModCustomTabs;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.init.ConcoctionModRecipes;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
@@ -53,6 +54,7 @@ public class ConcoctionMod {
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
 		// Start of user code block mod init
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
+		ConcoctionModRecipes.register(modEventBus);
 		// End of user code block mod init
 	}
 
