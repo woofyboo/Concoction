@@ -2467,58 +2467,61 @@
       ],
       "category": "music",
       "subtitle": ""
+    },
+    {
+      "name": "cauldron_cooking",
+      "files": [
+        "witches_cauldron_boiling_bubbling_50871-_mp3cut.net_"
+      ],
+      "category": "block",
+      "subtitle": "Cauldron is cooking"
+    },
+    {
+      "name": "cauldron_boiling",
+      "files": [
+        "00655-_mp3cut.net_-_1_",
+        "boil_ambience"
+      ],
+      "category": "block",
+      "subtitle": "Cauldron is boiling"
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:maintains_farmland": [
-      "CUSTOM:CropCotton",
-      "CUSTOM:CropMint",
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:sweetened_foods": [
+      "Items.MELON"
+    ],
+    "ITEMS:c:foods/edible_when_placed": [
+      "CUSTOM:MintChocolateCake"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
+    "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
-    ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
-    "ITEMS:c:foods/edible_when_placed": [
-      "CUSTOM:MintChocolateCake"
     ],
     "ITEMS:c:sugary_foods": [
       "Items.HONEY_BOTTLE"
     ],
     "ITEMS:c:candied_foods": [],
-    "ITEMS:minecraft:flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:c:sweet_foods": [
-      "Items.SWEET_BERRIES",
-      "CUSTOM:SweetSlimeJelly"
-    ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
-    ],
-    "ITEMS:c:sweetened_foods": [
-      "Items.MELON"
     ],
     "ITEMS:c:foods": [
       "CUSTOM:Cherry",
@@ -2527,6 +2530,20 @@
       "CUSTOM:CherryCookie",
       "CUSTOM:MintySlimeJelly",
       "CUSTOM:SweetSlimeJelly"
+    ],
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:sweet_foods": [
+      "Items.SWEET_BERRIES",
+      "CUSTOM:SweetSlimeJelly"
+    ],
+    "BLOCKS:minecraft:bee_growables": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
     ]
   },
   "tab_element_order": {},
@@ -2537,6 +2554,7 @@
       "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
+      "subtitles.cauldron_cooking": "Cauldron is cooking",
       "advancements.get_folded.title": "Помнись!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
@@ -2567,6 +2585,7 @@
       "block.concoction.wild_cotton": "Дикий хлопок",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
+      "subtitles.cauldron_boiling": "Cauldron is boiling",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction_brew.mint": "Мята",
@@ -2627,6 +2646,7 @@
       "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
+      "subtitles.cauldron_cooking": "Cauldron is cooking",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
@@ -2657,6 +2677,7 @@
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
+      "subtitles.cauldron_boiling": "Cauldron is boiling",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
       "block.concoction_brew.mint": "Mint",
