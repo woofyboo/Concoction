@@ -3,6 +3,7 @@ package net.mcreator.concoction.block;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.minecraft.client.main.GameConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -42,6 +43,7 @@ import static java.lang.Math.pow;
 public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
+    private boolean cookingSoundPlaying = false;
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
     }
@@ -50,6 +52,20 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pSource) {
         if (pState.getValue(LIT)) {
+            final boolean isCooking = pState.getValue(COOKING);
+            if (pSource.nextInt(10) == 0 && !isCooking) {
+                pLevel.playLocalSound(
+                        (double)pPos.getX() + 0.5,
+                        (double)pPos.getY() + 0.5,
+                        (double)pPos.getZ() + 0.5,
+                        ConcoctionModSounds.CAULDRON_BOILING.get(),
+                        SoundSource.BLOCKS,
+                        0.5F + pSource.nextFloat(),
+                        pSource.nextFloat() * 0.7F + 0.6F,
+                        false
+                );
+            }
+
             if (pSource.nextInt(2) == 0) {
                 pLevel.addParticle(ParticleTypes.BUBBLE,
                         pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
@@ -62,8 +78,32 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
                         0.0,0.03,0.0);
             }
+            if (!isCooking) cookingSoundPlaying = false;
 
-            if (pState.getValue(COOKING)) {
+            if (isCooking) {
+                if (!cookingSoundPlaying) {
+                    cookingSoundPlaying = true;
+                    pLevel.playLocalSound(
+                            (double)pPos.getX() + 0.5,
+                            (double)pPos.getY() + 0.5,
+                            (double)pPos.getZ() + 0.5,
+                            ConcoctionModSounds.CAULDRON_COOKING.get(),
+                            SoundSource.BLOCKS,
+                            0.5F + pSource.nextFloat(),
+                            pSource.nextFloat() * 0.7F + 0.6F,
+                            false
+                    );
+                }
+                pLevel.addParticle(ParticleTypes.BUBBLE,
+                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
+                        pPos.getY() + 1,
+                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
+                        0.0,0.05,0.0);
+                pLevel.addParticle(ParticleTypes.BUBBLE_POP,
+                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                        pPos.getY() + 1,
+                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                        0.0,0.03,0.0);
 //                ConcoctionMod.LOGGER.debug("Cauldron is cooking at {}", pPos);
                 pLevel.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                         pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
@@ -84,6 +124,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
 
     @Override
     public void onPlace(BlockState p_51978_, Level p_51979_, BlockPos p_51980_, BlockState p_51981_, boolean p_51982_) {
+        p_51978_.setValue(COOKING, false);
         ConcoctionMod.LOGGER.debug("Cauldron placed at {}", p_51980_);
         super.onPlace(p_51978_, p_51979_, p_51980_, p_51981_, p_51982_);
     }
@@ -130,8 +171,10 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         if (pItem.getItem().equals(Items.GLASS_BOTTLE)) {
                             if (!pPlayer.addItem(new ItemStack(item)))
                                 pPlayer.drop(new ItemStack(item), false);
-                            pItem.shrink(1);
+                            if (!pPlayer.isCreative()) pItem.shrink(1);
                             LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
+                            pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
+                                    SoundSource.BLOCKS, 1.0F, 1.0F);
 //                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
@@ -141,8 +184,10 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         if (pItem.getItem().equals(Items.BOWL)) {
                             if (!pPlayer.addItem(new ItemStack(item)))
                                 pPlayer.drop(new ItemStack(item), false);
-                            pItem.shrink(1);
+                            if (!pPlayer.isCreative()) pItem.shrink(1);
                             LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
+                            pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
+                                    SoundSource.BLOCKS, 1.0F, 1.0F);
 //                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
