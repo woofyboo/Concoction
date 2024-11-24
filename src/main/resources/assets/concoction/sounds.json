@@ -6,5 +6,27 @@
         "stream": true
       }
     ]
+  },
+  "cauldron_cooking": {
+    "subtitle": "subtitles.cauldron_cooking",
+    "sounds": [
+      {
+        "name": "concoction:witches_cauldron_boiling_bubbling_50871-_mp3cut.net_",
+        "stream": false
+      }
+    ]
+  },
+  "cauldron_boiling": {
+    "subtitle": "subtitles.cauldron_boiling",
+    "sounds": [
+      {
+        "name": "concoction:00655-_mp3cut.net_-_1_",
+        "stream": false
+      },
+      {
+        "name": "concoction:boil_ambience",
+        "stream": false
+      }
+    ]
   }
 }

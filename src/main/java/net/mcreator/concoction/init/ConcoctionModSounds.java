@@ -16,4 +16,6 @@ import net.mcreator.concoction.ConcoctionMod;
 public class ConcoctionModSounds {
 	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(Registries.SOUND_EVENT, ConcoctionMod.MODID);
 	public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_HOTICE = REGISTRY.register("music_disc_hotice", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("concoction", "music_disc_hotice")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> CAULDRON_COOKING = REGISTRY.register("cauldron_cooking", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("concoction", "cauldron_cooking")));
+	public static final DeferredHolder<SoundEvent, SoundEvent> CAULDRON_BOILING = REGISTRY.register("cauldron_boiling", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath("concoction", "cauldron_boiling")));
 }

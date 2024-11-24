@@ -2456,6 +2456,37 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "PlaySound",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "play_sound",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/PlaySoundProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
