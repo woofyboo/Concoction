@@ -7,22 +7,22 @@
   "state" : {
     "Name": "minecraft:water_cauldron",
     "Properties": {
-        "level": "3"
+      "level": "3"
     }
   },
 
   "ingredients": [
     {
-      "item": "minecraft:brown_mushroom"
+      "item": "minecraft:sugar"
     },
     {
-      "item": "minecraft:red_mushroom"
+      "item": "concoction:mint"
     }
   ],
 
   "result": {
-    "id": "minecraft:mushroom_stew",
-    "interactionType": "bowl",
+    "id": "concoction:mint_brew",
+    "interactionType": "bottle",
     "count": "3"
   }
 }

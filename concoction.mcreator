@@ -2470,18 +2470,9 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
-    "ITEMS:c:sweetened_foods": [
-      "Items.MELON"
-    ],
-    "ITEMS:c:foods/edible_when_placed": [
-      "CUSTOM:MintChocolateCake"
-    ],
-    "ITEMS:minecraft:flowers": [
-      "CUSTOM:Mint",
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
@@ -2489,32 +2480,30 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
+    "BLOCKS:minecraft:bee_growables": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:c:foods/edible_when_placed": [
+      "CUSTOM:MintChocolateCake"
+    ],
     "ITEMS:c:sugary_foods": [
       "Items.HONEY_BOTTLE"
     ],
     "ITEMS:c:candied_foods": [],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
+    "ITEMS:minecraft:flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:crops": [
-      "CUSTOM:CropCotton",
-      "CUSTOM:CropMint",
-      "CUSTOM:Sunflower"
-    ],
-    "BLOCKS:minecraft:sword_efficient": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower"
-    ],
-    "ITEMS:c:foods": [
-      "CUSTOM:Cherry",
-      "CUSTOM:MintCookie",
-      "CUSTOM:RoastedSunflowerSeeds",
-      "CUSTOM:CherryCookie",
-      "CUSTOM:MintySlimeJelly",
-      "CUSTOM:SweetSlimeJelly"
-    ],
-    "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
@@ -2523,10 +2512,21 @@
       "Items.SWEET_BERRIES",
       "CUSTOM:SweetSlimeJelly"
     ],
-    "BLOCKS:minecraft:bee_growables": [
+    "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:sweetened_foods": [
+      "Items.MELON"
+    ],
+    "ITEMS:c:foods": [
+      "CUSTOM:Cherry",
+      "CUSTOM:MintCookie",
+      "CUSTOM:RoastedSunflowerSeeds",
+      "CUSTOM:CherryCookie",
+      "CUSTOM:MintySlimeJelly",
+      "CUSTOM:SweetSlimeJelly"
     ]
   },
   "tab_element_order": {},

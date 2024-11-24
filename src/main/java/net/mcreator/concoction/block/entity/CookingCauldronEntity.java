@@ -1,13 +1,12 @@
 package net.mcreator.concoction.block.entity;
 
-import com.mojang.datafixers.kinds.IdF;
+import com.google.gson.Gson;
 import net.mcreator.concoction.block.CookingCauldron;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -16,33 +15,22 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.WorldlyContainer;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.HopperMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.Hopper;
-import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
-import java.util.function.BooleanSupplier;
-
-import static net.minecraft.world.level.block.entity.HopperBlockEntity.suckInItems;
 
 public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     // This can be any value of any type you want, so long as you can somehow serialize it to NBT.
@@ -51,11 +39,15 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     private final int ContainerSize = 6;
     private boolean isCooking = false;
     private RecipeHolder<CauldronBrewingRecipe> recipe = null;
-    private ItemStack output = ItemStack.EMPTY;
+    private Map<String, String> craftResult = Map.ofEntries(
+        Map.entry("id",""),
+        Map.entry("count",""),
+        Map.entry("interactionType","")
+    );
 
     private int progress = 0;
     private int maxProgress = 72;
-    private final int DEFAULT_MAX_PROGRESS = 72;
+    private final int DEFAULT_MAX_PROGRESS = 200;
     private NonNullList<ItemStack> items = NonNullList.withSize(
             this.ContainerSize,
             ItemStack.EMPTY
@@ -72,6 +64,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         this.progress = tag.getInt("cooking.progress");
         this.maxProgress = tag.getInt("cooking.max_progress");
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        this.craftResult = (new Gson()).fromJson(tag.getString("cooking.craft_result"), HashMap.class);
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
         }
@@ -83,6 +76,8 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         super.saveAdditional(tag, registries);
         tag.putInt("cooking.progress", this.progress);
         tag.putInt("cooking.max_progress", this.maxProgress);
+        tag.putString("cooking.craft_result", (new Gson()).toJson(this.craftResult));
+
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
         }
@@ -92,7 +87,6 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
     // craft logic
     // The signature of this method matches the signature of the BlockEntityTicker functional interface.
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void tick(Level level, BlockPos pPos, BlockState pState) {
         if (!level.isClientSide) {
             Block blockBelow = level.getBlockState(pPos.below()).getBlock();
@@ -109,18 +103,23 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
                     setChanged(level, pPos, pState);
                 }
             }
-            if (pState.getValue(CookingCauldron.LIT) && (this.isCooking || (hasRecipe() && isOutputSlotEmptyOrReceivable()))) {
-                if (!this.isCooking) this.isCooking = true;
+            if (pState.getValue(CookingCauldron.LIT) && (this.isCooking || (hasRecipe() && !hasCraftedResult()))) {
+                if (!this.isCooking) {
+                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, true));
+                    this.isCooking = true;
+                }
 
                 increaseCraftingProgress();
                 setChanged(level, pPos, pState);
 
                 if (hasCraftingFinished()) {
                     craftItem();
+                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
                     resetProgress();
                 }
 
             } else {
+                level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
                 resetProgress();
             }
         }
@@ -131,12 +130,12 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         this.maxProgress = DEFAULT_MAX_PROGRESS;
         this.isCooking = false;
         this.recipe = null;
-        this.output = ItemStack.EMPTY;
     }
 
     private void craftItem() {
             this.clearContent();
-            this.setItem(0, this.output);
+            this.craftResult = this.recipe.value().getOutput();
+//            this.setItem(0, this.output);
     }
 
     private boolean hasCraftingFinished() {
@@ -147,10 +146,17 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         progress++;
     }
 
-    private boolean isOutputSlotEmptyOrReceivable() {
-        return true;
-//        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
-//                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() < this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+    public boolean hasCraftedResult() {
+        return !this.craftResult.get("id").isEmpty();
+    }
+
+    public Map<String, String> getCraftResult() {
+        return this.craftResult;
+    }
+
+    public void setCraftResult(Map<String, String> result) {
+        this.craftResult = result;
+        this.setChanged();
     }
 
     private boolean hasRecipe() {
@@ -160,28 +166,13 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         }
 
         this.recipe = recipe.get();
-        this.output = this.recipe.value().getResultItem(null);
-        return canInsertAmountIntoOutputSlot(this.output.getCount()) && canInsertItemIntoOutputSlot(this.output);
+        return true;
     }
 
     private Optional<RecipeHolder<CauldronBrewingRecipe>> getCurrentRecipe() {
         return this.level.getRecipeManager()
                 .getRecipeFor(ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_TYPE.get(),
                         new CauldronBrewingRecipeInput(this.getBlockState(), this.getItems(), this.isCooking), level);
-    }
-
-    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return true;
-//        return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
-//                itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
-    }
-
-    private boolean canInsertAmountIntoOutputSlot(int count) {
-        return true;
-//        int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
-//        int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
-//
-//        return maxCount >= currentCount + count;
     }
 
     @Override
@@ -214,12 +205,15 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     @Override
     protected void setItems(NonNullList<ItemStack> Items) {
         this.items = Items;
+        this.setChanged();
     }
 
     //Item add to container methods
     @SuppressWarnings("UnusedReturnValue")
     public boolean addItemOnClick(ItemStack addedItem, int count, boolean isCreative) {
 //        if (this.isCooking) return false;
+//        if (this.hasCraftedResult()) return false;
+
         boolean flag = false;
         for (int i = 0; i < this.getContainerSize(); i++) {
             ItemStack itemstack = this.getItem(i);
@@ -332,25 +326,4 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
         return null;
     }
-
-    // Hopper methods
-//    @Override
-//    public double getLevelX() {
-//        return (double)this.worldPosition.getX() + 0.5;
-//    }
-//
-//    @Override
-//    public double getLevelY() {
-//        return (double)this.worldPosition.getY() + 0.5;
-//    }
-//
-//    @Override
-//    public double getLevelZ() {
-//        return (double)this.worldPosition.getZ() + 0.5;
-//    }
-//
-//    @Override
-//    public boolean isGridAligned() {
-//        return true;
-//    }
 }

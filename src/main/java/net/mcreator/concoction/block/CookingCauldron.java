@@ -3,16 +3,20 @@ package net.mcreator.concoction.block;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.minecraft.client.main.GameConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -29,10 +33,15 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.ImmutableMap;
+import java.util.HashMap;
+import java.util.Map;
+
 import static java.lang.Math.pow;
 
 public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
     }
@@ -52,34 +61,17 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         pPos.getY() + 1,
                         pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
                         0.0,0.03,0.0);
+            }
+
+            if (pState.getValue(COOKING)) {
+//                ConcoctionMod.LOGGER.debug("Cauldron is cooking at {}", pPos);
                 pLevel.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                         pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
                         pPos.getY() + 1,
                         pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        0.0,0.06,0.0);
+                        0.0,0.07,0.0);
             }
         }
-
-//        if (pState.getValue(LIT)) {
-//            double xPos = (double) pPos.getX() + 0.5;
-//            double yPos = pPos.getY();
-//            double zPos = (double) pPos.getZ() + 0.5;
-//            if (random.nextDouble() < 0.15) {
-//                pLevel.playLocalSound(xPos, yPos, zPos, SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.BLOCKS, 1.0f, 1.0f, false);
-//            }
-//
-//            double defaultOffset = random.nextDouble() * 0.6 - 0.3;
-//            double xOffsets = axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : defaultOffset;
-//            double yOffset = random.nextDouble() * 6.0 / 8.0;
-//            double zOffset = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : defaultOffset;
-//
-//            level.addParticle(ParticleTypes.SMOKE, xPos + xOffsets, yPos + yOffset, zPos + zOffset, 0.0, 0.0, 0.0);
-//
-//            if (level.getBlockEntity(pos) instanceof CrystallizerBlockEntity crystallizerBlockEntity && !crystallizerBlockEntity.itemHandler.getStackInSlot(1).isEmpty()) {
-//                level.addParticle(new ItemParticleOption(ParticleTypes.ITEM, crystallizerBlockEntity.itemHandler.getStackInSlot(1)),
-//                        xPos + xOffsets, yPos + yOffset, zPos + zOffset, 0.0, 0.0, 0.0);
-//            }
-//        }
         super.animateTick(pState, pLevel, pPos, pSource);
     }
 
@@ -87,7 +79,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         super.createBlockStateDefinition(pBuilder);
-        pBuilder.add(LIT);
+        pBuilder.add(LIT, COOKING);
     }
 
     @Override
@@ -120,13 +112,55 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
         if (pLevel.isClientSide) {
             return ItemInteractionResult.SUCCESS;
         } else {
+            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+            if (blockentity instanceof CookingCauldronEntity cauldron && cauldron.hasCraftedResult()) {
+                Map<String, String> result = cauldron.getCraftResult();
+                Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(result.get("id")));
+                switch (result.get("interactionType")) {
+                    case "hand":
+                        if (pItem.getItem().equals(Items.AIR) || (pItem.getItem().equals(item) && pItem.getCount() < pItem.getMaxStackSize())) {
+                            if (!pPlayer.addItem(new ItemStack(item)))
+                                pPlayer.drop(new ItemStack(item), false);
+                            result = this.decreesItemCountFromResult(result);
+                            cauldron.setCraftResult(result);
+                        }
+                        break;
+
+                    case "bottle":
+                        if (pItem.getItem().equals(Items.GLASS_BOTTLE)) {
+                            if (!pPlayer.addItem(new ItemStack(item)))
+                                pPlayer.drop(new ItemStack(item), false);
+                            pItem.shrink(1);
+                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
+//                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
+                            result = this.decreesItemCountFromResult(result);
+                            cauldron.setCraftResult(result);
+                        }
+                        break;
+                    case "bowl":
+                        if (pItem.getItem().equals(Items.BOWL)) {
+                            if (!pPlayer.addItem(new ItemStack(item)))
+                                pPlayer.drop(new ItemStack(item), false);
+                            pItem.shrink(1);
+                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
+//                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
+                            result = this.decreesItemCountFromResult(result);
+                            cauldron.setCraftResult(result);
+                        }
+                        break;
+                    default:
+                        ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", cauldron.getCraftResult().get("interactionType"));
+                        break;
+                }
+                return ItemInteractionResult.CONSUME;
+            }
+
             CauldronInteraction cauldroninteraction = this.interactions.map().get(pItem.getItem());
             ItemInteractionResult r = cauldroninteraction.interact(pState, pLevel, pPos, pPlayer, pHand, pItem);
             if (r.consumesAction()) {
                 return r;
             }
 
-            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
             if (blockentity instanceof CookingCauldronEntity cauldron) {
                 if (pItem.getItem().equals(Items.AIR)) {
 //                    if (pPlayer.isShiftKeyDown()) pPlayer.addItem(cauldron.takeItemOnClick(true));
@@ -136,7 +170,26 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                     cauldron.addItemOnClick(pItem, 1, pPlayer.isCreative());
                 }
             }
+
             return ItemInteractionResult.CONSUME;
+        }
+    }
+
+    public Map<String, String>  decreesItemCountFromResult(Map<String, String> result) {
+        int new_count = Integer.parseInt(result.get("count"))-1;
+        if (new_count <= 0) {
+            return Map.ofEntries(
+                    Map.entry("id",""),
+                    Map.entry("count",""),
+                    Map.entry("interactionType","")
+            );
+
+        } else {
+            return Map.ofEntries(
+                    Map.entry("id",result.get("id")),
+                    Map.entry("count",String.valueOf(new_count)),
+                    Map.entry("interactionType",result.get("interactionType"))
+            );
         }
     }
 

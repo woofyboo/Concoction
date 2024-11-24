@@ -17,10 +17,8 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +26,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
     private final BlockState inputState;
     private final Boolean isCooking;
     private final List<Ingredient> inputItems;
-    private final ItemStack result;
+    private final Map<String, String> result;
 
     public BlockState getInputState() {
         return inputState;
@@ -38,7 +36,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return inputItems;
     }
 
-    public ItemStack getResult() {
+    public Map<String, String> getResult() {
         return result;
     }
 
@@ -46,7 +44,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return isCooking;
     }
 
-    public CauldronBrewingRecipe(BlockState inputState, Boolean isCooking, List<Ingredient> inputItems, ItemStack result) {
+    public CauldronBrewingRecipe(BlockState inputState, Boolean isCooking, List<Ingredient> inputItems, Map<String, String> result) {
         this.inputState = inputState;
         this.isCooking = isCooking;
         this.inputItems = inputItems;
@@ -61,13 +59,6 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         if (this.isCooking == pInput.isCooking()
                 && this.inputState.getValue(CookingCauldron.LEVEL).equals(pInput.state().getValue(CookingCauldron.LEVEL))) {
             return containsAllElements(pInput.stack(), this.inputItems);
-//            for (Ingredient inputItem : this.inputItems) {
-//                ItemStack[] checkItems = inputItem.getItems();
-//                ItemStack checkItem = checkItems[0];
-//                if (!pInput.stack().contains(checkItem))
-//                    return false;
-//            }
-//            return true;
         }
         return false;
     }
@@ -103,15 +94,21 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
 
     @Override
     public ItemStack assemble(CauldronBrewingRecipeInput pInput, HolderLookup.Provider pRegistries) {
-        return result;
+        return ItemStack.EMPTY;
     }
+
     @Override
     public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;
     }
+
     @Override
-    public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
-        return result.copy();
+    public ItemStack getResultItem(HolderLookup.Provider p_336125_) {
+        return null;
+    }
+
+    public Map<String, String> getOutput() {
+        return result;
     }
 
     @Override
@@ -132,7 +129,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
                 BlockState.CODEC.fieldOf("state").forGetter(CauldronBrewingRecipe::getInputState),
                 Codec.BOOL.fieldOf("isCooking").forGetter(CauldronBrewingRecipe::isCooking),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").forGetter(CauldronBrewingRecipe::getInputItems),
-                ItemStack.CODEC.fieldOf("result").forGetter(CauldronBrewingRecipe::getResult)
+                Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("result").forGetter(CauldronBrewingRecipe::getResult)
         ).apply(inst, CauldronBrewingRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, CauldronBrewingRecipe> STREAM_CODEC =
@@ -140,13 +137,14 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
                         ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), CauldronBrewingRecipe::getInputState,
                         ByteBufCodecs.BOOL, CauldronBrewingRecipe::isCooking,
                         Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), CauldronBrewingRecipe::getInputItems,
-                        ItemStack.STREAM_CODEC, CauldronBrewingRecipe::getResult,
+                        ByteBufCodecs.map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.STRING_UTF8), CauldronBrewingRecipe::getResult,
                         CauldronBrewingRecipe::new);
 
         @Override
         public MapCodec<CauldronBrewingRecipe> codec() {
             return CODEC;
         }
+
         @Override
         public StreamCodec<RegistryFriendlyByteBuf, CauldronBrewingRecipe> streamCodec() {
             return STREAM_CODEC;
