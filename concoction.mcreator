@@ -252,19 +252,6 @@
       "path": "~/mint"
     },
     {
-      "name": "MintyBrewCraft",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "minty_brew_craft",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/recipes/minty_brew_craft.json"
-        ]
-      },
-      "path": "~/mint"
-    },
-    {
       "name": "Cherry",
       "type": "item",
       "compiles": true,
@@ -2461,7 +2448,7 @@
       "name": "PlaySound",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "play_sound",
       "metadata": {
         "files": [
@@ -2487,6 +2474,72 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "KeyToTheHeart",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "key_to_the_heart",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/key_to_the_heart.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "KeyToTheHeartActive",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "key_to_the_heart_active",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/KeyToTheHeartActiveProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "MeatGoulash",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "meat_goulash",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/MeatGoulashItem.java",
+          "src/main/resources/assets/concoction/models/item/meat_goulash.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2505,7 +2558,7 @@
         "witches_cauldron_boiling_bubbling_50871-_mp3cut.net_"
       ],
       "category": "block",
-      "subtitle": "Cauldron is cooking"
+      "subtitle": "Cauldron is bubbling"
     },
     {
       "name": "cauldron_boiling",
@@ -2630,6 +2683,7 @@
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.sunflower": "Подсолнух",
+      "item.concoction.meat_goulash": "Meat Goulash",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
@@ -2639,6 +2693,7 @@
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.red_pillow_block": "Красная подушка",
+      "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
@@ -2652,6 +2707,7 @@
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.pillow_block": "Белая подушка",
+      "advancements.key_to_the_heart.descr": "Make any food with cauldron",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
       "item.concoction.cotton": "Хлопок",
       "effect.concoction.instability": "Нестабильность",
@@ -2677,7 +2733,7 @@
       "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
-      "subtitles.cauldron_cooking": "Cauldron is cooking",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
@@ -2722,6 +2778,7 @@
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.sunflower": "Sunflower",
+      "item.concoction.meat_goulash": "Meat Goulash",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
@@ -2731,6 +2788,7 @@
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "block.concoction.red_pillow_block": "Red Pillow",
+      "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
@@ -2744,6 +2802,7 @@
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.pillow_block": "White Pillow",
+      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
       "item.concoction.cotton": "Cotton",
       "effect.concoction.instability": "Instability",

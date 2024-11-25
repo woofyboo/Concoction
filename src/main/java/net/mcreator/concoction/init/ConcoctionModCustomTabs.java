@@ -43,6 +43,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());

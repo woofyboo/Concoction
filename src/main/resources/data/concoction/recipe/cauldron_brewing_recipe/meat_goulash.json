@@ -1,0 +1,31 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+  "isCooking": false,
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+      "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:meat_goulash",
+    "interactionType": "bowl",
+    "count": "3"
+  }
+}
