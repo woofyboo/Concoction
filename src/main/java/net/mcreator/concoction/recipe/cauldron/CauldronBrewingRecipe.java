@@ -36,6 +36,13 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return inputItems;
     }
 
+    public Ingredient getIngredient(int index) {
+        if (index < 0 || index >= this.inputItems.size()) {
+            return Ingredient.EMPTY;
+        }
+        return this.inputItems.get(index);
+    }
+
     public Map<String, String> getResult() {
         return result;
     }
@@ -129,6 +136,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
     public RecipeType<?> getType() {
         return ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_TYPE.get();
     }
+
     public static class Serializer implements RecipeSerializer<CauldronBrewingRecipe> {
         public static final MapCodec<CauldronBrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 BlockState.CODEC.fieldOf("state").forGetter(CauldronBrewingRecipe::getInputState),
