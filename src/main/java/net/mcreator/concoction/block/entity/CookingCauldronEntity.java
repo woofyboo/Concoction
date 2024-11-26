@@ -17,6 +17,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -93,19 +94,20 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     public void tick(Level level, BlockPos pPos, BlockState pState) {
         if (!level.isClientSide) {
             Block blockBelow = level.getBlockState(pPos.below()).getBlock();
-            if (level.getFluidState(pPos.below()).is(Fluids.LAVA.getSource()) || blockBelow instanceof FireBlock ||
-                    blockBelow instanceof MagmaBlock || blockBelow instanceof CampfireBlock) {
+            if ((level.getFluidState(pPos.below()).is(Fluids.LAVA.getSource()) || blockBelow instanceof FireBlock ||
+                    blockBelow instanceof MagmaBlock || blockBelow instanceof CampfireBlock)) {
                 if (!pState.getValue(CookingCauldron.LIT)) {
                     level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, true));
                     setChanged(level, pPos, pState);
+                    return;
                 }
 
-            } else {
-                if (pState.getValue(CookingCauldron.LIT)) {
-                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, false));
-                    setChanged(level, pPos, pState);
-                }
+            } else if (pState.getValue(CookingCauldron.LIT)) {
+                level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, false));
+                setChanged(level, pPos, pState);
+                return;
             }
+
             if (pState.getValue(CookingCauldron.LIT) && (this.isCooking || (hasRecipe() && !hasCraftedResult()))) {
                 if (!this.isCooking) {
                     level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, true));

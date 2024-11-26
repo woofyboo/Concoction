@@ -46,6 +46,9 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     private boolean cookingSoundPlaying = false;
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
+        registerDefaultState(stateDefinition.any()
+                .setValue(LIT, false)
+                .setValue(COOKING, false));
     }
 
     @Override
@@ -124,8 +127,8 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
 
     @Override
     public void onPlace(BlockState p_51978_, Level p_51979_, BlockPos p_51980_, BlockState p_51981_, boolean p_51982_) {
-        p_51978_.setValue(COOKING, false);
-        ConcoctionMod.LOGGER.debug("Cauldron placed at {}", p_51980_);
+        // p_51978_.setValue(COOKING, false);
+//        ConcoctionMod.LOGGER.debug("Cauldron placed at {}, {}", p_51980_, p_51981_.getValues());
         super.onPlace(p_51978_, p_51979_, p_51980_, p_51981_, p_51982_);
     }
 
@@ -175,7 +178,6 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                             LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
                             pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
                                     SoundSource.BLOCKS, 1.0F, 1.0F);
-//                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
                         }
@@ -188,7 +190,6 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                             LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
                             pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
                                     SoundSource.BLOCKS, 1.0F, 1.0F);
-//                            pState.setValue(LEVEL, pState.getValue(LEVEL)-1);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
                         }
