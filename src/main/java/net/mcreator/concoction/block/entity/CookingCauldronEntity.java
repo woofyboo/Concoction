@@ -133,9 +133,9 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     }
 
     private void craftItem() {
-            this.clearContent();
-            this.craftResult = this.recipe.value().getOutput();
-//            this.setItem(0, this.output);
+        this.clearContent();
+        this.craftResult = this.recipe.value().getOutput();
+//      this.setItem(0, this.output);
     }
 
     private boolean hasCraftingFinished() {
@@ -170,9 +170,10 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     }
 
     private Optional<RecipeHolder<CauldronBrewingRecipe>> getCurrentRecipe() {
+        if (isCooking) return Optional.empty();
         return this.level.getRecipeManager()
                 .getRecipeFor(ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_TYPE.get(),
-                        new CauldronBrewingRecipeInput(this.getBlockState(), this.getItems(), this.isCooking), level);
+                        new CauldronBrewingRecipeInput(this.getBlockState(), this.getItems()), level);
     }
 
     @Override

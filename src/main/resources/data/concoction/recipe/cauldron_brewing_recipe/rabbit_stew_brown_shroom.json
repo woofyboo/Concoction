@@ -2,7 +2,6 @@
   "type": "concoction:cauldron_brewing",
   "group": "food",
   "category": "misc",
-  "isCooking": false,
 
   "state" : {
     "Name": "minecraft:water_cauldron",

@@ -18,13 +18,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput> {
     private final BlockState inputState;
-    private final Boolean isCooking;
     private final List<Ingredient> inputItems;
     private final Map<String, String> result;
 
@@ -40,13 +40,8 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return result;
     }
 
-    public Boolean isCooking() {
-        return isCooking;
-    }
-
-    public CauldronBrewingRecipe(BlockState inputState, Boolean isCooking, List<Ingredient> inputItems, Map<String, String> result) {
+    public CauldronBrewingRecipe(BlockState inputState, List<Ingredient> inputItems, Map<String, String> result) {
         this.inputState = inputState;
-        this.isCooking = isCooking;
         this.inputItems = inputItems;
         this.result = result;
     }
@@ -56,8 +51,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         if(pLevel.isClientSide()) {
             return false;
         }
-        if (this.isCooking == pInput.isCooking()
-                && this.inputState.getValue(CookingCauldron.LEVEL).equals(pInput.state().getValue(CookingCauldron.LEVEL))) {
+        if (this.inputState.getValue(CookingCauldron.LEVEL).equals(pInput.state().getValue(CookingCauldron.LEVEL))) {
             return containsAllElements(pInput.stack(), this.inputItems);
         }
         return false;
@@ -65,29 +59,40 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
 
     public static boolean containsAllElements(NonNullList<ItemStack> list1, List<Ingredient> list2) {
         // Подсчитываем количество каждого объекта в первом списке
-        Map<Item, Integer> countMap1 = new HashMap<>();
+        Map<Item, Integer> Inventory = new HashMap<>();
+//        list2.get(0).test()
         for (ItemStack item : list1) {
             if (item.getItem() != Items.AIR)
-                countMap1.put(item.getItem(), countMap1.getOrDefault(item.getItem(), 0) + 1);
+                Inventory.put(item.getItem(), Inventory.getOrDefault(item.getItem(), 0) + 1);
         }
 
         // Подсчитываем количество каждого объекта во втором списке
-        Map<Item, Integer> countMap2 = new HashMap<>();
+        Map<Item, Integer> CraftItems = new HashMap<>();
         for (Ingredient ingr : list2) {
-            countMap2.put(ingr.getItems()[0].getItem(), countMap2.getOrDefault(ingr.getItems()[0].getItem(), 0) + 1);
+            if (ingr.getItems().length > 1) {
+                if (Arrays.stream(ingr.getItems()).anyMatch(item -> {
+                            if (Inventory.getOrDefault(item.getItem(), 0) > 0) {
+                                CraftItems.put(item.getItem(), CraftItems.getOrDefault(item.getItem(), 0) + 1);
+                                return true;
+                            } else return false;
+                        }
+                ));
+                else return false;
+            } else {
+                CraftItems.put(ingr.getItems()[0].getItem(), CraftItems.getOrDefault(ingr.getItems()[0].getItem(), 0) + 1);
+            }
         }
 
         // Проверяем, что каждый объект из второго списка содержится в первом в нужном количестве
-        if (countMap1.size() != countMap2.size()) return false; // Если количество различается
-        for (Map.Entry<Item, Integer> entry : countMap2.entrySet()) {
+        if (Inventory.size() != CraftItems.size()) return false; // Если количество различается
+        for (Map.Entry<Item, Integer> entry : CraftItems.entrySet()) {
             Item key = entry.getKey();
             int requiredCount = entry.getValue();
-            int availableCount = countMap1.getOrDefault(key, 0);
+            int availableCount = Inventory.getOrDefault(key, 0);
 
             if (availableCount != requiredCount) return false; // Если объектов недостаточно
 
         }
-
         return true; // Все объекты содержатся в нужном количестве
     }
 
@@ -127,7 +132,6 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
     public static class Serializer implements RecipeSerializer<CauldronBrewingRecipe> {
         public static final MapCodec<CauldronBrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 BlockState.CODEC.fieldOf("state").forGetter(CauldronBrewingRecipe::getInputState),
-                Codec.BOOL.fieldOf("isCooking").forGetter(CauldronBrewingRecipe::isCooking),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").forGetter(CauldronBrewingRecipe::getInputItems),
                 Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("result").forGetter(CauldronBrewingRecipe::getResult)
         ).apply(inst, CauldronBrewingRecipe::new));
@@ -135,7 +139,6 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         public static final StreamCodec<RegistryFriendlyByteBuf, CauldronBrewingRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), CauldronBrewingRecipe::getInputState,
-                        ByteBufCodecs.BOOL, CauldronBrewingRecipe::isCooking,
                         Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), CauldronBrewingRecipe::getInputItems,
                         ByteBufCodecs.map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.STRING_UTF8), CauldronBrewingRecipe::getResult,
                         CauldronBrewingRecipe::new);

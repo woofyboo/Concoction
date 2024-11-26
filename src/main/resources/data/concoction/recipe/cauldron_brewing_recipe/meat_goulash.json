@@ -2,7 +2,6 @@
   "type": "concoction:cauldron_brewing",
   "group": "food",
   "category": "misc",
-  "isCooking": false,
 
   "state" : {
     "Name": "minecraft:water_cauldron",
@@ -13,7 +12,7 @@
 
   "ingredients": [
     {
-      "item": "minecraft:beef"
+      "tag": "c:foods/raw_meat"
     },
     {
       "item": "minecraft:carrot"
