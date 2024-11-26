@@ -15,22 +15,25 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     // This can be any value of any type you want, so long as you can somehow serialize it to NBT.
@@ -133,9 +136,28 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     }
 
     private void craftItem() {
+        NonNullList<ItemStack> returned_items = checkReturnedItems();
         this.clearContent();
+        this.setItems(returned_items);
         this.craftResult = this.recipe.value().getOutput();
 //      this.setItem(0, this.output);
+    }
+
+    private NonNullList<ItemStack> checkReturnedItems() {
+        NonNullList<ItemStack> returned_items = NonNullList.withSize(this.ContainerSize, ItemStack.EMPTY);
+        for (int i=0; i < this.ContainerSize; i++) {
+            ItemStack itemstack = this.items.get(i);
+            if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:buckets"))))
+                returned_items.set(i,  new ItemStack(Items.BUCKET));
+            else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:bottles"))))
+                returned_items.set(i,  new ItemStack(Items.GLASS_BOTTLE));
+            else if (itemstack.getItem().equals(Items.IRON_AXE)) {
+                ItemStack axe = new ItemStack(Items.IRON_AXE);
+                axe.setDamageValue(( (int) (itemstack.getDamageValue()*0.8f)));
+                returned_items.set(i, axe);
+            }
+        }
+        return returned_items;
     }
 
     private boolean hasCraftingFinished() {
