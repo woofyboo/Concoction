@@ -16,7 +16,10 @@ import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.BlockItem;
 
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
+import net.mcreator.concoction.item.SunflowerOilItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
+import net.mcreator.concoction.item.RoastedPineconeItem;
+import net.mcreator.concoction.item.PineconeItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
 import net.mcreator.concoction.item.MusicDiscHotIceItem;
 import net.mcreator.concoction.item.MintySlimeJellyItem;
@@ -24,8 +27,11 @@ import net.mcreator.concoction.item.MintCookieItem;
 import net.mcreator.concoction.item.MintBrewItem;
 import net.mcreator.concoction.item.MeatGoulashItem;
 import net.mcreator.concoction.item.FabricItem;
+import net.mcreator.concoction.item.CottonOilItem;
+import net.mcreator.concoction.item.CocaoButterItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
+import net.mcreator.concoction.item.ButterItem;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
@@ -49,6 +55,12 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_CARROT = doubleBlock(ConcoctionModBlocks.WILD_CARROT);
 	public static final DeferredItem<Item> OBSIDIAN_TEARS_BOTTLE = REGISTRY.register("obsidian_tears_bottle", ObsidianTearsBottleItem::new);
 	public static final DeferredItem<Item> MEAT_GOULASH = REGISTRY.register("meat_goulash", MeatGoulashItem::new);
+	public static final DeferredItem<Item> SUNFLOWER_OIL = REGISTRY.register("sunflower_oil", SunflowerOilItem::new);
+	public static final DeferredItem<Item> COTTON_OIL = REGISTRY.register("cotton_oil", CottonOilItem::new);
+	public static final DeferredItem<Item> BUTTER = REGISTRY.register("butter", ButterItem::new);
+	public static final DeferredItem<Item> COCAO_BUTTER = REGISTRY.register("cocao_butter", CocaoButterItem::new);
+	public static final DeferredItem<Item> PINECONE = REGISTRY.register("pinecone", PineconeItem::new);
+	public static final DeferredItem<Item> ROASTED_PINECONE = REGISTRY.register("roasted_pinecone", RoastedPineconeItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

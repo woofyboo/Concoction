@@ -1,0 +1,48 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "Items.GLASS_BOTTLE"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:CottonOil"
+    },
+    "name": "temp_recipe_sunflower_oil",
+    "namespace": "mod"
+  }
+}

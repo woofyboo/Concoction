@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:obsidian_tears_bottle",
+    "minecraft:ominous_bottle",
+    "minecraft:experience_bottle",
+    "minecraft:honey_bottle",
+    "minecraft:potion",
+    "concoction:cotton_oil",
+    "concoction:sunflower_oil"
+  ]
+}

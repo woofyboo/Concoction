@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    }
+  ],
+  "result": {
+    "id": "concoction:sunflower_oil",
+    "count": 1
+  }
+}

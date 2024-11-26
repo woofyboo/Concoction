@@ -35,6 +35,12 @@ public class ConcoctionModCustomTabs {
 
 // Материалы
 				tabData.accept(ConcoctionModItems.FABRIC.get());
+				tabData.accept(ConcoctionModItems.PINECONE.get());
+				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
+				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
+				tabData.accept(ConcoctionModItems.BUTTER.get());
+				tabData.accept(ConcoctionModItems.COCAO_BUTTER.get());
+
 //Еда и напитки
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
@@ -42,6 +48,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
+				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 //Cтроительные блоки

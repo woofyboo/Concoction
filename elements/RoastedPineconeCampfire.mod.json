@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Campfire cooking",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 600,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "campfireCookingInputStack": {
+      "value": "CUSTOM:Pinecone"
+    },
+    "campfireCookingReturnStack": {
+      "value": "CUSTOM:RoastedPinecone"
+    },
+    "name": "roasted_pinecone_campfire",
+    "namespace": "mod"
+  }
+}

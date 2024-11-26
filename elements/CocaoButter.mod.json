@@ -3,11 +3,11 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "meat_gulash",
+    "texture": "cocoa_butter",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Meat Goulash",
+    "name": "Cocao Butter",
     "rarity": "COMMON",
     "creativeTabs": [],
     "stackSize": 16,
@@ -41,10 +41,10 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 7,
-    "saturation": 0.7999999999999999,
+    "nutritionalValue": 1,
+    "saturation": 0.2,
     "eatResultItem": {
-      "value": "Items.BOWL"
+      "value": ""
     },
     "isMeat": false,
     "isAlwaysEdible": false,

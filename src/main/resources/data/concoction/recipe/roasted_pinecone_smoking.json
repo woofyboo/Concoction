@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "misc",
+  "experience": 2,
+  "cookingtime": 100,
+  "ingredient": {
+    "item": "concoction:pinecone"
+  },
+  "result": {
+    "id": "concoction:roasted_pinecone"
+  }
+}

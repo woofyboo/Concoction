@@ -3,16 +3,16 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "meat_gulash",
+    "texture": "pinecone",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Meat Goulash",
+    "name": "Pinecone",
     "rarity": "COMMON",
     "creativeTabs": [],
-    "stackSize": 16,
+    "stackSize": 64,
     "enchantability": 0,
-    "useDuration": 32,
+    "useDuration": 0,
     "toolType": 1.0,
     "damageCount": 0,
     "recipeRemainder": {
@@ -40,14 +40,14 @@
       "value": "Arrow"
     },
     "projectileDisableAmmoCheck": false,
-    "isFood": true,
-    "nutritionalValue": 7,
-    "saturation": 0.7999999999999999,
+    "isFood": false,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
     "eatResultItem": {
-      "value": "Items.BOWL"
+      "value": ""
     },
     "isMeat": false,
     "isAlwaysEdible": false,
-    "animation": "eat"
+    "animation": "none"
   }
 }

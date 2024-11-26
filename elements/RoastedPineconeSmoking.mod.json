@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smoking",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 2.0,
+    "cookingTime": 100,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smokingInputStack": {
+      "value": "CUSTOM:Pinecone"
+    },
+    "smokingReturnStack": {
+      "value": "CUSTOM:RoastedPinecone"
+    },
+    "name": "roasted_pinecone_smoking",
+    "namespace": "mod"
+  }
+}

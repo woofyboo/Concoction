@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "misc",
+  "experience": 0,
+  "cookingtime": 600,
+  "ingredient": {
+    "item": "concoction:pinecone"
+  },
+  "result": {
+    "id": "concoction:roasted_pinecone"
+  }
+}

@@ -3,14 +3,14 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "meat_gulash",
+    "texture": "roasted_pinecone",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Meat Goulash",
+    "name": "Roasted Pinecone",
     "rarity": "COMMON",
     "creativeTabs": [],
-    "stackSize": 16,
+    "stackSize": 64,
     "enchantability": 0,
     "useDuration": 32,
     "toolType": 1.0,
@@ -41,10 +41,10 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 7,
-    "saturation": 0.7999999999999999,
+    "nutritionalValue": 4,
+    "saturation": 0.30000000000000004,
     "eatResultItem": {
-      "value": "Items.BOWL"
+      "value": ""
     },
     "isMeat": false,
     "isAlwaysEdible": false,

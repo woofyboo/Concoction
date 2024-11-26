@@ -888,98 +888,6 @@
       "path": "~/general"
     },
     {
-      "name": "RecipeMintSeeds",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "recipe_mint_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipeMintSeedsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
-    },
-    {
-      "name": "RecipeCottons",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "recipe_cottons",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipeCottonsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
-    },
-    {
-      "name": "RecipeWools",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "recipe_wools",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipeWoolsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
-    },
-    {
-      "name": "RecipePillows",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "recipe_pillows",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipePillowsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
-    },
-    {
       "name": "CherryCookie",
       "type": "item",
       "compiles": true,
@@ -1005,29 +913,6 @@
         ]
       },
       "path": "~/cherry"
-    },
-    {
-      "name": "RecipeCherries",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "recipe_cherries",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipeCherriesProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
     },
     {
       "name": "ColoredPillowBlock16",
@@ -1358,29 +1243,6 @@
         ]
       },
       "path": "~/general/compost"
-    },
-    {
-      "name": "RecipeSunflowerSeeds",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "recipe_sunflower_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/RecipeSunflowerSeedsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      },
-      "path": "~/achivements/recipes"
     },
     {
       "name": "BeetrootSugarCraft",
@@ -2540,6 +2402,192 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "SunflowerOil",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sunflower_oil",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/sunflower_oil.json",
+          "src/main/java/net/mcreator/concoction/item/SunflowerOilItem.java"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "CottonOil",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cotton_oil",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cotton_oil.json",
+          "src/main/java/net/mcreator/concoction/item/CottonOilItem.java"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "Butter",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "butter",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/butter.json",
+          "src/main/java/net/mcreator/concoction/item/ButterItem.java"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "CocaoButter",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cocao_butter",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CocaoButterItem.java",
+          "src/main/resources/assets/concoction/models/item/cocao_butter.json"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "TempRecipeSunflowerOil",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "temp_recipe_sunflower_oil",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/temp_recipe_sunflower_oil.json"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "TempRecipeCottonOil",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "temp_recipe_cotton_oil",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/temp_recipe_cotton_oil.json"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "TempRecipeButter",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "temp_recipe_butter",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/temp_recipe_butter.json"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "TempRecipeCocaoButter",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "temp_recipe_cocao_butter",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/temp_recipe_cocao_butter.json"
+        ]
+      },
+      "path": "~/oils"
+    },
+    {
+      "name": "Pinecone",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/PineconeItem.java",
+          "src/main/resources/assets/concoction/models/item/pinecone.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PineconeCompost",
+      "type": "itemextension",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone_compost",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/general/compost"
+    },
+    {
+      "name": "RoastedPinecone",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "roasted_pinecone",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/RoastedPineconeItem.java",
+          "src/main/resources/assets/concoction/models/item/roasted_pinecone.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "RoastedPineconeFurnace",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "roasted_pinecone_furnace",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_pinecone_furnace.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "RoastedPineconeSmoking",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "roasted_pinecone_smoking",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_pinecone_smoking.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "RoastedPineconeCampfire",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "roasted_pinecone_campfire",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/roasted_pinecone_campfire.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2575,6 +2623,10 @@
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:mod:oils": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
     "ITEMS:c:sweetened_foods": [
       "Items.MELON"
     ],
@@ -2607,13 +2659,21 @@
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:mod:oils_and_butters": [
+      "TAG:concoction:oils",
+      "TAG:concoction:butters"
+    ],
     "ITEMS:c:foods": [
       "CUSTOM:Cherry",
       "CUSTOM:MintCookie",
       "CUSTOM:RoastedSunflowerSeeds",
       "CUSTOM:CherryCookie",
       "CUSTOM:MintySlimeJelly",
-      "CUSTOM:SweetSlimeJelly"
+      "CUSTOM:SweetSlimeJelly",
+      "CUSTOM:MeatGoulash",
+      "CUSTOM:CocaoButter",
+      "CUSTOM:Butter",
+      "CUSTOM:RoastedPinecone"
     ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
@@ -2624,203 +2684,231 @@
       "Items.SWEET_BERRIES",
       "CUSTOM:SweetSlimeJelly"
     ],
+    "ITEMS:c:bottles": [
+      "CUSTOM:ObsidianTearsBottle",
+      "Items.OMINOUS_BOTTLE",
+      "Items.EXPERIENCE_BOTTLE",
+      "Items.HONEY_BOTTLE",
+      "Items.POTIONITEM",
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:music_discs": [
+      "CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:mod:butters": [
+      "CUSTOM:CocaoButter",
+      "CUSTOM:Butter"
     ]
   },
   "tab_element_order": {},
   "language_map": {
     "ru_ru": {
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
-      "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
-      "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
-      "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
-      "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "subtitles.cauldron_cooking": "Cauldron is cooking",
+      "item.concoction.cotton_oil": "Sunflower Oil",
       "advancements.get_folded.title": "Помнись!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
       "block.concoction.mint": "Мята",
-      "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
-      "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
-      "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
-      "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
-      "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
+      "item.concoction.pinecone": "Pinecone",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
-      "effect.concoction.sweetness": "Сладость",
-      "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
-      "block.concoction.crop_mint": "Мята",
-      "item.concoction.cherry_cookie": "Вишнёвое печенье",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
-      "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
-      "item.concoction.mint_brew": "Мятный отвар",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
-      "item.concoction.fabric": "Ткань",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
-      "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
-      "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
-      "block.concoction.wild_cotton": "Дикий хлопок",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
-      "subtitles.cauldron_boiling": "Cauldron is boiling",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
-      "block.concoction_brew.mint": "Мята",
       "item.minecraft.lingering_potion.effect.flame_extended": "Оседающее зелье жжения",
-      "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
-      "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
       "item.concoction.obsidian_tears_bottle": "Bottle of Obsidian Tears",
-      "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Meat Goulash",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
-      "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
-      "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
-      "block.concoction.red_pillow_block": "Красная подушка",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
+      "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
+      "advancements.screenshot.title": "Скриншот!",
+      "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
+      "block.concoction.pillow_block": "Белая подушка",
+      "advancements.key_to_the_heart.descr": "Make any food with cauldron",
+      "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
+      "effect.concoction.instability": "Нестабильность",
+      "effect.concoction.frost_touch": "Ледяное касание",
+      "item.concoction.cherry": "Вишня",
+      "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
+      "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
+      "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
+      "block.concoction.gray_pillow_block": "Серая подушка",
+      "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
+      "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
+      "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
+      "item.minecraft.potion.effect.snowflake": "Зелье мороза",
+      "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
+      "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
+      "item.concoction.roasted_pinecone": "Pinecone",
+      "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
+      "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
+      "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
+      "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
+      "effect.concoction.sweetness": "Сладость",
+      "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
+      "item.concoction.butter": "Sunflower Oil",
+      "item.concoction.cherry_cookie": "Вишнёвое печенье",
+      "block.concoction.crop_mint": "Мята",
+      "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
+      "item.concoction.mint_brew": "Мятный отвар",
+      "item.concoction.fabric": "Ткань",
+      "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
+      "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
+      "block.concoction.wild_cotton": "Дикий хлопок",
+      "subtitles.cauldron_boiling": "Cauldron is boiling",
+      "block.concoction_brew.mint": "Мята",
+      "subtitles.music_disc_hotice": "Играет пластинка",
+      "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
+      "block.concoction.pink_pillow_block": "Розовая подушка",
+      "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
+      "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
+      "block.concoction.red_pillow_block": "Красная подушка",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
       "block.concoction.small_light_blue_pillow_block": "Маленькая голубая подушка",
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
-      "advancements.screenshot.title": "Скриншот!",
       "death.attack.rift": "%1$s испытал межпространственное нарезание",
-      "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item_group.concoction.concoction": "Concoction",
-      "block.concoction.pillow_block": "Белая подушка",
-      "advancements.key_to_the_heart.descr": "Make any food with cauldron",
-      "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
       "item.concoction.cotton": "Хлопок",
-      "effect.concoction.instability": "Нестабильность",
-      "effect.concoction.frost_touch": "Ледяное касание",
-      "item.concoction.cherry": "Вишня",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
-      "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
-      "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
+      "item.concoction.cocao_butter": "Dairy Butter",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
-      "block.concoction.blue_pillow_block": "Синяя подушка",
-      "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
-      "block.concoction.gray_pillow_block": "Серая подушка"
+      "block.concoction.blue_pillow_block": "Синяя подушка"
     },
     "en_us": {
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
-      "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
-      "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
-      "block.concoction.small_green_pillow_block": "Small Green Pillow",
-      "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
       "block.concoction.mint": "Mint",
-      "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
-      "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
-      "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
-      "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
-      "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
+      "item.concoction.pinecone": "Pinecone",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
-      "effect.concoction.sweetness": "Sweetness",
-      "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
-      "block.concoction.crop_mint": "Crop Mint",
-      "item.concoction.cherry_cookie": "Cherry Cookie",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
-      "block.concoction.small_black_pillow_block": "Small Black Pillow",
-      "item.concoction.mint_brew": "Mint Brew",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
-      "item.concoction.fabric": "Fabric",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
-      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both.",
-      "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
-      "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
-      "subtitles.cauldron_boiling": "Cauldron is boiling",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
-      "block.concoction_brew.mint": "Mint",
       "item.minecraft.lingering_potion.effect.flame_extended": "Lingering Potion of Flame",
-      "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
-      "block.concoction.small_red_pillow_block": "Small Red Pillow",
       "advancements.mount_ever_rest.title": "Not-so-Soft Landing",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
-      "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Meat Goulash",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
-      "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
-      "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
-      "block.concoction.red_pillow_block": "Red Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
+      "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
+      "advancements.screenshot.title": "Screenshot",
+      "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
+      "block.concoction.pillow_block": "White Pillow",
+      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
+      "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
+      "effect.concoction.instability": "Instability",
+      "effect.concoction.frost_touch": "Frost Touch",
+      "item.concoction.cherry": "Cherry",
+      "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
+      "block.concoction.small_white_pillow_block": "Small White Pillow",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
+      "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
+      "block.concoction.gray_pillow_block": "Gray Pillow",
+      "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
+      "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
+      "block.concoction.small_green_pillow_block": "Small Green Pillow",
+      "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
+      "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
+      "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
+      "item.concoction.roasted_pinecone": "Roasted Pinecone",
+      "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
+      "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
+      "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
+      "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
+      "effect.concoction.sweetness": "Sweetness",
+      "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
+      "item.concoction.butter": "Dairy Butter",
+      "item.concoction.cherry_cookie": "Cherry Cookie",
+      "block.concoction.crop_mint": "Crop Mint",
+      "block.concoction.small_black_pillow_block": "Small Black Pillow",
+      "item.concoction.mint_brew": "Mint Brew",
+      "item.concoction.fabric": "Fabric",
+      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both.",
+      "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
+      "block.concoction.wild_cotton": "Wild Cotton",
+      "subtitles.cauldron_boiling": "Cauldron is boiling",
+      "block.concoction_brew.mint": "Mint",
+      "subtitles.music_disc_hotice": "Music disc is playing",
+      "block.concoction.small_red_pillow_block": "Small Red Pillow",
+      "block.concoction.pink_pillow_block": "Pink Pillow",
+      "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
+      "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
+      "block.concoction.red_pillow_block": "Red Pillow",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
-      "advancements.screenshot.title": "Screenshot",
       "death.attack.rift": "%1$s suffered interdimensional rift quartering",
-      "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
-      "block.concoction.pillow_block": "White Pillow",
-      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
-      "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
       "item.concoction.cotton": "Cotton",
-      "effect.concoction.instability": "Instability",
-      "effect.concoction.frost_touch": "Frost Touch",
-      "item.concoction.cherry": "Cherry",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
-      "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
-      "block.concoction.small_white_pillow_block": "Small White Pillow",
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
+      "item.concoction.cocao_butter": "Cocao Butter",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
-      "block.concoction.blue_pillow_block": "Blue Pillow",
-      "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
-      "block.concoction.gray_pillow_block": "Gray Pillow"
+      "block.concoction.blue_pillow_block": "Blue Pillow"
     }
   },
   "foldersRoot": {
@@ -2845,12 +2933,7 @@
       },
       {
         "name": "achivements",
-        "children": [
-          {
-            "name": "recipes",
-            "children": []
-          }
-        ]
+        "children": []
       },
       {
         "name": "general",
@@ -2867,6 +2950,10 @@
       },
       {
         "name": "potion",
+        "children": []
+      },
+      {
+        "name": "oils",
         "children": []
       }
     ]

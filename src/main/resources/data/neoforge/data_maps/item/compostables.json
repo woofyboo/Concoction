@@ -20,6 +20,9 @@
     },
     "concoction:roasted_sunflower_seeds": {
       "chance": 0.3
+    },
+    "concoction:pinecone": {
+      "chance": 0.3
     }
   }
 }

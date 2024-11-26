@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smelting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 2.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smeltingInputStack": {
+      "value": "CUSTOM:Pinecone"
+    },
+    "smeltingReturnStack": {
+      "value": "CUSTOM:RoastedPinecone"
+    },
+    "name": "roasted_pinecone_furnace",
+    "namespace": "mod"
+  }
+}
