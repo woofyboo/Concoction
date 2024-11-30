@@ -10,6 +10,11 @@
     "concoction:meat_goulash",
     "concoction:cocao_butter",
     "concoction:butter",
-    "concoction:roasted_pinecone"
+    "concoction:roasted_pinecone",
+    "concoction:hashbrowns",
+    "concoction:fried_egg",
+    "concoction:fish_and_chips",
+    "concoction:chocolate",
+    "concoction:mashed_potatoes"
   ]
 }

@@ -33,7 +33,7 @@
 
   "result": {
     "id": "minecraft:beetroot_soup",
-    "interactionType": "hand",
+    "interactionType": "bowl",
     "count": "3"
   }
 }

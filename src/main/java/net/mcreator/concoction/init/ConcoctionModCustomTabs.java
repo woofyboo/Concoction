@@ -48,9 +48,14 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
+				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
+				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
+				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
+				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
+				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());

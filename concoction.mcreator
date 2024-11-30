@@ -2588,6 +2588,128 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "PineconeDrop",
+      "type": "loottable",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone_drop",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/inject/spruce_leaves.json"
+        ]
+      },
+      "path": "~/cherry"
+    },
+    {
+      "name": "Hashbrowns",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hashbrowns",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/hashbrowns.json",
+          "src/main/java/net/mcreator/concoction/item/HashbrownsItem.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "FriedEgg",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fried_egg",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/fried_egg.json",
+          "src/main/java/net/mcreator/concoction/item/FriedEggItem.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "FishAndChips",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fish_and_chips",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/FishAndChipsItem.java",
+          "src/main/resources/assets/concoction/models/item/fish_and_chips.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "FriedEggCraftFurnace",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fried_egg_craft_furnace",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/fried_egg_craft_furnace.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "FriedEggCraftSmoker",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fried_egg_craft_smoker",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/fried_egg_craft_smoker.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "FriedEggCraftCampfire",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fried_egg_craft_campfire",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/fried_egg_craft_campfire.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "Chocolate",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chocolate",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/ChocolateItem.java",
+          "src/main/resources/assets/concoction/models/item/chocolate.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MashedPotatoes",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mashed_potatoes",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/mashed_potatoes.json",
+          "src/main/java/net/mcreator/concoction/item/MashedPotatoesItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2645,7 +2767,9 @@
     "ITEMS:c:sugary_foods": [
       "Items.HONEY_BOTTLE"
     ],
-    "ITEMS:c:candied_foods": [],
+    "ITEMS:c:candied_foods": [
+      "CUSTOM:Chocolate"
+    ],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
     ],
@@ -2673,7 +2797,12 @@
       "CUSTOM:MeatGoulash",
       "CUSTOM:CocaoButter",
       "CUSTOM:Butter",
-      "CUSTOM:RoastedPinecone"
+      "CUSTOM:RoastedPinecone",
+      "CUSTOM:Hashbrowns",
+      "CUSTOM:FriedEgg",
+      "CUSTOM:FishAndChips",
+      "CUSTOM:Chocolate",
+      "CUSTOM:MashedPotatoes"
     ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
@@ -2720,6 +2849,7 @@
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
+      "item.concoction.hashbrowns": "Hashbrowns",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
@@ -2745,6 +2875,7 @@
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
+      "item.concoction.mashed_potatoes": "Fish and Chips",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
@@ -2758,6 +2889,7 @@
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
+      "item.concoction.fried_egg": "Hashbrowns",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "block.concoction.gray_pillow_block": "Серая подушка",
@@ -2791,11 +2923,13 @@
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "block.concoction.red_pillow_block": "Красная подушка",
+      "item.concoction.fish_and_chips": "Fish and Chips",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
       "block.concoction.small_light_blue_pillow_block": "Маленькая голубая подушка",
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "death.attack.rift": "%1$s испытал межпространственное нарезание",
+      "item.concoction.chocolate": "Chocolate",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.cotton": "Хлопок",
@@ -2821,6 +2955,7 @@
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
+      "item.concoction.hashbrowns": "Hashbrowns",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
@@ -2846,6 +2981,7 @@
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
+      "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
@@ -2859,6 +2995,7 @@
       "item.concoction.cherry": "Cherry",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
+      "item.concoction.fried_egg": "Fried Egg",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
@@ -2892,11 +3029,13 @@
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "block.concoction.red_pillow_block": "Red Pillow",
+      "item.concoction.fish_and_chips": "Fish and Chips",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
       "death.attack.rift": "%1$s suffered interdimensional rift quartering",
+      "item.concoction.chocolate": "Chocolate",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.cotton": "Cotton",
@@ -2906,7 +3045,7 @@
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
-      "item.concoction.cocao_butter": "Cocao Butter",
+      "item.concoction.cocao_butter": "Cocoa Butter",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "block.concoction.blue_pillow_block": "Blue Pillow"
     }

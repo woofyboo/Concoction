@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smelting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "FOOD",
+    "xpReward": 6.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smeltingInputStack": {
+      "value": "Items.EGG"
+    },
+    "smeltingReturnStack": {
+      "value": "CUSTOM:FriedEgg"
+    },
+    "name": "fried_egg_craft_furnace",
+    "namespace": "mod"
+  }
+}

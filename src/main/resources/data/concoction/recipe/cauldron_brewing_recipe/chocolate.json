@@ -1,0 +1,31 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+      "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "concoction:cocao_butter"
+    },
+    {
+      "item": "concoction:butter"
+    }
+
+  ],
+
+  "result": {
+    "id": "concoction:chocolate",
+    "interactionType": "hand",
+    "count": "4"
+  }
+}

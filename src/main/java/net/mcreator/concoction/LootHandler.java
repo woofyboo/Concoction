@@ -57,6 +57,10 @@ public class LootHandler {
 				case "cherry_leaves":
 					addPool.accept(getInjectPool(file));
 					break;
+				case "spruce_leaves":
+					addPool.accept(getInjectPool(file));
+					break;
+
 				default:
 					break;
 			}

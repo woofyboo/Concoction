@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Campfire cooking",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "FOOD",
+    "xpReward": 6.0,
+    "cookingTime": 600,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "campfireCookingInputStack": {
+      "value": "Items.EGG"
+    },
+    "campfireCookingReturnStack": {
+      "value": "CUSTOM:FriedEgg"
+    },
+    "name": "fried_egg_craft_campfire",
+    "namespace": "mod"
+  }
+}

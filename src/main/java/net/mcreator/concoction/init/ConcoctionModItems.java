@@ -26,9 +26,14 @@ import net.mcreator.concoction.item.MintySlimeJellyItem;
 import net.mcreator.concoction.item.MintCookieItem;
 import net.mcreator.concoction.item.MintBrewItem;
 import net.mcreator.concoction.item.MeatGoulashItem;
+import net.mcreator.concoction.item.MashedPotatoesItem;
+import net.mcreator.concoction.item.HashbrownsItem;
+import net.mcreator.concoction.item.FriedEggItem;
+import net.mcreator.concoction.item.FishAndChipsItem;
 import net.mcreator.concoction.item.FabricItem;
 import net.mcreator.concoction.item.CottonOilItem;
 import net.mcreator.concoction.item.CocaoButterItem;
+import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
 import net.mcreator.concoction.item.ButterItem;
@@ -61,6 +66,11 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> COCAO_BUTTER = REGISTRY.register("cocao_butter", CocaoButterItem::new);
 	public static final DeferredItem<Item> PINECONE = REGISTRY.register("pinecone", PineconeItem::new);
 	public static final DeferredItem<Item> ROASTED_PINECONE = REGISTRY.register("roasted_pinecone", RoastedPineconeItem::new);
+	public static final DeferredItem<Item> HASHBROWNS = REGISTRY.register("hashbrowns", HashbrownsItem::new);
+	public static final DeferredItem<Item> FRIED_EGG = REGISTRY.register("fried_egg", FriedEggItem::new);
+	public static final DeferredItem<Item> FISH_AND_CHIPS = REGISTRY.register("fish_and_chips", FishAndChipsItem::new);
+	public static final DeferredItem<Item> CHOCOLATE = REGISTRY.register("chocolate", ChocolateItem::new);
+	public static final DeferredItem<Item> MASHED_POTATOES = REGISTRY.register("mashed_potatoes", MashedPotatoesItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

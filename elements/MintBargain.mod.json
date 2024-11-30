@@ -127,6 +127,81 @@
             "priceMultiplier": 0.05
           }
         ]
+      },
+      {
+        "villagerProfession": {
+          "value": "BUTCHER"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "CUSTOM:Butter"
+            },
+            "countPrice1": 4,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "Items.EMERALD"
+            },
+            "countOffer": 1,
+            "level": 1,
+            "maxTrades": 16,
+            "xp": 5,
+            "priceMultiplier": 0.05
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "FARMER"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "Items.EMERALD"
+            },
+            "countPrice1": 1,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "CUSTOM:Chocolate"
+            },
+            "countOffer": 4,
+            "level": 3,
+            "maxTrades": 12,
+            "xp": 10,
+            "priceMultiplier": 0.05
+          }
+        ]
+      },
+      {
+        "villagerProfession": {
+          "value": "CLERIC"
+        },
+        "entries": [
+          {
+            "price1": {
+              "value": "CUSTOM:ObsidianTearsBottle"
+            },
+            "countPrice1": 1,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "Items.EMERALD"
+            },
+            "countOffer": 8,
+            "level": 2,
+            "maxTrades": 4,
+            "xp": 10,
+            "priceMultiplier": 0.05
+          }
+        ]
       }
     ]
   }
