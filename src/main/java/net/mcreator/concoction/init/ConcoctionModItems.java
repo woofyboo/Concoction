@@ -20,6 +20,7 @@ import net.mcreator.concoction.item.SunflowerOilItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
 import net.mcreator.concoction.item.RoastedPineconeItem;
 import net.mcreator.concoction.item.PineconeItem;
+import net.mcreator.concoction.item.OnionItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
 import net.mcreator.concoction.item.MusicDiscHotIceItem;
 import net.mcreator.concoction.item.MintySlimeJellyItem;
@@ -70,6 +71,9 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> FISH_AND_CHIPS = REGISTRY.register("fish_and_chips", FishAndChipsItem::new);
 	public static final DeferredItem<Item> CHOCOLATE = REGISTRY.register("chocolate", ChocolateItem::new);
 	public static final DeferredItem<Item> MASHED_POTATOES = REGISTRY.register("mashed_potatoes", MashedPotatoesItem::new);
+	public static final DeferredItem<Item> CROP_ONION = block(ConcoctionModBlocks.CROP_ONION);
+	public static final DeferredItem<Item> ONION = REGISTRY.register("onion", OnionItem::new);
+	public static final DeferredItem<Item> WILD_ONION = block(ConcoctionModBlocks.WILD_ONION);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

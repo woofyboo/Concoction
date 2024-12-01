@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "concoction:block/crop_onion0"
+    },
+    "age=1": {
+      "model": "concoction:block/crop_onion1"
+    },
+    "age=2": {
+      "model": "concoction:block/crop_onion2"
+    },
+    "age=3": {
+      "model": "concoction:block/crop_onion3"
+    }
+  }
+}

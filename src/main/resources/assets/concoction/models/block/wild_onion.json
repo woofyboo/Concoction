@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/wild_onion",
+    "particle": "concoction:block/wild_onion"
+  },
+  "render_type": "cutout"
+}

@@ -2465,6 +2465,56 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "CropOnion",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "crop_onion",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/crop_onion.json",
+          "src/main/resources/assets/concoction/models/block/crop_onion.json",
+          "src/main/java/net/mcreator/concoction/block/CropOnionBlock.java",
+          "src/main/resources/assets/concoction/models/item/crop_onion.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "Onion",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "onion",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/OnionItem.java",
+          "src/main/resources/assets/concoction/models/item/onion.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "WildOnion",
+      "type": "plant",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "wild_onion",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/configured_feature/wild_onion.json",
+          "src/main/resources/data/concoction/loot_table/blocks/wild_onion.json",
+          "src/main/java/net/mcreator/concoction/block/WildOnionBlock.java",
+          "src/main/resources/assets/concoction/models/block/wild_onion.json",
+          "src/main/resources/assets/concoction/blockstates/wild_onion.json",
+          "src/main/resources/assets/concoction/models/item/wild_onion.json",
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_onion.json",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/wild_onion_biome_modifier.json"
+        ]
+      },
+      "path": "~/onion"
     }
   ],
   "variable_elements": [],
@@ -2554,7 +2604,8 @@
       "CUSTOM:FriedEgg",
       "CUSTOM:FishAndChips",
       "CUSTOM:Chocolate",
-      "CUSTOM:MashedPotatoes"
+      "CUSTOM:MashedPotatoes",
+      "CUSTOM:Onion"
     ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
@@ -2591,9 +2642,10 @@
   "language_map": {
     "ru_ru": {
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
+      "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%s секунд",
-      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "item.concoction.cotton_oil": "Хлопковое масло",
+      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Помнись!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -2606,18 +2658,19 @@
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
+      "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
-      "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
+      "block.concoction.brown_pillow_block": "Коричневая подушка",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
       "item.minecraft.lingering_potion.effect.flame_extended": "Оседающее зелье жжения",
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
-      "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
+      "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
@@ -2627,15 +2680,15 @@
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
-      "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.mashed_potatoes": "Картофельное пюре",
+      "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.sunflower_oil": "Подсолнечное масло",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "advancements.screenshot.title": "Скриншот!",
       "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
-      "block.concoction.pillow_block": "Белая подушка",
       "advancements.key_to_the_heart.descr": "Приготовь что-нибудь с помощью котла",
+      "block.concoction.pillow_block": "Белая подушка",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
       "effect.concoction.instability": "Нестабильность",
       "effect.concoction.frost_touch": "Ледяное касание",
@@ -2695,13 +2748,15 @@
       "effect.concoction.minty_breath": "Свежесть",
       "item.concoction.cocao_butter": "Какао масло",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
-      "block.concoction.blue_pillow_block": "Синяя подушка"
+      "block.concoction.blue_pillow_block": "Синяя подушка",
+      "item.concoction.onion": "Onion"
     },
     "en_us": {
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
+      "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%s seconds",
-      "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -2714,18 +2769,19 @@
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
+      "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
-      "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "block.concoction.brown_pillow_block": "Brown Pillow",
+      "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
       "item.minecraft.lingering_potion.effect.flame_extended": "Lingering Potion of Flame",
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
       "advancements.mount_ever_rest.title": "Not-so-Soft Landing",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
-      "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
+      "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Meat Goulash",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
@@ -2735,15 +2791,15 @@
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
-      "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
+      "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "advancements.screenshot.title": "Screenshot",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
-      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
       "block.concoction.pillow_block": "White Pillow",
+      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
       "effect.concoction.instability": "Instability",
       "effect.concoction.frost_touch": "Frost Touch",
@@ -2803,7 +2859,8 @@
       "effect.concoction.minty_breath": "Freshness",
       "item.concoction.cocao_butter": "Cocoa Butter",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
-      "block.concoction.blue_pillow_block": "Blue Pillow"
+      "block.concoction.blue_pillow_block": "Blue Pillow",
+      "item.concoction.onion": "Onion"
     }
   },
   "foldersRoot": {
@@ -2849,6 +2906,10 @@
       },
       {
         "name": "oils",
+        "children": []
+      },
+      {
+        "name": "onion",
         "children": []
       }
     ]

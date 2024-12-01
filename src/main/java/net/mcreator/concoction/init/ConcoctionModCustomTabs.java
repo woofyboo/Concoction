@@ -29,9 +29,13 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CHERRY.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.ONION.get());
 //Дикие Растения
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
+				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
+
+
 
 // Материалы
 				tabData.accept(ConcoctionModItems.FABRIC.get());
