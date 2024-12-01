@@ -35,17 +35,6 @@
       "path": "~/mint"
     },
     {
-      "name": "MintBargain",
-      "type": "villagertrade",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "mint_bargain",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/mint"
-    },
-    {
       "name": "MintLeafParticleVariant1",
       "type": "particle",
       "compiles": true,
@@ -912,139 +901,6 @@
       "path": "~/cotton"
     },
     {
-      "name": "CompostTempMintSeeds",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "compost_temp_mint_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/CompostTempMintSeedsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "blockstate",
-            "type": "blockstate"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostTempCotton",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "compost_temp_cotton",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/CompostTempCottonProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "blockstate",
-            "type": "blockstate"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostMint",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_mint",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostCherry",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_cherry",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostMintCookie",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_mint_cookie",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostCherryCookie",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_cherry_cookie",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostWildCotton",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_wild_cotton",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
       "name": "Sunflower",
       "type": "block",
       "compiles": true,
@@ -1166,69 +1022,6 @@
         ]
       },
       "path": "~/sunflower"
-    },
-    {
-      "name": "CompostRoastedSeeds",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_roasted_seeds",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "CompostTempSunflowerSeeds",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "compost_temp_sunflower_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/CompostTempSunflowerSeedsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "blockstate",
-            "type": "blockstate"
-          },
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/general/compost"
-    },
-    {
-      "name": "BeetrootSugarCraft",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "beetroot_sugar_craft",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/recipe/sugar_from_beetroot.json"
-        ]
-      },
-      "path": "~/general"
     },
     {
       "name": "FabricPainitingCraft",
@@ -2499,17 +2292,6 @@
       "path": "~/general"
     },
     {
-      "name": "PineconeCompost",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "pinecone_compost",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
       "name": "RoastedPinecone",
       "type": "item",
       "compiles": true,
@@ -2714,84 +2496,48 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:maintains_farmland": [
-      "CUSTOM:CropCotton",
-      "CUSTOM:CropMint",
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:mod:oils": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
+    "ITEMS:c:sweetened_foods": [
+      "Items.MELON"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:concoction:edible_when_placed": [
-      "CUSTOM:MintBrew"
-    ],
-    "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
-    "ITEMS:mod:oils_and_butters": [
-      "TAG:concoction:oils",
-      "TAG:concoction:butters"
-    ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
-    ],
-    "ITEMS:mod:oils": [
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil"
-    ],
-    "ITEMS:c:foods/edible_when_placed": [
-      "CUSTOM:MintChocolateCake"
-    ],
-    "ITEMS:c:sugary_foods": [
-      "Items.HONEY_BOTTLE"
-    ],
-    "ITEMS:c:bottles": [
-      "CUSTOM:ObsidianTearsBottle",
-      "Items.OMINOUS_BOTTLE",
-      "Items.EXPERIENCE_BOTTLE",
-      "Items.HONEY_BOTTLE",
-      "Items.POTIONITEM",
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil"
-    ],
-    "ITEMS:mod:butters": [
-      "CUSTOM:CocaoButter",
-      "CUSTOM:Butter"
-    ],
-    "ITEMS:c:music_discs": [
-      "CUSTOM:MusicDiscHotIce"
-    ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:c:sugary_foods": [
+      "Items.HONEY_BOTTLE"
+    ],
     "ITEMS:c:candied_foods": [
       "CUSTOM:Chocolate"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:c:sweet_foods": [
-      "Items.SWEET_BERRIES",
-      "CUSTOM:SweetSlimeJelly"
-    ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:c:sweetened_foods": [
-      "Items.MELON"
+    "ITEMS:mod:oils_and_butters": [
+      "TAG:concoction:oils",
+      "TAG:concoction:butters"
     ],
     "ITEMS:c:foods": [
       "CUSTOM:Cherry",
@@ -2809,6 +2555,36 @@
       "CUSTOM:FishAndChips",
       "CUSTOM:Chocolate",
       "CUSTOM:MashedPotatoes"
+    ],
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:sweet_foods": [
+      "Items.SWEET_BERRIES",
+      "CUSTOM:SweetSlimeJelly"
+    ],
+    "ITEMS:c:bottles": [
+      "CUSTOM:ObsidianTearsBottle",
+      "Items.OMINOUS_BOTTLE",
+      "Items.EXPERIENCE_BOTTLE",
+      "Items.HONEY_BOTTLE",
+      "Items.POTIONITEM",
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
+    "BLOCKS:minecraft:bee_growables": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
+    ],
+    "ITEMS:c:music_discs": [
+      "CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:mod:butters": [
+      "CUSTOM:CocaoButter",
+      "CUSTOM:Butter"
     ]
   },
   "tab_element_order": {},
@@ -3080,7 +2856,7 @@
   "workspaceSettings": {
     "modid": "concoction",
     "modName": "Concoction",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "author": "Sebsish, woofyboo",
     "websiteURL": "https://www.youtube.com/watch?v\u003ddQw4w9WgXcQ",
     "license": "GNU General Public License version 3 (GPLv3)",

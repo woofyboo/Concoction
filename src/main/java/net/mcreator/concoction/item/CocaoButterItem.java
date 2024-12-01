@@ -7,6 +7,6 @@ import net.minecraft.world.food.FoodProperties;
 
 public class CocaoButterItem extends Item {
 	public CocaoButterItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2f).build()));
+		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2f).build()));
 	}
 }
