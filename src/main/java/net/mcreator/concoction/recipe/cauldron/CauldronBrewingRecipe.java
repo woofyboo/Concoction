@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput> {
     private final BlockState inputState;
+    private final int cookingTime;
     private final List<Ingredient> inputItems;
     private final Map<String, String> result;
 
@@ -47,8 +49,9 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return result;
     }
 
-    public CauldronBrewingRecipe(BlockState inputState, List<Ingredient> inputItems, Map<String, String> result) {
+    public CauldronBrewingRecipe(BlockState inputState, int cookingTime, List<Ingredient> inputItems, Map<String, String> result) {
         this.inputState = inputState;
+        this.cookingTime = cookingTime;
         this.inputItems = inputItems;
         this.result = result;
     }
@@ -119,6 +122,11 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return null;
     }
 
+    @Override
+    public ItemStack getToastSymbol() {
+        return new ItemStack(Items.CAULDRON);
+    }
+
     public Map<String, String> getOutput() {
         return result;
     }
@@ -137,9 +145,14 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         return ConcoctionModRecipes.CAULDRON_BREWING_RECIPE_TYPE.get();
     }
 
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
     public static class Serializer implements RecipeSerializer<CauldronBrewingRecipe> {
         public static final MapCodec<CauldronBrewingRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 BlockState.CODEC.fieldOf("state").forGetter(CauldronBrewingRecipe::getInputState),
+                Codec.INT.fieldOf("cooking_time").orElse(200).forGetter(CauldronBrewingRecipe::getCookingTime),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").forGetter(CauldronBrewingRecipe::getInputItems),
                 Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("result").forGetter(CauldronBrewingRecipe::getResult)
         ).apply(inst, CauldronBrewingRecipe::new));
@@ -147,6 +160,7 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         public static final StreamCodec<RegistryFriendlyByteBuf, CauldronBrewingRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), CauldronBrewingRecipe::getInputState,
+                        ByteBufCodecs.INT, CauldronBrewingRecipe::getCookingTime,
                         Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), CauldronBrewingRecipe::getInputItems,
                         ByteBufCodecs.map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.STRING_UTF8), CauldronBrewingRecipe::getResult,
                         CauldronBrewingRecipe::new);

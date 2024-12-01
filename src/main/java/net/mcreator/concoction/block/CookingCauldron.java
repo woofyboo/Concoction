@@ -4,6 +4,7 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
+import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.main.GameConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,10 +29,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableMap;
@@ -40,9 +45,11 @@ import java.util.Map;
 
 import static java.lang.Math.pow;
 
+//@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock {
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
+//    public static final EnumProperty WATER_TYPE = BooleanProperty.create("cooking");
     private boolean cookingSoundPlaying = false;
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
@@ -198,6 +205,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                         ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", cauldron.getCraftResult().get("interactionType"));
                         break;
                 }
+//                if (cauldron.getCraftResult().get("id").isEmpty()) pLevel.setBlockAndUpdate(pPos, pState.setValue(LIT, false));
                 return ItemInteractionResult.CONSUME;
             }
 
@@ -250,6 +258,18 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
         return false;
     }
 
-
-
+//    @SubscribeEvent
+//    public static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event) {
+//        // Parameters are the block's state, the level the block is in, the block's position, and the tint index.
+//        // The level and position may be null.
+//        event.register((state, level, pos, tintIndex) -> {
+////                    BlockColors
+//                    // Replace with your own calculation. See the BlockColors class for vanilla references.
+//                    // Colors are in ARGB format. Generally, if the tint index is -1, it means that no tinting
+//                    // should take place and a default value should be used instead.
+//                    return 0xFFFFFFFF;
+//                },
+//                // A varargs of blocks to apply the tinting to
+//                Blocks.WATER_CAULDRON);
+//    }
 }

@@ -46,7 +46,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
 	public static final DeferredItem<Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
 	public static final DeferredItem<Item> MINT_COOKIE = REGISTRY.register("mint_cookie", MintCookieItem::new);
-	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
+	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
 	public static final DeferredItem<Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
 	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
@@ -107,6 +107,9 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> SMALL_GRAY_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_GRAY_PILLOW_BLOCK);
 	public static final DeferredItem<Item> SMALL_BLACK_PILLOW_BLOCK = block(ConcoctionModBlocks.SMALL_BLACK_PILLOW_BLOCK);
 
+	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block, int stackSize) {
+		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().stacksTo(stackSize)));
+	}
 	// End of user code block custom items
 	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

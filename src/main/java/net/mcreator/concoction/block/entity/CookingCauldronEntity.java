@@ -50,8 +50,9 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     );
 
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 200;
     private final int DEFAULT_MAX_PROGRESS = 200;
+
     private NonNullList<ItemStack> items = NonNullList.withSize(
             this.ContainerSize,
             ItemStack.EMPTY
@@ -62,6 +63,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         super(ConcoctionModBlockEntities.COOKING_CAULDRON.get(), pos, state);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
@@ -132,7 +134,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
     private void resetProgress() {
         this.progress = 0;
-        this.maxProgress = DEFAULT_MAX_PROGRESS;
+        this.maxProgress = recipe == null ? DEFAULT_MAX_PROGRESS : recipe.value().getCookingTime();
         this.isCooking = false;
         this.recipe = null;
     }
@@ -190,6 +192,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         }
 
         this.recipe = recipe.get();
+        this.maxProgress = this.recipe.value().getCookingTime();
         return true;
     }
 
