@@ -35,6 +35,10 @@ public class SnowflakePotionCraftBrewingRecipe implements IBrewingRecipe {
 		return (inputItem == Items.POTION || inputItem == Items.SPLASH_POTION || inputItem == Items.LINGERING_POTION) && optionalPotion.isPresent() && optionalPotion.get().is(Potions.THICK);
 	}
 
+	public Ingredient getIngredient() {
+		return Ingredient.of(new ItemStack(ConcoctionModBlocks.MINT.get()));
+	}
+
 	@Override
 	public boolean isIngredient(ItemStack ingredient) {
 		return Ingredient.of(new ItemStack(ConcoctionModBlocks.MINT.get())).test(ingredient);

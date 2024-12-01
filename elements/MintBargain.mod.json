@@ -55,31 +55,6 @@
       },
       {
         "villagerProfession": {
-          "value": "FARMER"
-        },
-        "entries": [
-          {
-            "price1": {
-              "value": "Items.EMERALD"
-            },
-            "countPrice1": 1,
-            "price2": {
-              "value": ""
-            },
-            "countPrice2": 1,
-            "offer": {
-              "value": "CUSTOM:MintChocolateCake"
-            },
-            "countOffer": 1,
-            "level": 4,
-            "maxTrades": 12,
-            "xp": 15,
-            "priceMultiplier": 0.049999999999999996
-          }
-        ]
-      },
-      {
-        "villagerProfession": {
           "value": "SHEPHERD"
         },
         "entries": [

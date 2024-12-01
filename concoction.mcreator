@@ -1023,17 +1023,6 @@
       "path": "~/general/compost"
     },
     {
-      "name": "CompostMintCake",
-      "type": "itemextension",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "compost_mint_cake",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/general/compost"
-    },
-    {
       "name": "CompostCherryCookie",
       "type": "itemextension",
       "compiles": true,
@@ -2725,51 +2714,84 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
+    "BLOCKS:minecraft:maintains_farmland": [
+      "CUSTOM:CropCotton",
+      "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
-    ],
-    "ITEMS:mod:oils": [
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil"
-    ],
-    "ITEMS:c:sweetened_foods": [
-      "Items.MELON"
-    ],
-    "ITEMS:c:foods/edible_when_placed": [
-      "CUSTOM:MintChocolateCake"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:minecraft:flowers": [
+    "ITEMS:concoction:edible_when_placed": [
+      "CUSTOM:MintBrew"
+    ],
+    "BLOCKS:minecraft:bee_growables": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
+    ],
+    "ITEMS:mod:oils_and_butters": [
+      "TAG:concoction:oils",
+      "TAG:concoction:butters"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:mod:oils": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
+    "ITEMS:c:foods/edible_when_placed": [
+      "CUSTOM:MintChocolateCake"
     ],
     "ITEMS:c:sugary_foods": [
       "Items.HONEY_BOTTLE"
     ],
+    "ITEMS:c:bottles": [
+      "CUSTOM:ObsidianTearsBottle",
+      "Items.OMINOUS_BOTTLE",
+      "Items.EXPERIENCE_BOTTLE",
+      "Items.HONEY_BOTTLE",
+      "Items.POTIONITEM",
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil"
+    ],
+    "ITEMS:mod:butters": [
+      "CUSTOM:CocaoButter",
+      "CUSTOM:Butter"
+    ],
+    "ITEMS:c:music_discs": [
+      "CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:minecraft:flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
     "ITEMS:c:candied_foods": [
       "CUSTOM:Chocolate"
-    ],
-    "ITEMS:minecraft:music_discs": [
-      "~CUSTOM:MusicDiscHotIce"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
       "CUSTOM:Sunflower"
     ],
+    "ITEMS:c:sweet_foods": [
+      "Items.SWEET_BERRIES",
+      "CUSTOM:SweetSlimeJelly"
+    ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower"
     ],
-    "ITEMS:mod:oils_and_butters": [
-      "TAG:concoction:oils",
-      "TAG:concoction:butters"
+    "ITEMS:c:sweetened_foods": [
+      "Items.MELON"
     ],
     "ITEMS:c:foods": [
       "CUSTOM:Cherry",
@@ -2787,36 +2809,6 @@
       "CUSTOM:FishAndChips",
       "CUSTOM:Chocolate",
       "CUSTOM:MashedPotatoes"
-    ],
-    "BLOCKS:minecraft:maintains_farmland": [
-      "CUSTOM:CropCotton",
-      "CUSTOM:CropMint",
-      "CUSTOM:Sunflower"
-    ],
-    "ITEMS:c:sweet_foods": [
-      "Items.SWEET_BERRIES",
-      "CUSTOM:SweetSlimeJelly"
-    ],
-    "ITEMS:c:bottles": [
-      "CUSTOM:ObsidianTearsBottle",
-      "Items.OMINOUS_BOTTLE",
-      "Items.EXPERIENCE_BOTTLE",
-      "Items.HONEY_BOTTLE",
-      "Items.POTIONITEM",
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil"
-    ],
-    "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower"
-    ],
-    "ITEMS:c:music_discs": [
-      "CUSTOM:MusicDiscHotIce"
-    ],
-    "ITEMS:mod:butters": [
-      "CUSTOM:CocaoButter",
-      "CUSTOM:Butter"
     ]
   },
   "tab_element_order": {},
@@ -2886,6 +2878,7 @@
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
+      "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "effect.concoction.sweetness": "Сладость",
@@ -2993,6 +2986,7 @@
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
       "item.concoction.roasted_pinecone": "Roasted Pinecone",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
+      "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
       "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
       "effect.concoction.sweetness": "Sweetness",
