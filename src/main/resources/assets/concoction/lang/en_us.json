@@ -1,5 +1,6 @@
 {
   "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
+  "gui.cooking_cauldron.time.seconds": "%s seconds",
   "subtitles.cauldron_cooking": "Cauldron is bubbling",
   "item.concoction.cotton_oil": "Cotton Oil",
   "advancements.get_folded.title": "Get Folded!",
@@ -97,20 +98,11 @@
   "block.concoction.purple_pillow_block": "Purple Pillow",
   "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
   "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
+  "gui.cooking_cauldron.title": "Cauldron Cooking",
   "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
   "block.concoction.yellow_pillow_block": "Yellow Pillow",
   "effect.concoction.minty_breath": "Freshness",
   "item.concoction.cocao_butter": "Cocoa Butter",
   "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
-  "block.concoction.blue_pillow_block": "Blue Pillow",
-
-  "gui.cooking_cauldron.title": "Cooking Cauldron",
-  "gui.cooking_cauldron.time.seconds": "%s seconds",
-  "concoction.jei.info.mint": "Mint",
-  "concoction.jei.info.mint_brew": "Mint Brew",
-  "concoction.jei.info.mint_cookie": "Mint Cookie desc",
-  "concoction.jei.info.mint_chocolate_cake": "Mint Chockolate Cake desc",
-  "concoction.jei.info.minty_slime_lelly": "slime desc",
-  "concoction.jei.info.flame": "flame desc",
-  "concoction.jei.info.snowflake": "snowflake desc"
+  "block.concoction.blue_pillow_block": "Blue Pillow"
 }

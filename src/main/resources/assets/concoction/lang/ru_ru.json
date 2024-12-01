@@ -1,5 +1,6 @@
 {
   "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
+  "gui.cooking_cauldron.time.seconds": "%s секунд",
   "item.concoction.cotton_oil": "Хлопковое масло",
   "subtitles.cauldron_cooking": "Котёл мощно кипит",
   "advancements.get_folded.title": "Помнись!",
@@ -97,6 +98,7 @@
   "block.concoction.purple_pillow_block": "Фиолетовая подушка",
   "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
   "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
+  "gui.cooking_cauldron.title": "Готовка в котле",
   "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
   "block.concoction.yellow_pillow_block": "Жёлтая подушка",
   "effect.concoction.minty_breath": "Свежесть",
