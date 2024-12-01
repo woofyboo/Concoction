@@ -1,0 +1,11 @@
+{
+  "parent": "concoction:custom/cake",
+  "textures": {
+    "all": "concoction:block/cake_top",
+    "particle": "concoction:block/cake_top",
+    "side": "concoction:block/cake_side",
+    "top": "concoction:block/cake_top",
+    "bottom": "concoction:block/cake_bottom"
+  },
+  "render_type": "cutout"
+}

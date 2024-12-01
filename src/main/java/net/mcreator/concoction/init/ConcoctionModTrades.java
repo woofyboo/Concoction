@@ -23,9 +23,6 @@ public class ConcoctionModTrades {
 		if (event.getType() == VillagerProfession.FARMER) {
 			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(ConcoctionModItems.CHERRY.get(), 8), new ItemStack(Items.EMERALD), 16, 5, 0.05f));
 		}
-		if (event.getType() == VillagerProfession.FARMER) {
-			event.getTrades().get(4).add(new BasicItemListing(new ItemStack(Items.EMERALD), new ItemStack(ConcoctionModItems.DELETED_MOD_ELEMENT.get()), 12, 15, 0.05f));
-		}
 		if (event.getType() == VillagerProfession.SHEPHERD) {
 			event.getTrades().get(1).add(new BasicItemListing(new ItemStack(ConcoctionModItems.FABRIC.get(), 28), new ItemStack(Items.EMERALD), 16, 5, 0.05f));
 		}
@@ -44,5 +41,10 @@ public class ConcoctionModTrades {
 		if (event.getType() == VillagerProfession.LEATHERWORKER) {
 			event.getTrades().get(4).add(new BasicItemListing(new ItemStack(Items.EMERALD, 3), new ItemStack(ConcoctionModItems.FABRIC.get(), 8), 10, 5, 0.15f));
 		}
+		// Start of user code block custom trades
+		if (event.getType() == VillagerProfession.FARMER) {
+			event.getTrades().get(4).add(new BasicItemListing(new ItemStack(Items.EMERALD), new ItemStack(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get()), 12, 15, 0.05f));
+		}
+		// End of user code block custom trades
 	}
 }
