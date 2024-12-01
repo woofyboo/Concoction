@@ -46,7 +46,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
 	public static final DeferredItem<Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
 	public static final DeferredItem<Item> MINT_COOKIE = REGISTRY.register("mint_cookie", MintCookieItem::new);
-	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE);
 	public static final DeferredItem<Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
 	public static final DeferredItem<Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
 	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);

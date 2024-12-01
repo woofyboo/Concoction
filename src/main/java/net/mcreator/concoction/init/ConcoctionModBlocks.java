@@ -14,7 +14,6 @@ import net.mcreator.concoction.block.WildCarrotBlock;
 import net.mcreator.concoction.block.SunflowerBlock;
 import net.mcreator.concoction.block.SmallPillowBlock;
 import net.mcreator.concoction.block.PillowBlockBlock;
-import net.mcreator.concoction.block.MintChocolateCakeBlock;
 import net.mcreator.concoction.block.MintBlock;
 import net.mcreator.concoction.block.CropMintBlock;
 import net.mcreator.concoction.block.CropCottonBlock;
@@ -24,7 +23,6 @@ public class ConcoctionModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ConcoctionMod.MODID);
 	public static final DeferredBlock<Block> MINT = REGISTRY.register("mint", MintBlock::new);
 	public static final DeferredBlock<Block> CROP_MINT = REGISTRY.register("crop_mint", CropMintBlock::new);
-	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
 	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
