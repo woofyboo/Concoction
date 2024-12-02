@@ -15,16 +15,16 @@
     "suspiciousStewDuration": 0,
     "growapableSpawnType": "Plains",
     "growapableMaxHeight": 3,
-    "customBoundingBox": false,
+    "customBoundingBox": true,
     "disableOffset": false,
     "boundingBoxes": [
       {
-        "mx": 0.0,
+        "mx": 2.0,
         "my": 0.0,
-        "mz": 0.0,
-        "Mx": 16.0,
-        "My": 16.0,
-        "Mz": 16.0,
+        "mz": 2.0,
+        "Mx": 14.0,
+        "My": 14.0,
+        "Mz": 14.0,
         "subtract": false
       }
     ],
@@ -59,7 +59,7 @@
     },
     "useLootTableForDrops": false,
     "customDrop": {
-      "value": "CUSTOM:Onion"
+      "value": "CUSTOM:Pinecone"
     },
     "dropAmount": 1,
     "forceTicking": false,
@@ -68,7 +68,7 @@
     "isReplaceable": false,
     "colorOnMap": "AIR",
     "creativePickItem": {
-      "value": ""
+      "value": "CUSTOM:Pinecone"
     },
     "offsetType": "NONE",
     "aiPathNodeType": "DEFAULT",
