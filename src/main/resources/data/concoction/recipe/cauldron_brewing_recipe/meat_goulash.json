@@ -19,7 +19,11 @@
     },
     {
       "item": "minecraft:potato"
+    },
+    {
+      "item": "concoction:onion"
     }
+
   ],
 
   "result": {

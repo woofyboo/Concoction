@@ -3,6 +3,7 @@
   "values": [
     "concoction:crop_mint",
     "concoction:crop_cotton",
-    "concoction:sunflower"
+    "concoction:sunflower",
+    "concoction:crop_onion"
   ]
 }
