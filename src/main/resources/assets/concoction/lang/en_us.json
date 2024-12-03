@@ -1,7 +1,7 @@
 {
   "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
   "block.concoction.wild_onion": "Wild Onion",
-  "gui.cooking_cauldron.time.seconds": "%s s.",
+  "gui.cooking_cauldron.time.seconds": "%s s",
   "item.concoction.cotton_oil": "Cotton Oil",
   "subtitles.cauldron_cooking": "Cauldron is bubbling",
   "advancements.get_folded.title": "Get Folded!",
