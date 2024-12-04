@@ -20,6 +20,7 @@ import net.mcreator.concoction.block.MintBlock;
 import net.mcreator.concoction.block.CropOnionBlock;
 import net.mcreator.concoction.block.CropMintBlock;
 import net.mcreator.concoction.block.CropCottonBlock;
+import net.mcreator.concoction.block.CropCornBlock;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModBlocks {
@@ -33,6 +34,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WILD_CARROT = REGISTRY.register("wild_carrot", WildCarrotBlock::new);
 	public static final DeferredBlock<Block> CROP_ONION = REGISTRY.register("crop_onion", CropOnionBlock::new);
 	public static final DeferredBlock<Block> WILD_ONION = REGISTRY.register("wild_onion", WildOnionBlock::new);
+	public static final DeferredBlock<Block> CROP_CORN = REGISTRY.register("crop_corn", CropCornBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
