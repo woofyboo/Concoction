@@ -29,6 +29,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CHERRY.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.CORN_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ONION.get());
 //Дикие Растения
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
@@ -96,7 +97,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 //Инструменты, оружие, броня
 
-//Особое		
+//Особое
+		
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 				for (Item toAdd : List.of(Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION, Items.TIPPED_ARROW)) {
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.FLAME), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
