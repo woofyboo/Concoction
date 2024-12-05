@@ -29,6 +29,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CHERRY.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.CORN.get());
 				tabData.accept(ConcoctionModItems.CORN_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ONION.get());
 //Дикие Растения

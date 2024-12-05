@@ -2517,6 +2517,72 @@
         ]
       },
       "path": "~/corn"
+    },
+    {
+      "name": "Corn",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "corn",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CornItem.java",
+          "src/main/resources/assets/concoction/models/item/corn.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CornSeedsCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "corn_seeds_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/corn_seeds_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CornRightClick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "corn_right_click",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CornRightClickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/corn"
     }
   ],
   "variable_elements": [],
@@ -2634,8 +2700,8 @@
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%s с",
-      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "item.concoction.cotton_oil": "Хлопковое масло",
+      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -2651,27 +2717,27 @@
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
-      "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
+      "block.concoction.brown_pillow_block": "Коричневая подушка",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
       "item.minecraft.lingering_potion.effect.flame_extended": "Оседающее зелье жжения",
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
-      "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
+      "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
-      "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
+      "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
-      "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.mashed_potatoes": "Картофельное пюре",
+      "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.sunflower_oil": "Подсолнечное масло",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
@@ -2694,6 +2760,7 @@
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
+      "item.concoction.corn": "Corn",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
@@ -2731,6 +2798,7 @@
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.cotton": "Хлопок",
+      "item.minecraft.sweet_berries": "Брусника",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
@@ -2807,6 +2875,7 @@
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
+      "item.concoction.corn": "Corn",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
       "item.concoction.roasted_pinecone": "Roasted Pinecone",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
@@ -2834,7 +2903,7 @@
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "block.concoction.red_pillow_block": "Red Pillow",
-      "item.concoction.fish_and_chips": "Fish and Chips",
+      "item.concoction.fish_and_chips": "Fish \u0026 Chips",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
@@ -2844,6 +2913,7 @@
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.cotton": "Cotton",
+      "item.minecraft.sweet_berries": "Lingonberry",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
