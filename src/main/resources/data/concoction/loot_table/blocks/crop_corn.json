@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/crop_corn",
+  "pools": [
+      {
+      	"rolls": 1.0,
+        "bonus_rolls": 0.0,
+         "conditions": [
+          {
+            "block": "concoction:crop_corn",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "part": "bottom"
+            }
+          }
+        ],
+
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "concoction:corn_seeds"
+          }
+        ]
+      },
+      {
+        "rolls": 2.0,
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:crop_corn",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "part": "bottom",
+              "age": "5"
+            }
+          }
+        ],
+
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "minecraft:corn"
+          }
+        ]
+      },
+      {
+      	"rolls": 1.0,
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:crop_corn",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "age": "5",
+              "part": "bottom"
+            }
+          }
+        ],
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "enchantment": "minecraft:fortune",
+                "formula": "minecraft:binomial_with_bonus_count",
+                "function": "minecraft:apply_bonus",
+                "parameters": {
+                  "extra": 1,
+                  "probability": 0.5714286
+                }
+              }
+            ],
+            "name": "concoction:corn"
+          }
+        ]
+      }
+    ]
+}

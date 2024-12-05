@@ -1,17 +1,24 @@
 
 package net.mcreator.concoction.block;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -37,6 +44,7 @@ import net.minecraft.core.BlockPos;
 import net.mcreator.concoction.init.ConcoctionModItems;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class CropCornBlock extends CropBlock {
 	public static final int FIRST_STAGE_MAX_AGE = 1;
@@ -195,6 +203,43 @@ public class CropCornBlock extends CropBlock {
 			}
 		}
 		else if (dropItems) dropResources(pState, pLevel, pPos, null, player, player.getMainHandItem());
+	}
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
+		if (pItem.getItem().equals(Items.AIR) && !pPlayer.isShiftKeyDown() &&
+				pState.getValue(AGE) == 5 && pState.getValue(PART).equals(PartProperty.MIDDLE)) {
+			// Спавним семена подсолнуха
+			if (pLevel instanceof ServerLevel _level) {
+				pLevel.setBlock(pPos.below(1), this.getState(pState, 3, PartProperty.BOTTOM), 2);
+				pLevel.setBlock(pPos, this.getState(pState, 3, PartProperty.MIDDLE), 2);
+				pLevel.setBlock(pPos.above(1), this.getState(pState, 3, PartProperty.TOP), 2);
+
+
+				if (!_level.isClientSide()) _level.playSound(null, pPos,
+                        Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.cave_vines.pick_berries"))),
+						SoundSource.PLAYERS, 1, 1);
+				else _level.playLocalSound(pPos,
+                        Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.cave_vines.pick_berries"))),
+						SoundSource.PLAYERS, 1, 1, false);
+
+				ItemEntity entityToSpawn = new ItemEntity(_level,
+						(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+						new ItemStack(ConcoctionModItems.CORN.get(), 2));
+				entityToSpawn.setPickUpDelay(10);
+				_level.addFreshEntity(entityToSpawn);
+				if (Math.random() < 0.5) {
+					ItemEntity AdditEntityToSpawn = new ItemEntity(_level,
+							(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+							new ItemStack(ConcoctionModItems.CORN.get()));
+					AdditEntityToSpawn.setPickUpDelay(10);
+					_level.addFreshEntity(AdditEntityToSpawn);
+				}
+			}
+
+			return ItemInteractionResult.SUCCESS;
+		}
+		else return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, p_316595_, p_316140_);
 	}
 
 	@Override

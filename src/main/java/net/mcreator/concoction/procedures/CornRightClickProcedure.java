@@ -24,7 +24,7 @@ public class CornRightClickProcedure {
 	public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
 		if (event.getHand() != event.getEntity().getUsedItemHand())
 			return;
-		execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getLevel().getBlockState(event.getPos()), event.getEntity());
+//		execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getLevel().getBlockState(event.getPos()), event.getEntity());
 	}
 
 	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
