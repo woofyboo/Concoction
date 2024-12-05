@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/corn_bottom_4-6",
+    "particle": "concoction:block/corn_bottom_4-6"
+  },
+  "render_type": "cutout"
+}

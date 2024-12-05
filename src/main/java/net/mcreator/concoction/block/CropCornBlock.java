@@ -39,7 +39,7 @@ import net.mcreator.concoction.init.ConcoctionModItems;
 import javax.annotation.Nullable;
 
 public class CropCornBlock extends CropBlock {
-	public static final int FIRST_STAGE_MAX_AGE = 2;
+	public static final int FIRST_STAGE_MAX_AGE = 1;
 	public static final int SECOND_STAGE_MAX_AGE = 1;
 	public static final int THIRD_STAGE_MAX_AGE = 3;
 	public static final int MAX_AGE = FIRST_STAGE_MAX_AGE + SECOND_STAGE_MAX_AGE + THIRD_STAGE_MAX_AGE;
@@ -213,8 +213,8 @@ public class CropCornBlock extends CropBlock {
 	}
 
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-			Block.box(6.0D, 0.0D, 6.0D, 10.0D, 8.0D, 10.0D),
-			Block.box(4.0D, 0.0D, 4.0D, 12.0D, 14.0D, 12.0D),
+			Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D),
+			Block.box(2.0D, 0.0D, 2.0D, 12.0D, 14.0D, 12.0D),
 			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
 			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
 			Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
