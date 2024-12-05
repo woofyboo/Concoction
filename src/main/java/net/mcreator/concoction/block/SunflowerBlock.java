@@ -118,13 +118,13 @@ public class SunflowerBlock extends CropBlock {
     
 	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {
 //		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
-		if (world.canSeeSkyFromBelowWater(pPos) && world instanceof ServerLevel sLevel && sLevel.isRainingAt(pPos)) { // TODO Check if it's does rotate in raining
+		if (world.canSeeSkyFromBelowWater(pPos) && world instanceof ServerLevel sLevel && !sLevel.isRainingAt(pPos)) { // TODO Check if it's does rotate in raining
 			String _value = "";
 			int dayTime = Math.floorMod(world.dayTime(),24000);
 			if (dayTime >= 0 && dayTime < 3000) _value = "east";
 			else if (dayTime >= 3000 && dayTime < 6000) _value = "eastish";
 			else if (dayTime >= 6000 && dayTime < 9000) _value = "westish";
-			else if (dayTime >= 9000 && dayTime < 12000) _value = "west";
+			else if (dayTime >= 9000) _value = "west";
 			
 			if (pState.getBlock().getStateDefinition().getProperty("facing") instanceof EnumProperty _enumProp 
 				&& _enumProp.getValue(_value).isPresent())
