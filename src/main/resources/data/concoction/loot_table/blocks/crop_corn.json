@@ -30,7 +30,7 @@
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "5",
-            "part": "middle"
+            "part": "bottom"
           }
         }
       ],
@@ -50,7 +50,7 @@
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "5",
-            "part": "middle"
+            "part": "bottom"
           }
         }
       ],
@@ -64,7 +64,7 @@
               "function": "minecraft:apply_bonus",
               "parameters": {
                 "extra": 1,
-                "probability": 0.5714286
+                "probability": 0.5
               }
             }
           ],
