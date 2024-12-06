@@ -41,6 +41,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.CropBlock;
 import net.neoforged.bus.api.ICancellableEvent;
+import oshi.util.tuples.Pair;
 
 public class SunflowerBlock extends CropBlock {
 	public static final EnumProperty<FacingProperty> FACING = EnumProperty.create("facing", FacingProperty.class);
@@ -123,9 +124,14 @@ public class SunflowerBlock extends CropBlock {
 		if (world.canSeeSkyFromBelowWater(pPos.above(3)) && world instanceof ServerLevel sLevel &&
 				pState.getValue(HALF) == DoubleBlockHalf.LOWER && !sLevel.isRainingAt(pPos)) {
 			FacingProperty toRotate = getRotateFacing(world, pState);
-			world.setBlock(pPos, pState.setValue(FACING, toRotate), Block.UPDATE_ALL);
-			if (world.getBlockState(pPos.above(1)).is(this))
-				world.setBlock(pPos.above(1), this.getState(pState, pState.getValue(AGE), DoubleBlockHalf.UPPER, toRotate), Block.UPDATE_ALL);
+			BlockPos.betweenClosedStream(pPos.offset(-2, -2, -2), pPos.offset(2, 2, 2)).map(pos -> new Pair<>(pos, world.getBlockState(pos))).
+					filter(p -> p.getB().is(this) && p.getB().getValue(HALF).equals(DoubleBlockHalf.LOWER) && !p.getB().getValue(FACING).equals(toRotate)).forEach(pNeighbor -> {
+					world.setBlock(pNeighbor.getA(), pNeighbor.getB().setValue(FACING, toRotate), Block.UPDATE_ALL);
+					if (world.getBlockState(pNeighbor.getA().above(1)).is(this)
+							&& world.getBlockState(pNeighbor.getA().above(1)).getValue(HALF).equals(DoubleBlockHalf.UPPER))
+						world.setBlock(pNeighbor.getA().above(1), this.getState(pNeighbor.getB(), pNeighbor.getB().getValue(AGE), DoubleBlockHalf.UPPER, toRotate), Block.UPDATE_ALL);
+			});
+
 
 		}
 	}
@@ -240,11 +246,7 @@ public class SunflowerBlock extends CropBlock {
 				neighborState.is(this) && !pState.getValue(FACING).equals(neighborState.getValue(FACING))) {
 			if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
 				ConcoctionMod.queueServerWork(RandomSource.create().nextInt(20), () -> {
-				if (pLevel.getBlockState(pPos.above(1)).is(this))
-					pLevel.setBlock(pPos, pState.setValue(FACING, neighborState.getValue(FACING)), Block.UPDATE_ALL);
-				if (pLevel.getBlockState(pPos.above(1)).is(this))
-					pLevel.setBlock(pPos.above(1), this.getState(pState, pState.getValue(AGE),
-						DoubleBlockHalf.UPPER, getRotateFacing(pLevel, neighborState)), Block.UPDATE_ALL);
+					this.rotate(pLevel, pPos, pState);
 				});
 			}
 		}
