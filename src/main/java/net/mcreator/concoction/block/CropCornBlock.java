@@ -207,8 +207,7 @@ public class CropCornBlock extends CropBlock {
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
-		if (pItem.getItem().equals(Items.AIR) && !pPlayer.isShiftKeyDown() &&
-				pState.getValue(AGE) == 5 && pState.getValue(PART).equals(PartProperty.MIDDLE)) {
+		if (!pPlayer.isShiftKeyDown() && pState.getValue(AGE) == 5 && pState.getValue(PART).equals(PartProperty.MIDDLE)) {
 			// Спавним семена подсолнуха
 			if (pLevel instanceof ServerLevel _level) {
 				pLevel.setBlock(pPos.below(1), this.getState(pState, 3, PartProperty.BOTTOM), 2);

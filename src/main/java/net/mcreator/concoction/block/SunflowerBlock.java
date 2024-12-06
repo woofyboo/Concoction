@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.block;
 
+import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModItems;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,7 +25,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -39,14 +39,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.neoforged.neoforge.common.SpecialPlantable;
-
-import java.lang.Math;
-import net.mcreator.concoction.ConcoctionMod;
 import net.minecraft.world.level.block.CropBlock;
+import net.neoforged.bus.api.ICancellableEvent;
 
 public class SunflowerBlock extends CropBlock {
-	public boolean canRotate = true;
 	public static final EnumProperty<FacingProperty> FACING = EnumProperty.create("facing", FacingProperty.class);
 	public static final int FIRST_STAGE_MAX_AGE = 2;
     public static final int SECOND_STAGE_MAX_AGE = 3;
@@ -95,40 +91,42 @@ public class SunflowerBlock extends CropBlock {
     
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource random) {
-        	if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-		if (pState.getValue(HALF) == DoubleBlockHalf.UPPER) 
-			this.rotate(pLevel, pPos, pState);
+		if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		this.rotate(pLevel, pPos, pState);
         if (pLevel.getRawBrightness(pPos, 0) >= 9 && (pState.getValue(HALF) == DoubleBlockHalf.LOWER)) {
             int nextAge = this.getAge(pState) + 1;
             if (nextAge <= this.getMaxAge()) {
                 float f = getGrowthSpeed(pState, pLevel, pPos);
                 if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(pLevel, pPos, pState, random.nextInt((int)(25.0F / f) + 1) == 0)) {
         			if (nextAge < FIRST_STAGE_MAX_AGE) 
-						pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+						pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
 	        		else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
         			(pLevel.getBlockState(pPos.above(1)).is(this)))) {
-				        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
-				        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+				        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, pState.getValue(FACING)), 2);
+				        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
         			}
                     net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(pLevel, pPos, pState);
                 }
             }
         }
     }
-    
+	public FacingProperty getRotateFacing(LevelAccessor world, BlockState pState) {
+		int dayTime = Math.floorMod(world.dayTime(),24000);
+		if (dayTime >= 0 && dayTime < 3000) return FacingProperty.EAST;
+		else if (dayTime >= 3000 && dayTime < 6000) return FacingProperty.EASTISH;
+		else if (dayTime >= 6000 && dayTime < 9000) return FacingProperty.WESTISH;
+		else if (dayTime >= 9000) return FacingProperty.WEST;
+		else return pState.getValue(FACING);
+	}
 	public void rotate(LevelAccessor world, BlockPos pPos, BlockState pState) {
 //		ConcoctionMod.LOGGER.debug(String.format("rotate sunflower at %d %d %d (%d)", pPos.getX(), pPos.getY(), pPos.getZ(), world.dayTime())); 
-		if (world.canSeeSkyFromBelowWater(pPos) && world instanceof ServerLevel sLevel && !sLevel.isRainingAt(pPos)) { // TODO Check if it's does rotate in raining
-			String _value = "";
-			int dayTime = Math.floorMod(world.dayTime(),24000);
-			if (dayTime >= 0 && dayTime < 3000) _value = "east";
-			else if (dayTime >= 3000 && dayTime < 6000) _value = "eastish";
-			else if (dayTime >= 6000 && dayTime < 9000) _value = "westish";
-			else if (dayTime >= 9000) _value = "west";
-			
-			if (pState.getBlock().getStateDefinition().getProperty("facing") instanceof EnumProperty _enumProp 
-				&& _enumProp.getValue(_value).isPresent())
-				world.setBlock(pPos, pState.setValue(_enumProp, (Enum) _enumProp.getValue(_value).get()), 3);
+		if (world.canSeeSkyFromBelowWater(pPos.above(3)) && world instanceof ServerLevel sLevel &&
+				pState.getValue(HALF) == DoubleBlockHalf.LOWER && !sLevel.isRainingAt(pPos)) {
+			FacingProperty toRotate = getRotateFacing(world, pState);
+			world.setBlock(pPos, pState.setValue(FACING, toRotate), Block.UPDATE_ALL);
+			if (world.getBlockState(pPos.above(1)).is(this))
+				world.setBlock(pPos.above(1), this.getState(pState, pState.getValue(AGE), DoubleBlockHalf.UPPER, toRotate), Block.UPDATE_ALL);
+
 		}
 	}
 
@@ -140,11 +138,11 @@ public class SunflowerBlock extends CropBlock {
 //        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
 			if (nextAge > maxAge) nextAge = maxAge;
 			if (nextAge < FIRST_STAGE_MAX_AGE) 
-				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
 	        else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
         	(pLevel.getBlockState(pPos.above(1)).is(this)))) {
-		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
-		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
+		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, pState.getValue(FACING)), 2);
+		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
         	}
         }
     
@@ -158,9 +156,9 @@ public class SunflowerBlock extends CropBlock {
 //    	}
     }
 
-    public BlockState getState(BlockState pState, int age, DoubleBlockHalf half) {
+    public BlockState getState(BlockState pState, int age, DoubleBlockHalf half, FacingProperty facing) {
         return this.defaultBlockState().setValue(this.getAgeProperty(), Integer.valueOf(age)).
-        		setValue(FACING, pState.getValue(FACING)).setValue(HALF, half);
+        		setValue(FACING, pState.getValue(FACING)).setValue(HALF, half).setValue(FACING, facing);
     }
     
     @Override
@@ -236,9 +234,28 @@ public class SunflowerBlock extends CropBlock {
 	}
 
 	@Override
+	protected void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block p_60512_, BlockPos neighbor, boolean p_60514_) {
+		BlockState neighborState = pLevel.getBlockState(neighbor);
+		if (!pLevel.isClientSide() && pState.is(this) && pState.getValue(HALF) == DoubleBlockHalf.LOWER &&
+				neighborState.is(this) && !pState.getValue(FACING).equals(neighborState.getValue(FACING))) {
+			if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+				ConcoctionMod.queueServerWork(RandomSource.create().nextInt(20), () -> {
+				if (pLevel.getBlockState(pPos.above(1)).is(this))
+					pLevel.setBlock(pPos, pState.setValue(FACING, neighborState.getValue(FACING)), Block.UPDATE_ALL);
+				if (pLevel.getBlockState(pPos.above(1)).is(this))
+					pLevel.setBlock(pPos.above(1), this.getState(pState, pState.getValue(AGE),
+						DoubleBlockHalf.UPPER, getRotateFacing(pLevel, neighborState)), Block.UPDATE_ALL);
+				});
+			}
+		}
+		super.neighborChanged(pState, pLevel, pPos, p_60512_, neighbor, p_60514_);
+	}
+
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		FacingProperty toRotate = getRotateFacing(context.getLevel(), this.defaultBlockState());
 		return super.getStateForPlacement(context).setValue(this.getAgeProperty(), Integer.valueOf(0)).
-				setValue(FACING, FacingProperty.EAST).setValue(HALF, DoubleBlockHalf.LOWER);
+				setValue(FACING, toRotate).setValue(HALF, DoubleBlockHalf.LOWER);
 	}
 
 	@Override
