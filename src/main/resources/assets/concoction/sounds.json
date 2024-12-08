@@ -28,5 +28,13 @@
         "stream": false
       }
     ]
+  },
+  "silence": {
+    "sounds": [
+      {
+        "name": "concoction:silence",
+        "stream": false
+      }
+    ]
   }
 }
