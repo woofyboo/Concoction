@@ -46,7 +46,7 @@ public class WildOnionBlock extends FlowerBlock {
 
 	@Override
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader world, BlockPos pos, Player player) {
-		return new ItemStack(ConcoctionModItems.ONION.get());
+		return new ItemStack(ConcoctionModItems.WILD_ONION.get());
 	}
 
 	private boolean canPlantTypeSurvive(BlockState state, LevelReader world, BlockPos pos) {

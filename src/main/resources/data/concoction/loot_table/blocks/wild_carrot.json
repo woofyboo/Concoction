@@ -1,29 +1,30 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "concoction:blocks/wild_carrot",
   "pools": [
     {
-      "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "minecraft:carrot",
-          "conditions": [
+          "weight": 1,
+          "functions": [
             {
-              "block": "concoction:wild_carrot",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
               }
+            },
+            {
+              "function": "minecraft:apply_bonus",
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:ore_drops"
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "concoction:blocks/wild_carrot"
 }

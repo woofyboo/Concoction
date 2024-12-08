@@ -32,16 +32,16 @@ public class SweetFoodListProcedure {
 	private static void execute(@Nullable Event event, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return;
-		if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetened_foods")))) {
+		if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetness/sweetened")))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 240, 0, false, true));
-		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweet_foods")))) {
+		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetness/sweet")))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 240, 1, false, true));
-		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sugary_foods")))) {
+		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetness/sugary")))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 600, 0, false, true));
-		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:candied_foods")))) {
+		} else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:sweetness/candy")))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 				_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 600, 1, false, true));
 		}
