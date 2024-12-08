@@ -2,11 +2,15 @@
 package net.mcreator.concoction.item;
 
 import net.mcreator.concoction.procedures.MintBrewPlayerFinishesUsingItemProcedure;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class MintBrewItem extends Item {
 	public MintBrewItem() {
@@ -26,6 +30,11 @@ public class MintBrewItem extends Item {
 	@Override
 	public ItemStack getCraftingRemainingItem(ItemStack itemstack) {
 		return new ItemStack(Items.GLASS_BOTTLE);
+	}
+
+	@Override
+	public @NotNull SoundEvent getEatingSound() {
+		return SoundEvents.GENERIC_DRINK;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 
 package net.mcreator.concoction.item;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
@@ -34,7 +36,10 @@ public class ObsidianTearsBottleItem extends Item {
 		return true;
 	}
 
-
+	@Override
+	public SoundEvent getEatingSound() {
+		return SoundEvents.GENERIC_DRINK;
+	}
 
 
 	@Override
