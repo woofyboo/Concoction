@@ -2696,6 +2696,14 @@
       ],
       "category": "block",
       "subtitle": "Cauldron is boiling"
+    },
+    {
+      "name": "silence",
+      "files": [
+        "silence"
+      ],
+      "category": "player",
+      "subtitle": ""
     }
   ],
   "tag_elements": {
@@ -2797,6 +2805,7 @@
       "block.concoction.mint": "Мята",
       "item.concoction.pinecone": "Шишка",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
+      "subtitles.silence": "",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
@@ -2915,6 +2924,7 @@
       "block.concoction.mint": "Mint",
       "item.concoction.pinecone": "Pinecone",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
+      "subtitles.silence": "",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
