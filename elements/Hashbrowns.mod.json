@@ -41,8 +41,8 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 5,
-    "saturation": 1.2000000000000002,
+    "nutritionalValue": 6,
+    "saturation": 1.0,
     "eatResultItem": {
       "value": ""
     },

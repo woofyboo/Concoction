@@ -3,7 +3,7 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "Screenshot",
-    "achievementDescription": "Use two opposite thick-based potion effects to cancel them both.",
+    "achievementDescription": "Use two opposite thick-based potion effects to cancel them both",
     "achievementIcon": {
       "value": "Items.POTIONITEM"
     },

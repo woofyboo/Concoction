@@ -14,6 +14,6 @@ public class RoastedSunflowerSeedsItem extends Item {
 
 	@Override
 	public int getUseDuration(ItemStack itemstack, LivingEntity livingEntity) {
-		return 24;
+		return 16;
 	}
 }

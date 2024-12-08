@@ -16,7 +16,11 @@
     "concoction:fish_and_chips",
     "concoction:chocolate",
     "concoction:mashed_potatoes",
-    "concoction:onion"
+    "concoction:onion",
+    "concoction:corn",
+    "concoction:popcorn",
+    "concoction:cooked_corn",
+    "concoction:corn_soup"
 
   ]
 }

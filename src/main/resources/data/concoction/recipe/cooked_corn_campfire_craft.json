@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "experience": 2,
+  "cookingtime": 600,
+  "ingredient": {
+    "item": "concoction:corn"
+  },
+  "result": {
+    "id": "concoction:cooked_corn"
+  }
+}

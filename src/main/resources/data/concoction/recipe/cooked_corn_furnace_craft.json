@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "experience": 2,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "concoction:corn"
+  },
+  "result": {
+    "id": "concoction:cooked_corn"
+  }
+}

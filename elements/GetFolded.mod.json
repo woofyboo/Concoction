@@ -5,7 +5,7 @@
     "achievementName": "Get Folded!",
     "achievementDescription": "Barely survive the damage by falling on a pillow.",
     "achievementIcon": {
-      "value": "Items.FEATHER"
+      "value": "CUSTOM:Fabric"
     },
     "background": "Default",
     "disableDisplay": false,

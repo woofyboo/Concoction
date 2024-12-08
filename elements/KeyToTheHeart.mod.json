@@ -3,7 +3,7 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "Key to the Heart",
-    "achievementDescription": "Put something inside the cauldron",
+    "achievementDescription": "Put something inside a cauldron that is ready to cook",
     "achievementIcon": {
       "value": "Items.CAULDRON"
     },

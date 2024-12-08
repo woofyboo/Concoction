@@ -5,6 +5,8 @@
     "concoction:cherry_cookie"
 ,
     "concoction:sunflower_seeds",
-    "minecraft:sunflower"
+    "minecraft:sunflower",
+    "concoction:corn_seeds"
+
   ]
 }

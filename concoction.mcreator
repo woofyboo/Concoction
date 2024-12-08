@@ -510,17 +510,6 @@
       "path": "~/cotton"
     },
     {
-      "name": "FabricTrade",
-      "type": "villagertrade",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "fabric_trade",
-      "metadata": {
-        "files": []
-      },
-      "path": "~/cotton"
-    },
-    {
       "name": "FabricCraft2",
       "type": "recipe",
       "compiles": true,
@@ -978,8 +967,8 @@
       "registry_name": "roasted_sunflower_seeds",
       "metadata": {
         "files": [
-          "src/main/resources/assets/concoction/models/item/roasted_sunflower_seeds.json",
-          "src/main/java/net/mcreator/concoction/item/RoastedSunflowerSeedsItem.java"
+          "src/main/java/net/mcreator/concoction/item/RoastedSunflowerSeedsItem.java",
+          "src/main/resources/assets/concoction/models/item/roasted_sunflower_seeds.json"
         ]
       },
       "path": "~/sunflower"
@@ -2281,7 +2270,7 @@
       "name": "Pinecone",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pinecone",
       "metadata": {
         "files": [
@@ -2559,6 +2548,126 @@
         ]
       },
       "path": "~/corn"
+    },
+    {
+      "name": "Popcorn",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "popcorn",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/popcorn.json",
+          "src/main/java/net/mcreator/concoction/item/PopcornItem.java"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CookedCorn",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cooked_corn",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cooked_corn.json",
+          "src/main/java/net/mcreator/concoction/item/CookedCornItem.java"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "PopcornFurnaceCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "popcorn_furnace_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/popcorn_furnace_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "PopcornSmokingCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "popcorn_smoking_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/popcorn_smoking_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "PopcornCampfireCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "popcorn_campfire_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/popcorn_campfire_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CookedCornFurnaceCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cooked_corn_furnace_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cooked_corn_furnace_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CookedCornSmokingCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cooked_corn_smoking_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cooked_corn_smoking_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CookedCornCampfireCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cooked_corn_campfire_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cooked_corn_campfire_craft.json"
+        ]
+      },
+      "path": "~/corn"
+    },
+    {
+      "name": "CornSoup",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "corn_soup",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CornSoupItem.java",
+          "src/main/resources/assets/concoction/models/item/corn_soup.json"
+        ]
+      },
+      "path": "~/corn"
     }
   ],
   "variable_elements": [],
@@ -2675,9 +2784,9 @@
     "ru_ru": {
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
       "block.concoction.wild_onion": "Дикий лук",
-      "gui.cooking_cauldron.time.seconds": "%s с",
-      "item.concoction.cotton_oil": "Хлопковое масло",
+      "gui.cooking_cauldron.time.seconds": "%sс",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
+      "item.concoction.cotton_oil": "Хлопковое масло",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -2687,33 +2796,36 @@
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
+      "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
-      "item.concoction.sunflower_seeds": "Семена подсолнуха",
+      "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
+      "item.concoction.sunflower_seeds": "Семена подсолнуха",
+      "item.concoction.corn_soup": "Кукурузный суп",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
       "item.minecraft.lingering_potion.effect.flame_extended": "Оседающее зелье жжения",
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
-      "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
+      "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
-      "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
+      "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
-      "item.concoction.mashed_potatoes": "Картофельное пюре",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
+      "item.concoction.mashed_potatoes": "Картофельное пюре",
       "item.concoction.sunflower_oil": "Подсолнечное масло",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
@@ -2736,7 +2848,7 @@
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
-      "item.concoction.corn": "Corn",
+      "item.concoction.corn": "Кукуруза",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
@@ -2760,7 +2872,7 @@
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
       "block.concoction.pink_pillow_block": "Розовая подушка",
-      "block.concoction.crop_corn": "Crop Corn",
+      "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "block.concoction.red_pillow_block": "Красная подушка",
@@ -2790,9 +2902,9 @@
     "en_us": {
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
       "block.concoction.wild_onion": "Wild Onion",
-      "gui.cooking_cauldron.time.seconds": "%s s",
-      "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "gui.cooking_cauldron.time.seconds": "%ss",
       "item.concoction.cotton_oil": "Cotton Oil",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -2801,6 +2913,7 @@
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
+      "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
@@ -2808,34 +2921,36 @@
       "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
-      "block.concoction.brown_pillow_block": "Brown Pillow",
+      "item.concoction.popcorn": "Popcorn",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
+      "block.concoction.brown_pillow_block": "Brown Pillow",
+      "item.concoction.corn_soup": "Corn Soup",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
       "item.minecraft.lingering_potion.effect.flame_extended": "Lingering Potion of Flame",
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
       "advancements.mount_ever_rest.title": "Not-so-Soft Landing",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
-      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
+      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.sunflower": "Sunflower",
-      "item.concoction.meat_goulash": "Meat Goulash",
-      "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
+      "item.concoction.meat_goulash": "Meat Stew",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
+      "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
-      "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.mashed_potatoes": "Mashed Potatoes",
+      "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "advancements.screenshot.title": "Screenshot",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
-      "advancements.key_to_the_heart.descr": "Put something inside the cauldron",
+      "advancements.key_to_the_heart.descr": "Put something inside a cauldron that is ready to cook",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
       "effect.concoction.instability": "Instability",
       "effect.concoction.frost_touch": "Frost Touch",
@@ -2867,7 +2982,7 @@
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
       "item.concoction.fabric": "Fabric",
-      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both.",
+      "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
       "block.concoction.wild_cotton": "Wild Cotton",
       "subtitles.cauldron_boiling": "Cauldron is boiling",

@@ -1,0 +1,22 @@
+{
+  "_fv": 69,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smoking",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "FOOD",
+    "xpReward": 2.0,
+    "cookingTime": 100,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smokingInputStack": {
+      "value": "CUSTOM:RoastedSunflowerSeeds"
+    },
+    "smokingReturnStack": {
+      "value": "CUSTOM:Popcorn"
+    },
+    "name": "popcorn_smoking_craft",
+    "namespace": "mod"
+  }
+}

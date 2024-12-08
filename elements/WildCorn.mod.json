@@ -21,7 +21,7 @@
     ],
     "terrainAdaptation": "none",
     "generationStep": "VEGETAL_DECORATION",
-    "surfaceDetectionType": "WORLD_SURFACE_WG",
+    "surfaceDetectionType": "WORLD_SURFACE",
     "useStartHeight": false,
     "startHeightProviderType": "UNIFORM",
     "startHeightMin": 0,
