@@ -4,11 +4,12 @@ license="GNU General Public License version 3 (GPLv3)"
 
 [[mods]]
 modId="concoction"
-version="1.4.0"
+version="1.5.0"
 displayName="Concoction"
 displayURL="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 credits="Sebsish, woofyboo"
 authors="Sebsish, woofyboo"
+displayTest="IGNORE_SERVER_VERSION"
 
 # Start of user code block mod configuration
 # End of user code block mod configuration

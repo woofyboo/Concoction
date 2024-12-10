@@ -313,18 +313,6 @@
       "path": "~/mint/mintCrop"
     },
     {
-      "name": "CustomTab",
-      "type": "code",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "custom_tab",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/CustomTab.java"
-        ]
-      }
-    },
-    {
       "name": "MintCookie",
       "type": "item",
       "compiles": true,
@@ -2668,6 +2656,29 @@
         ]
       },
       "path": "~/corn"
+    },
+    {
+      "name": "NauseaCantEat",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nausea_cant_eat",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/NauseaCantEatProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -2917,8 +2928,8 @@
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
-      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "item.concoction.cotton_oil": "Cotton Oil",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -2937,8 +2948,8 @@
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
       "item.concoction.popcorn": "Popcorn",
-      "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
+      "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
@@ -2946,19 +2957,19 @@
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
       "advancements.mount_ever_rest.title": "Not-so-Soft Landing",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
-      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
+      "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Meat Stew",
-      "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
+      "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
-      "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.mashed_potatoes": "Mashed Potatoes",
+      "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
@@ -3085,17 +3096,21 @@
       {
         "name": "corn",
         "children": []
+      },
+      {
+        "name": "hot pepper",
+        "children": []
       }
     ]
   },
   "workspaceSettings": {
     "modid": "concoction",
     "modName": "Concoction",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "author": "Sebsish, woofyboo",
     "websiteURL": "https://www.youtube.com/watch?v\u003ddQw4w9WgXcQ",
     "license": "GNU General Public License version 3 (GPLv3)",
-    "serverSideOnly": false,
+    "serverSideOnly": true,
     "requiredMods": [],
     "dependencies": [],
     "dependants": [],
