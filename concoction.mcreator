@@ -2679,6 +2679,22 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "SpicyPepper",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "spicy_pepper",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/spicy_pepper.json",
+          "src/main/java/net/mcreator/concoction/block/SpicyPepperBlock.java",
+          "src/main/resources/assets/concoction/models/block/spicy_pepper.json",
+          "src/main/resources/assets/concoction/models/item/spicy_pepper.json"
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -2827,6 +2843,7 @@
       "block.concoction.crop_cotton": "Хлопок",
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
+      "block.concoction.spicy_pepper": "Spicy Pepper",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
       "item.concoction.popcorn": "Попкорн",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
@@ -2946,6 +2963,7 @@
       "block.concoction.crop_cotton": "Crop Cotton",
       "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
+      "block.concoction.spicy_pepper": "Spicy Pepper",
       "effect.concoction.fiery_touch": "Fiery Touch",
       "item.concoction.popcorn": "Popcorn",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
@@ -3098,7 +3116,7 @@
         "children": []
       },
       {
-        "name": "hot pepper",
+        "name": "spicy_pepper",
         "children": []
       }
     ]
