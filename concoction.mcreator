@@ -2710,6 +2710,45 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "CropPepperRightClick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "crop_pepper_right_click",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CropPepperRightClickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -2840,16 +2879,16 @@
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
-      "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
+      "item.concoction.cotton_oil": "Хлопковое масло",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
       "item.concoction.pinecone": "Шишка",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
       "subtitles.silence": "",
-      "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
+      "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
@@ -2860,8 +2899,8 @@
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
       "item.concoction.popcorn": "Попкорн",
-      "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
+      "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "item.concoction.corn_soup": "Кукурузный суп",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
@@ -2869,15 +2908,15 @@
       "block.concoction.small_lime_pillow_block": "Маленькая лаймовая подушка",
       "advancements.mount_ever_rest.title": "Не-очень-то-уж-мягкая посадка",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
-      "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
+      "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
-      "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
+      "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
-      "item.concoction.spicy_pepper": "Spicy Pepper",
+      "item.concoction.spicy_pepper": "Жгучий перец",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
@@ -2912,7 +2951,7 @@
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
       "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
-      "block.concoction.crop_spicy_pepper": "Crop Spicy Pepper",
+      "block.concoction.crop_spicy_pepper": "Жгучий перец",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "effect.concoction.sweetness": "Сладость",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
