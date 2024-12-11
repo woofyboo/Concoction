@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/cilly6",
+    "particle": "concoction:block/cilly6"
+  },
+  "render_type": "cutout"
+}

@@ -1,7 +1,22 @@
 {
   "variants": {
-    "": {
-      "model": "concoction:block/crop_spicy_pepper"
+    "age=0": {
+      "model": "concoction:block/crop_spicy_pepper0"
+    },
+    "age=1": {
+      "model": "concoction:block/crop_spicy_pepper1"
+    },
+    "age=2": {
+      "model": "concoction:block/crop_spicy_pepper2"
+    },
+    "age=3": {
+      "model": "concoction:block/crop_spicy_pepper3"
+    },
+    "age=4": {
+      "model": "concoction:block/crop_spicy_pepper4"
+    },
+    "age=5": {
+      "model": "concoction:block/crop_spicy_pepper5"
     }
-  }
+	}
 }
