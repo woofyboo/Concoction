@@ -21,25 +21,25 @@
     "hasTransparency": true,
     "connectedSides": false,
     "transparencyType": "CUTOUT",
-    "disableOffset": true,
+    "disableOffset": false,
     "boundingBoxes": [
       {
-        "mx": 4.0,
+        "mx": 0.0,
         "my": 0.0,
-        "mz": 4.0,
-        "Mx": 12.0,
-        "My": 8.0,
-        "Mz": 12.0,
+        "mz": 0.0,
+        "Mx": 16.0,
+        "My": 16.0,
+        "Mz": 16.0,
         "subtract": false
       }
     ],
     "customProperties": [],
-    "name": "Spicy Pepper",
+    "name": "Crop Spicy Pepper",
     "specialInformation": {
       "fixedValue": []
     },
-    "hardness": 0.0,
-    "resistance": 0.0,
+    "hardness": 1.0,
+    "resistance": 10.0,
     "hasGravity": false,
     "isWaterloggable": false,
     "creativeTabs": [],
@@ -48,7 +48,7 @@
       "value": ""
     },
     "dropAmount": 1,
-    "useLootTableForDrops": true,
+    "useLootTableForDrops": false,
     "requiresCorrectTool": false,
     "enchantPowerBonus": 0.0,
     "plantsGrowOn": false,
@@ -80,7 +80,7 @@
     "isNotColidable": false,
     "isCustomSoundType": false,
     "soundOnStep": {
-      "value": "PLANT"
+      "value": "GROUND"
     },
     "breakSound": {
       "value": ""

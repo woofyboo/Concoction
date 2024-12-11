@@ -24,13 +24,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
 
 // Класс растения, наследующий от CropBlock
-public class SpicyPepper extends CropBlock {
+public class CropSpicyPepperBlock extends CropBlock {
 	// Максимальный возраст растения
 	public static final int MAX_AGE = 5;
 	// Свойство возраста растения
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-	public SpicyPepper() {
+	public CropSpicyPepperBlock() {
 		// Установка свойств блока
 		super(BlockBehaviour.Properties.of()
 				.mapColor(MapColor.PLANT)
@@ -69,7 +69,7 @@ public class SpicyPepper extends CropBlock {
 		return switch (state.getValue(AGE)) {
 			default -> Block.box(1, 0, 1, 15, 15, 15);
 
-			case 0 -> Block.box(3, 0, 3, 13, 8, 13);
+			case 0 -> Block.box(4, 0, 4, 12, 8, 12);
 			case 1 -> Block.box(2, 0, 2, 14, 12, 14);
 			case 2 -> Block.box(1, 0, 1, 15, 15, 15);
 			case 3 -> Block.box(1, 0, 1, 15, 15, 15);
@@ -120,7 +120,7 @@ public class SpicyPepper extends CropBlock {
 	@Override
 	protected ItemLike getBaseSeedId() {
 		// Возвращает семена для посадки растения
-		return ConcoctionModItems.COTTON.get();
+		return ConcoctionModItems.SPICY_PEPPER_SEEDS.get();
 	}
 
 	@Override

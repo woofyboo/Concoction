@@ -1,5 +1,5 @@
 {
-  "parent": "concoction:block/spicy_pepper",
+  "parent": "concoction:block/crop_spicy_pepper",
   "display": {
     "thirdperson": {
       "rotation": [

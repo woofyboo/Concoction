@@ -82,10 +82,10 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> POPCORN = REGISTRY.register("popcorn", PopcornItem::new);
 	public static final DeferredItem<Item> COOKED_CORN = REGISTRY.register("cooked_corn", CookedCornItem::new);
 	public static final DeferredItem<Item> CORN_SOUP = REGISTRY.register("corn_soup", CornSoupItem::new);
-	public static final DeferredItem<Item> SPICY_PEPPER = block(ConcoctionModBlocks.SPICY_PEPPER);
-	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", SpicyPepperSeedsItem::new);
+	public static final DeferredItem<Item> CROP_SPICY_PEPPER = block(ConcoctionModBlocks.CROP_SPICY_PEPPER);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
+	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CORN_SEEDS = REGISTRY.register("corn_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_CORN.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS = REGISTRY.register("sunflower_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.SUNFLOWER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_SEEDS = REGISTRY.register("mint_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_MINT.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

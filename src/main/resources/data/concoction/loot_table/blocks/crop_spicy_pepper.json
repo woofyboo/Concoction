@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/crop_spicy_pepper",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:crop_spicy_pepper"
+        }
+      ]
+    }
+  ]
+}
