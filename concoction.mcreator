@@ -2696,6 +2696,20 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "SpicyPepper",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "spicy_pepper",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/SpicyPepperItem.java",
+          "src/main/resources/assets/concoction/models/item/spicy_pepper.json"
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -2863,6 +2877,7 @@
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
+      "item.concoction.spicy_pepper": "Spicy Pepper",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
@@ -2984,6 +2999,7 @@
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
+      "item.concoction.spicy_pepper": "Spicy Pepper",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",

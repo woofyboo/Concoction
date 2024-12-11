@@ -18,6 +18,7 @@ import net.minecraft.world.food.FoodProperties;
 
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
+import net.mcreator.concoction.item.SpicyPepperItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
 import net.mcreator.concoction.item.RoastedPineconeItem;
 import net.mcreator.concoction.item.PopcornItem;
@@ -83,6 +84,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> COOKED_CORN = REGISTRY.register("cooked_corn", CookedCornItem::new);
 	public static final DeferredItem<Item> CORN_SOUP = REGISTRY.register("corn_soup", CornSoupItem::new);
 	public static final DeferredItem<Item> CROP_SPICY_PEPPER = block(ConcoctionModBlocks.CROP_SPICY_PEPPER);
+	public static final DeferredItem<Item> SPICY_PEPPER = REGISTRY.register("spicy_pepper", SpicyPepperItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

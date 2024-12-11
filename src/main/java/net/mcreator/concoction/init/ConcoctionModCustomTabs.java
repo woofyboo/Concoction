@@ -32,6 +32,9 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CORN.get());
 				tabData.accept(ConcoctionModItems.CORN_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ONION.get());
+				tabData.accept(ConcoctionModItems.SPICY_PEPPER.get());
+				tabData.accept(ConcoctionModItems.SPICY_PEPPER_SEEDS.get());
+
 //Дикие Растения
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
