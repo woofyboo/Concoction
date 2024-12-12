@@ -1,5 +1,6 @@
 package net.mcreator.concoction.procedures;
 
+import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -32,7 +33,9 @@ public class FireDamageTakenMintyBreathProcedure {
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.MINTY_BREATH)) {
 			if (damagesource.is(TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.withDefaultNamespace("is_fire")))) {
-				event.setAmount((float) (amount * 0.9));
+				int ampl = _livEnt0.getActiveEffects().stream().filter(mobEffectInstance -> mobEffectInstance.is(ConcoctionModMobEffects.MINTY_BREATH)).findFirst().get().getAmplifier();
+				event.setAmount((float) (amount * (1.0 - ampl/10f)));
+//				ConcoctionMod.LOGGER.debug(event.getAmount());
 			}
 		}
 	}
