@@ -41,42 +41,42 @@ public class CropPepperRightClickProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
 		if (entity == null)
 			return;
-		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == ConcoctionModBlocks.CROP_SPICY_PEPPER.get()) {
-			if ((blockstate.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _getip3 ? blockstate.getValue(_getip3) : -1) == 5) {
-				if (entity instanceof LivingEntity _entity)
-					_entity.swing(InteractionHand.MAIN_HAND, true);
-				if (world instanceof Level _level) {
-					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries")), SoundSource.BLOCKS, 1, 1);
-					} else {
-						_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries")), SoundSource.BLOCKS, 1, 1, false);
-					}
-				}
-				{
-					int _value = 2;
-					BlockPos _pos = BlockPos.containing(x, y, z);
-					BlockState _bs = world.getBlockState(_pos);
-					if (_bs.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
-						world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
-				}
-				if (world instanceof ServerLevel _level) {
-					ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
-					entityToSpawn.setPickUpDelay(10);
-					_level.addFreshEntity(entityToSpawn);
-				}
-				if (world instanceof ServerLevel _level) {
-					ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
-					entityToSpawn.setPickUpDelay(10);
-					_level.addFreshEntity(entityToSpawn);
-				}
-				if (Math.random() < 0.5) {
-					if (world instanceof ServerLevel _level) {
-						ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
-						entityToSpawn.setPickUpDelay(10);
-						_level.addFreshEntity(entityToSpawn);
-					}
-				}
-			}
-		}
+//		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == ConcoctionModBlocks.CROP_SPICY_PEPPER.get()) {
+//			if ((blockstate.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _getip3 ? blockstate.getValue(_getip3) : -1) == 5) {
+//				if (entity instanceof LivingEntity _entity)
+//					_entity.swing(InteractionHand.MAIN_HAND, true);
+//				if (world instanceof Level _level) {
+//					if (!_level.isClientSide()) {
+//						_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries")), SoundSource.BLOCKS, 1, 1);
+//					} else {
+//						_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries")), SoundSource.BLOCKS, 1, 1, false);
+//					}
+//				}
+//				{
+//					int _value = 2;
+//					BlockPos _pos = BlockPos.containing(x, y, z);
+//					BlockState _bs = world.getBlockState(_pos);
+//					if (_bs.getBlock().getStateDefinition().getProperty("age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
+//						world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
+//				}
+//				if (world instanceof ServerLevel _level) {
+//					ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+//					entityToSpawn.setPickUpDelay(10);
+//					_level.addFreshEntity(entityToSpawn);
+//				}
+//				if (world instanceof ServerLevel _level) {
+//					ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+//					entityToSpawn.setPickUpDelay(10);
+//					_level.addFreshEntity(entityToSpawn);
+//				}
+//				if (Math.random() < 0.5) {
+//					if (world instanceof ServerLevel _level) {
+//						ItemEntity entityToSpawn = new ItemEntity(_level, (x + 0.5), (y + 0.5), (z + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+//						entityToSpawn.setPickUpDelay(10);
+//						_level.addFreshEntity(entityToSpawn);
+//					}
+//				}
+//			}
+//		}
 	}
 }
