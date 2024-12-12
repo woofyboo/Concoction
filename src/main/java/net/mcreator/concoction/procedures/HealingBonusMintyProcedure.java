@@ -28,7 +28,8 @@ public class HealingBonusMintyProcedure {
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.MINTY_BREATH)) {
 			if (entity instanceof LivingEntity _entity)
-				_entity.setHealth((float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) + 1));
+				_entity.setHealth((float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1)
+						+ (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ConcoctionModMobEffects.MINTY_BREATH) ? _livEnt.getEffect(ConcoctionModMobEffects.MINTY_BREATH).getAmplifier() : 0) + 1));
 		}
 	}
 }
