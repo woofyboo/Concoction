@@ -6,7 +6,8 @@
 ,
     "concoction:sunflower_seeds",
     "minecraft:sunflower",
-    "concoction:corn_seeds"
+    "concoction:corn_seeds",
+    "concoction:spicy_pepper_seeds"
 
   ]
 }

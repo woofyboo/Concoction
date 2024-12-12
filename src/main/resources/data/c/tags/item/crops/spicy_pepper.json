@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "concoction:onion",
-    "concoction:corn",
     "concoction:spicy_pepper"
   ]
 }

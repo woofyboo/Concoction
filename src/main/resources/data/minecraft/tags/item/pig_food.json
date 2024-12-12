@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "minecraft:sunflower",
-    "concoction:onion"
+    "concoction:onion",
+    "concoction:spicy_pepper",
+    "concoction:corn"
   ]
 }
