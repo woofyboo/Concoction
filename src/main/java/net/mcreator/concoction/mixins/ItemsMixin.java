@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.Slice;
 
 @Mixin({Items.class})
-public class ItemsMixin {
+public abstract class ItemsMixin {
     @Redirect(slice = @Slice(from = @At(value = "CONSTANT", args = {"stringValue=rabbit_stew"}, ordinal = 0)),
             at = @At(value = "NEW", target = "(Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0), method = {"<clinit>"})
     private static Item bowl(Item.Properties properties) {
@@ -41,6 +41,12 @@ public class ItemsMixin {
     @Redirect(slice = @Slice(from = @At(value = "CONSTANT", args = {"stringValue=potion"}, ordinal = 0)),
             at = @At(value = "NEW", target = "(Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/PotionItem;", ordinal = 0), method = {"<clinit>"})
     private static PotionItem potions(Item.Properties properties) {
+        return new PotionItem((new Item.Properties()).stacksTo(16).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
+    }
+
+    @Redirect(slice = @Slice(from = @At(value = "CONSTANT", args = {"stringValue=potion"}, ordinal = 0)),
+            at = @At(value = "NEW", target = "(Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0), method = {"<clinit>"})
+    private static Item sweetBerries(Item.Properties properties) {
         return new PotionItem((new Item.Properties()).stacksTo(16).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
     }
 }

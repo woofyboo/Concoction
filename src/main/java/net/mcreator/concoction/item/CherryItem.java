@@ -4,6 +4,7 @@ package net.mcreator.concoction.item;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ItemStack;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
+import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber
 public class CherryItem extends Item {
@@ -32,5 +34,10 @@ public class CherryItem extends Item {
 			}
 //			if (itemSt.getCount() < 4) {}
 		}
+	}
+
+	@Override
+	public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
+		return super.getFoodProperties(stack, entity);
 	}
 }
