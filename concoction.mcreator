@@ -803,7 +803,7 @@
       "name": "CherryCookie",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "cherry_cookie",
       "metadata": {
         "files": [
@@ -1434,7 +1434,7 @@
       "name": "SweetSlimeJelly",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "sweet_slime_jelly",
       "metadata": {
         "files": [
@@ -1448,7 +1448,7 @@
       "name": "MintySlimeJelly",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "minty_slime_jelly",
       "metadata": {
         "files": [
@@ -2316,7 +2316,7 @@
       "name": "Chocolate",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "chocolate",
       "metadata": {
         "files": [
@@ -2598,7 +2598,7 @@
       "name": "SpicyPepper",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "spicy_pepper",
       "metadata": {
         "files": [
@@ -2708,6 +2708,48 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "SweetnessWork",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweetness_work",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SweetnessWorkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MintBrewDrink",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mint_brew_drink",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/MintBrewDrinkProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],

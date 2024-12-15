@@ -11,9 +11,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 
+
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+
 public class MintCookieItem extends Item {
 	public MintCookieItem() {
-		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
+		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent("minty", 1, 16)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
 	}
 
 	@Override

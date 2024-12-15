@@ -11,9 +11,14 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+
+import net.mcreator.concoction.procedures.MintBrewDrinkProcedure;
+
 public class MintBrewItem extends Item {
 	public MintBrewItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent("minty", 2, 90)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
 	}
 
 	@Override
@@ -43,6 +48,7 @@ public class MintBrewItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
+		MintBrewDrinkProcedure.execute(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

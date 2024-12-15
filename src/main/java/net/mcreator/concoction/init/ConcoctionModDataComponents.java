@@ -36,9 +36,28 @@ public class ConcoctionModDataComponents {
     @SubscribeEvent
     public static void modifyComponents(ModifyDefaultComponentsEvent event) {
         // Sets the component on melon seeds
-        event.modify(Items.APPLE, builder ->
-                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 1, 30))
+        event.modify(Items.CHORUS_FRUIT, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("instability", 1, 8))
         );
+        event.modify(Items.GLOW_BERRIES, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("glow", 1, 6))
+        );
+        event.modify(Items.MELON_SLICE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 1, 12))
+        );
+        event.modify(Items.HONEY_BOTTLE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 2, 30))
+        );
+        event.modify(Items.SWEET_BERRIES, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 1, 6))
+        );
+        event.modify(Items.PUMPKIN_PIE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 3, 12))
+        );
+        event.modify(Items.COOKIE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent("sweet", 1, 6))
+        );
+
 
         // Removes the component for any items that have a crafting item
         event.modifyMatching(
