@@ -34,13 +34,13 @@ public enum FoodEffectType implements StringRepresentable {
         };
     }
 
-    public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration) {
+    public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration, boolean isHidden) {
         return switch (type) {
-            case SWEET -> new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration*20, level-1);
-            case SPICY -> new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration*20, level-1);
-            case MINTY -> new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration*20, level-1);
-            case GLOW ->  new MobEffectInstance(MobEffects.GLOWING, duration*20, level-1);
-            case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration*20, level-1);
+            case SWEET -> new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration*20, level-1, false, !isHidden, true, null);
+            case SPICY -> new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration*20, level-1, false, !isHidden, true, null);
+            case MINTY -> new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration*20, level-1, false, !isHidden, true, null);
+            case GLOW ->  new MobEffectInstance(MobEffects.GLOWING, duration*20, level-1, false, !isHidden, true, null);
+            case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration*20, level-1, false, !isHidden, true, null);
         };
     }
 }

@@ -43,10 +43,4 @@ public abstract class ItemsMixin {
     private static PotionItem potions(Item.Properties properties) {
         return new PotionItem((new Item.Properties()).stacksTo(16).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
     }
-
-    @Redirect(slice = @Slice(from = @At(value = "CONSTANT", args = {"stringValue=potion"}, ordinal = 0)),
-            at = @At(value = "NEW", target = "(Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;", ordinal = 0), method = {"<clinit>"})
-    private static Item sweetBerries(Item.Properties properties) {
-        return new PotionItem((new Item.Properties()).stacksTo(16).component(DataComponents.POTION_CONTENTS, PotionContents.EMPTY));
-    }
 }
