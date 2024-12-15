@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "concoction:cocao_butter",
     "concoction:butter"
   ]
 }

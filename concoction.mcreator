@@ -2086,20 +2086,6 @@
       "path": "~/oils"
     },
     {
-      "name": "CocaoButter",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "cocao_butter",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/CocaoButterItem.java",
-          "src/main/resources/assets/concoction/models/item/cocao_butter.json"
-        ]
-      },
-      "path": "~/oils"
-    },
-    {
       "name": "TempRecipeSunflowerOil",
       "type": "recipe",
       "compiles": true,
@@ -2134,19 +2120,6 @@
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/recipe/temp_recipe_butter.json"
-        ]
-      },
-      "path": "~/oils"
-    },
-    {
-      "name": "TempRecipeCocaoButter",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "temp_recipe_cocao_butter",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/recipe/temp_recipe_cocao_butter.json"
         ]
       },
       "path": "~/oils"
@@ -2987,7 +2960,6 @@
       "CUSTOM:MusicDiscHotIce"
     ],
     "ITEMS:mod:butters": [
-      "CUSTOM:CocaoButter",
       "CUSTOM:Butter"
     ]
   },
@@ -3118,7 +3090,6 @@
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
-      "item.concoction.cocao_butter": "Какао масло",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "item.concoction.onion": "Лук"
@@ -3248,7 +3219,6 @@
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
-      "item.concoction.cocao_butter": "Cocoa Butter",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "block.concoction.blue_pillow_block": "Blue Pillow",
       "item.concoction.onion": "Onion"

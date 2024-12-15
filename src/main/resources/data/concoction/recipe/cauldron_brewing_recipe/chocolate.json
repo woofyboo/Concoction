@@ -15,8 +15,12 @@
       "item": "minecraft:cocoa_beans"
     },
     {
-      "item": "concoction:cocao_butter"
+      "item": "minecraft:cocoa_beans"
     },
+    {
+      "item": "minecraft:sugar"
+    },
+
     {
       "item": "concoction:butter"
     }

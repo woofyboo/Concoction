@@ -42,7 +42,6 @@ import net.mcreator.concoction.item.CottonOilItem;
 import net.mcreator.concoction.item.CornSoupItem;
 import net.mcreator.concoction.item.CornItem;
 import net.mcreator.concoction.item.CookedCornItem;
-import net.mcreator.concoction.item.CocaoButterItem;
 import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
@@ -72,7 +71,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> SUNFLOWER_OIL = REGISTRY.register("sunflower_oil", SunflowerOilItem::new);
 	public static final DeferredItem<Item> COTTON_OIL = REGISTRY.register("cotton_oil", CottonOilItem::new);
 	public static final DeferredItem<Item> BUTTER = REGISTRY.register("butter", ButterItem::new);
-	public static final DeferredItem<Item> COCAO_BUTTER = REGISTRY.register("cocao_butter", CocaoButterItem::new);
 	public static final DeferredItem<Item> PINECONE = REGISTRY.register("pinecone", PineconeItem::new);
 	public static final DeferredItem<Item> ROASTED_PINECONE = REGISTRY.register("roasted_pinecone", RoastedPineconeItem::new);
 	public static final DeferredItem<Item> HASHBROWNS = REGISTRY.register("hashbrowns", HashbrownsItem::new);
