@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlocksMixin",
+    "CakeBlockMixin",
     "ItemMixin",
     "ItemsMixin",
     "LevelMixin",
