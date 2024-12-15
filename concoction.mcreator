@@ -2798,6 +2798,19 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "SpicyPepperSeedsCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "spicy_pepper_seeds_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/spicy_pepper_seeds_craft.json"
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],

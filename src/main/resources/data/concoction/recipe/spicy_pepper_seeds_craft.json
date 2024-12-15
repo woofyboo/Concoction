@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:spicy_pepper"
+    }
+  ],
+  "result": {
+    "id": "concoction:spicy_pepper_seeds",
+    "count": 3
+  }
+}
