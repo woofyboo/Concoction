@@ -1,6 +1,5 @@
 package net.mcreator.concoction;
 
-import net.mcreator.concoction.init.*;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -18,6 +17,17 @@ import net.minecraft.util.Tuple;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
+
+import net.mcreator.concoction.init.ConcoctionModSounds;
+import net.mcreator.concoction.init.ConcoctionModRecipes;
+import net.mcreator.concoction.init.ConcoctionModPotions;
+import net.mcreator.concoction.init.ConcoctionModParticleTypes;
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
+import net.mcreator.concoction.init.ConcoctionModCustomTabs;
+import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;

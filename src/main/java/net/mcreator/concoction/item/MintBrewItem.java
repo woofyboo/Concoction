@@ -1,7 +1,6 @@
 
 package net.mcreator.concoction.item;
 
-import net.mcreator.concoction.procedures.MintBrewPlayerFinishesUsingItemProcedure;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -44,7 +43,6 @@ public class MintBrewItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		MintBrewPlayerFinishesUsingItemProcedure.execute(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

@@ -11,8 +11,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 
-import net.mcreator.concoction.procedures.MintCookiePlayerFinishesUsingItemProcedure;
-
 public class MintCookieItem extends Item {
 	public MintCookieItem() {
 		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
@@ -24,7 +22,6 @@ public class MintCookieItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		MintCookiePlayerFinishesUsingItemProcedure.execute(entity);
 		return retval;
 	}
 }
