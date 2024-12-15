@@ -11,9 +11,14 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
+
 public class HotSauceBottleItem extends Item {
 	public HotSauceBottleItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).
+				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 2, 60, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6f).alwaysEdible().build()));
 	}
 
 	@Override
