@@ -69,7 +69,7 @@ public class ChocolateMintCakeEatingProcedure {
 						if (entity instanceof Player _player)
 							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
 						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 600, 0));
+							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 30*20, 1-1, false, false, true, null));
 						if (event instanceof ICancellableEvent _cancellable) {
 							_cancellable.setCanceled(true);
 						}
@@ -83,7 +83,7 @@ public class ChocolateMintCakeEatingProcedure {
 					if (entity instanceof Player _player)
 						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
 					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 600, 0));
+						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 30*20, 1-1, false, false, true, null));
 					if (event instanceof ICancellableEvent _cancellable) {
 						_cancellable.setCanceled(true);
 					}

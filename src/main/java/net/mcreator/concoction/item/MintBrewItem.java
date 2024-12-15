@@ -18,7 +18,7 @@ import net.mcreator.concoction.procedures.MintBrewDrinkProcedure;
 
 public class MintBrewItem extends Item {
 	public MintBrewItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.MINTY, 2, 90, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
 	}
 
 	@Override

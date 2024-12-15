@@ -34,6 +34,7 @@ import net.mcreator.concoction.item.HotSauceBottleItem;
 import net.mcreator.concoction.item.HoneyGlazedCornItem;
 import net.mcreator.concoction.item.HashbrownsItem;
 import net.mcreator.concoction.item.GoldenCornItem;
+import net.mcreator.concoction.item.FungusStewItem;
 import net.mcreator.concoction.item.FriedEggItem;
 import net.mcreator.concoction.item.FishAndChipsItem;
 import net.mcreator.concoction.item.FabricItem;
@@ -91,6 +92,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> HONEY_GLAZED_CORN = REGISTRY.register("honey_glazed_corn", HoneyGlazedCornItem::new);
 	public static final DeferredItem<Item> GOLDEN_CORN = REGISTRY.register("golden_corn", GoldenCornItem::new);
 	public static final DeferredItem<Item> HOT_SAUCE_BOTTLE = REGISTRY.register("hot_sauce_bottle", HotSauceBottleItem::new);
+	public static final DeferredItem<Item> FUNGUS_STEW = REGISTRY.register("fungus_stew", FungusStewItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
