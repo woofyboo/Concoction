@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "jungle",
+    "bamboo_jungle",
+    "sparse_jungle"
+  ],
+  "features": "concoction:wild_spicy_pepper",
+  "step": "vegetal_decoration"
+}

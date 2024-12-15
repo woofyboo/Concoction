@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 import net.minecraft.world.level.block.Block;
 
+import net.mcreator.concoction.block.WildSpicyPepperBlock;
 import net.mcreator.concoction.block.WildOnionBlock;
 import net.mcreator.concoction.block.WildCottonBlock;
 import net.mcreator.concoction.block.WildCarrotBlock;
@@ -37,6 +38,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WILD_ONION = REGISTRY.register("wild_onion", WildOnionBlock::new);
 	public static final DeferredBlock<Block> CROP_CORN = REGISTRY.register("crop_corn", CropCornBlock::new);
 	public static final DeferredBlock<Block> CROP_SPICY_PEPPER = REGISTRY.register("crop_spicy_pepper", CropSpicyPepperBlock::new);
+	public static final DeferredBlock<Block> WILD_SPICY_PEPPER = REGISTRY.register("wild_spicy_pepper", WildSpicyPepperBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

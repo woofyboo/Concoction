@@ -105,6 +105,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
 				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
+				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
+
 
 //Особое
 		

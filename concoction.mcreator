@@ -2753,7 +2753,7 @@
     {
       "name": "HotSauceBottle",
       "type": "item",
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "hot_sauce_bottle",
       "metadata": {
@@ -2847,6 +2847,26 @@
         ]
       },
       "path": "~/corn"
+    },
+    {
+      "name": "WildSpicyPepper",
+      "type": "plant",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "wild_spicy_pepper",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_spicy_pepper.json",
+          "src/main/java/net/mcreator/concoction/block/WildSpicyPepperBlock.java",
+          "src/main/resources/data/concoction/worldgen/configured_feature/wild_spicy_pepper.json",
+          "src/main/resources/assets/concoction/blockstates/wild_spicy_pepper.json",
+          "src/main/resources/assets/concoction/models/item/wild_spicy_pepper.json",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/wild_spicy_pepper_biome_modifier.json",
+          "src/main/resources/data/concoction/loot_table/blocks/wild_spicy_pepper.json",
+          "src/main/resources/assets/concoction/models/block/wild_spicy_pepper.json"
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -3071,6 +3091,7 @@
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.honey_glazed_corn": "Кукуруза в меду",
       "item.concoction.golden_corn": "Золотая кукуруза",
+      "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
       "block.concoction.small_light_blue_pillow_block": "Маленькая голубая подушка",
@@ -3200,6 +3221,7 @@
       "item.concoction.fish_and_chips": "Fish \u0026 Chips",
       "item.concoction.honey_glazed_corn": "Honey Glazed Corn",
       "item.concoction.golden_corn": "Golden Corn",
+      "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
