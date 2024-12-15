@@ -1,20 +1,20 @@
 {
-  "name": "concoction:wild_corn",
+  "name": "concoction:deeprooted_corn",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "concoction:wild_corn",
-        "projection": "rigid",
+        "location": "concoction:deeprooted_corn",
+        "projection": "terrain_matching",
         "processors": {
           "processors": [
             {
               "processor_type": "minecraft:block_ignore",
               "blocks": [
                 {
-                  "Name": "minecraft:structure_block"
+                  "Name": "minecraft:air"
                 }
               ]
             }

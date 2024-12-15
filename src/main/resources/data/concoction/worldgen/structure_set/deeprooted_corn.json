@@ -1,7 +1,7 @@
 {
   "structures": [
     {
-      "structure": "concoction:wild_corn",
+      "structure": "concoction:deeprooted_corn",
       "weight": 1
     }
   ],
@@ -9,6 +9,6 @@
     "type": "minecraft:random_spread",
     "spacing": 24,
     "separation": 1,
-    "salt": 792465199
+    "salt": 1267459578
   }
 }

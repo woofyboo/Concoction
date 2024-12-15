@@ -2393,21 +2393,6 @@
       "path": "~/corn"
     },
     {
-      "name": "WildCorn",
-      "type": "structure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "wild_corn",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/worldgen/structure/wild_corn.json",
-          "src/main/resources/data/concoction/worldgen/structure_set/wild_corn.json",
-          "src/main/resources/data/concoction/worldgen/template_pool/wild_corn.json"
-        ]
-      },
-      "path": "~/corn"
-    },
-    {
       "name": "Popcorn",
       "type": "item",
       "compiles": true,
@@ -2847,6 +2832,21 @@
         ]
       },
       "path": "~/mint"
+    },
+    {
+      "name": "DeeprootedCorn",
+      "type": "structure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "deeprooted_corn",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/structure_set/deeprooted_corn.json",
+          "src/main/resources/data/concoction/worldgen/template_pool/deeprooted_corn.json",
+          "src/main/resources/data/concoction/worldgen/structure/deeprooted_corn.json"
+        ]
+      },
+      "path": "~/corn"
     }
   ],
   "variable_elements": [],

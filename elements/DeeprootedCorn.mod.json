@@ -2,8 +2,8 @@
   "_fv": 69,
   "_type": "structure",
   "definition": {
-    "structure": "wild_corn",
-    "projection": "rigid",
+    "structure": "deeprooted_corn",
+    "projection": "terrain_matching",
     "ignoredBlocks": [
       {
         "value": "Blocks.STRUCTURE_BLOCK"
@@ -19,7 +19,7 @@
         "value": "mutated_plains"
       }
     ],
-    "terrainAdaptation": "none",
+    "terrainAdaptation": "bury",
     "generationStep": "VEGETAL_DECORATION",
     "surfaceDetectionType": "WORLD_SURFACE",
     "useStartHeight": false,
