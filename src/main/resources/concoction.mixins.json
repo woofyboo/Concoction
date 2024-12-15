@@ -4,9 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlocksMixin",
-    "FoodPropertiesBuilderMixin",
-    "FoodPropertiesImplementMixin",
-    "FoodPropertiesInitMixin",
+    "ItemMixin",
     "ItemsMixin",
     "LevelMixin",
     "PlayerMixin"
