@@ -61,9 +61,9 @@ public class ConcoctionModDataComponents {
         event.modify(Items.MELON_SLICE, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 12, true))
         );
-        event.modify(Items.HONEY_BOTTLE, builder ->
-                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 30, true))
-        );
+//        event.modify(Items.HONEY_BOTTLE, builder ->
+//                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 30, true))
+//        );
         event.modify(Items.SWEET_BERRIES, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 6, true))
         );

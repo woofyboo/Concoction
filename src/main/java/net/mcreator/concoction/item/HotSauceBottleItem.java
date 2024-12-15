@@ -1,6 +1,8 @@
 
 package net.mcreator.concoction.item;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.Rarity;
@@ -13,6 +15,8 @@ import net.minecraft.world.entity.LivingEntity;
 
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
+import org.jetbrains.annotations.NotNull;
+
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 public class HotSauceBottleItem extends Item {
@@ -24,6 +28,11 @@ public class HotSauceBottleItem extends Item {
 	@Override
 	public UseAnim getUseAnimation(ItemStack itemstack) {
 		return UseAnim.DRINK;
+	}
+
+	@Override
+	public @NotNull SoundEvent getEatingSound() {
+		return SoundEvents.GENERIC_DRINK;
 	}
 
 	@Override

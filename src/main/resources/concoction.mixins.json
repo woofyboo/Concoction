@@ -5,6 +5,7 @@
   "mixins": [
     "BlocksMixin",
     "CakeBlockMixin",
+    "HoneyBootleMixin",
     "ItemMixin",
     "ItemsMixin",
     "LevelMixin",
