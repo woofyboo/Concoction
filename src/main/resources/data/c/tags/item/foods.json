@@ -21,7 +21,10 @@
     "concoction:popcorn",
     "concoction:cooked_corn",
     "concoction:corn_soup",
-    "concoction:spicy_pepper"
+    "concoction:spicy_pepper",
+    "concoction:honey_glazed_corn",
+    "concoction:golden_corn",
+    "concoction:hot_sauce_bottle"
 
   ]
 }

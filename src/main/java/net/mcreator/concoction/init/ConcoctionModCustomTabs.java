@@ -62,8 +62,11 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.POPCORN.get());
 				tabData.accept(ConcoctionModItems.COOKED_CORN.get());
+				tabData.accept(ConcoctionModItems.HONEY_GLAZED_CORN.get());
+				tabData.accept(ConcoctionModItems.GOLDEN_CORN.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
+				tabData.accept(ConcoctionModItems.HOT_SAUCE_BOTTLE.get());
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
