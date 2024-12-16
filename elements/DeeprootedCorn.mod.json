@@ -2,7 +2,7 @@
   "_fv": 69,
   "_type": "structure",
   "definition": {
-    "structure": "deeprooted_corn",
+    "structure": "corn_patch",
     "projection": "terrain_matching",
     "ignoredBlocks": [
       {
