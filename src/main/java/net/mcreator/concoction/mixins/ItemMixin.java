@@ -16,7 +16,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 @Mixin({Item.class})
 public class ItemMixin {
-    @Inject(method = "finishUsingItem", at = @At("RETURN"))
+    @Inject(method = "finishUsingItem", at = @At("HEAD"))
     private void addEatEffect(ItemStack itemStack, Level p_41410_, LivingEntity player, CallbackInfoReturnable<ItemStack> cir) {
         if (itemStack.get(FOOD_EFFECT.value()) != null && player != null) {
             FoodEffectComponent component = itemStack.get(FOOD_EFFECT.value());
