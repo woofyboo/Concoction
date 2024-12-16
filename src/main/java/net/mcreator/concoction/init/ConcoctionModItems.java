@@ -31,7 +31,6 @@ import net.mcreator.concoction.item.MintBrewItem;
 import net.mcreator.concoction.item.MeatGoulashItem;
 import net.mcreator.concoction.item.MashedPotatoesItem;
 import net.mcreator.concoction.item.HotSauceBottleItem;
-import net.mcreator.concoction.item.HoneyGlazedCornItem;
 import net.mcreator.concoction.item.HashbrownsItem;
 import net.mcreator.concoction.item.GoldenCornItem;
 import net.mcreator.concoction.item.FungusStewItem;
@@ -87,7 +86,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CORN_SOUP = REGISTRY.register("corn_soup", CornSoupItem::new);
 	public static final DeferredItem<Item> CROP_SPICY_PEPPER = block(ConcoctionModBlocks.CROP_SPICY_PEPPER);
 	public static final DeferredItem<Item> SPICY_PEPPER = REGISTRY.register("spicy_pepper", SpicyPepperItem::new);
-	public static final DeferredItem<Item> HONEY_GLAZED_CORN = REGISTRY.register("honey_glazed_corn", HoneyGlazedCornItem::new);
 	public static final DeferredItem<Item> GOLDEN_CORN = REGISTRY.register("golden_corn", GoldenCornItem::new);
 	public static final DeferredItem<Item> HOT_SAUCE_BOTTLE = REGISTRY.register("hot_sauce_bottle", HotSauceBottleItem::new);
 	public static final DeferredItem<Item> FUNGUS_STEW = REGISTRY.register("fungus_stew", FungusStewItem::new);

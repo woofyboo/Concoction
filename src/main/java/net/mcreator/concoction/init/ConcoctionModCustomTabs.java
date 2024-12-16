@@ -23,48 +23,53 @@ public class ConcoctionModCustomTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ConcoctionMod.MODID);
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CONCOCTION = REGISTRY.register("concoction",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.concoction.concoction")).icon(() -> new ItemStack(ConcoctionModBlocks.MINT.get())).displayItems((parameters, tabData) -> {
-//Семена, Растения, Плоды
-				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
-				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
-				tabData.accept(ConcoctionModItems.CHERRY.get());
+//Растения, семена, плоды, еда
+				tabData.accept(ConcoctionModItems.CORN.get());
+				tabData.accept(ConcoctionModItems.CORN_SEEDS.get());
+				tabData.accept(ConcoctionModItems.POPCORN.get());
+				tabData.accept(ConcoctionModItems.COOKED_CORN.get());
+				tabData.accept(ConcoctionModItems.GOLDEN_CORN.get());
+				tabData.accept(ConcoctionModItems.SPICY_PEPPER.get());
+				tabData.accept(ConcoctionModItems.SPICY_PEPPER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.HOT_SAUCE_BOTTLE.get());
+				tabData.accept(ConcoctionModItems.ONION.get());
 				tabData.accept(ConcoctionModItems.COTTON.get());
 				tabData.accept(ConcoctionModItems.FABRIC.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
-				tabData.accept(ConcoctionModItems.CORN.get());
-				tabData.accept(ConcoctionModItems.CORN_SEEDS.get());
-				tabData.accept(ConcoctionModItems.ONION.get());
-				tabData.accept(ConcoctionModItems.SPICY_PEPPER.get());
-				tabData.accept(ConcoctionModItems.SPICY_PEPPER_SEEDS.get());
-				tabData.accept(ConcoctionModItems.PINECONE.get());
-				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
-// Материалы
-				tabData.accept(ConcoctionModItems.HOT_SAUCE_BOTTLE.get());
-				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
-				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
-				tabData.accept(ConcoctionModItems.BUTTER.get());
-				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
-
-//Еда и напитки
+				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
+				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
+				tabData.accept(ConcoctionModItems.CHERRY.get());
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
-				tabData.accept(ConcoctionModItems.POPCORN.get());
-				tabData.accept(ConcoctionModItems.COOKED_CORN.get());
-				tabData.accept(ConcoctionModItems.HONEY_GLAZED_CORN.get());
-				tabData.accept(ConcoctionModItems.GOLDEN_CORN.get());
+				tabData.accept(ConcoctionModItems.PINECONE.get());
+				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
+// Пищевые Материалы
+				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
+				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
+				tabData.accept(ConcoctionModItems.BUTTER.get());
+				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
+
+//Сложная еда
+				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
+				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
+//Супы и блюда
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
-				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
-				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
+//Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
-
+//Дикие Растения
+				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
+				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
+				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
+				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());
@@ -101,11 +106,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 //Инструменты, оружие, броня
 
-//Дикие Растения
-				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
-				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
-				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
-				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 
 
 //Особое

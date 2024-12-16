@@ -11,8 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.component.DataComponents;
 
 import javax.annotation.Nullable;
 
@@ -33,7 +32,7 @@ public class NauseaCantEatProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(MobEffects.CONFUSION)) {
-			if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:foods")))) {
+			if (itemstack.has(DataComponents.FOOD)) {
 				if (entity instanceof Player _player)
 					_player.getCooldowns().addCooldown(itemstack.getItem(), 20);
 				if (event instanceof ICancellableEvent _cancellable) {
