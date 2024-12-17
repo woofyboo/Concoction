@@ -3017,6 +3017,22 @@
         ]
       },
       "path": "~/achivements"
+    },
+    {
+      "name": "CropRice",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "crop_rice",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/crop_rice.json",
+          "src/main/resources/assets/concoction/models/block/crop_rice.json",
+          "src/main/java/net/mcreator/concoction/block/CropRiceBlock.java",
+          "src/main/resources/assets/concoction/models/item/crop_rice.json"
+        ]
+      },
+      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -3150,8 +3166,9 @@
       "advancements.onion_found.title": "Горе луковое",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
       "subtitles.silence": "",
-      "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
+      "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
+      "block.concoction.crop_rice": "Crop Rice",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
@@ -3299,8 +3316,9 @@
       "advancements.onion_found.title": "Who\u0027s Building Nether Portal?",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
-      "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
+      "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
+      "block.concoction.crop_rice": "Crop Rice",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
@@ -3489,6 +3507,10 @@
       },
       {
         "name": "spicy_pepper",
+        "children": []
+      },
+      {
+        "name": "rice",
         "children": []
       }
     ]
