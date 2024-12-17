@@ -164,7 +164,7 @@ public class SunflowerBlock extends CropBlock {
 
     public BlockState getState(BlockState pState, int age, DoubleBlockHalf half, FacingProperty facing) {
         return this.defaultBlockState().setValue(this.getAgeProperty(), Integer.valueOf(age)).
-        		setValue(FACING, pState.getValue(FACING)).setValue(HALF, half).setValue(FACING, facing);
+        		setValue(HALF, half).setValue(FACING, facing);
     }
     
     @Override
