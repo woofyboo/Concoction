@@ -59,8 +59,10 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
 //Супы и блюда
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
+				tabData.accept(ConcoctionModItems.ONION_SOUP.get());
 				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
+				tabData.accept(ConcoctionModItems.BAMBOO_PORKCHOP_SOUP.get());
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 //Другое

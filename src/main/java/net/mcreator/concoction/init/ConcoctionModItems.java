@@ -23,6 +23,7 @@ import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
 import net.mcreator.concoction.item.RoastedPineconeItem;
 import net.mcreator.concoction.item.PopcornItem;
 import net.mcreator.concoction.item.PineconeItem;
+import net.mcreator.concoction.item.OnionSoupItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
 import net.mcreator.concoction.item.MusicDiscHotIceItem;
 import net.mcreator.concoction.item.MintySlimeJellyItem;
@@ -45,6 +46,7 @@ import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
 import net.mcreator.concoction.item.ButterItem;
+import net.mcreator.concoction.item.BambooPorkchopSoupItem;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
@@ -90,6 +92,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> HOT_SAUCE_BOTTLE = REGISTRY.register("hot_sauce_bottle", HotSauceBottleItem::new);
 	public static final DeferredItem<Item> FUNGUS_STEW = REGISTRY.register("fungus_stew", FungusStewItem::new);
 	public static final DeferredItem<Item> WILD_SPICY_PEPPER = block(ConcoctionModBlocks.WILD_SPICY_PEPPER);
+	public static final DeferredItem<Item> ONION_SOUP = REGISTRY.register("onion_soup", OnionSoupItem::new);
+	public static final DeferredItem<Item> BAMBOO_PORKCHOP_SOUP = REGISTRY.register("bamboo_porkchop_soup", BambooPorkchopSoupItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

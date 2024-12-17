@@ -2853,6 +2853,34 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "OnionSoup",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "onion_soup",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/OnionSoupItem.java",
+          "src/main/resources/assets/concoction/models/item/onion_soup.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BambooPorkchopSoup",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "bamboo_porkchop_soup",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/bamboo_porkchop_soup.json",
+          "src/main/java/net/mcreator/concoction/item/BambooPorkchopSoupItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3016,6 +3044,7 @@
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
+      "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
@@ -3076,6 +3105,7 @@
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.golden_corn": "Золотая кукуруза",
+      "item.concoction.onion_soup": "Луковый суп",
       "block.concoction.wild_spicy_pepper": "Дикий жгучий перец",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
@@ -3104,17 +3134,17 @@
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
-      "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",
+      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "item.concoction.pinecone": "Pinecone",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
-      "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
+      "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
@@ -3126,8 +3156,8 @@
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
       "item.concoction.popcorn": "Popcorn",
-      "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "block.concoction.brown_pillow_block": "Brown Pillow",
+      "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "item.concoction.corn_soup": "Corn Soup",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
@@ -3145,6 +3175,7 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
+      "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.key_to_the_heart.title": "Key to the Heart",
@@ -3205,6 +3236,7 @@
       "block.concoction.red_pillow_block": "Red Pillow",
       "item.concoction.fish_and_chips": "Fish \u0026 Chips",
       "item.concoction.golden_corn": "Golden Corn",
+      "item.concoction.onion_soup": "Onion Soup",
       "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",

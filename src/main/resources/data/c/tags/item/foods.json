@@ -24,7 +24,9 @@
     "concoction:honey_glazed_corn",
     "concoction:golden_corn",
     "concoction:hot_sauce_bottle",
-    "concoction:fungus_stew"
+    "concoction:fungus_stew",
+    "concoction:onion_soup",
+    "concoction:bamboo_porkchop_soup"
 
   ]
 }
