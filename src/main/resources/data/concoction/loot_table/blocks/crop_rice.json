@@ -1,13 +1,13 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "concoction:blocks/wild_carrot",
+  "random_sequence": "concoction:blocks/crop_rice",
   "pools": [
     {
       "rolls": 1.0,
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "concoction:wild_carrot",
+          "block": "concoction:crop_rice",
           "condition": "minecraft:block_state_property",
           "properties": {
             "half": "lower"
@@ -17,18 +17,19 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:carrot"
+          "name": "concoction:rice"
         }
       ]
     },
     {
-      "rolls": 1.0,
+      "rolls": 3.0,
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "concoction:wild_carrot",
+          "block": "concoction:crop_rice",
           "condition": "minecraft:block_state_property",
           "properties": {
+            "age": "5",
             "half": "lower"
           }
         }
@@ -36,18 +37,19 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:carrot"
+          "name": "concoction:rice"
         }
       ]
     },
     {
       "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 1.0,
       "conditions": [
         {
-          "block": "concoction:wild_carrot",
+          "block": "concoction:crop_rice",
           "condition": "minecraft:block_state_property",
           "properties": {
+            "age": "5",
             "half": "lower"
           }
         }
@@ -66,7 +68,7 @@
               }
             }
           ],
-          "name": "minecraft:carrot"
+          "name": "concoction:rice"
         }
       ]
     }

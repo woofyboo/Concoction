@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
 // Класс растения, наследующий от CropBlock
 public class CropRiceBlock extends CropBlock implements SimpleWaterloggedBlock {
 	// Максимальный возраст растения
-	public static final int FIRST_STAGE_MAX_AGE = 2;
-	public static final int SECOND_STAGE_MAX_AGE = 3;
+	public static final int FIRST_STAGE_MAX_AGE = 3;
+	public static final int SECOND_STAGE_MAX_AGE = 2;
 	public static final int MAX_AGE = FIRST_STAGE_MAX_AGE + SECOND_STAGE_MAX_AGE;
 	// Свойство возраста растения
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
