@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:spicy_pepper"
+    },
+    "title": {
+      "translate": "advancements.spicy_pepper_found.title"
+    },
+    "description": {
+      "translate": "advancements.spicy_pepper_found.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "spicy_pepper_found_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "concoction:spicy_pepper"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "concoction:core"
+}

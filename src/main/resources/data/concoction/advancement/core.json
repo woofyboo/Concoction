@@ -1,0 +1,23 @@
+{
+  "display": {
+    "background": "concoction:textures/screens/apple_log.png",
+    "icon": {
+      "id": "concoction:mint"
+    },
+    "title": {
+      "translate": "advancements.core.title"
+    },
+    "description": {
+      "translate": "advancements.core.descr"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "core_0": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

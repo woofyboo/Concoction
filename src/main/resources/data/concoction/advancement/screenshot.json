@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "minecraft:nether/brew_potion"
+  "parent": "concoction:triple_dent_gum"
 }

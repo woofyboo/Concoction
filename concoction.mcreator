@@ -2881,6 +2881,142 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "Core",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "core",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/core.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "TripleDentGum",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "triple_dent_gum",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/triple_dent_gum.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "NotACottonCandy",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "not_a_cotton_candy",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/not_a_cotton_candy.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "CoreAchivement",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "core_achivement",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/CoreAchivementProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "OnionFound",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "onion_found",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/onion_found.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "KindaCorny",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "kinda_corny",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/kinda_corny.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "PopcornEat",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "popcorn_eat",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/popcorn_eat.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "Sunshine",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunshine",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/sunshine.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "SpicyPepperFound",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "spicy_pepper_found",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/spicy_pepper_found.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "CryAboutIt",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cry_about_it",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/cry_about_it.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -3003,13 +3139,15 @@
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
+      "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
       "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
       "block.concoction.mint": "Мята",
+      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
       "item.concoction.pinecone": "Шишка",
+      "advancements.onion_found.title": "Горе луковое",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
       "subtitles.silence": "",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
@@ -3028,6 +3166,7 @@
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
+      "advancements.core.descr": "Нельзя путешествовать на пустой желудок!",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
       "item.minecraft.lingering_potion.effect.flame_extended": "Оседающее зелье жжения",
@@ -3044,9 +3183,11 @@
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
+      "advancements.not_a_cotton_candy.title": "Не хлопай мне тут",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
+      "advancements.not_a_cotton_candy.descr": "Найдите дикорастущий хлопок в плато саванны.",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
       "item.concoction.mashed_potatoes": "Картофельное пюре",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
@@ -3054,22 +3195,27 @@
       "item.concoction.mint_seeds": "Семена мяты",
       "item.concoction.spicy_pepper_seeds": "Семена жгучего перца",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
+      "advancements.onion_found.descr": "Найди лук в лесу.",
       "advancements.screenshot.title": "Скриншот!",
       "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
       "advancements.key_to_the_heart.descr": "Приготовь что-нибудь с помощью котла",
       "block.concoction.pillow_block": "Белая подушка",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
       "effect.concoction.instability": "Нестабильность",
+      "advancements.spicy_pepper_found.title": "А-а-а! Жопа горит!",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "item.concoction.fried_egg": "Яичница",
+      "advancements.sunshine.descr": "Найди подсолнух на подсолнечных равнинах или в цветочном лесу.",
+      "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "block.concoction.gray_pillow_block": "Серая подушка",
       "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
       "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
+      "advancements.cry_about_it.descr": "Выпей обсидиановы слёзы и испытай последствия своих действий.",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
@@ -3090,7 +3236,10 @@
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
+      "advancements.popcorn_eat.descr": "Сьешь свежеприготовленный попкорн.",
+      "advancements.kinda_corny.title": "Кукуруза как у Тома Круза",
       "item.concoction.fabric": "Ткань",
+      "advancements.triple_dent_gum.title": "Мята+Лайм",
       "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
       "block.concoction.wild_cotton": "Дикий хлопок",
@@ -3098,10 +3247,12 @@
       "block.concoction_brew.mint": "Мята",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
+      "advancements.sunshine.title": "Ты моё солнце, бро",
       "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
+      "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.golden_corn": "Золотая кукуруза",
@@ -3119,8 +3270,10 @@
       "item.minecraft.sweet_berries": "Брусника",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
+      "advancements.popcorn_eat.title": "Хрум-хрум",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "effect.concoction.spicy": "Жгучесть",
+      "advancements.kinda_corny.descr": "Найди кукурузу на равнине.",
       "gui.cooking_cauldron.title": "Готовка в котле",
       "item.concoction.fungus_stew": "Тушёные поганки",
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
@@ -3128,12 +3281,14 @@
       "effect.concoction.minty_breath": "Свежесть",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
       "block.concoction.blue_pillow_block": "Синяя подушка",
-      "item.concoction.onion": "Лук"
+      "item.concoction.onion": "Лук",
+      "advancements.cry_about_it.title": "Вход запрещён"
     },
     "en_us": {
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
+      "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
@@ -3141,10 +3296,11 @@
       "block.concoction.mint": "Mint",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "item.concoction.pinecone": "Pinecone",
+      "advancements.onion_found.title": "Who\u0027s Building Nether Portal?",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
-      "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
+      "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "advancements.brain_freeze_obtain_achievement.title": "Frosty Breath",
       "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
@@ -3159,6 +3315,7 @@
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
       "item.concoction.corn_soup": "Corn Soup",
+      "advancements.core.descr": "Can\u0027t travel on empty stomach!",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
       "item.minecraft.lingering_potion.effect.flame_extended": "Lingering Potion of Flame",
@@ -3175,9 +3332,11 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
+      "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
+      "advancements.not_a_cotton_candy.descr": "Find cotton in savanna plateu.",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
@@ -3185,22 +3344,27 @@
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
+      "advancements.onion_found.descr": "Find wild onion in forest.",
       "advancements.screenshot.title": "Screenshot",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
       "advancements.key_to_the_heart.descr": "Put something inside a cauldron that is ready to cook",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
       "effect.concoction.instability": "Instability",
+      "advancements.spicy_pepper_found.title": "Sweet Sweet Capsaicin",
       "effect.concoction.frost_touch": "Frost Touch",
       "item.concoction.cherry": "Cherry",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "item.concoction.fried_egg": "Fried Egg",
+      "advancements.sunshine.descr": "Find sunflower seeds in sunflower plains or flower forest.",
+      "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
       "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
+      "advancements.cry_about_it.descr": "Drink obsidian tears and suffer the consequences.",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
@@ -3221,7 +3385,10 @@
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
+      "advancements.popcorn_eat.descr": "Eat freshly made popcorn.",
+      "advancements.kinda_corny.title": "Kinda Corny ;)",
       "item.concoction.fabric": "Fabric",
+      "advancements.triple_dent_gum.title": "Triple Dent Gum",
       "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
       "block.concoction.wild_cotton": "Wild Cotton",
@@ -3229,12 +3396,14 @@
       "block.concoction_brew.mint": "Mint",
       "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_red_pillow_block": "Small Red Pillow",
+      "advancements.sunshine.title": "You are My Sunshine...",
       "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.crop_corn": "Crop Corn",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
+      "advancements.spicy_pepper_found.descr": "Find spicy pepper in jungles.",
       "block.concoction.red_pillow_block": "Red Pillow",
-      "item.concoction.fish_and_chips": "Fish \u0026 Chips",
+      "item.concoction.fish_and_chips": "Fish and Chips",
       "item.concoction.golden_corn": "Golden Corn",
       "item.concoction.onion_soup": "Onion Soup",
       "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
@@ -3250,8 +3419,10 @@
       "item.minecraft.sweet_berries": "Lingonberry",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
+      "advancements.popcorn_eat.title": "Harry-poppin\u0027",
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
       "effect.concoction.spicy": "Spicy",
+      "advancements.kinda_corny.descr": "Find corn in plains biome.",
       "gui.cooking_cauldron.title": "Cauldron Cooking",
       "item.concoction.fungus_stew": "Fungus Stew",
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
@@ -3259,7 +3430,8 @@
       "effect.concoction.minty_breath": "Freshness",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "block.concoction.blue_pillow_block": "Blue Pillow",
-      "item.concoction.onion": "Onion"
+      "item.concoction.onion": "Onion",
+      "advancements.cry_about_it.title": "Cry About It"
     }
   },
   "foldersRoot": {

@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "minecraft:husbandry/root"
+  "parent": "concoction:core"
 }

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:mint"
+      "id": "concoction:mint_brew"
     },
     "title": {
       "translate": "advancements.brain_freeze_obtain_achievement.title"
@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "minecraft:husbandry/plant_seed"
+  "parent": "concoction:triple_dent_gum"
 }

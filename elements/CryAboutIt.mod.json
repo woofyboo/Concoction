@@ -2,10 +2,10 @@
   "_fv": 69,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Not-so-Soft Landing",
-    "achievementDescription": "Take damage by falling on a pillow.",
+    "achievementName": "Cry About It",
+    "achievementDescription": "Drink obsidian tears and suffer the consequences.",
     "achievementIcon": {
-      "value": "Items.FEATHER"
+      "value": "CUSTOM:ObsidianTearsBottle"
     },
     "background": "Default",
     "disableDisplay": false,
@@ -18,7 +18,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:NotACottonCandy"
+      "value": "CUSTOM:Core"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

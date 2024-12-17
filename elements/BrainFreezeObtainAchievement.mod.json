@@ -5,7 +5,7 @@
     "achievementName": "Frosty Breath",
     "achievementDescription": "Feel the pain of brain freeze.",
     "achievementIcon": {
-      "value": "CUSTOM:Mint"
+      "value": "CUSTOM:MintBrew"
     },
     "background": "Default",
     "disableDisplay": false,
@@ -18,7 +18,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "husbandry/plant_seed"
+      "value": "CUSTOM:TripleDentGum"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

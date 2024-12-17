@@ -18,7 +18,7 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 public class BambooPorkchopSoupItem extends Item {
 	public BambooPorkchopSoupItem() {
 		super(new Item.Properties().stacksTo(16).
-				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 3, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
+				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 6, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
@@ -21,6 +22,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.advancements.AdvancementHolder;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 
@@ -61,6 +64,16 @@ public class InstabilityWentThroughPortalProcedure {
 					entity.push((-1.5), 2, 1.5);
 				} else {
 					entity.push(1.5, 2, (-1.5));
+				}
+				if (entity instanceof ServerPlayer _player) {
+					AdvancementHolder _adv = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:cry_about_it"));
+					if (_adv != null) {
+						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
+						if (!_ap.isDone()) {
+							for (String criteria : _ap.getRemainingCriteria())
+								_player.getAdvancements().award(_adv, criteria);
+						}
+					}
 				}
 			}
 		}

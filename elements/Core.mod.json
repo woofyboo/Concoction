@@ -2,14 +2,14 @@
   "_fv": 69,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Not-so-Soft Landing",
-    "achievementDescription": "Take damage by falling on a pillow.",
+    "achievementName": "Concoction",
+    "achievementDescription": "Can't travel on empty stomach!",
     "achievementIcon": {
-      "value": "Items.FEATHER"
+      "value": "CUSTOM:Mint"
     },
-    "background": "Default",
+    "background": "apple_log.png",
     "disableDisplay": false,
-    "showPopup": true,
+    "showPopup": false,
     "announceToChat": true,
     "hideIfNotCompleted": false,
     "rewardLoot": [],
@@ -18,7 +18,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:NotACottonCandy"
+      "value": "No parent: root"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }
