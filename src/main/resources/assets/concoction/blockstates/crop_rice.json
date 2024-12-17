@@ -1,7 +1,32 @@
 {
   "variants": {
-    "": {
-      "model": "concoction:block/crop_rice"
+    "age=0,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_1"
+    },
+    "age=1,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_2"
+    },
+    "age=2,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_3"
+    },
+    "age=3,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_4"
+    },
+    "age=4,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_5"
+    },
+    "age=5,half=bottom": {
+      "model": "concoction:block/crop_rice_bottom_6"
+    },
+    "age=3,half=upper": {
+      "model": "concoction:block/crop_rice_upper_4"
+    },
+    "age=4,half=upper": {
+      "model": "concoction:block/crop_rice_upper_5"
+    },
+    "age=5,half=upper": {
+      "model": "concoction:block/crop_rice_upper_6"
     }
-  }
+    
+    }
 }

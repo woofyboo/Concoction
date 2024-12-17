@@ -24,13 +24,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
 
 // Класс растения, наследующий от CropBlock
-public class CropExample extends CropBlock {
+public class CropRiceBlock extends CropBlock {
 	// Максимальный возраст растения
 	public static final int MAX_AGE = 5;
 	// Свойство возраста растения
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-	public CropExample() {
+	public CropRiceBlock() {
 		// Установка свойств блока
 		super(BlockBehaviour.Properties.of()
 				.mapColor(MapColor.PLANT)

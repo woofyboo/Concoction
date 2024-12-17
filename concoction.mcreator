@@ -3033,20 +3033,6 @@
         ]
       },
       "path": "~/rice"
-    },
-    {
-      "name": "Rice",
-      "type": "item",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "rice",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/item/rice.json",
-          "src/main/java/net/mcreator/concoction/item/RiceItem.java"
-        ]
-      },
-      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -3100,7 +3086,8 @@
       "CUSTOM:Sunflower",
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper"
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -3116,7 +3103,8 @@
       "CUSTOM:Sunflower",
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper"
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
@@ -3124,7 +3112,8 @@
       "CUSTOM:Sunflower",
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper"
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice"
     ],
     "ITEMS:mod:oils_and_butters": [
       "TAG:concoction:oils",
@@ -3154,7 +3143,8 @@
       "CUSTOM:Sunflower",
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper"
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice"
     ],
     "ITEMS:c:music_discs": [
       "CUSTOM:MusicDiscHotIce"
@@ -3182,7 +3172,7 @@
       "subtitles.silence": "",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
-      "block.concoction.crop_rice": "Crop Rice",
+      "block.concoction.crop_rice": "Рис",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
@@ -3232,7 +3222,7 @@
       "advancements.key_to_the_heart.descr": "Приготовь что-нибудь с помощью котла",
       "block.concoction.pillow_block": "Белая подушка",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
-      "item.concoction.rice": "Rice",
+      "item.concoction.rice": "Рис",
       "effect.concoction.instability": "Нестабильность",
       "advancements.spicy_pepper_found.title": "А-а-а! Жопа горит!",
       "effect.concoction.frost_touch": "Ледяное касание",
@@ -3321,8 +3311,8 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
-      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "item.concoction.cotton_oil": "Cotton Oil",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
