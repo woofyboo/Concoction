@@ -3033,6 +3033,20 @@
         ]
       },
       "path": "~/rice"
+    },
+    {
+      "name": "Rice",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rice",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/rice.json",
+          "src/main/java/net/mcreator/concoction/item/RiceItem.java"
+        ]
+      },
+      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -3218,6 +3232,7 @@
       "advancements.key_to_the_heart.descr": "Приготовь что-нибудь с помощью котла",
       "block.concoction.pillow_block": "Белая подушка",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
+      "item.concoction.rice": "Rice",
       "effect.concoction.instability": "Нестабильность",
       "advancements.spicy_pepper_found.title": "А-а-а! Жопа горит!",
       "effect.concoction.frost_touch": "Ледяное касание",
@@ -3368,6 +3383,7 @@
       "block.concoction.pillow_block": "White Pillow",
       "advancements.key_to_the_heart.descr": "Put something inside a cauldron that is ready to cook",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
+      "item.concoction.rice": "Rice",
       "effect.concoction.instability": "Instability",
       "advancements.spicy_pepper_found.title": "Sweet Sweet Capsaicin",
       "effect.concoction.frost_touch": "Frost Touch",

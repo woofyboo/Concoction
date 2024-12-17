@@ -1,114 +1,130 @@
-
 package net.mcreator.concoction.block;
 
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.core.Direction;
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.SpecialPlantable;
 
-public class CropRiceBlock extends Block implements SimpleWaterloggedBlock {
-	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-	public static final EnumProperty<HalfProperty> HALF = EnumProperty.create("half", HalfProperty.class);
-	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 5);
+// Класс растения, наследующий от CropBlock
+public class CropExample extends CropBlock {
+	// Максимальный возраст растения
+	public static final int MAX_AGE = 5;
+	// Свойство возраста растения
+	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-	public CropRiceBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
-		this.registerDefaultState(this.stateDefinition.any().setValue(HALF, HalfProperty.BOTTOM).setValue(AGE, 0).setValue(WATERLOGGED, false));
+	public CropExample() {
+		// Установка свойств блока
+		super(BlockBehaviour.Properties.of()
+				.mapColor(MapColor.PLANT)
+				.sound(SoundType.GRASS)
+				.instabreak()
+				.noCollission()
+				.noOcclusion()
+				.randomTicks()
+				.pushReaction(PushReaction.DESTROY)
+				.isRedstoneConductor((bs, br, bp) -> false));
+		// Регистрация состояния по умолчанию
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
 	}
 
 	@Override
 	public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-		return state.getFluidState().isEmpty();
+		// Пропускает ли блок свет вниз
+		return true;
 	}
 
 	@Override
 	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+		// Количество блокируемого света
 		return 0;
 	}
 
 	@Override
 	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		// Визуальная форма блока
 		return Shapes.empty();
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return box(1, 0, 1, 15, 5, 15);
+		// Форма блока в зависимости от возраста
+		return switch (state.getValue(AGE)) {
+			default -> Block.box(1, 0, 1, 15, 15, 15);
+
+			case 0 -> Block.box(1, 0, 1, 15, 5, 15);
+			case 1 -> Block.box(1, 0, 1, 15, 10, 15);
+			case 2 -> Block.box(1, 0, 1, 15, 15, 15);
+			case 3 -> Block.box(1, 0, 1, 15, 16, 15);
+			case 4 -> Block.box(1, 0, 1, 15, 16, 15);
+			case 5 -> Block.box(1, 0, 1, 15, 16, 15);
+		};
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(HALF, AGE, WATERLOGGED);
-	}
-
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
-		return super.getStateForPlacement(context).setValue(HALF, HalfProperty.BOTTOM).setValue(AGE, 0).setValue(WATERLOGGED, flag);
-	}
-
-	@Override
-	public FluidState getFluidState(BlockState state) {
-		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-	}
-
-	@Override
-	public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-		if (state.getValue(WATERLOGGED)) {
-			world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
-		}
-		return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+		// Добавление свойства возраста в состояние блока
+		builder.add(AGE);
 	}
 
 	@Override
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		// Возвращает горючесть блока
 		return 100;
 	}
 
 	@Override
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+		// Предмет, получаемый при копировании блока на колёсико
+		return new ItemStack(
+            ConcoctionModItems.RICE.get()
+            );
+	}
+
+	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 60;
+		// Скорость распространения огня
+		return 25;
 	}
 
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
+		// Тип пути для мобов
 		return PathType.OPEN;
 	}
 
-	public enum HalfProperty implements StringRepresentable {
-		UPPER("upper"), BOTTOM("bottom");
+	@Override
+	public int getMaxAge() {
+		// Возвращает максимальный возраст растения
+		return MAX_AGE; // не менять
+	}
 
-		private final String name;
+	@Override
+	protected ItemLike getBaseSeedId() {
+		// Возвращает семена для посадки растения
+		return ConcoctionModItems.RICE.get();
+	}
 
-		private HalfProperty(String name) {
-			this.name = name;
-		}
-
-		@Override
-		public String getSerializedName() {
-			return this.name;
-		}
+	@Override
+	public IntegerProperty getAgeProperty() {
+		// Возвращает свойство возраста растения
+		return AGE; // не менять
 	}
 }

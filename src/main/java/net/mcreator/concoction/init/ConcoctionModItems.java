@@ -95,6 +95,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ONION_SOUP = REGISTRY.register("onion_soup", OnionSoupItem::new);
 	public static final DeferredItem<Item> BAMBOO_PORKCHOP_SOUP = REGISTRY.register("bamboo_porkchop_soup", BambooPorkchopSoupItem::new);
 	public static final DeferredItem<Item> CROP_RICE = block(ConcoctionModBlocks.CROP_RICE);
+	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", RiceItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

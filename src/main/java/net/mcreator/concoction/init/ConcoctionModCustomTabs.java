@@ -48,6 +48,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 				tabData.accept(ConcoctionModItems.PINECONE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
+				tabData.accept(ConcoctionModItems.RICE.get());
 // Пищевые Материалы
 				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
