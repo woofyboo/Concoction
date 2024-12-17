@@ -147,7 +147,7 @@ public class CropRiceBlock extends CropBlock implements SimpleWaterloggedBlock {
 				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(WATERLOGGED)), 2);
 			else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) ||
 					(pLevel.getBlockState(pPos.above(1)).is(this)))) {
-				pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, pState.getValue(WATERLOGGED)), 2);
+				pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, false), 2);
 				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(WATERLOGGED)), 2);
 			}
 		}
