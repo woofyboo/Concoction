@@ -1,9 +1,9 @@
 {
-  "_fv": 69,
+  "_fv": 73,
   "_type": "structure",
   "definition": {
     "structure": "corn_patch",
-    "projection": "terrain_matching",
+    "projection": "rigid",
     "ignoredBlocks": [
       {
         "value": "Blocks.STRUCTURE_BLOCK"
@@ -19,12 +19,12 @@
         "value": "mutated_plains"
       }
     ],
-    "terrainAdaptation": "bury",
+    "terrainAdaptation": "beard_thin",
     "generationStep": "VEGETAL_DECORATION",
     "surfaceDetectionType": "WORLD_SURFACE",
     "useStartHeight": false,
     "startHeightProviderType": "UNIFORM",
-    "startHeightMin": 0,
+    "startHeightMin": 63,
     "startHeightMax": 128,
     "size": 1,
     "maxDistanceFromCenter": 64,

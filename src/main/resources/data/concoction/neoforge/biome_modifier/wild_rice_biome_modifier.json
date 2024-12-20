@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "swamp",
+    "mangrove_swamp"
+  ],
+  "features": "concoction:wild_rice",
+  "step": "vegetal_decoration"
+}
