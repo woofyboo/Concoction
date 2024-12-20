@@ -41,6 +41,7 @@ import net.mcreator.concoction.item.FabricItem;
 import net.mcreator.concoction.item.CottonOilItem;
 import net.mcreator.concoction.item.CornSoupItem;
 import net.mcreator.concoction.item.CornItem;
+import net.mcreator.concoction.item.CookedRiceItem;
 import net.mcreator.concoction.item.CookedCornItem;
 import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
@@ -62,7 +63,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
 	public static final DeferredItem<Item> CHERRY_COOKIE = REGISTRY.register("cherry_cookie", CherryCookieItem::new);
 	public static final DeferredItem<Item> SUNFLOWER = block(ConcoctionModBlocks.SUNFLOWER);
-	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
 	public static final DeferredItem<Item> ROASTED_SUNFLOWER_SEEDS = REGISTRY.register("roasted_sunflower_seeds", RoastedSunflowerSeedsItem::new);
 	public static final DeferredItem<Item> SWEET_SLIME_JELLY = REGISTRY.register("sweet_slime_jelly", SweetSlimeJellyItem::new);
 	public static final DeferredItem<Item> MINTY_SLIME_JELLY = REGISTRY.register("minty_slime_jelly", MintySlimeJellyItem::new);
@@ -95,6 +95,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ONION_SOUP = REGISTRY.register("onion_soup", OnionSoupItem::new);
 	public static final DeferredItem<Item> BAMBOO_PORKCHOP_SOUP = REGISTRY.register("bamboo_porkchop_soup", BambooPorkchopSoupItem::new);
 	public static final DeferredItem<Item> CROP_RICE = block(ConcoctionModBlocks.CROP_RICE);
+	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
+	public static final DeferredItem<Item> COOKED_RICE = REGISTRY.register("cooked_rice", CookedRiceItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

@@ -3,11 +3,11 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "fungus_soup",
+    "texture": "cooked_rice",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Fungus Stew",
+    "name": "Cooked Rice",
     "rarity": "COMMON",
     "creativeTabs": [],
     "stackSize": 16,
@@ -32,9 +32,6 @@
     },
     "inventorySize": 9,
     "inventoryStackSize": 64,
-    "onFinishUsingItem": {
-      "name": "FungusStewPlayerFinishesUsingItem"
-    },
     "enableRanged": false,
     "shootConstantly": false,
     "rangedItemChargesPower": false,
@@ -44,7 +41,7 @@
     "projectileDisableAmmoCheck": false,
     "isFood": true,
     "nutritionalValue": 6,
-    "saturation": 0.6,
+    "saturation": 0.3,
     "eatResultItem": {
       "value": "Items.BOWL"
     },
@@ -52,7 +49,11 @@
     "isAlwaysEdible": false,
     "animation": "eat",
     "isMusicDisc": false,
-    "musicDiscLengthInTicks": 0,
+    "musicDiscMusic": {
+      "value": ""
+    },
+    "musicDiscDescription": "",
+    "musicDiscLengthInTicks": 100,
     "musicDiscAnalogOutput": 0
   }
 }

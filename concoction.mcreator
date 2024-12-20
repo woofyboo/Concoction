@@ -42,8 +42,8 @@
       "registry_name": "mint_leaf_particle_variant_1",
       "metadata": {
         "files": [
-          "src/main/resources/assets/concoction/particles/mint_leaf_particle_variant_1.json",
-          "src/main/java/net/mcreator/concoction/client/particle/MintLeafParticleVariant1Particle.java"
+          "src/main/java/net/mcreator/concoction/client/particle/MintLeafParticleVariant1Particle.java",
+          "src/main/resources/assets/concoction/particles/mint_leaf_particle_variant_1.json"
         ]
       },
       "path": "~/mint"
@@ -761,8 +761,8 @@
       "registry_name": "feather_particle",
       "metadata": {
         "files": [
-          "src/main/resources/assets/concoction/particles/feather_particle.json",
-          "src/main/java/net/mcreator/concoction/client/particle/FeatherParticleParticle.java"
+          "src/main/java/net/mcreator/concoction/client/particle/FeatherParticleParticle.java",
+          "src/main/resources/assets/concoction/particles/feather_particle.json"
         ]
       },
       "path": "~/general"
@@ -854,21 +854,6 @@
         ]
       },
       "path": "~/sunflower"
-    },
-    {
-      "name": "MusicDiscHotIce",
-      "type": "musicdisc",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "music_disc_hot_ice",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/concoction/jukebox_song/music_disc_hot_ice.json",
-          "src/main/resources/assets/concoction/models/item/music_disc_hot_ice.json",
-          "src/main/java/net/mcreator/concoction/item/MusicDiscHotIceItem.java"
-        ]
-      },
-      "path": "~/general"
     },
     {
       "name": "MusicDiscObtian",
@@ -3033,6 +3018,35 @@
         ]
       },
       "path": "~/rice"
+    },
+    {
+      "name": "MusicDiscHotIce",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "music_disc_hot_ice",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/jukebox_song/music_disc_hot_ice.json",
+          "src/main/java/net/mcreator/concoction/item/MusicDiscHotIceItem.java",
+          "src/main/resources/assets/concoction/models/item/music_disc_hot_ice.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CookedRice",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cooked_rice",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cooked_rice.json",
+          "src/main/java/net/mcreator/concoction/item/CookedRiceItem.java"
+        ]
+      },
+      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -3233,6 +3247,7 @@
       "advancements.sunshine.descr": "Найди подсолнух на подсолнечных равнинах или в цветочном лесу.",
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
+      "item.concoction.cooked_rice": "Cooked Rice",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "block.concoction.gray_pillow_block": "Серая подушка",
       "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
@@ -3286,7 +3301,7 @@
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "death.attack.rift": "%1$s испытал межпространственное нарезание",
       "item.concoction.chocolate": "Шоколад",
-      "item.concoction.music_disc_hot_ice": "Пластинка",
+      "item.concoction.music_disc_hot_ice": "Music Disc",
       "item_group.concoction.concoction": "Concoction",
       "item.concoction.cotton": "Хлопок",
       "item.minecraft.sweet_berries": "Брусника",
@@ -3384,6 +3399,7 @@
       "advancements.sunshine.descr": "Find sunflower seeds in sunflower plains or flower forest.",
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
+      "item.concoction.cooked_rice": "Cooked Rice",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
@@ -3537,5 +3553,5 @@
     "credits": "Sebsish, woofyboo",
     "modElementsPackage": "net.mcreator.concoction"
   },
-  "mcreatorVersion": 202400342716
+  "mcreatorVersion": 202400451119
 }

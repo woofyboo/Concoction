@@ -66,6 +66,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.BAMBOO_PORKCHOP_SOUP.get());
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
+				tabData.accept(ConcoctionModItems.COOKED_RICE.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 //Дикие Растения
