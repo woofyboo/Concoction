@@ -19,7 +19,12 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "minecraft:diamond_block"
+                  "Name": "concoction:crop_rice",
+                  "Properties": {
+                    "age": "5",
+                    "half": "lower",
+                    "waterlogged": "true"
+                  }
                 }
               }
             },
@@ -31,7 +36,12 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "minecraft:diamond_block"
+                  "Name": "concoction:crop_rice",
+                  "Properties": {
+                    "age": "5",
+                    "half": "upper",
+                    "waterlogged": "false"
+                  }
                 }
               }
             }
@@ -47,13 +57,18 @@
             "predicates": [
               {
                 "type": "minecraft:matching_blocks",
-                "blocks": ["minecraft:grass_block", "minecraft:dirt", "minecraft:stone", "minecraft:sand", "minecraft:clay", "minecraft:mud"],
+                "blocks": ["minecraft:gravel", "minecraft:dirt", "minecraft:sand", "minecraft:clay", "minecraft:mud"],
                 "offset": [0, -1, 0]
               },
               {
                 "type": "minecraft:matching_blocks",
                 "blocks": ["minecraft:water"],
                 "offset": [0, 0, 0]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": ["minecraft:air"],
+                "offset": [0, 1, 0]
               }
             ]
           }
