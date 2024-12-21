@@ -7,7 +7,7 @@
         "config": {
           "allowed_placement": {
             "type": "minecraft:matching_blocks",
-            "blocks": ["minecraft:water"]
+            "blocks": ["minecraft:air"]
           },
           "direction": "up",
           "layers": [
@@ -19,12 +19,7 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "concoction:crop_rice",
-                  "Properties": {
-                    "age": "5",
-                    "half": "lower",
-                    "waterlogged": true
-                  }
+                  "Name": "minecraft:diamond_block"
                 }
               }
             },
@@ -36,12 +31,7 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "concoction:crop_rice",
-                  "Properties": {
-                    "age": "5",
-                    "half": "upper",
-                    "waterlogged": false
-                  }
+                  "Name": "minecraft:diamond_block"
                 }
               }
             }
@@ -57,24 +47,13 @@
             "predicates": [
               {
                 "type": "minecraft:matching_blocks",
-                "blocks": ["minecraft:water"],
-                "offset": [0, 0, 0]
+                "blocks": ["minecraft:grass_block", "minecraft:dirt", "minecraft:stone", "minecraft:sand", "minecraft:clay", "minecraft:mud"],
+                "offset": [0, -1, 0]
               },
               {
                 "type": "minecraft:matching_blocks",
-                "blocks": ["minecraft:air"],
-                "offset": [0, 1, 0]
-              },
-              {
-                "type": "minecraft:would_survive",
-                "state": {
-                  "Name": "concoction:crop_rice",
-                  "Properties": {
-                    "age": "0",
-                    "half": "lower",
-                    "waterlogged": true
-                  }
-                }
+                "blocks": ["minecraft:water"],
+                "offset": [0, 0, 0]
               }
             ]
           }

@@ -5,42 +5,19 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "minecraft:count",
-      "count": 256
+      "type": "minecraft:rarity_filter",
+      "chance": 2
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE_WG"
-    },
-    {
-      "type": "minecraft:height_range",
-      "height": {
-        "type": "minecraft:constant",
-        "value": {
-          "absolute": 63
-        }
-      }
+      "heightmap": "OCEAN_FLOOR_WG"
     },
     {
       "type": "minecraft:surface_water_depth_filter",
       "max_water_depth": 1
     },
     {
-      "type": "minecraft:block_predicate_filter",
-      "predicate": {
-        "type": "minecraft:all_of",
-        "predicates": [
-          {
-            "type": "minecraft:matching_blocks",
-            "blocks": ["minecraft:water"],
-            "offset": [0, -1, 0]
-          },
-          {
-            "type": "minecraft:matching_blocks",
-            "blocks": ["minecraft:air"]
-          }
-        ]
-      }
+      "type": "minecraft:biome"
     }
   ]
 }
