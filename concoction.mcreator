@@ -3057,10 +3057,8 @@
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/neoforge/biome_modifier/wild_rice_biome_modifier.json",
-          "src/main/resources/data/concoction/worldgen/placed_feature/wild_rice.json",
-          "src/main/resources/data/concoction/worldgen/configured_feature/wild_rice.json"
-        ],
-        "has_nbt_structure": true
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_rice.json"
+        ]
       },
       "path": "~/rice"
     }
