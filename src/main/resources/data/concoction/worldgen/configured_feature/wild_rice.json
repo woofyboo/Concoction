@@ -1,0 +1,88 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:block_column",
+        "config": {
+          "allowed_placement": {
+            "type": "minecraft:matching_blocks",
+            "blocks": ["minecraft:water"]
+          },
+          "direction": "up",
+          "layers": [
+            {
+              "height": {
+                "type": "minecraft:constant",
+                "value": 1
+              },
+              "provider": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                  "Name": "concoction:crop_rice",
+                  "Properties": {
+                    "age": "5",
+                    "half": "lower",
+                    "waterlogged": true
+                  }
+                }
+              }
+            },
+            {
+              "height": {
+                "type": "minecraft:constant",
+                "value": 1
+              },
+              "provider": {
+                "type": "minecraft:simple_state_provider",
+                "state": {
+                  "Name": "concoction:crop_rice",
+                  "Properties": {
+                    "age": "5",
+                    "half": "upper",
+                    "waterlogged": false
+                  }
+                }
+              }
+            }
+          ],
+          "prioritize_tip": false
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": ["minecraft:water"],
+                "offset": [0, 0, 0]
+              },
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": ["minecraft:air"],
+                "offset": [0, 1, 0]
+              },
+              {
+                "type": "minecraft:would_survive",
+                "state": {
+                  "Name": "concoction:crop_rice",
+                  "Properties": {
+                    "age": "0",
+                    "half": "lower",
+                    "waterlogged": true
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 96,
+    "xz_spread": 7,
+    "y_spread": 3
+  }
+}
