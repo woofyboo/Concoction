@@ -1,11 +1,12 @@
 package net.mcreator.concoction.world.features;
 
 import com.mojang.serialization.Codec;
+import net.mcreator.concoction.block.CropRiceBlock;
+import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.TallSeagrassBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -20,7 +21,6 @@ public class WildRiceFeature extends Feature<ProbabilityFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<ProbabilityFeatureConfiguration> placeContext) {
-        boolean flag = false;
         RandomSource randomsource = placeContext.random();
         WorldGenLevel worldgenlevel = placeContext.level();
         BlockPos blockpos = placeContext.origin();
@@ -29,26 +29,27 @@ public class WildRiceFeature extends Feature<ProbabilityFeatureConfiguration> {
         int j = randomsource.nextInt(8) - randomsource.nextInt(8);
         int k = worldgenlevel.getHeight(Heightmap.Types.OCEAN_FLOOR, blockpos.getX() + i, blockpos.getZ() + j);
         BlockPos blockpos1 = new BlockPos(blockpos.getX() + i, k, blockpos.getZ() + j);
-        if (worldgenlevel.getBlockState(blockpos1).is(Blocks.WATER)) {
-            boolean flag1 = randomsource.nextDouble() < (double)probabilityfeatureconfiguration.probability;
-            BlockState blockstate = flag1 ? Blocks.TALL_SEAGRASS.defaultBlockState() : Blocks.SEAGRASS.defaultBlockState();
+        if (worldgenlevel.getBlockState(blockpos1).is(Blocks.WATER) && worldgenlevel.getBlockState(blockpos1.above()).is(Blocks.AIR)) {
+//            boolean flag1 = randomsource.nextDouble() < (double)probabilityfeatureconfiguration.probability;
+            BlockState blockstate = ConcoctionModBlocks.CROP_RICE.get().defaultBlockState();
             if (blockstate.canSurvive(worldgenlevel, blockpos1)) {
-                if (flag1) {
-                    BlockState blockstate1 = blockstate.setValue(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER);
-                    BlockPos blockpos2 = blockpos1.above();
-                    if (worldgenlevel.getBlockState(blockpos2).is(Blocks.WATER)) {
-                        worldgenlevel.setBlock(blockpos1, blockstate, 2);
-                        worldgenlevel.setBlock(blockpos2, blockstate1, 2);
-                    }
-                } else {
-                    worldgenlevel.setBlock(blockpos1, blockstate, 2);
-                }
+                BlockState blockstate_down = blockstate.
+                        setValue(CropRiceBlock.HALF, DoubleBlockHalf.LOWER).
+                        setValue(CropRiceBlock.AGE, 5).
+                        setValue(CropRiceBlock.WATERLOGGED, true);
+                BlockState blockstate_up = blockstate.
+                        setValue(CropRiceBlock.HALF, DoubleBlockHalf.UPPER).
+                        setValue(CropRiceBlock.AGE, 5).
+                        setValue(CropRiceBlock.WATERLOGGED, false);
+                BlockPos blockpos_up = blockpos1.above();
 
-                flag = true;
+                worldgenlevel.setBlock(blockpos1, blockstate_down, 2);
+                worldgenlevel.setBlock(blockpos_up, blockstate_up, 2);
+
+                return true;
             }
         }
-
-        return flag;
+        return false;
     }
 }
 
