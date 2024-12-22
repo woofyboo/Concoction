@@ -3183,6 +3183,20 @@
         ]
       },
       "path": "~/rice"
+    },
+    {
+      "name": "GreenOnion",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "green_onion",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/green_onion.json",
+          "src/main/java/net/mcreator/concoction/item/GreenOnionItem.java"
+        ]
+      },
+      "path": "~/onion"
     }
   ],
   "variable_elements": [],
@@ -3391,6 +3405,7 @@
       "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
       "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
       "advancements.cry_about_it.descr": "Выпей обсидиановы слёзы и испытай последствия своих действий.",
+      "item.concoction.green_onion": "Green Onion",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
@@ -3550,6 +3565,7 @@
       "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
       "item.minecraft.splash_potion.effect.snowflake": "Splash Potion of Snowflake",
       "advancements.cry_about_it.descr": "Drink obsidian tears and suffer the consequences.",
+      "item.concoction.green_onion": "Green Onion",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",

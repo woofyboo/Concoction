@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:onion"
+    "concoction:onion",
+    "concoction:green_onion"
   ]
 }
