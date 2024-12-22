@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:green_onion"
+    },
+    "title": {
+      "translate": "advancements.cry_worthy_haircut.title"
+    },
+    "description": {
+      "translate": "advancements.cry_worthy_haircut.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cry_worthy_haircut_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "concoction:green_onion"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "concoction:onion_found"
+}

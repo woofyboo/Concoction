@@ -3197,6 +3197,38 @@
         ]
       },
       "path": "~/onion"
+    },
+    {
+      "name": "CryWorthyHaircut",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cry_worthy_haircut",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/cry_worthy_haircut.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "WildBeetroot",
+      "type": "plant",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "wild_beetroot",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_beetroot.json",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/wild_beetroot_biome_modifier.json",
+          "src/main/resources/assets/concoction/models/block/wild_beetroot.json",
+          "src/main/java/net/mcreator/concoction/block/WildBeetrootBlock.java",
+          "src/main/resources/assets/concoction/blockstates/wild_beetroot.json",
+          "src/main/resources/data/concoction/worldgen/configured_feature/wild_beetroot.json",
+          "src/main/resources/assets/concoction/models/item/wild_beetroot.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3324,8 +3356,8 @@
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
       "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
-      "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
+      "item.concoction.cotton_oil": "Хлопковое масло",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -3395,6 +3427,7 @@
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "item.concoction.fried_egg": "Яичница",
+      "advancements.cry_worthy_haircut.descr": "Find spicy pepper in jungles.",
       "advancements.sunshine.descr": "Найди подсолнух на подсолнечных равнинах или в цветочном лесу.",
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
@@ -3438,11 +3471,13 @@
       "block.concoction_brew.mint": "Мята",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
+      "advancements.cry_worthy_haircut.title": "Sweet Sweet Capsaicin",
       "advancements.sunshine.title": "Ты моё солнце, бро",
       "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
+      "block.concoction.wild_beetroot": "Wild Beetroot",
       "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.salmon_sushi": "Salmon Sushi",
@@ -3484,8 +3519,8 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
-      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "item.concoction.cotton_oil": "Cotton Oil",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -3555,6 +3590,7 @@
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "item.concoction.fried_egg": "Fried Egg",
+      "advancements.cry_worthy_haircut.descr": "Shear onion for green onion.",
       "advancements.sunshine.descr": "Find sunflower seeds in sunflower plains or flower forest.",
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
@@ -3598,11 +3634,13 @@
       "block.concoction_brew.mint": "Mint",
       "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_red_pillow_block": "Small Red Pillow",
+      "advancements.cry_worthy_haircut.title": "Cry Worthy Haircut",
       "advancements.sunshine.title": "You are My Sunshine...",
       "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.crop_corn": "Crop Corn",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
+      "block.concoction.wild_beetroot": "Wild Beetroot",
       "advancements.spicy_pepper_found.descr": "Find spicy pepper in jungles.",
       "block.concoction.red_pillow_block": "Red Pillow",
       "item.concoction.salmon_sushi": "Salmon Sushi",

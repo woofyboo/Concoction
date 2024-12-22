@@ -13,6 +13,7 @@ import net.mcreator.concoction.block.WildSpicyPepperBlock;
 import net.mcreator.concoction.block.WildOnionBlock;
 import net.mcreator.concoction.block.WildCottonBlock;
 import net.mcreator.concoction.block.WildCarrotBlock;
+import net.mcreator.concoction.block.WildBeetrootBlock;
 import net.mcreator.concoction.block.SunflowerBlock;
 import net.mcreator.concoction.block.SmallPillowBlock;
 import net.mcreator.concoction.block.PillowBlockBlock;
@@ -41,6 +42,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> CROP_SPICY_PEPPER = REGISTRY.register("crop_spicy_pepper", CropSpicyPepperBlock::new);
 	public static final DeferredBlock<Block> WILD_SPICY_PEPPER = REGISTRY.register("wild_spicy_pepper", WildSpicyPepperBlock::new);
 	public static final DeferredBlock<Block> CROP_RICE = REGISTRY.register("crop_rice", CropRiceBlock::new);
+	public static final DeferredBlock<Block> WILD_BEETROOT = REGISTRY.register("wild_beetroot", WildBeetrootBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

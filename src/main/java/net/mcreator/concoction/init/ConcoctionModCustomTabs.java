@@ -80,6 +80,7 @@ public class ConcoctionModCustomTabs {
 //Дикие Растения
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
+				tabData.accept(ConcoctionModItems.WILD_BEETROOT.get());
 				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 //Cтроительные блоки
