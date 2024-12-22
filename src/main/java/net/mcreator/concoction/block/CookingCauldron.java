@@ -201,6 +201,18 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                             cauldron.setCraftResult(result);
                         }
                         break;
+                    case "stick":
+                        if (pItem.getItem().equals(Items.STICK)) {
+                            if (!pPlayer.addItem(new ItemStack(item)))
+                                pPlayer.drop(new ItemStack(item), false);
+                            if (!pPlayer.isCreative()) pItem.shrink(1);
+//                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
+                            pLevel.playSound(null, pPos, SoundEvents.SCAFFOLDING_BREAK,
+                                    SoundSource.BLOCKS, 1.0F, 1.0F);
+                            result = this.decreesItemCountFromResult(result);
+                            cauldron.setCraftResult(result);
+                        }
+                        break;
                     default:
                         ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", cauldron.getCraftResult().get("interactionType"));
                         break;

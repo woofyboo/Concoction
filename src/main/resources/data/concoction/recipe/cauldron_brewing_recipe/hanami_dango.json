@@ -28,7 +28,7 @@
 
   "result": {
     "id": "concoction:hanami_dango",
-    "interactionType": "hand",
+    "interactionType": "stick",
     "count": "3"
   }
 }
