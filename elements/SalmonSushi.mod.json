@@ -3,16 +3,16 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "cod_roll",
+    "texture": "salmon_roll",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Cod Roll",
+    "name": "Salmon Sushi",
     "rarity": "COMMON",
     "creativeTabs": [],
     "stackSize": 64,
     "enchantability": 0,
-    "useDuration": 24,
+    "useDuration": 32,
     "toolType": 1.0,
     "damageCount": 0,
     "recipeRemainder": {
@@ -40,8 +40,8 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 2,
-    "saturation": 0.30000000000000004,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
     "eatResultItem": {
       "value": ""
     },

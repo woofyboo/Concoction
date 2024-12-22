@@ -3104,48 +3104,6 @@
       "path": "~/general"
     },
     {
-      "name": "CodRoll",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "cod_roll",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/CodRollItem.java",
-          "src/main/resources/assets/concoction/models/item/cod_roll.json"
-        ]
-      },
-      "path": "~/rice"
-    },
-    {
-      "name": "SalmonRoll",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "salmon_roll",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/SalmonRollItem.java",
-          "src/main/resources/assets/concoction/models/item/salmon_roll.json"
-        ]
-      },
-      "path": "~/rice"
-    },
-    {
-      "name": "TropicalRoll",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "tropical_roll",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/TropicalRollItem.java",
-          "src/main/resources/assets/concoction/models/item/tropical_roll.json"
-        ]
-      },
-      "path": "~/rice"
-    },
-    {
       "name": "CodRollCraft",
       "type": "recipe",
       "compiles": true,
@@ -3180,6 +3138,48 @@
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/recipe/tropical_roll_craft.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "SalmonSushi",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "salmon_sushi",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/salmon_sushi.json",
+          "src/main/java/net/mcreator/concoction/item/SalmonSushiItem.java"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "CodSushi",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cod_sushi",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CodSushiItem.java",
+          "src/main/resources/assets/concoction/models/item/cod_sushi.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "TropicalSushi",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tropical_sushi",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/TropicalSushiItem.java",
+          "src/main/resources/assets/concoction/models/item/tropical_sushi.json"
         ]
       },
       "path": "~/rice"
@@ -3310,8 +3310,8 @@
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
       "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
-      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "item.concoction.cotton_oil": "Хлопковое масло",
+      "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -3352,12 +3352,10 @@
       "item.concoction.meat_goulash": "Мясной гуляш",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
-      "item.concoction.salmon_roll": "Cod Roll",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
       "advancements.not_a_cotton_candy.title": "Не хлопай мне тут",
-      "item.concoction.cod_roll": "Cod Roll",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
@@ -3413,6 +3411,7 @@
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
+      "item.concoction.tropical_sushi": "Cod Sushi",
       "advancements.popcorn_eat.descr": "Сьешь свежеприготовленный попкорн.",
       "advancements.kinda_corny.title": "Кукуруза как у Тома Круза",
       "item.concoction.fabric": "Ткань",
@@ -3431,7 +3430,7 @@
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
-      "item.concoction.tropical_roll": "Salmon Roll",
+      "item.concoction.salmon_sushi": "Salmon Sushi",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.golden_corn": "Золотая кукуруза",
       "item.concoction.onion_soup": "Луковый суп",
@@ -3460,6 +3459,7 @@
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
+      "item.concoction.cod_sushi": "Salmon Sushi",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "item.concoction.onion": "Лук",
       "advancements.cry_about_it.title": "Вход запрещён"
@@ -3469,8 +3469,8 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
-      "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -3511,12 +3511,10 @@
       "item.concoction.meat_goulash": "Braised Meat",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
-      "item.concoction.salmon_roll": "Salmon Roll",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
       "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
-      "item.concoction.cod_roll": "Cod Roll",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
@@ -3572,6 +3570,7 @@
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
+      "item.concoction.tropical_sushi": "Tropical Sushi",
       "advancements.popcorn_eat.descr": "Eat freshly made popcorn.",
       "advancements.kinda_corny.title": "Kinda Corny ;)",
       "item.concoction.fabric": "Fabric",
@@ -3590,7 +3589,7 @@
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "advancements.spicy_pepper_found.descr": "Find spicy pepper in jungles.",
       "block.concoction.red_pillow_block": "Red Pillow",
-      "item.concoction.tropical_roll": "Tropical Roll",
+      "item.concoction.salmon_sushi": "Salmon Sushi",
       "item.concoction.fish_and_chips": "Fish and Chips",
       "item.concoction.golden_corn": "Golden Corn",
       "item.concoction.onion_soup": "Onion Soup",
@@ -3619,6 +3618,7 @@
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
+      "item.concoction.cod_sushi": "Cod Sushi",
       "block.concoction.blue_pillow_block": "Blue Pillow",
       "item.concoction.onion": "Onion",
       "advancements.cry_about_it.title": "Cry About It"
