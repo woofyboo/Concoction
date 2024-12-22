@@ -1,0 +1,34 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+      "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "concoction:rice"
+    },
+    {
+      "item": "concoction:rice"
+    },
+    {
+      "item": "minecraft:sugar_cane"
+    },
+    {
+      "item": "concoction:cherry"
+    }
+
+  ],
+
+  "result": {
+    "id": "concoction:hanami_dango",
+    "interactionType": "hand",
+    "count": "3"
+  }
+}

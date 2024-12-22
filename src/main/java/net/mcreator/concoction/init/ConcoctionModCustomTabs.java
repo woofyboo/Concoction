@@ -58,6 +58,7 @@ public class ConcoctionModCustomTabs {
 //Сложная еда
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
+				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
 //Супы и блюда
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.ONION_SOUP.get());
@@ -67,6 +68,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 				tabData.accept(ConcoctionModItems.COOKED_RICE.get());
+				tabData.accept(ConcoctionModItems.COLD_CUTS.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 //Дикие Растения

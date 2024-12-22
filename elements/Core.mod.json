@@ -10,7 +10,7 @@
     "background": "apple_log.png",
     "disableDisplay": false,
     "showPopup": false,
-    "announceToChat": true,
+    "announceToChat": false,
     "hideIfNotCompleted": false,
     "rewardLoot": [],
     "rewardRecipes": [],

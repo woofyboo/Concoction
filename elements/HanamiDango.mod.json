@@ -3,14 +3,14 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "braised_meat",
+    "texture": "hanamo_dango",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Braised Meat",
+    "name": "Hanami Dango",
     "rarity": "COMMON",
     "creativeTabs": [],
-    "stackSize": 16,
+    "stackSize": 64,
     "enchantability": 0,
     "useDuration": 32,
     "toolType": 1.0,
@@ -40,10 +40,10 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 8,
-    "saturation": 0.7999999999999999,
+    "nutritionalValue": 6,
+    "saturation": 0.6,
     "eatResultItem": {
-      "value": "Items.BOWL"
+      "value": "Items.STICK"
     },
     "isMeat": false,
     "isAlwaysEdible": false,
@@ -53,7 +53,7 @@
       "value": ""
     },
     "musicDiscDescription": "",
-    "musicDiscLengthInTicks": 0,
+    "musicDiscLengthInTicks": 100,
     "musicDiscAnalogOutput": 0
   }
 }

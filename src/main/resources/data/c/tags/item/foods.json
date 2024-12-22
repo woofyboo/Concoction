@@ -26,7 +26,10 @@
     "concoction:fungus_stew",
     "concoction:onion_soup",
     "concoction:bamboo_porkchop_soup",
-    "concoction:cooked_rice"
+    "concoction:cooked_rice",
+    "concoction:hanami_dango",
+    "concoction:cold_cuts"
+
 
   ]
 }

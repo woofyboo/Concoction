@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "concoction:item/braised_meat"
+    "layer0": "concoction:item/cold_cuts"
   }
 }

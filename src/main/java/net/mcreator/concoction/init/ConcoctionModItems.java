@@ -33,6 +33,7 @@ import net.mcreator.concoction.item.MeatGoulashItem;
 import net.mcreator.concoction.item.MashedPotatoesItem;
 import net.mcreator.concoction.item.HotSauceBottleItem;
 import net.mcreator.concoction.item.HashbrownsItem;
+import net.mcreator.concoction.item.HanamiDangoItem;
 import net.mcreator.concoction.item.GoldenCornItem;
 import net.mcreator.concoction.item.FungusStewItem;
 import net.mcreator.concoction.item.FriedEggItem;
@@ -43,6 +44,7 @@ import net.mcreator.concoction.item.CornSoupItem;
 import net.mcreator.concoction.item.CornItem;
 import net.mcreator.concoction.item.CookedRiceItem;
 import net.mcreator.concoction.item.CookedCornItem;
+import net.mcreator.concoction.item.ColdCutsItem;
 import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
@@ -97,6 +99,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CROP_RICE = block(ConcoctionModBlocks.CROP_RICE);
 	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
 	public static final DeferredItem<Item> COOKED_RICE = REGISTRY.register("cooked_rice", CookedRiceItem::new);
+	public static final DeferredItem<Item> HANAMI_DANGO = REGISTRY.register("hanami_dango", HanamiDangoItem::new);
+	public static final DeferredItem<Item> COLD_CUTS = REGISTRY.register("cold_cuts", ColdCutsItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

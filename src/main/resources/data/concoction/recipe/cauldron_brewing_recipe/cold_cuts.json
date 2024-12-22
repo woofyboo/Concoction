@@ -1,0 +1,33 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+        "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:mutton"
+    },
+    {
+      "item": "concoction:mint"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:cold_cuts",
+    "interactionType": "bowl",
+    "count": "3"
+  }
+}

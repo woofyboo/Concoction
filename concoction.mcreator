@@ -3052,7 +3052,7 @@
       "name": "WildRice",
       "type": "feature",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "wild_rice",
       "metadata": {
         "files": [
@@ -3061,6 +3061,47 @@
         ]
       },
       "path": "~/rice"
+    },
+    {
+      "name": "RiceFound",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rice_found",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/rice_found.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "HanamiDango",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "hanami_dango",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/HanamiDangoItem.java",
+          "src/main/resources/assets/concoction/models/item/hanami_dango.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "ColdCuts",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cold_cuts",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cold_cuts.json",
+          "src/main/java/net/mcreator/concoction/item/ColdCutsItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3211,6 +3252,7 @@
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
+      "advancements.rice_found.descr": "Найди рис на болотах.",
       "item.concoction.popcorn": "Попкорн",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
@@ -3252,7 +3294,7 @@
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
       "item.concoction.rice": "Рис",
       "effect.concoction.instability": "Нестабильность",
-      "advancements.spicy_pepper_found.title": "А-а-а! Жопа горит!",
+      "advancements.spicy_pepper_found.title": "Остри как перви любоф",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
@@ -3262,6 +3304,7 @@
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "item.concoction.cooked_rice": "Варёный рис",
+      "advancements.rice_found.title": "Рис. 1",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "block.concoction.gray_pillow_block": "Серая подушка",
       "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
@@ -3324,9 +3367,11 @@
       "advancements.popcorn_eat.title": "Хрум-хрум",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "effect.concoction.spicy": "Жгучесть",
+      "item.concoction.hanami_dango": "Ханами данго",
       "advancements.kinda_corny.descr": "Найди кукурузу на равнине.",
       "gui.cooking_cauldron.title": "Готовка в котле",
       "item.concoction.fungus_stew": "Тушёные поганки",
+      "item.concoction.cold_cuts": "Мясное ассорти",
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
@@ -3347,7 +3392,7 @@
       "block.concoction.mint": "Mint",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "item.concoction.pinecone": "Pinecone",
-      "advancements.onion_found.title": "Who\u0027s Building Nether Portal?",
+      "advancements.onion_found.title": "Who is Building Nether Portal?",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
@@ -3363,6 +3408,7 @@
       "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
+      "advancements.rice_found.descr": "Find rice in swamp.",
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
@@ -3378,7 +3424,7 @@
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.sunflower": "Sunflower",
-      "item.concoction.meat_goulash": "Meat Stew",
+      "item.concoction.meat_goulash": "Braised Meat",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
@@ -3414,6 +3460,7 @@
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "item.concoction.cooked_rice": "Cooked Rice",
+      "advancements.rice_found.title": "Rice is Nice",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_pink_pillow_block": "Small Pink Pillow",
@@ -3476,9 +3523,11 @@
       "advancements.popcorn_eat.title": "Harry-poppin\u0027",
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
       "effect.concoction.spicy": "Spicy",
+      "item.concoction.hanami_dango": "Hanami Dango",
       "advancements.kinda_corny.descr": "Find corn in plains biome.",
       "gui.cooking_cauldron.title": "Cauldron Cooking",
       "item.concoction.fungus_stew": "Fungus Stew",
+      "item.concoction.cold_cuts": "Cold Cuts",
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",
