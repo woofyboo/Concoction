@@ -3,10 +3,21 @@ package net.mcreator.concoction.block;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
@@ -18,10 +29,15 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
+
+import java.util.Objects;
+
+import static net.minecraft.core.registries.Registries.SOUND_EVENT;
 
 public class CropOnionBlock extends CropBlock {
 	public static final int MAX_AGE = 3;
@@ -93,6 +109,40 @@ public class CropOnionBlock extends CropBlock {
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
 		return PathType.OPEN;
+	}
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
+		if (!pPlayer.isShiftKeyDown() && pState.getValue(AGE) == 3 && pPlayer.getMainHandItem().getItem() == Items.SHEARS) {
+			// Спавним лук
+			if (pLevel instanceof ServerLevel _level) {
+				if (!pPlayer.isCreative())
+					pItem.hurtAndBreak(1, pPlayer, pPlayer.getEquipmentSlotForItem(pItem));
+				pLevel.setBlock(pPos, this.defaultBlockState(), 2);
+
+				if (!_level.isClientSide()) _level.playSound(null, pPos, SoundEvents.SHEEP_SHEAR,
+						SoundSource.PLAYERS, 1, 1);
+				else _level.playLocalSound(pPos,
+						SoundEvents.SHEEP_SHEAR,
+						SoundSource.PLAYERS, 1, 1, false);
+
+				ItemEntity entityToSpawn = new ItemEntity(_level,
+						(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+						new ItemStack(ConcoctionModItems.GREEN_ONION.get(), 2));
+				entityToSpawn.setPickUpDelay(10);
+				_level.addFreshEntity(entityToSpawn);
+
+				if (Math.random() < 0.5) {
+					ItemEntity AdditEntityToSpawn = new ItemEntity(_level,
+							(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+							new ItemStack(ConcoctionModItems.GREEN_ONION.get()));
+					AdditEntityToSpawn.setPickUpDelay(10);
+					_level.addFreshEntity(AdditEntityToSpawn);
+				}
+			}
+
+			return ItemInteractionResult.SUCCESS;
+		}
+		else return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, p_316595_, p_316140_);
 	}
 
 	@Override
