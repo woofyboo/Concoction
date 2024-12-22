@@ -48,7 +48,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 				tabData.accept(ConcoctionModItems.PINECONE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
-				tabData.accept(ConcoctionModItems.RICE.get());
+				
 // Пищевые Материалы
 				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
@@ -59,6 +59,9 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
 				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
+				tabData.accept(ConcoctionModItems.COD_ROLL.get());
+				tabData.accept(ConcoctionModItems.SALMON_ROLL.get());
+				tabData.accept(ConcoctionModItems.TROPICAL_ROLL.get());
 //Супы и блюда
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.ONION_SOUP.get());

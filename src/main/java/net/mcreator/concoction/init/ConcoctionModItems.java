@@ -16,9 +16,11 @@ import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.food.FoodProperties;
 
+import net.mcreator.concoction.item.TropicalRollItem;
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
 import net.mcreator.concoction.item.SpicyPepperItem;
+import net.mcreator.concoction.item.SalmonRollItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
 import net.mcreator.concoction.item.RoastedPineconeItem;
 import net.mcreator.concoction.item.PopcornItem;
@@ -45,6 +47,7 @@ import net.mcreator.concoction.item.CornItem;
 import net.mcreator.concoction.item.CookedRiceItem;
 import net.mcreator.concoction.item.CookedCornItem;
 import net.mcreator.concoction.item.ColdCutsItem;
+import net.mcreator.concoction.item.CodRollItem;
 import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.CherryItem;
 import net.mcreator.concoction.item.CherryCookieItem;
@@ -101,6 +104,9 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> COOKED_RICE = REGISTRY.register("cooked_rice", CookedRiceItem::new);
 	public static final DeferredItem<Item> HANAMI_DANGO = REGISTRY.register("hanami_dango", HanamiDangoItem::new);
 	public static final DeferredItem<Item> COLD_CUTS = REGISTRY.register("cold_cuts", ColdCutsItem::new);
+	public static final DeferredItem<Item> COD_ROLL = REGISTRY.register("cod_roll", CodRollItem::new);
+	public static final DeferredItem<Item> SALMON_ROLL = REGISTRY.register("salmon_roll", SalmonRollItem::new);
+	public static final DeferredItem<Item> TROPICAL_ROLL = REGISTRY.register("tropical_roll", TropicalRollItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

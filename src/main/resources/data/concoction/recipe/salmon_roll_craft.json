@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aaa",
+    " c "
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:rice"
+    },
+    "b": {
+      "item": "minecraft:dried_kelp"
+    },
+    "c": {
+      "item": "minecraft:salmon"
+    }
+  },
+  "result": {
+    "id": "concoction:salmon_roll",
+    "count": 8
+  }
+}

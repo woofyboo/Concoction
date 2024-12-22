@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aaa",
+    " c "
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:rice"
+    },
+    "b": {
+      "item": "minecraft:dried_kelp"
+    },
+    "c": {
+      "item": "minecraft:cod"
+    }
+  },
+  "result": {
+    "id": "concoction:cod_roll",
+    "count": 8
+  }
+}

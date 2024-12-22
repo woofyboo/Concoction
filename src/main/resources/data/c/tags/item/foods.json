@@ -28,7 +28,11 @@
     "concoction:bamboo_porkchop_soup",
     "concoction:cooked_rice",
     "concoction:hanami_dango",
-    "concoction:cold_cuts"
+    "concoction:cold_cuts",
+    "concoction:cod_roll",
+    "concoction:salmon_roll",
+    "concoction:tropical_roll"
+    
 
 
   ]

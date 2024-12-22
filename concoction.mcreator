@@ -3102,6 +3102,87 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "CodRoll",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cod_roll",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CodRollItem.java",
+          "src/main/resources/assets/concoction/models/item/cod_roll.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "SalmonRoll",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "salmon_roll",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/SalmonRollItem.java",
+          "src/main/resources/assets/concoction/models/item/salmon_roll.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "TropicalRoll",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tropical_roll",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/TropicalRollItem.java",
+          "src/main/resources/assets/concoction/models/item/tropical_roll.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "CodRollCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cod_roll_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cod_roll_craft.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "SalmonRollCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "salmon_roll_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/salmon_roll_craft.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "TropicalRollCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "tropical_roll_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/tropical_roll_craft.json"
+        ]
+      },
+      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -3271,10 +3352,12 @@
       "item.concoction.meat_goulash": "Мясной гуляш",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
+      "item.concoction.salmon_roll": "Cod Roll",
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
       "advancements.not_a_cotton_candy.title": "Не хлопай мне тут",
+      "item.concoction.cod_roll": "Cod Roll",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
@@ -3348,6 +3431,7 @@
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
+      "item.concoction.tropical_roll": "Salmon Roll",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.golden_corn": "Золотая кукуруза",
       "item.concoction.onion_soup": "Луковый суп",
@@ -3427,10 +3511,12 @@
       "item.concoction.meat_goulash": "Braised Meat",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
+      "item.concoction.salmon_roll": "Salmon Roll",
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
       "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
+      "item.concoction.cod_roll": "Cod Roll",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
@@ -3504,6 +3590,7 @@
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "advancements.spicy_pepper_found.descr": "Find spicy pepper in jungles.",
       "block.concoction.red_pillow_block": "Red Pillow",
+      "item.concoction.tropical_roll": "Tropical Roll",
       "item.concoction.fish_and_chips": "Fish and Chips",
       "item.concoction.golden_corn": "Golden Corn",
       "item.concoction.onion_soup": "Onion Soup",
