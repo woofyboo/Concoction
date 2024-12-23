@@ -53,6 +53,7 @@ public class ConcoctionModCustomTabs {
 
 				
 // Пищевые Материалы
+				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
 				tabData.accept(ConcoctionModItems.BUTTER.get());
@@ -75,6 +76,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 				tabData.accept(ConcoctionModItems.COOKED_RICE.get());
 				tabData.accept(ConcoctionModItems.COLD_CUTS.get());
+				tabData.accept(ConcoctionModItems.CHICKEN_CONFIT.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 //Дикие Растения

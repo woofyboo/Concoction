@@ -3229,6 +3229,34 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "ChickenConfit",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chicken_confit",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/chicken_confit.json",
+          "src/main/java/net/mcreator/concoction/item/ChickenConfitItem.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "AnimalFat",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "animal_fat",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/animal_fat.json",
+          "src/main/java/net/mcreator/concoction/item/AnimalFatItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3289,6 +3317,9 @@
       "CUSTOM:Mint",
       "CUSTOM:Sunflower",
       "CUSTOM:WildOnion"
+    ],
+    "ITEMS:minecraft:meat": [
+      "~CUSTOM:AnimalFat"
     ],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
@@ -3380,6 +3411,7 @@
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
       "advancements.rice_found.descr": "Найди рис на болотах.",
+      "item.concoction.animal_fat": "Животный жир",
       "item.concoction.popcorn": "Попкорн",
       "item.concoction.sunflower_seeds": "Семена подсолнуха",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
@@ -3427,7 +3459,7 @@
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "item.concoction.fried_egg": "Яичница",
-      "advancements.cry_worthy_haircut.descr": "Find spicy pepper in jungles.",
+      "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "advancements.sunshine.descr": "Найди подсолнух на подсолнечных равнинах или в цветочном лесу.",
       "advancements.core.title": "Concoction",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
@@ -3438,7 +3470,7 @@
       "block.concoction.small_pink_pillow_block": "Маленькая розовая подушка",
       "item.minecraft.splash_potion.effect.snowflake": "Взрывное зелье мороза",
       "advancements.cry_about_it.descr": "Выпей обсидиановы слёзы и испытай последствия своих действий.",
-      "item.concoction.green_onion": "Green Onion",
+      "item.concoction.green_onion": "Зелёный лук",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
@@ -3459,7 +3491,7 @@
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
-      "item.concoction.tropical_sushi": "Cod Sushi",
+      "item.concoction.tropical_sushi": "Суши из тропической рыбы",
       "advancements.popcorn_eat.descr": "Сьешь свежеприготовленный попкорн.",
       "advancements.kinda_corny.title": "Кукуруза как у Тома Круза",
       "item.concoction.fabric": "Ткань",
@@ -3471,19 +3503,20 @@
       "block.concoction_brew.mint": "Мята",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
-      "advancements.cry_worthy_haircut.title": "Sweet Sweet Capsaicin",
+      "advancements.cry_worthy_haircut.title": "Причёска достойная слез",
       "advancements.sunshine.title": "Ты моё солнце, бро",
       "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
-      "block.concoction.wild_beetroot": "Wild Beetroot",
+      "block.concoction.wild_beetroot": "Дикая свекла",
       "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
-      "item.concoction.salmon_sushi": "Salmon Sushi",
+      "item.concoction.salmon_sushi": "Суши из лосося",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "item.concoction.golden_corn": "Золотая кукуруза",
       "item.concoction.onion_soup": "Луковый суп",
+      "item.concoction.chicken_confit": "Куриное конфи",
       "block.concoction.wild_spicy_pepper": "Дикий жгучий перец",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
@@ -3509,7 +3542,7 @@
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
-      "item.concoction.cod_sushi": "Salmon Sushi",
+      "item.concoction.cod_sushi": "Суши из трески",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "item.concoction.onion": "Лук",
       "advancements.cry_about_it.title": "Вход запрещён"
@@ -3519,8 +3552,8 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
-      "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "item.concoction.cotton_oil": "Cotton Oil",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -3543,6 +3576,7 @@
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
       "advancements.rice_found.descr": "Find rice in swamp.",
+      "item.concoction.animal_fat": "Animal Fat",
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.sunflower_seeds": "Sunflower Seeds",
@@ -3647,6 +3681,7 @@
       "item.concoction.fish_and_chips": "Fish and Chips",
       "item.concoction.golden_corn": "Golden Corn",
       "item.concoction.onion_soup": "Onion Soup",
+      "item.concoction.chicken_confit": "Chicken Confit",
       "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
