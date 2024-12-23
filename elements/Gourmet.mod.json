@@ -1,0 +1,24 @@
+{
+  "_fv": 73,
+  "_type": "achievement",
+  "definition": {
+    "achievementName": "Gourmet",
+    "achievementDescription": "Eat any dish made in cauldron.",
+    "achievementIcon": {
+      "value": "CUSTOM:MeatGoulash"
+    },
+    "background": "Default",
+    "disableDisplay": false,
+    "showPopup": true,
+    "announceToChat": true,
+    "hideIfNotCompleted": false,
+    "rewardLoot": [],
+    "rewardRecipes": [],
+    "rewardXP": 0,
+    "achievementType": "task",
+    "parent": {
+      "value": "CUSTOM:KeyToTheHeart"
+    },
+    "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"item_consumed\"><value name=\"item\"><block type=\"mcitem_all\"><field name=\"value\">CUSTOM:FishAndChips</field></block></value></block></next></block></xml>"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "jagged_peaks",
+    "frozen_peaks",
+    "windswept_hills",
+    "windswept_gravelly_hills",
+    "meadow",
+    "grove",
+    "wooded_badlands"
+  ],
+  "features": "concoction:wild_potato",
+  "step": "vegetal_decoration"
+}
