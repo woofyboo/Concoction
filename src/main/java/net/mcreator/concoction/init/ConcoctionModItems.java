@@ -44,6 +44,7 @@ import net.mcreator.concoction.item.FishAndChipsItem;
 import net.mcreator.concoction.item.FabricItem;
 import net.mcreator.concoction.item.CottonOilItem;
 import net.mcreator.concoction.item.CornSoupItem;
+import net.mcreator.concoction.item.CornOilItem;
 import net.mcreator.concoction.item.CornItem;
 import net.mcreator.concoction.item.CookedRiceItem;
 import net.mcreator.concoction.item.CookedCornItem;
@@ -115,6 +116,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CHICKEN_CONFIT = REGISTRY.register("chicken_confit", ChickenConfitItem::new);
 	public static final DeferredItem<Item> ANIMAL_FAT = REGISTRY.register("animal_fat", AnimalFatItem::new);
 	public static final DeferredItem<Item> WILD_POTATO = block(ConcoctionModBlocks.WILD_POTATO);
+	public static final DeferredItem<Item> CORN_OIL = REGISTRY.register("corn_oil", CornOilItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "concoction:cotton_oil",
-    "concoction:sunflower_oil"
+    "concoction:sunflower_oil",
+    "concoction:corn_oil"
   ]
 }

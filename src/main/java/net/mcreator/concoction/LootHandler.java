@@ -46,24 +46,12 @@ public class LootHandler {
 				case "chicken":
 				case "horse":
 				case "donkey":
-				case "mule":
 				case "mooshroom":
 				case "rabbit":
 				case "polar_bear":
-				case "wolf":
-				case "ocelot":
-				case "parrot":
 				case "llama":
-				case "fox":
-				case "panda":
 				case "hoglin":
-				case "dolphin":
-				case "turtle":
-				case "cod":
-				case "salmon":
-				case "pufferfish":
-				case "tropical_fish":
-				case "axolotl":
+				
 					addPool.accept(getInjectPool("animal_fat"));
 					break;
 

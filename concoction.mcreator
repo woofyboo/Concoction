@@ -3289,6 +3289,20 @@
         ]
       },
       "path": "~/achivements"
+    },
+    {
+      "name": "CornOil",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "corn_oil",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CornOilItem.java",
+          "src/main/resources/assets/concoction/models/item/corn_oil.json"
+        ]
+      },
+      "path": "~/oils"
     }
   ],
   "variable_elements": [],
@@ -3334,7 +3348,8 @@
     ],
     "ITEMS:mod:oils": [
       "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil"
+      "CUSTOM:SunflowerOil",
+      "CUSTOM:CornOil"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3394,7 +3409,8 @@
       "Items.POTIONITEM",
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
-      "CUSTOM:HotSauceBottle"
+      "CUSTOM:HotSauceBottle",
+      "CUSTOM:CornOil"
     ],
     "BLOCKS:minecraft:bee_growables": [
       "CUSTOM:CropMint",
@@ -3419,8 +3435,8 @@
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
       "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
-      "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
+      "item.concoction.cotton_oil": "Хлопковое масло",
       "advancements.get_folded.title": "Ни пуха ни пера!",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
@@ -3428,12 +3444,13 @@
       "item.concoction.pinecone": "Шишка",
       "advancements.onion_found.title": "Горе луковое",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
+      "item.concoction.corn_oil": "Sunflower Oil",
       "subtitles.silence": "",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "block.concoction.crop_rice": "Рис",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
-      "block.concoction.wild_potato": "Wild Potato",
+      "block.concoction.wild_potato": "Дикий картофель",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
@@ -3587,8 +3604,8 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
-      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "item.concoction.cotton_oil": "Cotton Oil",
+      "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.mint": "Mint",
@@ -3596,6 +3613,7 @@
       "item.concoction.pinecone": "Pinecone",
       "advancements.onion_found.title": "Who is Building Nether Portal?",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
+      "item.concoction.corn_oil": "Corn Oil",
       "subtitles.silence": "",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
