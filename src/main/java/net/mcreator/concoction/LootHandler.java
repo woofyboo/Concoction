@@ -18,7 +18,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -35,11 +34,47 @@ public class LootHandler {
 	}
 	
 	public static void lootLoad(ResourceLocation id, Consumer<LootPool.Builder> addPool) {
-		String prefix = "minecraft:blocks/";
+		String blockPrefix = "minecraft:blocks/";
+		String entityPrefix = "minecraft:entities/";
 		String name = id.toString();
+		if (name.startsWith(entityPrefix)) {
+			String file = name.substring(name.indexOf(entityPrefix) + entityPrefix.length());
+			switch (file) {
+				case "cow":
+				case "pig":
+				case "sheep":
+				case "chicken":
+				case "horse":
+				case "donkey":
+				case "mule":
+				case "mooshroom":
+				case "rabbit":
+				case "polar_bear":
+				case "wolf":
+				case "ocelot":
+				case "parrot":
+				case "llama":
+				case "fox":
+				case "panda":
+				case "hoglin":
+				case "dolphin":
+				case "turtle":
+				case "cod":
+				case "salmon":
+				case "pufferfish":
+				case "tropical_fish":
+				case "axolotl":
+					addPool.accept(getInjectPool("animal_fat"));
+					break;
 
-		if (name.startsWith(prefix)) {
-			String file = name.substring(name.indexOf(prefix) + prefix.length());
+				default:
+					break;
+
+			}
+		}
+
+		if (name.startsWith(blockPrefix)) {
+			String file = name.substring(name.indexOf(blockPrefix) + blockPrefix.length());
 			switch (file) {
 				case "abandoned_mineshaft":
 				case "desert_pyramid":
