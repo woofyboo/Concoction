@@ -1,9 +1,9 @@
 {
-  "_fv": 69,
+  "_fv": 73,
   "_type": "recipe",
   "definition": {
     "recipeType": "Crafting",
-    "recipeRetstackSize": 4,
+    "recipeRetstackSize": 6,
     "group": "",
     "cookingBookCategory": "MISC",
     "xpReward": 0.0,
@@ -12,19 +12,19 @@
     "recipeShapeless": true,
     "recipeSlots": [
       {
-        "value": ""
+        "value": "Items.BEETROOT"
+      },
+      {
+        "value": "Items.BEETROOT"
       },
       {
         "value": ""
       },
       {
-        "value": ""
+        "value": "Items.BEETROOT"
       },
       {
         "value": ""
-      },
-      {
-        "value": "Items.MILK_BUCKET"
       },
       {
         "value": ""
@@ -40,9 +40,9 @@
       }
     ],
     "recipeReturnStack": {
-      "value": "CUSTOM:Butter"
+      "value": "Items.SUGAR"
     },
-    "name": "temp_recipe_butter",
+    "name": "beetroot_sugar",
     "namespace": "mod"
   }
 }

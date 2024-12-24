@@ -3,7 +3,7 @@
   "random_sequence": "concoction:blocks/wild_carrot",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 0.0,
       "bonus_rolls": 0.0,
       "conditions": [
         {
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "rolls": 1.0,
+      "rolls": 0.0,
       "bonus_rolls": 0.0,
       "conditions": [
         {

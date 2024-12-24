@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/butter_churn_bottom_full",
+    "up": "concoction:block/butter_churn_top_full",
+    "north": "concoction:block/butter_churn_side_full",
+    "east": "concoction:block/butter_churn_side_full",
+    "south": "concoction:block/butter_churn_side_full",
+    "west": "concoction:block/butter_churn_side_full",
+    "particle": "concoction:block/butter_churn_bottom_full"
+  },
+  "render_type": "solid"
+}

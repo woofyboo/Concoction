@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,full=false": {
+      "model": "concoction:block/butter_churn",
+      "x": 180
+    },
+    "facing=down,full=true": {
+      "model": "concoction:block/butter_churn_full",
+      "x": 180
+    },
+    "facing=east,full=false": {
+      "model": "concoction:block/butter_churn",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,full=true": {
+      "model": "concoction:block/butter_churn_full",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,full=false": {
+      "model": "concoction:block/butter_churn",
+      "x": 90
+    },
+    "facing=north,full=true": {
+      "model": "concoction:block/butter_churn_full",
+      "x": 90
+    },
+    "facing=south,full=false": {
+      "model": "concoction:block/butter_churn",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,full=true": {
+      "model": "concoction:block/butter_churn_full",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,full=false": {
+      "model": "concoction:block/butter_churn"
+    },
+    "facing=up,full=true": {
+      "model": "concoction:block/butter_churn_full"
+    },
+    "facing=west,full=false": {
+      "model": "concoction:block/butter_churn",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,full=true": {
+      "model": "concoction:block/butter_churn_full",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

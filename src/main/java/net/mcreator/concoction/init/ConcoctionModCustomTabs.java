@@ -78,6 +78,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.COOKED_RICE.get());
 				tabData.accept(ConcoctionModItems.COLD_CUTS.get());
 				tabData.accept(ConcoctionModItems.CHICKEN_CONFIT.get());
+				tabData.accept(ConcoctionModItems.OMURICE.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
 //Дикие Растения
@@ -87,6 +88,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
+//Функциональные блоки
+				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());
