@@ -16,14 +16,7 @@
   },
   "criteria": {
     "gourmet_0": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "tags": [
-            "c:foods/dish"
-          ]
-        }
-      }
+      "trigger": "minecraft:impossible"
     }
   },
   "parent": "concoction:key_to_the_heart"

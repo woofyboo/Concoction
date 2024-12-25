@@ -3242,7 +3242,7 @@
       "name": "Gourmet",
       "type": "achievement",
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "registry_name": "gourmet",
       "metadata": {
         "files": [
@@ -3321,6 +3321,29 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "GourmetAchivement",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "gourmet_achivement",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/GourmetAchivementProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
