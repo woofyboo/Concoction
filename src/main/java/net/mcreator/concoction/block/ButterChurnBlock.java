@@ -5,6 +5,7 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.ButterChurnEntity;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -78,11 +79,13 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 
 			if (blockentity instanceof ButterChurnEntity butterChurn && pItem.getItem().equals(Items.STICK) &&
 					!butterChurn.hasCraftedResult() && butterChurn.hasRecipe()) {
+				pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_CHURN_SPIN.get(),
+						SoundSource.BLOCKS, 1.0F, (float)Math.random());
 				if (Math.random() < 0.2) {
 					butterChurn.craftItem();
 //                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
-					pLevel.playSound(null, pPos, SoundEvents.SCAFFOLDING_BREAK,
-							SoundSource.BLOCKS, 1.0F, 1.0F);
+					pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_THICKENS.get(),
+							SoundSource.BLOCKS, 1.0F, (float)Math.random());
 					butterChurn.craftItem();
 					pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, true));
 					butterChurn.setChanged();
@@ -99,6 +102,8 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 						if (pItem.getItem().equals(Items.AIR) || (pItem.getItem().equals(item) && pItem.getCount() < pItem.getMaxStackSize())) {
 							if (!pPlayer.addItem(new ItemStack(item)))
 								pPlayer.drop(new ItemStack(item), false);
+							pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP,
+									SoundSource.BLOCKS, 1.0F, (float)Math.random());
 							result = this.decreesItemCountFromResult(result);
 							if (result.get("count").isEmpty()) {
 								pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, false));
@@ -115,7 +120,7 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 							if (!pPlayer.isCreative()) pItem.shrink(1);
 //							LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
 							pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
-									SoundSource.BLOCKS, 1.0F, 1.0F);
+									SoundSource.BLOCKS, 1.0F, (float)Math.random());
 							result = this.decreesItemCountFromResult(result);
 							if (result.get("count").isEmpty()) {
 								pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, false));
@@ -136,10 +141,16 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 			if (blockentity instanceof ButterChurnEntity butter) {
 				if (pItem.getItem().equals(Items.AIR)) {
 //                    if (pPlayer.isShiftKeyDown()) pPlayer.addItem(cauldron.takeItemOnClick(true));
-					pPlayer.addItem(butter.takeItemOnClick(true));
+					if (pPlayer.addItem(butter.takeItemOnClick(true)))
+						pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP,
+							SoundSource.BLOCKS, 1.0F, (float)Math.random());
 				} else {
 //                    if (pPlayer.isShiftKeyDown()) cauldron.addItemOnClick(pItem, pItem.getCount(), pPlayer.isCreative());
-					butter.addItemOnClick(pItem, 1, pPlayer.isCreative());
+					if (butter.addItemOnClick(pItem, 1, pPlayer.isCreative()))
+						pLevel.playSound(null, pPos, SoundEvents.DECORATED_POT_INSERT,
+							SoundSource.BLOCKS, 1.0F, (float)Math.random());
+					else pLevel.playSound(null, pPos, ConcoctionModSounds.BARREL_OVERFILLED.get(),
+							SoundSource.BLOCKS, 1.0F, (float)Math.random());
 				}
 			}
 

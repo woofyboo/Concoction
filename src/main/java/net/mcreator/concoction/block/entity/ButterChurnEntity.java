@@ -116,9 +116,14 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
         if (itemstack.isEmpty()) {
             this.setItem(0, isCreative ? addedItem.copyWithCount(1) : addedItem.split(count));
             flag = true;
+        }
 
-        } else if (itemstack.getItem().equals(addedItem.getItem()) && itemstack.getMaxStackSize() > itemstack.getCount()+count) {
+        else if (!itemstack.getItem().equals(addedItem.getItem()))
+            flag = false;
+
+        else if (itemstack.getItem().equals(addedItem.getItem()) && itemstack.getMaxStackSize() > itemstack.getCount()+count) {
             int to_add = min(count, 8-itemstack.getCount());
+            if (to_add == 0) return false;
             if (isCreative || addedItem.getCount() - addedItem.split(to_add).getCount() != 0) {
                 this.items.getFirst().grow(to_add);
                 this.setChanged();
