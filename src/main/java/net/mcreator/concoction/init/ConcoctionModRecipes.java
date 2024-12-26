@@ -1,6 +1,7 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.ConcoctionMod;
+import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -22,6 +23,15 @@ public class ConcoctionModRecipes {
                 @Override
                 public String toString() {
                     return "cauldron_brewing";
+                }
+            });
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ButterChurnRecipe>> BUTTER_CHURN_RECIPE_SERIALIZER =
+            SERIALIZERS.register("butter_churn", ButterChurnRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ButterChurnRecipe>> BUTTER_CHURN_RECIPE_TYPE =
+            TYPES.register("butter_churn", () -> new RecipeType<>() {
+                @Override
+                public String toString() {
+                    return "butter_churn";
                 }
             });
     public static void register(IEventBus eventBus) {

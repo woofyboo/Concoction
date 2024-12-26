@@ -1,0 +1,45 @@
+{
+  "type": "concoction:butter_churn",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "concoction:butter_churn",
+    "Properties": {
+      "full": "false"
+    }
+  },
+
+  "ingredients": [
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    },
+    {
+        "item": "concoction:sunflower_seeds"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:sunflower_oil",
+    "interactionType": "bottle",
+    "count": "4"
+  }
+}
