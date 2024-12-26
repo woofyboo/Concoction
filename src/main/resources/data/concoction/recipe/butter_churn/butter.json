@@ -1,0 +1,24 @@
+{
+  "type": "concoction:butter_churn",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "concoction:butter_churn",
+    "Properties": {
+      "full": "false"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:butter",
+    "interactionType": "hand",
+    "count": "4"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "type": "concoction:butter_churn",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "concoction:butter_churn",
+    "Properties": {
+      "full": "false"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    },
+    {
+      "item": "concoction:cotton"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:cotton_oil",
+    "interactionType": "bottle",
+    "count": "4"
+  }
+}
