@@ -4,7 +4,6 @@
 */
 package net.mcreator.concoction.init;
 
-import net.mcreator.concoction.block.entity.ButterChurnEntity;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -19,6 +18,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 
 import net.mcreator.concoction.block.entity.CropMintBlockEntity;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
+import net.mcreator.concoction.block.entity.ButterChurnEntity;
 import net.mcreator.concoction.ConcoctionMod;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)

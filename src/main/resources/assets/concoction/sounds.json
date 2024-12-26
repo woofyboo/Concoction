@@ -36,5 +36,36 @@
         "stream": false
       }
     ]
+  },
+  "butter_churn_spin": {
+    "subtitle": "subtitles.butter_churn_spin",
+    "sounds": [
+      {
+        "name": "concoction:butter_churn_spin",
+        "stream": false
+      }
+    ]
+  },
+  "barrel_overfilled": {
+    "subtitle": "subtitles.barrel_overfilled",
+    "sounds": [
+      {
+        "name": "concoction:overfilled",
+        "stream": false
+      }
+    ]
+  },
+  "butter_thickens": {
+    "subtitle": "subtitles.butter_thickens",
+    "sounds": [
+      {
+        "name": "concoction:butter_is_ready",
+        "stream": false
+      },
+      {
+        "name": "concoction:butter_is_ready2",
+        "stream": false
+      }
+    ]
   }
 }

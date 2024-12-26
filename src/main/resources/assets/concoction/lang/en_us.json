@@ -9,6 +9,7 @@
   "block.concoction.lime_pillow_block": "Lime Pillow",
   "block.concoction.mint": "Mint",
   "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+  "subtitles.butter_thickens": "Butter thickens",
   "item.concoction.pinecone": "Pinecone",
   "advancements.onion_found.title": "Who is Building Nether Portal?",
   "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
@@ -95,6 +96,7 @@
   "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
   "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
   "item.concoction.corn": "Corn",
+  "subtitles.barrel_overfilled": "Overfilled",
   "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
   "item.concoction.roasted_pinecone": "Roasted Pinecone",
   "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
@@ -102,6 +104,7 @@
   "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
   "block.concoction.crop_spicy_pepper": "Crop Spicy Pepper",
   "death.attack.spicy_damage.player": "%1$s hought they could handle the spice of %2$s",
+  "subtitles.butter_churn_spin": "Butter churn spins",
   "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
   "effect.concoction.sweetness": "Sweetness",
   "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
@@ -145,6 +148,7 @@
   "death.attack.rift": "%1$s suffered interdimensional rift quartering",
   "item.concoction.chocolate": "Chocolate",
   "item.concoction.music_disc_hot_ice": "Music Disc",
+  "gui.butter_churn.title": "Spinning",
   "item_group.concoction.concoction": "Concoction",
   "advancements.gourmet.title": "Gourmet",
   "item.concoction.cotton": "Cotton",
@@ -167,6 +171,5 @@
   "item.concoction.cod_sushi": "Cod Sushi",
   "block.concoction.blue_pillow_block": "Blue Pillow",
   "item.concoction.onion": "Onion",
-  "advancements.cry_about_it.title": "Cry About It",
-  "gui.butter_churn.title": "Butter churn"
+  "advancements.cry_about_it.title": "Cry About It"
 }
