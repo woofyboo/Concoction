@@ -6,9 +6,12 @@ import net.mcreator.concoction.block.entity.ButterChurnEntity;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -79,6 +82,16 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 
 			if (blockentity instanceof ButterChurnEntity butterChurn && pItem.getItem().equals(Items.STICK) &&
 					!butterChurn.hasCraftedResult() && butterChurn.hasRecipe()) {
+				if (pPlayer instanceof ServerPlayer _player) {
+					AdvancementHolder _adv = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:you_spin_me_round"));
+					if (_adv != null) {
+						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
+						if (!_ap.isDone()) {
+							for (String criteria : _ap.getRemainingCriteria())
+								_player.getAdvancements().award(_adv, criteria);
+						}
+					}
+				}
 				pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_CHURN_SPIN.get(),
 						SoundSource.BLOCKS, 1.0F, (float)Math.random()+0.5F);
 				if (Math.random() < 0.2) {
