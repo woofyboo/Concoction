@@ -3608,6 +3608,20 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "MushroomSkewer",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mushroom_skewer",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/mushroom_skewer.json",
+          "src/main/java/net/mcreator/concoction/item/MushroomSkewerItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3672,14 +3686,14 @@
     }
   ],
   "tag_elements": {
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
     "ITEMS:mod:oils": [
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
       "CUSTOM:CornOil"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3792,6 +3806,7 @@
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
+      "item.concoction.mushroom_skewer": "Грибной шашлычок",
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
@@ -3974,6 +3989,7 @@
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
+      "item.concoction.mushroom_skewer": "Mushroom Skewer",
       "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
