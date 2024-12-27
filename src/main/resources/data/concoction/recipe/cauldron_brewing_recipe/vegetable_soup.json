@@ -1,0 +1,31 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+      "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "concoction:onion"
+    }
+
+  ],
+
+  "result": {
+    "id": "concoction:vegetable_soup",
+    "interactionType": "bowl",
+    "count": "3"
+  }
+}

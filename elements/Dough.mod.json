@@ -3,16 +3,16 @@
   "_type": "item",
   "definition": {
     "renderType": 0,
-    "texture": "cold_cuts",
+    "texture": "dough",
     "customModelName": "Normal",
     "customProperties": {},
     "states": [],
-    "name": "Cold Cuts",
+    "name": "Dough",
     "rarity": "COMMON",
     "creativeTabs": [],
-    "stackSize": 16,
+    "stackSize": 64,
     "enchantability": 0,
-    "useDuration": 32,
+    "useDuration": 40,
     "toolType": 1.0,
     "damageCount": 0,
     "recipeRemainder": {
@@ -40,10 +40,10 @@
     },
     "projectileDisableAmmoCheck": false,
     "isFood": true,
-    "nutritionalValue": 8,
-    "saturation": 1.0,
+    "nutritionalValue": 3,
+    "saturation": 0.3,
     "eatResultItem": {
-      "value": "Items.BOWL"
+      "value": ""
     },
     "isMeat": false,
     "isAlwaysEdible": false,

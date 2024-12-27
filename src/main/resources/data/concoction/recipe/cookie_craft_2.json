@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cookie",
+  "category": "misc",
+  "pattern": [
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:dough"
+    },
+    "b": {
+      "item": "minecraft:cocoa_beans"
+    }
+  },
+  "result": {
+    "id": "minecraft:cookie",
+    "count": 8
+  }
+}

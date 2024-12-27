@@ -10,11 +10,13 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.mcreator.concoction.procedures.FungusStewPlayerFinishesUsingItemProcedure;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+
 
 public class FungusStewItem extends Item {
 	public FungusStewItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).effect(() -> new MobEffectInstance(MobEffects.BLINDNESS, 230, 0), 0.6F).build()));
 	}
 
 	@Override
@@ -24,7 +26,6 @@ public class FungusStewItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		FungusStewPlayerFinishesUsingItemProcedure.execute(world, entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

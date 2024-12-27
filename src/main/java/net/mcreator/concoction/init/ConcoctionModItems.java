@@ -16,6 +16,7 @@ import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.food.FoodProperties;
 
+import net.mcreator.concoction.item.VegetableSoupItem;
 import net.mcreator.concoction.item.TropicalSushiItem;
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
@@ -29,6 +30,7 @@ import net.mcreator.concoction.item.OnionSoupItem;
 import net.mcreator.concoction.item.OmuriceItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
 import net.mcreator.concoction.item.MusicDiscHotIceItem;
+import net.mcreator.concoction.item.MushroomCreamSoupItem;
 import net.mcreator.concoction.item.MintySlimeJellyItem;
 import net.mcreator.concoction.item.MintCookieItem;
 import net.mcreator.concoction.item.MintBrewItem;
@@ -43,13 +45,13 @@ import net.mcreator.concoction.item.FungusStewItem;
 import net.mcreator.concoction.item.FriedEggItem;
 import net.mcreator.concoction.item.FishAndChipsItem;
 import net.mcreator.concoction.item.FabricItem;
+import net.mcreator.concoction.item.DoughItem;
 import net.mcreator.concoction.item.CottonOilItem;
 import net.mcreator.concoction.item.CornSoupItem;
 import net.mcreator.concoction.item.CornOilItem;
 import net.mcreator.concoction.item.CornItem;
 import net.mcreator.concoction.item.CookedRiceItem;
 import net.mcreator.concoction.item.CookedCornItem;
-import net.mcreator.concoction.item.ColdCutsItem;
 import net.mcreator.concoction.item.CodSushiItem;
 import net.mcreator.concoction.item.ChocolateItem;
 import net.mcreator.concoction.item.ChickenConfitItem;
@@ -108,7 +110,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
 	public static final DeferredItem<Item> COOKED_RICE = REGISTRY.register("cooked_rice", CookedRiceItem::new);
 	public static final DeferredItem<Item> HANAMI_DANGO = REGISTRY.register("hanami_dango", HanamiDangoItem::new);
-	public static final DeferredItem<Item> COLD_CUTS = REGISTRY.register("cold_cuts", ColdCutsItem::new);
 	public static final DeferredItem<Item> SALMON_SUSHI = REGISTRY.register("salmon_sushi", SalmonSushiItem::new);
 	public static final DeferredItem<Item> COD_SUSHI = REGISTRY.register("cod_sushi", CodSushiItem::new);
 	public static final DeferredItem<Item> TROPICAL_SUSHI = REGISTRY.register("tropical_sushi", TropicalSushiItem::new);
@@ -120,6 +121,9 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CORN_OIL = REGISTRY.register("corn_oil", CornOilItem::new);
 	public static final DeferredItem<Item> BUTTER_CHURN = block(ConcoctionModBlocks.BUTTER_CHURN);
 	public static final DeferredItem<Item> OMURICE = REGISTRY.register("omurice", OmuriceItem::new);
+	public static final DeferredItem<Item> MUSHROOM_CREAM_SOUP = REGISTRY.register("mushroom_cream_soup", MushroomCreamSoupItem::new);
+	public static final DeferredItem<Item> VEGETABLE_SOUP = REGISTRY.register("vegetable_soup", VegetableSoupItem::new);
+	public static final DeferredItem<Item> DOUGH = REGISTRY.register("dough", DoughItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

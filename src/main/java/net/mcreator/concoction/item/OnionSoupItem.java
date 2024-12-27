@@ -12,7 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class OnionSoupItem extends Item {
 	public OnionSoupItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(7).saturationModifier(0.8f).build()));
 	}
 
 	@Override

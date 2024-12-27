@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "experience": 4,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "concoction:dough"
+  },
+  "result": {
+    "id": "minecraft:bread"
+  }
+}

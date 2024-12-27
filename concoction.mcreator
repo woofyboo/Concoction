@@ -2700,7 +2700,7 @@
       "name": "FungusStew",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "fungus_stew",
       "metadata": {
         "files": [
@@ -3051,20 +3051,6 @@
       "path": "~/rice"
     },
     {
-      "name": "ColdCuts",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "cold_cuts",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/item/cold_cuts.json",
-          "src/main/java/net/mcreator/concoction/item/ColdCutsItem.java"
-        ]
-      },
-      "path": "~/general"
-    },
-    {
       "name": "CodRollCraft",
       "type": "recipe",
       "compiles": true,
@@ -3346,35 +3332,215 @@
       "path": "~/achivements"
     },
     {
-      "name": "Temp",
-      "type": "procedure",
+      "name": "MushroomCreamSoup",
+      "type": "item",
       "compiles": true,
       "locked_code": false,
-      "registry_name": "temp",
+      "registry_name": "mushroom_cream_soup",
       "metadata": {
         "files": [
-          "src/main/java/net/mcreator/concoction/procedures/TempProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
+          "src/main/resources/assets/concoction/models/item/mushroom_cream_soup.json",
+          "src/main/java/net/mcreator/concoction/item/MushroomCreamSoupItem.java"
         ]
       },
-      "path": "~/oils"
+      "path": "~/general"
+    },
+    {
+      "name": "VegetableSoup",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "vegetable_soup",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/VegetableSoupItem.java",
+          "src/main/resources/assets/concoction/models/item/vegetable_soup.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "Dough",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "dough",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/dough.json",
+          "src/main/java/net/mcreator/concoction/item/DoughItem.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "DoughCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dough_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/dough_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "DoughCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dough_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/dough_craft_2.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "DoughCraft3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dough_craft_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/dough_craft_3.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BreadBakingFurnace",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bread_baking_furnace",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/bread_baking_furnace.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BreadBakingSmoker",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bread_baking_smoker",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/bread_baking_smoker.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BreadBakingCampfire",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bread_baking_campfire",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/bread_baking_campfire.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "MintChocolateCakeCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "mint_chocolate_cake_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/mint_chocolate_cake_craft_2.json"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "MintCookieCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "mint_cookie_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/mint_cookie_craft_2.json"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "CherryCookieCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cherry_cookie_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cherry_cookie_craft_2.json"
+        ]
+      },
+      "path": "~/cherry"
+    },
+    {
+      "name": "PumpkinPieCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pumpkin_pie_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/pumpkin_pie_craft_2.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CookieCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cookie_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cookie_craft_2.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CakeCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cake_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cake_craft_2.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "DoughCraft4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "dough_craft_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/dough_craft_4.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3418,7 +3584,7 @@
         "butter_churn_spin"
       ],
       "category": "player",
-      "subtitle": "Butter churn spins"
+      "subtitle": "Butter Churn spins"
     },
     {
       "name": "barrel_overfilled",
@@ -3439,14 +3605,14 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "ITEMS:mod:oils": [
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
       "CUSTOM:CornOil"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3541,7 +3707,7 @@
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.mint": "Мята",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
-      "subtitles.butter_thickens": "Butter thickens",
+      "subtitles.butter_thickens": "Масло загустело",
       "item.concoction.pinecone": "Шишка",
       "advancements.onion_found.title": "Горе луковое",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
@@ -3584,6 +3750,7 @@
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
+      "item.concoction.dough": "Тесто",
       "advancements.not_a_cotton_candy.title": "Не хлопай мне тут",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
@@ -3606,6 +3773,7 @@
       "item.concoction.rice": "Рис",
       "effect.concoction.instability": "Нестабильность",
       "advancements.spicy_pepper_found.title": "Остри как перви любоф",
+      "item.concoction.vegetable_soup": "Овощной суп",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
@@ -3627,8 +3795,9 @@
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "item.minecraft.potion.effect.snowflake": "Зелье мороза",
       "item.minecraft.potion.effect.flame_extended": "Зелье жжения",
+      "item.concoction.mushroom_cream_soup": "Грибной крем-суп",
       "item.concoction.corn": "Кукуруза",
-      "subtitles.barrel_overfilled": "Overfilled",
+      "subtitles.barrel_overfilled": "Переполнен",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
@@ -3636,7 +3805,7 @@
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
       "block.concoction.crop_spicy_pepper": "Жгучий перец",
       "death.attack.spicy_damage.player": "%1$s был отжарен %2$s",
-      "subtitles.butter_churn_spin": "Butter churn spins",
+      "subtitles.butter_churn_spin": "Маслобойка крутится",
       "advancements.get_folded.descr": "Едва выживи после получения урона от падения на подушку.",
       "effect.concoction.sweetness": "Сладость",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
@@ -3695,7 +3864,6 @@
       "gui.cooking_cauldron.title": "Готовка в котле",
       "item.concoction.fungus_stew": "Тушёные поганки",
       "block.concoction.butter_churn": "Маслобойка",
-      "item.concoction.cold_cuts": "Мясное ассорти",
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "effect.concoction.minty_breath": "Свежесть",
@@ -3759,6 +3927,7 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
+      "item.concoction.dough": "Dough",
       "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
@@ -3781,6 +3950,7 @@
       "item.concoction.rice": "Rice",
       "effect.concoction.instability": "Instability",
       "advancements.spicy_pepper_found.title": "Sweet Sweet Capsaicin",
+      "item.concoction.vegetable_soup": "Vegetable Soup",
       "effect.concoction.frost_touch": "Frost Touch",
       "item.concoction.cherry": "Cherry",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
@@ -3802,6 +3972,7 @@
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "item.minecraft.potion.effect.snowflake": "Potion of Snowflake",
       "item.minecraft.potion.effect.flame_extended": "Potion of Flame",
+      "item.concoction.mushroom_cream_soup": "Mushroom Cream Soup",
       "item.concoction.corn": "Corn",
       "subtitles.barrel_overfilled": "Overfilled",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
@@ -3811,7 +3982,7 @@
       "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "block.concoction.crop_spicy_pepper": "Crop Spicy Pepper",
       "death.attack.spicy_damage.player": "%1$s hought they could handle the spice of %2$s",
-      "subtitles.butter_churn_spin": "Butter churn spins",
+      "subtitles.butter_churn_spin": "Butter Churn spins",
       "advancements.get_folded.descr": "Barely survive the damage by falling on a pillow.",
       "effect.concoction.sweetness": "Sweetness",
       "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
@@ -3870,7 +4041,6 @@
       "gui.cooking_cauldron.title": "Cauldron Cooking",
       "item.concoction.fungus_stew": "Fungus Stew",
       "block.concoction.butter_churn": "Butter Churn",
-      "item.concoction.cold_cuts": "Cold Cuts",
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "effect.concoction.minty_breath": "Freshness",

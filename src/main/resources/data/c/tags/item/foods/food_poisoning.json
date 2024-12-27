@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:fungus_stew"
+    "concoction:fungus_stew",
+    "concoction:dough"
   ]
 }

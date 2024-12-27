@@ -42,12 +42,7 @@
               "formula": "minecraft:ore_drops"
             }
           ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
+        },
         {
           "type": "minecraft:item",
           "name": "minecraft:air",

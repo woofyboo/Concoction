@@ -28,14 +28,17 @@
     "concoction:bamboo_porkchop_soup",
     "concoction:cooked_rice",
     "concoction:hanami_dango",
-    "concoction:cold_cuts",
     "concoction:cod_sushi",
     "concoction:salmon_sushi",
     "concoction:tropical_sushi",
     "concoction:green_onion",
     "concoction:chicken_confit",
     "concoction:animal_fat",
-    "concoction:omurice"
+    "concoction:omurice",
+    "concoction:mushroom_cream_soup",
+    "concoction:vegetable_soup",
+    "concoction:dough"
+    
     
     
 

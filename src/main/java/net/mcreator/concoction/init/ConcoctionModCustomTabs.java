@@ -53,10 +53,11 @@ public class ConcoctionModCustomTabs {
 
 				
 // Пищевые Материалы
-				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
+				tabData.accept(ConcoctionModItems.DOUGH.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
 				tabData.accept(ConcoctionModItems.CORN_OIL.get());
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
+				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
 				tabData.accept(ConcoctionModItems.BUTTER.get());
 				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
 
@@ -68,6 +69,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SALMON_SUSHI.get());
 				tabData.accept(ConcoctionModItems.TROPICAL_SUSHI.get());
 //Супы и блюда
+				tabData.accept(ConcoctionModItems.VEGETABLE_SOUP.get());
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.ONION_SOUP.get());
 				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
@@ -76,8 +78,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 				tabData.accept(ConcoctionModItems.COOKED_RICE.get());
-				tabData.accept(ConcoctionModItems.COLD_CUTS.get());
 				tabData.accept(ConcoctionModItems.CHICKEN_CONFIT.get());
+				tabData.accept(ConcoctionModItems.MUSHROOM_CREAM_SOUP.get());
 				tabData.accept(ConcoctionModItems.OMURICE.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
