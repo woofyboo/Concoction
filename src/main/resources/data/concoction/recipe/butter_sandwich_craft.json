@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "butter_sandwich",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:butter"
+    },
+    "b": {
+      "item": "minecraft:bread"
+    }
+  },
+  "result": {
+    "id": "concoction:butter_sandwich",
+    "count": 3
+  }
+}

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "mint_chocolate_cake_craft",
-  "category": "food",
+  "category": "misc",
   "pattern": [
     "aaa",
     "bcb",

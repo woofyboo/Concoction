@@ -3581,6 +3581,33 @@
         ]
       },
       "path": "~/achivements"
+    },
+    {
+      "name": "ButterSandwich",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "butter_sandwich",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/ButterSandwichItem.java",
+          "src/main/resources/assets/concoction/models/item/butter_sandwich.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "ButterSandwichCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "butter_sandwich_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/butter_sandwich_craft.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3645,14 +3672,14 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "ITEMS:mod:oils": [
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
       "CUSTOM:CornOil"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3741,7 +3768,7 @@
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
       "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
-      "advancements.you_spin_me_round.title": "Хьюстон, у нас проблемы",
+      "advancements.you_spin_me_round.title": "Земля в иллюминаторе...",
       "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Ни пуха ни пера!",
@@ -3808,6 +3835,7 @@
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "advancements.onion_found.descr": "Найди лук в лесу.",
       "advancements.screenshot.title": "Скриншот!",
+      "item.concoction.butter_sandwich": "Бутерброд с маслом",
       "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
       "advancements.key_to_the_heart.descr": "Приготовь что-нибудь с помощью котла",
       "block.concoction.pillow_block": "Белая подушка",
@@ -3903,7 +3931,7 @@
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "effect.concoction.spicy": "Жгучесть",
       "item.concoction.hanami_dango": "Ханами данго",
-      "item.concoction.raw_noodles": "Raw Noodles",
+      "item.concoction.raw_noodles": "Сырая лапша",
       "advancements.kinda_corny.descr": "Найди кукурузу на равнине.",
       "gui.cooking_cauldron.title": "Готовка в котле",
       "item.concoction.fungus_stew": "Тушёные поганки",
@@ -3989,6 +4017,7 @@
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "advancements.onion_found.descr": "Find wild onion in forest.",
       "advancements.screenshot.title": "Screenshot",
+      "item.concoction.butter_sandwich": "Butter Sandwich",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
       "advancements.key_to_the_heart.descr": "Put something inside a cauldron that is ready to cook",

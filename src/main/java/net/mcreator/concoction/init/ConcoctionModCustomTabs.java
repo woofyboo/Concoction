@@ -65,6 +65,7 @@ public class ConcoctionModCustomTabs {
 //Сложная еда
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
+				tabData.accept(ConcoctionModItems.BUTTER_SANDWICH.get());
 				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
 				tabData.accept(ConcoctionModItems.COD_SUSHI.get());
 				tabData.accept(ConcoctionModItems.SALMON_SUSHI.get());
