@@ -3,6 +3,7 @@
   "block.concoction.wild_onion": "Wild Onion",
   "gui.cooking_cauldron.time.seconds": "%ss",
   "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
+  "advancements.you_spin_me_round.title": "You Spin Me Round",
   "item.concoction.cotton_oil": "Cotton Oil",
   "subtitles.cauldron_cooking": "Cauldron is bubbling",
   "advancements.get_folded.title": "Get Folded!",
@@ -54,6 +55,7 @@
   "item.concoction.spicy_pepper": "Spicy Pepper",
   "item.concoction.dough": "Dough",
   "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
+  "gui.butter_churn.chance": "20%",
   "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
   "block.concoction.orange_pillow_block": "Orange Pillow",
   "block.concoction.green_pillow_block": "Green Pillow",
@@ -100,6 +102,7 @@
   "item.concoction.mushroom_cream_soup": "Mushroom Cream Soup",
   "item.concoction.corn": "Corn",
   "subtitles.barrel_overfilled": "Overfilled",
+  "advancements.you_spin_me_round.descr": "Spin butter churn to make butter or oil.",
   "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
   "item.concoction.roasted_pinecone": "Roasted Pinecone",
   "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
@@ -162,6 +165,7 @@
   "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
   "effect.concoction.spicy": "Spicy",
   "item.concoction.hanami_dango": "Hanami Dango",
+  "item.concoction.raw_noodles": "Raw Noodles",
   "advancements.kinda_corny.descr": "Find corn in plains biome.",
   "gui.cooking_cauldron.title": "Cauldron Cooking",
   "item.concoction.fungus_stew": "Fungus Stew",
@@ -173,6 +177,5 @@
   "item.concoction.cod_sushi": "Cod Sushi",
   "block.concoction.blue_pillow_block": "Blue Pillow",
   "item.concoction.onion": "Onion",
-  "advancements.cry_about_it.title": "Cry About It",
-  "gui.butter_churn.chance": "20% chance"
+  "advancements.cry_about_it.title": "Cry About It"
 }

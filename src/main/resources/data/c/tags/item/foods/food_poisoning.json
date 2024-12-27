@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "concoction:fungus_stew",
-    "concoction:dough"
+    "concoction:dough",
+    "concoction:raw_noodles"
   ]
 }

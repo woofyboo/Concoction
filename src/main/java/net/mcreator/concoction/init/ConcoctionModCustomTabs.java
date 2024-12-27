@@ -53,11 +53,12 @@ public class ConcoctionModCustomTabs {
 
 				
 // Пищевые Материалы
+				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
 				tabData.accept(ConcoctionModItems.DOUGH.get());
+				tabData.accept(ConcoctionModItems.RAW_NOODLES.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_OIL.get());
 				tabData.accept(ConcoctionModItems.CORN_OIL.get());
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
-				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
 				tabData.accept(ConcoctionModItems.BUTTER.get());
 				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
 

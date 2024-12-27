@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "noodles",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:dough"
+    }
+  },
+  "result": {
+    "id": "concoction:raw_noodles",
+    "count": 4
+  }
+}

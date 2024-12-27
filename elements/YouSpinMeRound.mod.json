@@ -2,10 +2,10 @@
   "_fv": 73,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Gourmet",
-    "achievementDescription": "Eat any *dish* made in cauldron.",
+    "achievementName": "You Spin Me Round",
+    "achievementDescription": "Spin butter churn to make butter or oil.",
     "achievementIcon": {
-      "value": "CUSTOM:MeatGoulash"
+      "value": "CUSTOM:ButterChurn"
     },
     "background": "Default",
     "disableDisplay": false,
@@ -17,7 +17,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:KeyToTheHeart"
+      "value": "CUSTOM:Sunshine"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

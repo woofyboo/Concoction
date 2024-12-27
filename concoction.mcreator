@@ -3541,6 +3541,46 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "RawNoodles",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "raw_noodles",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/RawNoodlesItem.java",
+          "src/main/resources/assets/concoction/models/item/raw_noodles.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "RawNoodlesCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raw_noodles_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/raw_noodles_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "YouSpinMeRound",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "you_spin_me_round",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/you_spin_me_round.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -3701,6 +3741,7 @@
       "block.concoction.wild_onion": "Дикий лук",
       "gui.cooking_cauldron.time.seconds": "%sс",
       "advancements.triple_dent_gum.descr": "Найдите куст мяты рядом с горными лугами или в вишневом саду.",
+      "advancements.you_spin_me_round.title": "Хьюстон, у нас проблемы",
       "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
       "advancements.get_folded.title": "Ни пуха ни пера!",
@@ -3752,6 +3793,7 @@
       "item.concoction.spicy_pepper": "Жгучий перец",
       "item.concoction.dough": "Тесто",
       "advancements.not_a_cotton_candy.title": "Не хлопай мне тут",
+      "gui.butter_churn.chance": "20%",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
@@ -3798,6 +3840,7 @@
       "item.concoction.mushroom_cream_soup": "Грибной крем-суп",
       "item.concoction.corn": "Кукуруза",
       "subtitles.barrel_overfilled": "Переполнен",
+      "advancements.you_spin_me_round.descr": "Выкрутите масло в маслобойке",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
@@ -3860,6 +3903,7 @@
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "effect.concoction.spicy": "Жгучесть",
       "item.concoction.hanami_dango": "Ханами данго",
+      "item.concoction.raw_noodles": "Raw Noodles",
       "advancements.kinda_corny.descr": "Найди кукурузу на равнине.",
       "gui.cooking_cauldron.title": "Готовка в котле",
       "item.concoction.fungus_stew": "Тушёные поганки",
@@ -3878,6 +3922,7 @@
       "block.concoction.wild_onion": "Wild Onion",
       "gui.cooking_cauldron.time.seconds": "%ss",
       "advancements.triple_dent_gum.descr": "Find mint bush near the mountians grove or cherry blossom forest.",
+      "advancements.you_spin_me_round.title": "You Spin Me Round",
       "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
       "advancements.get_folded.title": "Get Folded!",
@@ -3929,11 +3974,12 @@
       "item.concoction.spicy_pepper": "Spicy Pepper",
       "item.concoction.dough": "Dough",
       "advancements.not_a_cotton_candy.title": "Not a Cotton Candy",
+      "gui.butter_churn.chance": "20%",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.not_a_cotton_candy.descr": "Find cotton in savanna plateu.",
-      "advancements.gourmet.descr": "Eat any dish made in cauldron.",
+      "advancements.gourmet.descr": "Eat any *dish* made in cauldron.",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
@@ -3975,6 +4021,7 @@
       "item.concoction.mushroom_cream_soup": "Mushroom Cream Soup",
       "item.concoction.corn": "Corn",
       "subtitles.barrel_overfilled": "Overfilled",
+      "advancements.you_spin_me_round.descr": "Spin butter churn to make butter or oil.",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
       "item.concoction.roasted_pinecone": "Roasted Pinecone",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
@@ -4037,6 +4084,7 @@
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
       "effect.concoction.spicy": "Spicy",
       "item.concoction.hanami_dango": "Hanami Dango",
+      "item.concoction.raw_noodles": "Raw Noodles",
       "advancements.kinda_corny.descr": "Find corn in plains biome.",
       "gui.cooking_cauldron.title": "Cauldron Cooking",
       "item.concoction.fungus_stew": "Fungus Stew",

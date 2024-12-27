@@ -2,19 +2,15 @@
   "workspacePanelIconSize": "TILES",
   "workspacePanelSortType": "CREATED",
   "workspacePanelSortAscending": true,
-  "projectBrowserSplitPos": 436,
+  "projectBrowserSplitPos": 437,
   "projectBrowserState": {
     "expandedPaths": [
       "[, Concoction]",
       "[, Concoction, Resources (Gradle)]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags\\item]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags\\item, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\c\\tags\\item\\foods]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft\\tags]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft\\tags, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\minecraft\\tags\\block]"
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures\\gui]"
     ]
   }
 }
