@@ -173,5 +173,6 @@
   "item.concoction.cod_sushi": "Cod Sushi",
   "block.concoction.blue_pillow_block": "Blue Pillow",
   "item.concoction.onion": "Onion",
-  "advancements.cry_about_it.title": "Cry About It"
+  "advancements.cry_about_it.title": "Cry About It",
+  "gui.butter_churn.chance": "20% chance"
 }

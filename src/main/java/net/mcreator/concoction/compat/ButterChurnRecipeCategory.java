@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
 
 public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRecipe> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID,
-            "textures/gui/cooking_cauldron_gui.png");
+            "textures/gui/butter_churn_gui_jei.png");
 
     public static final RecipeType<ButterChurnRecipe> BUTTER_CHURN_RECIPE_TYPE = RecipeType.create(ConcoctionMod.MODID, "butter_churn",
             ButterChurnRecipe.class);
@@ -35,13 +35,10 @@ public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRec
     @Nonnull
     private final IDrawable background;
     private final IDrawable icon;
-    protected final IDrawableAnimated arrow;
 
     public ButterChurnRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 122, 63);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 134, 58);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ConcoctionModItems.BUTTER_CHURN.get()));
-        this.arrow = helper.drawableBuilder(TEXTURE, 122, 0, 44, 23)
-                .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
     @Override
@@ -66,11 +63,6 @@ public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRec
         return icon;
     }
 
-    @Override
-    public void draw(ButterChurnRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        arrow.draw(guiGraphics, 44, 20);
-    }
-
     public static boolean isCursorInsideBounds(int iconX, int iconY, int iconWidth, int iconHeight, double cursorX, double cursorY) {
         return iconX <= cursorX && cursorX < iconX + iconWidth && iconY <= cursorY && cursorY < iconY + iconHeight;
     }
@@ -78,28 +70,28 @@ public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRec
     @Override
     public void getTooltip(ITooltipBuilder tooltip, ButterChurnRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (isCursorInsideBounds(44, 20, 44, 23, mouseX, mouseY)) {
-            int cookTimeSeconds = 20;
-            if (cookTimeSeconds > 0)
-                tooltip.add(Component.translatable("gui.cooking_cauldron.time.seconds", cookTimeSeconds));
+            tooltip.add(Component.translatable("gui.butter_churn.chance"));
         }
     }
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ButterChurnRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 5, 6).addItemStack(
+        builder.addSlot(RecipeIngredientRole.INPUT, 16, 20).addItemStack(
                 new ItemStack(recipe.getIngredient(0).getItems()[0].getItem(), recipe.getInputItems().size())
         );
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 98, 25).addItemStack(
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 84, 20).addItemStack(
                 new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(recipe.getOutput().get("id"))),
                         Integer.parseInt(recipe.getOutput().get("count")) )
         );
+        builder.addSlot(RecipeIngredientRole.CATALYST, 48, 2).addItemStack(new ItemStack(Items.STICK));
 
         ItemStack catalyst = switch (recipe.getOutput().get("interactionType")) {
             case "hand" -> ItemStack.EMPTY;
             case "bottle" -> new ItemStack(Items.GLASS_BOTTLE);
             default -> ItemStack.EMPTY;
         };
-        builder.addSlot(RecipeIngredientRole.CATALYST, 57, 2).addItemStack(catalyst);
+        builder.addSlot(RecipeIngredientRole.CATALYST, 109, 20).addItemStack(catalyst);
+
     }
 }
