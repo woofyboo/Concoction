@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cabbage_block",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cabbagehead"
+    }
+  },
+  "result": {
+    "id": "concoction:cabbage_block",
+    "count": 1
+  }
+}

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:cabbage_leaf"
+    "concoction:cabbage_leaf",
+    "concoction:cabbagehead"
   ]
 }

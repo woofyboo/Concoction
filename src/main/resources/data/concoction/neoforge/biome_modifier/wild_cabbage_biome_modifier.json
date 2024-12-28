@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "forest",
+    "flower_forest",
+    "plains",
+    "birch_forest",
+    "old_growth_birch_forest"
+  ],
+  "features": "concoction:wild_cabbage",
+  "step": "vegetal_decoration"
+}

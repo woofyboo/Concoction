@@ -38,6 +38,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FABRIC.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.CABBAGEHEAD.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_LEAF.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_SEEDS.get());
 				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
@@ -94,6 +95,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_COTTON.get());
 				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
+				tabData.accept(ConcoctionModItems.WILD_CABBAGE.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_BLOCK.get());
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());

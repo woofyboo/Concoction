@@ -3661,6 +3661,81 @@
         ]
       },
       "path": "~/cabbage"
+    },
+    {
+      "name": "Cabbagehead",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cabbagehead",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cabbagehead.json",
+          "src/main/resources/assets/concoction/models/block/cabbagehead.json",
+          "src/main/java/net/mcreator/concoction/block/CabbageheadBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/cabbagehead.json",
+          "src/main/resources/assets/concoction/blockstates/cabbagehead.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cabbage_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cabbage_block_craft.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cabbage_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cabbage_block_uncraft.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageLeafCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cabbage_leaf_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cabbage_leaf_craft.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "WildCabbage",
+      "type": "plant",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "wild_cabbage",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/WildCabbageBlock.java",
+          "src/main/resources/assets/concoction/models/block/wild_cabbage.json",
+          "src/main/resources/data/concoction/worldgen/configured_feature/wild_cabbage.json",
+          "src/main/resources/assets/concoction/blockstates/wild_cabbage.json",
+          "src/main/resources/data/concoction/worldgen/placed_feature/wild_cabbage.json",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/wild_cabbage_biome_modifier.json",
+          "src/main/resources/assets/concoction/models/item/wild_cabbage.json"
+        ]
+      },
+      "path": "~/cabbage"
     }
   ],
   "variable_elements": [],
@@ -3856,6 +3931,7 @@
       "subtitles.butter_thickens": "Масло загустело",
       "item.concoction.pinecone": "Шишка",
       "advancements.onion_found.title": "Горе луковое",
+      "block.concoction.wild_cabbage": "Дикая капуста",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
       "item.concoction.corn_oil": "Кукурузное масло",
       "subtitles.silence": "",
@@ -3867,6 +3943,7 @@
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
+      "block.concoction.cabbagehead": "Капуста",
       "item.concoction.cabbage_seeds": "Семена капусты",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
@@ -4044,6 +4121,7 @@
       "subtitles.butter_thickens": "Butter thickens",
       "item.concoction.pinecone": "Pinecone",
       "advancements.onion_found.title": "Who is Building Nether Portal?",
+      "block.concoction.wild_cabbage": "Wild Cabbage",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "item.concoction.corn_oil": "Corn Oil",
       "subtitles.silence": "",
@@ -4055,6 +4133,7 @@
       "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.hot_sauce_bottle": "Hot Sauce Bottle",
+      "block.concoction.cabbagehead": "Cabbage",
       "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",

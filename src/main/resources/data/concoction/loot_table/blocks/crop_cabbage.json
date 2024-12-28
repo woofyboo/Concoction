@@ -1,20 +1,81 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "concoction:blocks/crop_cabbage",
-  "pools": [
+  "functions": [
     {
-      "rolls": 1.0,
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "concoction:crop_cabbage"
-        }
-      ]
+      "function": "minecraft:explosion_decay"
     }
-  ]
+  ],
+  "pools": [
+      {
+        "bonus_rolls": 0.0,
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "name": "concoction:cabbage_seeds"
+          }
+        ],
+        "rolls": 1.0
+      },
+      {
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:crop_cabbage",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "age": "3"
+            }
+          }
+        ],
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "enchantment": "minecraft:fortune",
+                "formula": "minecraft:binomial_with_bonus_count",
+                "function": "minecraft:apply_bonus",
+                "parameters": {
+                  "extra": 1,
+                  "probability": 0.5714286
+                }
+              }
+            ],
+            "name": "concoction:cabbage_seeds"
+          }
+        ],
+        "rolls": 1.0
+      },
+      {
+        "bonus_rolls": 0.0,
+        "conditions": [
+          {
+            "block": "concoction:crop_cabbage",
+            "condition": "minecraft:block_state_property",
+            "properties": {
+              "age": "3"
+            }
+          }
+        ],
+        "entries": [
+          {
+            "type": "minecraft:item",
+            "functions": [
+              {
+                "enchantment": "minecraft:fortune",
+                "formula": "minecraft:binomial_with_bonus_count",
+                "function": "minecraft:apply_bonus",
+                "parameters": {
+                  "extra": 1,
+                  "probability": 0.0
+                }
+              }
+            ],
+            "name": "concoction:cabbagehead"
+          }
+        ],
+        "rolls": 1.0
+      }
+    ],
+  "random_sequence": "concoction:blocks/crop_cabbage"
 }

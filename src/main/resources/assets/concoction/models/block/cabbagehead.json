@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "concoction:block/cabbage_top_block",
+    "particle": "concoction:block/cabbage_top_block"
+  },
+  "render_type": "cutout"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "cabbage",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:cabbage_block"
+    }
+  ],
+  "result": {
+    "id": "concoction:cabbagehead",
+    "count": 4
+  }
+}
