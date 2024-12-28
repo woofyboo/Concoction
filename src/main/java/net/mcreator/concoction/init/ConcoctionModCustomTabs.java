@@ -38,6 +38,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FABRIC.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.ROASTED_SUNFLOWER_SEEDS.get());
+				tabData.accept(ConcoctionModItems.CABBAGE_SEEDS.get());
 				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());

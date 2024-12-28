@@ -1,10 +1,13 @@
 {
   "replace": false,
   "values": [
-    "concoction:mint_seeds",
+    "concoction:mint_seeds"
+,
     "concoction:sunflower_seeds",
     "concoction:corn_seeds",
     "concoction:spicy_pepper_seeds",
-    "concoction:rice"
+    "concoction:rice",
+    "concoction:cabbage_seeds"
+
   ]
 }

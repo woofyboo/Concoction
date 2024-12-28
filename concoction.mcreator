@@ -3653,20 +3653,6 @@
         ]
       },
       "path": "~/cabbage"
-    },
-    {
-      "name": "CabbageSeeds",
-      "type": "item",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "cabbage_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/CabbageSeedsItem.java",
-          "src/main/resources/assets/concoction/models/item/cabbage_seeds.json"
-        ]
-      },
-      "path": "~/cabbage"
     }
   ],
   "variable_elements": [],
@@ -3870,7 +3856,7 @@
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
-      "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.cabbage_seeds": "Семена капусты",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
@@ -3927,7 +3913,7 @@
       "effect.concoction.instability": "Нестабильность",
       "advancements.spicy_pepper_found.title": "Остри как перви любоф",
       "item.concoction.vegetable_soup": "Овощной суп",
-      "block.concoction.crop_cabbage": "Crop Cabbage",
+      "block.concoction.crop_cabbage": "Капуста",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",

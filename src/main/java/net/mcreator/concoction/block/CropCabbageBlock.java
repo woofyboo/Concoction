@@ -93,7 +93,7 @@ public class CropCabbageBlock extends CropBlock {
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		// Предмет, получаемый при копировании блока на колёсико
 		return new ItemStack(
-            ConcoctionModItems.COTTON.get()
+            ConcoctionModItems.CABBAGE_SEEDS.get()
             );
 	}
 
@@ -118,7 +118,7 @@ public class CropCabbageBlock extends CropBlock {
 	@Override
 	protected ItemLike getBaseSeedId() {
 		// Возвращает семена для посадки растения
-		return ConcoctionModItems.COTTON.get();
+		return ConcoctionModItems.CABBAGE_SEEDS.get();
 	}
 
 	@Override
