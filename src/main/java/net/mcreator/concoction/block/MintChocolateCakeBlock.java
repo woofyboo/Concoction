@@ -3,6 +3,7 @@ package net.mcreator.concoction.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -63,5 +64,8 @@ public class MintChocolateCakeBlock extends Block {
 		builder.add(BITES);
 	}
 
-	
+	@Override
+	protected boolean canSurvive(BlockState p_51209_, LevelReader p_51210_, BlockPos p_51211_) {
+		return p_51210_.getBlockState(p_51211_.below()).isSolid();
+	}
 }

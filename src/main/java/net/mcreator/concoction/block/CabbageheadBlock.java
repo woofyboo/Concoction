@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.block;
 
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -56,5 +57,11 @@ public class CabbageheadBlock extends Block {
 	@Override
 	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
 		return PathType.BLOCKED;
+	}
+
+	@Override
+	protected boolean canSurvive(BlockState p_49325_, LevelReader p_49326_, BlockPos p_49327_) {
+		BlockPos blockpos = p_49327_.below();
+		return canSupportRigidBlock(p_49326_, blockpos) || canSupportCenter(p_49326_, blockpos, Direction.UP);
 	}
 }
