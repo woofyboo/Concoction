@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:sunflower"
+    "minecraft:sunflower",
+    "concoction:cabbage_leaf"
   ]
 }

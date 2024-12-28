@@ -12,13 +12,16 @@
 
   "ingredients": [
     {
-      "item": "minecraft:carrot"
+      "item": "concoction:cabbage_leaf"
     },
     {
       "item": "minecraft:potato"
     },
     {
       "item": "concoction:onion"
+    },
+    {
+      "item": "minecraft:carrot"
     }
 
   ],

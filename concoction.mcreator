@@ -2724,29 +2724,6 @@
       "path": "~/general"
     },
     {
-      "name": "FungusStewPlayerFinishesUsingItem",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "fungus_stew_player_finishes_using_item",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/FungusStewPlayerFinishesUsingItemProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/general"
-    },
-    {
       "name": "MintBrewDrink",
       "type": "procedure",
       "compiles": true,
@@ -3653,6 +3630,37 @@
         ]
       },
       "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageLeaf",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cabbage_leaf",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CabbageLeafItem.java",
+          "src/main/resources/assets/concoction/models/item/cabbage_leaf.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cabbage_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/cabbage_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/cabbage_block.json",
+          "src/main/resources/assets/concoction/models/block/cabbage_block.json",
+          "src/main/resources/assets/concoction/blockstates/cabbage_block.json",
+          "src/main/java/net/mcreator/concoction/block/CabbageBlockBlock.java"
+        ]
+      },
+      "path": "~/cabbage"
     }
   ],
   "variable_elements": [],
@@ -3725,6 +3733,9 @@
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
+    ],
+    "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:CabbageBlock"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3951,6 +3962,7 @@
       "effect.concoction.sweetness": "Сладость",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "item.concoction.butter": "Сливочное масло",
+      "item.concoction.cabbage_leaf": "Капустный лист",
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
       "block.concoction.crop_mint": "Мята",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
@@ -3966,6 +3978,7 @@
       "block.concoction.wild_cotton": "Дикий хлопок",
       "subtitles.cauldron_boiling": "Котёл кипит",
       "block.concoction_brew.mint": "Мята",
+      "block.concoction.cabbage_block": "Блок капусты",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
       "advancements.cry_worthy_haircut.title": "Причёска достойная слез",
@@ -4137,6 +4150,7 @@
       "effect.concoction.sweetness": "Sweetness",
       "advancements.brain_freeze_obtain_achievement.descr": "Feel the pain of brain freeze.",
       "item.concoction.butter": "Dairy Butter",
+      "item.concoction.cabbage_leaf": "Cabbage Leaf",
       "item.concoction.cherry_cookie": "Cherry Cookie",
       "block.concoction.crop_mint": "Crop Mint",
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
@@ -4152,6 +4166,7 @@
       "block.concoction.wild_cotton": "Wild Cotton",
       "subtitles.cauldron_boiling": "Cauldron is boiling",
       "block.concoction_brew.mint": "Mint",
+      "block.concoction.cabbage_block": "Cabbage Block",
       "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_red_pillow_block": "Small Red Pillow",
       "advancements.cry_worthy_haircut.title": "Cry Worthy Haircut",
