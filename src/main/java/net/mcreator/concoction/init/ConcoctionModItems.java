@@ -41,6 +41,7 @@ import net.mcreator.concoction.item.MashedPotatoesItem;
 import net.mcreator.concoction.item.HotSauceBottleItem;
 import net.mcreator.concoction.item.HashbrownsItem;
 import net.mcreator.concoction.item.HanamiDangoItem;
+import net.mcreator.concoction.item.GrilledFishItem;
 import net.mcreator.concoction.item.GreenOnionItem;
 import net.mcreator.concoction.item.GoldenCornItem;
 import net.mcreator.concoction.item.FungusStewItem;
@@ -130,6 +131,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> RAW_NOODLES = REGISTRY.register("raw_noodles", RawNoodlesItem::new);
 	public static final DeferredItem<Item> BUTTER_SANDWICH = REGISTRY.register("butter_sandwich", ButterSandwichItem::new);
 	public static final DeferredItem<Item> MUSHROOM_SKEWER = REGISTRY.register("mushroom_skewer", MushroomSkewerItem::new);
+	public static final DeferredItem<Item> GRILLED_FISH = REGISTRY.register("grilled_fish", GrilledFishItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

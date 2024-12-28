@@ -67,7 +67,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
 				tabData.accept(ConcoctionModItems.BUTTER_SANDWICH.get());
 				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
-				tabData.accept(ConcoctionModItems.MUSHROOM_SKEWER.get());
 				tabData.accept(ConcoctionModItems.COD_SUSHI.get());
 				tabData.accept(ConcoctionModItems.SALMON_SUSHI.get());
 				tabData.accept(ConcoctionModItems.TROPICAL_SUSHI.get());

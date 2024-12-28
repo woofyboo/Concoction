@@ -3622,6 +3622,20 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "GrilledFish",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "grilled_fish",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/GrilledFishItem.java",
+          "src/main/resources/assets/concoction/models/item/grilled_fish.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -3686,14 +3700,14 @@
     }
   ],
   "tag_elements": {
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "ITEMS:mod:oils": [
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
       "CUSTOM:CornOil"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -3709,11 +3723,24 @@
       "CUSTOM:Sunflower",
       "CUSTOM:WildOnion"
     ],
+    "ITEMS:mod:frying_oil": [
+      "CUSTOM:SunflowerOil",
+      "CUSTOM:Butter",
+      "CUSTOM:CornOil"
+    ],
+    "ITEMS:mod:baking_oil": [
+      "CUSTOM:Butter",
+      "CUSTOM:SunflowerOil"
+    ],
     "ITEMS:minecraft:meat": [
       "~CUSTOM:AnimalFat"
     ],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:mod:cooking_oil": [
+      "CUSTOM:SunflowerOil",
+      "CUSTOM:Butter"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
@@ -3739,6 +3766,10 @@
     ],
     "BLOCKS:minecraft:mineable/axe": [
       "~CUSTOM:ButterChurn"
+    ],
+    "ITEMS:mod:deepfrying_oil": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:CornOil"
     ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
@@ -3920,6 +3951,7 @@
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "block.concoction.wild_beetroot": "Дикая свекла",
+      "item.concoction.grilled_fish": "Рыба на гриле",
       "advancements.spicy_pepper_found.descr": "Найди жгучий перец в джунглях.",
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.salmon_sushi": "Суши из лосося",
@@ -4103,6 +4135,7 @@
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "block.concoction.wild_beetroot": "Wild Beetroot",
+      "item.concoction.grilled_fish": "Grilled Fish",
       "advancements.spicy_pepper_found.descr": "Find spicy pepper in jungles.",
       "block.concoction.red_pillow_block": "Red Pillow",
       "item.concoction.salmon_sushi": "Salmon Sushi",
