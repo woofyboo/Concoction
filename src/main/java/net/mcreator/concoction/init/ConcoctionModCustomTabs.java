@@ -41,6 +41,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CABBAGEHEAD.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_LEAF.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_SEEDS.get());
+				tabData.accept(ConcoctionModItems.TOMATO.get());
 				tabData.accept(ConcoctionModBlocks.MINT.get().asItem());
 				tabData.accept(ConcoctionModItems.MINT_SEEDS.get());
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());

@@ -3736,6 +3736,20 @@
         ]
       },
       "path": "~/cabbage"
+    },
+    {
+      "name": "Tomato",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tomato",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/TomatoItem.java",
+          "src/main/resources/assets/concoction/models/item/tomato.json"
+        ]
+      },
+      "path": "~/tomato"
     }
   ],
   "variable_elements": [],
@@ -3945,6 +3959,7 @@
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
       "block.concoction.cabbagehead": "Капуста",
       "item.concoction.cabbage_seeds": "Семена капусты",
+      "item.concoction.tomato": "Томат",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
@@ -4135,6 +4150,7 @@
       "item.concoction.hot_sauce_bottle": "Hot Sauce Bottle",
       "block.concoction.cabbagehead": "Cabbage",
       "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.tomato": "Tomato",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
@@ -4360,6 +4376,10 @@
       },
       {
         "name": "cabbage",
+        "children": []
+      },
+      {
+        "name": "tomato",
         "children": []
       }
     ]
