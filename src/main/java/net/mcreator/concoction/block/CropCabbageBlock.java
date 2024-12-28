@@ -1,12 +1,16 @@
 package net.mcreator.concoction.block;
 
+import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
@@ -43,6 +47,37 @@ public class CropCabbageBlock extends CropBlock {
 				.isRedstoneConductor((bs, br, bp) -> false));
 		// Регистрация состояния по умолчанию
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
+	}
+
+	@Override
+	protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_221052_, RandomSource randomSource) {
+		if (!p_221051_.isAreaLoaded(p_221052_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if (p_221051_.getRawBrightness(p_221052_, 0) >= 9) {
+			int i = this.getAge(pLevel);
+			if (i < this.getMaxAge()) {
+				float f = getGrowthSpeed(pLevel, p_221051_, p_221052_);
+				if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_221051_, p_221052_, pLevel, randomSource.nextInt((int)(25.0F / f) + 1) == 0)) {
+					if (i+1 == this.getMaxAge() && randomSource.nextFloat() <= 0.01f)
+						p_221051_.setBlock(p_221052_, ConcoctionModBlocks.CABBAGE_BLOCK.get().defaultBlockState(), 2);
+					else
+						p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), 2);
+					net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_221051_, p_221052_, pLevel);
+				}
+			}
+		}
+	}
+
+	@Override
+	public void growCrops(Level pLevel, BlockPos pPos, BlockState p_52266_) {
+		int i = this.getAge(p_52266_) + this.getBonemealAgeIncrease(pLevel);
+		int j = this.getMaxAge();
+		if (i > j) {
+			i = j;
+		}
+		if (i == this.getMaxAge() && RandomSource.create().nextFloat() <= 0.01f)
+			pLevel.setBlock(pPos, ConcoctionModBlocks.CABBAGE_BLOCK.get().defaultBlockState(), 2);
+		else
+			pLevel.setBlock(pPos, this.getStateForAge(i), 2);
 	}
 
 	@Override
