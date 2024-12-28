@@ -3636,6 +3636,37 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "CropCabbage",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "crop_cabbage",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/crop_cabbage.json",
+          "src/main/resources/assets/concoction/blockstates/crop_cabbage.json",
+          "src/main/java/net/mcreator/concoction/block/CropCabbageBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/crop_cabbage.json",
+          "src/main/resources/assets/concoction/models/block/crop_cabbage.json"
+        ]
+      },
+      "path": "~/cabbage"
+    },
+    {
+      "name": "CabbageSeeds",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cabbage_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/CabbageSeedsItem.java",
+          "src/main/resources/assets/concoction/models/item/cabbage_seeds.json"
+        ]
+      },
+      "path": "~/cabbage"
     }
   ],
   "variable_elements": [],
@@ -3716,7 +3747,8 @@
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropRice"
+      "CUSTOM:CropRice",
+      "CUSTOM:CropCabbage"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -3749,7 +3781,8 @@
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropRice"
+      "CUSTOM:CropRice",
+      "CUSTOM:CropCabbage"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
@@ -3758,7 +3791,8 @@
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropRice"
+      "CUSTOM:CropRice",
+      "CUSTOM:CropCabbage"
     ],
     "ITEMS:mod:oils_and_butters": [
       "TAG:concoction:oils",
@@ -3777,7 +3811,8 @@
       "CUSTOM:Sunflower",
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper"
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropCabbage"
     ],
     "ITEMS:c:bottles": [
       "CUSTOM:ObsidianTearsBottle",
@@ -3797,7 +3832,8 @@
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropRice"
+      "CUSTOM:CropRice",
+      "CUSTOM:CropCabbage"
     ],
     "ITEMS:c:music_discs": [
       "CUSTOM:MusicDiscHotIce"
@@ -3834,6 +3870,7 @@
       "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
+      "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_cotton": "Хлопок",
@@ -3890,6 +3927,7 @@
       "effect.concoction.instability": "Нестабильность",
       "advancements.spicy_pepper_found.title": "Остри как перви любоф",
       "item.concoction.vegetable_soup": "Овощной суп",
+      "block.concoction.crop_cabbage": "Crop Cabbage",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
@@ -4018,6 +4056,7 @@
       "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.hot_sauce_bottle": "Hot Sauce Bottle",
+      "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_cotton": "Crop Cotton",
@@ -4074,6 +4113,7 @@
       "effect.concoction.instability": "Instability",
       "advancements.spicy_pepper_found.title": "Sweet Sweet Capsaicin",
       "item.concoction.vegetable_soup": "Vegetable Soup",
+      "block.concoction.crop_cabbage": "Crop Cabbage",
       "effect.concoction.frost_touch": "Frost Touch",
       "item.concoction.cherry": "Cherry",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
@@ -4236,6 +4276,10 @@
       },
       {
         "name": "rice",
+        "children": []
+      },
+      {
+        "name": "cabbage",
         "children": []
       }
     ]

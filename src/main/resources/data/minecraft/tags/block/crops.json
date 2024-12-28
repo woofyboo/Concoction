@@ -7,6 +7,7 @@
     "concoction:crop_onion",
     "concoction:crop_corn",
     "concoction:crop_spicy_pepper",
-    "concoction:crop_rice"
+    "concoction:crop_rice",
+    "concoction:crop_cabbage"
   ]
 }
