@@ -5,6 +5,8 @@ import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -17,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
@@ -80,23 +83,38 @@ public class CropMintBlock extends CropBlock {
 //	}
 
 	@Override
+	public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource random) {
+		if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if (pLevel.getRawBrightness(pPos, 0) >= 9) {
+			int nextAge = this.getAge(pState) + 1;
+
+			if(nextAge == this.getMaxAge() && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+				pLevel.setBlock(pPos, ConcoctionModBlocks.MINT.get().defaultBlockState(), 2);
+				pLevel.setBlock(pPos.above(1), ConcoctionModBlocks.MINT.get().defaultBlockState().
+						setValue(MintBlock.HALF, DoubleBlockHalf.UPPER), 2);
+			} else if (nextAge < this.getMaxAge()) {
+				float f = getGrowthSpeed(pState, pLevel, pPos);
+				if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(pLevel, pPos, pState, random.nextInt((int)(25.0F / f) + 1) == 0)) {
+					pLevel.setBlock(pPos, this.getStateForAge(nextAge), 2);
+					net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(pLevel, pPos, pState);
+				}
+			}
+		}
+	}
+
+	@Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
         int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
         int maxAge = this.getMaxAge();
         if(nextAge > maxAge) {
             nextAge = maxAge;
         }
-		 
-        if(this.getAge(pState) == (maxAge-1) && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+        if(nextAge == maxAge && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
             pLevel.setBlock(pPos, ConcoctionModBlocks.MINT.get().defaultBlockState(), 2);
-            pLevel.setBlock(pPos.above(1), (new Object() {
-			public BlockState with(BlockState _bs, String _property, String _newValue) {
-				Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty(_property);
-				return _prop instanceof EnumProperty _ep && _ep.getValue(_newValue).isPresent() ? _bs.setValue(_ep, (Enum) _ep.getValue(_newValue).get()) : _bs;
-				}
-			}.with(ConcoctionModBlocks.MINT.get().defaultBlockState(), "half", "upper")), 2);
+            pLevel.setBlock(pPos.above(1), ConcoctionModBlocks.MINT.get().defaultBlockState().
+					setValue(MintBlock.HALF, DoubleBlockHalf.UPPER), 2);
         } else {
-            pLevel.setBlock(pPos, this.getStateForAge(nextAge - 1), 2);
+            pLevel.setBlock(pPos, this.getStateForAge(nextAge), 2);
         }
     }
     
