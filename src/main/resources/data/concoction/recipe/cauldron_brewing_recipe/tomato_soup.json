@@ -1,0 +1,33 @@
+{
+  "type": "concoction:cauldron_brewing",
+  "group": "food",
+  "category": "misc",
+
+  "state" : {
+    "Name": "minecraft:water_cauldron",
+    "Properties": {
+        "level": "3"
+    }
+  },
+
+  "ingredients": [
+    {
+      "item": "concoction:tomato"
+    },
+    {
+      "item": "concoction:tomato"
+    },
+    {
+      "item": "concoction:tomato"
+    },
+    {
+      "item": "concoction:onion"
+    }
+  ],
+
+  "result": {
+    "id": "concoction:tomato_soup",
+    "interactionType": "bowl",
+    "count": "3"
+  }
+}

@@ -77,6 +77,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.TROPICAL_SUSHI.get());
 //Супы и блюда
 				tabData.accept(ConcoctionModItems.VEGETABLE_SOUP.get());
+				tabData.accept(ConcoctionModItems.TOMATO_SOUP.get());
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.ONION_SOUP.get());
 				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
@@ -98,6 +99,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModBlocks.WILD_ONION.get().asItem());
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 				tabData.accept(ConcoctionModItems.WILD_CABBAGE.get());
+				tabData.accept(ConcoctionModItems.WILD_TOMATO.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_BLOCK.get());
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());

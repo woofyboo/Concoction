@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "tomato_seeds",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:tomato"
+    }
+  ],
+  "result": {
+    "id": "concoction:tomato_seeds",
+    "count": 4
+  }
+}

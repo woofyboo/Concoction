@@ -18,6 +18,7 @@ import net.minecraft.world.food.FoodProperties;
 
 import net.mcreator.concoction.item.VegetableSoupItem;
 import net.mcreator.concoction.item.TropicalSushiItem;
+import net.mcreator.concoction.item.TomatoSoupItem;
 import net.mcreator.concoction.item.TomatoItem;
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
@@ -141,6 +142,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_CABBAGE = block(ConcoctionModBlocks.WILD_CABBAGE);
 	public static final DeferredItem<Item> TOMATO = REGISTRY.register("tomato", TomatoItem::new);
 	public static final DeferredItem<Item> CROP_TOMATO = block(ConcoctionModBlocks.CROP_TOMATO);
+	public static final DeferredItem<Item> WILD_TOMATO = block(ConcoctionModBlocks.WILD_TOMATO);
+	public static final DeferredItem<Item> TOMATO_SOUP = REGISTRY.register("tomato_soup", TomatoSoupItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
