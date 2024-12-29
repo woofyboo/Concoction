@@ -3,7 +3,7 @@ plugins {
     id 'net.neoforged.moddev' version '1.0.20'
 }
 
-version = '1.4.0'
+version = '1.5.0'
 base.archivesName = "concoction-${version}-neoforge (1.21-1.21.1)"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
