@@ -4,5 +4,5 @@
     "cross": "concoction:block/tomato_stage1",
     "particle": "concoction:block/tomato_stage1"
   },
-  "render_type": "solid"
+  "render_type": "cutout"
 }

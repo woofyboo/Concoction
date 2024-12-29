@@ -18,7 +18,6 @@ import net.minecraft.world.food.FoodProperties;
 
 import net.mcreator.concoction.item.VegetableSoupItem;
 import net.mcreator.concoction.item.TropicalSushiItem;
-import net.mcreator.concoction.item.TomatoSeedsItem;
 import net.mcreator.concoction.item.TomatoItem;
 import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
@@ -142,10 +141,10 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_CABBAGE = block(ConcoctionModBlocks.WILD_CABBAGE);
 	public static final DeferredItem<Item> TOMATO = REGISTRY.register("tomato", TomatoItem::new);
 	public static final DeferredItem<Item> CROP_TOMATO = block(ConcoctionModBlocks.CROP_TOMATO);
-	public static final DeferredItem<Item> TOMATO_SEEDS = REGISTRY.register("tomato_seeds", TomatoSeedsItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
+	public static final DeferredItem<Item> TOMATO_SEEDS = REGISTRY.register("tomato_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_TOMATO.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CABBAGE_SEEDS = REGISTRY.register("cabbage_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_CABBAGE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CORN_SEEDS = REGISTRY.register("corn_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_CORN.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

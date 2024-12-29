@@ -69,8 +69,8 @@ public class CropTomatoBlock extends CropBlock {
 		return switch (state.getValue(AGE)) {
 			default -> Block.box(1, 0, 1, 15, 15, 15);
 
-			case 0 -> Block.box(2, 0, 2, 13, 5, 13);
-			case 1 -> Block.box(2, 0, 2, 13, 10, 13);
+			case 0 -> Block.box(4, 0, 4, 12, 8, 12);
+			case 1 -> Block.box(2, 0, 2, 14, 14, 14);
 			case 2 -> Block.box(1, 0, 1, 15, 15, 15);
 			case 3 -> Block.box(1, 0, 1, 15, 15, 15);
 			case 4 -> Block.box(1, 0, 1, 15, 15, 15);
@@ -94,7 +94,7 @@ public class CropTomatoBlock extends CropBlock {
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		// Предмет, получаемый при копировании блока на колёсико
 		return new ItemStack(
-            ConcoctionModItems.COTTON.get()
+            ConcoctionModItems.TOMATO_SEEDS.get()
             );
 	}
 
@@ -119,7 +119,7 @@ public class CropTomatoBlock extends CropBlock {
 	@Override
 	protected ItemLike getBaseSeedId() {
 		// Возвращает семена для посадки растения
-		return ConcoctionModItems.COTTON.get();
+		return ConcoctionModItems.TOMATO_SEEDS.get();
 	}
 
 	@Override

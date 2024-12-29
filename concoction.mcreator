@@ -3766,20 +3766,6 @@
         ]
       },
       "path": "~/tomato"
-    },
-    {
-      "name": "TomatoSeeds",
-      "type": "item",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "tomato_seeds",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/item/TomatoSeedsItem.java",
-          "src/main/resources/assets/concoction/models/item/tomato_seeds.json"
-        ]
-      },
-      "path": "~/tomato"
     }
   ],
   "variable_elements": [],
@@ -4094,7 +4080,7 @@
       "item.concoction.tropical_sushi": "Суши из тропической рыбы",
       "advancements.popcorn_eat.descr": "Сьешь свежеприготовленный попкорн.",
       "advancements.kinda_corny.title": "Кукуруза как у Тома Круза",
-      "item.concoction.tomato_seeds": "Tomato Seeds",
+      "item.concoction.tomato_seeds": "Семена томата",
       "item.concoction.fabric": "Ткань",
       "advancements.triple_dent_gum.title": "Мята+Лайм",
       "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
