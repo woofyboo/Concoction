@@ -73,12 +73,9 @@ public class CropSpicyPepperBlock extends CropBlock {
 
 				if (pLevel instanceof ServerLevel _level) {
 					pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
-					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get(), 2));
 					entityToSpawn.setPickUpDelay(10);
 					_level.addFreshEntity(entityToSpawn);
-					ItemEntity entityToSpawn2 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
-					entityToSpawn2.setPickUpDelay(10);
-					_level.addFreshEntity(entityToSpawn2);
 
 					if (Math.random() < 0.5) {
 					ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
