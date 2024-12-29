@@ -3750,6 +3750,36 @@
         ]
       },
       "path": "~/tomato"
+    },
+    {
+      "name": "CropTomato",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "crop_tomato",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/CropTomatoBlock.java",
+          "src/main/resources/assets/concoction/models/block/crop_tomato.json",
+          "src/main/resources/assets/concoction/blockstates/crop_tomato.json",
+          "src/main/resources/assets/concoction/models/item/crop_tomato.json"
+        ]
+      },
+      "path": "~/tomato"
+    },
+    {
+      "name": "TomatoSeeds",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tomato_seeds",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/TomatoSeedsItem.java",
+          "src/main/resources/assets/concoction/models/item/tomato_seeds.json"
+        ]
+      },
+      "path": "~/tomato"
     }
   ],
   "variable_elements": [],
@@ -4019,6 +4049,7 @@
       "block.concoction.crop_cabbage": "Капуста",
       "effect.concoction.frost_touch": "Ледяное касание",
       "item.concoction.cherry": "Вишня",
+      "block.concoction.crop_tomato": "Crop Tomato",
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "item.concoction.fried_egg": "Яичница",
@@ -4063,6 +4094,7 @@
       "item.concoction.tropical_sushi": "Суши из тропической рыбы",
       "advancements.popcorn_eat.descr": "Сьешь свежеприготовленный попкорн.",
       "advancements.kinda_corny.title": "Кукуруза как у Тома Круза",
+      "item.concoction.tomato_seeds": "Tomato Seeds",
       "item.concoction.fabric": "Ткань",
       "advancements.triple_dent_gum.title": "Мята+Лайм",
       "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
@@ -4210,6 +4242,7 @@
       "block.concoction.crop_cabbage": "Crop Cabbage",
       "effect.concoction.frost_touch": "Frost Touch",
       "item.concoction.cherry": "Cherry",
+      "block.concoction.crop_tomato": "Crop Tomato",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "item.concoction.fried_egg": "Fried Egg",
@@ -4254,6 +4287,7 @@
       "item.concoction.tropical_sushi": "Tropical Sushi",
       "advancements.popcorn_eat.descr": "Eat freshly made popcorn.",
       "advancements.kinda_corny.title": "Kinda Corny ;)",
+      "item.concoction.tomato_seeds": "Tomato Seeds",
       "item.concoction.fabric": "Fabric",
       "advancements.triple_dent_gum.title": "Triple Dent Gum",
       "advancements.screenshot.descr": "Use two opposite thick-based potion effects to cancel them both",
