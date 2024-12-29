@@ -3896,7 +3896,8 @@
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
-      "CUSTOM:CropCabbage"
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -3930,7 +3931,8 @@
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
-      "CUSTOM:CropCabbage"
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
@@ -3940,7 +3942,8 @@
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
-      "CUSTOM:CropCabbage"
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato"
     ],
     "ITEMS:mod:oils_and_butters": [
       "TAG:concoction:oils",
@@ -3960,7 +3963,8 @@
       "CUSTOM:CropOnion",
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropCabbage"
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato"
     ],
     "ITEMS:c:bottles": [
       "CUSTOM:ObsidianTearsBottle",
@@ -3981,7 +3985,8 @@
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
-      "CUSTOM:CropCabbage"
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato"
     ],
     "ITEMS:c:music_discs": [
       "CUSTOM:MusicDiscHotIce"
