@@ -3812,6 +3812,22 @@
         ]
       },
       "path": "~/tomato"
+    },
+    {
+      "name": "CornBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "corn_block",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/CornBlockBlock.java",
+          "src/main/resources/assets/concoction/blockstates/corn_block.json",
+          "src/main/resources/assets/concoction/models/item/corn_block.json",
+          "src/main/resources/assets/concoction/models/block/corn_block.json"
+        ]
+      },
+      "path": "~/corn"
     }
   ],
   "variable_elements": [],
@@ -3886,6 +3902,7 @@
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:CornBlock",
       "~CUSTOM:CabbageBlock"
     ],
     "BLOCKS:minecraft:axe/mineable": [
@@ -4095,6 +4112,7 @@
       "effect.concoction.spicy": "Жгучесть",
       "advancements.mount_ever_rest.descr": "Получи урон от падения на подушку.",
       "block.concoction.blue_pillow_block": "Синяя подушка",
+      "block.concoction.corn_block": "Corn Block",
       "item.concoction.onion": "Лук",
       "advancements.cry_about_it.title": "Вход запрещён",
       "block.concoction.small_cyan_pillow_block": "Маленькая бирюзовая подушка",
@@ -4290,6 +4308,7 @@
       "effect.concoction.spicy": "Spicy",
       "advancements.mount_ever_rest.descr": "Take damage by falling on a pillow.",
       "block.concoction.blue_pillow_block": "Blue Pillow",
+      "block.concoction.corn_block": "Corn Block",
       "item.concoction.onion": "Onion",
       "advancements.cry_about_it.title": "Cry About It",
       "block.concoction.small_cyan_pillow_block": "Small Cyan Pillow",

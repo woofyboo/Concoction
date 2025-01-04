@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/corn_inside",
+    "up": "concoction:block/topcorn_top_right",
+    "north": "concoction:block/corn_inside",
+    "east": "concoction:block/corn_top_left",
+    "south": "concoction:block/corn_top_right",
+    "west": "concoction:block/corn_inside",
+    "particle": "concoction:block/corn_inside"
+  },
+  "render_type": "solid"
+}

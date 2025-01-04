@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:corn_block",
     "concoction:cabbage_block"
   ]
 }

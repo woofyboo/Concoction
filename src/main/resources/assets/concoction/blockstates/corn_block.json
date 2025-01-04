@@ -1,0 +1,162 @@
+{
+  "variants": {
+    "facing=north,type=default": {
+      "model": "concoction:block/corn_block"
+    },
+    "facing=east,type=default": {
+      "model": "concoction:block/corn_block",
+      "y": 90
+    },
+    "facing=south,type=default": {
+      "model": "concoction:block/corn_block",
+      "y": 180
+    },
+    "facing=west,type=default": {
+      "model": "concoction:block/corn_block",
+      "y": 270
+    },
+    "facing=up,type=default": {
+      "model": "concoction:block/corn_block",
+      "x": 270
+    },
+    "facing=down,type=default": {
+      "model": "concoction:block/corn_block",
+      "x": 90
+    },
+    "configuration=0,type=charcoaled": {
+      "model": "concoction:block/corn_block1"
+    },
+    "configuration=1,type=charcoaled": {
+      "model": "concoction:block/corn_block2"
+    },
+    "configuration=2,type=charcoaled": {
+      "model": "concoction:block/corn_block3"
+    },
+    "configuration=3,type=charcoaled": {
+      "model": "concoction:block/corn_block4"
+    },
+    "configuration=4,type=charcoaled": {
+      "model": "concoction:block/corn_block5"
+    },
+    "configuration=5,type=charcoaled": {
+      "model": "concoction:block/corn_block6"
+    },
+    "configuration=6,type=charcoaled": {
+      "model": "concoction:block/corn_block7"
+    },
+    "configuration=7,type=charcoaled": {
+      "model": "concoction:block/corn_block8"
+    },
+    "configuration=8,type=charcoaled": {
+      "model": "concoction:block/corn_block9"
+    },
+    "configuration=9,type=charcoaled": {
+      "model": "concoction:block/corn_block11"
+    },
+    "configuration=10,type=charcoaled": {
+      "model": "concoction:block/corn_block21"
+    },
+    "configuration=11,type=charcoaled": {
+      "model": "concoction:block/corn_block31"
+    },
+    "configuration=12,type=charcoaled": {
+      "model": "concoction:block/corn_block41"
+    },
+    "configuration=13,type=charcoaled": {
+      "model": "concoction:block/corn_block51"
+    },
+    "configuration=14,type=charcoaled": {
+      "model": "concoction:block/corn_block61"
+    },
+    "configuration=15,type=charcoaled": {
+      "model": "concoction:block/corn_block71"
+    },
+    "configuration=16,type=charcoaled": {
+      "model": "concoction:block/corn_block81"
+    },
+    "configuration=17,type=charcoaled": {
+      "model": "concoction:block/corn_block91"
+    },
+    "configuration=18,type=charcoaled": {
+      "model": "concoction:block/corn_block111"
+    },
+    "configuration=19,type=charcoaled": {
+      "model": "concoction:block/corn_block211"
+    },
+    "configuration=20,type=charcoaled": {
+      "model": "concoction:block/corn_block311"
+    },
+    "configuration=21,type=charcoaled": {
+      "model": "concoction:block/corn_block411"
+    },
+    "configuration=22,type=charcoaled": {
+      "model": "concoction:block/corn_block511"
+    },
+    "configuration=23,type=charcoaled": {
+      "model": "concoction:block/corn_block611"
+    },
+    "configuration=24,type=charcoaled": {
+      "model": "concoction:block/corn_block711"
+    },
+    "configuration=25,type=charcoaled": {
+      "model": "concoction:block/corn_block811"
+    },
+    "configuration=26,type=charcoaled": {
+      "model": "concoction:block/corn_block911"
+  	},
+    "configuration=27,type=charcoaled": {
+      "model": "concoction:block/corn_block1111"
+    },
+    "configuration=28,type=charcoaled": {
+      "model": "concoction:block/corn_block2111"
+    },
+    "configuration=29,type=charcoaled": {
+      "model": "concoction:block/corn_block3111"
+    },
+    "configuration=30,type=charcoaled": {
+      "model": "concoction:block/corn_block4111"
+    },
+    "configuration=31,type=charcoaled": {
+      "model": "concoction:block/corn_block5111"
+    },
+    "configuration=32,type=charcoaled": {
+      "model": "concoction:block/corn_block6111"
+    },
+    "configuration=33,type=charcoaled": {
+      "model": "concoction:block/corn_block7111"
+    },
+    "configuration=34,type=charcoaled": {
+      "model": "concoction:block/corn_block8111"
+    },
+    "configuration=35,type=charcoaled": {
+      "model": "concoction:block/corn_block9111"
+  	},
+    "configuration=36,type=charcoaled": {
+      "model": "concoction:block/corn_block12"
+    },
+    "configuration=37,type=charcoaled": {
+      "model": "concoction:block/corn_block22"
+    },
+    "configuration=38,type=charcoaled": {
+      "model": "concoction:block/corn_block32"
+    },
+    "configuration=39,type=charcoaled": {
+      "model": "concoction:block/corn_block42"
+    },
+    "configuration=40,type=charcoaled": {
+      "model": "concoction:block/corn_block52"
+    },
+    "configuration=41,type=charcoaled": {
+      "model": "concoction:block/corn_block62"
+    },
+    "configuration=42,type=charcoaled": {
+      "model": "concoction:block/corn_block72"
+    },
+    "configuration=43,type=charcoaled": {
+      "model": "concoction:block/corn_block82"
+    },
+    "configuration=44,type=charcoaled": {
+      "model": "concoction:block/corn_block92"
+  	}
+  }
+}
