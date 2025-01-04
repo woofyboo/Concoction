@@ -25,7 +25,7 @@ public class CornBlockBlock extends Block {
 	public static final IntegerProperty CONFIGURATION = IntegerProperty.create("configuration", 0, 44);
 
 	public CornBlockBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).sound(SoundType.BASALT).strength(0.8f, 0.8f));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).sound(SoundType.WART_BLOCK).strength(0.8f, 0.8f));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, TypeProperty.DEFAULT).setValue(CONFIGURATION, 0));
 	}
 

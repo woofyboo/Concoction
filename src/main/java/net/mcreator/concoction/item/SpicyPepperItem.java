@@ -16,6 +16,6 @@ public class SpicyPepperItem extends Item {
 				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 16, true)).
 //				component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 2, 30, true)).
 //				component(FOOD_EFFECT_3.value(), new FoodEffectComponent(FoodEffectType.MINTY, 1, 16, true)).
-				rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3f).build()));
+				rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3f).build()));
 	}
 }

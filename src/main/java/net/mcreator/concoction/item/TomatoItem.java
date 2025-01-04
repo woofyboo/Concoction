@@ -7,6 +7,6 @@ import net.minecraft.world.food.FoodProperties;
 
 public class TomatoItem extends Item {
 	public TomatoItem() {
-		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3f).build()));
+		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3f).build()));
 	}
 }
