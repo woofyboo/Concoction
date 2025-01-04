@@ -14,9 +14,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -30,8 +31,6 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -57,6 +56,20 @@ public class CropCornBlock extends CropBlock {
 	public CropCornBlock() {
 		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PART, PartProperty.BOTTOM));
+	}
+
+	public static void onLightningStrike(Level pLevel, BlockPos pPos, BlockState pState) {
+		if (pState.getValue(PART) == PartProperty.TOP && pState.getValue(CropCornBlock.AGE) == CropCornBlock.MAX_AGE) {
+			if (pLevel instanceof ServerLevel _serverworld) {
+				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(ResourceLocation.fromNamespaceAndPath("concoction", "charcoaled_corn"));
+				if (template != null) {
+					template.placeInWorld(_serverworld, pPos, pPos,
+							new StructurePlaceSettings().setRotation(Rotation.NONE).
+									setMirror(Mirror.NONE).setIgnoreEntities(false),
+							_serverworld.random, 3);
+				}
+			}
+		}
 	}
 
 	@Override

@@ -9,6 +9,7 @@
     "ItemMixin",
     "ItemsMixin",
     "LevelMixin",
+    "LightningBoltMixin",
     "PlayerMixin"
   ],
   "client": [
