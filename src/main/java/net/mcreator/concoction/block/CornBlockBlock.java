@@ -22,10 +22,10 @@ import net.minecraft.core.BlockPos;
 public class CornBlockBlock extends Block {
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
 	public static final EnumProperty<TypeProperty> TYPE = EnumProperty.create("type", TypeProperty.class);
-	public static final IntegerProperty CONFIGURATION = IntegerProperty.create("configuration", 0, 127);
+	public static final IntegerProperty CONFIGURATION = IntegerProperty.create("configuration", 0, 44);
 
 	public CornBlockBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).sound(SoundType.WOOD).strength(0.8f, 0.8f));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_YELLOW).sound(SoundType.BASALT).strength(0.8f, 0.8f));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TYPE, TypeProperty.DEFAULT).setValue(CONFIGURATION, 0));
 	}
 

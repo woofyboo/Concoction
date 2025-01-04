@@ -1,0 +1,78 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:corn_block",
+          "weight": 1,
+          "quality": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "concoction:corn_block",
+              "properties": {
+                "type": "default"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": []
+    },
+    {
+      "rolls": 4,
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:popcorn",
+          "weight": 24,
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "concoction:corn_block",
+              "properties": {
+                "type": "charcoaled"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "concoction:cooked_corn",
+          "weight": 4,
+          "quality": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "concoction:corn_block",
+              "properties": {
+                "type": "charcoaled"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:charcoal",
+          "weight": 32,
+          "quality": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "concoction:corn_block",
+              "properties": {
+                "type": "charcoaled"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": []
+    }
+  ],
+  "random_sequence": "concoction:blocks/corn_block"
+}
