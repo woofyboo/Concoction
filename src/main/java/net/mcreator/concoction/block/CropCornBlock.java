@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.block;
 
+import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.ProtectedBlockProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.material.Fluids;
@@ -41,6 +44,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.concoction.init.ConcoctionModItems;
+import oshi.util.tuples.Pair;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
@@ -58,14 +62,21 @@ public class CropCornBlock extends CropBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PART, PartProperty.BOTTOM));
 	}
 
+	public static boolean isReplaceableBlocksAround(Level pLevel, BlockPos pPos) {
+		return BlockPos.betweenClosedStream(pPos.offset(-1, -2, -1), pPos.offset(1, 2, 1)).map(pLevel::getBlockState).
+                allMatch(pState -> !pState.is(BlockTags.FEATURES_CANNOT_REPLACE) && !pState.is(ConcoctionModBlocks.CORN_BLOCK.get()));
+	}
+
 	public static void onLightningStrike(Level pLevel, BlockPos pPos, BlockState pState) {
 		if (pState.getValue(PART) == PartProperty.TOP && pState.getValue(CropCornBlock.AGE) == CropCornBlock.MAX_AGE) {
 			if (pLevel instanceof ServerLevel _serverworld) {
 				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(ResourceLocation.fromNamespaceAndPath("concoction", "charcoaled_corn"));
 				if (template != null) {
-					template.placeInWorld(_serverworld, pPos, pPos,
+					BlockPos placePos = pPos.offset(-1, -2, -1);
+					template.placeInWorld(_serverworld, placePos, placePos,
 							new StructurePlaceSettings().setRotation(Rotation.NONE).
-									setMirror(Mirror.NONE).setIgnoreEntities(false),
+									setMirror(Mirror.NONE).setIgnoreEntities(false).
+									addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE)),
 							_serverworld.random, 3);
 				}
 			}
