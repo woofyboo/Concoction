@@ -1,0 +1,22 @@
+{
+  "_fv": 73,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Blooming",
+    "splashName": "Splash Potion of Blooming",
+    "lingeringName": "Lingering Potion of Blooming",
+    "arrowName": "Arrow of Potion Of Blooming",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:Photosynthesis"
+        },
+        "duration": 9600,
+        "infinite": false,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

@@ -19,4 +19,6 @@ public class ConcoctionModPotions {
 	public static final DeferredHolder<Potion, Potion> SNOWFLAKE_EXTENDED = REGISTRY.register("snowflake_extended", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.FROST_TOUCH, 9600, 0, false, true)));
 	public static final DeferredHolder<Potion, Potion> FLAME = REGISTRY.register("flame", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.FIERY_TOUCH, 3600, 0, false, true)));
 	public static final DeferredHolder<Potion, Potion> FLAME_EXTENDED = REGISTRY.register("flame_extended", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.FIERY_TOUCH, 9600, 0, false, true)));
+	public static final DeferredHolder<Potion, Potion> BLOOMING = REGISTRY.register("blooming", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 3600, 0, false, true)));
+	public static final DeferredHolder<Potion, Potion> BLOOMING_EXTENDED = REGISTRY.register("blooming_extended", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 9600, 0, false, true)));
 }

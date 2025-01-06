@@ -1,0 +1,25 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Brewing",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "brewingInputStack": {
+      "value": "POTION:CUSTOM:Blooming"
+    },
+    "brewingIngredientStack": {
+      "value": "Items.REDSTONE"
+    },
+    "brewingReturnStack": {
+      "value": "POTION:CUSTOM:BloomingExtended"
+    },
+    "name": "potion_of_blooming_extend_1",
+    "namespace": "mod"
+  }
+}
