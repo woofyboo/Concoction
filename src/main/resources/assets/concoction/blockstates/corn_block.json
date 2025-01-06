@@ -1,27 +1,23 @@
 {
   "variants": {
-    "facing=north,type=default": {
-      "model": "concoction:block/corn_block"
-    },
-    "facing=east,type=default": {
-      "model": "concoction:block/corn_block",
+    "axis=x,type=default": {
+      "model": "concoction:block/corn_block_horizontal",
+      "x": 90,
       "y": 90
     },
-    "facing=south,type=default": {
-      "model": "concoction:block/corn_block",
-      "y": 180
+    "axis=y,type=default": {
+      "model": "concoction:block/corn_block"
     },
-    "facing=west,type=default": {
-      "model": "concoction:block/corn_block",
-      "y": 270
+    "axis=z,type=default": {
+      "model": "concoction:block/corn_block_horizontal",
+      "x": 90
     },
     "facing=up,type=default": {
-      "model": "concoction:block/corn_block",
-      "x": 270
+      "model": "concoction:block/corn_block"
     },
     "facing=down,type=default": {
       "model": "concoction:block/corn_block",
-      "x": 90
+      "x": 180
     },
     "configuration=0,type=charcoaled": {
       "model": "concoction:block/corn_block1"

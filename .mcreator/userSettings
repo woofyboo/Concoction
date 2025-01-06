@@ -7,11 +7,8 @@
     "expandedPaths": [
       "[, Concoction]",
       "[, Concoction, Resources (Gradle)]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\models]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures\\block]"
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction]"
     ]
   }
 }

@@ -3830,37 +3830,6 @@
       "path": "~/corn"
     },
     {
-      "name": "SpawnCorn",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "spawn_corn",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/SpawnCornProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/corn"
-    },
-    {
       "name": "CornBlockCraft",
       "type": "recipe",
       "compiles": true,
@@ -4024,7 +3993,15 @@
       "TAG:concoction:butters"
     ],
     "BLOCKS:minecraft:mineable/axe": [
-      "~CUSTOM:ButterChurn"
+      "~CUSTOM:ButterChurn",
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
+      "CUSTOM:Sunflower",
+      "CUSTOM:CropOnion",
+      "CUSTOM:CropCorn",
+      "CUSTOM:CropTomato",
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice"
     ],
     "ITEMS:mod:deepfrying_oil": [
       "CUSTOM:CottonOil",
