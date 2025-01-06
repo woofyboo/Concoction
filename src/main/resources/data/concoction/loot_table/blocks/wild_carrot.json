@@ -1,74 +1,64 @@
 {
   "type": "minecraft:block",
-  "random_sequence": "concoction:blocks/wild_carrot",
   "pools": [
     {
-      "rolls": 0.0,
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "concoction:wild_carrot",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "half": "lower"
-          }
-        }
-      ],
+      "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:carrot"
-        }
-      ]
-    },
-    {
-      "rolls": 0.0,
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "concoction:wild_carrot",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "half": "lower"
-          }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:carrot"
-        }
-      ]
-    },
-    {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "concoction:wild_carrot",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "half": "lower"
-          }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "extra": 1,
-                "probability": 0.5
-              }
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "concoction:wild_carrot",
+                  "properties": {
+                    "half": "lower"
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "items": "minecraft:shears"
+                  }
+                }
+              ],
+              "name": "concoction:wild_carrot"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "concoction:wild_carrot",
+                  "properties": {
+                    "half": "lower"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:binomial_with_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "bonusMultiplier": 2,
+                    "extra": 1,
+                    "probability": 1
+                  }
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "name": "minecraft:carrot"
             }
-          ],
-          "name": "minecraft:carrot"
+          ]
         }
-      ]
+      ],
+      "rolls": 1
     }
-  ]
+  ],
+  "random_sequence": "concoction:blocks/wild_carrot"
 }
