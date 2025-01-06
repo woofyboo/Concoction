@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "allium",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:wild_onion"
+    }
+  },
+  "result": {
+    "id": "minecraft:allium",
+    "count": 4
+  }
+}

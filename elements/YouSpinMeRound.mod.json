@@ -17,7 +17,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:Sunshine"
+      "value": "CUSTOM:KeyToTheHeart"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

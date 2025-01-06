@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:mint",
+    "concoction:sunflower_seeds",
+    "concoction:corn_seeds",
+    "concoction:spicy_pepper_seeds",
+    "concoction:rice",
+    "concoction:cabbage_seeds",
+    "concoction:corn",
+    "concoction:tomato_seeds",
+    "concoction:onion",
+    "concoction:cotton",
+    "minecraft:carrot",
+    "minecraft:potato",
+    "minecraft:pumpkin",
+    "minecraft:melon_slice"
+
+  ]
+}

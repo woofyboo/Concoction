@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:not_a_cotton_candy"
+  "parent": "concoction:fruits_of_nature"
 }

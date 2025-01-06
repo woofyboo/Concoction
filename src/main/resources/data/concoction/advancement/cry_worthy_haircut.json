@@ -32,5 +32,5 @@
       }
     }
   },
-  "parent": "concoction:onion_found"
+  "parent": "concoction:fruits_of_nature"
 }
