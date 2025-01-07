@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "spicy_pepper",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:spicy_pepper_block"
+    }
+  },
+  "result": {
+    "id": "concoction:spicy_pepper",
+    "count": 9
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/spicy_pepper6",
+    "up": "concoction:block/spicy_pepper1",
+    "north": "concoction:block/spicy_pepper3",
+    "east": "concoction:block/spicy_pepper2",
+    "south": "concoction:block/spicy_pepper5",
+    "west": "concoction:block/spicy_pepper4",
+    "particle": "concoction:block/spicy_pepper6"
+  },
+  "render_type": "solid"
+}
