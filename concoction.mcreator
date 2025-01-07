@@ -3991,7 +3991,8 @@
     ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:CornBlock",
-      "~CUSTOM:CabbageBlock"
+      "~CUSTOM:CabbageBlock",
+      "CUSTOM:SpicyPepperBlock"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",

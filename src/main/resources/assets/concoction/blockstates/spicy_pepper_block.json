@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "concoction:block/spicy_pepper_block"
+    },
+    "facing=east": {
+      "model": "concoction:block/spicy_pepper_block",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "concoction:block/spicy_pepper_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "concoction:block/spicy_pepper_block",
+      "y": 270
     }
   }
 }
