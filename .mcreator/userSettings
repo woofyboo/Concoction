@@ -10,7 +10,12 @@
       "[, Concoction, Source (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net]",
       "[, Concoction, Source (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator]",
       "[, Concoction, Source (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator\\concoction]",
-      "[, Concoction, Source (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator\\concoction\\init]"
+      "[, Concoction, Source (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\java\\net\\mcreator\\concoction\\init]",
+      "[, Concoction, Resources (Gradle)]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\recipe]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\recipe, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\recipe\\cauldron_brewing_recipe]"
     ]
   }
 }

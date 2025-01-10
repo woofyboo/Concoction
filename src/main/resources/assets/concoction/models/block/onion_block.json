@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/onion_bottom",
+    "up": "concoction:block/onion_top",
+    "north": "concoction:block/onion_side",
+    "east": "concoction:block/onion_side",
+    "south": "concoction:block/onion_side",
+    "west": "concoction:block/onion_side",
+    "particle": "concoction:block/onion_bottom"
+  },
+  "render_type": "solid"
+}

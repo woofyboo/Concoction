@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "green_onion_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      },
+      {
+        "value": "CUSTOM:GreenOnion"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:GreenOnionBlock"
+    },
+    "name": "green_onion_block_craft",
+    "namespace": "mod"
+  }
+}

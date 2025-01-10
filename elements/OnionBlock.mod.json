@@ -2,15 +2,15 @@
   "_fv": 73,
   "_type": "block",
   "definition": {
-    "texture": "spicy_pepper_bottom",
-    "textureTop": "spicy_pepper_top",
-    "textureLeft": "spicy_pepper_side2",
-    "textureFront": "spicy_pepper_side3",
-    "textureRight": "spicy_pepper_side4",
-    "textureBack": "spicy_pepper_side1",
+    "texture": "onion_bottom",
+    "textureTop": "onion_top",
+    "textureLeft": "onion_side",
+    "textureFront": "onion_side",
+    "textureRight": "onion_side",
+    "textureBack": "onion_side",
     "renderType": 10,
     "customModelName": "Normal",
-    "rotationMode": 1,
+    "rotationMode": 0,
     "enablePitch": false,
     "emissiveRendering": false,
     "displayFluidOverlay": false,
@@ -34,7 +34,7 @@
       }
     ],
     "customProperties": [],
-    "name": "Spicy Pepper Block",
+    "name": "Onion Block",
     "specialInformation": {
       "fixedValue": []
     },
@@ -43,7 +43,7 @@
     "hasGravity": false,
     "isWaterloggable": false,
     "creativeTabs": [],
-    "destroyTool": "Not specified",
+    "destroyTool": "hoe",
     "customDrop": {
       "value": ""
     },
@@ -64,7 +64,7 @@
     "emittedRedstonePower": {
       "fixedValue": 15.0
     },
-    "colorOnMap": "RED",
+    "colorOnMap": "ADOBE",
     "creativePickItem": {
       "value": ""
     },
@@ -80,7 +80,7 @@
     "isNotColidable": false,
     "isCustomSoundType": false,
     "soundOnStep": {
-      "value": "WOOD"
+      "value": "PLANT"
     },
     "breakSound": {
       "value": ""

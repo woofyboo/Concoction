@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "onion",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:onion_block"
+    }
+  },
+  "result": {
+    "id": "concoction:onion",
+    "count": 9
+  }
+}

@@ -3916,6 +3916,92 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "OnionBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "onion_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/onion_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/onion_block.json",
+          "src/main/resources/assets/concoction/models/item/onion_block.json",
+          "src/main/resources/assets/concoction/models/block/onion_block.json",
+          "src/main/java/net/mcreator/concoction/block/OnionBlockBlock.java"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "OnionBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "onion_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/onion_block_craft.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "OnionBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "onion_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/onion_block_uncraft.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "GreenOnionBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "green_onion_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/green_onion_block.json",
+          "src/main/java/net/mcreator/concoction/block/GreenOnionBlockBlock.java",
+          "src/main/resources/assets/concoction/models/block/green_onion_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/green_onion_block.json",
+          "src/main/resources/assets/concoction/blockstates/green_onion_block.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "GreenOnionBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "green_onion_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/green_onion_block_craft.json"
+        ]
+      },
+      "path": "~/onion"
+    },
+    {
+      "name": "GreenOnionBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "green_onion_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/green_onion_block_uncraft.json"
+        ]
+      },
+      "path": "~/onion"
     }
   ],
   "variable_elements": [],
@@ -3990,6 +4076,8 @@
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:GreenOnionBlock",
+      "~CUSTOM:OnionBlock",
       "~CUSTOM:CornBlock",
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock"
@@ -4145,6 +4233,7 @@
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "advancements.gourmet.descr": "Сьешь блюдо приготовленное в котле.",
+      "block.concoction.onion_block": "Блок лука",
       "advancements.key_to_the_heart.title": "Ключ к сердцу лежит через...",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.concoction.spicy_pepper_seeds": "Семена жгучего перца",
@@ -4270,6 +4359,7 @@
       "item.concoction.corn_seeds": "Семена кукурузы",
       "item.concoction.tropical_sushi": "Суши из тропической рыбы",
       "item.concoction.tomato_seeds": "Семена томата",
+      "block.concoction.green_onion_block": "Блок зеленого лука",
       "item.concoction.fabric": "Ткань",
       "advancements.triple_dent_gum.title": "Мята+Лайм",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
@@ -4339,6 +4429,7 @@
       "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
       "advancements.gourmet.descr": "Eat any *dish* made in cauldron.",
+      "block.concoction.onion_block": "Onion Block",
       "advancements.key_to_the_heart.title": "Key to the Heart",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
@@ -4464,6 +4555,7 @@
       "item.concoction.corn_seeds": "Corn Seeds",
       "item.concoction.tropical_sushi": "Tropical Sushi",
       "item.concoction.tomato_seeds": "Tomato Seeds",
+      "block.concoction.green_onion_block": "Green Onion Block",
       "item.concoction.fabric": "Fabric",
       "advancements.triple_dent_gum.title": "Triple Dent Gum",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
