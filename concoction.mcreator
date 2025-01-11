@@ -4002,6 +4002,49 @@
         ]
       },
       "path": "~/onion"
+    },
+    {
+      "name": "CottonBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cotton_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/cotton_block.json",
+          "src/main/resources/assets/concoction/blockstates/cotton_block.json",
+          "src/main/resources/assets/concoction/models/item/cotton_block.json",
+          "src/main/resources/assets/concoction/models/block/cotton_block.json",
+          "src/main/java/net/mcreator/concoction/block/CottonBlockBlock.java"
+        ]
+      },
+      "path": "~/cotton"
+    },
+    {
+      "name": "CottonBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cotton_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cotton_block_craft.json"
+        ]
+      },
+      "path": "~/cotton"
+    },
+    {
+      "name": "CottonBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cotton_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cotton_block_uncraft.json"
+        ]
+      },
+      "path": "~/cotton"
     }
   ],
   "variable_elements": [],
@@ -4076,6 +4119,7 @@
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:CottonBlock",
       "~CUSTOM:GreenOnionBlock",
       "~CUSTOM:OnionBlock",
       "~CUSTOM:CornBlock",
@@ -4330,6 +4374,7 @@
       "item.minecraft.potion.effect.flame": "Зелье жжения",
       "item.concoction.sunflower_oil": "Подсолнечное масло",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
+      "block.concoction.cotton_block": "Cotton Block",
       "item.minecraft.lingering_potion.effect.blooming": "Оседающее зелье цветения",
       "advancements.screenshot.title": "Скриншот!",
       "item.concoction.butter_sandwich": "Бутерброд с маслом",
@@ -4526,6 +4571,7 @@
       "item.minecraft.potion.effect.flame": "Potion of Flame",
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
+      "block.concoction.cotton_block": "Cotton Block",
       "item.minecraft.lingering_potion.effect.blooming": "Lingering Potion of Blooming",
       "advancements.screenshot.title": "Screenshot",
       "item.concoction.butter_sandwich": "Butter Sandwich",

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/cotton_block",
+    "up": "concoction:block/cotton_block",
+    "north": "concoction:block/cotton_block",
+    "east": "concoction:block/cotton_block",
+    "south": "concoction:block/cotton_block",
+    "west": "concoction:block/cotton_block",
+    "particle": "concoction:block/cotton_block"
+  },
+  "render_type": "solid"
+}
