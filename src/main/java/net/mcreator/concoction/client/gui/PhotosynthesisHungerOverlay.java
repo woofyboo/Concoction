@@ -40,6 +40,18 @@ public class PhotosynthesisHungerOverlay
 
 //    static ResourceLocation FOOD_LEVEL_ELEMENT = ResourceLocation.withDefaultNamespace("food_level");
 
+
+
+    @SubscribeEvent
+    public static void onRenderGuiOverlayPre(RenderGuiLayerEvent.Pre event) {
+        if (event.getName().toString().equals("appleskin:saturation_level")) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null && mc.player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
+                event.setCanceled(true);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onRenderGuiOverlayPost(RenderGuiLayerEvent.Post event) {
         if (event.getName().toString().equals("minecraft:food_level")) {
@@ -51,6 +63,7 @@ public class PhotosynthesisHungerOverlay
             }
         }
     }
+
 
     public static void renderNourishmentOverlay(Gui gui, GuiGraphics graphics) {
         foodIconsOffset = gui.rightHeight;
@@ -101,13 +114,13 @@ public class PhotosynthesisHungerOverlay
             graphics.blit(MOD_ICONS_TEXTURE, x, y, 0, 0, 9, 9);
 
             float effectiveHungerOfBar = (stats.getFoodLevel()) / 2.0F - j;
-            int naturalHealingOffset = naturalHealing ? 18 : 0;
+//            int naturalHealingOffset = naturalHealing ? 18 : 0;
 
             // Gilded hunger icons
             if (effectiveHungerOfBar >= 1)
-                graphics.blit(MOD_ICONS_TEXTURE, x, y, 18 + naturalHealingOffset, 0, 9, 9);
+                graphics.blit(MOD_ICONS_TEXTURE, x, y, 18, 0, 9, 9);
             else if (effectiveHungerOfBar >= .5)
-                graphics.blit(MOD_ICONS_TEXTURE, x, y, 9 + naturalHealingOffset, 0, 9, 9);
+                graphics.blit(MOD_ICONS_TEXTURE, x, y, 9, 0, 9, 9);
         }
 
         RenderSystem.disableBlend();
