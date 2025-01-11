@@ -13,6 +13,7 @@
     "PlayerMixin"
   ],
   "client": [
+    "GuiMixin"
   ],
   "injectors": {
   }
