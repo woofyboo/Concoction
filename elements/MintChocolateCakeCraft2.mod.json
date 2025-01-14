@@ -15,10 +15,10 @@
         "value": "CUSTOM:Mint"
       },
       {
-        "value": "CUSTOM:Mint"
+        "value": "CUSTOM:Dough"
       },
       {
-        "value": "CUSTOM:Mint"
+        "value": ""
       },
       {
         "value": "CUSTOM:Chocolate"
@@ -27,20 +27,20 @@
         "value": "Items.EGG"
       },
       {
-        "value": "CUSTOM:Chocolate"
+        "value": ""
       },
       {
-        "value": "Blocks.WHEAT"
+        "value": ""
       },
       {
-        "value": "Blocks.WHEAT"
+        "value": ""
       },
       {
-        "value": "Blocks.WHEAT"
+        "value": ""
       }
     ],
     "recipeReturnStack": {
-      "value": "CUSTOM:MintChocolateCake"
+      "value": "Blocks.CAKE"
     },
     "name": "mint_chocolate_cake_craft_2",
     "namespace": "mod"

@@ -3,7 +3,7 @@
   "_type": "recipe",
   "definition": {
     "recipeType": "Crafting",
-    "recipeRetstackSize": 6,
+    "recipeRetstackSize": 3,
     "group": "cabbage_leaf",
     "cookingBookCategory": "MISC",
     "xpReward": 0.0,

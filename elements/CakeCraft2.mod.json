@@ -9,16 +9,16 @@
     "xpReward": 0.0,
     "cookingTime": 200,
     "craftingBookCategory": "MISC",
-    "recipeShapeless": false,
+    "recipeShapeless": true,
     "recipeSlots": [
       {
         "value": "Items.MILK_BUCKET"
       },
       {
-        "value": "Items.MILK_BUCKET"
+        "value": "CUSTOM:Dough"
       },
       {
-        "value": "Items.MILK_BUCKET"
+        "value": ""
       },
       {
         "value": "Items.SUGAR"
@@ -27,16 +27,16 @@
         "value": "Items.EGG"
       },
       {
-        "value": "Items.SUGAR"
+        "value": ""
       },
       {
-        "value": "CUSTOM:Dough"
+        "value": ""
       },
       {
-        "value": "CUSTOM:Dough"
+        "value": ""
       },
       {
-        "value": "CUSTOM:Dough"
+        "value": ""
       }
     ],
     "recipeReturnStack": {

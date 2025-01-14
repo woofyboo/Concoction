@@ -11,9 +11,9 @@
         "effect": {
           "value": "CUSTOM:Photosynthesis"
         },
-        "duration": 36000,
+        "duration": 7200,
         "infinite": false,
-        "amplifier": 0,
+        "amplifier": 1,
         "ambient": false,
         "showParticles": true
       }

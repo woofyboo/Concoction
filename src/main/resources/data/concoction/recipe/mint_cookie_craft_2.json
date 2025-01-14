@@ -1,18 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "group": "mint_cookie_craft",
   "category": "misc",
-  "pattern": [
-    "aba"
-  ],
-  "key": {
-    "a": {
+  "ingredients": [
+    {
       "item": "concoction:dough"
     },
-    "b": {
+    {
       "item": "concoction:mint"
     }
-  },
+  ],
   "result": {
     "id": "concoction:mint_cookie",
     "count": 8

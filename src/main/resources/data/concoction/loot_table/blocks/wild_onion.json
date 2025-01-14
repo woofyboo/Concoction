@@ -20,7 +20,19 @@
               "name": "concoction:wild_onion"
             },
             {
-              "type": "minecraft:item",
+              "type": "minecraft:group",
+              "children": [
+                {
+                  "type": "minecraft:item",
+                  "name": "minecraft:allium",
+                  "weight": 1
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "concoction:onion",
+                  "weight": 3
+                }
+              ],
               "conditions": [
                 {
                   "chance": 1,

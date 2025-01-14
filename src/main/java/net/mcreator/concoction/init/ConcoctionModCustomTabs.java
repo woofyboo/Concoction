@@ -155,6 +155,7 @@ public class ConcoctionModCustomTabs {
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.SNOWFLAKE_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.BLOOMING), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.BLOOMING_EXTENDED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+					tabData.accept(PotionContents.createItemStack(toAdd, ConcoctionModPotions.BLOOMING_BUFFED), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
 
 				}
 				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());

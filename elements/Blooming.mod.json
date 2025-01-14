@@ -11,7 +11,7 @@
         "effect": {
           "value": "CUSTOM:Photosynthesis"
         },
-        "duration": 3600,
+        "duration": 9600,
         "infinite": false,
         "amplifier": 0,
         "ambient": false,

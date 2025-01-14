@@ -3,22 +3,21 @@
   "group": "mint_chocolate_cake_craft",
   "category": "misc",
   "pattern": [
-    "aaa",
-    "bcb",
-    "ddd"
+    "ab",
+    "cd"
   ],
   "key": {
     "a": {
       "item": "concoction:mint"
     },
     "b": {
-      "item": "concoction:chocolate"
+      "item": "concoction:dough"
     },
     "c": {
-      "item": "minecraft:egg"
+      "item": "concoction:chocolate"
     },
     "d": {
-      "item": "concoction:dough"
+      "item": "minecraft:egg"
     }
   },
   "result": {
