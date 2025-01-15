@@ -7,10 +7,11 @@
     "expandedPaths": [
       "[, Concoction]",
       "[, Concoction, Resources (Gradle)]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\loot_table]",
-      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\loot_table, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\data\\concoction\\loot_table\\blocks]"
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures\\gui]",
+      "[, Concoction, Resources (Gradle), C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures\\gui, C:\\Users\\digim\\OneDrive\\Документы\\GitHub\\Concoction\\src\\main\\resources\\assets\\concoction\\textures\\gui\\hud]"
     ]
   }
 }

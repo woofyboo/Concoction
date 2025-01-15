@@ -56,7 +56,7 @@ public class ConcoctionMod {
 		// Start of user code block mod init
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
-//		HUDOverlays.register(modEventBus);
+		//		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
 		// End of user code block mod init
 	}
@@ -88,10 +88,6 @@ public class ConcoctionMod {
 		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER)
 			workQueue.add(new Tuple<>(action, tick));
 	}
-//	private void preInitClient(final FMLClientSetupEvent event)
-//	{
-//		HUDOverlays.init();
-//	}
 
 	@SubscribeEvent
 	public void tick(ServerTickEvent.Post event) {
