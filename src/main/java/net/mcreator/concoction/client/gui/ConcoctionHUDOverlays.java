@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.level.GameRules;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
@@ -210,17 +211,65 @@ public class ConcoctionHUDOverlays
             if (health <= 4) y += rand.nextInt(2);
             if (i == regen) y -= 2;
 
-            if (i * 2 + 1 < health) graphics.blit(MOD_ICONS_TEXTURE, x, y, 18, 9, 9, 9);
-            else if (i * 2 + 1 > health) graphics.blit(MOD_ICONS_TEXTURE, x, y, 0, 9, 9, 9);
-            else if (i * 2 + 1 == health) graphics.blit(MOD_ICONS_TEXTURE, x, y, 9, 9, 9, 9);
+            boolean isHalf = i * 2 + 1 == health;
+            boolean isBlinking = player.isHurt() && ticks % 10 < 5;
+//            boolean isBlinking = isHalf && i * 2 < health;
+
+            renderHeart(graphics, HeartType.CONTAINER, x, y, false, isBlinking);
+            renderHeart(graphics, HeartType.NORMAL, x, y, isHalf, isBlinking);
 
         }
 
         RenderSystem.disableBlend();
     }
 
-    public static void drawHeart(GuiGraphics graphics, int x, int y, int health, int regen) {
-
-        graphics.blit(MOD_ICONS_TEXTURE, x, y, 9, 0, 9, 9);
+    private static void renderHeart(
+            GuiGraphics guiGraphics, HeartType heartType, int x, int y, boolean isHalf, boolean isBlinking
+    ) {
+        RenderSystem.enableBlend();
+        guiGraphics.blitSprite(heartType.getSprite(isHalf, isBlinking), x, y, 9, 9);
+        RenderSystem.disableBlend();
     }
-}
+
+    @OnlyIn(Dist.CLIENT)
+    public static enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
+        CONTAINER(
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking")
+        ),
+        NORMAL(
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full_blinking"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half"),
+                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half_blinking")
+        );
+
+        private final ResourceLocation full;
+        private final ResourceLocation fullBlinking;
+        private final ResourceLocation half;
+        private final ResourceLocation halfBlinking;
+
+        private HeartType(
+                ResourceLocation full,
+                ResourceLocation fullBlinking,
+                ResourceLocation half,
+                ResourceLocation halfBlinking
+        ) {
+            this.full = full;
+            this.fullBlinking = fullBlinking;
+            this.half = half;
+            this.halfBlinking = halfBlinking;
+        }
+
+        public ResourceLocation getSprite(boolean isHalf, boolean isBlinking) {
+                if (isHalf) {
+                    return isBlinking ? this.halfBlinking : this.half;
+                } else {
+                    return isBlinking ? this.fullBlinking : this.full;
+                }
+            }
+        }
+    }
+
