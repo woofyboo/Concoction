@@ -2,6 +2,7 @@ package net.mcreator.concoction.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.minecraft.Util;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -134,6 +135,7 @@ public class ConcoctionHUDOverlays
         @Override
         public void render(Minecraft minecraft, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks) {
             if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+
                 drawSpicyHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset);
             }
         }
@@ -180,47 +182,50 @@ public class ConcoctionHUDOverlays
         RenderSystem.disableBlend();
     }
 
-    public static void drawSpicyHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int left, int top) {
+    public static void drawSpicyHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
         int ticks = minecraft.gui.getGuiTicks();
         Random rand = new Random();
         rand.setSeed((long) (ticks * 312871));
 
         int health = Mth.ceil(player.getHealth());
-        float absorb = Mth.ceil(player.getAbsorptionAmount());
+        float absorption = Mth.ceil(player.getAbsorptionAmount());
         AttributeInstance attrMaxHealth = player.getAttribute(Attributes.MAX_HEALTH);
         float healthMax = (float) attrMaxHealth.getValue();
 
         int regen = -1;
         if (player.hasEffect(MobEffects.REGENERATION)) regen = ticks % 25;
 
-        int healthCount = Mth.ceil((healthMax + absorb) / 2.0F);
-        int healthRows = Mth.ceil((healthMax + absorb) / 2.0F / 10.0F);
+        int healthRows = Mth.ceil((double) healthMax / 2.0);
+        int absorptionRows = Mth.ceil((double) absorption / 2.0);
         int rowHeight = Math.max(10 - (healthRows - 2), 3);
+        int totalRows = healthRows * 2;
 
-        RenderSystem.enableBlend();
-
-//        int leftHeightOffset = ((healthRows - 1) * rowHeight); // This keeps the overlay on the bottommost row of hearts
-
-        for (int i = 0; i < healthCount; ++i) {
+        for (int i = healthRows + absorptionRows - 1; i >= 0; i--) {
             int row = i / 10;
-            int column = i % 10;
-            int x = left + column * 8;
-//            int y = top + leftHeightOffset;
-            int y = top - row * rowHeight;
+            int col = i % 10;
+            int x = xBasePos + col * 8;
+            int y = yBasePos - row * rowHeight;
+            if (health + absorption <= 4) {
+                y += rand.nextInt(2);
+            }
 
-            if (health <= 4) y += rand.nextInt(2);
-            if (i == regen) y -= 2;
-
-            boolean isHalf = i * 2 + 1 == health;
-            boolean isBlinking = player.isHurt() && ticks % 10 < 5;
-//            boolean isBlinking = isHalf && i * 2 < health;
-
+            if (i < healthRows && i == regen) {
+                y -= 2;
+            }
+            boolean isBlinking = (player.isHurt() || regen != -1) && ticks % 10 < 5;
             renderHeart(graphics, HeartType.CONTAINER, x, y, false, isBlinking);
-            renderHeart(graphics, HeartType.NORMAL, x, y, isHalf, isBlinking);
+            int heartIndex = i * 2;
 
+            if (isBlinking && heartIndex < healthMax) {
+                boolean isHalfHealth = heartIndex + 1 == healthMax;
+                renderHeart(graphics, HeartType.NORMAL, x, y, isHalfHealth, true);
+            }
+
+            if (heartIndex < health) {
+                boolean isHalfHealth = heartIndex + 1 == health;
+                renderHeart(graphics, HeartType.NORMAL, x, y, isHalfHealth, false);
+            }
         }
-
-        RenderSystem.disableBlend();
     }
 
     private static void renderHeart(
