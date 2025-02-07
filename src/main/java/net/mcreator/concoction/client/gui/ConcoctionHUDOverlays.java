@@ -212,7 +212,7 @@ public class ConcoctionHUDOverlays
             if (i < healthRows && i == regen) {
                 y -= 2;
             }
-            boolean isBlinking = (player.isHurt() || regen != -1) && ticks % 10 < 5;
+            boolean isBlinking = (player.invulnerableTime > 0) && ticks % 6 < 3;
             renderHeart(graphics, HeartType.CONTAINER, x, y, false, isBlinking);
             int heartIndex = i * 2;
 
