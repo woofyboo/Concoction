@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "concoction:butter_churn",
     "concoction:crop_mint",
     "concoction:crop_cotton",
     "concoction:sunflower",
@@ -9,6 +8,7 @@
     "concoction:crop_corn",
     "concoction:crop_tomato",
     "concoction:crop_spicy_pepper",
-    "concoction:crop_rice"
+    "concoction:crop_rice",
+    "concoction:butter_churn"
   ]
 }
