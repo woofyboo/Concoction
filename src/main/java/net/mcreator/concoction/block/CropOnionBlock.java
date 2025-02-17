@@ -127,7 +127,7 @@ public class CropOnionBlock extends CropBlock {
 
 				ItemEntity entityToSpawn = new ItemEntity(_level,
 						(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
-						new ItemStack(ConcoctionModItems.GREEN_ONION.get(), 2));
+						new ItemStack(ConcoctionModItems.GREEN_ONION.get(), 1));
 				entityToSpawn.setPickUpDelay(10);
 				_level.addFreshEntity(entityToSpawn);
 

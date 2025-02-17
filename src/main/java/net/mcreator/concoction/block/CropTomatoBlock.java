@@ -70,11 +70,11 @@ public class CropTomatoBlock extends CropBlock {
 
 				if (pLevel instanceof ServerLevel _level) {
 					pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
-					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.TOMATO.get(), 2));
+					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.TOMATO.get(), 1));
 					entityToSpawn.setPickUpDelay(10);
 					_level.addFreshEntity(entityToSpawn);
 
-					if (Math.random() < 0.75) {
+					if (Math.random() < 0.3) {
 						ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.TOMATO.get()));
 						entityToSpawn3.setPickUpDelay(10);
 						_level.addFreshEntity(entityToSpawn3);
