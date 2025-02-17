@@ -2,22 +2,22 @@
   "_fv": 73,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Frosty Breath",
-    "achievementDescription": "Feel the pain of brain freeze.",
+    "achievementName": "Chill Out",
+    "achievementDescription": "Experience brain freeze by drinking water after eating minty food",
     "achievementIcon": {
-      "value": "CUSTOM:MintBrew"
+      "value": "CUSTOM:Mint"
     },
     "background": "Default",
     "disableDisplay": false,
     "showPopup": true,
     "announceToChat": true,
-    "hideIfNotCompleted": false,
+    "hideIfNotCompleted": true,
     "rewardLoot": [],
     "rewardRecipes": [],
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:TripleDentGum"
+      "value": "CUSTOM:Core"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

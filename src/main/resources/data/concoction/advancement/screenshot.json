@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "minecraft:potion"
+      "id": "minecraft:glowstone_dust"
     },
     "title": {
       "translate": "advancements.screenshot.title"
@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.screenshot.descr"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": true
@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:triple_dent_gum"
+  "parent": "minecraft:nether/brew_potion"
 }

@@ -2,7 +2,7 @@
   "type": "minecraft:smelting",
   "group": "roasted_sunflower_seeds",
   "category": "food",
-  "experience": 1,
+  "experience": 0.1,
   "cookingtime": 200,
   "ingredient": {
     "item": "concoction:sunflower_seeds"

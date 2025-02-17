@@ -3,7 +3,7 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "You Spin Me Round",
-    "achievementDescription": "Spin butter churn to make butter or oil.",
+    "achievementDescription": "Use butter churn to make butter or oil",
     "achievementIcon": {
       "value": "CUSTOM:ButterChurn"
     },
@@ -17,7 +17,7 @@
     "rewardXP": 0,
     "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:KeyToTheHeart"
+      "value": "CUSTOM:Core"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

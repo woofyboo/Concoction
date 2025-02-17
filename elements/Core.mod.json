@@ -5,7 +5,7 @@
     "achievementName": "Concoction",
     "achievementDescription": "Can't travel on empty stomach!",
     "achievementIcon": {
-      "value": "CUSTOM:Mint"
+      "value": "CUSTOM:MintySlimeJelly"
     },
     "background": "apple_log.png",
     "disableDisplay": false,

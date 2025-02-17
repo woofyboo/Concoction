@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:mint_brew"
+      "id": "concoction:mint"
     },
     "title": {
       "translate": "advancements.brain_freeze_obtain_achievement.title"
@@ -12,12 +12,12 @@
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": true
   },
   "criteria": {
     "brain_freeze_obtain_achievement_0": {
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:triple_dent_gum"
+  "parent": "concoction:core"
 }

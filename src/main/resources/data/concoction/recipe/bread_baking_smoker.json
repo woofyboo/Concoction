@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smoking",
   "category": "misc",
-  "experience": 4,
+  "experience": 0.25,
   "cookingtime": 100,
   "ingredient": {
     "item": "concoction:dough"

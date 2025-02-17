@@ -32,5 +32,5 @@
       }
     }
   },
-  "parent": "concoction:fruits_of_nature"
+  "parent": "concoction:core"
 }

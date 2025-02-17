@@ -1,12 +1,12 @@
 {
-  "_fv": 69,
+  "_fv": 73,
   "_type": "recipe",
   "definition": {
     "recipeType": "Smoking",
     "recipeRetstackSize": 1,
     "group": "",
     "cookingBookCategory": "FOOD",
-    "xpReward": 2.0,
+    "xpReward": 0.1,
     "cookingTime": 100,
     "craftingBookCategory": "MISC",
     "recipeShapeless": false,

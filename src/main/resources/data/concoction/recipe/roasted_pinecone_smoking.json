@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smoking",
   "category": "food",
-  "experience": 2,
+  "experience": 0.1,
   "cookingtime": 100,
   "ingredient": {
     "item": "concoction:pinecone"

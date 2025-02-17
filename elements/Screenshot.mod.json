@@ -3,9 +3,9 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "Screenshot",
-    "achievementDescription": "Use two opposite thick-based potion effects to cancel them both",
+    "achievementDescription": "Use two thick potions with opposite effects to cancel those effects",
     "achievementIcon": {
-      "value": "Items.POTIONITEM"
+      "value": "Items.GLOWSTONE_DUST"
     },
     "background": "Default",
     "disableDisplay": false,
@@ -15,9 +15,9 @@
     "rewardLoot": [],
     "rewardRecipes": [],
     "rewardXP": 0,
-    "achievementType": "goal",
+    "achievementType": "task",
     "parent": {
-      "value": "CUSTOM:TripleDentGum"
+      "value": "nether/brew_potion"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }

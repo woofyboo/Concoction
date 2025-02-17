@@ -3,7 +3,7 @@
   "_type": "achievement",
   "definition": {
     "achievementName": "Cry About It",
-    "achievementDescription": "Drink obsidian tears and suffer the consequences.",
+    "achievementDescription": "Drink obsidian tears and suffer the consequences of your decision",
     "achievementIcon": {
       "value": "CUSTOM:ObsidianTearsBottle"
     },

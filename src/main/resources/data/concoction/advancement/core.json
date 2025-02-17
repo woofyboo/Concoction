@@ -2,7 +2,7 @@
   "display": {
     "background": "concoction:textures/screens/apple_log.png",
     "icon": {
-      "id": "concoction:mint"
+      "id": "concoction:minty_slime_jelly"
     },
     "title": {
       "translate": "advancements.core.title"
