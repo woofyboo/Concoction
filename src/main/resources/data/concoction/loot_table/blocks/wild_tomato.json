@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "bonus_rolls": 0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:alternatives",
@@ -11,44 +11,100 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:match_tool",
-                  "predicate": {
-                    "items": "minecraft:shears"
-                  }
+                  "condition": "minecraft:any_of",
+                  "terms": [
+                    {
+                      "ability": "shears_dig",
+                      "condition": "neoforge:can_item_perform_ability"
+                    },
+                    {
+                      "condition": "minecraft:match_tool",
+                      "predicate": {
+                        "predicates": {
+                          "minecraft:enchantments": [
+                            {
+                              "enchantments": "minecraft:silk_touch",
+                              "levels": {
+                                "min": 1
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
                 }
               ],
               "name": "concoction:wild_tomato"
             },
             {
               "type": "minecraft:item",
-              "conditions": [
-                {
-                  "chance": 1,
-                  "condition": "minecraft:random_chance"
-                }
-              ],
               "functions": [
                 {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:binomial_with_bonus_count",
                   "function": "minecraft:apply_bonus",
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
                   "parameters": {
-                    "bonusMultiplier": 2,
-                    "extra": 1,
-                    "probability": 0.5
+                    "bonusMultiplier": 2
                   }
                 },
                 {
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "concoction:tomato_seeds"
+              "name": "concoction:tomato"
             }
           ]
         }
-      ],
-      "rolls": 1
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:any_of",
+                "terms": [
+                  {
+                    "ability": "shears_dig",
+                    "condition": "neoforge:can_item_perform_ability"
+                  },
+                  {
+                    "condition": "minecraft:match_tool",
+                    "predicate": {
+                      "predicates": {
+                        "minecraft:enchantments": [
+                          {
+                            "enchantments": "minecraft:silk_touch",
+                            "levels": {
+                              "min": 1
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "concoction:tomato_seeds"
+        }
+      ]
     }
-  ],
-  "random_sequence": "concoction:blocks/wild_tomato"
+  ]
 }

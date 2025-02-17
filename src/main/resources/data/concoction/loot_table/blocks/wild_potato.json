@@ -35,7 +35,7 @@
                   "parameters": {
                     "bonusMultiplier": 2,
                     "extra": 1,
-                    "probability": 0.5
+                    "probability": 0.25
                   }
                 },
                 {
