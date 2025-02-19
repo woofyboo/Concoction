@@ -40,7 +40,7 @@ public class PillowBlockBlock extends SlimeBlock {
 			int particlesCount = calcAmpl(player.getDeltaMovement());
 			if (particlesCount != 0)
 			_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
-					pos.x, pos.y, pos.z,
+					pos.x, pos.y+0.01, pos.z,
 					particlesCount, 0, 0, 0, 0.4);
 		}
 	}
