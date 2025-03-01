@@ -149,6 +149,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ONION_BLOCK = block(ConcoctionModBlocks.ONION_BLOCK);
 	public static final DeferredItem<Item> GREEN_ONION_BLOCK = block(ConcoctionModBlocks.GREEN_ONION_BLOCK);
 	public static final DeferredItem<Item> COTTON_BLOCK = block(ConcoctionModBlocks.COTTON_BLOCK);
+	public static final DeferredItem<Item> NETHER_PEPPER_CROP = block(ConcoctionModBlocks.NETHER_PEPPER_CROP);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);

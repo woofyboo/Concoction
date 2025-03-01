@@ -22,6 +22,7 @@ import net.mcreator.concoction.block.SpicyPepperBlockBlock;
 import net.mcreator.concoction.block.SmallPillowBlock;
 import net.mcreator.concoction.block.PillowBlockBlock;
 import net.mcreator.concoction.block.OnionBlockBlock;
+import net.mcreator.concoction.block.NetherPepperCropBlock;
 import net.mcreator.concoction.block.MintChocolateCakeBlock;
 import net.mcreator.concoction.block.MintBlock;
 import net.mcreator.concoction.block.GreenOnionBlockBlock;
@@ -69,6 +70,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> ONION_BLOCK = REGISTRY.register("onion_block", OnionBlockBlock::new);
 	public static final DeferredBlock<Block> GREEN_ONION_BLOCK = REGISTRY.register("green_onion_block", GreenOnionBlockBlock::new);
 	public static final DeferredBlock<Block> COTTON_BLOCK = REGISTRY.register("cotton_block", CottonBlockBlock::new);
+	public static final DeferredBlock<Block> NETHER_PEPPER_CROP = REGISTRY.register("nether_pepper_crop", NetherPepperCropBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

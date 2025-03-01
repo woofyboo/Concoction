@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "concoction:block/nether_pepper05",
+    "particle": "concoction:block/nether_pepper05"
+  },
+  "render_type": "cutout"
+}
