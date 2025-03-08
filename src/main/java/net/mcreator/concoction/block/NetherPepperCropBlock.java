@@ -35,6 +35,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
+import net.minecraft.util.RandomSource;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
 
 import net.mcreator.concoction.procedures.NetherPepperCropOnTickUpdateProcedure;
 
@@ -177,5 +181,8 @@ public class NetherPepperCropBlock extends CropBlock {
 	public IntegerProperty getAgeProperty() {
 		// Возвращает свойство возраста растения
 		return AGE; // не менять
+
+	
 	}
+	
 }
