@@ -61,7 +61,8 @@ public class NetherPepperCropBlock extends CropBlock {
 				.noOcclusion()
 				.randomTicks()
 				.pushReaction(PushReaction.DESTROY)
-				.lightLevel(s -> 3)
+				
+.lightLevel(s -> 3)
 				.noOcclusion()
 				.hasPostProcess((bs, br, bp) -> true)
 				.emissiveRendering((bs, br, bp) -> true)
@@ -184,10 +185,9 @@ public class NetherPepperCropBlock extends CropBlock {
 	}
 	
 	@Override
-	public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-		super.tick(blockstate, world, pos, random);
+	@OnlyIn(Dist.CLIENT)
+	public void animateTick(BlockState blockstate, Level world, BlockPos pos, RandomSource random) {
+		super.animateTick(blockstate, world, pos, random);
 		NetherPepperCropOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
-
-	
 }
