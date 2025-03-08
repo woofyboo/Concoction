@@ -3937,6 +3937,37 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "NetherPepperCropOnTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nether_pepper_crop_on_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/NetherPepperCropOnTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -4317,7 +4348,7 @@
       "item.minecraft.potion.effect.blooming_extended": "Зелье цветения",
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Стрела цветения",
-      "item.concoction.reapper": "Reapper",
+      "item.concoction.reapper": "Перец-жнерец",
       "effect.concoction.minty_breath": "Свежесть",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
       "item.concoction.cod_sushi": "Суши из трески",
@@ -4478,7 +4509,7 @@
       "block.concoction.red_pillow_block": "Red Pillow",
       "item.concoction.salmon_sushi": "Salmon Sushi",
       "item.concoction.fish_and_chips": "Fish and Chips",
-      "block.concoction.nether_pepper_crop": "Crop Reapper",
+      "block.concoction.nether_pepper_crop": "Crop Reapepper",
       "item.concoction.golden_corn": "Golden Corn",
       "item.concoction.onion_soup": "Onion Soup",
       "item.concoction.chicken_confit": "Chicken Confit",
@@ -4508,7 +4539,7 @@
       "item.minecraft.potion.effect.blooming_extended": "Potion of Blooming",
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Arrow of Potion Of Blooming",
-      "item.concoction.reapper": "Reapper",
+      "item.concoction.reapper": "Ghost Reapper",
       "effect.concoction.minty_breath": "Freshness",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "item.concoction.cod_sushi": "Cod Sushi",

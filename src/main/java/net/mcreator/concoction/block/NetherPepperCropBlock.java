@@ -36,6 +36,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
 
+import net.mcreator.concoction.procedures.NetherPepperCropOnTickUpdateProcedure;
+
 import java.util.Objects;
 
 // Класс растения, наследующий от CropBlock
@@ -55,6 +57,10 @@ public class NetherPepperCropBlock extends CropBlock {
 				.noOcclusion()
 				.randomTicks()
 				.pushReaction(PushReaction.DESTROY)
+				.lightLevel(s -> 3)
+				.noOcclusion()
+				.hasPostProcess((bs, br, bp) -> true)
+				.emissiveRendering((bs, br, bp) -> true)
 				.isRedstoneConductor((bs, br, bp) -> false));
 		// Регистрация состояния по умолчанию
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
