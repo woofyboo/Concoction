@@ -181,8 +181,13 @@ public class NetherPepperCropBlock extends CropBlock {
 	public IntegerProperty getAgeProperty() {
 		// Возвращает свойство возраста растения
 		return AGE; // не менять
-
-	
 	}
+	
+	@Override
+	public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.tick(blockstate, world, pos, random);
+		NetherPepperCropOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+	}
+
 	
 }
