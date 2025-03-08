@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:spicy_pepper"
+    "concoction:spicy_pepper",
+    "concoction:reapper"
   ]
 }

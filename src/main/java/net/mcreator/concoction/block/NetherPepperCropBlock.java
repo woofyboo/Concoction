@@ -63,7 +63,7 @@ public class NetherPepperCropBlock extends CropBlock {
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
-		if (!pPlayer.isShiftKeyDown() && pState.getBlock() == ConcoctionModBlocks.CROP_SPICY_PEPPER.get()) {
+		if (!pPlayer.isShiftKeyDown() && pState.getBlock() == ConcoctionModBlocks.NETHER_PEPPER_CROP.get()) {
 			if (pState.getValue(AGE) == 5) {
 				pPlayer.swing(InteractionHand.MAIN_HAND, true);
 				if (!pLevel.isClientSide())
@@ -73,12 +73,12 @@ public class NetherPepperCropBlock extends CropBlock {
 
 				if (pLevel instanceof ServerLevel _level) {
 					pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
-					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get(), 1));
+					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.REAPPER.get(), 1));
 					entityToSpawn.setPickUpDelay(10);
 					_level.addFreshEntity(entityToSpawn);
 
 					if (Math.random() < 0.3) {
-					ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+					ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.REAPPER.get()));
 						entityToSpawn3.setPickUpDelay(10);
 						_level.addFreshEntity(entityToSpawn3);
 					}
@@ -132,7 +132,7 @@ public class NetherPepperCropBlock extends CropBlock {
 	@Override
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		// Возвращает горючесть блока
-		return 100;
+		return 0;
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class NetherPepperCropBlock extends CropBlock {
 	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
 		// Скорость распространения огня
-		return 25;
+		return 0;
 	}
 
 	@Override
