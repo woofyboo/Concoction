@@ -150,7 +150,7 @@ public class NetherPepperCropBlock extends CropBlock {
 	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
 		// Предмет, получаемый при копировании блока на колёсико
 		return new ItemStack(
-            ConcoctionModItems.SPICY_PEPPER_SEEDS.get()
+            ConcoctionModItems.REAPPER_SEEDS.get()
             );
 	}
 
@@ -175,7 +175,7 @@ public class NetherPepperCropBlock extends CropBlock {
 	@Override
 	protected ItemLike getBaseSeedId() {
 		// Возвращает семена для посадки растения
-		return ConcoctionModItems.SPICY_PEPPER_SEEDS.get();
+		return ConcoctionModItems.REAPPER_SEEDS.get();
 	}
 
 	@Override

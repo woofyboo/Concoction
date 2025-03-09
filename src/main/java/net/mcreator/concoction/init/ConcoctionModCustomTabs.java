@@ -32,6 +32,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SPICY_PEPPER.get());
 				tabData.accept(ConcoctionModItems.SPICY_PEPPER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.REAPPER.get());
+				tabData.accept(ConcoctionModItems.REAPPER_SEEDS.get());
 				tabData.accept(ConcoctionModItems.HOT_SAUCE_BOTTLE.get());
 				tabData.accept(ConcoctionModItems.ONION.get());
 				tabData.accept(ConcoctionModItems.GREEN_ONION.get());
