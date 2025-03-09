@@ -19,7 +19,7 @@ public class SoullandBlock extends Block {
 	public static final BooleanProperty SOULCHARGED = BooleanProperty.create("soulcharged");
 
 	public SoullandBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.SOUL_SOIL).strength(0.5f).noOcclusion().randomTicks().isRedstoneConductor((bs, br, bp) -> false));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.SOUL_SOIL).strength(0.5f).randomTicks().isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(SOULCHARGED, false));
 	}
 

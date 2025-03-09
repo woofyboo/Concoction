@@ -3,5 +3,6 @@
   "textures": {
     "dirt": "minecraft:block/soul_soil",
     "top": "concoction:block/charged_soulland"
-  }
+  },
+  "render_type":"solid"
 }
