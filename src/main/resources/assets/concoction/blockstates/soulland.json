@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "soulcharged=false": {
+      "model": "concoction:block/soulland"
+    },
+    "soulcharged=true": {
+      "model": "concoction:block/soulland_charged"
+    }
+  }
+}

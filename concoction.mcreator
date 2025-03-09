@@ -3981,6 +3981,23 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "Soulland",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soulland",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/SoullandBlock.java",
+          "src/main/resources/assets/concoction/models/block/soulland.json",
+          "src/main/resources/assets/concoction/models/item/soulland.json",
+          "src/main/resources/data/concoction/loot_table/blocks/soulland.json",
+          "src/main/resources/assets/concoction/blockstates/soulland.json"
+        ]
+      },
+      "path": "~/general_nether"
     }
   ],
   "variable_elements": [],
@@ -4142,6 +4159,9 @@
       "CUSTOM:CottonOil",
       "CUSTOM:CornOil"
     ],
+    "BLOCKS:minecraft:mineable/shovel": [
+      "~CUSTOM:Soulland"
+    ],
     "BLOCKS:minecraft:maintains_farmland": [
       "CUSTOM:CropCotton",
       "CUSTOM:CropMint",
@@ -4253,6 +4273,7 @@
       "item.concoction.sunflower_oil": "Подсолнечное масло",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.concoction.spicy_pepper_seeds": "Семена жгучего перца",
+      "block.concoction.soulland": "Пашня душ",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Стрела цветения",
       "block.concoction.cotton_block": "Блок хлопка",
@@ -4445,6 +4466,7 @@
       "item.concoction.sunflower_oil": "Sunflower Oil",
       "item.concoction.mint_seeds": "Mint Seeds",
       "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
+      "block.concoction.soulland": "Soulland",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Arrow of Potion Of Blooming",
       "block.concoction.cotton_block": "Cotton Block",
@@ -4637,6 +4659,10 @@
       },
       {
         "name": "tomato",
+        "children": []
+      },
+      {
+        "name": "general_nether",
         "children": []
       }
     ]
