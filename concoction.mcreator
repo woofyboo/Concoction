@@ -3968,6 +3968,19 @@
         ]
       },
       "path": "~/spicy_pepper"
+    },
+    {
+      "name": "NetherPepperSeedsCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "nether_pepper_seeds_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/nether_pepper_seeds_craft.json"
+        ]
+      },
+      "path": "~/spicy_pepper"
     }
   ],
   "variable_elements": [],
@@ -4058,7 +4071,8 @@
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
       "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato"
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -4093,7 +4107,8 @@
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
       "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato"
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
@@ -4104,7 +4119,8 @@
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
       "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato"
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
     ],
     "ITEMS:mod:oils_and_butters": [
       "TAG:concoction:oils",
@@ -4119,7 +4135,8 @@
       "CUSTOM:CropTomato",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
-      "CUSTOM:ButterChurn"
+      "CUSTOM:ButterChurn",
+      "CUSTOM:NetherPepperCrop"
     ],
     "ITEMS:mod:deepfrying_oil": [
       "CUSTOM:CottonOil",
@@ -4133,7 +4150,8 @@
       "CUSTOM:CropCorn",
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato"
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
     ],
     "ITEMS:c:bottles": [
       "CUSTOM:ObsidianTearsBottle",
@@ -4155,7 +4173,8 @@
       "CUSTOM:CropSpicyPepper",
       "CUSTOM:CropRice",
       "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato"
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
     ],
     "ITEMS:c:music_discs": [
       "CUSTOM:MusicDiscHotIce"
@@ -4443,7 +4462,7 @@
       "effect.concoction.frost_touch": "Frost Touch",
       "item.concoction.cherry": "Cherry",
       "block.concoction.crop_tomato": "Crop Tomato",
-      "item.concoction.reapper_seeds": "Reapper Seeds",
+      "item.concoction.reapper_seeds": "Ghost Reapper Seeds",
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "item.concoction.fried_egg": "Fried Egg",

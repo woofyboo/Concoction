@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:spicy_pepper_seeds"
+    "concoction:spicy_pepper_seeds",
+    "concoction:reapper_seeds"
   ]
 }

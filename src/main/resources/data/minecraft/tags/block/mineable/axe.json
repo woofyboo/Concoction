@@ -9,6 +9,7 @@
     "concoction:crop_tomato",
     "concoction:crop_spicy_pepper",
     "concoction:crop_rice",
-    "concoction:butter_churn"
+    "concoction:butter_churn",
+    "concoction:nether_pepper_crop"
   ]
 }
