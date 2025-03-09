@@ -14,6 +14,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource; 
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.BlockPos;
+import net.mcreator.concoction.procedures.SoullandOnTickUpdateProcedure;
 
 public class SoullandBlock extends Block {
 	public static final BooleanProperty SOULCHARGED = BooleanProperty.create("soulcharged");
@@ -43,6 +47,11 @@ public class SoullandBlock extends Block {
 		super.createBlockStateDefinition(builder);
 		builder.add(SOULCHARGED);
 	}
+	@Override	
+	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+		super.randomTick(blockstate, world, pos, random);
+		SoullandOnTickUpdateProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ(), blockstate);
+		}
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {

@@ -3998,6 +3998,41 @@
         ]
       },
       "path": "~/general_nether"
+    },
+    {
+      "name": "SoullandOnTickUpdate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soulland_on_tick_update",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SoullandOnTickUpdateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "blockstate",
+            "type": "blockstate"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general_nether"
     }
   ],
   "variable_elements": [],
@@ -4114,6 +4149,9 @@
     ],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
+    ],
+    "BLOCKS:minecraft:soul_speed_blocks": [
+      "CUSTOM:Soulland"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
