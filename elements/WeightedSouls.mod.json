@@ -51,6 +51,9 @@
     "flammability": 0,
     "fireSpreadSpeed": 0,
     "colorOnMap": "LIGHT_BLUE",
+    "onBlockAdded": {
+      "name": "WeightedSoulsBlockAdded"
+    },
     "onEntityCollides": {
       "name": "WeightedSoulsMobplayerCollidesBlock"
     },

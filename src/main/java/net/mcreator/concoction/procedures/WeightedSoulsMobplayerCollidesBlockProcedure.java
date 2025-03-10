@@ -11,7 +11,12 @@ public class WeightedSoulsMobplayerCollidesBlockProcedure {
 	public static void execute(LevelAccessor world, Entity entity) {
 		if (entity == null)
 			return;
-		entity.setTicksFrozen(240);
-		entity.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:soul_damage")))), 2);
+		if (!world.isClientSide()) {
+			if (!entity.isInLava()) {
+				entity.setTicksFrozen(240);
+			}
+			entity.clearFire();
+			entity.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:soul_damage")))), 2);
+		}
 	}
 }

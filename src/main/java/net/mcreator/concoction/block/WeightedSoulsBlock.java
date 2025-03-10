@@ -19,12 +19,19 @@ import net.minecraft.core.BlockPos;
 
 import net.mcreator.concoction.procedures.WeightedSoulsOnRandomClientDisplayTickProcedure;
 import net.mcreator.concoction.procedures.WeightedSoulsMobplayerCollidesBlockProcedure;
+import net.mcreator.concoction.procedures.WeightedSoulsBlockAddedProcedure;
 import net.mcreator.concoction.init.ConcoctionModFluids;
 
 public class WeightedSoulsBlock extends LiquidBlock {
 	public WeightedSoulsBlock() {
 		super(ConcoctionModFluids.WEIGHTED_SOULS.get(), BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(100f).hasPostProcess((bs, br, bp) -> true).emissiveRendering((bs, br, bp) -> true).lightLevel(s -> 6).noCollission()
 				.noLootTable().liquid().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY).replaceable());
+	}
+
+	@Override
+	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+		super.onPlace(blockstate, world, pos, oldState, moving);
+		WeightedSoulsBlockAddedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override

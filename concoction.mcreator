@@ -4061,7 +4061,7 @@
       "name": "WeightedSouls",
       "type": "fluid",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "weighted_souls",
       "metadata": {
         "files": [
@@ -4098,6 +4098,116 @@
       "metadata": {
         "files": [
           "src/main/java/net/mcreator/concoction/procedures/WeightedSoulsOnRandomClientDisplayTickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general_nether"
+    },
+    {
+      "name": "SoulIceBlockDestroyedByPlayer",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soul_ice_block_destroyed_by_player",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SoulIceBlockDestroyedByPlayerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general_nether"
+    },
+    {
+      "name": "SoulIce",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soul_ice",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/soul_ice.json",
+          "src/main/java/net/mcreator/concoction/block/SoulIceBlock.java",
+          "src/main/resources/assets/concoction/models/block/soul_ice.json",
+          "src/main/resources/data/concoction/loot_table/blocks/soul_ice.json",
+          "src/main/resources/assets/concoction/models/item/soul_ice.json"
+        ]
+      },
+      "path": "~/general_nether"
+    },
+    {
+      "name": "SoulIceBlockAdded",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soul_ice_block_added",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SoulIceBlockAddedProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general_nether"
+    },
+    {
+      "name": "WeightedSoulsBlockAdded",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "weighted_souls_block_added",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/WeightedSoulsBlockAddedProcedure.java"
         ],
         "dependencies": [
           {
@@ -4206,11 +4316,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "ITEMS:mod:oils": [
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil",
-      "CUSTOM:CornOil"
-    ],
     "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint",
       "CUSTOM:Sunflower"
@@ -4222,6 +4327,11 @@
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
+    ],
+    "ITEMS:minecraft:flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower",
+      "CUSTOM:WildOnion"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -4235,10 +4345,46 @@
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
     ],
-    "ITEMS:minecraft:flowers": [
-      "CUSTOM:Mint",
+    "BLOCKS:minecraft:soul_speed_blocks": [
+      "CUSTOM:Soulland"
+    ],
+    "ITEMS:mod:deepfrying_oil": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:CornOil"
+    ],
+    "ITEMS:c:bottles": [
+      "CUSTOM:ObsidianTearsBottle",
+      "Items.OMINOUS_BOTTLE",
+      "Items.EXPERIENCE_BOTTLE",
+      "Items.HONEY_BOTTLE",
+      "Items.POTIONITEM",
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil",
+      "CUSTOM:HotSauceBottle",
+      "CUSTOM:CornOil"
+    ],
+    "BLOCKS:minecraft:bee_growables": [
+      "CUSTOM:CropMint",
+      "CUSTOM:CropCotton",
       "CUSTOM:Sunflower",
-      "CUSTOM:WildOnion"
+      "CUSTOM:CropOnion",
+      "CUSTOM:CropCorn",
+      "CUSTOM:CropSpicyPepper",
+      "CUSTOM:CropRice",
+      "CUSTOM:CropCabbage",
+      "CUSTOM:CropTomato",
+      "CUSTOM:NetherPepperCrop"
+    ],
+    "ITEMS:c:music_discs": [
+      "CUSTOM:MusicDiscHotIce"
+    ],
+    "ITEMS:mod:butters": [
+      "CUSTOM:Butter"
+    ],
+    "ITEMS:mod:oils": [
+      "CUSTOM:CottonOil",
+      "CUSTOM:SunflowerOil",
+      "CUSTOM:CornOil"
     ],
     "ITEMS:mod:frying_oil": [
       "CUSTOM:SunflowerOil",
@@ -4258,9 +4404,6 @@
     ],
     "ITEMS:minecraft:music_discs": [
       "~CUSTOM:MusicDiscHotIce"
-    ],
-    "BLOCKS:minecraft:soul_speed_blocks": [
-      "CUSTOM:Soulland"
     ],
     "BLOCKS:minecraft:crops": [
       "CUSTOM:CropCotton",
@@ -4302,9 +4445,8 @@
       "CUSTOM:ButterChurn",
       "CUSTOM:NetherPepperCrop"
     ],
-    "ITEMS:mod:deepfrying_oil": [
-      "CUSTOM:CottonOil",
-      "CUSTOM:CornOil"
+    "BLOCKS:minecraft:mineable/pickaxe": [
+      "~CUSTOM:SoulIce"
     ],
     "BLOCKS:minecraft:mineable/shovel": [
       "~CUSTOM:Soulland"
@@ -4319,35 +4461,6 @@
       "CUSTOM:CropCabbage",
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
-    ],
-    "ITEMS:c:bottles": [
-      "CUSTOM:ObsidianTearsBottle",
-      "Items.OMINOUS_BOTTLE",
-      "Items.EXPERIENCE_BOTTLE",
-      "Items.HONEY_BOTTLE",
-      "Items.POTIONITEM",
-      "CUSTOM:CottonOil",
-      "CUSTOM:SunflowerOil",
-      "CUSTOM:HotSauceBottle",
-      "CUSTOM:CornOil"
-    ],
-    "BLOCKS:minecraft:bee_growables": [
-      "CUSTOM:CropMint",
-      "CUSTOM:CropCotton",
-      "CUSTOM:Sunflower",
-      "CUSTOM:CropOnion",
-      "CUSTOM:CropCorn",
-      "CUSTOM:CropSpicyPepper",
-      "CUSTOM:CropRice",
-      "CUSTOM:CropCabbage",
-      "CUSTOM:CropTomato",
-      "CUSTOM:NetherPepperCrop"
-    ],
-    "ITEMS:c:music_discs": [
-      "CUSTOM:MusicDiscHotIce"
-    ],
-    "ITEMS:mod:butters": [
-      "CUSTOM:Butter"
     ]
   },
   "tab_element_order": {},
@@ -4411,18 +4524,19 @@
       "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
       "block.concoction.crop_spicy_pepper": "Жгучий перец",
-      "subtitles.soul_bucket_filled": "Bucket is filled with souls",
+      "subtitles.soul_bucket_filled": "Ведро наполнено душами",
       "death.attack.spicy_damage.player": "%1$s был отжарен %2$s",
       "subtitles.butter_churn_spin": "Маслобойка крутится",
       "effect.concoction.sweetness": "Сладость",
       "item.minecraft.lingering_potion.effect.blooming_buffed": "Оседающие зелье цветения",
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
-      "death.attack.soul_damage": "%1$s was consumed by souls",
+      "death.attack.soul_damage": "%1$s слился с душами",
       "item.minecraft.tipped_arrow.effect.blooming": "Стрела цветения",
       "advancements.screenshot.descr": "Используй два противоположных зелья на густой основе чтобы отменить эффект обоих.",
       "subtitles.cauldron_boiling": "Котёл кипит",
       "item.minecraft.splash_potion.effect.blooming_extended": "Взрывное зелье цветения",
+      "block.concoction.soul_ice": "Лёд душ",
       "block.concoction.cabbage_block": "Блок капусты",
       "block.concoction.weighted_souls": "Тяжёлые души",
       "block.concoction.crop_corn": "Кукуруза",
@@ -4462,7 +4576,7 @@
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
       "block.concoction.cabbagehead": "Капуста",
       "item.minecraft.lingering_potion.effect.blooming_extended": "Оседающее зелье цветения",
-      "subtitles.soul_bucket_empty": "Soul bucket is emptied",
+      "subtitles.soul_bucket_empty": "Ведро с душами опустошено",
       "block.concoction.crop_cotton": "Хлопок",
       "item.concoction.mushroom_skewer": "Грибной шашлычок",
       "item.concoction.animal_fat": "Животный жир",
@@ -4512,7 +4626,7 @@
       "item.concoction.butter": "Сливочное масло",
       "item.concoction.cabbage_leaf": "Капустный лист",
       "block.concoction.crop_mint": "Мята",
-      "death.attack.soul_damage.player": "%1$s sold his soul to never again see %2$s",
+      "death.attack.soul_damage.player": "%1$s продал свою душу чтоб больше не видеть %2$s",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
       "item.concoction.tropical_sushi": "Суши из тропической рыбы",
@@ -4537,7 +4651,7 @@
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item.concoction.cotton": "Хлопок",
       "block.concoction.spicy_pepper_block": "Блок жгучего перца",
-      "death.attack.soul_damage.item": "%1$s was consumed by souls whilst trying to escape %2$s using %3$s",
+      "death.attack.soul_damage.item": "%1$s слился с душами пока пытался спастить от %2$s используя %3$s",
       "item.minecraft.sweet_berries": "Брусника",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "item.concoction.raw_noodles": "Сырая лапша",
@@ -4555,17 +4669,17 @@
     },
     "en_us": {
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "subtitles.butter_thickens": "Butter thickens",
-      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",
+      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+      "subtitles.butter_thickens": "Butter thickens",
       "item.concoction.pinecone": "Pinecone",
       "item.concoction.corn_oil": "Corn Oil",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "block.concoction.wild_potato": "Wild Potato",
-      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cooked_corn": "Cooked Corn",
-      "item.concoction.tomato": "Tomato",
+      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.tomato": "Tomato",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_onion": "Crop Onion",
@@ -4574,8 +4688,8 @@
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
-      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
+      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
@@ -4583,12 +4697,12 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "item.concoction.dough": "Dough",
       "fluid.concoction.weighted_souls": "Weighted Souls",
-      "block.concoction.green_pillow_block": "Green Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
+      "block.concoction.green_pillow_block": "Green Pillow",
       "block.concoction.onion_block": "Onion Block",
       "item.concoction.mint_seeds": "Mint Seeds",
-      "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
       "block.concoction.soulland": "Soulland",
+      "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
@@ -4601,8 +4715,8 @@
       "item.concoction.fried_egg": "Fried Egg",
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "item.concoction.tomato_soup": "Tomato Soup",
-      "item.concoction.omurice": "Omurice",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
+      "item.concoction.omurice": "Omurice",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
@@ -4613,7 +4727,7 @@
       "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
       "block.concoction.crop_spicy_pepper": "Crop Spicy Pepper",
       "subtitles.soul_bucket_filled": "Bucket is filled with souls",
-      "death.attack.spicy_damage.player": "%1$s hought they could handle the spice of %2$s",
+      "death.attack.spicy_damage.player": "%1$s thought they could handle the spice of %2$s",
       "subtitles.butter_churn_spin": "Butter Churn spins",
       "effect.concoction.sweetness": "Sweetness",
       "item.minecraft.lingering_potion.effect.blooming_buffed": "Lingering Potion of Blooming",
@@ -4624,6 +4738,7 @@
       "advancements.screenshot.descr": "Use two thick potions with opposite effects to cancel those effects",
       "subtitles.cauldron_boiling": "Cauldron is boiling",
       "item.minecraft.splash_potion.effect.blooming_extended": "Splash Potion of Blooming",
+      "block.concoction.soul_ice": "Soul Ice",
       "block.concoction.cabbage_block": "Cabbage Block",
       "block.concoction.weighted_souls": "Weighted Souls",
       "block.concoction.crop_corn": "Crop Corn",
@@ -4642,8 +4757,8 @@
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
-      "effect.concoction.spicy": "Spicy",
       "item.concoction.hanami_dango": "Hanami Dango",
+      "effect.concoction.spicy": "Spicy",
       "block.concoction.blue_pillow_block": "Blue Pillow",
       "block.concoction.corn_block": "Corn Block",
       "item.concoction.onion": "Onion",
@@ -4671,7 +4786,7 @@
       "advancements.core.descr": "Can\u0027t travel on empty stomach!",
       "item.minecraft.lingering_potion.effect.flame_extended": "Lingering Potion of Flame",
       "block.concoction.small_lime_pillow_block": "Small Lime Pillow",
-      "death.attack.spicy_damage.item": "%1$s hought they could handle the spice of %2$s using %3$s",
+      "death.attack.spicy_damage.item": "%1$s thought they could handle the spice of %2$s using %3$s",
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Braised Meat",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
@@ -4713,7 +4828,7 @@
       "item.concoction.butter": "Dairy Butter",
       "item.concoction.cabbage_leaf": "Cabbage Leaf",
       "block.concoction.crop_mint": "Crop Mint",
-      "death.attack.soul_damage.player": "%1$s sold his soul to never again see %2$s",
+      "death.attack.soul_damage.player": "%1$s sold their soul to never again see %2$s",
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
       "item.concoction.tropical_sushi": "Tropical Sushi",
