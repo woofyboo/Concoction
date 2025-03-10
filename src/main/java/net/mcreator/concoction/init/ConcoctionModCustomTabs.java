@@ -93,6 +93,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.OMURICE.get());
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
+				tabData.accept(ConcoctionModItems.WEIGHTED_SOULS_BUCKET.get());
 //Дикие Растения
 				tabData.accept(ConcoctionModBlocks.WILD_CARROT.get().asItem());
 				tabData.accept(ConcoctionModItems.WILD_POTATO.get());

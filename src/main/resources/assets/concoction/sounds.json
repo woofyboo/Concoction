@@ -67,5 +67,39 @@
         "stream": false
       }
     ]
+  },
+  "soul_bucket_empty": {
+    "subtitle": "subtitles.soul_bucket_empty",
+    "sounds": [
+      {
+        "name": "concoction:empty_bucket_soul1",
+        "stream": false
+      },
+      {
+        "name": "concoction:empty_bucket_soul3",
+        "stream": false
+      },
+      {
+        "name": "concoction:empty_lava_bucket2",
+        "stream": false
+      }
+    ]
+  },
+  "soul_bucket_filled": {
+    "subtitle": "subtitles.soul_bucket_filled",
+    "sounds": [
+      {
+        "name": "concoction:fill_lava_bucket1",
+        "stream": false
+      },
+      {
+        "name": "concoction:fill_lava_bucket2",
+        "stream": false
+      },
+      {
+        "name": "concoction:fill_lava_bucket3",
+        "stream": false
+      }
+    ]
   }
 }

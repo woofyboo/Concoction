@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:spicy_damage"
+    "concoction:spicy_damage",
+    "concoction:soul_damage"
   ]
 }

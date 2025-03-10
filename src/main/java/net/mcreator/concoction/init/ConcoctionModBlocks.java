@@ -17,6 +17,7 @@ import net.mcreator.concoction.block.WildCottonBlock;
 import net.mcreator.concoction.block.WildCarrotBlock;
 import net.mcreator.concoction.block.WildCabbageBlock;
 import net.mcreator.concoction.block.WildBeetrootBlock;
+import net.mcreator.concoction.block.WeightedSoulsBlock;
 import net.mcreator.concoction.block.SunflowerBlock;
 import net.mcreator.concoction.block.SpicyPepperBlockBlock;
 import net.mcreator.concoction.block.SoullandBlock;
@@ -73,6 +74,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> COTTON_BLOCK = REGISTRY.register("cotton_block", CottonBlockBlock::new);
 	public static final DeferredBlock<Block> NETHER_PEPPER_CROP = REGISTRY.register("nether_pepper_crop", NetherPepperCropBlock::new);
 	public static final DeferredBlock<Block> SOULLAND = REGISTRY.register("soulland", SoullandBlock::new);
+	public static final DeferredBlock<Block> WEIGHTED_SOULS = REGISTRY.register("weighted_souls", WeightedSoulsBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

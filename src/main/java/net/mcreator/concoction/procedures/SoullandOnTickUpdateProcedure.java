@@ -6,6 +6,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 
+import net.mcreator.concoction.init.ConcoctionModBlocks;
+
 public class SoullandOnTickUpdateProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
 		boolean found = false;
@@ -16,7 +18,7 @@ public class SoullandOnTickUpdateProcedure {
 		for (int index0 = 0; index0 < 7; index0++) {
 			sz = -3;
 			for (int index1 = 0; index1 < 7; index1++) {
-				if ((world.getBlockState(BlockPos.containing(x + sx, y, z + sz))).getBlock() == Blocks.WATER) {
+				if ((world.getBlockState(BlockPos.containing(x + sx, y, z + sz))).getBlock() == ConcoctionModBlocks.WEIGHTED_SOULS.get()) {
 					found = true;
 				}
 				sz = sz + 1;
