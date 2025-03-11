@@ -38,6 +38,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import javax.annotation.Nullable;
 
 import static net.mcreator.concoction.init.ConcoctionModBlocks.WEIGHTED_SOULS;
+import oshi.driver.unix.solaris.disk.Prtvtoc;
 @EventBusSubscriber(modid = ConcoctionMod.MODID)
 public class SoullandBlock extends Block {
 	public static final BooleanProperty SOULCHARGED = BooleanProperty.create("soulcharged");
@@ -45,6 +46,8 @@ public class SoullandBlock extends Block {
 //		MOISTURE = BlockStateProperties.MOISTURE;
 //		SHAPE = Block.box((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)15.0F, (double)16.0F);
 //	}
+	public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 15, 16);
+	
 	public SoullandBlock() {
     super(BlockBehaviour.Properties.of()
             .mapColor(MapColor.COLOR_BROWN)
@@ -161,6 +164,11 @@ public class SoullandBlock extends Block {
 	}
 
 	@Override
+	public boolean useShapeForLightOcclusion(BlockState state) {
+		return true;
+	}
+
+	@Override
 	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
 		return 15;
 	}
@@ -172,7 +180,7 @@ public class SoullandBlock extends Block {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return box(0, 0, 0, 16, 15, 16);
+		return SHAPE;
 	}
 
 	@Override
