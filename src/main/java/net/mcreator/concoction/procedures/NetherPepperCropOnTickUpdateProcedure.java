@@ -13,7 +13,7 @@ import net.minecraft.core.BlockPos;
 public class NetherPepperCropOnTickUpdateProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		if (17950 <= world.dayTime() && 18050 >= world.dayTime()) {
-			if (Math.random() < 0.5) {
+			if (Math.random() < 0.65) {
 				world.addParticle(ParticleTypes.SOUL, (x + Mth.nextDouble(RandomSource.create(), 0.2, 0.8)), (y + Mth.nextDouble(RandomSource.create(), 0.2, 0.8)), (z + Mth.nextDouble(RandomSource.create(), 0.2, 0.8)),
 						(Mth.nextDouble(RandomSource.create(), -0.13, 0.13)), (Mth.nextDouble(RandomSource.create(), 0.13, 0.2)), (Mth.nextDouble(RandomSource.create(), -0.13, 0.13)));
 			}
