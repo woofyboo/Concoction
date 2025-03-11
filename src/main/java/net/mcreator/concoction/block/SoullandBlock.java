@@ -46,16 +46,17 @@ public class SoullandBlock extends Block {
 //		SHAPE = Block.box((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)15.0F, (double)16.0F);
 //	}
 	public SoullandBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.SOUL_SOIL).strength(0.5f).randomTicks().
-				isRedstoneConductor((bs, br, bp) -> false).lightLevel(state -> {
-					if (state.getValue(SOULCHARGED)) {
-						return 3;
-					} else {
-						return 0;
-					}
-				}).emissiveRendering((bs, br, bp) -> true));
-		this.registerDefaultState(this.stateDefinition.any().setValue(SOULCHARGED, false));
-	}
+    super(BlockBehaviour.Properties.of()
+            .mapColor(MapColor.COLOR_BROWN)
+            .sound(SoundType.SOUL_SOIL)
+            .strength(0.5f)
+            .randomTicks()
+            .isRedstoneConductor((bs, br, bp) -> false)
+            .lightLevel(state -> state.getValue(SOULCHARGED) ? 3 : 0) // Используйте тернарный оператор для lightLevel
+            .emissiveRendering((state, world, pos) -> state.getValue(SOULCHARGED)) // Эмиссивное освещение зависит от состояния SOULCHARGED
+    );
+    this.registerDefaultState(this.stateDefinition.any().setValue(SOULCHARGED, false));
+}
 
 	@SubscribeEvent
 	public static void onBlockClick(PlayerInteractEvent.RightClickBlock event) {
@@ -96,18 +97,26 @@ public class SoullandBlock extends Block {
 
 	@Override
 	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-		super.randomTick(blockstate, world, pos, random);
-		boolean charged = blockstate.getValue(SOULCHARGED);
-		if (!isNearSoul(world, pos)) {
-			if (charged) {
-				world.setBlock(pos, (BlockState)blockstate.setValue(SOULCHARGED, false), 2);
-			} else if (!shouldMaintainFarmland(world, pos)) {
-				turnToSoil((Entity)null, blockstate, world, pos);
-			}
-		} else if (charged) {
-			world.setBlock(pos, (BlockState)blockstate.setValue(SOULCHARGED, charged), 2);
-		}
-	}
+    super.randomTick(blockstate, world, pos, random);
+    boolean charged = blockstate.getValue(SOULCHARGED); // Считываем текущее состояние SOULCHARGED
+    boolean nearSoul = isNearSoul(world, pos); // Проверяем, есть ли рядом души
+
+    if (!nearSoul) {
+        // Если рядом нет душ и блок заряжен, сбрасываем заряд
+        if (charged) {
+            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
+        } else if (!shouldMaintainFarmland(world, pos)) {
+            // Если блок не заряжен и не должен оставаться как сельхозземля, меняем его на почву
+            turnToSoil(null, blockstate, world, pos);
+        }
+    } else {
+        // Если рядом есть души, и блок не заряжен, то заряжаем его
+        if (!charged) {
+            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
+        }
+    }
+}
+
 
 	@Override
 	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, float p_153231_) {
@@ -168,6 +177,6 @@ public class SoullandBlock extends Block {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(SOULCHARGED, true);
+		return super.getStateForPlacement(context).setValue(SOULCHARGED, false);
 	}
 }
