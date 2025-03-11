@@ -4229,6 +4229,56 @@
         ]
       },
       "path": "~/general_nether"
+    },
+    {
+      "name": "Soullake",
+      "type": "feature",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soullake",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/worldgen/configured_feature/soullake.json",
+          "src/main/resources/data/concoction/neoforge/biome_modifier/soullake_biome_modifier.json",
+          "src/main/resources/data/concoction/worldgen/placed_feature/soullake.json"
+        ]
+      },
+      "path": "~/general_nether"
+    },
+    {
+      "name": "SoullandHoeRightclick",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soulland_hoe_rightclick",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/procedures/SoullandHoeRightclickProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      },
+      "path": "~/general_nether"
     }
   ],
   "variable_elements": [],
