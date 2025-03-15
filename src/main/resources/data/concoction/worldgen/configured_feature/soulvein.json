@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:spring_feature",
+  "config": {
+    "state": {
+      "Name": "concoction:weighted_souls"
+    },
+    "valid_blocks": [
+      "minecraft:netherrack",
+      "minecraft:magma_block",
+      "minecraft:basalt",
+      "minecraft:blackstone",
+      "minecraft:gravel",
+      "minecraft:soul_sand",
+      "minecraft:soul_soil"
+    ]
+  }
+}
