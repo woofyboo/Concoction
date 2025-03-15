@@ -15,6 +15,6 @@ public class ReapperItem extends Item {
 	public ReapperItem() {
 		super(new Item.Properties().stacksTo(64).
 				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 2, 30, true))
-				.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.3f).build()));
+				.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3f).build()));
 	}
 }
