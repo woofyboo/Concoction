@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,part=head": {
+      "model": "concoction:block/wandering_trader_carpet"
+    },
+    "facing=east,part=head": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 90
+    },
+    "facing=south,part=head": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 180
+    },
+    "facing=west,part=head": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 270
+    },
+    "facing=north,part=feet": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 180
+    },
+    "facing=east,part=feet": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 270
+    },
+    "facing=south,part=feet": {
+      "model": "concoction:block/wandering_trader_carpet"
+    },
+    "facing=west,part=feet": {
+      "model": "concoction:block/wandering_trader_carpet",
+      "y": 90
+    }
+  }
+}
