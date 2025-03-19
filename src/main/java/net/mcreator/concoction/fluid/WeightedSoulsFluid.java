@@ -7,6 +7,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluid;
@@ -43,33 +45,57 @@ public abstract class WeightedSoulsFluid extends BaseFlowingFluid {
 			return true;
 		}
 	}
-	@Override
-	public void spread(Level level, BlockPos pos, FluidState fluidState) {
-		if (!fluidState.isEmpty()) {
-			BlockState blockstate = level.getBlockState(pos);
-			BlockPos blockposDown = pos.below();
-			BlockState blockstateDown = level.getBlockState(blockposDown);
-			FluidState fluidstateNew = this.getNewLiquid(level, blockposDown, blockstateDown);
+			@Override
+public void spread(Level level, BlockPos pos, FluidState fluidState) {
+    if (!fluidState.isEmpty()) {
+        BlockState blockstate = level.getBlockState(pos);
+        BlockPos blockposDown = pos.below();
+        BlockState blockstateDown = level.getBlockState(blockposDown);
 
-			// Проверка на контакт с лавой
-			boolean touchingLava = false;
-			for (Direction direction : Direction.values()) {
-				BlockPos neighborPos = pos.relative(direction);
-				if (level.getFluidState(neighborPos).getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.LAVA) ||
-						level.getFluidState(neighborPos).getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.FLOWING_LAVA)) {
-					touchingLava = true;
-					break;
-				}
-			}
+        // Проверка, есть ли лава на уровне текущем или выше уровня с душами
+        boolean lavaOnLevelOrHigher = false;
+        for (Direction direction : Direction.values()) {
+            BlockPos neighborPos = pos.relative(direction);
+            FluidState neighborFluidState = level.getFluidState(neighborPos);
+            if (neighborFluidState.getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.LAVA) ||
+                neighborFluidState.getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.FLOWING_LAVA)) {
+                if (neighborPos.getY() >= pos.getY()) {
+                    lavaOnLevelOrHigher = true;
+                    break;
+                }
+            }
+        }
 
-			if (touchingLava) {
-				// Превращаем жидкость в SOUL_SOIL при контакте с лавой
-				level.setBlockAndUpdate(pos, Blocks.SOUL_SOIL.defaultBlockState());
-				return;
-			}
-			super.spread(level, pos, fluidState);
-		}
-	}
+        // Если лава на текущем уровне или выше, заменяем жидкие души на черный камень
+        if (lavaOnLevelOrHigher) {
+            level.setBlockAndUpdate(pos, Blocks.BLACKSTONE.defaultBlockState());
+            // Звук при установке черного камня с громкостью 70% и эффектом погашения лавы
+            level.playSound(null, pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 0.7F, 1.0F);
+        } else {
+            // Если лава снизу
+            if (level.getFluidState(blockposDown).getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.LAVA) ||
+                level.getFluidState(blockposDown).getType().defaultFluidState().is(net.minecraft.world.level.material.Fluids.FLOWING_LAVA)) {
+                
+                // Заменяем лаву на черный камень на блоке ниже
+                level.setBlockAndUpdate(blockposDown, Blocks.BLACKSTONE.defaultBlockState());
+                // Звук при установке черного камня с громкостью 70% и эффектом погашения лавы
+                level.playSound(null, blockposDown, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 0.7F, 1.0F);
+            }
+        }
+
+        // Продолжаем распространение жидкости (она должна течь дальше)
+        super.spread(level, pos, fluidState);
+    } else {
+        super.spread(level, pos, fluidState);
+    }
+}
+
+
+
+
+
+
+
 
 	public static class Flowing extends WeightedSoulsFluid {
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {

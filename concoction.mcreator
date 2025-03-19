@@ -2539,7 +2539,7 @@
       "name": "SweetnessWork",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "sweetness_work",
       "metadata": {
         "files": [
@@ -4410,10 +4410,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:CottonBlock",
       "~CUSTOM:GreenOnionBlock",
@@ -4422,10 +4418,9 @@
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
     ],
-    "ITEMS:minecraft:flowers": [
+    "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint",
-      "CUSTOM:Sunflower",
-      "CUSTOM:WildOnion"
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -4438,6 +4433,11 @@
       "CUSTOM:CropCabbage",
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
+    ],
+    "ITEMS:minecraft:flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower",
+      "CUSTOM:WildOnion"
     ],
     "BLOCKS:minecraft:soul_speed_blocks": [
       "CUSTOM:Soulland"
@@ -4561,17 +4561,17 @@
   "language_map": {
     "ru_ru": {
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.mint": "Мята",
-      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
       "subtitles.butter_thickens": "Масло загустело",
+      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
+      "block.concoction.mint": "Мята",
       "item.concoction.pinecone": "Шишка",
       "item.concoction.corn_oil": "Кукурузное масло",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "block.concoction.wild_potato": "Дикий картофель",
-      "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
-      "item.concoction.cabbage_seeds": "Семена капусты",
+      "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.tomato": "Томат",
+      "item.concoction.cabbage_seeds": "Семена капусты",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.crop_onion": "Лук",
@@ -4580,8 +4580,8 @@
       "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
-      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
+      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
@@ -4589,12 +4589,12 @@
       "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
       "item.concoction.dough": "Тесто",
       "fluid.concoction.weighted_souls": "Призрачная жижа",
-      "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
+      "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.onion_block": "Блок лука",
       "item.concoction.mint_seeds": "Семена мяты",
-      "block.concoction.soulland": "Пашня душ",
       "item.concoction.spicy_pepper_seeds": "Семена жгучего перца",
+      "block.concoction.soulland": "Пашня душ",
       "item.minecraft.tipped_arrow.effect.snowflake": "Стрела мороза",
       "block.concoction.pillow_block": "Белая подушка",
       "item.minecraft.splash_potion.effect.flame_extended": "Взрывное зелье жжения",
@@ -4607,8 +4607,8 @@
       "item.concoction.fried_egg": "Яичница",
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "item.concoction.tomato_soup": "Томатный суп",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "item.concoction.omurice": "Рисовый омлет",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "block.concoction.gray_pillow_block": "Серая подушка",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
@@ -4649,8 +4649,8 @@
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
-      "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
+      "item.concoction.hanami_dango": "Ханами данго",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "block.concoction.corn_block": "Блок кукурузы  ",
       "item.concoction.onion": "Лук",
@@ -4867,7 +4867,7 @@
       "block.concoction.wild_cabbage": "Wild Cabbage",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
-      "block.concoction.wandering_trader_carpet": "Wandering Trader Carpet",
+      "block.concoction.wandering_trader_carpet": "Wandering Trader\u0027s Carpet",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "block.concoction.crop_rice": "Crop Rice",
       "advancements.brain_freeze_obtain_achievement.title": "Chill Out",

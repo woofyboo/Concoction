@@ -41,7 +41,7 @@ public class SweetnessWorkProcedure {
 					int foodLevel = _player.getFoodData().getFoodLevel();
 					int hunger = 20 - foodLevel;
 					int effectLevel = _player.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier();
-					float percents = min(0.35f + 0.05f * effectLevel, 1f);
+					float percents = min(0.25f + 0.15f * effectLevel, 1f);
 					int newFoodLevel = ceil(foodLevel + hunger * percents);
 					_player.getFoodData().setFoodLevel(newFoodLevel);
 				}
