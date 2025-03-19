@@ -15,6 +15,10 @@ import net.mcreator.concoction.init.ConcoctionModMobEffects;
 
 import javax.annotation.Nullable;
 
+import static com.google.common.primitives.Floats.max;
+import static com.google.common.primitives.Floats.min;
+import static net.minecraft.util.Mth.ceil;
+
 @EventBusSubscriber
 public class SweetnessWorkProcedure {
 	@SubscribeEvent
@@ -33,9 +37,16 @@ public class SweetnessWorkProcedure {
 			return;
 		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ConcoctionModMobEffects.SWEETNESS)) {
 			if (itemstack.has(DataComponents.FOOD)) {
-				if (entity instanceof Player _player)
-					_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0)
-							+ (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ConcoctionModMobEffects.SWEETNESS) ? _livEnt.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier() : 0) + 1));
+				if (entity instanceof Player _player) {
+					int foodLevel = _player.getFoodData().getFoodLevel();
+					int hunger = 20 - foodLevel;
+					int effectLevel = _player.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier();
+					float percents = min(0.35f + 0.05f * effectLevel, 1f);
+					int newFoodLevel = ceil(foodLevel + hunger * percents);
+					_player.getFoodData().setFoodLevel(newFoodLevel);
+				}
+
+//					_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + (entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ConcoctionModMobEffects.SWEETNESS) ? _livEnt.getEffect(ConcoctionModMobEffects.SWEETNESS).getAmplifier() : 0) + 1));
 			}
 		}
 	}

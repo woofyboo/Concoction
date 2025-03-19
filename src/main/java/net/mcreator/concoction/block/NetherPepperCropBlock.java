@@ -35,6 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.CommonHooks;
 import net.neoforged.neoforge.common.SpecialPlantable;
 import net.minecraft.util.RandomSource;
 import net.neoforged.api.distmarker.Dist;
@@ -75,6 +76,9 @@ public class NetherPepperCropBlock extends CropBlock {
 	@Override
 	public boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
 		return p_52302_.getBlock() instanceof SoullandBlock;
+	}
+	protected void randomTick(BlockState p_221050_, ServerLevel p_221051_, BlockPos p_221052_, RandomSource p_221053_) {
+		super.randomTick(p_221050_, p_221051_, p_221052_, p_221053_);
 	}
 
 	@Override

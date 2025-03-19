@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -35,8 +37,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
+import net.neoforged.neoforge.common.util.TriState;
 
 import java.util.Objects;
+
+import static net.mcreator.concoction.init.ConcoctionModBlocks.NETHER_PEPPER_CROP;
 
 // Класс растения, наследующий от CropBlock
 public class CropSpicyPepperBlock extends CropBlock {
@@ -60,6 +65,16 @@ public class CropSpicyPepperBlock extends CropBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
 	}
 
+	@Override
+	public boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
+		return p_52302_.getBlock() instanceof FarmBlock || p_52302_.getBlock() instanceof SoullandBlock;
+	}
+
+	protected void randomTick(BlockState p_221050_, ServerLevel p_221051_, BlockPos p_221052_, RandomSource p_221053_) {
+		if (p_221051_.isAreaLoaded(p_221052_, 1) && p_221051_.getBlockState(p_221052_.below()).getBlock() instanceof SoullandBlock) {
+			p_221051_.setBlock(p_221052_, NETHER_PEPPER_CROP.get().defaultBlockState(), 2);
+		}
+	}
 
 	@Override
 	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
