@@ -37,13 +37,13 @@ public class SmallPillowBlock extends SlabBlock{
 public void updateEntityAfterFallOn(BlockGetter block, Entity player) {
     this.bounceUp(player);
     summonLeafParticles(player);
-    
-    // Assuming `damage` is based on the fall distance, you can adjust the logic here
-    float fallDistance = player.fallDistance; // Getting fall distance
-    float damage = Math.min(fallDistance, 10.0F); // You can define a max damage limit (e.g., 10)
-    
-    player.causeFallDamage(damage, 0.0F, player.damageSources().fall());
 }
+
+@Override
+	public void fallOn(Level p_154567_, BlockState p_154568_, BlockPos p_154569_, Entity player, float damage) {
+			player.causeFallDamage(damage, 0.0F, p_154567_.damageSources().fall());
+		
+	}
 
 	
 
