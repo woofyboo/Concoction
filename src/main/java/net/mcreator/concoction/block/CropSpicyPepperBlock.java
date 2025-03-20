@@ -71,12 +71,14 @@ public class CropSpicyPepperBlock extends CropBlock {
         return p_52302_.getBlock() instanceof FarmBlock || p_52302_.getBlock() instanceof SoullandBlock;
     }
 
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        // Fixed the undefined variables here
-        if (level.isAreaLoaded(pos, 1) && level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
-            level.setBlock(pos, NETHER_PEPPER_CROP.get().defaultBlockState(), 2);
-        }
-    }
+	   protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+	    // Ensure the area is loaded and the block below is a SoullandBlock
+	    if (level.isAreaLoaded(pos, 1) && level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
+	            level.setBlock(pos, NETHER_PEPPER_CROP.get().defaultBlockState(), 2);
+	        }
+	    super.randomTick(state, level, pos, random); // Ensure normal crop growth occurs
+		}
+
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {

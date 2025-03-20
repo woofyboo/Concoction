@@ -27,21 +27,25 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SmallPillowBlock extends SlabBlock {
+public class SmallPillowBlock extends SlabBlock{
 	public SmallPillowBlock() {
 		super(Properties.of().ignitedByLava().mapColor(MapColor.WOOL).sound(SoundType.WOOL).strength(0.2f, 1f));
 	}
 
 
 	@Override
-	public void updateEntityAfterFallOn(BlockGetter block, Entity player) {
-		if (player.isSuppressingBounce()) {
-			super.updateEntityAfterFallOn(block, player);
-		} else {
-			this.bounceUp(player);
-		}
-		summonLeafParticles(player);
-	}
+public void updateEntityAfterFallOn(BlockGetter block, Entity player) {
+    this.bounceUp(player);
+    summonLeafParticles(player);
+    
+    // Assuming `damage` is based on the fall distance, you can adjust the logic here
+    float fallDistance = player.fallDistance; // Getting fall distance
+    float damage = Math.min(fallDistance, 10.0F); // You can define a max damage limit (e.g., 10)
+    
+    player.causeFallDamage(damage, 0.0F, player.damageSources().fall());
+}
+
+	
 
 	private void summonLeafParticles(Entity player) {
 		if (player.level() instanceof ServerLevel _level) {
