@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.block;
 
+import java.lang.reflect.Method;
 import net.mcreator.concoction.ConcoctionMod;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -100,25 +101,47 @@ public class SoullandBlock extends Block {
 
 	@Override
 	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-    super.randomTick(blockstate, world, pos, random);
-    boolean charged = blockstate.getValue(SOULCHARGED); // Считываем текущее состояние SOULCHARGED
-    boolean nearSoul = isNearSoul(world, pos); // Проверяем, есть ли рядом души
+	    super.randomTick(blockstate, world, pos, random);
+	    
+	    boolean charged = blockstate.getValue(SOULCHARGED); // Check if the block is soul-charged
+	    boolean nearSoul = isNearSoul(world, pos); // Check if there's a soul nearby
+	
+	    if (!nearSoul) {
+	        // If no soul is near and the block is charged, reset the charge
+	        if (charged) {
+	            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
+	        } else if (!shouldMaintainFarmland(world, pos)) {
+	            // If not charged and no need to maintain farmland, turn it to soil
+	            turnToSoil(null, blockstate, world, pos);
+	        }
+	    } else {
+	        // If souls are nearby, charge the block
+	        if (!charged) {
+	            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
+	        }
+	
+	        // If the block is soul-charged, speed up crop growth (5x faster)
+	        if (charged) {
+	            // Iterate over crops nearby and trigger growth multiple times (5x faster)
+	            for (BlockPos offset : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+	                BlockState nearbyState = world.getBlockState(offset);
+	                if (nearbyState.getBlock() instanceof CropBlock cropBlock) {
+	                    try {
+	                        // Use reflection to access the protected randomTick method
+	                        Method randomTickMethod = CropBlock.class.getDeclaredMethod("randomTick", BlockState.class, ServerLevel.class, BlockPos.class, RandomSource.class);
+	                        randomTickMethod.setAccessible(true);
+	                        // Invoke the randomTick method using reflection
+	                        randomTickMethod.invoke(cropBlock, nearbyState, world, offset, random);
+	                    } catch (Exception e) {
+	                        e.printStackTrace(); // Handle any exceptions that may occur
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+	
 
-    if (!nearSoul) {
-        // Если рядом нет душ и блок заряжен, сбрасываем заряд
-        if (charged) {
-            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
-        } else if (!shouldMaintainFarmland(world, pos)) {
-            // Если блок не заряжен и не должен оставаться как сельхозземля, меняем его на почву
-            turnToSoil(null, blockstate, world, pos);
-        }
-    } else {
-        // Если рядом есть души, и блок не заряжен, то заряжаем его
-        if (!charged) {
-            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
-        }
-    }
-}
 
 
 	@Override
