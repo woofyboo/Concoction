@@ -1,0 +1,10 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "special_persian_carpet_half"
+      },
+      "name": "default"
+    }
+  }
+}

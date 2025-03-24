@@ -1,6 +1,9 @@
 {
-  "parent": "minecraft:block/carpet",
+  "parent": "concoction:custom/special_carpet",
   "textures": {
-    "wool": "concoction:block/special_persian_carpet_half"
-  }
+    "all": "concoction:block/special_persian_carpet_half",
+    "particle": "concoction:block/special_persian_carpet_half",
+    "0": "concoction:block/special_persian_carpet_half"
+  },
+  "render_type": "solid"
 }
