@@ -16,19 +16,19 @@
       "model": "concoction:block/wandering_trader_carpet",
       "y": 90
     },
-    "facing=north,part=feet": {
+    "facing=north,part=foot": {
       "model": "concoction:block/wandering_trader_carpet",
       "y": 0
     },
-    "facing=east,part=feet": {
+    "facing=east,part=foot": {
       "model": "concoction:block/wandering_trader_carpet",
       "y": 90
     },
-    "facing=south,part=feet": {
+    "facing=south,part=foot": {
       "model": "concoction:block/wandering_trader_carpet",
       "y": 180
     },
-    "facing=west,part=feet": {
+    "facing=west,part=foot": {
       "model": "concoction:block/wandering_trader_carpet",
       "y": 270
     }
