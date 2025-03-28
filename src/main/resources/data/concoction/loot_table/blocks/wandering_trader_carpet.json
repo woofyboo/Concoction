@@ -1,8 +1,9 @@
 {
   "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/wandering_trader_carpet",
   "pools": [
     {
-      "bonus_rolls": 0,
+      "rolls": 1.0,
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
@@ -11,20 +12,9 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "concoction:wandering_trader_carpet",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "part": "head"
-              }
-            }
-          ],
           "name": "concoction:wandering_trader_carpet"
         }
-      ],
-      "rolls": 1
+      ]
     }
-  ],
-  "random_sequence": "concoction:blocks/wandering_trader_carpet"
+  ]
 }
