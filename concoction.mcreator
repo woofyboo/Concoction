@@ -4338,23 +4338,6 @@
         ]
       },
       "path": "~/cotton/carpet"
-    },
-    {
-      "name": "LightGrayWovenCarpet",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "light_gray_woven_carpet",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/block/light_gray_woven_carpet.json",
-          "src/main/resources/data/concoction/loot_table/blocks/light_gray_woven_carpet.json",
-          "src/main/resources/assets/concoction/blockstates/light_gray_woven_carpet.json",
-          "src/main/java/net/mcreator/concoction/block/LightGrayWovenCarpetBlock.java",
-          "src/main/resources/assets/concoction/models/item/light_gray_woven_carpet.json"
-        ]
-      },
-      "path": "~/cotton/carpet"
     }
   ],
   "variable_elements": [],
@@ -4593,7 +4576,6 @@
   "language_map": {
     "ru_ru": {
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.light_gray_woven_carpet": "White Woven Carpet",
       "block.concoction.mint": "Мята",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
       "subtitles.butter_thickens": "Масло загустело",
@@ -4796,7 +4778,6 @@
     },
     "en_us": {
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "block.concoction.light_gray_woven_carpet": "White Woven Carpet",
       "subtitles.butter_thickens": "Butter thickens",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",

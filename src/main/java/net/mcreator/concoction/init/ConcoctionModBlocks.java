@@ -30,7 +30,6 @@ import net.mcreator.concoction.block.OnionBlockBlock;
 import net.mcreator.concoction.block.NetherPepperCropBlock;
 import net.mcreator.concoction.block.MintChocolateCakeBlock;
 import net.mcreator.concoction.block.MintBlock;
-import net.mcreator.concoction.block.LightGrayWovenCarpetBlock;
 import net.mcreator.concoction.block.GreenOnionBlockBlock;
 import net.mcreator.concoction.block.CropTomatoBlock;
 import net.mcreator.concoction.block.CropSpicyPepperBlock;
@@ -81,10 +80,8 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WEIGHTED_SOULS = REGISTRY.register("weighted_souls", WeightedSoulsBlock::new);
 	public static final DeferredBlock<Block> SOUL_ICE = REGISTRY.register("soul_ice", SoulIceBlock::new);
 	public static final DeferredBlock<Block> WANDERING_TRADER_CARPET = REGISTRY.register("wandering_trader_carpet", WanderingTraderCarpetBlock::new);
-	public static final DeferredBlock<Block> WHITE_WOVEN_CARPET = REGISTRY.register("white_woven_carpet", WhiteWovenCarpetBlock::new);
-	public static final DeferredBlock<Block> LIGHT_GRAY_WOVEN_CARPET = REGISTRY.register("light_gray_woven_carpet", LightGrayWovenCarpetBlock::new);
-	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> WHITE_WOVEN_CARPET = REGISTRY.register("wandering_trader_carpet", WanderingTraderCarpetBlock::new);
+	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlockBlock::new);
