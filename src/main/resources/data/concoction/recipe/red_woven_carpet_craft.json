@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "red_woven_carpet",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "tag": "concoction:woven_carpets"
+    }
+  ],
+  "result": {
+    "id": "concoction:red_woven_carpet",
+    "count": 1
+  }
+}

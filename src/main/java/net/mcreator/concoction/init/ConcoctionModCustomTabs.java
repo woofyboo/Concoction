@@ -149,7 +149,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 
-				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
 				tabData.accept(ConcoctionModItems.WHITE_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.GRAY_WOVEN_CARPET.get());
@@ -166,6 +165,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PURPLE_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.MAGENTA_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.PINK_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
 				
 //Инструменты, оружие, броня
 
