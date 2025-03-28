@@ -1,0 +1,9 @@
+{
+  "parent": "concoction:custom/special_carpet",
+  "textures": {
+    "all": "concoction:block/white_woven_carpet_bottom",
+    "particle": "concoction:block/white_woven_carpet_bottom",
+    "0": "concoction:block/white_woven_carpet_bottom"
+  },
+  "render_type": "solid"
+}

@@ -148,6 +148,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PURPLE_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_MAGENTA_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
+				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
 //Инструменты, оружие, броня
 
 
