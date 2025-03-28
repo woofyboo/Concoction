@@ -1,9 +1,0 @@
-{
-  "parent": "concoction:custom/special_carpet",
-  "textures": {
-    "all": "concoction:block/special_persian_carpet_half",
-    "particle": "concoction:block/special_persian_carpet_half",
-    "0": "concoction:block/special_persian_carpet_half"
-  },
-  "render_type": "solid"
-}

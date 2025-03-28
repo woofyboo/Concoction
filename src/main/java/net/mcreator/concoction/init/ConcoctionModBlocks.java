@@ -17,7 +17,6 @@ import net.mcreator.concoction.block.WildCottonBlock;
 import net.mcreator.concoction.block.WildCarrotBlock;
 import net.mcreator.concoction.block.WildCabbageBlock;
 import net.mcreator.concoction.block.WildBeetrootBlock;
-import net.mcreator.concoction.block.WhiteWovenCarpetBlock;
 import net.mcreator.concoction.block.WeightedSoulsBlock;
 import net.mcreator.concoction.block.WanderingTraderCarpetBlock;
 import net.mcreator.concoction.block.SunflowerBlock;
@@ -81,7 +80,6 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> SOUL_ICE = REGISTRY.register("soul_ice", SoulIceBlock::new);
 	public static final DeferredBlock<Block> WANDERING_TRADER_CARPET = REGISTRY.register("wandering_trader_carpet", WanderingTraderCarpetBlock::new);
 	// Start of user code block custom blocks
-	public static final DeferredBlock<Block> WHITE_WOVEN_CARPET = REGISTRY.register("wandering_trader_carpet", WanderingTraderCarpetBlock::new);
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
 	public static final DeferredBlock<Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlockBlock::new);
