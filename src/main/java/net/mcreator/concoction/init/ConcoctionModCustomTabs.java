@@ -150,7 +150,23 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SMALL_PINK_PILLOW_BLOCK.get());
 
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
-
+				tabData.accept(ConcoctionModItems.WHITE_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.LIGHT_GRAY_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.GRAY_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.BLACK_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.BROWN_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.RED_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.ORANGE_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.YELLOW_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.LIME_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.GREEN_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.CYAN_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.LIGHT_BLUE_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.BLUE_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.PURPLE_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.MAGENTA_WOVEN_CARPET.get());
+				tabData.accept(ConcoctionModItems.PINK_WOVEN_CARPET.get());
+				
 //Инструменты, оружие, броня
 
 

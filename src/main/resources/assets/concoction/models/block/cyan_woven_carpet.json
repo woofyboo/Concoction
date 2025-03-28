@@ -1,0 +1,9 @@
+{
+  "parent": "concoction:custom/special_carpet",
+  "textures": {
+    "all": "concoction:block/cyan_woven_carpet_top",
+    "particle": "concoction:block/cyan_woven_carpet_top",
+    "0": "concoction:block/cyan_woven_carpet_top"
+  },
+  "render_type": "solid"
+}

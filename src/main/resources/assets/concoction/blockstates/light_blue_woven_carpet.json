@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,part=head": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 180
+    },
+    "facing=east,part=head": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 270
+    },
+    "facing=south,part=head": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 0
+    },
+    "facing=west,part=head": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 90
+    },
+    "facing=north,part=foot": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 0
+    },
+    "facing=east,part=foot": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 90
+    },
+    "facing=south,part=foot": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 180
+    },
+    "facing=west,part=foot": {
+      "model": "concoction:block/light_blue_woven_carpet",
+      "y": 270
+    }
+  }
+}
