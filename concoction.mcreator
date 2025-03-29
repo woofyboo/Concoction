@@ -4814,6 +4814,19 @@
         ]
       },
       "path": "~/cotton/carpet"
+    },
+    {
+      "name": "FabricBook",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fabric_book",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/fabric_book.json"
+        ]
+      },
+      "path": "~/cotton"
     }
   ],
   "variable_elements": [],
