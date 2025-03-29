@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "light_blue_woven_carpet",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:light_blue_dye"
+    },
+    {
+      "tag": "concoction:woven_carpets"
+    }
+  ],
+  "result": {
+    "id": "concoction:light_blue_woven_carpet",
+    "count": 1
+  }
+}

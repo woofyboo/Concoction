@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "woven_carpet",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:fabric"
+    }
+  },
+  "result": {
+    "id": "concoction:white_woven_carpet",
+    "count": 1
+  }
+}

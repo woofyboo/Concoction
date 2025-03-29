@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "white_woven_carpet",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "tag": "concoction:woven_carpets"
+    }
+  ],
+  "result": {
+    "id": "concoction:white_woven_carpet",
+    "count": 1
+  }
+}

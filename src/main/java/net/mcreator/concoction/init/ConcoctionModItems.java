@@ -157,6 +157,22 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WEIGHTED_SOULS_BUCKET = REGISTRY.register("weighted_souls_bucket", WeightedSoulsItem::new);
 	public static final DeferredItem<Item> SOUL_ICE = block(ConcoctionModBlocks.SOUL_ICE);
 	public static final DeferredItem<Item> WANDERING_TRADER_CARPET = block(ConcoctionModBlocks.WANDERING_TRADER_CARPET);
+	public static final DeferredItem<Item> WHITE_WOVEN_CARPET = block(ConcoctionModBlocks.WHITE_WOVEN_CARPET);
+	public static final DeferredItem<Item> LIGHT_GRAY_WOVEN_CARPET = block(ConcoctionModBlocks.LIGHT_GRAY_WOVEN_CARPET);
+	public static final DeferredItem<Item> GRAY_WOVEN_CARPET = block(ConcoctionModBlocks.GRAY_WOVEN_CARPET);
+	public static final DeferredItem<Item> BLACK_WOVEN_CARPET = block(ConcoctionModBlocks.BLACK_WOVEN_CARPET);
+	public static final DeferredItem<Item> BROWN_WOVEN_CARPET = block(ConcoctionModBlocks.BROWN_WOVEN_CARPET);
+	public static final DeferredItem<Item> RED_WOVEN_CARPET = block(ConcoctionModBlocks.RED_WOVEN_CARPET);
+	public static final DeferredItem<Item> ORANGE_WOVEN_CARPET = block(ConcoctionModBlocks.ORANGE_WOVEN_CARPET);
+	public static final DeferredItem<Item> YELLOW_WOVEN_CARPET = block(ConcoctionModBlocks.YELLOW_WOVEN_CARPET);
+	public static final DeferredItem<Item> LIME_WOVEN_CARPET = block(ConcoctionModBlocks.LIME_WOVEN_CARPET);
+	public static final DeferredItem<Item> GREEN_WOVEN_CARPET = block(ConcoctionModBlocks.GREEN_WOVEN_CARPET);
+	public static final DeferredItem<Item> CYAN_WOVEN_CARPET = block(ConcoctionModBlocks.CYAN_WOVEN_CARPET);
+	public static final DeferredItem<Item> LIGHT_BLUE_WOVEN_CARPET = block(ConcoctionModBlocks.LIGHT_BLUE_WOVEN_CARPET);
+	public static final DeferredItem<Item> BLUE_WOVEN_CARPET = block(ConcoctionModBlocks.BLUE_WOVEN_CARPET);
+	public static final DeferredItem<Item> PURPLE_WOVEN_CARPET = block(ConcoctionModBlocks.PURPLE_WOVEN_CARPET);
+	public static final DeferredItem<Item> MAGENTA_WOVEN_CARPET = block(ConcoctionModBlocks.MAGENTA_WOVEN_CARPET);
+	public static final DeferredItem<Item> PINK_WOVEN_CARPET = block(ConcoctionModBlocks.PINK_WOVEN_CARPET);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

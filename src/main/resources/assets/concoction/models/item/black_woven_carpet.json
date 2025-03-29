@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "concoction:item/black_carpet_roll"
+  },
+  "render_type": "translucent"
+}

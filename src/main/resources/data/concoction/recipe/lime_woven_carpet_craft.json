@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "lime_woven_carpet",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:lime_dye"
+    },
+    {
+      "tag": "concoction:woven_carpets"
+    }
+  ],
+  "result": {
+    "id": "concoction:lime_woven_carpet",
+    "count": 1
+  }
+}

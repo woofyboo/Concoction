@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:white_woven_carpet",
+    "concoction:light_gray_woven_carpet",
+    "concoction:gray_woven_carpet",
+    "concoction:black_woven_carpet",
+    "concoction:brown_woven_carpet",
+    "concoction:red_woven_carpet",
+    "concoction:orange_woven_carpet",
+    "concoction:yellow_woven_carpet",
+    "concoction:lime_woven_carpet",
+    "concoction:green_woven_carpet",
+    "concoction:cyan_woven_carpet",
+    "concoction:light_blue_woven_carpet",
+    "concoction:blue_woven_carpet",
+    "concoction:purple_woven_carpet",
+    "concoction:magenta_woven_carpet",
+    "concoction:pink_woven_carpet"
+  ]
+}

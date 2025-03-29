@@ -4297,7 +4297,7 @@
     {
       "name": "WanderingTraderCarpet",
       "type": "block",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "wandering_trader_carpet",
       "metadata": {
@@ -4310,6 +4310,523 @@
         ]
       },
       "path": "~/cotton/carpet"
+    },
+    {
+      "name": "WhiteWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "white_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/white_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/white_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/WhiteWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/white_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/white_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LightGrayWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "light_gray_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/light_gray_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/light_gray_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/light_gray_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/LightGrayWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/light_gray_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "GrayWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "gray_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/gray_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/gray_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/gray_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/GrayWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/block/gray_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BlackWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "black_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/BlackWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/block/black_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/black_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/black_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/black_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BrownWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "brown_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/BrownWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/blockstates/brown_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/brown_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/brown_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/brown_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "RedWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "red_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/red_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/red_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/red_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/RedWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/blockstates/red_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "OrangeWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "orange_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/OrangeWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/block/orange_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/orange_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/orange_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/orange_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "YellowWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "yellow_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/yellow_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/yellow_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/YellowWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/yellow_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/yellow_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LimeWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "lime_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/lime_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/LimeWovenCarpetBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/lime_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/lime_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/lime_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "GreenWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "green_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/GreenWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/block/green_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/green_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/green_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/green_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "CyanWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cyan_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/CyanWovenCarpetBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/cyan_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/cyan_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/cyan_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/cyan_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LightBlueWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "light_blue_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/LightBlueWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/light_blue_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/light_blue_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/light_blue_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/light_blue_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BlueWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "blue_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/blue_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/blue_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/BlueWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/blue_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/blue_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "PurpleWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "purple_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/purple_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/purple_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/purple_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/purple_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/PurpleWovenCarpetBlock.java"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "MagentaWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "magenta_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/magenta_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/MagentaWovenCarpetBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/magenta_woven_carpet.json",
+          "src/main/resources/assets/concoction/blockstates/magenta_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/item/magenta_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "PinkWovenCarpet",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "pink_woven_carpet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/blockstates/pink_woven_carpet.json",
+          "src/main/java/net/mcreator/concoction/block/PinkWovenCarpetBlock.java",
+          "src/main/resources/assets/concoction/models/item/pink_woven_carpet.json",
+          "src/main/resources/data/concoction/loot_table/blocks/pink_woven_carpet.json",
+          "src/main/resources/assets/concoction/models/block/pink_woven_carpet.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "WanderingTrader",
+      "type": "villagertrade",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "wandering_trader",
+      "metadata": {
+        "files": []
+      },
+      "path": "~/trades"
+    },
+    {
+      "name": "BaseWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "base_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/base_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "WhiteWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "white_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/white_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LightGrayWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "light_gray_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/light_gray_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "GrayWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "gray_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/gray_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BlackWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "black_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/black_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BrownWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "brown_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/brown_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "RedWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "red_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/red_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "OrangeCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "orange_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/orange_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "YellowCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "yellow_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/yellow_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LimeWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "lime_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/lime_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "GreenWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "green_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/green_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "CyanWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cyan_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cyan_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "LightBlueWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "light_blue_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/light_blue_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "BlueWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "blue_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/blue_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "PurpleWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "purple_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/purple_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "MagentaWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "magenta_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/magenta_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "PinkWovenCarpetCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pink_woven_carpet_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/pink_woven_carpet_craft.json"
+        ]
+      },
+      "path": "~/cotton/carpet"
+    },
+    {
+      "name": "FabricBook",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fabric_book",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/fabric_book.json"
+        ]
+      },
+      "path": "~/cotton"
     }
   ],
   "variable_elements": [],
@@ -4428,6 +4945,24 @@
     ],
     "BLOCKS:minecraft:soul_speed_blocks": [
       "CUSTOM:Soulland"
+    ],
+    "ITEMS:mod:woven_carpets": [
+      "CUSTOM:WhiteWovenCarpet",
+      "CUSTOM:LightGrayWovenCarpet",
+      "CUSTOM:GrayWovenCarpet",
+      "CUSTOM:BlackWovenCarpet",
+      "CUSTOM:BrownWovenCarpet",
+      "CUSTOM:RedWovenCarpet",
+      "CUSTOM:OrangeWovenCarpet",
+      "CUSTOM:YellowWovenCarpet",
+      "CUSTOM:LimeWovenCarpet",
+      "CUSTOM:GreenWovenCarpet",
+      "CUSTOM:CyanWovenCarpet",
+      "CUSTOM:LightBlueWovenCarpet",
+      "CUSTOM:BlueWovenCarpet",
+      "CUSTOM:PurpleWovenCarpet",
+      "CUSTOM:MagentaWovenCarpet",
+      "CUSTOM:PinkWovenCarpet"
     ],
     "ITEMS:mod:deepfrying_oil": [
       "CUSTOM:CottonOil",
@@ -4548,6 +5083,7 @@
   "language_map": {
     "ru_ru": {
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
+      "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "subtitles.butter_thickens": "Масло загустело",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву Л",
       "block.concoction.mint": "Мята",
@@ -4579,6 +5115,7 @@
       "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.onion_block": "Блок лука",
+      "block.concoction.light_blue_woven_carpet": "Голубой тканый ковёр",
       "item.concoction.mint_seeds": "Семена мяты",
       "item.concoction.spicy_pepper_seeds": "Семена жгучего перца",
       "block.concoction.soulland": "Пашня душ",
@@ -4594,6 +5131,7 @@
       "item.concoction.fried_egg": "Яичница",
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "item.concoction.tomato_soup": "Томатный суп",
+      "block.concoction.black_woven_carpet": "Чёрный тканый ковёр",
       "item.concoction.omurice": "Рисовый омлет",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
@@ -4601,6 +5139,7 @@
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
       "item.concoction.roasted_pinecone": "Жареная шишка",
+      "block.concoction.purple_woven_carpet": "Фиолетовый тканый ковёр",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Оседающее зелье мороза",
       "block.concoction.mint_chocolate_cake": "Мятно-шоколадный торт",
       "item.concoction.sweet_slime_jelly": "Сладкое слизневое желе",
@@ -4613,17 +5152,20 @@
       "item.concoction.cherry_cookie": "Вишнёвое печенье",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "death.attack.soul_damage": "%1$s слился с душами",
+      "block.concoction.orange_woven_carpet": "Оранжевый тканый ковёр",
       "item.minecraft.tipped_arrow.effect.blooming": "Стрела цветения",
       "subtitles.cauldron_boiling": "Котёл кипит",
       "item.minecraft.splash_potion.effect.blooming_extended": "Взрывное зелье цветения",
       "block.concoction.soul_ice": "Лёд душ",
       "block.concoction.cabbage_block": "Блок капусты",
       "block.concoction.weighted_souls": "Призрачная жижа",
+      "block.concoction.red_woven_carpet": "Красный тканый ковёр",
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.wild_beetroot": "Дикая свекла",
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.salmon_sushi": "Суши из лосося",
+      "block.concoction.blue_woven_carpet": "Синий тканый ковёр",
       "item.concoction.fish_and_chips": "Рыба с картошкой во фритюре",
       "block.concoction.nether_pepper_crop": "Жнерец",
       "item.concoction.golden_corn": "Золотая кукуруза",
@@ -4635,8 +5177,8 @@
       "item_group.concoction.concoction": "Concoction",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
-      "effect.concoction.spicy": "Жгучесть",
       "item.concoction.hanami_dango": "Ханами данго",
+      "effect.concoction.spicy": "Жгучесть",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "block.concoction.corn_block": "Блок кукурузы  ",
       "item.concoction.onion": "Лук",
@@ -4647,13 +5189,15 @@
       "advancements.you_spin_me_round.title": "Земля в иллюминаторе...",
       "item.concoction.cotton_oil": "Хлопковое масло",
       "subtitles.cauldron_cooking": "Котёл мощно кипит",
+      "block.concoction.lime_woven_carpet": "Лаймовый тканый ковёр",
       "block.concoction.wild_cabbage": "Дикая капуста",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
       "subtitles.silence": "",
-      "block.concoction.wandering_trader_carpet": "Ковёр странствующего торговца",
+      "block.concoction.wandering_trader_carpet": "Тканый ковёр странника",
       "item.concoction.minty_slime_jelly": "Мятное слизневое желе",
       "block.concoction.crop_rice": "Рис",
       "advancements.brain_freeze_obtain_achievement.title": "Замораживающее дыхание",
+      "block.concoction.yellow_woven_carpet": "Жёлтый тканый ковёр",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
       "block.concoction.cabbagehead": "Капуста",
       "item.minecraft.lingering_potion.effect.blooming_extended": "Оседающее зелье цветения",
@@ -4669,14 +5213,18 @@
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
+      "block.concoction.brown_woven_carpet": "Коричневый тканый ковёр",
       "block.concoction.black_pillow_block": "Чёрная подушка",
       "item.concoction.spicy_pepper": "Жгучий перец",
       "gui.butter_churn.chance": "20%",
+      "block.concoction.magenta_woven_carpet": "Пурпурный тканый ковёр",
       "item.concoction.bamboo_porkchop_soup": "Свиной суп с бамбуком",
       "effect.concoction.photosynthesis": "Фотосинтез",
       "item.concoction.mashed_potatoes": "Картофельное пюре",
       "item.minecraft.potion.effect.flame": "Зелье жжения",
+      "block.concoction.cyan_woven_carpet": "Бирюзовый тканый ковёр",
       "item.concoction.sunflower_oil": "Подсолнечное масло",
+      "block.concoction.gray_woven_carpet": "Серый тканый ковёр",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Стрела цветения",
       "block.concoction.cotton_block": "Блок хлопчатника",
@@ -4684,6 +5232,7 @@
       "item.concoction.butter_sandwich": "Бутерброд с маслом",
       "item.minecraft.potion.effect.blooming_buffed": "Зелье цветения",
       "item.concoction.vegetable_soup": "Овощной суп",
+      "block.concoction.green_woven_carpet": "Зелёный тканый ковёр",
       "item.concoction.weighted_souls_bucket": "Ведро призрачной жижи",
       "item.concoction.cherry": "Вишня",
       "block.concoction.crop_tomato": "Томат",
@@ -4707,6 +5256,7 @@
       "item.concoction.cabbage_leaf": "Капустный лист",
       "block.concoction.crop_mint": "Мята",
       "death.attack.soul_damage.player": "%1$s продал свою душу чтоб больше не видеть %2$s",
+      "block.concoction.white_woven_carpet": "Белый тканый ковёр",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
       "item.concoction.tropical_sushi": "Суши из тропической рыбы",
@@ -4715,6 +5265,7 @@
       "item.concoction.fabric": "Ткань",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
       "block.concoction.wild_cotton": "Дикий хлопок",
+      "block.concoction.pink_woven_carpet": "Розовый тканый ковёр",
       "block.concoction_brew.mint": "Мята",
       "subtitles.music_disc_hotice": "Играет пластинка",
       "block.concoction.small_red_pillow_block": "Маленькая красная подушка",
@@ -4731,7 +5282,7 @@
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "item.concoction.cotton": "Хлопчатник",
       "block.concoction.spicy_pepper_block": "Блок жгучего перца",
-      "death.attack.soul_damage.item": "%1$s слился с душами пока пытался спастить от %2$s используя %3$s",
+      "death.attack.soul_damage.item": "%1$s слился с душами пока пытался убежать от %2$s используя %3$s",
       "item.minecraft.sweet_berries": "Брусника",
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "item.concoction.raw_noodles": "Сырая лапша",
@@ -4749,17 +5300,18 @@
     },
     "en_us": {
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "block.concoction.mint": "Mint",
-      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+      "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
       "subtitles.butter_thickens": "Butter thickens",
+      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+      "block.concoction.mint": "Mint",
       "item.concoction.pinecone": "Pinecone",
       "item.concoction.corn_oil": "Corn Oil",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "block.concoction.wild_potato": "Wild Potato",
-      "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
-      "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.tomato": "Tomato",
+      "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_onion": "Crop Onion",
@@ -4768,8 +5320,8 @@
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
-      "block.concoction.wild_carrot": "Wild Carrot",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
+      "block.concoction.wild_carrot": "Wild Carrot",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
@@ -4777,12 +5329,13 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "item.concoction.dough": "Dough",
       "fluid.concoction.weighted_souls": "Weighted Souls",
-      "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
+      "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.onion_block": "Onion Block",
+      "block.concoction.light_blue_woven_carpet": "Light Blue Woven Carpet",
       "item.concoction.mint_seeds": "Mint Seeds",
-      "block.concoction.soulland": "Soulland",
       "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
+      "block.concoction.soulland": "Soulland",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
@@ -4795,13 +5348,15 @@
       "item.concoction.fried_egg": "Fried Egg",
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "item.concoction.tomato_soup": "Tomato Soup",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
+      "block.concoction.black_woven_carpet": "Black Woven Carpet",
       "item.concoction.omurice": "Omurice",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
       "item.concoction.roasted_pinecone": "Roasted Pinecone",
+      "block.concoction.purple_woven_carpet": "Purple Woven Carpet",
       "item.minecraft.lingering_potion.effect.snowflake_extended": "Lingering Potion of Snowflake",
       "block.concoction.mint_chocolate_cake": "Mint Chocolate Cake",
       "item.concoction.sweet_slime_jelly": "Sweet Slime Jelly",
@@ -4814,17 +5369,20 @@
       "item.concoction.cherry_cookie": "Cherry Cookie",
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
       "death.attack.soul_damage": "%1$s was consumed by souls",
+      "block.concoction.orange_woven_carpet": "Orange Woven Carpet",
       "item.minecraft.tipped_arrow.effect.blooming": "Arrow of Potion Of Blooming",
       "subtitles.cauldron_boiling": "Cauldron is boiling",
       "item.minecraft.splash_potion.effect.blooming_extended": "Splash Potion of Blooming",
       "block.concoction.soul_ice": "Soul Ice",
       "block.concoction.cabbage_block": "Cabbage Block",
       "block.concoction.weighted_souls": "Weighted Souls",
+      "block.concoction.red_woven_carpet": "Red Woven Carpet",
       "block.concoction.crop_corn": "Crop Corn",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.wild_beetroot": "Wild Beetroot",
       "block.concoction.red_pillow_block": "Red Pillow",
       "item.concoction.salmon_sushi": "Salmon Sushi",
+      "block.concoction.blue_woven_carpet": "Blue Woven Carpet",
       "item.concoction.fish_and_chips": "Fish and Chips",
       "block.concoction.nether_pepper_crop": "Crop Reapepper",
       "item.concoction.golden_corn": "Golden Corn",
@@ -4848,13 +5406,15 @@
       "advancements.you_spin_me_round.title": "You Spin Me Round",
       "item.concoction.cotton_oil": "Cotton Oil",
       "subtitles.cauldron_cooking": "Cauldron is bubbling",
+      "block.concoction.lime_woven_carpet": "Lime Woven Carpet",
       "block.concoction.wild_cabbage": "Wild Cabbage",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
       "subtitles.silence": "",
-      "block.concoction.wandering_trader_carpet": "Wandering Trader\u0027s Carpet",
+      "block.concoction.wandering_trader_carpet": "Wandering Woven Carpet",
       "item.concoction.minty_slime_jelly": "Minty Slime Jelly",
       "block.concoction.crop_rice": "Crop Rice",
       "advancements.brain_freeze_obtain_achievement.title": "Chill Out",
+      "block.concoction.yellow_woven_carpet": "Yellow Woven Carpet",
       "item.concoction.hot_sauce_bottle": "Hot Sauce Bottle",
       "block.concoction.cabbagehead": "Cabbage",
       "item.minecraft.lingering_potion.effect.blooming_extended": "Lingering Potion of Blooming",
@@ -4870,14 +5430,18 @@
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Braised Meat",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
+      "block.concoction.brown_woven_carpet": "Brown Woven Carpet",
       "block.concoction.black_pillow_block": "Black Pillow",
       "item.concoction.spicy_pepper": "Spicy Pepper",
       "gui.butter_churn.chance": "20%",
+      "block.concoction.magenta_woven_carpet": "Magenta Woven Carpet",
       "item.concoction.bamboo_porkchop_soup": "Bamboo Porkchop Soup",
       "effect.concoction.photosynthesis": "Photosynthesis",
       "item.concoction.mashed_potatoes": "Mashed Potatoes",
       "item.minecraft.potion.effect.flame": "Potion of Flame",
+      "block.concoction.cyan_woven_carpet": "Cyan Woven Carpet",
       "item.concoction.sunflower_oil": "Sunflower Oil",
+      "block.concoction.gray_woven_carpet": "Gray Woven Carpet",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Arrow of Potion Of Blooming",
       "block.concoction.cotton_block": "Cotton Bolls Block",
@@ -4885,6 +5449,7 @@
       "item.concoction.butter_sandwich": "Butter Sandwich",
       "item.minecraft.potion.effect.blooming_buffed": "Potion of Blooming",
       "item.concoction.vegetable_soup": "Vegetable Soup",
+      "block.concoction.green_woven_carpet": "Green Woven Carpet",
       "item.concoction.weighted_souls_bucket": "Weighted Souls Bucket",
       "item.concoction.cherry": "Cherries",
       "block.concoction.crop_tomato": "Crop Tomato",
@@ -4908,6 +5473,7 @@
       "item.concoction.cabbage_leaf": "Cabbage Leaf",
       "block.concoction.crop_mint": "Crop Mint",
       "death.attack.soul_damage.player": "%1$s sold their soul to never again see %2$s",
+      "block.concoction.white_woven_carpet": "White Woven Carpet",
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
       "item.concoction.tropical_sushi": "Tropical Sushi",
@@ -4916,6 +5482,7 @@
       "item.concoction.fabric": "Fabric",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
       "block.concoction.wild_cotton": "Wild Cotton",
+      "block.concoction.pink_woven_carpet": "Pink Woven Carpet",
       "block.concoction_brew.mint": "Mint",
       "subtitles.music_disc_hotice": "Music disc is playing",
       "block.concoction.small_red_pillow_block": "Small Red Pillow",
@@ -5025,6 +5592,10 @@
       },
       {
         "name": "general_nether",
+        "children": []
+      },
+      {
+        "name": "trades",
         "children": []
       }
     ]

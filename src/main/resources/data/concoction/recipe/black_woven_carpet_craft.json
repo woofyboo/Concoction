@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "black_woven_carpet",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "tag": "concoction:woven_carpets"
+    }
+  ],
+  "result": {
+    "id": "concoction:black_woven_carpet",
+    "count": 1
+  }
+}

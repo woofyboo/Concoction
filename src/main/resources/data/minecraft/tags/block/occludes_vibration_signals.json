@@ -1,0 +1,39 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:pillow_block",
+    "concoction:pink_pillow_block",
+    "concoction:cyan_pillow_block",
+    "concoction:light_blue_pillow_block",
+    "concoction:magenta_pillow_block",
+    "concoction:black_pillow_block",
+    "concoction:lime_pillow_block",
+    "concoction:orange_pillow_block",
+    "concoction:green_pillow_block",
+    "concoction:red_pillow_block",
+    "concoction:purple_pillow_block",
+    "concoction:light_gray_pillow_block",
+    "concoction:brown_pillow_block",
+    "concoction:yellow_pillow_block",
+    "concoction:blue_pillow_block",
+    "concoction:gray_pillow_block"
+,
+    "concoction:small_white_pillow_block",
+    "concoction:small_black_pillow_block",
+    "concoction:small_gray_pillow_block",
+    "concoction:small_light_gray_pillow_block",
+    "concoction:small_red_pillow_block",
+    "concoction:small_orange_pillow_block",
+    "concoction:small_brown_pillow_block",
+    "concoction:small_yellow_pillow_block",
+    "concoction:small_lime_pillow_block",
+    "concoction:small_cyan_pillow_block",
+    "concoction:small_light_blue_pillow_block",
+    "concoction:small_blue_pillow_block",
+    "concoction:small_magenta_pillow_block",
+    "concoction:small_purple_pillow_block",
+    "concoction:small_pink_pillow_block",
+    "concoction:small_green_pillow_block"
+
+  ]
+}
