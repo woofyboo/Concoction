@@ -110,6 +110,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.GREEN_ONION_BLOCK.get());
 				tabData.accept(ConcoctionModItems.COTTON_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_BLOCK.get());
+				tabData.accept(ConcoctionModItems.CABBAGE_LEAVES_BLOCK.get());
+
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());
 				tabData.accept(ConcoctionModItems.SOULLAND.get());

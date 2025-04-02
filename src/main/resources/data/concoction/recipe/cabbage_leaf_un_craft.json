@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cabbage_leaf",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cabbage_leaves_block"
+    }
+  },
+  "result": {
+    "id": "concoction:cabbage_leaf",
+    "count": 9
+  }
+}

@@ -2,12 +2,12 @@
   "_fv": 73,
   "_type": "block",
   "definition": {
-    "texture": "cabbage_top_block",
-    "textureTop": "cabbage_top_block",
-    "textureLeft": "cabbage_side_block",
-    "textureFront": "cabbage_side_block",
-    "textureRight": "cabbage_side_block",
-    "textureBack": "cabbage_side_block",
+    "texture": "cabbage_leaves_top",
+    "textureTop": "cabbage_leaves_top",
+    "textureLeft": "cabbage_leaves_side",
+    "textureFront": "cabbage_leaves_side",
+    "textureRight": "cabbage_leaves_side",
+    "textureBack": "cabbage_leaves_side",
     "renderType": 10,
     "customModelName": "Normal",
     "rotationMode": 0,
@@ -34,7 +34,7 @@
       }
     ],
     "customProperties": [],
-    "name": "Cabbage Block",
+    "name": "Cabbage Leaves Block",
     "specialInformation": {
       "fixedValue": []
     },
@@ -76,7 +76,7 @@
     "slipperiness": 0.6,
     "speedFactor": 1.0,
     "jumpFactor": 1.0,
-    "reactionToPushing": "DESTROY",
+    "reactionToPushing": "NORMAL",
     "isNotColidable": false,
     "isCustomSoundType": false,
     "soundOnStep": {

@@ -1,7 +1,6 @@
 
 package net.mcreator.concoction.block;
 
-import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -11,9 +10,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-public class CabbageBlockBlock extends Block {
-	public CabbageBlockBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.BIG_DRIPLEAF).strength(0.2f).pushReaction(PushReaction.DESTROY));
+public class CabbageLeavesBlockBlock extends Block {
+	public CabbageLeavesBlockBlock() {
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN).sound(SoundType.BIG_DRIPLEAF).strength(0.2f));
 	}
 
 	@Override

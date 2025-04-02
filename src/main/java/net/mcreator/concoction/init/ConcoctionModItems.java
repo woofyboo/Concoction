@@ -173,6 +173,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> PURPLE_WOVEN_CARPET = block(ConcoctionModBlocks.PURPLE_WOVEN_CARPET);
 	public static final DeferredItem<Item> MAGENTA_WOVEN_CARPET = block(ConcoctionModBlocks.MAGENTA_WOVEN_CARPET);
 	public static final DeferredItem<Item> PINK_WOVEN_CARPET = block(ConcoctionModBlocks.PINK_WOVEN_CARPET);
+	public static final DeferredItem<Item> CABBAGE_LEAVES_BLOCK = block(ConcoctionModBlocks.CABBAGE_LEAVES_BLOCK);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

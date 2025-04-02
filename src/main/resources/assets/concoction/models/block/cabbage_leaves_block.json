@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/cabbage_leaves_top",
+    "up": "concoction:block/cabbage_leaves_top",
+    "north": "concoction:block/cabbage_leaves_side",
+    "east": "concoction:block/cabbage_leaves_side",
+    "south": "concoction:block/cabbage_leaves_side",
+    "west": "concoction:block/cabbage_leaves_side",
+    "particle": "concoction:block/cabbage_leaves_top"
+  },
+  "render_type": "solid"
+}

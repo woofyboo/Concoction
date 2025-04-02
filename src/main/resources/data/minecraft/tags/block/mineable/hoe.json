@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:cabbage_leaves_block",
     "concoction:cotton_block",
     "concoction:green_onion_block",
     "concoction:onion_block",

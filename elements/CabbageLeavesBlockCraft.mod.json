@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "cabbage_leaves_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      },
+      {
+        "value": "CUSTOM:CabbageLeaf"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:CabbageLeavesBlock"
+    },
+    "name": "cabbage_leaves_block_craft",
+    "namespace": "mod"
+  }
+}
