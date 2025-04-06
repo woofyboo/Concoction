@@ -40,6 +40,6 @@ public class ConcoctionModEntities {
 
 	@SubscribeEvent
 	public static void registerAttributes(EntityAttributeCreationEvent event) {
-		event.put(ConcoctionModEntities.SUNSTRUCK.get(), SunstruckEntity.createAttributes().build());
+		event.put(SUNSTRUCK.get(), SunstruckEntity.createAttributes().build());
 	}
 }
