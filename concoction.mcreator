@@ -4886,6 +4886,19 @@
         ]
       },
       "path": "~/sunflower"
+    },
+    {
+      "name": "SunstruckTransformed",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunstruck_transformed",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/sunstruck_transformed.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -4973,10 +4986,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:CabbageLeavesBlock",
       "~CUSTOM:CottonBlock",
@@ -4986,10 +4995,9 @@
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
     ],
-    "ITEMS:minecraft:flowers": [
+    "BLOCKS:minecraft:tall_flowers": [
       "CUSTOM:Mint",
-      "CUSTOM:Sunflower",
-      "CUSTOM:WildOnion"
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -5002,6 +5010,11 @@
       "CUSTOM:CropCabbage",
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
+    ],
+    "ITEMS:minecraft:flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower",
+      "CUSTOM:WildOnion"
     ],
     "BLOCKS:minecraft:soul_speed_blocks": [
       "CUSTOM:Soulland"
@@ -5154,6 +5167,7 @@
       "item.concoction.pinecone": "Шишка",
       "item.concoction.corn_oil": "Кукурузное масло",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
+      "advancements.sunstruck_transformed.title": "Зомби против растений",
       "block.concoction.wild_potato": "Дикий картофель",
       "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
@@ -5227,7 +5241,7 @@
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
       "block.concoction.wild_beetroot": "Дикая свекла",
-      "item.concoction.sunstruck_spawn_egg": "Sunstruck Spawn Egg",
+      "item.concoction.sunstruck_spawn_egg": "Яйцо призыва выцвевшего",
       "block.concoction.red_pillow_block": "Красная подушка",
       "item.concoction.salmon_sushi": "Суши из лосося",
       "block.concoction.blue_woven_carpet": "Синий тканый ковёр",
@@ -5245,7 +5259,7 @@
       "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
       "block.concoction.blue_pillow_block": "Синяя подушка",
-      "entity.concoction.sunstruck": "Sunstruck",
+      "entity.concoction.sunstruck": "Выцвевший",
       "block.concoction.corn_block": "Блок кукурузы  ",
       "item.concoction.onion": "Лук",
       "advancements.cry_about_it.title": "Вход запрещён",
@@ -5317,6 +5331,7 @@
       "subtitles.barrel_overfilled": "Переполнен",
       "advancements.you_spin_me_round.descr": "Выкрутите масло в маслобойке",
       "item.minecraft.splash_potion.effect.blooming": "Взрывное зелье цветения",
+      "advancements.sunstruck_transformed.descr": "Будьте свидетелем превращения зомби подсолнухом",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "item.concoction.butter": "Сливочное масло",
       "item.concoction.cabbage_leaf": "Капустный лист",
@@ -5368,17 +5383,18 @@
     "en_us": {
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
-      "subtitles.butter_thickens": "Butter thickens",
-      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",
+      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+      "subtitles.butter_thickens": "Butter thickens",
       "item.concoction.pinecone": "Pinecone",
       "item.concoction.corn_oil": "Corn Oil",
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
+      "advancements.sunstruck_transformed.title": "Zombies vs. Plants",
       "block.concoction.wild_potato": "Wild Potato",
-      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cooked_corn": "Cooked Corn",
-      "item.concoction.tomato": "Tomato",
+      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.tomato": "Tomato",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.crop_onion": "Crop Onion",
@@ -5387,8 +5403,8 @@
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
-      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
+      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
@@ -5401,8 +5417,8 @@
       "block.concoction.onion_block": "Onion Block",
       "block.concoction.light_blue_woven_carpet": "Light Blue Woven Carpet",
       "item.concoction.mint_seeds": "Mint Seeds",
-      "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
       "block.concoction.soulland": "Soulland",
+      "item.concoction.spicy_pepper_seeds": "Spicy Pepper Seeds",
       "item.minecraft.tipped_arrow.effect.snowflake": "Arrow of Snowflake",
       "block.concoction.pillow_block": "White Pillow",
       "item.minecraft.splash_potion.effect.flame_extended": "Splash Potion of Flame",
@@ -5416,8 +5432,8 @@
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "item.concoction.tomato_soup": "Tomato Soup",
       "block.concoction.black_woven_carpet": "Black Woven Carpet",
-      "item.concoction.omurice": "Omurice",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
+      "item.concoction.omurice": "Omurice",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "block.concoction.gray_pillow_block": "Gray Pillow",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
@@ -5537,6 +5553,7 @@
       "subtitles.barrel_overfilled": "Overfilled",
       "advancements.you_spin_me_round.descr": "Use butter churn to make butter or oil",
       "item.minecraft.splash_potion.effect.blooming": "Splash Potion of Blooming",
+      "advancements.sunstruck_transformed.descr": "Witness zombie get transformed by a sunflower",
       "advancements.brain_freeze_obtain_achievement.descr": "Experience brain freeze by drinking water after eating minty food",
       "item.concoction.butter": "Dairy Butter",
       "item.concoction.cabbage_leaf": "Cabbage Leaf",

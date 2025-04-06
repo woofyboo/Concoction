@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:sunflower_seeds"
+    },
+    "title": {
+      "translate": "advancements.sunstruck_transformed.title"
+    },
+    "description": {
+      "translate": "advancements.sunstruck_transformed.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sunstruck_transformed_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:core"
+}

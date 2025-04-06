@@ -80,7 +80,7 @@ public class CustomAttackSunflowerGoal extends Goal {
             ++this.transformCounter;
             
             // Добавляем частицы во время трансформации
-            if (this.transformCounter > 0 && this.transformCounter < 10) {
+            if (this.transformCounter > 0 && this.transformCounter < 5) {
                 Level level = this.zombie.level();
                 if (level instanceof ServerLevel serverLevel) {
                     // Зеленые частицы (эффект удобрения)
@@ -94,7 +94,7 @@ public class CustomAttackSunflowerGoal extends Goal {
                 }
             }
 
-            if (this.transformCounter >= 10 && this.zombie.getType().equals(EntityType.ZOMBIE)) {
+            if (this.transformCounter >= 5 && this.zombie.getType().equals(EntityType.ZOMBIE)) {
                 EntityType<?> type = ConcoctionModEntities.SUNSTRUCK.get();
                 var sunstruck = type.create(this.zombie.level());
                 sunstruck.moveTo(this.zombie.getX(), this.zombie.getY(), this.zombie.getZ(), this.zombie.getYRot(), this.zombie.getXRot());
