@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Concoction.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Concoction.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MCreatorWorkspaces.concoction_brew.main.iml" filepath="$PROJECT_DIR$/.idea/modules/MCreatorWorkspaces.concoction_brew.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/concoction_brew.main.iml" filepath="$PROJECT_DIR$/.idea/modules/concoction_brew.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/concoction_brew.test.iml" filepath="$PROJECT_DIR$/.idea/modules/concoction_brew.test.iml" />

@@ -1,6 +1,6 @@
-
 package net.mcreator.concoction.entity;
 
+import net.minecraft.world.entity.monster.Zombie;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 import net.minecraft.world.phys.Vec3;
@@ -28,30 +28,68 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.DamageTypeTags;
 
 import net.mcreator.concoction.init.ConcoctionModEntities;
+import org.jetbrains.annotations.NotNull;
 
-public class SunstruckEntity extends Monster {
-	public SunstruckEntity(EntityType<SunstruckEntity> type, Level world) {
+public class SunstruckEntity extends Zombie {
+	private static final double DAY_SPEED_MULTIPLIER = 1.15;
+	private static final double DAY_DAMAGE_MULTIPLIER = 2.0;
+	private static final double NIGHT_DAMAGE_MULTIPLIER = 0.5;
+	private static final double NIGHT_SPEED_MULTIPLIER = 1.0;
+	
+	private double baseSpeed;
+	private double baseDamage;
+	private boolean wasDay;
+
+	public SunstruckEntity(EntityType<? extends Zombie> type, Level world) {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
+		setCanBreakDoors(true);
+		
+		// Сохраняем базовые значения атрибутов
+		this.baseSpeed = this.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue();
+		this.baseDamage = this.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue();
+		this.wasDay = this.level().isDay();
+		updateAttributes();
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		boolean isDay = this.level().isDay();
+		if (isDay != wasDay) {
+			wasDay = isDay;
+			updateAttributes();
+		}
+	}
+
+	private void updateAttributes() {
+		boolean isDay = this.level().isDay();
+		double speedMultiplier = isDay ? DAY_SPEED_MULTIPLIER : NIGHT_SPEED_MULTIPLIER;
+		double damageMultiplier = isDay ? DAY_DAMAGE_MULTIPLIER : NIGHT_DAMAGE_MULTIPLIER;
+		this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(baseSpeed * speedMultiplier);
+		this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(baseDamage * damageMultiplier);
+	}
+
+	@Override
+	public boolean hurt(@NotNull DamageSource source, float amount) {
+		if (!this.level().isDay() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return super.hurt(source, amount * 2.0f);
+		}
+		return super.hurt(source, amount);
 	}
 
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
-			@Override
-			protected boolean canPerformAttack(LivingEntity entity) {
-				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
-			}
-		});
-		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.8));
-		this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Player.class, false, false));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, WanderingTrader.class, false, false));
+	}
+
+	@Override
+	public boolean isSunSensitive() {
+		return false; // Не горит на солнце
 	}
 
 	@Override
@@ -85,14 +123,12 @@ public class SunstruckEntity extends Monster {
 				RegisterSpawnPlacementsEvent.Operation.REPLACE);
 	}
 
-	public static AttributeSupplier.Builder createAttributes() {
-		AttributeSupplier.Builder builder = Mob.createMobAttributes();
-		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
-		builder = builder.add(Attributes.MAX_HEALTH, 30);
-		builder = builder.add(Attributes.ARMOR, 0);
-		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
-		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
-		return builder;
+	public static AttributeSupplier.@NotNull Builder createAttributes() {
+		return Zombie.createAttributes()
+			.add(Attributes.MAX_HEALTH, 30.0D)
+			.add(Attributes.MOVEMENT_SPEED, 0.25D)
+			.add(Attributes.ATTACK_DAMAGE, 3.0D)
+			.add(Attributes.FOLLOW_RANGE, 16.0D)
+			.add(Attributes.STEP_HEIGHT, 0.6D);
 	}
 }

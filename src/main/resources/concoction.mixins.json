@@ -10,7 +10,8 @@
     "ItemsMixin",
     "LevelMixin",
     "LightningBoltMixin",
-    "PlayerMixin"
+    "PlayerMixin",
+    "ZombieMixin"
   ],
   "client": [
     "GuiMixin"
