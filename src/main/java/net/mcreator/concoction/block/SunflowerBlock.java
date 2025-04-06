@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.ConcoctionMod;
@@ -245,7 +244,7 @@ public class SunflowerBlock extends CropBlock {
 		if (!pLevel.isClientSide() && pState.is(this) && pState.getValue(HALF) == DoubleBlockHalf.LOWER &&
 				neighborState.is(this) && !pState.getValue(FACING).equals(neighborState.getValue(FACING))) {
 			if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-				ConcoctionMod.queueServerWork(RandomSource.create().nextInt(20), () -> {
+				ConcoctionMod.queueServerWork(RandomSource.create().nextInt(40) + 20, () -> {
 					this.rotate(pLevel, pPos, pState);
 				});
 			}

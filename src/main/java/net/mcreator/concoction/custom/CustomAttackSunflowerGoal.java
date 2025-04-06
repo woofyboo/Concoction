@@ -111,7 +111,11 @@ public class CustomAttackSunflowerGoal extends Goal {
                             0.5D, 0.5D, 0.5D,
                             0.2D);
                 }
-                
+
+                if (this.zombie.isBaby() && sunstruck instanceof SunstruckEntity sunstruckEntity){
+                    sunstruckEntity.setBaby(true);
+                }
+
                 // Звуки трансформации
                 this.zombie.playSound(SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, 1.0f, 1.0f);
                 this.zombie.playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 1.0f, 0.8f);

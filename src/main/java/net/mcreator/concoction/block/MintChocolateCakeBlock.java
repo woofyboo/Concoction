@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.block;
 
 import net.minecraft.core.BlockPos;
@@ -8,6 +7,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -56,15 +56,15 @@ public class MintChocolateCakeBlock extends Block {
 			case 5 -> box(11, 0, 1, 15, 8, 15);
 			case 6 -> box(13, 0, 1, 15, 8, 15);
 
-
-
-
 		};
 	}
 
 	@Override
 	protected BlockState updateShape(BlockState p_51213_, Direction p_51214_, BlockState p_51215_, LevelAccessor p_51216_, BlockPos p_51217_, BlockPos p_51218_) {
-		return p_51214_ == Direction.DOWN && !p_51213_.canSurvive(p_51216_, p_51217_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51213_, p_51214_, p_51215_, p_51216_, p_51217_, p_51218_);
+		if (p_51214_ == Direction.DOWN && p_51215_.isAir()) {
+			return Blocks.AIR.defaultBlockState();
+		}
+		return super.updateShape(p_51213_, p_51214_, p_51215_, p_51216_, p_51217_, p_51218_);
 	}
 
 	@Override
@@ -74,6 +74,7 @@ public class MintChocolateCakeBlock extends Block {
 
 	@Override
 	protected boolean canSurvive(BlockState p_51209_, LevelReader p_51210_, BlockPos p_51211_) {
-		return p_51210_.getBlockState(p_51211_.below()).isSolid();
+		BlockState belowState = p_51210_.getBlockState(p_51211_.below());
+		return belowState.isSolid() || belowState.getBlock() instanceof MintChocolateCakeBlock || belowState.getBlock() instanceof CakeBlock;
 	}
 }
