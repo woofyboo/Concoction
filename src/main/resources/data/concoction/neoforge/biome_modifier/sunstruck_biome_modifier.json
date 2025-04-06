@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "sunflower_plains",
+  "spawners": {
+    "type": "concoction:sunstruck",
+    "weight": 20,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

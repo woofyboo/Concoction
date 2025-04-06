@@ -18,6 +18,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.mcreator.concoction.init.ConcoctionModTabs;
 import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.init.ConcoctionModPotions;
@@ -26,6 +27,7 @@ import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModFluids;
 import net.mcreator.concoction.init.ConcoctionModFluidTypes;
+import net.mcreator.concoction.init.ConcoctionModEntities;
 import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModCustomTabs;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
@@ -52,6 +54,8 @@ public class ConcoctionMod {
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.REGISTRY.register(modEventBus);
+		ConcoctionModEntities.REGISTRY.register(modEventBus);
+		ConcoctionModTabs.REGISTRY.register(modEventBus);
 		ConcoctionModPotions.REGISTRY.register(modEventBus);
 		ConcoctionModMobEffects.REGISTRY.register(modEventBus);
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
