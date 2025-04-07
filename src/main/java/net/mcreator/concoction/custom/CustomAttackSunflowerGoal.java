@@ -2,12 +2,15 @@ package net.mcreator.concoction.custom;
 
 import net.mcreator.concoction.entity.SunstruckEntity;
 import net.mcreator.concoction.init.ConcoctionModEntities;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.entity.monster.Zombie;
@@ -22,6 +25,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
 
 public class CustomAttackSunflowerGoal extends Goal {
 
@@ -79,11 +83,9 @@ public class CustomAttackSunflowerGoal extends Goal {
         } else {
             ++this.transformCounter;
             
-            // Добавляем частицы во время трансформации
             if (this.transformCounter > 0 && this.transformCounter < 5) {
                 Level level = this.zombie.level();
                 if (level instanceof ServerLevel serverLevel) {
-                    // Зеленые частицы (эффект удобрения)
                     serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
                             this.zombie.getX(),
                             this.zombie.getY() + 1.0D,
@@ -99,10 +101,9 @@ public class CustomAttackSunflowerGoal extends Goal {
                 var sunstruck = type.create(this.zombie.level());
                 sunstruck.moveTo(this.zombie.getX(), this.zombie.getY(), this.zombie.getZ(), this.zombie.getYRot(), this.zombie.getXRot());
                 
-                // Финальные эффекты трансформации
+
                 Level level = this.zombie.level();
                 if (level instanceof ServerLevel serverLevel) {
-                    // Взрыв зеленых частиц при завершении трансформации
                     serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
                             this.zombie.getX(),
                             this.zombie.getY() + 1.0D,
@@ -110,13 +111,39 @@ public class CustomAttackSunflowerGoal extends Goal {
                             30,
                             0.5D, 0.5D, 0.5D,
                             0.2D);
+
+                    BlockPos zombiePos = this.zombie.blockPosition();
+                    serverLevel.getPlayers(player -> 
+                        player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64 // 8 блоков в квадрате = 64
+                    ).forEach(player -> {
+                        AdvancementHolder adv = player.server.getAdvancements().get(ResourceLocation.parse("concoction:sunstruck_transformed"));
+                        if (adv != null) {
+                            AdvancementProgress _ap = player.getAdvancements().getOrStartProgress(adv);
+                            if (!_ap.isDone()) {
+                                for (String criteria : _ap.getRemainingCriteria())
+                                    player.getAdvancements().award(adv, criteria);
+                            }
+                        }
+                    });
                 }
 
                 if (this.zombie.isBaby() && sunstruck instanceof SunstruckEntity sunstruckEntity){
                     sunstruckEntity.setBaby(true);
                 }
 
-                // Звуки трансформации
+                // Копируем инвентарь зомби в Sunstruck
+                if (sunstruck instanceof SunstruckEntity sunstruckEntity) {
+                    sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand(), this.zombie.getItemInHand(this.zombie.getUsedItemHand()).copy());
+                    sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? 
+                        net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND, 
+                        this.zombie.getItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ? 
+                            net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND).copy());
+
+                    for (net.minecraft.world.entity.EquipmentSlot slot : net.minecraft.world.entity.EquipmentSlot.values()) {
+                        sunstruckEntity.setItemSlot(slot, this.zombie.getItemBySlot(slot).copy());
+                    }
+                }
+
                 this.zombie.playSound(SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, 1.0f, 1.0f);
                 this.zombie.playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 1.0f, 0.8f);
                 

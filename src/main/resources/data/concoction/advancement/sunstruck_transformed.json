@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:sunflower_seeds"
+      "id": "minecraft:sunflower"
     },
     "title": {
       "translate": "advancements.sunstruck_transformed.title"
