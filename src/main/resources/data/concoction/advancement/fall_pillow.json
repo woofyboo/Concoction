@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:fabric"
+    },
+    "title": {
+      "translate": "advancements.fall_pillow.title"
+    },
+    "description": {
+      "translate": "advancements.fall_pillow.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "fall_pillow_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:special_carpet"
+}

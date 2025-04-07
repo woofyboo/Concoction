@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:mint"
+      "id": "concoction:pinecone"
     },
     "title": {
-      "translate": "advancements.brain_freeze_obtain_achievement.title"
+      "translate": "advancements.sapling_from_item.title"
     },
     "description": {
-      "translate": "advancements.brain_freeze_obtain_achievement.descr"
+      "translate": "advancements.sapling_from_item.descr"
     },
     "frame": "task",
     "show_toast": true,
@@ -15,7 +15,7 @@
     "hidden": false
   },
   "criteria": {
-    "brain_freeze_obtain_achievement_0": {
+    "sapling_from_item_0": {
       "trigger": "minecraft:impossible"
     }
   },

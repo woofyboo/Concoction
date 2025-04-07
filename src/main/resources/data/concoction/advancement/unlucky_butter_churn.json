@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:butter"
+    },
+    "title": {
+      "translate": "advancements.unlucky_butter_churn.title"
+    },
+    "description": {
+      "translate": "advancements.unlucky_butter_churn.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "unlucky_butter_churn_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "parent": "concoction:you_spin_me_round"
+}

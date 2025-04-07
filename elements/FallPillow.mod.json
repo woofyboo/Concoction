@@ -2,10 +2,10 @@
   "_fv": 73,
   "_type": "achievement",
   "definition": {
-    "achievementName": "Chill Out",
-    "achievementDescription": "Experience brain freeze by drinking water after eating minty food",
+    "achievementName": "Soft Landing",
+    "achievementDescription": "Fall over a hundred blocks on pillow",
     "achievementIcon": {
-      "value": "CUSTOM:Mint"
+      "value": "CUSTOM:Fabric"
     },
     "background": "Default",
     "disableDisplay": false,
@@ -15,9 +15,9 @@
     "rewardLoot": [],
     "rewardRecipes": [],
     "rewardXP": 0,
-    "achievementType": "task",
+    "achievementType": "challenge",
     "parent": {
-      "value": "CUSTOM:Core"
+      "value": "CUSTOM:SpecialCarpet"
     },
     "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
   }
