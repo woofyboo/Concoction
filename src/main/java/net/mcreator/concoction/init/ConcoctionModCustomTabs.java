@@ -170,7 +170,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
 				
 //Инструменты, оружие, броня
-
+				tabData.accept(ConcoctionModItems.SUNFLOWER_CROWN_HELMET.get());
+				tabData.accept(ConcoctionModItems.SUNSTRUCK_SPAWN_EGG.get());
 
 
 //Особое
@@ -185,7 +186,6 @@ public class ConcoctionModCustomTabs {
 
 				}
 				tabData.accept(ConcoctionModItems.MUSIC_DISC_HOT_ICE.get());
-				tabData.accept(ConcoctionModItems.SUNSTRUCK_SPAWN_EGG.get());
 
 
 			}).build());
