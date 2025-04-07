@@ -16,14 +16,25 @@ import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.datafix.fixes.ItemStackTagFix;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRecipe> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID,
@@ -84,7 +95,10 @@ public class ButterChurnRecipeCategory implements IRecipeCategory<ButterChurnRec
                 new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(recipe.getOutput().get("id"))),
                         Integer.parseInt(recipe.getOutput().get("count")) )
         );
-        builder.addSlot(RecipeIngredientRole.CATALYST, 48, 2).addItemStack(new ItemStack(Items.STICK));
+
+        TagKey<Item> SHOVELS = TagKey.create(Registries.ITEM, ResourceLocation.parse("shovels"));
+        builder.addSlot(RecipeIngredientRole.CATALYST, 48, 2)
+                .addItemStacks(Arrays.asList(Ingredient.of(SHOVELS).getItems()));
 
         ItemStack catalyst = switch (recipe.getOutput().get("interactionType")) {
             case "hand" -> ItemStack.EMPTY;
