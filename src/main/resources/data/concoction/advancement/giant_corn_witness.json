@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:golden_corn"
+    },
+    "title": {
+      "translate": "advancements.giant_corn_witness.title"
+    },
+    "description": {
+      "translate": "advancements.giant_corn_witness.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "giant_corn_witness_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:core"
+}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:spicy_pepper"
+    },
+    "title": {
+      "translate": "advancements.spicy_on_fire.title"
+    },
+    "description": {
+      "translate": "advancements.spicy_on_fire.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "spicy_on_fire_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:core"
+}

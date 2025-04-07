@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:hot_sauce_bottle"
+    },
+    "title": {
+      "translate": "advancements.spicy_remove_many_debuffs.title"
+    },
+    "description": {
+      "translate": "advancements.spicy_remove_many_debuffs.descr"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "spicy_remove_many_debuffs_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:spicy_remove_many_debuffs"
+}
