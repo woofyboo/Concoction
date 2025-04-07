@@ -19,8 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "rewards": {
-    "experience": 100
-  },
   "parent": "concoction:you_spin_me_round"
 }

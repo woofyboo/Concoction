@@ -14,7 +14,7 @@
     "hideIfNotCompleted": true,
     "rewardLoot": [],
     "rewardRecipes": [],
-    "rewardXP": 100,
+    "rewardXP": 0,
     "achievementType": "challenge",
     "parent": {
       "value": "CUSTOM:YouSpinMeRound"

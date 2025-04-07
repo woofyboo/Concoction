@@ -2,20 +2,20 @@
   "_fv": 73,
   "_type": "achievement",
   "definition": {
-    "achievementName": "It's Got a Little Kick",
-    "achievementDescription": "Cleanse five negative statuses at once with spicy food",
+    "achievementName": "Crop 'Til You Drop",
+    "achievementDescription": "Till soul soil with hoe",
     "achievementIcon": {
-      "value": "CUSTOM:HotSauceBottle"
+      "value": "CUSTOM:Soulland"
     },
     "background": "Default",
     "disableDisplay": false,
     "showPopup": true,
     "announceToChat": true,
-    "hideIfNotCompleted": true,
+    "hideIfNotCompleted": false,
     "rewardLoot": [],
     "rewardRecipes": [],
-    "rewardXP": 300,
-    "achievementType": "challenge",
+    "rewardXP": 0,
+    "achievementType": "task",
     "parent": {
       "value": "CUSTOM:SpicyOnFire"
     },

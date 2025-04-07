@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:soulland"
+    },
+    "title": {
+      "translate": "advancements.make_soul_soul.title"
+    },
+    "description": {
+      "translate": "advancements.make_soul_soul.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "make_soul_soul_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:spicy_on_fire"
+}

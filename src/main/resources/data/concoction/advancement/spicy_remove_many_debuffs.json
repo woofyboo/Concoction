@@ -19,5 +19,8 @@
       "trigger": "minecraft:impossible"
     }
   },
+  "rewards": {
+    "experience": 300
+  },
   "parent": "concoction:spicy_on_fire"
 }
