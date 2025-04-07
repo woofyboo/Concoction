@@ -55,7 +55,7 @@ public abstract class SunflowerCrownItem extends ArmorItem {
 
 	public static class Helmet extends SunflowerCrownItem {
 		public Helmet() {
-			super(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(64)));
+			super(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(1)));
 		}
 
 		@Override
