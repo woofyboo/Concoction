@@ -72,10 +72,10 @@ public abstract class SunflowerCrownItem extends ArmorItem {
 
 
 
-			if (entity instanceof Player player && Iterables.contains(player.getArmorSlots(), itemstack)) {
+			if (!entity.level().isClientSide() && entity instanceof Player player && Iterables.contains(player.getArmorSlots(), itemstack)) {
 				//SunflowerCrownHelmetTickEventProcedure.execute(entity);
 
-				++tickCounter;
+				tickCounter++;
 				if (tickCounter % 10 == 0) {
 					player.addEffect(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 15, 0, false, false));
 				}
