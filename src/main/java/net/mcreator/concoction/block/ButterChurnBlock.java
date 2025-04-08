@@ -125,7 +125,7 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 
 						countPlayer.concoction$incrementUnsuccessfulAttempts();
 
-						if (countPlayer.concoction$getUnsuccessfulAttempts() >= 14) {
+						if (countPlayer.concoction$getUnsuccessfulAttempts() >= 24) {
 							Utils.addAchievement(player, "concoction:unlucky_butter_churn");
 							countPlayer.concoction$setUnsuccessfulAttempts(0);
 						}
