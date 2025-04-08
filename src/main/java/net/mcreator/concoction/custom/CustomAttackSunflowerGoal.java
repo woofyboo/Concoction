@@ -2,6 +2,7 @@ package net.mcreator.concoction.custom;
 
 import net.mcreator.concoction.entity.SunstruckEntity;
 import net.mcreator.concoction.init.ConcoctionModEntities;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
@@ -114,16 +115,9 @@ public class CustomAttackSunflowerGoal extends Goal {
 
                     BlockPos zombiePos = this.zombie.blockPosition();
                     serverLevel.getPlayers(player -> 
-                        player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64 // 8 блоков в квадрате = 64
+                        player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64
                     ).forEach(player -> {
-                        AdvancementHolder adv = player.server.getAdvancements().get(ResourceLocation.parse("concoction:sunstruck_transformed"));
-                        if (adv != null) {
-                            AdvancementProgress _ap = player.getAdvancements().getOrStartProgress(adv);
-                            if (!_ap.isDone()) {
-                                for (String criteria : _ap.getRemainingCriteria())
-                                    player.getAdvancements().award(adv, criteria);
-                            }
-                        }
+                        Utils.addAchievement(player, "concoction:sunstruck_transformed");
                     });
                 }
 

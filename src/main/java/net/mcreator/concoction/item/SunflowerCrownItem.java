@@ -1,6 +1,8 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -32,6 +34,7 @@ import com.google.common.collect.Iterables;
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public abstract class SunflowerCrownItem extends ArmorItem {
 	public static Holder<ArmorMaterial> ARMOR_MATERIAL = null;
+	private static int tickCounter = 0;
 
 	@SubscribeEvent
 	public static void registerArmorMaterial(RegisterEvent event) {
@@ -66,8 +69,16 @@ public abstract class SunflowerCrownItem extends ArmorItem {
 		@Override
 		public void inventoryTick(ItemStack itemstack, Level world, Entity entity, int slot, boolean selected) {
 			super.inventoryTick(itemstack, world, entity, slot, selected);
+
+
+
 			if (entity instanceof Player player && Iterables.contains(player.getArmorSlots(), itemstack)) {
-				SunflowerCrownHelmetTickEventProcedure.execute(entity);
+				//SunflowerCrownHelmetTickEventProcedure.execute(entity);
+
+				++tickCounter;
+				if (tickCounter % 10 == 0) {
+					player.addEffect(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 15, 0, false, false));
+				}
 			}
 		}
 	}

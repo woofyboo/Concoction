@@ -2,6 +2,7 @@ package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.interfaces.IPlayerUnsuccessfulAttempts;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -11,6 +12,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -19,7 +21,29 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Objects;
 
 @Mixin(net.minecraft.world.entity.player.Player.class)
-public abstract class PlayerMixin {
+public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
+
+    @Unique
+    private int concoction$unsuccessfulAttempts = 0;
+
+    @Unique
+    public int concoction$getUnsuccessfulAttempts() {
+        return concoction$unsuccessfulAttempts;
+    }
+
+    @Unique
+    public void concoction$setUnsuccessfulAttempts(int unsuccessfulAttempts) {
+        this.concoction$unsuccessfulAttempts = unsuccessfulAttempts;
+    }
+
+    @Unique
+    public void concoction$incrementUnsuccessfulAttempts() {
+        concoction$unsuccessfulAttempts++;
+    }
+    @Unique
+    public void concoction$decrementUnsuccessfulAttempts() {
+        concoction$unsuccessfulAttempts--;
+    }
 
     @Redirect(method = "eat", at = @At(value = "INVOKE",
                                     target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))

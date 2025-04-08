@@ -6,6 +6,9 @@ import net.mcreator.concoction.block.entity.ButterChurnEntity;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
+import net.mcreator.concoction.interfaces.IPlayerUnsuccessfulAttempts;
+import net.mcreator.concoction.mixins.PlayerMixin;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -94,7 +97,16 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 				}
 				pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_CHURN_SPIN.get(),
 						SoundSource.BLOCKS, 1.0F, (float)Math.random()+0.5F);
+
+				IPlayerUnsuccessfulAttempts countPlayer = null;
+
 				if (Math.random() < 0.2) {
+
+					countPlayer = (IPlayerUnsuccessfulAttempts) pPlayer;
+
+
+					countPlayer.concoction$setUnsuccessfulAttempts(0);
+
 					butterChurn.craftItem();
 //                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
 					pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_THICKENS.get(),
@@ -103,6 +115,21 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 					pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, true));
 					butterChurn.setChanged();
 					return ItemInteractionResult.SUCCESS;
+				} else {
+
+
+
+					if (pPlayer instanceof ServerPlayer player) {
+
+						countPlayer = (IPlayerUnsuccessfulAttempts) player;
+
+						countPlayer.concoction$incrementUnsuccessfulAttempts();
+
+						if (countPlayer.concoction$getUnsuccessfulAttempts() >= 14) {
+							Utils.addAchievement(player, "concoction:unlucky_butter_churn");
+							countPlayer.concoction$setUnsuccessfulAttempts(0);
+						}
+					}
 				}
 				return ItemInteractionResult.SUCCESS;
 			}

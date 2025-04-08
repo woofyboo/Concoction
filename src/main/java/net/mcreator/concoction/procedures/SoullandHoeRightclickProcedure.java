@@ -1,5 +1,6 @@
 package net.mcreator.concoction.procedures;
 
+import net.mcreator.concoction.utils.Utils;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -34,6 +35,12 @@ public class SoullandHoeRightclickProcedure {
 	public static void onUseHoe(BlockEvent.BlockToolModificationEvent event) {
 		if (!event.isSimulated() && event.getItemAbility() == ItemAbilities.HOE_TILL && event.getPlayer() != null) {
 			execute(event, event.getContext().getLevel(), event.getContext().getClickedPos().getX(), event.getContext().getClickedPos().getY(), event.getContext().getClickedPos().getZ(), event.getPlayer());
+
+			if (!event.getPlayer().level().isClientSide() && event.getPlayer() instanceof ServerPlayer serverPlayer) {
+				Utils.addAchievement(serverPlayer, "concoction:make_soul_soul");
+			}
+
+
 		}
 	}
 

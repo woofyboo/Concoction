@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
+import net.mcreator.concoction.utils.Utils;
 
 public class PillowBlockBlock extends SlimeBlock {
 	public PillowBlockBlock() {
@@ -25,13 +26,20 @@ public class PillowBlockBlock extends SlimeBlock {
 	}
 
 	@Override
-	public void updateEntityAfterFallOn(BlockGetter block, Entity player) {
-		if (player.isSuppressingBounce()) {
-			super.updateEntityAfterFallOn(block, player);
+	public void updateEntityAfterFallOn(BlockGetter block, Entity entity) {
+		if (entity.isSuppressingBounce()) {
+			super.updateEntityAfterFallOn(block, entity);
 		} else {
-			this.bounceUp(player);
+			if (entity.fallDistance >= 98) {
+
+				ServerPlayer player = (ServerPlayer) entity;
+
+				Utils.addAchievement(player, "concoction:fall_pillow");
+
+			}
+			this.bounceUp(entity);
 		}
-		summonLeafParticles(player);
+		summonLeafParticles(entity);
 	}
 
 	private void summonLeafParticles(Entity player) {
@@ -39,7 +47,7 @@ public class PillowBlockBlock extends SlimeBlock {
 			Vec3 pos = player.position();
 			int particlesCount = calcAmpl(player.getDeltaMovement());
 			if (particlesCount != 0)
-			_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
+				_level.sendParticles(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(),
 					pos.x, pos.y+0.01, pos.z,
 					particlesCount, 0, 0, 0, 0.4);
 		}

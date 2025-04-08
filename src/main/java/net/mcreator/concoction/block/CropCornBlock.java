@@ -2,6 +2,7 @@
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -78,6 +79,13 @@ public class CropCornBlock extends CropBlock {
 									setMirror(Mirror.NONE).setIgnoreEntities(false).
 									addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE)),
 							_serverworld.random, 3);
+
+					((ServerLevel) pLevel).getPlayers(player ->
+							player.distanceToSqr(pPos.getX(), pPos.getY(), pPos.getZ()) <= 256
+					).forEach(player -> {
+						Utils.addAchievement(player, "concoction:giant_corn_witness");
+					});
+
 				}
 			}
 		}
