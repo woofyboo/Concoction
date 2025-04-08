@@ -19,5 +19,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:core"
+  "parent": "concoction:you_spin_me_round"
 }

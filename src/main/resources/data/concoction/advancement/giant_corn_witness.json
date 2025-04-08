@@ -22,5 +22,5 @@
   "rewards": {
     "experience": 300
   },
-  "parent": "concoction:core"
+  "parent": "concoction:new_crops"
 }

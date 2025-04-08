@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:soulland"
+      "id": "concoction:corn"
     },
     "title": {
-      "translate": "advancements.make_soul_soul.title"
+      "translate": "advancements.new_crops.title"
     },
     "description": {
-      "translate": "advancements.make_soul_soul.descr"
+      "translate": "advancements.new_crops.descr"
     },
     "frame": "task",
     "show_toast": true,
@@ -15,9 +15,9 @@
     "hidden": false
   },
   "criteria": {
-    "make_soul_soul_0": {
+    "new_crops_0": {
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:new_crops"
+  "parent": "concoction:core"
 }

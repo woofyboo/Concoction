@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "concoction:mint",
+    "concoction:wild_cotton",
+    "concoction:sunflower",
+    "concoction:wild_carrot",
+    "concoction:wild_onion",
+    "concoction:crop_corn",
+    "concoction:wild_spicy_pepper",
+    "concoction:wild_beetroot",
+    "concoction:wild_potato",
+    "concoction:wild_cabbage",
+    "concoction:wild_tomato"
+  ]
+}

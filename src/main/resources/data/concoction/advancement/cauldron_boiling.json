@@ -1,13 +1,13 @@
 {
   "display": {
     "icon": {
-      "id": "concoction:soulland"
+      "id": "minecraft:cauldron"
     },
     "title": {
-      "translate": "advancements.make_soul_soul.title"
+      "translate": "advancements.cauldron_boiling.title"
     },
     "description": {
-      "translate": "advancements.make_soul_soul.descr"
+      "translate": "advancements.cauldron_boiling.descr"
     },
     "frame": "task",
     "show_toast": true,
@@ -15,9 +15,9 @@
     "hidden": false
   },
   "criteria": {
-    "make_soul_soul_0": {
+    "cauldron_boiling_0": {
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "concoction:new_crops"
+  "parent": "concoction:eat_dish"
 }
