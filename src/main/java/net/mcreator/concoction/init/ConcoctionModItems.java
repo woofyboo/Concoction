@@ -33,6 +33,11 @@ import net.mcreator.concoction.item.ReapperItem;
 import net.mcreator.concoction.item.RawNoodlesItem;
 import net.mcreator.concoction.item.PopcornItem;
 import net.mcreator.concoction.item.PineconeItem;
+import net.mcreator.concoction.item.OvergrownSwordItem;
+import net.mcreator.concoction.item.OvergrownShovelItem;
+import net.mcreator.concoction.item.OvergrownPickaxeItem;
+import net.mcreator.concoction.item.OvergrownHoeItem;
+import net.mcreator.concoction.item.OvergrownAxeItem;
 import net.mcreator.concoction.item.OnionSoupItem;
 import net.mcreator.concoction.item.OmuriceItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
@@ -178,6 +183,11 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CABBAGE_LEAVES_BLOCK = block(ConcoctionModBlocks.CABBAGE_LEAVES_BLOCK);
 	public static final DeferredItem<Item> SUNSTRUCK_SPAWN_EGG = REGISTRY.register("sunstruck_spawn_egg", () -> new DeferredSpawnEggItem(ConcoctionModEntities.SUNSTRUCK, -10458315, -4739989, new Item.Properties()));
 	public static final DeferredItem<Item> SUNFLOWER_CROWN_HELMET = REGISTRY.register("sunflower_crown_helmet", SunflowerCrownItem.Helmet::new);
+	public static final DeferredItem<Item> OVERGROWN_PICKAXE = REGISTRY.register("overgrown_pickaxe", OvergrownPickaxeItem::new);
+	public static final DeferredItem<Item> OVERGROWN_AXE = REGISTRY.register("overgrown_axe", OvergrownAxeItem::new);
+	public static final DeferredItem<Item> OVERGROWN_SHOVEL = REGISTRY.register("overgrown_shovel", OvergrownShovelItem::new);
+	public static final DeferredItem<Item> OVERGROWN_HOE = REGISTRY.register("overgrown_hoe", OvergrownHoeItem::new);
+	public static final DeferredItem<Item> OVERGROWN_SWORD = REGISTRY.register("overgrown_sword", OvergrownSwordItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

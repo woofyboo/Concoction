@@ -170,6 +170,11 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
 				
 //Инструменты, оружие, броня
+				tabData.accept(ConcoctionModItems.OVERGROWN_SHOVEL.get());
+				tabData.accept(ConcoctionModItems.OVERGROWN_PICKAXE.get());
+				tabData.accept(ConcoctionModItems.OVERGROWN_AXE.get());
+				tabData.accept(ConcoctionModItems.OVERGROWN_HOE.get());
+				tabData.accept(ConcoctionModItems.OVERGROWN_SWORD.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_CROWN_HELMET.get());
 				tabData.accept(ConcoctionModItems.SUNSTRUCK_SPAWN_EGG.get());
 
