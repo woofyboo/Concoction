@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/sunflower_seed_block_top",
+    "up": "concoction:block/sunflower_seed_block_bottom",
+    "north": "concoction:block/sunflower_seed_block_side",
+    "east": "concoction:block/sunflower_seed_block_front",
+    "south": "concoction:block/sunflower_seed_block_side",
+    "west": "concoction:block/sunflower_seed_block_front",
+    "particle": "concoction:block/sunflower_seed_block_top"
+  },
+  "render_type": "solid"
+}

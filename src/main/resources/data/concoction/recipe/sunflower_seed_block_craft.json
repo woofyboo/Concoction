@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sunflower_seed_block",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:sunflower_seeds"
+    }
+  },
+  "result": {
+    "id": "concoction:sunflower_seed_block",
+    "count": 1
+  }
+}

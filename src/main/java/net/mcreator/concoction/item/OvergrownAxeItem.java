@@ -44,6 +44,6 @@ public class OvergrownAxeItem extends AxeItem {
 	};
 
 	public OvergrownAxeItem() {
-		super(TOOL_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(TOOL_TIER, 3f, -3.2f)));
+		super(TOOL_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(TOOL_TIER, 6f, -3.2f)));
 	}
 }

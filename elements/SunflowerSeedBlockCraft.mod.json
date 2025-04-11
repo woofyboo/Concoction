@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "sunflower_seed_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      },
+      {
+        "value": "CUSTOM:RoastedSunflowerSeeds"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:SunflowerSeedBlock"
+    },
+    "name": "sunflower_seed_block_craft",
+    "namespace": "mod"
+  }
+}
