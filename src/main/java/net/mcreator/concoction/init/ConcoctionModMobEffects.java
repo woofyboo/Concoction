@@ -28,4 +28,5 @@ public class ConcoctionModMobEffects {
 	public static final DeferredHolder<MobEffect, MobEffect> INSTABILITY = REGISTRY.register("instability", () -> new InstabilityMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> SPICY = REGISTRY.register("spicy", () -> new SpicyMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> PHOTOSYNTHESIS = REGISTRY.register("photosynthesis", () -> new PhotosynthesisMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> SUNSTRUCK_EFFECT = REGISTRY.register("sunstruck_effect", () -> new SunstruckEffectMobEffect());
 }
