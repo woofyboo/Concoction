@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.concoction.potion.SweetnessMobEffect;
+import net.mcreator.concoction.potion.SunstruckEffectMobEffect;
 import net.mcreator.concoction.potion.SpicyMobEffect;
 import net.mcreator.concoction.potion.PhotosynthesisMobEffect;
 import net.mcreator.concoction.potion.MintyBreathMobEffect;
