@@ -1,5 +1,6 @@
 package net.mcreator.concoction.procedures;
 
+import net.mcreator.concoction.item.OvergrownHoeItem;
 import net.mcreator.concoction.utils.Utils;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -26,13 +27,31 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.client.Minecraft;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import org.apache.logging.log4j.core.jmx.Server;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 @EventBusSubscriber
 public class SoullandHoeRightclickProcedure {
 	@SubscribeEvent
 	public static void onUseHoe(BlockEvent.BlockToolModificationEvent event) {
+
+		ItemStack itemStack = Objects.requireNonNull(event.getPlayer()).getItemInHand(InteractionHand.MAIN_HAND);
+		ItemStack itemStack2 = Objects.requireNonNull(event.getPlayer()).getItemInHand(InteractionHand.OFF_HAND);
+
+		if ( itemStack.getItem() instanceof OvergrownHoeItem item) {
+			if (item.getDamage(itemStack) >= item.getMaxDamage(itemStack) - 1) {
+				event.setCanceled(true);
+			}
+		}
+
+		if ( itemStack2.getItem() instanceof OvergrownHoeItem item) {
+			if (item.getDamage(itemStack2) >= item.getMaxDamage(itemStack2) - 1) {
+				event.setCanceled(true);
+			}
+		}
+
 		if (!event.isSimulated() && event.getItemAbility() == ItemAbilities.HOE_TILL && event.getPlayer() != null) {
 			execute(event, event.getContext().getLevel(), event.getContext().getClickedPos().getX(), event.getContext().getClickedPos().getY(), event.getContext().getClickedPos().getZ(), event.getPlayer());
 
@@ -51,9 +70,28 @@ public class SoullandHoeRightclickProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == Blocks.SOUL_SOIL) {
+		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == Blocks.SOUL_SOIL && !world.isClientSide()) {
+			
+			if (entity instanceof ServerPlayer serverPlayer) {
+				ItemStack itemStack = serverPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+				ItemStack itemStack2 = serverPlayer.getItemInHand(InteractionHand.OFF_HAND);
+
+				if (itemStack.getItem() instanceof OvergrownHoeItem item) {
+					if (item.getDamage(itemStack) >= item.getMaxDamage(itemStack) - 1) {
+						return;
+					}
+				}
+				
+				if (itemStack2.getItem() instanceof OvergrownHoeItem item) {
+					if (item.getDamage(itemStack2) >= item.getMaxDamage(itemStack2) - 1) {
+						return;
+					}
+				}
+			}
+
 			world.setBlock(BlockPos.containing(x, y, z), ConcoctionModBlocks.SOULLAND.get().defaultBlockState(), 3);
 			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() instanceof HoeItem) {
+
 				if (entity instanceof LivingEntity _entity)
 					_entity.swing(InteractionHand.MAIN_HAND, true);
 				if (!(new Object() {
@@ -68,6 +106,7 @@ public class SoullandHoeRightclickProcedure {
 					}
 				}.checkGamemode(entity))) {
 					if (world instanceof ServerLevel _level) {
+
 						(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).hurtAndBreak(1, _level, null, _stkprov -> {
 						});
 					}
@@ -87,6 +126,8 @@ public class SoullandHoeRightclickProcedure {
 					}
 				}.checkGamemode(entity))) {
 					if (world instanceof ServerLevel _level) {
+
+
 						(entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).hurtAndBreak(1, _level, null, _stkprov -> {
 						});
 					}
@@ -106,6 +147,8 @@ public class SoullandHoeRightclickProcedure {
 					}
 				}.checkGamemode(entity))) {
 					if (world instanceof ServerLevel _level) {
+
+
 						(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).hurtAndBreak(1, _level, null, _stkprov -> {
 						});
 					}
