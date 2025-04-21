@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/tomato_block_bottom",
+    "up": "concoction:block/tomato_block_top",
+    "north": "concoction:block/tomato_block_side",
+    "east": "concoction:block/tomato_block_side",
+    "south": "concoction:block/tomato_block_side",
+    "west": "concoction:block/tomato_block_side",
+    "particle": "concoction:block/tomato_block_bottom"
+  },
+  "render_type": "solid"
+}

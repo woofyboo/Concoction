@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tomato",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:tomato_block"
+    }
+  },
+  "result": {
+    "id": "concoction:tomato",
+    "count": 9
+  }
+}

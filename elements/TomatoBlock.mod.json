@@ -2,12 +2,12 @@
   "_fv": 73,
   "_type": "block",
   "definition": {
-    "texture": "cabbage_top_block",
-    "textureTop": "cabbage_top_block",
-    "textureLeft": "cabbage_side_block",
-    "textureFront": "cabbage_side_block",
-    "textureRight": "cabbage_side_block",
-    "textureBack": "cabbage_side_block",
+    "texture": "tomato_block_bottom",
+    "textureTop": "tomato_block_top",
+    "textureLeft": "tomato_block_side",
+    "textureFront": "tomato_block_side",
+    "textureRight": "tomato_block_side",
+    "textureBack": "tomato_block_side",
     "renderType": 10,
     "customModelName": "Normal",
     "rotationMode": 0,
@@ -33,26 +33,13 @@
         "subtract": false
       }
     ],
-    "customProperties": [
-      {
-        "min": 0,
-        "max": 26,
-        "name": "CUSTOM:configuration",
-        "type": "integer",
-        "value": 0
-      },
-      {
-        "name": "CUSTOM:giant",
-        "type": "logic",
-        "value": false
-      }
-    ],
-    "name": "Cabbage Block",
+    "customProperties": [],
+    "name": "Tomato Block",
     "specialInformation": {
       "fixedValue": []
     },
-    "hardness": 0.2,
-    "resistance": 0.2,
+    "hardness": 0.3,
+    "resistance": 10.0,
     "hasGravity": false,
     "isWaterloggable": false,
     "creativeTabs": [],
@@ -77,23 +64,23 @@
     "emittedRedstonePower": {
       "fixedValue": 15.0
     },
-    "colorOnMap": "LIME",
+    "colorOnMap": "RED",
     "creativePickItem": {
       "value": ""
     },
     "offsetType": "NONE",
     "aiPathNodeType": "DEFAULT",
-    "flammability": 100,
-    "fireSpreadSpeed": 60,
+    "flammability": 0,
+    "fireSpreadSpeed": 0,
     "isLadder": false,
     "slipperiness": 0.6,
     "speedFactor": 1.0,
     "jumpFactor": 1.0,
-    "reactionToPushing": "DESTROY",
+    "reactionToPushing": "NORMAL",
     "isNotColidable": false,
     "isCustomSoundType": false,
     "soundOnStep": {
-      "value": "BIG_DRIPLEAF"
+      "value": "CORAL"
     },
     "breakSound": {
       "value": ""

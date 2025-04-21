@@ -1,9 +1,5 @@
 package net.mcreator.concoction;
 
-import net.mcreator.concoction.utils.Utils;
-import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.Event;
-import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -72,8 +68,6 @@ public class ConcoctionMod {
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
 		// End of user code block mod init
 	}
-
-
 
 	// Start of user code block mod methods
 	// End of user code block mod methods

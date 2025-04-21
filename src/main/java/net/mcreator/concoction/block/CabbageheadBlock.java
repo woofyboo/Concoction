@@ -19,7 +19,7 @@ import net.minecraft.core.BlockPos;
 
 public class CabbageheadBlock extends Block {
 	public CabbageheadBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).strength(0.2f).noOcclusion().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.BIG_DRIPLEAF).strength(0.2f).noOcclusion().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
 	}
 
 	@Override

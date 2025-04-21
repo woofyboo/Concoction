@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "tomato_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      },
+      {
+        "value": "CUSTOM:Tomato"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:TomatoBlock"
+    },
+    "name": "tomato_block_craft",
+    "namespace": "mod"
+  }
+}

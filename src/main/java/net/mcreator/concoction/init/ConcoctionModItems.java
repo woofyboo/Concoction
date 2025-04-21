@@ -189,6 +189,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> OVERGROWN_HOE = REGISTRY.register("overgrown_hoe", OvergrownHoeItem::new);
 	public static final DeferredItem<Item> OVERGROWN_SWORD = REGISTRY.register("overgrown_sword", OvergrownSwordItem::new);
 	public static final DeferredItem<Item> SUNFLOWER_SEED_BLOCK = block(ConcoctionModBlocks.SUNFLOWER_SEED_BLOCK);
+	public static final DeferredItem<Item> TOMATO_BLOCK = block(ConcoctionModBlocks.TOMATO_BLOCK);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
