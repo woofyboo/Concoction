@@ -5270,6 +5270,19 @@
         ]
       },
       "path": "~/tomato"
+    },
+    {
+      "name": "Butchering",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "butchering",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/enchantment/butchering.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -5434,6 +5447,9 @@
     "ITEMS:minecraft:swords": [
       "~CUSTOM:OvergrownSword"
     ],
+    "ENCHANTMENTS:minecraft:on_random_loot": [
+      "~CUSTOM:Butchering"
+    ],
     "ITEMS:minecraft:head_armor": [
       "~CUSTOM:SunflowerCrown.helmet"
     ],
@@ -5462,6 +5478,9 @@
       "CUSTOM:CottonOil",
       "CUSTOM:SunflowerOil",
       "CUSTOM:CornOil"
+    ],
+    "ENCHANTMENTS:minecraft:non_treasure": [
+      "~CUSTOM:Butchering"
     ],
     "ITEMS:minecraft:pickaxes": [
       "~CUSTOM:OvergrownPickaxe"
@@ -5496,6 +5515,9 @@
       "CUSTOM:CropCabbage",
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
+    ],
+    "ENCHANTMENTS:minecraft:tradeable": [
+      "~CUSTOM:Butchering"
     ],
     "BLOCKS:minecraft:sword_efficient": [
       "CUSTOM:CropMint",
@@ -5571,9 +5593,9 @@
     "ru_ru": {
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
-      "subtitles.butter_thickens": "Масло загустело",
-      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "block.concoction.mint": "Мята",
+      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
+      "subtitles.butter_thickens": "Масло загустело",
       "item.concoction.pinecone": "Шишка",
       "item.concoction.corn_oil": "Кукурузное масло",
       "advancements.special_carpet.title": "Красивая цена",
@@ -5582,10 +5604,10 @@
       "advancements.spicy_on_fire.title": "Ты просто огонь!",
       "advancements.make_soul_soul.title": "Адские сверхурочные",
       "block.concoction.wild_potato": "Дикий картофель",
-      "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cooked_corn": "Жареная кукуруза",
-      "item.concoction.tomato": "Томат",
+      "item.concoction.hashbrowns": "Хрустящие оладушки",
       "item.concoction.cabbage_seeds": "Семена капусты",
+      "item.concoction.tomato": "Томат",
       "advancements.new_crops.title": "Дикая находка",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Стрела мороза",
       "item.concoction.mint_cookie": "Мятное печенье",
@@ -5595,8 +5617,8 @@
       "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
-      "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
+      "block.concoction.wild_carrot": "Дикая морковь",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
@@ -5626,8 +5648,8 @@
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "item.concoction.tomato_soup": "Томатный суп",
       "block.concoction.black_woven_carpet": "Чёрный тканый ковёр",
-      "item.concoction.omurice": "Рисовый омлет",
       "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
+      "item.concoction.omurice": "Рисовый омлет",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "advancements.unlucky_butter_churn.descr": "Неудачно выкрутите масло двадцать четыре раз подряд",
       "block.concoction.gray_pillow_block": "Серая подушка",
@@ -5767,6 +5789,7 @@
       "advancements.you_spin_me_round.descr": "Выкрутите масло в маслобойке",
       "item.minecraft.splash_potion.effect.blooming": "Взрывное зелье цветения",
       "advancements.sunstruck_transformed.descr": "Будьте свидетелем превращения зомби подсолнухом",
+      "enchantment.concoction.butchering": "Разделка",
       "advancements.make_soul_soul.descr": "Вспахай пашню почвы душ",
       "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
       "item.concoction.butter": "Сливочное масло",
@@ -6022,6 +6045,7 @@
       "advancements.you_spin_me_round.descr": "Use butter churn to make butter or oil",
       "item.minecraft.splash_potion.effect.blooming": "Splash Potion of Blooming",
       "advancements.sunstruck_transformed.descr": "Witness zombie get transformed by a sunflower",
+      "enchantment.concoction.butchering": "Butchering",
       "advancements.make_soul_soul.descr": "Till soul soil with hoe",
       "advancements.brain_freeze_obtain_achievement.descr": "Experience brain freeze by drinking water after eating minty food",
       "item.concoction.butter": "Dairy Butter",
