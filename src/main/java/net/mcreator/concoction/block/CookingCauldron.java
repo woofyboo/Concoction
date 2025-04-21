@@ -4,11 +4,13 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -163,6 +165,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                                 pPlayer.drop(new ItemStack(item), false);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
+                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
                         }
                         break;
 
@@ -176,6 +179,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                                     SoundSource.BLOCKS, 1.0F, 1.0F);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
+                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
                         }
                         break;
                     case "bowl":
@@ -188,6 +192,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                                     SoundSource.BLOCKS, 1.0F, 1.0F);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
+                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
                         }
                         break;
                     case "stick":
@@ -200,6 +205,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                                     SoundSource.BLOCKS, 1.0F, 1.0F);
                             result = this.decreesItemCountFromResult(result);
                             cauldron.setCraftResult(result);
+                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
                         }
                         break;
                     default:

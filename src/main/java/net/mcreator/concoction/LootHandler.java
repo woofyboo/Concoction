@@ -14,15 +14,18 @@
 */
 package net.mcreator.concoction;
 
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.LootTableLoadEvent;
+import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 
 import java.util.function.Consumer;
 
@@ -97,4 +100,5 @@ public class LootHandler {
 		return NestedLootTable.lootTableReference(
 				ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("concoction", "inject/" + name))).setWeight(weight);
 	}
+
 }

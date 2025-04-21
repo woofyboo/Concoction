@@ -100,6 +100,7 @@ public class CustomAttackSunflowerGoal extends Goal {
             if (this.transformCounter >= 5 && this.zombie.getType().equals(EntityType.ZOMBIE)) {
                 EntityType<?> type = ConcoctionModEntities.SUNSTRUCK.get();
                 var sunstruck = type.create(this.zombie.level());
+                assert sunstruck != null;
                 sunstruck.moveTo(this.zombie.getX(), this.zombie.getY(), this.zombie.getZ(), this.zombie.getYRot(), this.zombie.getXRot());
                 
 
