@@ -1,7 +1,88 @@
 {
   "variants": {
-    "": {
+    "giant=false": {
       "model": "concoction:block/cabbage_block"
-    }
+    },
+    "configuration=0,giant=true": {
+      "model": "concoction:block/cabbage_block1"
+    },
+    "configuration=1,giant=true": {
+      "model": "concoction:block/cabbage_block2"
+    },
+    "configuration=2,giant=true": {
+      "model": "concoction:block/cabbage_block3"
+    },
+    "configuration=3,giant=true": {
+      "model": "concoction:block/cabbage_block4"
+    },
+    "configuration=4,giant=true": {
+      "model": "concoction:block/cabbage_block5"
+    },
+    "configuration=5,giant=true": {
+      "model": "concoction:block/cabbage_block6"
+    },
+    "configuration=6,giant=true": {
+      "model": "concoction:block/cabbage_block7"
+    },
+    "configuration=7,giant=true": {
+      "model": "concoction:block/cabbage_block8"
+    },
+    "configuration=8,giant=true": {
+      "model": "concoction:block/cabbage_block9"
+    },
+    "configuration=9,giant=true": {
+      "model": "concoction:block/cabbage_block11"
+    },
+    "configuration=10,giant=true": {
+      "model": "concoction:block/cabbage_block12"
+    },
+    "configuration=11,giant=true": {
+      "model": "concoction:block/cabbage_block13"
+    },
+    "configuration=12,giant=true": {
+      "model": "concoction:block/cabbage_block14"
+    },
+    "configuration=13,giant=true": {
+      "model": "concoction:block/cabbage_block15"
+    },
+    "configuration=14,giant=true": {
+      "model": "concoction:block/cabbage_block16"
+    },
+    "configuration=15,giant=true": {
+      "model": "concoction:block/cabbage_block17"
+    },
+    "configuration=16,giant=true": {
+      "model": "concoction:block/cabbage_block18"
+    },
+    "configuration=17,giant=true": {
+      "model": "concoction:block/cabbage_block19"
+    },
+    "configuration=18,giant=true": {
+      "model": "concoction:block/cabbage_block20"
+    },
+    "configuration=19,giant=true": {
+      "model": "concoction:block/cabbage_block21"
+    },
+    "configuration=20,giant=true": {
+      "model": "concoction:block/cabbage_block22"
+    },
+    "configuration=21,giant=true": {
+      "model": "concoction:block/cabbage_block23"
+    },
+    "configuration=22,giant=true": {
+      "model": "concoction:block/cabbage_block24"
+    },
+    "configuration=23,giant=true": {
+      "model": "concoction:block/cabbage_block25"
+    },
+    "configuration=24,giant=true": {
+      "model": "concoction:block/cabbage_block26"
+    },
+    "configuration=25,giant=true": {
+      "model": "concoction:block/cabbage_block27"
+    },
+    "configuration=26,giant=true": {
+      "model": "concoction:block/cabbage_block28"
+  	}
   }
 }

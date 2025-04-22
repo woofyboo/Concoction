@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/giant_cabbage_inside",
+    "up": "concoction:block/giant_cabbage_top_top_left",
+    "north": "concoction:block/giant_cabbage_side_top_right",
+    "east": "concoction:block/giant_cabbage_inside",
+    "south": "concoction:block/giant_cabbage_inside",
+    "west": "concoction:block/giant_cabbage_side_top_left",
+    "particle": "concoction:block/giant_cabbage_inside"
+  },
+  "render_type": "solid"
+}
