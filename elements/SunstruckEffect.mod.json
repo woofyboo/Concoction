@@ -3,7 +3,7 @@
   "_type": "potioneffect",
   "definition": {
     "effectName": "Sunstruck",
-    "icon": "sunstruck",
+    "icon": "sunstruck_effect",
     "color": {
       "value": -1458376,
       "falpha": 0.0

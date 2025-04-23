@@ -74,6 +74,8 @@ public class ConcoctionHUDOverlays
 
         event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, SpicyHeartsOverlay.ID, new SpicyHeartsOverlay());
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, PhotosynthesisOverlay.ID, new PhotosynthesisOverlay());
+        event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, SunstruckHeartsOverlay.ID, new SunstruckHeartsOverlay());
+
     }
 
     public static abstract class BaseOverlay implements LayeredDraw.Layer
@@ -228,6 +230,73 @@ public class ConcoctionHUDOverlays
         }
     }
 
+    public static class SunstruckHeartsOverlay extends BaseOverlay {
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_hearts");
+
+    @Override
+    public void render(Minecraft minecraft, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks) {
+        if (player.hasEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT)) {
+            drawSunstruckHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset);
+        }
+    }
+
+    @Override
+    public boolean shouldRenderOverlay(Minecraft mc, Player player, GuiGraphics guiGraphics, int guiTicks) {
+        if (!super.shouldRenderOverlay(mc, player, guiGraphics, guiTicks)) {
+            return false;
+        }
+
+        return true;
+    }
+}
+
+	public static void drawSunstruckHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
+	    int ticks = minecraft.gui.getGuiTicks();
+	    Random rand = new Random();
+	    rand.setSeed((long) (ticks * 312871));
+	
+	    int health = Mth.ceil(player.getHealth());
+	    float absorption = Mth.ceil(player.getAbsorptionAmount());
+	    AttributeInstance attrMaxHealth = player.getAttribute(Attributes.MAX_HEALTH);
+	    float healthMax = (float) attrMaxHealth.getValue();
+	
+	    int regen = -1;
+	    if (player.hasEffect(MobEffects.REGENERATION)) regen = ticks % 25;
+	
+	    int healthRows = Mth.ceil((double) healthMax / 2.0);
+	    int absorptionRows = Mth.ceil((double) absorption / 2.0);
+	    int rowHeight = Math.max(10 - (healthRows - 2), 3);
+	    int totalRows = healthRows * 2;
+	
+	    for (int i = healthRows + absorptionRows - 1; i >= 0; i--) {
+	        int row = i / 10;
+	        int col = i % 10;
+	        int x = xBasePos + col * 8;
+	        int y = yBasePos - row * rowHeight;
+	        if (health + absorption <= 4) {
+	            y += rand.nextInt(2);
+	        }
+	
+	        if (i < healthRows && i == regen) {
+	            y -= 2;
+	        }
+	        boolean isBlinking = (player.invulnerableTime != 0) && ticks % 6 < 3;
+	        renderHeart(graphics, HeartType.CONTAINER_SUNSTRUCK, x, y, false, isBlinking);
+	        int heartIndex = i * 2;
+	
+	        if (isBlinking && heartIndex < healthMax) {
+	            boolean isHalfHealth = heartIndex + 1 == healthMax;
+	            renderHeart(graphics, HeartType.SUNSTRUCK, x, y, isHalfHealth, true);
+	        }
+	
+	        if (heartIndex < health) {
+	            boolean isHalfHealth = heartIndex + 1 == health;
+	            renderHeart(graphics, HeartType.SUNSTRUCK, x, y, isHalfHealth, false);
+	        }
+	    }
+}
+
+
     private static void renderHeart(
             GuiGraphics guiGraphics, HeartType heartType, int x, int y, boolean isHalf, boolean isBlinking
     ) {
@@ -236,7 +305,7 @@ public class ConcoctionHUDOverlays
         RenderSystem.disableBlend();
     }
 
-    @OnlyIn(Dist.CLIENT)
+   @OnlyIn(Dist.CLIENT)
 public static enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
     CONTAINER_SPICY(
             ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
@@ -249,8 +318,20 @@ public static enum HeartType implements net.neoforged.fml.common.asm.enumextensi
             ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full_blinking"),
             ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half"),
             ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half_blinking")
+    ),
+    CONTAINER_SUNSTRUCK(
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container_blinking"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container_blinking")
+    ),
+    SUNSTRUCK(
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/full"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/full_blinking"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/half"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/half_blinking")
     );
-    
+
     private final ResourceLocation full;
     private final ResourceLocation fullBlinking;
     private final ResourceLocation half;
@@ -276,6 +357,7 @@ public static enum HeartType implements net.neoforged.fml.common.asm.enumextensi
         }
     }
 }
+
 
     }
 
