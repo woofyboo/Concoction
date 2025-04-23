@@ -58,7 +58,7 @@ public class CropCabbageBlock extends CropBlock {
 
 	@Override
 protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_221052_, RandomSource randomSource) {
-    if (!p_221051_.isAreaLoaded(p_221052_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+    if (!p_221051_.isAreaLoaded(p_221052_, 1)) return;
     if (p_221051_.getRawBrightness(p_221052_, 0) >= 9) {
         int i = this.getAge(pLevel);
         if (i < this.getMaxAge()) {
@@ -69,21 +69,36 @@ protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_2
                 else
                     p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), 2);
 
-                // 0.1% chance to spawn GiantCabbage structure with offset (X+1, Y+1)
-                if (randomSource.nextFloat() <= 0.001f) {  // 0.1% chance (0.001f)
-                    BlockPos offsetPos = p_221052_.offset(-1, 0, -1);  // 1 block offset for X and Y
+                if (randomSource.nextFloat() <= 0.001f) {
+                    BlockPos offsetPos = p_221052_.offset(-1, 0, -1); // center 3x3 area
 
-                    // Spawn the Giant Cabbage structure at the offset position
-                    if (p_221051_ instanceof ServerLevel _serverworld) {
-                        // Load the structure template
-                        ResourceLocation structureResource = ResourceLocation.tryParse("concoction:giant_cabbage");
-                        StructureTemplate template = _serverworld.getStructureManager().getOrCreate(structureResource);
+                    // Allow growth if the area is clear of hard blocks
+                    boolean spaceAvailable = true;
+                    outer:
+                    for (int dx = -1; dx < 3; dx++) {
+                        for (int dy = 0; dy < 3; dy++) {
+                            for (int dz = -1; dz < 3; dz++) {
+                                BlockPos checkPos = offsetPos.offset(dx, dy, dz);
+                                BlockState state = p_221051_.getBlockState(checkPos);
+                               	if (!state.isAir() && state.isCollisionShapeFullBlock(p_221051_, checkPos)) {
 
-                        // Place the structure if it was loaded successfully
-                        if (template != null) {
-                            template.placeInWorld(_serverworld, offsetPos, offsetPos, 
-                                new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), 
-                                _serverworld.random, 3);
+                                    spaceAvailable = false;
+                                    break outer;
+                                }
+                            }
+                        }
+                    }
+
+                    if (spaceAvailable) {
+                        if (p_221051_ instanceof ServerLevel _serverworld) {
+                            ResourceLocation structureResource = ResourceLocation.tryParse("concoction:giant_cabbage");
+                            StructureTemplate template = _serverworld.getStructureManager().getOrCreate(structureResource);
+
+                            if (template != null) {
+                                template.placeInWorld(_serverworld, offsetPos, offsetPos,
+                                    new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false),
+                                    _serverworld.random, 3);
+                            }
                         }
                     }
                 }
@@ -93,6 +108,7 @@ protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_2
         }
     }
 }
+
 
 
 
