@@ -5,6 +5,7 @@ import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
@@ -24,8 +25,14 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.SpecialPlantable;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.resources.ResourceLocation;
+
 
 // Класс растения, наследующий от CropBlock
 public class CropCabbageBlock extends CropBlock {
@@ -50,22 +57,46 @@ public class CropCabbageBlock extends CropBlock {
 	}
 
 	@Override
-	protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_221052_, RandomSource randomSource) {
-		if (!p_221051_.isAreaLoaded(p_221052_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-		if (p_221051_.getRawBrightness(p_221052_, 0) >= 9) {
-			int i = this.getAge(pLevel);
-			if (i < this.getMaxAge()) {
-				float f = getGrowthSpeed(pLevel, p_221051_, p_221052_);
-				if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_221051_, p_221052_, pLevel, randomSource.nextInt((int)(25.0F / f) + 1) == 0)) {
-					if (i+1 == this.getMaxAge() && randomSource.nextFloat() <= 0.01f)
-						p_221051_.setBlock(p_221052_, ConcoctionModBlocks.CABBAGE_BLOCK.get().defaultBlockState(), 2);
-					else
-						p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), 2);
-					net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_221051_, p_221052_, pLevel);
-				}
-			}
-		}
-	}
+protected void randomTick(BlockState pLevel, ServerLevel p_221051_, BlockPos p_221052_, RandomSource randomSource) {
+    if (!p_221051_.isAreaLoaded(p_221052_, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+    if (p_221051_.getRawBrightness(p_221052_, 0) >= 9) {
+        int i = this.getAge(pLevel);
+        if (i < this.getMaxAge()) {
+            float f = getGrowthSpeed(pLevel, p_221051_, p_221052_);
+            if (net.neoforged.neoforge.common.CommonHooks.canCropGrow(p_221051_, p_221052_, pLevel, randomSource.nextInt((int)(25.0F / f) + 1) == 0)) {
+                if (i + 1 == this.getMaxAge() && randomSource.nextFloat() <= 0.06f)
+                    p_221051_.setBlock(p_221052_, ConcoctionModBlocks.CABBAGE_BLOCK.get().defaultBlockState(), 2);
+                else
+                    p_221051_.setBlock(p_221052_, this.getStateForAge(i + 1), 2);
+
+                // 0.1% chance to spawn GiantCabbage structure with offset (X+1, Y+1)
+                if (randomSource.nextFloat() <= 0.001f) {  // 0.1% chance (0.001f)
+                    BlockPos offsetPos = p_221052_.offset(-1, 0, -1);  // 1 block offset for X and Y
+
+                    // Spawn the Giant Cabbage structure at the offset position
+                    if (p_221051_ instanceof ServerLevel _serverworld) {
+                        // Load the structure template
+                        ResourceLocation structureResource = ResourceLocation.tryParse("concoction:giant_cabbage");
+                        StructureTemplate template = _serverworld.getStructureManager().getOrCreate(structureResource);
+
+                        // Place the structure if it was loaded successfully
+                        if (template != null) {
+                            template.placeInWorld(_serverworld, offsetPos, offsetPos, 
+                                new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), 
+                                _serverworld.random, 3);
+                        }
+                    }
+                }
+
+                net.neoforged.neoforge.common.CommonHooks.fireCropGrowPost(p_221051_, p_221052_, pLevel);
+            }
+        }
+    }
+}
+
+
+
+
 
 	@Override
 	public void growCrops(Level pLevel, BlockPos pPos, BlockState p_52266_) {
