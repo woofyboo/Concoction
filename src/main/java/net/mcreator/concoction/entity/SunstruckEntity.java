@@ -1,5 +1,8 @@
 package net.mcreator.concoction.entity;
 
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.Zombie;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
@@ -80,6 +83,20 @@ public class SunstruckEntity extends Zombie {
 			return super.hurt(source, amount * 2.0f);
 		}
 		return super.hurt(source, amount);
+	}
+	@Override
+	public boolean doHurtTarget(Entity p_32892_) {
+		boolean flag = super.doHurtTarget(p_32892_);
+		if (flag && this.getMainHandItem().isEmpty() && p_32892_ instanceof LivingEntity) {
+
+			float rand = this.level().random.nextFloat();
+			if (rand <= 0.25f) {
+				float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+				((LivingEntity)p_32892_).addEffect(new MobEffectInstance(ConcoctionModMobEffects.SUNSTRUCK_EFFECT, 140 * (int)f), this);
+			}
+		}
+
+		return flag;
 	}
 
 	@Override
