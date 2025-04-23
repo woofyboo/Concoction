@@ -4,9 +4,6 @@
  */
 package net.mcreator.concoction.init;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -25,5 +22,4 @@ public class ConcoctionModPotions {
 	public static final DeferredHolder<Potion, Potion> BLOOMING = REGISTRY.register("blooming", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 9600, 0, false, true)));
 	public static final DeferredHolder<Potion, Potion> BLOOMING_EXTENDED = REGISTRY.register("blooming_extended", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 36000, 0, false, true)));
 	public static final DeferredHolder<Potion, Potion> BLOOMING_BUFFED = REGISTRY.register("blooming_buffed", () -> new Potion(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 7200, 1, false, true)));
-
 }

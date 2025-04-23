@@ -19,7 +19,7 @@ import java.util.function.BiConsumer;
 
 public class SunstruckEffectMobEffect extends MobEffect {
 	public SunstruckEffectMobEffect() {
-		super(MobEffectCategory.NEUTRAL, -1458376);
+		super(MobEffectCategory.HARMFUL, -1458376);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class SunstruckEffectMobEffect extends MobEffect {
 						// The name we defined earlier.
 						mhr,
 						// The amount by which we modify the attribute value.
-						Math.max(-12.0, (amplifier+1) * -4.0),
+						Math.max(-16.0, (amplifier+1) * -4.0),
 						AttributeModifier.Operation.ADD_VALUE
 				);
 				AttributeInstance instance = attributes.getInstance(Attributes.MAX_HEALTH);
@@ -68,13 +68,13 @@ public class SunstruckEffectMobEffect extends MobEffect {
 				ResourceLocation speed = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_speed");
 				AttributeModifier speed_modifier = new AttributeModifier(
 						speed,
-						(amplifier+1) * 0.1,
+						(amplifier+1) * 0,
 						AttributeModifier.Operation.ADD_VALUE
 				);
 				ResourceLocation atk_speed = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_atk_speed");
 				AttributeModifier atk_speed_modifier = new AttributeModifier(
 						atk_speed,
-						(amplifier+1) * 0.1,
+						(amplifier+1) * 0.2,
 						AttributeModifier.Operation.ADD_VALUE
 				);
 				AttributeInstance speed_instance = attributes.getInstance(Attributes.MOVEMENT_SPEED);

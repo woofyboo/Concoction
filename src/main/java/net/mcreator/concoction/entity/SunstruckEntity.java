@@ -85,19 +85,30 @@ public class SunstruckEntity extends Zombie {
 		return super.hurt(source, amount);
 	}
 	@Override
-	public boolean doHurtTarget(Entity p_32892_) {
-		boolean flag = super.doHurtTarget(p_32892_);
-		if (flag && this.getMainHandItem().isEmpty() && p_32892_ instanceof LivingEntity) {
+public boolean doHurtTarget(Entity target) {
+	boolean flag = super.doHurtTarget(target);
+	if (flag && this.getMainHandItem().isEmpty() && target instanceof LivingEntity livingTarget) {
+		float rand = this.level().random.nextFloat();
+		if (rand <= 0.33f) {
+			int currentAmplifier = 0;
+			int maxAmplifier = 3;
+			int baseDuration = 320;
+			float difficultyMultiplier = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
+			int duration = baseDuration * (int) difficultyMultiplier;
 
-			float rand = this.level().random.nextFloat();
-			if (rand <= 0.25f) {
-				float f = this.level().getCurrentDifficultyAt(this.blockPosition()).getEffectiveDifficulty();
-				((LivingEntity)p_32892_).addEffect(new MobEffectInstance(ConcoctionModMobEffects.SUNSTRUCK_EFFECT, 140 * (int)f), this);
+			// Check current effect
+			MobEffectInstance existing = livingTarget.getEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT);
+			if (existing != null) {
+				currentAmplifier = Math.min(existing.getAmplifier() + 1, maxAmplifier);
 			}
-		}
 
-		return flag;
+			// Apply or reapply the effect with updated amplifier
+			livingTarget.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SUNSTRUCK_EFFECT, duration, currentAmplifier), this);
+		}
 	}
+	return flag;
+}
+
 
 	@Override
 	protected void registerGoals() {
