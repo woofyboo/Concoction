@@ -213,17 +213,17 @@ public class ConcoctionHUDOverlays
                 y -= 2;
             }
             boolean isBlinking = (player.invulnerableTime != 0) && ticks % 6 < 3;
-            renderHeart(graphics, HeartType.CONTAINER, x, y, false, isBlinking);
+            renderHeart(graphics, HeartType.CONTAINER_SPICY, x, y, false, isBlinking);
             int heartIndex = i * 2;
 
             if (isBlinking && heartIndex < healthMax) {
                 boolean isHalfHealth = heartIndex + 1 == healthMax;
-                renderHeart(graphics, HeartType.NORMAL, x, y, isHalfHealth, true);
+                renderHeart(graphics, HeartType.SPICY, x, y, isHalfHealth, true);
             }
 
             if (heartIndex < health) {
                 boolean isHalfHealth = heartIndex + 1 == health;
-                renderHeart(graphics, HeartType.NORMAL, x, y, isHalfHealth, false);
+                renderHeart(graphics, HeartType.SPICY, x, y, isHalfHealth, false);
             }
         }
     }
@@ -237,44 +237,45 @@ public class ConcoctionHUDOverlays
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
-        CONTAINER(
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking")
-        ),
-        NORMAL(
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full_blinking"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half"),
-                ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half_blinking")
-        );
+public static enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
+    CONTAINER_SPICY(
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking")
+    ),
+    SPICY(
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full_blinking"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half"),
+            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half_blinking")
+    );
+    
+    private final ResourceLocation full;
+    private final ResourceLocation fullBlinking;
+    private final ResourceLocation half;
+    private final ResourceLocation halfBlinking;
 
-        private final ResourceLocation full;
-        private final ResourceLocation fullBlinking;
-        private final ResourceLocation half;
-        private final ResourceLocation halfBlinking;
+    private HeartType(
+            ResourceLocation full,
+            ResourceLocation fullBlinking,
+            ResourceLocation half,
+            ResourceLocation halfBlinking
+    ) {
+        this.full = full;
+        this.fullBlinking = fullBlinking;
+        this.half = half;
+        this.halfBlinking = halfBlinking;
+    }
 
-        private HeartType(
-                ResourceLocation full,
-                ResourceLocation fullBlinking,
-                ResourceLocation half,
-                ResourceLocation halfBlinking
-        ) {
-            this.full = full;
-            this.fullBlinking = fullBlinking;
-            this.half = half;
-            this.halfBlinking = halfBlinking;
+    public ResourceLocation getSprite(boolean isHalf, boolean isBlinking) {
+        if (isHalf) {
+            return isBlinking ? this.halfBlinking : this.half;
+        } else {
+            return isBlinking ? this.fullBlinking : this.full;
         }
+    }
+}
 
-        public ResourceLocation getSprite(boolean isHalf, boolean isBlinking) {
-                if (isHalf) {
-                    return isBlinking ? this.halfBlinking : this.half;
-                } else {
-                    return isBlinking ? this.fullBlinking : this.full;
-                }
-            }
-        }
     }
 

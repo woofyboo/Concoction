@@ -5283,37 +5283,6 @@
         ]
       },
       "path": "~/general"
-    },
-    {
-      "name": "SpawnGiantCabbage",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "spawn_giant_cabbage",
-      "metadata": {
-        "files": [
-          "src/main/java/net/mcreator/concoction/procedures/SpawnGiantCabbageProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      },
-      "path": "~/cabbage"
     }
   ],
   "variable_elements": [],
