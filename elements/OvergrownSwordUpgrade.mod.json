@@ -17,7 +17,7 @@
       "value": "CUSTOM:SunflowerCrown.helmet"
     },
     "smithingInputTemplateStack": {
-      "value": "Blocks.DOUBLE_PLANT#0"
+      "value": "Items.DYE#15"
     },
     "smithingReturnStack": {
       "value": "CUSTOM:OvergrownSword"

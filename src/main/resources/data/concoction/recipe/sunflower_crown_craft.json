@@ -3,9 +3,8 @@
   "group": "sunflower_crown",
   "category": "equipment",
   "pattern": [
-    "aaa",
-    "a a",
-    "aaa"
+    "aa",
+    "aa"
   ],
   "key": {
     "a": {

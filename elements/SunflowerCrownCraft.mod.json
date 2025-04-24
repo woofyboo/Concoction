@@ -12,10 +12,13 @@
     "recipeShapeless": false,
     "recipeSlots": [
       {
-        "value": "Blocks.DOUBLE_PLANT#0"
+        "value": ""
       },
       {
-        "value": "Blocks.DOUBLE_PLANT#0"
+        "value": ""
+      },
+      {
+        "value": ""
       },
       {
         "value": "Blocks.DOUBLE_PLANT#0"
@@ -33,10 +36,7 @@
         "value": "Blocks.DOUBLE_PLANT#0"
       },
       {
-        "value": "Blocks.DOUBLE_PLANT#0"
-      },
-      {
-        "value": "Blocks.DOUBLE_PLANT#0"
+        "value": ""
       }
     ],
     "recipeReturnStack": {
