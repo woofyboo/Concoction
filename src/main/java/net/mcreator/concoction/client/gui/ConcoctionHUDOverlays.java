@@ -1,41 +1,31 @@
 package net.mcreator.concoction.client.gui;
+
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.minecraft.Util;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.level.GameRules;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-
-/**
- * Credits to squeek502 (AppleSkin) for the implementation reference!
- * <a href="https://www.curseforge.com/minecraft/mc-mods/appleskin">...</a>
- */
-
 @EventBusSubscriber(modid = ConcoctionMod.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class ConcoctionHUDOverlays
-{
+public class ConcoctionHUDOverlays {
     public static int healthIconsOffset;
     public static int foodIconsOffset;
     private static final ResourceLocation MOD_ICONS_TEXTURE = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "textures/gui/hud/concoction_gui_icons.png");
@@ -44,16 +34,6 @@ public class ConcoctionHUDOverlays
     public static void registerGuiLayers(RegisterGuiLayersEvent event) {
         ConcoctionHUDOverlays.register(event);
     }
-
-//    @SubscribeEvent
-//    public static void onRenderGuiOverlayPre(RenderGuiLayerEvent.Pre event) {
-//        if (event.getName().toString().equals("appleskin:saturation_level")) {
-//            Minecraft mc = Minecraft.getInstance();
-//            if (mc.player != null && mc.player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
-//                event.setCanceled(true);
-//            }
-//        }
-//    }
 
     public static void register(RegisterGuiLayersEvent event) {
         event.registerBelow(
@@ -67,19 +47,12 @@ public class ConcoctionHUDOverlays
                 (guiGraphics, deltaTracker) -> foodIconsOffset = Minecraft.getInstance().gui.rightHeight
         );
 
-//        event.registerBelow(VanillaGuiLayers.FOOD_LEVEL,
-//                ResourceLocation.fromNamespaceAndPath("appleskin", "saturation_level"),
-//                (guiGraphics, deltaTracker) -> foodIconsOffset = Minecraft.getInstance().gui.rightHeight
-//        );
-
         event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, SpicyHeartsOverlay.ID, new SpicyHeartsOverlay());
         event.registerAbove(VanillaGuiLayers.FOOD_LEVEL, PhotosynthesisOverlay.ID, new PhotosynthesisOverlay());
         event.registerAbove(VanillaGuiLayers.PLAYER_HEALTH, SunstruckHeartsOverlay.ID, new SunstruckHeartsOverlay());
-
     }
 
-    public static abstract class BaseOverlay implements LayeredDraw.Layer
-    {
+    public static abstract class BaseOverlay implements LayeredDraw.Layer {
         public abstract void render(Minecraft mc, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks);
 
         @Override
@@ -89,8 +62,8 @@ public class ConcoctionHUDOverlays
                 return;
 
             int top = guiGraphics.guiHeight();
-            int left = guiGraphics.guiWidth() / 2 - 91; // left of health bar
-            int right = guiGraphics.guiWidth() / 2 + 91; // right of food bar
+            int left = guiGraphics.guiWidth() / 2 - 91;
+            int right = guiGraphics.guiWidth() / 2 + 91;
 
             render(minecraft, minecraft.player, guiGraphics, left, right, top, minecraft.gui.getGuiTicks());
         }
@@ -100,8 +73,7 @@ public class ConcoctionHUDOverlays
         }
     }
 
-    public static class PhotosynthesisOverlay extends BaseOverlay
-    {
+    public static class PhotosynthesisOverlay extends BaseOverlay {
         public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "photosynthesis");
 
         @Override
@@ -116,38 +88,32 @@ public class ConcoctionHUDOverlays
             if (player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
                 int dayTime = Math.floorMod(player.level().dayTime(), 24000);
                 if (((dayTime >= 0 && dayTime < 13000) || (dayTime >= 23000 && dayTime < 24000)) &&
-                        player.level().canSeeSky(player.blockPosition().above()))
-                            drawPhotosynthesisOverlay(stats, minecraft, guiGraphics, right, top - foodIconsOffset, isPlayerHealingWithSaturation);
+                        player.level().canSeeSky(player.blockPosition().above())) {
+                    drawPhotosynthesisOverlay(stats, minecraft, guiGraphics, right, top - foodIconsOffset, isPlayerHealingWithSaturation);
+                }
             }
-        }
-
-        @Override
-        public boolean shouldRenderOverlay(Minecraft mc, Player player, GuiGraphics guiGraphics, int guiTicks) {
-            if (!super.shouldRenderOverlay(mc, player, guiGraphics, guiTicks))
-                return false;
-
-            return true;
         }
     }
 
-    public static class SpicyHeartsOverlay extends BaseOverlay
-    {
+    public static class SpicyHeartsOverlay extends BaseOverlay {
         public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "spicy_hearts");
 
         @Override
         public void render(Minecraft minecraft, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks) {
             if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
-
-                drawSpicyHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset);
+                drawCustomHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset, HeartType.CONTAINER_SPICY, HeartType.SPICY, HeartType.SPICY_ABSORB);
             }
         }
+    }
+
+    public static class SunstruckHeartsOverlay extends BaseOverlay {
+        public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_hearts");
 
         @Override
-        public boolean shouldRenderOverlay(Minecraft mc, Player player, GuiGraphics guiGraphics, int guiTicks) {
-            if (!super.shouldRenderOverlay(mc, player, guiGraphics, guiTicks))
-                return false;
-
-            return true;
+        public void render(Minecraft minecraft, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks) {
+            if (player.hasEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT)) {
+                drawCustomHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset, HeartType.CONTAINER_SUNSTRUCK, HeartType.SUNSTRUCK, HeartType.SUNSTRUCK_ABSORB);
+            }
         }
     }
 
@@ -155,8 +121,7 @@ public class ConcoctionHUDOverlays
         float saturation = foodData.getSaturationLevel();
         int foodLevel = foodData.getFoodLevel();
         int ticks = minecraft.gui.getGuiTicks();
-        Random rand = new Random();
-        rand.setSeed(ticks * 312871);
+        Random rand = new Random(ticks * 312871);
 
         RenderSystem.enableBlend();
 
@@ -168,13 +133,9 @@ public class ConcoctionHUDOverlays
                 y = top + (rand.nextInt(3) - 1);
             }
 
-            // Background texture
             graphics.blit(MOD_ICONS_TEXTURE, x, y, 0, 0, 9, 9);
 
-            float effectiveHungerOfBar = (foodData.getFoodLevel()) / 2.0F - j;
-//            int naturalHealingOffset = naturalHealing ? 18 : 0;
-
-            // Gilded hunger icons
+            float effectiveHungerOfBar = (foodLevel / 2.0F) - j;
             if (effectiveHungerOfBar >= 1)
                 graphics.blit(MOD_ICONS_TEXTURE, x, y, 18, 0, 9, 9);
             else if (effectiveHungerOfBar >= .5)
@@ -184,230 +145,129 @@ public class ConcoctionHUDOverlays
         RenderSystem.disableBlend();
     }
 
-    public static void drawSpicyHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
-    int ticks = minecraft.gui.getGuiTicks();
-    Random rand = new Random();
-    rand.setSeed(ticks * 312871L);
+    public static void drawCustomHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos,
+                                               HeartType container, HeartType regularFill, HeartType absorptionFill) {
+        int ticks = minecraft.gui.getGuiTicks();
+        Random rand = new Random(ticks * 312871L);
 
-    int health = Mth.ceil(player.getHealth());
-    float absorption = player.getAbsorptionAmount();
-    float healthMax = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
+        int health = Mth.ceil(player.getHealth());
+        float absorption = player.getAbsorptionAmount();
+        float healthMax = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).getValue();
 
-    int regenIndex = -1;
-    if (player.hasEffect(MobEffects.REGENERATION)) {
-        regenIndex = ticks % Mth.ceil(healthMax);
-    }
+        int regenIndex = player.hasEffect(MobEffects.REGENERATION) ? ticks % Mth.ceil(healthMax) : -1;
 
-    int totalHearts = Mth.ceil(healthMax / 2.0F);
-    int absorptionHearts = Mth.ceil(absorption / 2.0F);
-    int rowCount = Mth.ceil((totalHearts + absorptionHearts) / 10.0F);
-    int rowHeight = Math.max(10 - (rowCount - 2), 3);
+        int totalHearts = Mth.ceil(healthMax / 2.0F);
+        int absorptionHearts = Mth.ceil(absorption / 2.0F);
+        int rowCount = Mth.ceil((totalHearts + absorptionHearts) / 10.0F);
+        int rowHeight = Math.max(10 - (rowCount - 2), 3);
 
-    for (int i = 0; i < totalHearts + absorptionHearts; ++i) {
-        int row = i / 10;
-        int col = i % 10;
-        int x = xBasePos + col * 8;
-        int y = yBasePos - row * rowHeight;
+        for (int i = 0; i < totalHearts + absorptionHearts; ++i) {
+            int row = i / 10;
+            int col = i % 10;
+            int x = xBasePos + col * 8;
+            int y = yBasePos - row * rowHeight;
 
-        // Low health jitter only for first row
-        if ((health + absorption) <= 4 && row == 0) {
-            y += rand.nextInt(2);
-        }
-
-        boolean isAbsorption = i >= totalHearts;
-        boolean isBlinking = player.invulnerableTime > 0 && (ticks % 6 < 3);
-        boolean isHalf = false;
-
-        int heartIndex = i * 2;
-        HeartType containerType = isAbsorption ? HeartType.CONTAINER_SPICY : HeartType.CONTAINER_SPICY;
-        HeartType fillType = HeartType.SPICY;
-
-        // Regen animation
-        if (!isAbsorption && heartIndex / 2 == regenIndex) {
-            y -= 2;
-        }
-
-        // Draw container
-        renderHeart(graphics, containerType, x, y, false, isBlinking);
-
-        // Determine heart fill
-        if (isAbsorption) {
-            float absorptionLeft = absorption - (i - totalHearts) * 2;
-            if (absorptionLeft >= 1.0F) {
-                renderHeart(graphics, fillType, x, y, false, false);
-            } else if (absorptionLeft > 0.0F) {
-                renderHeart(graphics, fillType, x, y, true, false);
-            }
-        } else {
-            float healthLeft = health - heartIndex;
-            if (isBlinking && heartIndex < healthMax) {
-                isHalf = heartIndex + 1 == healthMax;
-                renderHeart(graphics, fillType, x, y, isHalf, true);
+            if ((health + absorption) <= 4 && row == 0) {
+                y += rand.nextInt(2);
             }
 
-            if (healthLeft >= 2.0F) {
-                renderHeart(graphics, fillType, x, y, false, false);
-            } else if (healthLeft == 1.0F) {
-                renderHeart(graphics, fillType, x, y, true, false);
+            boolean isAbsorption = i >= totalHearts;
+            boolean isBlinking = player.invulnerableTime > 0 && (ticks % 6 < 3);
+            boolean isHalf = false;
+
+            int heartIndex = i * 2;
+
+            HeartType fillType = isAbsorption ? absorptionFill : regularFill;
+
+            if (!isAbsorption && heartIndex / 2 == regenIndex) {
+                y -= 2;
+            }
+
+            renderHeart(graphics, container, x, y, false, isBlinking && !isAbsorption);
+
+            if (isAbsorption) {
+                float absorptionLeft = absorption - (i - totalHearts) * 2;
+                if (absorptionLeft >= 1.0F) {
+                    renderHeart(graphics, fillType, x, y, false, false);
+                } else if (absorptionLeft > 0.0F) {
+                    renderHeart(graphics, fillType, x, y, true, false);
+                }
+            } else {
+                float healthLeft = health - heartIndex;
+                if (isBlinking && heartIndex < healthMax) {
+                    isHalf = heartIndex + 1 == healthMax;
+                    renderHeart(graphics, fillType, x, y, isHalf, true);
+                }
+
+                if (healthLeft >= 2.0F) {
+                    renderHeart(graphics, fillType, x, y, false, false);
+                } else if (healthLeft == 1.0F) {
+                    renderHeart(graphics, fillType, x, y, true, false);
+                }
             }
         }
     }
-}
 
-
-    public static class SunstruckHeartsOverlay extends BaseOverlay {
-    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_hearts");
-
-    @Override
-    public void render(Minecraft minecraft, Player player, GuiGraphics guiGraphics, int left, int right, int top, int guiTicks) {
-        if (player.hasEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT)) {
-            drawSunstruckHeartsOverlay(player, minecraft, guiGraphics, left, top - healthIconsOffset);
-        }
-    }
-
-    @Override
-    public boolean shouldRenderOverlay(Minecraft mc, Player player, GuiGraphics guiGraphics, int guiTicks) {
-        if (!super.shouldRenderOverlay(mc, player, guiGraphics, guiTicks)) {
-            return false;
-        }
-
-        return true;
-    }
-}
-
-	public static void drawSunstruckHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
-    int ticks = minecraft.gui.getGuiTicks();
-    Random rand = new Random();
-    rand.setSeed(ticks * 312871L);
-
-    int health = Mth.ceil(player.getHealth());
-    float absorption = player.getAbsorptionAmount();
-    float healthMax = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
-
-    int regenIndex = -1;
-    if (player.hasEffect(MobEffects.REGENERATION)) {
-        regenIndex = ticks % Mth.ceil(healthMax);
-    }
-
-    int totalHearts = Mth.ceil(healthMax / 2.0F);
-    int absorptionHearts = Mth.ceil(absorption / 2.0F);
-    int rowCount = Mth.ceil((totalHearts + absorptionHearts) / 10.0F);
-    int rowHeight = Math.max(10 - (rowCount - 2), 3);
-
-    for (int i = 0; i < totalHearts + absorptionHearts; ++i) {
-        int row = i / 10;
-        int col = i % 10;
-        int x = xBasePos + col * 8;
-        int y = yBasePos - row * rowHeight;
-
-        // Low health jitter only for first row
-        if ((health + absorption) <= 4 && row == 0) {
-            y += rand.nextInt(2);
-        }
-
-        boolean isAbsorption = i >= totalHearts;
-        boolean isBlinking = player.invulnerableTime > 0 && (ticks % 6 < 3);
-        boolean isHalf = false;
-
-        int heartIndex = i * 2;
-        HeartType containerType = isAbsorption ? HeartType.CONTAINER_SUNSTRUCK : HeartType.CONTAINER_SUNSTRUCK;
-        HeartType fillType = HeartType.SUNSTRUCK;
-
-        // Regen animation
-        if (!isAbsorption && heartIndex / 2 == regenIndex) {
-            y -= 2;
-        }
-
-        // Draw container
-        renderHeart(graphics, containerType, x, y, false, isBlinking);
-
-        // Determine heart fill
-        if (isAbsorption) {
-            float absorptionLeft = absorption - (i - totalHearts) * 2;
-            if (absorptionLeft >= 1.0F) {
-                renderHeart(graphics, fillType, x, y, false, false);
-            } else if (absorptionLeft > 0.0F) {
-                renderHeart(graphics, fillType, x, y, true, false);
-            }
-        } else {
-            float healthLeft = health - heartIndex;
-            if (isBlinking && heartIndex < healthMax) {
-                isHalf = heartIndex + 1 == healthMax;
-                renderHeart(graphics, fillType, x, y, isHalf, true);
-            }
-
-            if (healthLeft >= 2.0F) {
-                renderHeart(graphics, fillType, x, y, false, false);
-            } else if (healthLeft == 1.0F) {
-                renderHeart(graphics, fillType, x, y, true, false);
-            }
-        }
-    }
-}
-
-
-
-    private static void renderHeart(
-            GuiGraphics guiGraphics, HeartType heartType, int x, int y, boolean isHalf, boolean isBlinking
-    ) {
+    private static void renderHeart(GuiGraphics guiGraphics, HeartType heartType, int x, int y, boolean isHalf, boolean isBlinking) {
         RenderSystem.enableBlend();
         guiGraphics.blitSprite(heartType.getSprite(isHalf, isBlinking), x, y, 9, 9);
         RenderSystem.disableBlend();
     }
 
-   @OnlyIn(Dist.CLIENT)
-public static enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
-    CONTAINER_SPICY(
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/container_blinking")
-    ),
-    SPICY(
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/full_blinking"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/spicyheart/half_blinking")
-    ),
-    CONTAINER_SUNSTRUCK(
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container_blinking"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/container_blinking")
-    ),
-    SUNSTRUCK(
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/full"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/full_blinking"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/half"),
-            ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "hud/sunstruckheart/half_blinking")
-    );
+    @OnlyIn(Dist.CLIENT)
+    public enum HeartType implements net.neoforged.fml.common.asm.enumextension.IExtensibleEnum {
+        CONTAINER_SPICY(
+                sprite("hud/spicyheart/container"),
+                sprite("hud/spicyheart/container_blinking"),
+                sprite("hud/spicyheart/container"),
+                sprite("hud/spicyheart/container_blinking")
+        ),
+        SPICY(
+                sprite("hud/spicyheart/full"),
+                sprite("hud/spicyheart/full_blinking"),
+                sprite("hud/spicyheart/half"),
+                sprite("hud/spicyheart/half_blinking")
+        ),
+        SPICY_ABSORB(
+                sprite("hud/spicyheart/absorb_full"),
+                sprite("hud/spicyheart/absorb_full"),
+                sprite("hud/spicyheart/absorb_half"),
+                sprite("hud/spicyheart/absorb_half")
+        ),
+        CONTAINER_SUNSTRUCK(
+                sprite("hud/sunstruckheart/container"),
+                sprite("hud/sunstruckheart/container_blinking"),
+                sprite("hud/sunstruckheart/container"),
+                sprite("hud/sunstruckheart/container_blinking")
+        ),
+        SUNSTRUCK(
+                sprite("hud/sunstruckheart/full"),
+                sprite("hud/sunstruckheart/full_blinking"),
+                sprite("hud/sunstruckheart/half"),
+                sprite("hud/sunstruckheart/half_blinking")
+        ),
+        SUNSTRUCK_ABSORB(
+                sprite("hud/sunstruckheart/absorb_full"),
+                sprite("hud/sunstruckheart/absorb_full"),
+                sprite("hud/sunstruckheart/absorb_half"),
+                sprite("hud/sunstruckheart/absorb_half")
+        );
 
-    private final ResourceLocation full;
-    private final ResourceLocation fullBlinking;
-    private final ResourceLocation half;
-    private final ResourceLocation halfBlinking;
+        private final ResourceLocation full, fullBlinking, half, halfBlinking;
 
-    private HeartType(
-            ResourceLocation full,
-            ResourceLocation fullBlinking,
-            ResourceLocation half,
-            ResourceLocation halfBlinking
-    ) {
-        this.full = full;
-        this.fullBlinking = fullBlinking;
-        this.half = half;
-        this.halfBlinking = halfBlinking;
-    }
+        HeartType(ResourceLocation full, ResourceLocation fullBlinking, ResourceLocation half, ResourceLocation halfBlinking) {
+            this.full = full;
+            this.fullBlinking = fullBlinking;
+            this.half = half;
+            this.halfBlinking = halfBlinking;
+        }
 
-    public ResourceLocation getSprite(boolean isHalf, boolean isBlinking) {
-        if (isHalf) {
-            return isBlinking ? this.halfBlinking : this.half;
-        } else {
-            return isBlinking ? this.fullBlinking : this.full;
+        public ResourceLocation getSprite(boolean isHalf, boolean isBlinking) {
+            return isHalf ? (isBlinking ? halfBlinking : half) : (isBlinking ? fullBlinking : full);
+        }
+
+        private static ResourceLocation sprite(String path) {
+            return ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, path);
         }
     }
 }
-
-
-    }
-
