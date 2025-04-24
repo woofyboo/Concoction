@@ -1,5 +1,6 @@
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
@@ -88,7 +89,6 @@ public class OvergrownAxeItem extends AxeItem {
 
 	@Override
 	public int getBarColor(ItemStack stack) {
-		// Светло-желтый (бело-желтый) цвет для полоски прочности
-		return 0xFFFFC0; // RGB-код для светло-желтого цвета
+		return Utils.getColor(stack);
 	}
 }

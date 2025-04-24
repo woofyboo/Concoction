@@ -1,5 +1,6 @@
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -81,10 +82,9 @@ public class OvergrownSwordItem extends SwordItem {
 		}
 		return super.mineBlock(itemstack, world, blockstate, pos, entity);
 	}
+
 	@Override
 	public int getBarColor(ItemStack stack) {
-		// Светло-желтый (бело-желтый) цвет для полоски прочности
-		return 0xFFFFC0; // RGB-код для светло-желтого цвета
+		return Utils.getColor(stack);
 	}
-
 }

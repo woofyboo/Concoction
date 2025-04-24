@@ -1,5 +1,6 @@
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
@@ -78,6 +79,6 @@ public class OvergrownShovelItem extends ShovelItem {
 
 	@Override
 	public int getBarColor(ItemStack stack) {
-		return 0xFFFFC0;
+		return Utils.getColor(stack);
 	}
 }

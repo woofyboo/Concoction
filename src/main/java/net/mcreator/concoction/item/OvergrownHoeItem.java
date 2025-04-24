@@ -1,10 +1,8 @@
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -12,8 +10,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
+import org.spongepowered.asm.mixin.Unique;
 
 public class OvergrownHoeItem extends HoeItem {
+
 	private static final Tier TOOL_TIER = new Tier() {
 		@Override
 		public int getUses() {
@@ -45,10 +45,6 @@ public class OvergrownHoeItem extends HoeItem {
 			return Ingredient.of();
 		}
 
-
-		public boolean canBeDepleted(){
-			return false;
-		}
 	};
 
 	public OvergrownHoeItem() {
@@ -57,6 +53,7 @@ public class OvergrownHoeItem extends HoeItem {
 
 	@Override
 	public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+
 		// Если прочность равна 1, инструмент не работает
 		if (itemstack.getMaxDamage() - itemstack.getDamageValue() <= 1) {
 			return false;
@@ -93,8 +90,6 @@ public class OvergrownHoeItem extends HoeItem {
 
 	@Override
 	public int getBarColor(ItemStack stack) {
-		// Светло-желтый (бело-желтый) цвет для полоски прочности
-		return 0xFFFFC0; // RGB-код для светло-желтого цвета
+		return Utils.getColor(stack);
 	}
-
 }
