@@ -4,12 +4,7 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.flag.FeatureFlagSet;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -170,14 +165,16 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MAGENTA_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.PINK_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
-				
+// зачарования
+
 //Инструменты, оружие, броня
 				tabData.accept(ConcoctionModItems.OVERGROWN_SHOVEL.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_PICKAXE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_AXE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_HOE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_SWORD.get());
-				tabData.accept(ConcoctionModItems.SUNFLOWER_CROWN_HELMET.get());
+
+				tabData.accept(ConcoctionModItems.SUNFLOWER_CROWN_HELMET.get());
 				tabData.accept(ConcoctionModItems.SUNSTRUCK_SPAWN_EGG.get());
 
 

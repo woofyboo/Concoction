@@ -1,5 +1,6 @@
 package net.mcreator.concoction.procedures;
 
+import net.mcreator.concoction.block.SoullandBlock;
 import net.mcreator.concoction.item.OvergrownHoeItem;
 import net.mcreator.concoction.utils.Utils;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -55,7 +56,7 @@ public class SoullandHoeRightclickProcedure {
 		if (!event.isSimulated() && event.getItemAbility() == ItemAbilities.HOE_TILL && event.getPlayer() != null) {
 			execute(event, event.getContext().getLevel(), event.getContext().getClickedPos().getX(), event.getContext().getClickedPos().getY(), event.getContext().getClickedPos().getZ(), event.getPlayer());
 
-			if (!event.getPlayer().level().isClientSide() && event.getPlayer() instanceof ServerPlayer serverPlayer) {
+			if (!event.getPlayer().level().isClientSide() && event.getPlayer() instanceof ServerPlayer serverPlayer && event.getState().getBlock() == Blocks.SOUL_SOIL) {
 				Utils.addAchievement(serverPlayer, "concoction:make_soul_soul");
 			}
 
