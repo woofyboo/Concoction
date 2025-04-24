@@ -185,50 +185,75 @@ public class ConcoctionHUDOverlays
     }
 
     public static void drawSpicyHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
-        int ticks = minecraft.gui.getGuiTicks();
-        Random rand = new Random();
-        rand.setSeed((long) (ticks * 312871));
+    int ticks = minecraft.gui.getGuiTicks();
+    Random rand = new Random();
+    rand.setSeed(ticks * 312871L);
 
-        int health = Mth.ceil(player.getHealth());
-        float absorption = Mth.ceil(player.getAbsorptionAmount());
-        AttributeInstance attrMaxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-        float healthMax = (float) attrMaxHealth.getValue();
+    int health = Mth.ceil(player.getHealth());
+    float absorption = player.getAbsorptionAmount();
+    float healthMax = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
 
-        int regen = -1;
-        if (player.hasEffect(MobEffects.REGENERATION)) regen = ticks % 25;
+    int regenIndex = -1;
+    if (player.hasEffect(MobEffects.REGENERATION)) {
+        regenIndex = ticks % Mth.ceil(healthMax);
+    }
 
-        int healthRows = Mth.ceil((double) healthMax / 2.0);
-        int absorptionRows = Mth.ceil((double) absorption / 2.0);
-        int rowHeight = Math.max(10 - (healthRows - 2), 3);
-        int totalRows = healthRows * 2;
+    int totalHearts = Mth.ceil(healthMax / 2.0F);
+    int absorptionHearts = Mth.ceil(absorption / 2.0F);
+    int rowCount = Mth.ceil((totalHearts + absorptionHearts) / 10.0F);
+    int rowHeight = Math.max(10 - (rowCount - 2), 3);
 
-        for (int i = healthRows + absorptionRows - 1; i >= 0; i--) {
-            int row = i / 10;
-            int col = i % 10;
-            int x = xBasePos + col * 8;
-            int y = yBasePos - row * rowHeight;
-            if (health + absorption <= 4) {
-                y += rand.nextInt(2);
+    for (int i = 0; i < totalHearts + absorptionHearts; ++i) {
+        int row = i / 10;
+        int col = i % 10;
+        int x = xBasePos + col * 8;
+        int y = yBasePos - row * rowHeight;
+
+        // Low health jitter only for first row
+        if ((health + absorption) <= 4 && row == 0) {
+            y += rand.nextInt(2);
+        }
+
+        boolean isAbsorption = i >= totalHearts;
+        boolean isBlinking = player.invulnerableTime > 0 && (ticks % 6 < 3);
+        boolean isHalf = false;
+
+        int heartIndex = i * 2;
+        HeartType containerType = isAbsorption ? HeartType.CONTAINER_SPICY : HeartType.CONTAINER_SPICY;
+        HeartType fillType = HeartType.SPICY;
+
+        // Regen animation
+        if (!isAbsorption && heartIndex / 2 == regenIndex) {
+            y -= 2;
+        }
+
+        // Draw container
+        renderHeart(graphics, containerType, x, y, false, isBlinking);
+
+        // Determine heart fill
+        if (isAbsorption) {
+            float absorptionLeft = absorption - (i - totalHearts) * 2;
+            if (absorptionLeft >= 1.0F) {
+                renderHeart(graphics, fillType, x, y, false, false);
+            } else if (absorptionLeft > 0.0F) {
+                renderHeart(graphics, fillType, x, y, true, false);
             }
-
-            if (i < healthRows && i == regen) {
-                y -= 2;
-            }
-            boolean isBlinking = (player.invulnerableTime != 0) && ticks % 6 < 3;
-            renderHeart(graphics, HeartType.CONTAINER_SPICY, x, y, false, isBlinking);
-            int heartIndex = i * 2;
-
+        } else {
+            float healthLeft = health - heartIndex;
             if (isBlinking && heartIndex < healthMax) {
-                boolean isHalfHealth = heartIndex + 1 == healthMax;
-                renderHeart(graphics, HeartType.SPICY, x, y, isHalfHealth, true);
+                isHalf = heartIndex + 1 == healthMax;
+                renderHeart(graphics, fillType, x, y, isHalf, true);
             }
 
-            if (heartIndex < health) {
-                boolean isHalfHealth = heartIndex + 1 == health;
-                renderHeart(graphics, HeartType.SPICY, x, y, isHalfHealth, false);
+            if (healthLeft >= 2.0F) {
+                renderHeart(graphics, fillType, x, y, false, false);
+            } else if (healthLeft == 1.0F) {
+                renderHeart(graphics, fillType, x, y, true, false);
             }
         }
     }
+}
+
 
     public static class SunstruckHeartsOverlay extends BaseOverlay {
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "sunstruck_hearts");
@@ -251,50 +276,75 @@ public class ConcoctionHUDOverlays
 }
 
 	public static void drawSunstruckHeartsOverlay(Player player, Minecraft minecraft, GuiGraphics graphics, int xBasePos, int yBasePos) {
-	    int ticks = minecraft.gui.getGuiTicks();
-	    Random rand = new Random();
-	    rand.setSeed((long) (ticks * 312871));
-	
-	    int health = Mth.ceil(player.getHealth());
-	    float absorption = Mth.ceil(player.getAbsorptionAmount());
-	    AttributeInstance attrMaxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-	    float healthMax = (float) attrMaxHealth.getValue();
-	
-	    int regen = -1;
-	    if (player.hasEffect(MobEffects.REGENERATION)) regen = ticks % 25;
-	
-	    int healthRows = Mth.ceil((double) healthMax / 2.0);
-	    int absorptionRows = Mth.ceil((double) absorption / 2.0);
-	    int rowHeight = Math.max(10 - (healthRows - 2), 3);
-	    int totalRows = healthRows * 2;
-	
-	    for (int i = healthRows + absorptionRows - 1; i >= 0; i--) {
-	        int row = i / 10;
-	        int col = i % 10;
-	        int x = xBasePos + col * 8;
-	        int y = yBasePos - row * rowHeight;
-	        if (health + absorption <= 4) {
-	            y += rand.nextInt(2);
-	        }
-	
-	        if (i < healthRows && i == regen) {
-	            y -= 2;
-	        }
-	        boolean isBlinking = (player.invulnerableTime != 0) && ticks % 6 < 3;
-	        renderHeart(graphics, HeartType.CONTAINER_SUNSTRUCK, x, y, false, isBlinking);
-	        int heartIndex = i * 2;
-	
-	        if (isBlinking && heartIndex < healthMax) {
-	            boolean isHalfHealth = heartIndex + 1 == healthMax;
-	            renderHeart(graphics, HeartType.SUNSTRUCK, x, y, isHalfHealth, true);
-	        }
-	
-	        if (heartIndex < health) {
-	            boolean isHalfHealth = heartIndex + 1 == health;
-	            renderHeart(graphics, HeartType.SUNSTRUCK, x, y, isHalfHealth, false);
-	        }
-	    }
+    int ticks = minecraft.gui.getGuiTicks();
+    Random rand = new Random();
+    rand.setSeed(ticks * 312871L);
+
+    int health = Mth.ceil(player.getHealth());
+    float absorption = player.getAbsorptionAmount();
+    float healthMax = (float) player.getAttribute(Attributes.MAX_HEALTH).getValue();
+
+    int regenIndex = -1;
+    if (player.hasEffect(MobEffects.REGENERATION)) {
+        regenIndex = ticks % Mth.ceil(healthMax);
+    }
+
+    int totalHearts = Mth.ceil(healthMax / 2.0F);
+    int absorptionHearts = Mth.ceil(absorption / 2.0F);
+    int rowCount = Mth.ceil((totalHearts + absorptionHearts) / 10.0F);
+    int rowHeight = Math.max(10 - (rowCount - 2), 3);
+
+    for (int i = 0; i < totalHearts + absorptionHearts; ++i) {
+        int row = i / 10;
+        int col = i % 10;
+        int x = xBasePos + col * 8;
+        int y = yBasePos - row * rowHeight;
+
+        // Low health jitter only for first row
+        if ((health + absorption) <= 4 && row == 0) {
+            y += rand.nextInt(2);
+        }
+
+        boolean isAbsorption = i >= totalHearts;
+        boolean isBlinking = player.invulnerableTime > 0 && (ticks % 6 < 3);
+        boolean isHalf = false;
+
+        int heartIndex = i * 2;
+        HeartType containerType = isAbsorption ? HeartType.CONTAINER_SUNSTRUCK : HeartType.CONTAINER_SUNSTRUCK;
+        HeartType fillType = HeartType.SUNSTRUCK;
+
+        // Regen animation
+        if (!isAbsorption && heartIndex / 2 == regenIndex) {
+            y -= 2;
+        }
+
+        // Draw container
+        renderHeart(graphics, containerType, x, y, false, isBlinking);
+
+        // Determine heart fill
+        if (isAbsorption) {
+            float absorptionLeft = absorption - (i - totalHearts) * 2;
+            if (absorptionLeft >= 1.0F) {
+                renderHeart(graphics, fillType, x, y, false, false);
+            } else if (absorptionLeft > 0.0F) {
+                renderHeart(graphics, fillType, x, y, true, false);
+            }
+        } else {
+            float healthLeft = health - heartIndex;
+            if (isBlinking && heartIndex < healthMax) {
+                isHalf = heartIndex + 1 == healthMax;
+                renderHeart(graphics, fillType, x, y, isHalf, true);
+            }
+
+            if (healthLeft >= 2.0F) {
+                renderHeart(graphics, fillType, x, y, false, false);
+            } else if (healthLeft == 1.0F) {
+                renderHeart(graphics, fillType, x, y, true, false);
+            }
+        }
+    }
 }
+
 
 
     private static void renderHeart(

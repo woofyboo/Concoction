@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "minecraft:sunflower"
+  },
+  "base": {
+    "item": "minecraft:wooden_shovel"
+  },
+  "addition": {
+    "item": "concoction:sunflower_crown_helmet"
+  },
+  "result": {
+    "id": "concoction:overgrown_shovel"
+  }
+}

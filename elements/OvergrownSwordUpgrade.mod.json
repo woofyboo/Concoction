@@ -1,0 +1,28 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Smithing",
+    "recipeRetstackSize": 1,
+    "group": "overgrown_pickaxe",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "smithingInputStack": {
+      "value": "Items.WOODEN_SWORD"
+    },
+    "smithingInputAdditionStack": {
+      "value": "CUSTOM:SunflowerCrown.helmet"
+    },
+    "smithingInputTemplateStack": {
+      "value": "Blocks.DOUBLE_PLANT#0"
+    },
+    "smithingReturnStack": {
+      "value": "CUSTOM:OvergrownSword"
+    },
+    "name": "overgrown_sword_upgrade",
+    "namespace": "mod"
+  }
+}

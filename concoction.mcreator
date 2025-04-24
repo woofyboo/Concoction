@@ -5283,6 +5283,71 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "OvergrownPickaxeUpgrade",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_pickaxe_upgrade",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_pickaxe_upgrade.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "OvergrownAxeUpgrade",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_axe_upgrade",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_axe_upgrade.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "OvergrownShovelUpgrade",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_shovel_upgrade",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_shovel_upgrade.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "OvergrownHoeUpgrade",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_hoe_upgrade",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_hoe_upgrade.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "OvergrownSwordUpgrade",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_sword_upgrade",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_sword_upgrade.json"
+        ]
+      },
+      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
@@ -5370,6 +5435,10 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
+    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:TomatoBlock",
       "~CUSTOM:SunflowerSeedBlock",
@@ -5381,9 +5450,10 @@
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
+    "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
+      "CUSTOM:Sunflower",
+      "CUSTOM:WildOnion"
     ],
     "BLOCKS:minecraft:axe/mineable": [
       "CUSTOM:CropMint",
@@ -5396,11 +5466,6 @@
       "CUSTOM:CropCabbage",
       "CUSTOM:CropTomato",
       "CUSTOM:NetherPepperCrop"
-    ],
-    "ITEMS:minecraft:flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower",
-      "CUSTOM:WildOnion"
     ],
     "ITEMS:minecraft:hoes": [
       "~CUSTOM:OvergrownHoe"
@@ -5842,7 +5907,7 @@
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Стрела цветения",
       "item.concoction.reapper": "Перец-жнерец",
-      "effect.concoction.minty_breath": "Свежесть",
+      "effect.concoction.minty_breath": "Мятность",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
       "item.concoction.cod_sushi": "Суши из трески"
     },
@@ -6098,7 +6163,7 @@
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Arrow of Potion Of Blooming",
       "item.concoction.reapper": "Ghost Reapper",
-      "effect.concoction.minty_breath": "Freshness",
+      "effect.concoction.minty_breath": "Minty",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "item.concoction.cod_sushi": "Cod Sushi"
     }
