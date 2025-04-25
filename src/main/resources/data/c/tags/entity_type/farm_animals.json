@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "chicken",
+    "cod",
+    "cow",
+    "donkey",
+    "glow_squid",
+    "squid",
+    "sheep",
+    "pig",
+    "goat",
+    "horse",
+    "mule",
+    "hoglin",
+    "salmon",
+    "tropical_fish",
+    "pufferfish",
+    "rabbit",
+    "mooshroom",
+    "zoglin",
+    "zombie_horse",
+    "skeleton_horse",
+    "trader_llama",
+    "llama",
+    "camel",
+    "strider",
+    "sniffer"
+  ]
+}
