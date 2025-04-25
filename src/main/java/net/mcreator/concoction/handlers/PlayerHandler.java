@@ -1,18 +1,25 @@
 package net.mcreator.concoction.handlers;
 
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.*;
 import net.mcreator.concoction.utils.Utils;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.minecraft.resources.ResourceLocation;
@@ -23,6 +30,8 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
+import java.util.Random;
+
 @EventBusSubscriber
 public class PlayerHandler {
     private static int tickCounter = 0;
@@ -32,6 +41,7 @@ public class PlayerHandler {
     private static final TagKey<Block> WILDLIFE_PLANTS = TagKey.create(Registries.BLOCK, ResourceLocation.parse("concoction:wildlife_plants"));
     private static final TagKey<Item> SPECIAL_FOOD = TagKey.create(Registries.ITEM, ResourceLocation.parse("c:foods/dish"));
     private static final TagKey<Item> SPECIAL_SOUP = TagKey.create(Registries.ITEM, ResourceLocation.parse("c:foods/soup"));
+    private static final TagKey<EntityType<?>> FARM_ANIMALS = TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("c:farm_animals"));
 
     @SubscribeEvent
     public static void playerInventoryChangeEvent(PlayerContainerEvent.Close event) {
@@ -116,10 +126,65 @@ public class PlayerHandler {
         }
     }
 
+    @SubscribeEvent
+    public static void entityDied(LivingDeathEvent event) {
+        Entity source = event.getSource().getEntity();
+
+        if (source instanceof LivingEntity entity) {
+            ItemStack itemStack = entity.getItemInHand(InteractionHand.MAIN_HAND);
+            Level world = entity.level();
+            int enchantmentLevel = itemStack.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("concoction:butchering"))));
+            if (enchantmentLevel > 0) {
+                Entity damagedEntity = event.getEntity();
+                if (damagedEntity.getType().is(FARM_ANIMALS)) {
+                    if (new Random().nextInt(0, 10) < enchantmentLevel) {
+
+                        if (damagedEntity instanceof Chicken) {
+                            ItemEntity entityToSpawn = new ItemEntity(world,
+                                    damagedEntity.getX(), damagedEntity.getY() + 0.5, damagedEntity.getZ(),
+                                    new ItemStack(Items.FEATHER, 1));
+                            entityToSpawn.setPickUpDelay(10);
+                            world.addFreshEntity(entityToSpawn);
+                        }
+
+                        if (damagedEntity instanceof Cow) {
+                            ItemEntity entityToSpawn = new ItemEntity(world,
+                                    damagedEntity.getX(), damagedEntity.getY() + 0.5, damagedEntity.getZ(),
+                                    new ItemStack(Items.LEATHER, 1));
+                            entityToSpawn.setPickUpDelay(10);
+                            world.addFreshEntity(entityToSpawn);
+                        }
+
+                        ItemEntity entityToSpawn = new ItemEntity(world,
+                                damagedEntity.getX(), damagedEntity.getY() + 0.5, damagedEntity.getZ(),
+                                new ItemStack(ConcoctionModItems.ANIMAL_FAT.get(), 1));
+                        entityToSpawn.setPickUpDelay(10);
+                        world.addFreshEntity(entityToSpawn);
+                    }
+                }
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void entityAttacked(LivingIncomingDamageEvent event) {
         Entity source = event.getSource().getEntity();
+
+        if (source instanceof LivingEntity entity) {
+            ItemStack itemStack = entity.getItemInHand(InteractionHand.MAIN_HAND);
+            Level world = entity.level();
+            int enchantmentLevel = itemStack.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("concoction:butchering"))));
+            if (enchantmentLevel > 0) {
+                Entity damagedEntity = event.getEntity();
+                if (damagedEntity.getType().is(FARM_ANIMALS))
+                {
+                    event.setAmount((float) (event.getAmount() + (enchantmentLevel * 2.5)));
+                }
+
+                System.out.println(event.getAmount());
+            }
+        }
+
         if (source instanceof ServerPlayer player) {
             ItemStack itemStack = player.getInventory().getSelected();
             if (itemStack.getItem() instanceof OvergrownHoeItem ||

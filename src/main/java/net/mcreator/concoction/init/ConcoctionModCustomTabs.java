@@ -2,10 +2,16 @@ package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.ConcoctionMod;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -165,7 +171,17 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MAGENTA_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.PINK_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
+
 // зачарования
+
+				for (int i = 1; i<=4; i++) {
+					ResourceKey<Enchantment> butcheringKey = ConcoctionModEnchantments.BUTCHERING;
+					var butcheringEntry = parameters.holders().holder(butcheringKey);
+					if (butcheringEntry != null && butcheringEntry.isPresent()) {
+						EnchantmentInstance enchantmentInstance = new EnchantmentInstance(butcheringEntry.get(), i);
+						tabData.accept(EnchantedBookItem.createForEnchantment(enchantmentInstance));
+					}
+				}
 
 //Инструменты, оружие, броня
 				tabData.accept(ConcoctionModItems.OVERGROWN_SHOVEL.get());
