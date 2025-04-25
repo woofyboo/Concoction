@@ -114,6 +114,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.CABBAGE_LEAVES_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEED_BLOCK.get());
 				tabData.accept(ConcoctionModItems.TOMATO_BLOCK.get());
+				tabData.accept(ConcoctionModItems.RICE_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SOAKED_RICE_BLOCK.get());
 
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());
@@ -171,8 +173,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MAGENTA_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.PINK_WOVEN_CARPET.get());
 				tabData.accept(ConcoctionModItems.WANDERING_TRADER_CARPET.get());
-
-// зачарования
+//Деревья
+//Зачарования
 
 				for (int i = 1; i<=4; i++) {
 					ResourceKey<Enchantment> butcheringKey = ConcoctionModEnchantments.BUTCHERING;

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "group": "rice_block",
+  "category": "misc",
+  "experience": 0,
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "concoction:soaked_rice_block"
+  },
+  "result": {
+    "id": "concoction:rice_block"
+  }
+}

@@ -5348,6 +5348,79 @@
         ]
       },
       "path": "~/sunflower"
+    },
+    {
+      "name": "RiceBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rice_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/rice_block.json",
+          "src/main/resources/assets/concoction/models/item/rice_block.json",
+          "src/main/resources/assets/concoction/blockstates/rice_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/rice_block.json",
+          "src/main/java/net/mcreator/concoction/block/RiceBlockBlock.java"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "SoakedRiceBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soaked_rice_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/soaked_rice_block.json",
+          "src/main/java/net/mcreator/concoction/block/SoakedRiceBlockBlock.java",
+          "src/main/resources/assets/concoction/blockstates/soaked_rice_block.json",
+          "src/main/resources/assets/concoction/models/item/soaked_rice_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/soaked_rice_block.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "RiceBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rice_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/rice_block_craft.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "RiceBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rice_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/rice_block_uncraft.json"
+        ]
+      },
+      "path": "~/rice"
+    },
+    {
+      "name": "SoakedRiceBlockRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "soaked_rice_block_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/soaked_rice_block_recipe.json"
+        ]
+      },
+      "path": "~/rice"
     }
   ],
   "variable_elements": [],
@@ -5643,6 +5716,8 @@
       "~CUSTOM:SoulIce"
     ],
     "BLOCKS:minecraft:mineable/shovel": [
+      "~CUSTOM:SoakedRiceBlock",
+      "~CUSTOM:RiceBlock",
       "~CUSTOM:Soulland"
     ],
     "BLOCKS:minecraft:maintains_farmland": [
@@ -5793,6 +5868,7 @@
       "death.attack.rift": "%1$s испытал межпространственное нарезание",
       "gui.butter_churn.title": "Масловыбивание",
       "item_group.concoction.concoction": "Concoction",
+      "block.concoction.soaked_rice_block": "Rice Block",
       "block.concoction.purple_pillow_block": "Фиолетовая подушка",
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
       "block.concoction.sunflower_seed_block": "Блок семечек подсолнуха",
@@ -5907,6 +5983,7 @@
       "advancements.unlucky_butter_churn.title": "Криворукий",
       "block.concoction.pink_pillow_block": "Розовая подушка",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
+      "block.concoction.rice_block": "Rice Block",
       "item.concoction.grilled_fish": "Рыба на гриле",
       "item.minecraft.potion.effect.blooming": "Зелье цветения",
       "item.concoction.overgrown_hoe": "Цветущая мотыга",
@@ -6049,6 +6126,7 @@
       "death.attack.rift": "%1$s suffered interdimensional rift quartering",
       "gui.butter_churn.title": "Spinning",
       "item_group.concoction.concoction": "Concoction",
+      "block.concoction.soaked_rice_block": "Soaked Rice Block",
       "block.concoction.purple_pillow_block": "Purple Pillow",
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
       "block.concoction.sunflower_seed_block": "Sunflower Seed Block",
@@ -6163,6 +6241,7 @@
       "advancements.unlucky_butter_churn.title": "My Hand Must Have Slipped!",
       "block.concoction.pink_pillow_block": "Pink Pillow",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
+      "block.concoction.rice_block": "Rice Block",
       "item.concoction.grilled_fish": "Grilled Fish",
       "item.minecraft.potion.effect.blooming": "Potion of Blooming",
       "item.concoction.overgrown_hoe": "Overgrown Hoe",

@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "concoction:soaked_rice_block",
+    "concoction:rice_block",
     "concoction:soulland"
   ]
 }
