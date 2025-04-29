@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mint",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:mint_bale"
+    }
+  },
+  "result": {
+    "id": "concoction:mint",
+    "count": 9
+  }
+}

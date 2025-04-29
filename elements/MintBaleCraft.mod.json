@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "mint_bale",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      },
+      {
+        "value": "CUSTOM:Mint"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:MintBale"
+    },
+    "name": "mint_bale_craft",
+    "namespace": "mod"
+  }
+}

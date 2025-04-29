@@ -105,6 +105,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 				tabData.accept(ConcoctionModItems.WILD_CABBAGE.get());
 				tabData.accept(ConcoctionModItems.WILD_TOMATO.get());
+				tabData.accept(ConcoctionModItems.MINT_BALE.get());
 				tabData.accept(ConcoctionModItems.CORN_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SPICY_PEPPER_BLOCK.get());
 				tabData.accept(ConcoctionModItems.ONION_BLOCK.get());
