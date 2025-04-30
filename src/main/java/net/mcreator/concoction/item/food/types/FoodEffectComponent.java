@@ -26,6 +26,7 @@ public record FoodEffectComponent(FoodEffectType type, int level, int duration, 
     );
 
 
+
 //    // Unit stream codec if nothing should be sent across the network
 //    public static final StreamCodec<ByteBuf, FoodEffectComponents> FOOD_EFFECT_COMPONENT_UNIT_STREAM_CODEC = StreamCodec.unit(new FoodEffectComponents(null, 0, 0));
 //

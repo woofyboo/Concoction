@@ -255,5 +255,6 @@
   "item.concoction.reapper": "Перец-жнерец",
   "effect.concoction.minty_breath": "Мятность",
   "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
-  "item.concoction.cod_sushi": "Суши из трески"
+  "item.concoction.cod_sushi": "Суши из трески",
+  "taste.concoction.spicy": "Острое"
 }

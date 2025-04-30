@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.sounds.SoundEvent;
@@ -12,13 +13,20 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
-
 import net.mcreator.concoction.procedures.MintBrewDrinkProcedure;
 
 public class MintBrewItem extends Item {
 	public MintBrewItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0.3f).alwaysEdible().build()));
+		super(new Item.Properties()
+				.stacksTo(16)
+				.rarity(Rarity.COMMON)
+				.food((new FoodProperties.Builder())
+						.nutrition(0)
+						.saturationModifier(0.3f)
+						.alwaysEdible()
+						.build())
+				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.MINTY, 1, 12, true))
+		);
 	}
 
 	@Override

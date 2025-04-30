@@ -47,23 +47,38 @@ public class ConcoctionModDataComponents {
                     // The codec to read/write the data across the network
                     .networkSynchronized(FOOD_EFFECT_COMPONENT_STREAM_CODEC)
     );
+    
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<FoodEffectComponent>> FOOD_EFFECT_4 = REGISTRY.registerComponentType(
+            "food_effect_4",
+            builder -> builder
+                    // The codec to read/write the data to disk
+                    .persistent(FOOD_EFFECT_COMPONENT_CODEC)
+                    // The codec to read/write the data across the network
+                    .networkSynchronized(FOOD_EFFECT_COMPONENT_STREAM_CODEC)
+    );
+    
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<FoodEffectComponent>> FOOD_EFFECT_5 = REGISTRY.registerComponentType(
+            "food_effect_5",
+            builder -> builder
+                    // The codec to read/write the data to disk
+                    .persistent(FOOD_EFFECT_COMPONENT_CODEC)
+                    // The codec to read/write the data across the network
+                    .networkSynchronized(FOOD_EFFECT_COMPONENT_STREAM_CODEC)
+    );
 
     // Listened to on the mod event bus
     @SubscribeEvent
     public static void modifyComponents(ModifyDefaultComponentsEvent event) {
-        // Sets the component on melon seeds
         event.modify(Items.CHORUS_FRUIT, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(INSTABILITY, 1, 8, false))
         );
         event.modify(Items.GLOW_BERRIES, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(GLOW, 1, 6, true))
         );
+
         event.modify(Items.MELON_SLICE, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 12, true))
         );
-//        event.modify(Items.HONEY_BOTTLE, builder ->
-//                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 30, true))
-//        );
         event.modify(Items.SWEET_BERRIES, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 6, true))
         );
@@ -73,12 +88,17 @@ public class ConcoctionModDataComponents {
         event.modify(Items.COOKIE, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 6, true))
         );
-
-
-        // Removes the component for any items that have a crafting item
-        event.modifyMatching(
-                Item::hasCraftingRemainingItem,
-                builder -> builder.remove(FOOD_EFFECT.value())
+        event.modify(Items.HONEY_BOTTLE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 30, true))
+        );
+        event.modify(Items.APPLE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 8, true))
+        );
+        event.modify(Items.GOLDEN_APPLE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 3, 20, true))
+        );
+        event.modify(Items.ENCHANTED_GOLDEN_APPLE, builder ->
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 5, 30, true))
         );
     }
 }

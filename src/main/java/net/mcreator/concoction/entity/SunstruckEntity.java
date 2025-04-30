@@ -63,7 +63,7 @@ public class SunstruckEntity extends Zombie {
 	public void tick() {
 		super.tick();
 		boolean isDay = this.level().isDay();
-		if (isDay != wasDay) {
+		if (isDay != wasDay && !this.level().isClientSide()) {
 			wasDay = isDay;
 			updateAttributes();
 		}
@@ -87,7 +87,7 @@ public class SunstruckEntity extends Zombie {
 	@Override
 public boolean doHurtTarget(Entity target) {
 	boolean flag = super.doHurtTarget(target);
-	if (flag && this.getMainHandItem().isEmpty() && target instanceof LivingEntity livingTarget) {
+	if (flag && this.getMainHandItem().isEmpty() && target instanceof LivingEntity livingTarget && !(livingTarget.level().isClientSide())) {
 		float rand = this.level().random.nextFloat();
 		if (rand <= 0.33f) {
 			int currentAmplifier = 0;

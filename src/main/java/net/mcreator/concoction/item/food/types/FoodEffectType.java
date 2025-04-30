@@ -2,6 +2,9 @@ package net.mcreator.concoction.item.food.types;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModPotions;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -42,5 +45,10 @@ public enum FoodEffectType implements StringRepresentable {
             case GLOW ->  new MobEffectInstance(MobEffects.GLOWING, duration*20, level-1, false, !isHidden, true, null);
             case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration*20, level-1, false, !isHidden, true, null);
         };
+    }
+
+    public Component getTooltip(int level, int duration, boolean isHidden) {
+        MutableComponent effectName = Component.translatable("taste.concoction." + this.name);
+        return effectName.withStyle(ChatFormatting.GRAY);
     }
 }

@@ -1,6 +1,8 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.Level;
@@ -17,9 +19,11 @@ import net.minecraft.world.item.*;
 
 import net.mcreator.concoction.procedures.ObsidianTearsBottlePlayerFinishesUsingItemProcedure;
 
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+
 public class ObsidianTearsBottleItem extends Item {
 	public ObsidianTearsBottleItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.INSTABILITY, 1, 12, true)).rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).alwaysEdible().build()));
 	}
 	
 	@Override
