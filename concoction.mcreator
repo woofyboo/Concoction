@@ -161,7 +161,7 @@
       "name": "HealingBonusMinty",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "healing_bonus_minty",
       "metadata": {
         "files": [
