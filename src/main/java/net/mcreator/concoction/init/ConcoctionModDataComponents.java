@@ -83,7 +83,7 @@ public class ConcoctionModDataComponents {
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 6, true))
         );
         event.modify(Items.PUMPKIN_PIE, builder ->
-                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 3, 12, true))
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 12, true))
         );
         event.modify(Items.COOKIE, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 6, true))
@@ -95,7 +95,7 @@ public class ConcoctionModDataComponents {
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 1, 8, true))
         );
         event.modify(Items.GOLDEN_APPLE, builder ->
-                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 3, 20, true))
+                builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 2, 20, true))
         );
         event.modify(Items.ENCHANTED_GOLDEN_APPLE, builder ->
                 builder.set(FOOD_EFFECT.value(), new FoodEffectComponent(SWEET, 5, 30, true))

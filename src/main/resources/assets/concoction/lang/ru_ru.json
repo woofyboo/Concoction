@@ -1,4 +1,5 @@
 {
+  "taste.concoction.glow": "Сияющее",
   "block.concoction.lime_pillow_block": "Лаймовая подушка",
   "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
   "block.concoction.mint": "Мята",
@@ -34,8 +35,8 @@
   "death.attack.rift.item": "%1$s был нарезан на межпространственные кусочки %2$s с помощью %3$s",
   "item.concoction.dough": "Тесто",
   "fluid.concoction.weighted_souls": "Призрачная жижа",
-  "block.concoction.orange_pillow_block": "Оранжевая подушка",
   "block.concoction.green_pillow_block": "Зелёная подушка",
+  "block.concoction.orange_pillow_block": "Оранжевая подушка",
   "block.concoction.onion_block": "Блок лука",
   "block.concoction.mint_bale": "Сноп мяты",
   "item.concoction.overgrown_shovel": "Цветущая лопата",
@@ -91,6 +92,7 @@
   "block.concoction.red_woven_carpet": "Красный тканый ковёр",
   "block.concoction.crop_corn": "Кукуруза",
   "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
+  "taste.concoction.instability": "Нестабильное",
   "block.concoction.wild_beetroot": "Дикая свекла",
   "item.concoction.overgrown_pickaxe": "Цветущая кирка",
   "item.concoction.sunstruck_spawn_egg": "Яйцо призыва выцвевшего",
@@ -117,6 +119,7 @@
   "advancements.new_crops.descr": "Найди новые дикорастущие культуры",
   "item.concoction.hanami_dango": "Ханами данго",
   "effect.concoction.spicy": "Жгучесть",
+  "taste.concoction.minty": "Мятное",
   "advancements.giant_corn_witness.descr": "Узнай как электричество влияет на рост кукурузы",
   "block.concoction.blue_pillow_block": "Синяя подушка",
   "entity.concoction.sunstruck": "Выцвевший",
@@ -224,6 +227,7 @@
   "advancements.cry_worthy_haircut.title": "Причёска достойная слез",
   "advancements.unlucky_butter_churn.title": "Криворукий",
   "block.concoction.pink_pillow_block": "Розовая подушка",
+  "taste.concoction.spicy": "Острое",
   "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
   "block.concoction.rice_block": "Блок риса",
   "item.concoction.grilled_fish": "Рыба на гриле",
@@ -253,8 +257,8 @@
   "block.concoction.yellow_pillow_block": "Жёлтая подушка",
   "item.minecraft.tipped_arrow.effect.blooming_extended": "Стрела цветения",
   "item.concoction.reapper": "Перец-жнерец",
+  "taste.concoction.sweet": "Сладкое",
   "effect.concoction.minty_breath": "Мятность",
   "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
-  "item.concoction.cod_sushi": "Суши из трески",
-  "taste.concoction.spicy": "Острое"
+  "item.concoction.cod_sushi": "Суши из трески"
 }
