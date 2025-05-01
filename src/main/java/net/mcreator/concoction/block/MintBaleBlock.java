@@ -15,6 +15,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 
 public class MintBaleBlock extends Block {
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
@@ -27,6 +29,10 @@ public class MintBaleBlock extends Block {
 	@Override
 	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
 		return 15;
+	}
+	@Override
+	public void fallOn(net.minecraft.world.level.Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    entity.causeFallDamage(fallDistance, 0.2F, world.damageSources().fall());
 	}
 
 	@Override
