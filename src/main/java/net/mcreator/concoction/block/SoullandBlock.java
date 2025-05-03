@@ -101,45 +101,44 @@ public class SoullandBlock extends Block {
 
 	@Override
 	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-	    super.randomTick(blockstate, world, pos, random);
-	    
-	    boolean charged = blockstate.getValue(SOULCHARGED); // Check if the block is soul-charged
-	    boolean nearSoul = isNearSoul(world, pos); // Check if there's a soul nearby
-	
-	    if (!nearSoul) {
-	        // If no soul is near and the block is charged, reset the charge
-	        if (charged) {
-	            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
-	        } else if (!shouldMaintainFarmland(world, pos)) {
-	            // If not charged and no need to maintain farmland, turn it to soil
-	            turnToSoil(null, blockstate, world, pos);
-	        }
-	    } else {
-	        // If souls are nearby, charge the block
-	        if (!charged) {
-	            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
-	        }
-	
-	        // If the block is soul-charged, speed up crop growth (5x faster)
-	        if (charged) {
-	            // Iterate over crops nearby and trigger growth multiple times (5x faster)
-	            for (BlockPos offset : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-	                BlockState nearbyState = world.getBlockState(offset);
-	                if (nearbyState.getBlock() instanceof CropBlock cropBlock) {
-	                    try {
-	                        // Use reflection to access the protected randomTick method
-	                        Method randomTickMethod = CropBlock.class.getDeclaredMethod("randomTick", BlockState.class, ServerLevel.class, BlockPos.class, RandomSource.class);
-	                        randomTickMethod.setAccessible(true);
-	                        // Invoke the randomTick method using reflection
-	                        randomTickMethod.invoke(cropBlock, nearbyState, world, offset, random);
-	                    } catch (Exception e) {
-	                        e.printStackTrace(); // Handle any exceptions that may occur
-	                    }
-	                }
-	            }
-	        }
-	    }
-	}
+    super.randomTick(blockstate, world, pos, random);
+
+    boolean charged = blockstate.getValue(SOULCHARGED);
+    boolean nearSoul = isNearSoul(world, pos);
+
+    if (!nearSoul) {
+        if (charged) {
+            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
+        } else if (!shouldMaintainFarmland(world, pos)) {
+            turnToSoil(null, blockstate, world, pos);
+        }
+    } else {
+        if (!charged) {
+            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
+        }
+
+        if (charged) {
+            for (BlockPos offset : BlockPos.betweenClosed(pos.offset(-4, 1, -4), pos.offset(4, 2, 4))) {
+                BlockState cropState = world.getBlockState(offset);
+                BlockState belowState = world.getBlockState(offset.below());
+
+                if (cropState.getBlock() instanceof CropBlock && belowState.getBlock() instanceof SoullandBlock) {
+                    if (random.nextFloat() < 0.16f) {
+                        try {
+                            Method randomTickMethod = CropBlock.class.getDeclaredMethod("randomTick", BlockState.class, ServerLevel.class, BlockPos.class, RandomSource.class);
+                            randomTickMethod.setAccessible(true);
+                            randomTickMethod.invoke(cropState.getBlock(), cropState, world, offset, random);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 	
 
 

@@ -2464,7 +2464,7 @@
       "name": "Spicy",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "spicy",
       "metadata": {
         "files": [
