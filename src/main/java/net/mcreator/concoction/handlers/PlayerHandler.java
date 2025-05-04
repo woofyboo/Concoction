@@ -1,12 +1,25 @@
 package net.mcreator.concoction.handlers;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.*;
+import net.mcreator.concoction.utils.ColoredVertexConsumer;
 import net.mcreator.concoction.utils.Utils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.PlayerModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.*;
@@ -19,6 +32,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderPlayerEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
@@ -123,6 +137,59 @@ public class PlayerHandler {
             if (itemStack.getMaxDamage() - itemStack.getDamageValue() <= 1) {
                 event.setCanceled(true);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
+        Player player = event.getEntity();
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+            PlayerRenderer playerRenderer = event.getRenderer();
+            PlayerModel<AbstractClientPlayer> model = (PlayerModel<AbstractClientPlayer>) playerRenderer.getModel();
+
+            boolean oldHeadVisible = model.head.visible;
+            boolean oldHatVisible = model.hat.visible;
+
+            model.head.visible = false;
+            model.hat.visible = false;
+
+            player.getPersistentData().putBoolean("spicy_head_visible", oldHeadVisible);
+            player.getPersistentData().putBoolean("spicy_hat_visible", oldHatVisible);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRenderPlayer(RenderPlayerEvent.Post event) {
+        Player player = event.getEntity();
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+            PlayerRenderer playerRenderer = event.getRenderer();
+            PlayerModel<AbstractClientPlayer> model = (PlayerModel<AbstractClientPlayer>) playerRenderer.getModel();
+            boolean oldHeadVisible = player.getPersistentData().getBoolean("spicy_head_visible");
+            boolean oldHatVisible = player.getPersistentData().getBoolean("spicy_hat_visible");
+            model.head.visible = oldHeadVisible;
+            model.hat.visible = oldHatVisible;
+            PoseStack poseStack = event.getPoseStack();
+            MultiBufferSource bufferSource = event.getMultiBufferSource();
+            int packedLight = event.getPackedLight();
+
+            poseStack.pushPose();
+            float scale = 1.0f;
+            poseStack.scale(scale, -scale, -scale);
+            poseStack.translate(0, -1.4, 0);
+
+            VertexConsumer vertexConsumer = bufferSource.getBuffer(
+                    RenderType.entityTranslucent(playerRenderer.getTextureLocation((AbstractClientPlayer) player))
+            );
+            float netHeadYaw = event.getPartialTick() == 0 ? player.yHeadRot : Mth.lerp(event.getPartialTick(), player.yHeadRotO, player.yHeadRot);
+            float headPitch = event.getPartialTick() == 0 ? player.getXRot() : Mth.lerp(event.getPartialTick(), player.xRotO, player.getXRot());
+            model.setupAnim((AbstractClientPlayer) player, 0, 0, event.getPartialTick(), netHeadYaw, headPitch);
+
+            VertexConsumer coloredConsumer = new ColoredVertexConsumer(vertexConsumer, 1.0f, 0.3f, 0.3f);
+
+            model.head.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+            model.hat.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
+
+            poseStack.popPose();
         }
     }
 
