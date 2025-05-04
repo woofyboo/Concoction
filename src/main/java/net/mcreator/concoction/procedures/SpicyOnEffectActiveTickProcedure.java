@@ -23,6 +23,7 @@ public class SpicyOnEffectActiveTickProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity livEnt) {
+			
 			if ((livEnt.hasEffect(ConcoctionModMobEffects.SPICY) ? livEnt.getEffect(ConcoctionModMobEffects.SPICY).getDuration() : 0) % 60 == 0) {
 				livEnt.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:spicy_damage")))),
 						(float) (((livEnt.hasEffect(ConcoctionModMobEffects.SPICY) ? livEnt.getEffect(ConcoctionModMobEffects.SPICY).getAmplifier() : 0) + 1) * 1));
@@ -50,7 +51,8 @@ public class SpicyOnEffectActiveTickProcedure {
 					}
 				}
 			}
-		}
+		}	
+		
 	}
 }
 

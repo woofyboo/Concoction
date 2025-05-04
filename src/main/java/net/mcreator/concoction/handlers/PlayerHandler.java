@@ -37,6 +37,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.minecraft.resources.ResourceLocation;
+
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -161,7 +162,9 @@ public class PlayerHandler {
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Post event) {
         Player player = event.getEntity();
+
         if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+        	
             PlayerRenderer playerRenderer = event.getRenderer();
             PlayerModel<AbstractClientPlayer> model = (PlayerModel<AbstractClientPlayer>) playerRenderer.getModel();
             boolean oldHeadVisible = player.getPersistentData().getBoolean("spicy_head_visible");
@@ -184,7 +187,10 @@ public class PlayerHandler {
             float headPitch = event.getPartialTick() == 0 ? player.getXRot() : Mth.lerp(event.getPartialTick(), player.xRotO, player.getXRot());
             model.setupAnim((AbstractClientPlayer) player, 0, 0, event.getPartialTick(), netHeadYaw, headPitch);
 
-            VertexConsumer coloredConsumer = new ColoredVertexConsumer(vertexConsumer, 1.0f, 0.3f, 0.3f);
+            float time = (player.level().getGameTime() + player.getId()) % 50;
+			float pulse = 0.3f + 0.4f * (0.5f * (1.0f + Mth.sin((float) (time / 50.0f * 2 * Math.PI))));
+			VertexConsumer coloredConsumer = new ColoredVertexConsumer(vertexConsumer, 1.0f, pulse, pulse);
+
 
             model.head.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
             model.hat.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
