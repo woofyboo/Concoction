@@ -1,38 +1,50 @@
 package net.mcreator.concoction.block.entity;
 
 import com.google.gson.Gson;
-import net.mcreator.concoction.block.CookingCauldron;
-import net.mcreator.concoction.init.ConcoctionModBlockEntities;
-import net.mcreator.concoction.init.ConcoctionModRecipes;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
+
+import net.mcreator.concoction.block.CookingCauldron;
+import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.init.ConcoctionModMenus;
+import net.mcreator.concoction.init.ConcoctionModRecipes;
+import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
+import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
+import net.mcreator.concoction.world.inventory.BoilingCauldronInterfaceMenu;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.block.*;
 import org.jetbrains.annotations.Nullable;
+import io.netty.buffer.Unpooled;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 import java.util.*;
 
@@ -110,21 +122,27 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
                 return;
             }
 
-            if (pState.getValue(CookingCauldron.LIT) && (this.isCooking || (hasRecipe() && !hasCraftedResult()))) {
-                if (!this.isCooking) {
+            if (pState.getValue(CookingCauldron.LIT)) {
+                if (this.isCooking) {
+                    // Проверяем, все ли ингредиенты и половник на месте
+                    if (!validateCurrentRecipe()) {
+                        level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                        resetProgress();
+                        return;
+                    }
+                    
+                    increaseCraftingProgress();
+                    setChanged(level, pPos, pState);
+
+                    if (hasCraftingFinished()) {
+                        craftItem();
+                        level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                    }
+                } else if (hasRecipe() && !hasCraftedResult()) {
                     level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, true));
                     this.isCooking = true;
+                    setChanged(level, pPos, pState);
                 }
-
-                increaseCraftingProgress();
-                setChanged(level, pPos, pState);
-
-                if (hasCraftingFinished()) {
-                    craftItem();
-                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
-                    resetProgress();
-                }
-
             } else {
                 level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
                 resetProgress();
@@ -132,36 +150,161 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         }
     }
 
+    private boolean validateCurrentRecipe() {
+        if (this.recipe == null) return false;
+
+        // Проверяем наличие половника для не-hand рецептов
+        String interactionType = this.recipe.value().getOutput().get("interactionType");
+        if (!interactionType.equals("hand")) {
+            ItemStack ladleStack = this.items.get(4);
+            if (ladleStack.isEmpty()) {
+                return false;
+            }
+        }
+
+        // Создаем карту требуемых ингредиентов
+        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
+        for (Ingredient ingredient : this.recipe.value().getInputItems()) {
+            requiredIngredients.merge(ingredient, 1, Integer::sum);
+        }
+
+        // Проверяем наличие всех необходимых ингредиентов
+        for (ItemStack itemStack : this.items.subList(0, 4)) {
+            if (itemStack.isEmpty()) continue;
+
+            for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
+                if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
+                    entry.setValue(entry.getValue() - 1);
+                    break;
+                }
+            }
+        }
+
+        // Проверяем, что все ингредиенты найдены
+        return requiredIngredients.values().stream().allMatch(count -> count <= 0);
+    }
+
     private void resetProgress() {
         this.progress = 0;
         this.maxProgress = recipe == null ? DEFAULT_MAX_PROGRESS : recipe.value().getCookingTime();
         this.isCooking = false;
         this.recipe = null;
+        this.craftResult = Map.of("id", "", "count", "", "interactionType", "");
+        setChanged();
+    }
+
+    private void resetProgressOnly() {
+        this.progress = 0;
+        this.isCooking = false;
+        setChanged();
     }
 
     private void craftItem() {
-        NonNullList<ItemStack> returned_items = checkReturnedItems();
-        this.clearContent();
-        this.setItems(returned_items);
-        this.craftResult = this.recipe.value().getOutput();
-//      this.setItem(0, this.output);
-    }
-
-    private NonNullList<ItemStack> checkReturnedItems() {
-        NonNullList<ItemStack> returned_items = NonNullList.withSize(this.ContainerSize, ItemStack.EMPTY);
-        for (int i=0; i < this.ContainerSize; i++) {
-            ItemStack itemstack = this.items.get(i);
-            if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:buckets"))))
-                returned_items.set(i,  new ItemStack(Items.BUCKET));
-            else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:bottles"))))
-                returned_items.set(i,  new ItemStack(Items.GLASS_BOTTLE));
-            else if (itemstack.getItem().equals(Items.IRON_AXE)) {
-                ItemStack axe = new ItemStack(Items.IRON_AXE);
-                axe.setDamageValue(( (int) (itemstack.getDamageValue()*0.8f)));
-                returned_items.set(i, axe);
+        // Создаем карту для отслеживания, сколько каких ингредиентов нужно потратить
+        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
+        for (Ingredient ingredient : this.recipe.value().getInputItems()) {
+            requiredIngredients.merge(ingredient, 1, Integer::sum);
+        }
+        
+        // Создаем список для предметов, которые нужно вернуть
+        NonNullList<ItemStack> newItems = NonNullList.withSize(this.ContainerSize, ItemStack.EMPTY);
+        List<ItemStack> itemsToSpawn = new ArrayList<>();
+        
+        // Обрабатываем каждый слот
+        for (int i = 0; i < 4; i++) {
+            ItemStack itemStack = this.items.get(i);
+            if (itemStack.isEmpty()) continue;
+            
+            // Проверяем, нужен ли этот предмет для рецепта
+            boolean used = false;
+            for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
+                if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
+                    // Уменьшаем требуемое количество этого ингредиента
+                    entry.setValue(entry.getValue() - 1);
+                    used = true;
+                    
+                    // Обрабатываем возврат контейнеров
+                    if (itemStack.getCount() > 1) {
+                        if (itemStack.is(ItemTags.create(ResourceLocation.parse("c:buckets")))) {
+                            itemsToSpawn.add(new ItemStack(Items.BUCKET));
+                        } else if (itemStack.is(ItemTags.create(ResourceLocation.parse("c:bottles")))) {
+                            itemsToSpawn.add(new ItemStack(Items.GLASS_BOTTLE));
+                        }
+                    }
+                    break;
+                }
+            }
+            
+            // Если предмет не был использован в рецепте или осталось больше одного предмета
+            if (!used || itemStack.getCount() > 1) {
+                ItemStack remainingStack = itemStack.copy();
+                if (used) {
+                    remainingStack.shrink(1);
+                }
+                newItems.set(i, remainingStack);
             }
         }
-        return returned_items;
+        
+        // Обрабатываем слот половника
+        String interactionType = this.recipe.value().getOutput().get("interactionType");
+        if (!interactionType.equals("hand")) {
+            ItemStack ladleStack = this.items.get(4);
+            if (!ladleStack.isEmpty()) {
+                if (ladleStack.getCount() > 1) {
+                    ItemStack remainingLadle = ladleStack.copy();
+                    remainingLadle.shrink(1);
+                    newItems.set(4, remainingLadle);
+                }
+                // Если остался один половник, слот останется пустым
+            }
+        } else {
+            newItems.set(4, this.items.get(4));
+        }
+        
+        // Устанавливаем результат крафта
+        this.craftResult = this.recipe.value().getOutput();
+        
+        // Обрабатываем результат крафта
+        if (!this.craftResult.get("id").isEmpty()) {
+            ResourceLocation itemId = ResourceLocation.parse(this.craftResult.get("id"));
+            int craftedCount = Integer.parseInt(this.craftResult.get("count"));
+            
+            // Получаем текущий стак в слоте результата
+            ItemStack currentResult = this.items.get(5);
+            ItemStack newResult;
+            
+            if (!currentResult.isEmpty() && currentResult.is(BuiltInRegistries.ITEM.get(itemId))) {
+                // Если в слоте уже есть предметы того же типа
+                newResult = currentResult.copy();
+                int spaceLeft = newResult.getMaxStackSize() - newResult.getCount();
+                int toAdd = Math.min(craftedCount, spaceLeft);
+                if (toAdd > 0) {
+                    newResult.grow(toAdd);
+                }
+            } else {
+                // Если слот пустой или содержит другой предмет
+                newResult = new ItemStack(BuiltInRegistries.ITEM.get(itemId), craftedCount);
+            }
+            
+            newItems.set(5, newResult);
+        }
+        
+        // Обновляем инвентарь
+        this.setItems(newItems);
+        
+        // Выбрасываем лишние предметы в мир
+        if (!itemsToSpawn.isEmpty() && this.level != null) {
+            for (ItemStack stack : itemsToSpawn) {
+                Block.popResource(this.level, this.worldPosition, stack);
+            }
+        }
+        
+        // Проверяем, можно ли продолжить крафт
+        if (hasRecipe()) {
+            resetProgressOnly();
+        } else {
+            resetProgress();
+        }
     }
 
     private boolean hasCraftingFinished() {
@@ -170,6 +313,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
     private void increaseCraftingProgress() {
         progress++;
+        setChanged();
     }
 
     public boolean hasCraftedResult() {
@@ -191,9 +335,40 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
             return false;
         }
 
-        this.recipe = recipe.get();
-        this.maxProgress = this.recipe.value().getCookingTime();
-        return true;
+        RecipeHolder<CauldronBrewingRecipe> newRecipe = recipe.get();
+        // Если рецепт изменился, сбрасываем прогресс
+        if (this.recipe != null && !this.recipe.equals(newRecipe)) {
+            this.resetProgress();
+            return false;
+        }
+
+        // Проверяем наличие нужного предмета в слоте половника
+        String interactionType = newRecipe.value().getOutput().get("interactionType");
+        ItemStack ladleItem = this.items.get(4); // слот половника
+
+        // Для типа hand половник не нужен
+        if (interactionType.equals("hand")) {
+            this.recipe = newRecipe;
+            this.maxProgress = newRecipe.value().getCookingTime();
+            return true;
+        }
+
+        // Для остальных типов проверяем наличие нужного предмета
+        boolean hasCorrectLadle = switch (interactionType) {
+            case "bottle" -> ladleItem.is(Items.GLASS_BOTTLE);
+            case "stick" -> ladleItem.is(Items.STICK);
+            case "bucket" -> ladleItem.is(Items.BUCKET);
+            case "bowl" -> ladleItem.is(Items.BOWL);
+            default -> false;
+        };
+
+        if (hasCorrectLadle) {
+            this.recipe = newRecipe;
+            this.maxProgress = newRecipe.value().getCookingTime();
+            return true;
+        }
+
+        return false;
     }
 
     private Optional<RecipeHolder<CauldronBrewingRecipe>> getCurrentRecipe() {
@@ -311,8 +486,11 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag = super.getUpdateTag(registries);
         saveAdditional(tag, registries);
+        tag.putInt("Progress", this.progress);
+        tag.putInt("MaxProgress", this.maxProgress);
+        tag.putBoolean("IsCooking", this.isCooking);
         return tag;
     }
 
@@ -328,8 +506,11 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     // The super/default implementation forwards to #loadAdditional.
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
-        super.onDataPacket(connection, packet, registries);
-        // Do whatever you need to do here.
+        CompoundTag tag = packet.getTag();
+        handleUpdateTag(tag, registries);
+        this.progress = tag.getInt("Progress");
+        this.maxProgress = tag.getInt("MaxProgress");
+        this.isCooking = tag.getBoolean("IsCooking");
     }
 
     // Handle a received update tag here. The default implementation calls #loadAdditional here,
@@ -337,6 +518,10 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
         super.handleUpdateTag(tag, registries);
+        loadAdditional(tag, registries);
+        this.progress = tag.getInt("Progress");
+        this.maxProgress = tag.getInt("MaxProgress");
+        this.isCooking = tag.getBoolean("IsCooking");
     }
 
     @Override
@@ -347,11 +532,32 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return null;
+        return new BoilingCauldronInterfaceMenu(pContainerId, pPlayerInventory, 
+            new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(this.worldPosition));
     }
 
     @Override
-    protected AbstractContainerMenu createMenu(int p_58627_, Inventory p_58628_) {
-        return null;
+    protected AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory) {
+        return createMenu(pContainerId, pPlayerInventory, null);
+    }
+
+    public int getProgress() {
+        return this.progress;
+    }
+    
+    public int getMaxProgress() {
+        return this.maxProgress;
+    }
+    
+    public boolean isCooking() {
+        return this.isCooking;
+    }
+    
+    public boolean isLit() {
+        BlockState state = this.getBlockState();
+        if(state.hasProperty(CookingCauldron.LIT)) {
+            return state.getValue(CookingCauldron.LIT);
+        }
+        return false;
     }
 }

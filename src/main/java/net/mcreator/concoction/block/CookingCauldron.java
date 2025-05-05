@@ -1,21 +1,27 @@
 package net.mcreator.concoction.block;
 
+import io.netty.buffer.Unpooled;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.utils.Utils;
+import net.mcreator.concoction.world.inventory.BoilingCauldronInterfaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -153,87 +159,31 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
             ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult p_316140_) {
         if (pLevel.isClientSide) {
             return ItemInteractionResult.SUCCESS;
-        } else {
-            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof CookingCauldronEntity cauldron && cauldron.hasCraftedResult()) {
-                Map<String, String> result = cauldron.getCraftResult();
-                Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(result.get("id")));
-                switch (result.get("interactionType")) {
-                    case "hand":
-                        if (pItem.getItem().equals(Items.AIR) || (pItem.getItem().equals(item) && pItem.getCount() < pItem.getMaxStackSize())) {
-                            if (!pPlayer.addItem(new ItemStack(item)))
-                                pPlayer.drop(new ItemStack(item), false);
-                            result = this.decreesItemCountFromResult(result);
-                            cauldron.setCraftResult(result);
-                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
-                        }
-                        break;
+        } else if (!pPlayer.isShiftKeyDown()) {
 
-                    case "bottle":
-                        if (pItem.getItem().equals(Items.GLASS_BOTTLE)) {
-                            if (!pPlayer.addItem(new ItemStack(item)))
-                                pPlayer.drop(new ItemStack(item), false);
-                            if (!pPlayer.isCreative()) pItem.shrink(1);
-                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
-                            pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
-                                    SoundSource.BLOCKS, 1.0F, 1.0F);
-                            result = this.decreesItemCountFromResult(result);
-                            cauldron.setCraftResult(result);
-                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
-                        }
-                        break;
-                    case "bowl":
-                        if (pItem.getItem().equals(Items.BOWL)) {
-                            if (!pPlayer.addItem(new ItemStack(item)))
-                                pPlayer.drop(new ItemStack(item), false);
-                            if (!pPlayer.isCreative()) pItem.shrink(1);
-                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
-                            pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
-                                    SoundSource.BLOCKS, 1.0F, 1.0F);
-                            result = this.decreesItemCountFromResult(result);
-                            cauldron.setCraftResult(result);
-                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
-                        }
-                        break;
-                    case "stick":
-                        if (pItem.getItem().equals(Items.STICK)) {
-                            if (!pPlayer.addItem(new ItemStack(item)))
-                                pPlayer.drop(new ItemStack(item), false);
-                            if (!pPlayer.isCreative()) pItem.shrink(1);
-//                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
-                            pLevel.playSound(null, pPos, SoundEvents.SCAFFOLDING_BREAK,
-                                    SoundSource.BLOCKS, 1.0F, 1.0F);
-                            result = this.decreesItemCountFromResult(result);
-                            cauldron.setCraftResult(result);
-                            Utils.addAchievement((ServerPlayer) pPlayer, "concoction:cauldron_boiling");
-                        }
-                        break;
-                    default:
-                        ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", cauldron.getCraftResult().get("interactionType"));
-                        break;
+            MenuProvider containerProvider = new MenuProvider() {
+                @Override
+                public Component getDisplayName() {
+                    return Component.translatable("container.cooking_cauldron");
                 }
-//                if (cauldron.getCraftResult().get("id").isEmpty()) pLevel.setBlockAndUpdate(pPos, pState.setValue(LIT, false));
-                return ItemInteractionResult.CONSUME;
-            }
 
-            CauldronInteraction cauldroninteraction = this.interactions.map().get(pItem.getItem());
-            ItemInteractionResult r = cauldroninteraction.interact(pState, pLevel, pPos, pPlayer, pHand, pItem);
-            if (r.consumesAction()) {
-                return r;
-            }
-
-            if (blockentity instanceof CookingCauldronEntity cauldron) {
-                if (pItem.getItem().equals(Items.AIR)) {
-//                    if (pPlayer.isShiftKeyDown()) pPlayer.addItem(cauldron.takeItemOnClick(true));
-                    pPlayer.addItem(cauldron.takeItemOnClick(false));
-                } else {
-//                    if (pPlayer.isShiftKeyDown()) cauldron.addItemOnClick(pItem, pItem.getCount(), pPlayer.isCreative());
-                    cauldron.addItemOnClick(pItem, 1, pPlayer.isCreative());
+                @Override
+                public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player playerEntity) {
+                    FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
+                    packetBuffer.writeBlockPos(pPos);
+                    return new BoilingCauldronInterfaceMenu(windowId, playerInventory, packetBuffer);
                 }
-            }
+            };
 
-            return ItemInteractionResult.CONSUME;
+            // Открываем меню для игрока
+            pPlayer.openMenu(containerProvider, (buf) -> {
+                buf.writeBlockPos(pPos);
+            });
+
+            // Отменяем обычную обработку использования блока
+            return ItemInteractionResult.SUCCESS;
         }
+        return ItemInteractionResult.CONSUME;
     }
 
     public Map<String, String>  decreesItemCountFromResult(Map<String, String> result) {

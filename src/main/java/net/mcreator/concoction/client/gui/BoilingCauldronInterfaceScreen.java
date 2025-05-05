@@ -29,9 +29,12 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 		this.entity = container.entity;
 		this.imageWidth = 176;
 		this.imageHeight = 166;
+		
+		// Смещаем инвентарь игрока вниз
+		this.inventoryLabelY = 74;
 	}
 
-	private static final ResourceLocation texture = ResourceLocation.parse("concoction:textures/screens/boiling_cauldron_interface.png");
+	private static final ResourceLocation texture = ResourceLocation.parse("concoction:textures/gui/hud/cooking_cauldron_gui_playerside.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
@@ -42,10 +45,20 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int gx, int gy) {
-		RenderSystem.setShaderColor(1, 1, 1, 1);
+		//RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
-		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+		
+		// Отрисовка основного фона
+		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+		
+		// Отрисовка полосы прогресса, если что-то готовится
+		if (menu.isCooking()) {
+			int progress = menu.getProgress();
+			int maxProgress = menu.getMaxProgress();
+			int progressSize = 44 * progress / maxProgress;
+			guiGraphics.blit(texture, this.leftPos + 63, this.topPos + 31, 176, 0, progressSize, 24, 256, 256);
+		}
 		RenderSystem.disableBlend();
 	}
 
@@ -60,6 +73,9 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		// Рисуем заголовок
+		guiGraphics.drawString(this.font, Component.translatable("container.cooking_cauldron"), 8, 6, 4210752, false);
+		guiGraphics.drawString(this.font, Component.translatable("container.inventory"), 8, 72, 4210752, false);
 	}
 
 	@Override

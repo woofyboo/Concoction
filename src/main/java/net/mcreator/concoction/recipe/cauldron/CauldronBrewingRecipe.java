@@ -19,8 +19,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +58,31 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         this.result = result;
     }
 
+    private boolean containsAllElements(NonNullList<ItemStack> inventory, List<Ingredient> recipe) {
+        // Создаем карту для подсчета количества каждого типа предмета в инвентаре
+        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
+        for (Ingredient ingredient : recipe) {
+            requiredIngredients.merge(ingredient, 1, Integer::sum);
+        }
+        
+        // Проверяем каждый слот инвентаря
+        for (ItemStack itemStack : inventory) {
+            if (itemStack.isEmpty()) continue;
+            
+            // Проверяем каждый требуемый ингредиент
+            for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
+                if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
+                    // Уменьшаем требуемое количество этого ингредиента
+                    entry.setValue(entry.getValue() - 1);
+                    break;
+                }
+            }
+        }
+        
+        // Проверяем, что все требуемые ингредиенты найдены (их количество стало 0 или меньше)
+        return requiredIngredients.values().stream().allMatch(count -> count <= 0);
+    }
+
     @Override
     public boolean matches(CauldronBrewingRecipeInput pInput, Level pLevel) {
         if(pLevel.isClientSide()) {
@@ -66,46 +93,6 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         }
         return false;
     }
-
-    public static boolean containsAllElements(NonNullList<ItemStack> list1, List<Ingredient> list2) {
-        // Подсчитываем количество каждого объекта в первом списке
-        Map<Item, Integer> Inventory = new HashMap<>();
-//        list2.get(0).test()
-        for (ItemStack item : list1) {
-            if (item.getItem() != Items.AIR)
-                Inventory.put(item.getItem(), Inventory.getOrDefault(item.getItem(), 0) + 1);
-        }
-
-        // Подсчитываем количество каждого объекта во втором списке
-        Map<Item, Integer> CraftItems = new HashMap<>();
-        for (Ingredient ingr : list2) {
-            if (ingr.getItems().length > 1) {
-                if (Arrays.stream(ingr.getItems()).anyMatch(item -> {
-                            if (Inventory.getOrDefault(item.getItem(), 0) > 0) {
-                                CraftItems.put(item.getItem(), CraftItems.getOrDefault(item.getItem(), 0) + 1);
-                                return true;
-                            } else return false;
-                        }
-                ));
-                else return false;
-            } else {
-                CraftItems.put(ingr.getItems()[0].getItem(), CraftItems.getOrDefault(ingr.getItems()[0].getItem(), 0) + 1);
-            }
-        }
-
-        // Проверяем, что каждый объект из второго списка содержится в первом в нужном количестве
-        if (Inventory.size() != CraftItems.size()) return false; // Если количество различается
-        for (Map.Entry<Item, Integer> entry : CraftItems.entrySet()) {
-            Item key = entry.getKey();
-            int requiredCount = entry.getValue();
-            int availableCount = Inventory.getOrDefault(key, 0);
-
-            if (availableCount != requiredCount) return false; // Если объектов недостаточно
-
-        }
-        return true; // Все объекты содержатся в нужном количестве
-    }
-
 
     @Override
     public ItemStack assemble(CauldronBrewingRecipeInput pInput, HolderLookup.Provider pRegistries) {
