@@ -57,7 +57,7 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 			int progress = menu.getProgress();
 			int maxProgress = menu.getMaxProgress();
 			int progressSize = 44 * progress / maxProgress;
-			guiGraphics.blit(texture, this.leftPos + 63, this.topPos + 31, 176, 0, progressSize, 24, 256, 256);
+			guiGraphics.blit(texture, this.leftPos + 65, this.topPos + 34, 176, 0, progressSize, 24, 256, 256);
 		}
 		RenderSystem.disableBlend();
 	}
@@ -73,8 +73,10 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 
 	@Override
 	protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+	int titleWidth = this.font.width(this.title.getString());
+    int titleX = (this.imageWidth - titleWidth) / 2;
+    guiGraphics.drawString(this.font, this.title, titleX, 6, 4210752, false);
 		// Рисуем заголовок
-		guiGraphics.drawString(this.font, Component.translatable("container.cooking_cauldron"), 8, 6, 4210752, false);
 		guiGraphics.drawString(this.font, Component.translatable("container.inventory"), 8, 72, 4210752, false);
 	}
 

@@ -74,16 +74,16 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 		addPlayerHotbar(inv);
 		
 		// Добавляем 4 слота для ингредиентов (2x2 сетка)
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 24, 24)));
-		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 42, 24)));
-		this.customSlots.put(2, this.addSlot(new SlotItemHandler(internal, 2, 24, 42)));
-		this.customSlots.put(3, this.addSlot(new SlotItemHandler(internal, 3, 42, 42)));
+		this.customSlots.put(3, this.addSlot(new SlotItemHandler(internal, 3, 26, 27)));
+		this.customSlots.put(2, this.addSlot(new SlotItemHandler(internal, 2, 44, 27)));
+		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 26, 45)));
+		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 44, 45)));
 		
 		// Добавляем слот для половника/контейнера (5-й слот)
-		this.customSlots.put(4, this.addSlot(new SlotItemHandler(internal, 4, 76, 12)));
+		this.customSlots.put(4, this.addSlot(new SlotItemHandler(internal, 4, 78, 15)));
 		
 		// Добавляем слот для результата (6-й слот)
-		this.customSlots.put(5, this.addSlot(new SlotItemHandler(internal, 5, 116, 35) {
+		this.customSlots.put(5, this.addSlot(new SlotItemHandler(internal, 5, 118, 38) {
 			@Override
 			public boolean mayPlace(ItemStack stack) {
 				return false; // нельзя положить предметы в результирующий слот
