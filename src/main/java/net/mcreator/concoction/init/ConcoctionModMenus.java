@@ -11,6 +11,7 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.core.registries.Registries;
 
+import net.mcreator.concoction.world.inventory.BoilingCauldronInterfaceMenu;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModMenus {
