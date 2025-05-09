@@ -16,19 +16,6 @@
       }
     ]
   },
-  "cauldron_boiling": {
-    "subtitle": "subtitles.cauldron_boiling",
-    "sounds": [
-      {
-        "name": "concoction:00655-_mp3cut.net_-_1_",
-        "stream": false
-      },
-      {
-        "name": "concoction:boil_ambience",
-        "stream": false
-      }
-    ]
-  },
   "silence": {
     "sounds": [
       {
@@ -98,6 +85,23 @@
       },
       {
         "name": "concoction:fill_lava_bucket3",
+        "stream": false
+      }
+    ]
+  },
+  "cauldron_boiling": {
+    "subtitle": "subtitles.cauldron_boiling",
+    "sounds": [
+      {
+        "name": "concoction:water_boiling01",
+        "stream": false
+      },
+      {
+        "name": "concoction:water_boiling02",
+        "stream": false
+      },
+      {
+        "name": "concoction:water_boiling03",
         "stream": false
       }
     ]

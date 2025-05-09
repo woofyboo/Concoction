@@ -111,10 +111,11 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.ONION_BLOCK.get());
 				tabData.accept(ConcoctionModItems.GREEN_ONION_BLOCK.get());
 				tabData.accept(ConcoctionModItems.COTTON_BLOCK.get());
+				tabData.accept(ConcoctionModItems.SUNFLOWER_SEED_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_LEAVES_BLOCK.get());
-				tabData.accept(ConcoctionModItems.SUNFLOWER_SEED_BLOCK.get());
 				tabData.accept(ConcoctionModItems.TOMATO_BLOCK.get());
+				tabData.accept(ConcoctionModItems.PINECONE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.RICE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SOAKED_RICE_BLOCK.get());
 

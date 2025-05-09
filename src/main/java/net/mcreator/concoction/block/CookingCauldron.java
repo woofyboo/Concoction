@@ -38,6 +38,9 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.client.Minecraft;
+
+
 import java.util.Map;
 
 import static java.lang.Math.pow;
@@ -48,6 +51,8 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
 //    public static final EnumProperty WATER_TYPE = BooleanProperty.create("cooking");
     private boolean cookingSoundPlaying = false;
+    private long lastBoilingSoundTime = 0;
+	private static final long BOILING_SOUND_INTERVAL_MS = 2500;
     public CookingCauldron(Biome.Precipitation p_304591_, CauldronInteraction.InteractionMap p_304761_, Properties p_153522_) {
         super(p_304591_, p_304761_, p_153522_);
         registerDefaultState(stateDefinition.any()
@@ -56,71 +61,67 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pSource) {
-        if (pState.getValue(LIT)) {
-            final boolean isCooking = pState.getValue(COOKING);
-            if (pSource.nextInt(10) == 0 && !isCooking) {
-                pLevel.playLocalSound(
-                        (double)pPos.getX() + 0.5,
-                        (double)pPos.getY() + 0.5,
-                        (double)pPos.getZ() + 0.5,
-                        ConcoctionModSounds.CAULDRON_BOILING.get(),
-                        SoundSource.BLOCKS,
-                        0.5F + pSource.nextFloat(),
-                        pSource.nextFloat() * 0.7F + 0.6F,
-                        false
-                );
-            }
+@OnlyIn(Dist.CLIENT)
+public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pSource) {
+    if (pState.getValue(LIT)) {
+        final boolean isCooking = pState.getValue(COOKING);
 
-            if (pSource.nextInt(2) == 0) {
-                pLevel.addParticle(ParticleTypes.BUBBLE,
-                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
-                        pPos.getY() + 1,
-                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
-                        0.0,0.05,0.0);
-                pLevel.addParticle(ParticleTypes.BUBBLE_POP,
-                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        pPos.getY() + 1,
-                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        0.0,0.03,0.0);
-            }
-            if (!isCooking) cookingSoundPlaying = false;
+        long currentTime = System.currentTimeMillis(); // использовать таймер
 
-            if (isCooking) {
-                if (!cookingSoundPlaying) {
-                    cookingSoundPlaying = true;
-                    pLevel.playLocalSound(
-                            (double)pPos.getX() + 0.5,
-                            (double)pPos.getY() + 0.5,
-                            (double)pPos.getZ() + 0.5,
-                            ConcoctionModSounds.CAULDRON_COOKING.get(),
-                            SoundSource.BLOCKS,
-                            0.5F + pSource.nextFloat(),
-                            pSource.nextFloat() * 0.7F + 0.6F,
-                            false
-                    );
-                }
-                pLevel.addParticle(ParticleTypes.BUBBLE,
-                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
-                        pPos.getY() + 1,
-                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
-                        0.0,0.05,0.0);
-                pLevel.addParticle(ParticleTypes.BUBBLE_POP,
-                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        pPos.getY() + 1,
-                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        0.0,0.03,0.0);
-//                ConcoctionMod.LOGGER.debug("Cauldron is cooking at {}", pPos);
-                pLevel.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                        pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        pPos.getY() + 1,
-                        pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
-                        0.0,0.07,0.0);
+            if (currentTime - lastBoilingSoundTime >= BOILING_SOUND_INTERVAL_MS) {
+                Player localPlayer = Minecraft.getInstance().player;
+if (localPlayer != null) {
+    double dx = pPos.getX() + 0.5 - localPlayer.getX();
+    double dy = pPos.getY() + 0.5 - localPlayer.getY();
+    double dz = pPos.getZ() + 0.5 - localPlayer.getZ();
+    double distanceSq = dx * dx + dy * dy + dz * dz;
+
+    double maxDistance = 16.0;
+    if (distanceSq < maxDistance * maxDistance) {
+        double distance = Math.sqrt(distanceSq);
+
+        // Exponential falloff: closer = louder, drops off quickly
+        float volume = (float)Math.pow(1.0 - (distance / maxDistance), 3);
+        volume = Math.max(0.0F, Math.min(volume, 1.0F)); // Clamp to [0, 1]
+
+        pLevel.playLocalSound(
+            pPos.getX() + 0.5,
+            pPos.getY() + 0.5,
+            pPos.getZ() + 0.5,
+            ConcoctionModSounds.CAULDRON_BOILING.get(),
+            SoundSource.BLOCKS,
+            0.6F * volume, // base volume scaled by distance
+            pSource.nextFloat() * 0.7F + 0.6F,
+            false
+        );
+}
+
+
+                lastBoilingSoundTime = currentTime;
             }
+        } 
+
+        if (pSource.nextInt(2) == 0) {
+            pLevel.addParticle(ParticleTypes.BUBBLE, pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
+                    pPos.getY() + 1, pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/3f,
+                    0.0, 0.1, 0.0);
+            pLevel.addParticle(ParticleTypes.BUBBLE_POP, pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                    pPos.getY() + 1, pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                    0.0, 0.1, 0.0);
         }
-        super.animateTick(pState, pLevel, pPos, pSource);
+
+        if (isCooking) {
+            pLevel.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
+                    pPos.getX() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                    pPos.getY() + 1,
+                    pPos.getZ() + 0.5 + pow(-1, pSource.nextInt(2))*pSource.nextFloat()/4f,
+                    0.0, 0.07, 0.0);
+        }
     }
+
+    super.animateTick(pState, pLevel, pPos, pSource);
+}
+
 
 
     @Override

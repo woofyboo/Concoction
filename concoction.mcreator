@@ -5478,6 +5478,49 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "PineconeBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/pinecone_block.json",
+          "src/main/resources/assets/concoction/models/block/pinecone_block.json",
+          "src/main/resources/assets/concoction/blockstates/pinecone_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/pinecone_block.json",
+          "src/main/java/net/mcreator/concoction/block/PineconeBlockBlock.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PineconeBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/pinecone_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PineconeBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pinecone_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/pinecone_block_uncraft.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -5497,15 +5540,6 @@
       ],
       "category": "block",
       "subtitle": "Cauldron is bubbling"
-    },
-    {
-      "name": "cauldron_boiling",
-      "files": [
-        "00655-_mp3cut.net_-_1_",
-        "boil_ambience"
-      ],
-      "category": "block",
-      "subtitle": "Cauldron is boiling"
     },
     {
       "name": "silence",
@@ -5559,11 +5593,25 @@
       ],
       "category": "block",
       "subtitle": "Bucket is filled with souls"
+    },
+    {
+      "name": "cauldron_boiling",
+      "files": [
+        "water_boiling01",
+        "water_boiling02",
+        "water_boiling03"
+      ],
+      "category": "block",
+      "subtitle": "Cauldron is boiling"
     }
   ],
   "tag_elements": {
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:MintBale",
@@ -5576,10 +5624,6 @@
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
-    ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -5759,6 +5803,7 @@
       "TAG:concoction:butters"
     ],
     "BLOCKS:minecraft:mineable/axe": [
+      "~CUSTOM:PineconeBlock",
       "CUSTOM:CropMint",
       "CUSTOM:CropCotton",
       "CUSTOM:Sunflower",
@@ -5962,6 +6007,7 @@
       "block.concoction.yellow_woven_carpet": "Жёлтый тканый ковёр",
       "item.concoction.hot_sauce_bottle": "Бутылочка острого соуса",
       "block.concoction.cabbagehead": "Капуста",
+      "block.concoction.pinecone_block": "Блок шишки",
       "item.minecraft.lingering_potion.effect.blooming_extended": "Оседающее зелье цветения",
       "subtitles.soul_bucket_empty": "Ведро с душами опустошено",
       "block.concoction.crop_cotton": "Хлопок",
@@ -6084,9 +6130,9 @@
       "taste.concoction.glow": "Glimmering",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
-      "block.concoction.mint": "Mint",
-      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "subtitles.butter_thickens": "Butter thickens",
+      "death.attack.spicy_damage": "%1$s thought they could handle the spice",
+      "block.concoction.mint": "Mint",
       "item.concoction.pinecone": "Pinecone",
       "item.concoction.corn_oil": "Corn Oil",
       "advancements.special_carpet.title": "Pretty (but) Pricy",
@@ -6095,10 +6141,10 @@
       "advancements.spicy_on_fire.title": "It Burns, Burns, Burns",
       "advancements.make_soul_soul.title": "Crop \u0027Til You Drop",
       "block.concoction.wild_potato": "Wild Potato",
-      "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.hashbrowns": "Hashbrowns",
-      "item.concoction.cabbage_seeds": "Cabbage Seeds",
+      "item.concoction.cooked_corn": "Cooked Corn",
       "item.concoction.tomato": "Tomato",
+      "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "advancements.new_crops.title": "That\u0027s Wild",
       "item.minecraft.tipped_arrow.effect.snowflake_extended": "Arrow of Snowflake",
       "item.concoction.mint_cookie": "Mint Cookie",
@@ -6108,8 +6154,8 @@
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
-      "block.concoction.wild_carrot": "Wild Carrot",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
+      "block.concoction.wild_carrot": "Wild Carrot",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
@@ -6117,8 +6163,8 @@
       "death.attack.rift.item": "%1$s was interdimensionally sliced by %2$s using %3$s",
       "item.concoction.dough": "Dough",
       "fluid.concoction.weighted_souls": "Weighted Souls",
-      "block.concoction.green_pillow_block": "Green Pillow",
       "block.concoction.orange_pillow_block": "Orange Pillow",
+      "block.concoction.green_pillow_block": "Green Pillow",
       "block.concoction.onion_block": "Onion Block",
       "block.concoction.mint_bale": "Mint Bale",
       "item.concoction.overgrown_shovel": "Overgrown Shovel",
@@ -6140,8 +6186,8 @@
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "item.concoction.tomato_soup": "Tomato Soup",
       "block.concoction.black_woven_carpet": "Black Woven Carpet",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "item.concoction.omurice": "Omurice",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "advancements.unlucky_butter_churn.descr": "Fail to produce oil or butter twenty four times in a row",
       "block.concoction.gray_pillow_block": "Gray Pillow",
@@ -6227,6 +6273,7 @@
       "block.concoction.yellow_woven_carpet": "Yellow Woven Carpet",
       "item.concoction.hot_sauce_bottle": "Hot Sauce Bottle",
       "block.concoction.cabbagehead": "Cabbage",
+      "block.concoction.pinecone_block": "Pinecone Block",
       "item.minecraft.lingering_potion.effect.blooming_extended": "Lingering Potion of Blooming",
       "subtitles.soul_bucket_empty": "Soul bucket is emptied",
       "block.concoction.crop_cotton": "Crop Cotton",

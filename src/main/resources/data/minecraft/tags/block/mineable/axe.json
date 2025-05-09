@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:pinecone_block",
     "concoction:crop_mint",
     "concoction:crop_cotton",
     "concoction:sunflower",
