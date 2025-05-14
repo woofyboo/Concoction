@@ -118,6 +118,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PINECONE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.RICE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SOAKED_RICE_BLOCK.get());
+				tabData.accept(ConcoctionModItems.REAPEPPER_BLOCK.get());
 
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());
