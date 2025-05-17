@@ -38,8 +38,7 @@ public class SpicyMobEffect extends MobEffect {
 		AttributeInstance attackSpeedAttribute = attributeMap.getInstance(Attributes.ATTACK_SPEED);
 		
 		if (attackSpeedAttribute != null) {
-			// Увеличиваем скорость атаки на 10% за каждый уровень эффекта
-			double increaseValue = (amplifier + 1) * 0.1;
+			double increaseValue = (amplifier + 1) * 0.15;
 			
 			AttributeModifier attackSpeedModifier = new AttributeModifier(
 					SPICY_ATTACK_SPEED,

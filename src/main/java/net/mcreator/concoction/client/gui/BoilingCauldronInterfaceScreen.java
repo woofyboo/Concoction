@@ -38,7 +38,7 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-		this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
+		guiGraphics.fillGradient(0, 0, this.width, this.height, 0x33000000, 0x33000000);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}
@@ -48,6 +48,7 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 		//RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableBlend();
 		RenderSystem.defaultBlendFunc();
+
 		
 		// Отрисовка основного фона
 		guiGraphics.blit(texture, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
@@ -67,6 +68,7 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 		
 		RenderSystem.disableBlend();
 	}
+	
 
 	@Override
 	public boolean keyPressed(int key, int b, int c) {

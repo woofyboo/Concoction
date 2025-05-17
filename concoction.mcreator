@@ -5652,10 +5652,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:MintBale",
       "~CUSTOM:TomatoBlock",
@@ -5667,6 +5663,10 @@
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -5904,7 +5904,7 @@
   "tab_element_order": {},
   "language_map": {
     "ru_ru": {
-      "taste.concoction.glow": "Сияющее",
+      "taste.concoction.glow": "• Сияющее",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
       "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "block.concoction.mint": "Мята",
@@ -5997,7 +5997,7 @@
       "block.concoction.red_woven_carpet": "Красный тканый ковёр",
       "block.concoction.crop_corn": "Кукуруза",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
-      "taste.concoction.instability": "Нестабильное",
+      "taste.concoction.instability": "• Нестабильное",
       "block.concoction.wild_beetroot": "Дикая свекла",
       "item.concoction.overgrown_pickaxe": "Цветущая кирка",
       "item.concoction.sunstruck_spawn_egg": "Яйцо призыва выцвевшего",
@@ -6024,7 +6024,7 @@
       "advancements.new_crops.descr": "Найди новые дикорастущие культуры",
       "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
-      "taste.concoction.minty": "Мятное",
+      "taste.concoction.minty": "• Мятное",
       "advancements.giant_corn_witness.descr": "Узнай как электричество влияет на рост кукурузы",
       "block.concoction.blue_pillow_block": "Синяя подушка",
       "entity.concoction.sunstruck": "Выцвевший",
@@ -6133,7 +6133,7 @@
       "advancements.cry_worthy_haircut.title": "Причёска достойная слез",
       "advancements.unlucky_butter_churn.title": "Криворукий",
       "block.concoction.pink_pillow_block": "Розовая подушка",
-      "taste.concoction.spicy": "Острое",
+      "taste.concoction.spicy": "• Острое",
       "block.concoction.small_orange_pillow_block": "Маленькая оранжевая подушка",
       "block.concoction.rice_block": "Блок риса",
       "item.concoction.grilled_fish": "Рыба на гриле",
@@ -6165,13 +6165,13 @@
       "block.concoction.yellow_pillow_block": "Жёлтая подушка",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Стрела цветения",
       "item.concoction.reapper": "Перец-жнерец",
-      "taste.concoction.sweet": "Сладкое",
+      "taste.concoction.sweet": "• Сладкое",
       "effect.concoction.minty_breath": "Мятность",
       "block.concoction.small_brown_pillow_block": "Маленькая коричневая подушка",
       "item.concoction.cod_sushi": "Суши из трески"
     },
     "en_us": {
-      "taste.concoction.glow": "Glimmering",
+      "taste.concoction.glow": "• Glimmering",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
       "subtitles.butter_thickens": "Butter thickens",
@@ -6264,7 +6264,7 @@
       "block.concoction.red_woven_carpet": "Red Woven Carpet",
       "block.concoction.crop_corn": "Crop Corn",
       "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
-      "taste.concoction.instability": "Weird",
+      "taste.concoction.instability": "• Warping",
       "block.concoction.wild_beetroot": "Wild Beetroot",
       "item.concoction.overgrown_pickaxe": "Overgrown Pickaxe",
       "item.concoction.sunstruck_spawn_egg": "Sunstruck Spawn Egg",
@@ -6291,7 +6291,7 @@
       "advancements.new_crops.descr": "Find any new wild plants that can be planted and harvested",
       "item.concoction.hanami_dango": "Hanami Dango",
       "effect.concoction.spicy": "Spiciness",
-      "taste.concoction.minty": "Minty",
+      "taste.concoction.minty": "• Minty",
       "advancements.giant_corn_witness.descr": "Witness how lightning affects corn growth",
       "block.concoction.blue_pillow_block": "Blue Pillow",
       "entity.concoction.sunstruck": "Sunstruck",
@@ -6400,7 +6400,7 @@
       "advancements.cry_worthy_haircut.title": "Cry Worthy Haircut",
       "advancements.unlucky_butter_churn.title": "My Hand Must Have Slipped!",
       "block.concoction.pink_pillow_block": "Pink Pillow",
-      "taste.concoction.spicy": "Spicy",
+      "taste.concoction.spicy": "• Spicy",
       "block.concoction.small_orange_pillow_block": "Small Orange Pillow",
       "block.concoction.rice_block": "Rice Block",
       "item.concoction.grilled_fish": "Grilled Fish",
@@ -6432,7 +6432,7 @@
       "block.concoction.yellow_pillow_block": "Yellow Pillow",
       "item.minecraft.tipped_arrow.effect.blooming_extended": "Arrow of Potion Of Blooming",
       "item.concoction.reapper": "Ghost Reapper",
-      "taste.concoction.sweet": "Sweet",
+      "taste.concoction.sweet": "• Sweet",
       "effect.concoction.minty_breath": "Mintiness",
       "block.concoction.small_brown_pillow_block": "Small Brown Pillow",
       "item.concoction.cod_sushi": "Cod Sushi"

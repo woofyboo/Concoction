@@ -12,17 +12,13 @@
 
   "ingredients": [
     {
-      "item": "minecraft:potato"
-    },
-    {
-      "item": "concoction:butter"
+      "item": "minecraft:cocoa_beans"
     }
-
   ],
 
   "result": {
-    "id": "concoction:mashed_potatoes",
-    "interactionType": "bowl",
-    "count": "3"
+    "id": "minecraft:sugar",
+    "interactionType": "hand",
+    "count": "1"
   }
 }
