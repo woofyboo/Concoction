@@ -72,18 +72,18 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 		// Добавляем слоты для ингредиентов и инвентаря игрока
 		addPlayerInventory(inv);
 		addPlayerHotbar(inv);
-		
+
 		// Добавляем 4 слота для ингредиентов (2x2 сетка)
-		this.customSlots.put(3, this.addSlot(new SlotItemHandler(internal, 3, 26, 27)));
-		this.customSlots.put(2, this.addSlot(new SlotItemHandler(internal, 2, 44, 27)));
-		this.customSlots.put(1, this.addSlot(new SlotItemHandler(internal, 1, 26, 45)));
-		this.customSlots.put(0, this.addSlot(new SlotItemHandler(internal, 0, 44, 45)));
-		
+		this.customSlots.put(36, this.addSlot(new SlotItemHandler(internal, 0, 26, 27)));
+		this.customSlots.put(37, this.addSlot(new SlotItemHandler(internal, 1, 44, 27)));
+		this.customSlots.put(38, this.addSlot(new SlotItemHandler(internal, 2, 26, 45)));
+		this.customSlots.put(39, this.addSlot(new SlotItemHandler(internal, 3, 44, 45)));
+
 		// Добавляем слот для половника/контейнера (5-й слот)
-		this.customSlots.put(4, this.addSlot(new SlotItemHandler(internal, 4, 78, 15)));
-		
+		this.customSlots.put(40, this.addSlot(new SlotItemHandler(internal, 4, 78, 15)));
+
 		// Добавляем слот для результата (6-й слот)
-		this.customSlots.put(5, this.addSlot(new SlotItemHandler(internal, 5, 118, 38) {
+		this.customSlots.put(41, this.addSlot(new SlotItemHandler(internal, 5, 118, 38)  {
 			@Override
 			public boolean mayPlace(ItemStack stack) {
 				return false; // нельзя положить предметы в результирующий слот
@@ -100,20 +100,29 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 			@Override
 			public void onTake(Player player, ItemStack stack) {
 				super.onTake(player, stack);
+				
 				// Проверяем, есть ли правильный контейнер в слоте половника
-				ItemStack ladle = internal.getStackInSlot(4);
-				if (!ladle.isEmpty()) {
-					// Уменьшаем количество предметов в слоте половника
-					internal.extractItem(4, 1, false);
+				if (boundBlockEntity instanceof CookingCauldronEntity cauldron) {
+					Map<String, String> craftResult = cauldron.getCraftResult();
+					String interactionType = craftResult.get("interactionType");
+					
+					// Проверяем, требуется ли контейнер для этого рецепта
+					boolean requiresContainer = !interactionType.equals("hand");
+					
+					if (requiresContainer) {
+						// Уменьшаем количество предметов в слоте половника только если нужен контейнер
+						ItemStack ladleItem = internal.getStackInSlot(4);
+						if (!ladleItem.isEmpty()) {
+							internal.extractItem(4, 1, false);
+						}
+					}
 					
 					// Сбрасываем результат крафта в котле
-					if (boundBlockEntity instanceof CookingCauldronEntity cauldron) {
-						cauldron.setCraftResult(Map.of("id", "", "count", "", "interactionType", ""));
-
-					}
-					if (!player.level().isClientSide() && player instanceof ServerPlayer serverPlayer)
-						Utils.addAchievement(serverPlayer, "concoction:cauldron_boiling");
+					cauldron.setCraftResult(Map.of("id", "", "count", "", "interactionType", ""));
 				}
+				
+				if (!player.level().isClientSide() && player instanceof ServerPlayer serverPlayer)
+					Utils.addAchievement(serverPlayer, "concoction:cauldron_boiling");
 			}
 		}));
 	}
@@ -183,54 +192,93 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 	public ItemStack quickMoveStack(Player playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
-		
+
 		if (slot != null && slot.hasItem()) {
 			ItemStack stackInSlot = slot.getItem();
 			itemstack = stackInSlot.copy();
-			
-			if (index == 5) {
-				// Из слота результата в инвентарь
-				if (!this.moveItemStackTo(stackInSlot, 6, this.slots.size(), true)) {
+
+			// Забор результата
+			if (index == 41) {
+				if (!this.moveItemStackTo(stackInSlot, 0, 35, true)) {
 					return ItemStack.EMPTY;
 				}
 				slot.onTake(playerIn, stackInSlot);
-			} else if (index >= 6) {
-				// Из инвентаря в слоты котла
+			}
+			// Из инвентаря игрока (0-35) в котёл
+			else if (index >= 0 && index <= 35) {
 				boolean moved = false;
-				
 				// Проверяем, является ли предмет палкой, миской, бутылкой или ведром
-				if (stackInSlot.is(Items.STICK) || stackInSlot.is(Items.BOWL) || 
+				if (stackInSlot.is(Items.STICK) || stackInSlot.is(Items.BOWL) ||
 					stackInSlot.is(Items.GLASS_BOTTLE) || stackInSlot.is(Items.BUCKET)) {
-					// Пытаемся переместить в слот половника (слот 4)
-					if (this.slots.get(4).mayPlace(stackInSlot) && this.moveItemStackTo(stackInSlot, 4, 5, false)) {
-						moved = true;
+					// Пытаемся переместить в слот половника
+					Slot ladleSlot = this.slots.get(40);
+					if (ladleSlot.mayPlace(stackInSlot)) {
+						ItemStack ladleStack = ladleSlot.getItem();
+						if (ladleStack.isEmpty()) {
+							// Если слот пустой, перемещаем весь стак
+							if (this.moveItemStackTo(stackInSlot, 40, 41, false)) {
+								moved = true;
+							}
+						} else if (ladleStack.getItem() == stackInSlot.getItem() && 
+								 ladleStack.getCount() < ladleStack.getMaxStackSize()) {
+							// Если в слоте уже есть такой предмет и есть место
+							int space = ladleStack.getMaxStackSize() - ladleStack.getCount();
+							int toMove = Math.min(space, stackInSlot.getCount());
+							ItemStack splitStack = stackInSlot.split(toMove);
+							if (this.moveItemStackTo(splitStack, 40, 41, false)) {
+								moved = true;
+							}
+						}
 					}
-				} 
-				
-				// Если предмет не переместился в слот половника или это обычный ингредиент
+				}
+				// Если не удалось переместить в слот половника или это обычный ингредиент
 				if (!moved) {
-					// Пытаемся переместить в слоты ингредиентов (0-3)
-					if (!this.moveItemStackTo(stackInSlot, 0, 4, false)) {
+					// Пытаемся переместить в слоты ингредиентов
+					for (int i = 36; i <= 39; i++) {
+						Slot ingredientSlot = this.slots.get(i);
+						if (ingredientSlot.mayPlace(stackInSlot)) {
+							ItemStack slotStack = ingredientSlot.getItem();
+							if (slotStack.isEmpty()) {
+								// Если слот пустой, перемещаем весь стак
+								if (this.moveItemStackTo(stackInSlot, i, i + 1, false)) {
+									moved = true;
+									break;
+								}
+							} else if (slotStack.getItem() == stackInSlot.getItem() && 
+									 slotStack.getCount() < slotStack.getMaxStackSize()) {
+								// Если в слоте уже есть такой предмет и есть место
+								int space = slotStack.getMaxStackSize() - slotStack.getCount();
+								int toMove = Math.min(space, stackInSlot.getCount());
+								ItemStack splitStack = stackInSlot.split(toMove);
+								if (this.moveItemStackTo(splitStack, i, i + 1, false)) {
+									moved = true;
+									break;
+								}
+							}
+						}
+					}
+					if (!moved) {
 						return ItemStack.EMPTY;
 					}
 				}
-			} else if (index < 5) {
-				// Из слотов котла в инвентарь
-				if (!this.moveItemStackTo(stackInSlot, 6, this.slots.size(), true)) {
+			}
+			// Из слотов котла (36-40) в инвентарь игрока
+			else if (index >= 36 && index <= 40) {
+				if (!this.moveItemStackTo(stackInSlot, 0, 35, true)) {
 					return ItemStack.EMPTY;
 				}
 			}
-			
+
 			if (stackInSlot.isEmpty()) {
 				slot.set(ItemStack.EMPTY);
 			} else {
 				slot.setChanged();
 			}
-			
+
 			if (stackInSlot.getCount() == itemstack.getCount()) {
 				return ItemStack.EMPTY;
 			}
-			
+
 			slot.onTake(playerIn, stackInSlot);
 			return itemstack;
 		}

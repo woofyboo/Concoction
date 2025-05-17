@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 
 public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRecipe> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID,
-            "textures/gui/cooking_cauldron_gui.png");
+            "textures/gui/hud/boiling_cauldron_gui.png");
 
     public static final RecipeType<CauldronBrewingRecipe> CAULDRON_RECIPE_TYPE = RecipeType.create(ConcoctionMod.MODID, "cauldron_brewing",
             CauldronBrewingRecipe.class);
@@ -39,9 +39,9 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
     protected final IDrawableAnimated arrow;
 
     public CauldronRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 122, 63);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 134, 78);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.CAULDRON));
-        this.arrow = helper.drawableBuilder(TEXTURE, 122, 0, 44, 23)
+        this.arrow = helper.drawableBuilder(TEXTURE, 134, 0, 44, 24)
                 .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
@@ -69,7 +69,7 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
 
     @Override
     public void draw(CauldronBrewingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
-        arrow.draw(guiGraphics, 44, 20);
+        arrow.draw(guiGraphics, 50, 27);
     }
 
     public static boolean isCursorInsideBounds(int iconX, int iconY, int iconWidth, int iconHeight, double cursorX, double cursorY) {
@@ -87,14 +87,12 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CauldronBrewingRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 5, 6).addIngredients(recipe.getIngredient(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 6).addIngredients(recipe.getIngredient(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 5, 24).addIngredients(recipe.getIngredient(2));
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 24).addIngredients(recipe.getIngredient(3));
-        builder.addSlot(RecipeIngredientRole.INPUT, 5, 42).addIngredients(recipe.getIngredient(4));
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 42).addIngredients(recipe.getIngredient(5));
+        builder.addSlot(RecipeIngredientRole.INPUT, 11, 20).addIngredients(recipe.getIngredient(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 29, 20).addIngredients(recipe.getIngredient(1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 11, 38).addIngredients(recipe.getIngredient(2));
+        builder.addSlot(RecipeIngredientRole.INPUT, 29, 38).addIngredients(recipe.getIngredient(3));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 98, 25).addItemStack(
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 31).addItemStack(
                 new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(recipe.getOutput().get("id"))),
                         Integer.parseInt(recipe.getOutput().get("count")) )
         );
@@ -106,6 +104,6 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
             case "bowl" -> new ItemStack(Items.BOWL);
             default -> ItemStack.EMPTY;
         };
-        builder.addSlot(RecipeIngredientRole.CATALYST, 57, 2).addItemStack(catalyst);
+        builder.addSlot(RecipeIngredientRole.CATALYST, 63, 8).addItemStack(catalyst);
     }
 }

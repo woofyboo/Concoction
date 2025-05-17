@@ -59,6 +59,25 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
     }
 
     private boolean containsAllElements(NonNullList<ItemStack> inventory, List<Ingredient> recipe) {
+        // Проверяем только первые 4 слота (слоты ингредиентов)
+        NonNullList<ItemStack> ingredientSlots = NonNullList.withSize(4, ItemStack.EMPTY);
+        for (int i = 0; i < 4; i++) {
+            ingredientSlots.set(i, inventory.get(i));
+        }
+        
+        // Подсчитываем количество непустых слотов в инвентаре
+        int nonEmptySlots = 0;
+        for (ItemStack itemStack : ingredientSlots) {
+            if (!itemStack.isEmpty()) {
+                nonEmptySlots++;
+            }
+        }
+        
+        // Проверяем, что количество ингредиентов в рецепте совпадает с количеством непустых слотов
+        if (nonEmptySlots != recipe.size()) {
+            return false;
+        }
+        
         // Создаем карту для подсчета количества каждого типа предмета в инвентаре
         Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
         for (Ingredient ingredient : recipe) {
@@ -66,20 +85,27 @@ public class CauldronBrewingRecipe implements Recipe<CauldronBrewingRecipeInput>
         }
         
         // Проверяем каждый слот инвентаря
-        for (ItemStack itemStack : inventory) {
+        for (ItemStack itemStack : ingredientSlots) {
             if (itemStack.isEmpty()) continue;
             
+            boolean matched = false;
             // Проверяем каждый требуемый ингредиент
             for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
                 if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
                     // Уменьшаем требуемое количество этого ингредиента
                     entry.setValue(entry.getValue() - 1);
+                    matched = true;
                     break;
                 }
             }
+            
+            // Если предмет не соответствует ни одному ингредиенту рецепта
+            if (!matched) {
+                return false;
+            }
         }
         
-        // Проверяем, что все требуемые ингредиенты найдены (их количество стало 0 или меньше)
+        // Проверяем, что все требуемые ингредиенты найдены (их количество стало 0)
         return requiredIngredients.values().stream().allMatch(count -> count <= 0);
     }
 

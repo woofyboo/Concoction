@@ -212,6 +212,17 @@ if (localPlayer != null) {
     }
 
     @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        super.neighborChanged(state, level, pos, block, fromPos, isMoving);
+        
+        // Передаем информацию об изменении соседнего блока в сущность блока
+        BlockEntity entity = level.getBlockEntity(pos);
+        if (entity instanceof CookingCauldronEntity cookingCauldron) {
+            cookingCauldron.neighborChanged(state, level, pos, block, fromPos);
+        }
+    }
+
+    @Override
     public boolean hasAnalogOutputSignal(BlockState p_54055_) {
         return false;
     }

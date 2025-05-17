@@ -44,13 +44,24 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.minecraft.world.entity.Pose;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 @EventBusSubscriber
 public class PlayerHandler {
     private static int tickCounter = 0;
     private static final int UPDATE_INTERVAL = 200;
+    private static final int RENDER_DELAY_TICKS = 15;
+    
+    // Хранилище времени выхода из специального состояния для каждого игрока
+    private static final Map<UUID, Long> playerSpecialStateExitTimes = new HashMap<>();
+    
+    // Тоггл для каждого игрока, указывающий, должен ли рендериться эффект
+    private static final Map<UUID, Boolean> shouldRenderSpicyEffect = new HashMap<>();
 
     private static final TagKey<Item> SOULLAND_RELATION = TagKey.create(Registries.ITEM, ResourceLocation.parse("concoction:soulland_relation"));
     private static final TagKey<Block> WILDLIFE_PLANTS = TagKey.create(Registries.BLOCK, ResourceLocation.parse("concoction:wildlife_plants"));
@@ -144,7 +155,10 @@ public class PlayerHandler {
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
         Player player = event.getEntity();
-        if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+        UUID playerUUID = player.getUUID();
+        
+        // Проверяем, должен ли рендериться эффект для этого игрока
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY) && shouldRenderSpicyEffect.getOrDefault(playerUUID, false)) {
             PlayerRenderer playerRenderer = event.getRenderer();
             PlayerModel<AbstractClientPlayer> model = (PlayerModel<AbstractClientPlayer>) playerRenderer.getModel();
 
@@ -162,8 +176,9 @@ public class PlayerHandler {
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Post event) {
         Player player = event.getEntity();
+        UUID playerUUID = player.getUUID();
 
-        if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY) && shouldRenderSpicyEffect.getOrDefault(playerUUID, false)) {
         	
             PlayerRenderer playerRenderer = event.getRenderer();
             PlayerModel<AbstractClientPlayer> model = (PlayerModel<AbstractClientPlayer>) playerRenderer.getModel();
@@ -275,9 +290,35 @@ public class PlayerHandler {
     @SubscribeEvent
     public static void playerTickEvent(PlayerTickEvent.Pre event) {
         tickCounter++;
+        Player player = event.getEntity();
+        UUID playerUUID = player.getUUID();
+        
+        // Отслеживаем переход из специального состояния в обычное
+        boolean isInSpecialState = player.isFallFlying() || player.isSwimming() || player.getPose() == Pose.SWIMMING;
+        
+        // Проверяем, был ли переход из специального состояния (true -> false)
+        if (!isInSpecialState && player.getPersistentData().getBoolean("was_in_special_state")) {
+            // Записываем время выхода из специального состояния
+            playerSpecialStateExitTimes.put(playerUUID, player.level().getGameTime());
+        }
+        
+        // Сохраняем текущее состояние для следующей проверки
+        player.getPersistentData().putBoolean("was_in_special_state", isInSpecialState);
+        
+        // Обновляем тоггл для рендеринга эффекта
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
+            boolean shouldRender = !isPlayerInSpecialState(player);
+            
+            // Установим флаг только если он изменился или еще не установлен
+            if (!shouldRenderSpicyEffect.containsKey(playerUUID) || shouldRenderSpicyEffect.get(playerUUID) != shouldRender) {
+                shouldRenderSpicyEffect.put(playerUUID, shouldRender);
+            }
+        } else {
+            // Нет эффекта SPICY, удаляем запись, чтобы не хранить лишнее
+            shouldRenderSpicyEffect.remove(playerUUID);
+        }
 
         if (tickCounter > UPDATE_INTERVAL) {
-            Player player = event.getEntity();
             ItemStack mainHandItem = player.getInventory().getSelected();
 
             if (!player.level().isClientSide() && player.level().isDay() && player.level().canSeeSky(player.blockPosition().above()) && player instanceof ServerPlayer) {
@@ -313,6 +354,32 @@ public class PlayerHandler {
                 }
             }
         }
+    }
+
+    // Вспомогательный метод для проверки особых состояний игрока
+    private static boolean isPlayerInSpecialState(Player player) {
+        UUID playerUUID = player.getUUID();
+        boolean currentlyInSpecialState = player.isFallFlying() || // проверка на полет с элитрами
+                                          player.isSwimming() ||    // проверка на плавание
+                                          player.getPose() == Pose.SWIMMING; // проверка на ползание
+        
+        // Если игрок не в специальном состоянии, проверяем время задержки
+        if (!currentlyInSpecialState) {
+            Long exitTime = playerSpecialStateExitTimes.get(playerUUID);
+            if (exitTime != null) {
+                long currentTime = player.level().getGameTime();
+                if (currentTime - exitTime < RENDER_DELAY_TICKS) {
+                    // Если с момента выхода из специального состояния прошло меньше RENDER_DELAY_TICKS,
+                    // считаем, что игрок всё ещё в специальном состоянии
+                    return true;
+                } else {
+                    // Удаляем запись, так как задержка истекла
+                    playerSpecialStateExitTimes.remove(playerUUID);
+                }
+            }
+        }
+        
+        return currentlyInSpecialState;
     }
 
 }

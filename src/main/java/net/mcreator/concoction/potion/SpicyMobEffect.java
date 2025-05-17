@@ -1,7 +1,7 @@
-
 package net.mcreator.concoction.potion;
 
 import com.mojang.datafixers.util.Pair;
+import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.advancements.AdvancementHolder;
@@ -14,7 +14,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
-
+import net.minecraft.world.entity.ai.attributes.*;
 import net.mcreator.concoction.procedures.SpicyOnEffectActiveTickProcedure;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -22,6 +22,7 @@ import net.minecraft.world.level.LevelAccessor;
 public class SpicyMobEffect extends MobEffect {
 
 	private static int harmfulEffectCount = 0;
+	private static final ResourceLocation SPICY_ATTACK_SPEED = ResourceLocation.fromNamespaceAndPath("concoction", "spicy_attack_speed");
 
 	public SpicyMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -46336);
@@ -30,6 +31,37 @@ public class SpicyMobEffect extends MobEffect {
 	@Override
 	public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
 		return true;
+	}
+	
+	@Override
+	public void addAttributeModifiers(AttributeMap attributeMap, int amplifier) {
+		AttributeInstance attackSpeedAttribute = attributeMap.getInstance(Attributes.ATTACK_SPEED);
+		
+		if (attackSpeedAttribute != null) {
+			// Увеличиваем скорость атаки на 10% за каждый уровень эффекта
+			double increaseValue = (amplifier + 1) * 0.1;
+			
+			AttributeModifier attackSpeedModifier = new AttributeModifier(
+					SPICY_ATTACK_SPEED,
+					increaseValue,
+					AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+			);
+			
+			attackSpeedAttribute.addTransientModifier(attackSpeedModifier);
+		}
+		
+		super.addAttributeModifiers(attributeMap, amplifier);
+	}
+	
+	@Override
+	public void removeAttributeModifiers(AttributeMap attributeMap) {
+		AttributeInstance attackSpeedAttribute = attributeMap.getInstance(Attributes.ATTACK_SPEED);
+		
+		if (attackSpeedAttribute != null) {
+			attackSpeedAttribute.removeModifier(SPICY_ATTACK_SPEED);
+		}
+		
+		super.removeAttributeModifiers(attributeMap);
 	}
 
 	@Override

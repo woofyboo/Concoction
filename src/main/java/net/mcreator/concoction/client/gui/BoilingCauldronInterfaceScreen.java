@@ -59,6 +59,12 @@ public class BoilingCauldronInterfaceScreen extends AbstractContainerScreen<Boil
 			int progressSize = 44 * progress / maxProgress;
 			guiGraphics.blit(texture, this.leftPos + 65, this.topPos + 34, 176, 0, progressSize, 24, 256, 256);
 		}
+		
+		// Отрисовка индикатора LIT (огня), если котел разогрет
+		if (menu.isLit()) {
+			guiGraphics.blit(texture, this.leftPos + 79, this.topPos + 61, 176, 24, 14, 14, 256, 256);
+		}
+		
 		RenderSystem.disableBlend();
 	}
 

@@ -45,6 +45,7 @@ import org.jetbrains.annotations.Nullable;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.*;
 
@@ -101,27 +102,48 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         }
     }
 
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos) {
+        // Проверяем, не находится ли изменившийся блок снизу от котла
+        if (fromPos.equals(pos.below())) {
+            checkHeatSource(level, pos, state);
+        }
+    }
 
+    private void checkHeatSource(Level level, BlockPos pos, BlockState state) {
+        if (level.isClientSide) return;
+
+        Block blockBelow = level.getBlockState(pos.below()).getBlock();
+        boolean hasHeatSource = level.getFluidState(pos.below()).is(Fluids.LAVA.getSource()) || 
+                                blockBelow instanceof FireBlock ||
+                                blockBelow instanceof MagmaBlock || 
+                                blockBelow instanceof CampfireBlock;
+
+        // Если нет источника тепла под котлом
+        if (!hasHeatSource) {
+            // Проверяем, нужно ли обновлять состояние
+            if (state.getValue(CookingCauldron.LIT) || state.getValue(CookingCauldron.COOKING)) {
+                // Используем defaultBlockState и сохраняем только уровень воды
+                BlockState defaultState = state.getBlock().defaultBlockState()
+                    .setValue(CookingCauldron.LEVEL, state.getValue(CookingCauldron.LEVEL));
+                
+                level.setBlock(pos, defaultState, 3);
+                
+                // Сбрасываем прогресс готовки
+                resetProgress();
+            }
+        } else if (!state.getValue(CookingCauldron.LIT)) {
+            // Если есть источник тепла, но котел не горит, то зажигаем его
+            level.setBlock(pos, state.setValue(CookingCauldron.LIT, true), 3);
+        }
+    }
 
     // craft logic
     // The signature of this method matches the signature of the BlockEntityTicker functional interface.
     public void tick(Level level, BlockPos pPos, BlockState pState) {
         if (!level.isClientSide) {
-            Block blockBelow = level.getBlockState(pPos.below()).getBlock();
-            if ((level.getFluidState(pPos.below()).is(Fluids.LAVA.getSource()) || blockBelow instanceof FireBlock ||
-                    blockBelow instanceof MagmaBlock || blockBelow instanceof CampfireBlock)) {
-                if (!pState.getValue(CookingCauldron.LIT)) {
-                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, true));
-                    setChanged(level, pPos, pState);
-                    return;
-                }
-
-            } else if (pState.getValue(CookingCauldron.LIT)) {
-                level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.LIT, false));
-                setChanged(level, pPos, pState);
-                return;
-            }
-
+            // Проверяем состояние источника тепла
+            checkHeatSource(level, pPos, pState);
+            
             if (pState.getValue(CookingCauldron.LIT)) {
                 if (this.isCooking) {
                     // Проверяем, все ли ингредиенты и половник на месте
@@ -131,6 +153,34 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
                         return;
                     }
                     
+                    // Проверяем слот результата на превышение максимального размера стака
+                    if (this.recipe != null) {
+                        ItemStack resultSlot = this.items.get(5);
+                        if (!resultSlot.isEmpty()) {
+                            String recipeResultId = this.recipe.value().getOutput().get("id");
+                            if (!recipeResultId.isEmpty()) {
+                                ResourceLocation recipeItemId = ResourceLocation.parse(recipeResultId);
+                                ResourceLocation currentItemId = BuiltInRegistries.ITEM.getKey(resultSlot.getItem());
+                                
+                                // Если предмет в слоте результата отличается от ожидаемого результата крафта
+                                if (!currentItemId.equals(recipeItemId)) {
+                                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                                    resetProgress();
+                                    return;
+                                }
+                                
+                                // Проверяем, есть ли место для результата
+                                int currentCount = resultSlot.getCount();
+                                int recipeCount = Integer.parseInt(this.recipe.value().getOutput().get("count"));
+                                if (currentCount + recipeCount > resultSlot.getMaxStackSize()) {
+                                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                                    resetProgressOnly();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    
                     increaseCraftingProgress();
                     setChanged(level, pPos, pState);
 
@@ -138,7 +188,8 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
                         craftItem();
                         level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
                     }
-                } else if (hasRecipe() && !hasCraftedResult()) {
+                } else if (!hasCraftedResult() && hasRecipe()) {
+                    // Начинаем готовку только если нет результата
                     level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, true));
                     this.isCooking = true;
                     setChanged(level, pPos, pState);
@@ -340,6 +391,29 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         if (this.recipe != null && !this.recipe.equals(newRecipe)) {
             this.resetProgress();
             return false;
+        }
+
+        // Проверяем содержимое слота результата
+        ItemStack resultSlot = this.items.get(5);
+        if (!resultSlot.isEmpty()) {
+            // Получаем ID предмета из результата крафта
+            String recipeResultId = newRecipe.value().getOutput().get("id");
+            if (!recipeResultId.isEmpty()) {
+                ResourceLocation recipeItemId = ResourceLocation.parse(recipeResultId);
+                ResourceLocation currentItemId = BuiltInRegistries.ITEM.getKey(resultSlot.getItem());
+                
+                // Если предмет в слоте результата отличается от ожидаемого результата крафта
+                if (!currentItemId.equals(recipeItemId)) {
+                    return false;
+                }
+                
+                // Проверяем, есть ли место для результата
+                int currentCount = resultSlot.getCount();
+                int recipeCount = Integer.parseInt(newRecipe.value().getOutput().get("count"));
+                if (currentCount + recipeCount > resultSlot.getMaxStackSize()) {
+                    return false;
+                }
+            }
         }
 
         // Проверяем наличие нужного предмета в слоте половника
