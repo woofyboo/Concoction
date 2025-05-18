@@ -80,7 +80,12 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 		this.customSlots.put(39, this.addSlot(new SlotItemHandler(internal, 3, 44, 45)));
 
 		// Добавляем слот для половника/контейнера (5-й слот)
-		this.customSlots.put(40, this.addSlot(new SlotItemHandler(internal, 4, 78, 15)));
+		this.customSlots.put(40, this.addSlot(new SlotItemHandler(internal, 4, 78, 15) {
+			@Override
+			public boolean mayPlace(ItemStack stack) {
+				return isValidLadleItem(stack);
+			}
+		}));
 
 		// Добавляем слот для результата (6-й слот)
 		this.customSlots.put(41, this.addSlot(new SlotItemHandler(internal, 5, 118, 38)  {
@@ -106,16 +111,8 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 					Map<String, String> craftResult = cauldron.getCraftResult();
 					String interactionType = craftResult.get("interactionType");
 					
-					// Проверяем, требуется ли контейнер для этого рецепта
-					boolean requiresContainer = !interactionType.equals("hand");
-					
-					if (requiresContainer) {
-						// Уменьшаем количество предметов в слоте половника только если нужен контейнер
-						ItemStack ladleItem = internal.getStackInSlot(4);
-						if (!ladleItem.isEmpty()) {
-							internal.extractItem(4, 1, false);
-						}
-					}
+					// Расходование половника уже происходит в методе craftItem() класса CookingCauldronEntity
+					// Удаляем дублирующийся код, чтобы избежать двойного расхода
 					
 					// Сбрасываем результат крафта в котле
 					cauldron.setCraftResult(Map.of("id", "", "count", "", "interactionType", ""));
@@ -141,6 +138,14 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 		for (int i = 0; i < 9; ++i) {
 			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
 		}
+	}
+	
+	// Проверка, является ли предмет валидным для слота половника
+	private boolean isValidLadleItem(ItemStack stack) {
+		return stack.is(Items.STICK) || 
+			   stack.is(Items.BOWL) ||
+			   stack.is(Items.GLASS_BOTTLE) ||
+			   stack.is(Items.BUCKET);
 	}
 	
 	// Метод для получения текущего прогресса готовки
@@ -208,8 +213,7 @@ public class BoilingCauldronInterfaceMenu extends AbstractContainerMenu implemen
 			else if (index >= 0 && index <= 35) {
 				boolean moved = false;
 				// Проверяем, является ли предмет палкой, миской, бутылкой или ведром
-				if (stackInSlot.is(Items.STICK) || stackInSlot.is(Items.BOWL) ||
-					stackInSlot.is(Items.GLASS_BOTTLE) || stackInSlot.is(Items.BUCKET)) {
+				if (isValidLadleItem(stackInSlot)) {
 					// Пытаемся переместить в слот половника
 					Slot ladleSlot = this.slots.get(40);
 					if (ladleSlot.mayPlace(stackInSlot)) {

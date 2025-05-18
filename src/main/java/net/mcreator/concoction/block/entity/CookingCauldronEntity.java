@@ -298,18 +298,38 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         
         // Обрабатываем слот половника
         String interactionType = this.recipe.value().getOutput().get("interactionType");
+        
+        // Для отладки выведем информацию о взаимодействии
+        if (this.level != null && !this.level.isClientSide()) {
+            System.out.println("Обработка результата крафта: " + this.recipe.value().getOutput().get("id"));
+            System.out.println("Тип взаимодействия: " + interactionType);
+            System.out.println("Слот половника: " + (this.items.get(4).isEmpty() ? "пусто" : this.items.get(4).getItem()));
+        }
+        
         if (!interactionType.equals("hand")) {
             ItemStack ladleStack = this.items.get(4);
             if (!ladleStack.isEmpty()) {
-                if (ladleStack.getCount() > 1) {
-                    ItemStack remainingLadle = ladleStack.copy();
-                    remainingLadle.shrink(1);
-                    newItems.set(4, remainingLadle);
+                // Нужно проверить, что в слоте половника правильный предмет
+                boolean isCorrectLadleItem = switch (interactionType) {
+                    case "bottle" -> ladleStack.getItem() == Items.GLASS_BOTTLE;
+                    case "stick" -> ladleStack.getItem() == Items.STICK;
+                    case "bucket" -> ladleStack.getItem() == Items.BUCKET;
+                    case "bowl" -> ladleStack.getItem() == Items.BOWL;
+                    default -> false;
+                };
+                
+                if (isCorrectLadleItem) {
+                    if (ladleStack.getCount() > 1) {
+                        ItemStack remainingLadle = ladleStack.copy();
+                        remainingLadle.shrink(1);
+                        newItems.set(4, remainingLadle);
+                    }
+                    // Если остался один половник, слот останется пустым после использования
                 }
-                // Если остался один половник, слот останется пустым
             }
         } else {
-            newItems.set(4, this.items.get(4));
+            // Для типа "hand" просто копируем предмет из слота половника в новый инвентарь
+            newItems.set(4, this.items.get(4).copy());
         }
         
         // Устанавливаем результат крафта
@@ -420,6 +440,13 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         String interactionType = newRecipe.value().getOutput().get("interactionType");
         ItemStack ladleItem = this.items.get(4); // слот половника
 
+        // Для отладки
+        if (this.level != null && !this.level.isClientSide()) {
+            System.out.println("Проверка рецепта: " + newRecipe.value().getOutput().get("id"));
+            System.out.println("Тип взаимодействия: " + interactionType);
+            System.out.println("Предмет в слоте половника: " + (ladleItem.isEmpty() ? "пусто" : ladleItem.getItem()));
+        }
+
         // Для типа hand половник не нужен
         if (interactionType.equals("hand")) {
             this.recipe = newRecipe;
@@ -429,10 +456,10 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
         // Для остальных типов проверяем наличие нужного предмета
         boolean hasCorrectLadle = switch (interactionType) {
-            case "bottle" -> ladleItem.is(Items.GLASS_BOTTLE);
-            case "stick" -> ladleItem.is(Items.STICK);
-            case "bucket" -> ladleItem.is(Items.BUCKET);
-            case "bowl" -> ladleItem.is(Items.BOWL);
+            case "bottle" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.GLASS_BOTTLE;
+            case "stick" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.STICK;
+            case "bucket" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.BUCKET;
+            case "bowl" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.BOWL;
             default -> false;
         };
 
@@ -474,6 +501,36 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
 
     @Override
     public void setItem(int slot, ItemStack stack) {
+        ItemStack previousStack = this.items.get(slot);
+        boolean isSlotEmpty = previousStack.isEmpty();
+        boolean isStackEmpty = stack.isEmpty();
+        boolean isDifferentItem = !isSlotEmpty && !isStackEmpty && 
+                                 (!ItemStack.matches(previousStack, stack));
+        
+        // Проверяем, является ли это слотом ингредиентов (0-3)
+        boolean isIngredientSlot = slot >= 0 && slot < 4;
+        boolean isLadleSlot = slot == 4;
+        
+        // Если меняется содержимое слота ингредиентов или слота половника,
+        // то это может повлиять на рецепт и процесс готовки
+        if ((isIngredientSlot || isLadleSlot) && (isDifferentItem || isSlotEmpty != isStackEmpty)) {
+            // Сбрасываем прогресс готовки при изменении ингредиентов
+            if (this.isCooking) {
+                resetProgressOnly();
+                
+                // Устанавливаем состояние блока как не готовящий
+                if (this.level != null) {
+                    BlockState state = this.level.getBlockState(this.worldPosition);
+                    if (state.hasProperty(CookingCauldron.COOKING)) {
+                        this.level.setBlock(this.worldPosition, 
+                                          state.setValue(CookingCauldron.COOKING, false), 
+                                          3);
+                    }
+                }
+            }
+        }
+        
+        // Стандартная обработка
         stack.limitSize(this.getMaxStackSize(stack));
         this.items.set(slot, stack);
         this.setChanged();

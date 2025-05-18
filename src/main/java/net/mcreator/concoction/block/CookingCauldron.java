@@ -193,14 +193,16 @@ if (localPlayer != null) {
             return Map.ofEntries(
                     Map.entry("id",""),
                     Map.entry("count",""),
-                    Map.entry("interactionType","")
+                    Map.entry("interactionType",""),
+                    Map.entry("experience", "0")
             );
 
         } else {
             return Map.ofEntries(
                     Map.entry("id",result.get("id")),
                     Map.entry("count",String.valueOf(new_count)),
-                    Map.entry("interactionType",result.get("interactionType"))
+                    Map.entry("interactionType",result.get("interactionType")),
+                    Map.entry("experience", result.get("experience"))
             );
         }
     }
