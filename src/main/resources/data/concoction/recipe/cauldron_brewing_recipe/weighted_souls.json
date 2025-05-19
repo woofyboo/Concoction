@@ -12,16 +12,22 @@
 
   "ingredients": [
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:soul_sand"
     },
     {
-      "item": "concoction:mint"
+      "item": "minecraft:soul_sand"
+    },{
+      "item": "concoction:obsidian_tears_bottle"
+    },
+    {
+      "item": "minecraft:ghast_tear"
     }
+
   ],
 
   "result": {
-    "id": "concoction:mint_brew",
-    "interactionType": "bottle",
+    "id": "concoction:weighted_souls_bucket",
+    "interactionType": "bucket",
     "count": "1"
   }
 }

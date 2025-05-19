@@ -12,15 +12,18 @@
 
   "ingredients": [
     {
-      "item": "minecraft:sugar"
+      "item": "concoction:spicy_pepper"
     },
     {
-      "item": "concoction:mint"
+      "item": "concoction:spicy_pepper"
+    },
+    {
+      "item": "minecraft:sugar"
     }
   ],
 
   "result": {
-    "id": "concoction:mint_brew",
+    "id": "concoction:hot_sauce_bottle",
     "interactionType": "bottle",
     "count": "1"
   }

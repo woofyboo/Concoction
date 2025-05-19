@@ -299,12 +299,6 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         // Обрабатываем слот половника
         String interactionType = this.recipe.value().getOutput().get("interactionType");
         
-        // Для отладки выведем информацию о взаимодействии
-        if (this.level != null && !this.level.isClientSide()) {
-            System.out.println("Обработка результата крафта: " + this.recipe.value().getOutput().get("id"));
-            System.out.println("Тип взаимодействия: " + interactionType);
-            System.out.println("Слот половника: " + (this.items.get(4).isEmpty() ? "пусто" : this.items.get(4).getItem()));
-        }
         
         if (!interactionType.equals("hand")) {
             ItemStack ladleStack = this.items.get(4);
@@ -440,12 +434,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity {
         String interactionType = newRecipe.value().getOutput().get("interactionType");
         ItemStack ladleItem = this.items.get(4); // слот половника
 
-        // Для отладки
-        if (this.level != null && !this.level.isClientSide()) {
-            System.out.println("Проверка рецепта: " + newRecipe.value().getOutput().get("id"));
-            System.out.println("Тип взаимодействия: " + interactionType);
-            System.out.println("Предмет в слоте половника: " + (ladleItem.isEmpty() ? "пусто" : ladleItem.getItem()));
-        }
+     
 
         // Для типа hand половник не нужен
         if (interactionType.equals("hand")) {

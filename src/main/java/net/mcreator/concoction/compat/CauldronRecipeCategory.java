@@ -99,7 +99,7 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
 
         ItemStack catalyst = switch (recipe.getOutput().get("interactionType")) {
             case "hand" -> ItemStack.EMPTY;
-            case "stick" -> new ItemStack(Items.STICK);
+            case "bucket" -> new ItemStack(Items.BUCKET);
             case "bottle" -> new ItemStack(Items.GLASS_BOTTLE);
             case "bowl" -> new ItemStack(Items.BOWL);
             default -> ItemStack.EMPTY;

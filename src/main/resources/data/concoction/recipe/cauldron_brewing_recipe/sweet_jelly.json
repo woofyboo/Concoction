@@ -12,14 +12,16 @@
 
   "ingredients": [
     {
-      "item": "minecraft:cocoa_beans"
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:sugar"
     }
   ],
 
   "result": {
-    "id": "minecraft:sugar",
+    "id": "concoction:sweet_slime_jelly",
     "interactionType": "hand",
-    "experience": 10,
     "count": "1"
   }
 }

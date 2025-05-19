@@ -12,17 +12,22 @@
 
   "ingredients": [
     {
-      "item": "minecraft:cocoa_beans"
+      "item": "concoction:rice"
     },
     {
-      "item": "concoction:onion"
+      "item": "concoction:rice"
+    },
+    {
+      "item": "concoction:rice"
+    },
+    {
+      "item": "concoction:rice"
     }
   ],
 
   "result": {
-    "id": "concoction:chocolate",
-    "interactionType": "hand",
-    "experience": 10,
-    "count": "3"
+    "id": "concoction:cooked_rice",
+    "interactionType": "bowl",
+    "count": "1"
   }
 }
