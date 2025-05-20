@@ -40,7 +40,7 @@
     },
     "hardness": 0.5,
     "resistance": 0.5,
-    "hasGravity": false,
+    "hasGravity": true,
     "isWaterloggable": false,
     "creativeTabs": [],
     "destroyTool": "shovel",
