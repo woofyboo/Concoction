@@ -49,7 +49,7 @@ public class RiceBlockBlock extends FallingBlock {
 	@Override
 	public void onLand(Level p_52068_, BlockPos p_52069_, BlockState p_52070_, BlockState p_52071_, FallingBlockEntity p_52072_) {
 		if (shouldSolidify(p_52068_, p_52069_, p_52070_, p_52071_.getFluidState()) || touchesLiquid(p_52068_, p_52069_, p_52070_)) {
-			p_52068_.setBlock(p_52069_, ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 3);
+			p_52068_.setBlock(p_52069_, ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 128);
 		}
 
 	}
