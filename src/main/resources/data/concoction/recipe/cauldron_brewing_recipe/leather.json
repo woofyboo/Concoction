@@ -13,6 +13,9 @@
   "ingredients": [
     {
       "item": "minecraft:rotten_flesh"
+    },
+    {
+      "tag": "c:salts"
     }
   ],
 

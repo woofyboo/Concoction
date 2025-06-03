@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sea_salt_block",
+  "category": "misc",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:sea_salt"
+    }
+  },
+  "result": {
+    "id": "concoction:sea_salt_sand",
+    "count": 1
+  }
+}

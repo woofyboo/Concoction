@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:sea_salt_sand",
     "concoction:soaked_rice_block",
     "concoction:rice_block",
     "concoction:soulland"

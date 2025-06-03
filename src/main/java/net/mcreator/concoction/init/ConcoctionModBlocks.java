@@ -29,6 +29,7 @@ import net.mcreator.concoction.block.SoullandBlock;
 import net.mcreator.concoction.block.SoulIceBlock;
 import net.mcreator.concoction.block.SoakedRiceBlockBlock;
 import net.mcreator.concoction.block.SmallPillowBlock;
+import net.mcreator.concoction.block.SeaSaltSandBlock;
 import net.mcreator.concoction.block.RiceBlockBlock;
 import net.mcreator.concoction.block.RedWovenCarpetBlock;
 import net.mcreator.concoction.block.ReapepperBlockBlock;
@@ -129,6 +130,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> PINECONE_BLOCK = REGISTRY.register("pinecone_block", PineconeBlockBlock::new);
 	public static final DeferredBlock<Block> REAPEPPER_BLOCK = REGISTRY.register("reapepper_block", ReapepperBlockBlock::new);
 	public static final DeferredBlock<Block> CHERRY_BLOCK = REGISTRY.register("cherry_block", CherryBlockBlock::new);
+	public static final DeferredBlock<Block> SEA_SALT_SAND = REGISTRY.register("sea_salt_sand", SeaSaltSandBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

@@ -69,6 +69,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.COTTON_OIL.get());
 				tabData.accept(ConcoctionModItems.BUTTER.get());
 				tabData.accept(ConcoctionModItems.CHOCOLATE.get());
+				tabData.accept(ConcoctionModItems.SEA_SALT.get());
 
 //Сложная еда
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
@@ -126,6 +127,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SOULLAND.get());
 
 //Cтроительные блоки
+				tabData.accept(ConcoctionModItems.SEA_SALT_SAND.get());
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.LIGHT_GRAY_PILLOW_BLOCK.get());
 				tabData.accept(ConcoctionModItems.GRAY_PILLOW_BLOCK.get());
