@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cherry",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cherry_block"
+    }
+  },
+  "result": {
+    "id": "concoction:cherry",
+    "count": 9
+  }
+}

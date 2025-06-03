@@ -2,12 +2,12 @@
   "_fv": 73,
   "_type": "block",
   "definition": {
-    "texture": "tomato_block_bottom",
-    "textureTop": "tomato_block_top",
-    "textureLeft": "tomato_block_side",
-    "textureFront": "tomato_block_side",
-    "textureRight": "tomato_block_side",
-    "textureBack": "tomato_block_side",
+    "texture": "cherry_block_bottom",
+    "textureTop": "cherry_block_top",
+    "textureLeft": "cherry_block_side",
+    "textureFront": "cherry_block_side",
+    "textureRight": "cherry_block_side",
+    "textureBack": "cherry_block_side",
     "renderType": 10,
     "customModelName": "Normal",
     "rotationMode": 0,
@@ -34,12 +34,12 @@
       }
     ],
     "customProperties": [],
-    "name": "Tomato Block",
+    "name": "Cherry Block",
     "specialInformation": {
       "fixedValue": []
     },
     "hardness": 0.2,
-    "resistance": 10.0,
+    "resistance": 0.2,
     "hasGravity": false,
     "isWaterloggable": false,
     "creativeTabs": [],
@@ -64,13 +64,13 @@
     "emittedRedstonePower": {
       "fixedValue": 15.0
     },
-    "colorOnMap": "RED",
+    "colorOnMap": "MAGENTA",
     "creativePickItem": {
       "value": ""
     },
     "offsetType": "NONE",
     "aiPathNodeType": "DEFAULT",
-    "flammability": 0,
+    "flammability": 5,
     "fireSpreadSpeed": 0,
     "isLadder": false,
     "slipperiness": 0.6,

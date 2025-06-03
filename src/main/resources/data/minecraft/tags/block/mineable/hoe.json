@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:cherry_block",
     "concoction:mint_bale",
     "concoction:tomato_block",
     "concoction:sunflower_seed_block",

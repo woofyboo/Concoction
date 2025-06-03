@@ -105,7 +105,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.WILD_SPICY_PEPPER.get());
 				tabData.accept(ConcoctionModItems.WILD_CABBAGE.get());
 				tabData.accept(ConcoctionModItems.WILD_TOMATO.get());
-				tabData.accept(ConcoctionModItems.MINT_BALE.get());
 				tabData.accept(ConcoctionModItems.CORN_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SPICY_PEPPER_BLOCK.get());
 				tabData.accept(ConcoctionModItems.ONION_BLOCK.get());
@@ -114,6 +113,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEED_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CABBAGE_LEAVES_BLOCK.get());
+				tabData.accept(ConcoctionModItems.MINT_BALE.get());
+				tabData.accept(ConcoctionModItems.CHERRY_BLOCK.get());
 				tabData.accept(ConcoctionModItems.TOMATO_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PINECONE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.RICE_BLOCK.get());

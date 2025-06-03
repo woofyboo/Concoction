@@ -7,15 +7,21 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-public class TomatoBlockBlock extends Block {
-	public TomatoBlockBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_RED).sound(SoundType.WET_GRASS).strength(0.2f, 10f));
+public class CherryBlockBlock extends Block {
+	public CherryBlockBlock() {
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_MAGENTA).sound(SoundType.WET_GRASS).strength(0.2f));
 	}
 
 	@Override
 	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
 		return 15;
+	}
+
+	@Override
+	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		return 5;
 	}
 }

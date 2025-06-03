@@ -29,7 +29,7 @@ public class SoakedRiceBlockBlock extends FallingBlock {
 	}
 
 	public SoakedRiceBlockBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).sound(SoundType.MUD).strength(0.5f));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).sound(SoundType.WET_SPONGE).strength(0.5f));
 	}
 
 	@Override
