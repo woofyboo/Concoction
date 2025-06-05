@@ -21,6 +21,7 @@ import net.minecraft.world.level.LevelAccessor;
 public class SpicyMobEffect extends MobEffect {
 
 	private static int harmfulEffectCount = 0;
+	private static int tickCounter = 0;
 	private static final ResourceLocation SPICY_ATTACK_SPEED = ResourceLocation.fromNamespaceAndPath("concoction", "spicy_attack_speed");
 
 	public SpicyMobEffect() {
@@ -68,10 +69,17 @@ public class SpicyMobEffect extends MobEffect {
 		LevelAccessor world = entity.level();
 
 		if (entity instanceof LivingEntity livEnt) {
-			if ((livEnt.hasEffect(ConcoctionModMobEffects.SPICY) ? livEnt.getEffect(ConcoctionModMobEffects.SPICY).getDuration() : 0) % 60 == 0) {
-				livEnt.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:spicy_damage")))),
-						(float) (((livEnt.hasEffect(ConcoctionModMobEffects.SPICY) ? livEnt.getEffect(ConcoctionModMobEffects.SPICY).getAmplifier() : 0) + 1) * 1));
-				if (world instanceof Level pLevel && !pLevel.isClientSide()) {
+			if (livEnt.hasEffect(ConcoctionModMobEffects.SPICY)) {
+				if (world instanceof Level pLevel && !pLevel.isClientSide() && livEnt instanceof ServerPlayer player) {
+
+					int tickInterval = 60 - amplifier * 10;
+					if (tickInterval < 20) tickInterval = 20;
+
+					if (tickCounter >= tickInterval && player.getHealth() > 1.0) {
+						livEnt.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:spicy_damage")))),
+								1.0f);
+						tickCounter = 0;
+					}
 
 					livEnt.getActiveEffects().stream().map(effect -> new Pair<>(effect.getEffect(), effect.getEffect().value().getCategory())).
 							filter(pair -> pair.getSecond().equals(MobEffectCategory.HARMFUL)).forEach(pair -> {
@@ -79,21 +87,20 @@ public class SpicyMobEffect extends MobEffect {
 								harmfulEffectCount++;
 							});
 
-					if (livEnt instanceof ServerPlayer player) {
 
-						if (player.isOnFire()) {
-							Utils.addAchievement(player, "concoction:spicy_on_fire");
-						}
-
-						if (harmfulEffectCount >= 5){
-							Utils.addAchievement(player, "concoction:spicy_remove_many_debuffs");
-							harmfulEffectCount = 0;
-						}
+					if (player.isOnFire()) {
+						Utils.addAchievement(player, "concoction:spicy_on_fire");
 					}
+
+					if (harmfulEffectCount >= 5){
+						Utils.addAchievement(player, "concoction:spicy_remove_many_debuffs");
+						harmfulEffectCount = 0;
+					}
+
+					++tickCounter;
 				}
 			}
 		}
-		//SpicyOnEffectActiveTickProcedure.execute(entity.level(), entity);
 		return super.applyEffectTick(entity, amplifier);
 	}
 }

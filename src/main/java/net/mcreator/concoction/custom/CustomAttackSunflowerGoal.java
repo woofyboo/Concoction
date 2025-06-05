@@ -36,7 +36,6 @@ public class CustomAttackSunflowerGoal extends Goal {
 
     private final Zombie zombie;
     private Optional<BlockPos> target;
-    private int tickCounter = 0;
     private int transformCounter = 0;
 
     public CustomAttackSunflowerGoal (Zombie zombie) {
@@ -64,10 +63,11 @@ public class CustomAttackSunflowerGoal extends Goal {
 
     @Override
     public void tick() {
+        Level level = this.zombie.level();
+        if (!(level instanceof ServerLevel serverLevel)) return;
         target.ifPresent(targetBlockPos -> {
 
             if (this.zombie.getType().equals(EntityType.ZOMBIE)) {
-                this.transformCounter = 0;
                 this.zombie.getNavigation().moveTo(targetBlockPos.getX(), targetBlockPos.getY(), targetBlockPos.getZ(), 1.0D);
                 this.zombie.getLookControl().setLookAt(
                         targetBlockPos.getX(),
@@ -75,75 +75,53 @@ public class CustomAttackSunflowerGoal extends Goal {
                         targetBlockPos.getZ()
                 );
 
+                if (this.zombie.blockPosition().distToCenterSqr(targetBlockPos.getX(), targetBlockPos.getY(), targetBlockPos.getZ()) < 3){
+                    if (this.transformCounter % 20 == 0){
+                        serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
+                                this.zombie.getX(),
+                                this.zombie.getY() + 1.0D,
+                                this.zombie.getZ(),
+                                4,
+                                0.3D, 0.3D, 0.3D,
+                                0.1D);
+                    }
+                    if (this.transformCounter > 100){
+                        EntityType<?> type = ConcoctionModEntities.SUNSTRUCK.get();
+                        var sunstruck = type.create(this.zombie.level());
+                        assert sunstruck != null;
+                        sunstruck.moveTo(this.zombie.getX(), this.zombie.getY(), this.zombie.getZ(), this.zombie.getYRot(), this.zombie.getXRot());
+                        BlockPos zombiePos = this.zombie.blockPosition();
+                        serverLevel.getPlayers(player ->
+                                player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64
+                        ).forEach(player -> {
+                            Utils.addAchievement(player, "concoction:sunstruck_transformed");
+                        });
+                        if (this.zombie.isBaby() && sunstruck instanceof SunstruckEntity sunstruckEntity){
+                            sunstruckEntity.setBaby(true);
+                        }
 
-            } //else {
-//                ++this.transformCounter;
-//
-//                if (transformCounter > 0 && transformCounter < 5) {
-//                    Level level = this.zombie.level();
-//                    if (level instanceof ServerLevel serverLevel) {
-//                        serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
-//                                this.zombie.getX(),
-//                                this.zombie.getY() + 1.0D,
-//                                this.zombie.getZ(),
-//                                8,
-//                                0.3D, 0.3D, 0.3D,
-//                                0.1D);
-//                    }
-//                }
-//
-//                if (this.transformCounter >= 5 && this.zombie.getType().equals(EntityType.ZOMBIE)) {
-//                    EntityType<?> type = ConcoctionModEntities.SUNSTRUCK.get();
-//                    var sunstruck = type.create(this.zombie.level());
-//                    assert sunstruck != null;
-//                    sunstruck.moveTo(this.zombie.getX(), this.zombie.getY(), this.zombie.getZ(), this.zombie.getYRot(), this.zombie.getXRot());
-//
-//
-//                    Level level = this.zombie.level();
-//                    if (level instanceof ServerLevel serverLevel) {
-//                        serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER,
-//                                this.zombie.getX(),
-//                                this.zombie.getY() + 1.0D,
-//                                this.zombie.getZ(),
-//                                30,
-//                                0.5D, 0.5D, 0.5D,
-//                                0.2D);
-//
-//                        BlockPos zombiePos = this.zombie.blockPosition();
-//                        serverLevel.getPlayers(player ->
-//                                player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64
-//                        ).forEach(player -> {
-//                            Utils.addAchievement(player, "concoction:sunstruck_transformed");
-//                        });
-//                    }
-//
-//                    if (this.zombie.isBaby() && sunstruck instanceof SunstruckEntity sunstruckEntity){
-//                        sunstruckEntity.setBaby(true);
-//                    }
-//
-//                    // Копируем инвентарь зомби в Sunstruck
-//                    if (sunstruck instanceof SunstruckEntity sunstruckEntity) {
-//                        sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand(), this.zombie.getItemInHand(this.zombie.getUsedItemHand()).copy());
-//                        sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ?
-//                                        net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND,
-//                                this.zombie.getItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ?
-//                                        net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND).copy());
-//
-//                        for (net.minecraft.world.entity.EquipmentSlot slot : net.minecraft.world.entity.EquipmentSlot.values()) {
-//                            sunstruckEntity.setItemSlot(slot, this.zombie.getItemBySlot(slot).copy());
-//                        }
-//                    }
-//
-//                    this.zombie.playSound(SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, 1.0f, 1.0f);
-//                    this.zombie.playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 1.0f, 0.8f);
-//
-//                    this.zombie.remove(Entity.RemovalReason.DISCARDED);
-//                    this.zombie.level().addFreshEntity(sunstruck);
-//                    this.transformCounter = 0;
-//                }
-//            }
+                        if (sunstruck instanceof SunstruckEntity sunstruckEntity) {
+                            sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand(), this.zombie.getItemInHand(this.zombie.getUsedItemHand()).copy());
+                            sunstruckEntity.setItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ?
+                                            net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND,
+                                    this.zombie.getItemInHand(this.zombie.getUsedItemHand() == net.minecraft.world.InteractionHand.MAIN_HAND ?
+                                            net.minecraft.world.InteractionHand.OFF_HAND : net.minecraft.world.InteractionHand.MAIN_HAND).copy());
+
+                            for (net.minecraft.world.entity.EquipmentSlot slot : net.minecraft.world.entity.EquipmentSlot.values()) {
+                                sunstruckEntity.setItemSlot(slot, this.zombie.getItemBySlot(slot).copy());
+                            }
+                        }
+
+                        this.zombie.playSound(SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, 1.0f, 1.0f);
+                        this.zombie.playSound(SoundEvents.AMETHYST_BLOCK_CHIME, 1.0f, 0.8f);
+
+                        this.zombie.remove(Entity.RemovalReason.DISCARDED);
+                        this.zombie.level().addFreshEntity(sunstruck);
+                        this.transformCounter = 0;
+                        }
+                    ++this.transformCounter;
+                }
+            }
         });
-
     }
-
 }
