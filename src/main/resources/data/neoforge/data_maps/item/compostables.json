@@ -1,14 +1,18 @@
 {
   "values": {
-    "concoction:onion": {
-      "chance": 0.65,
-      "can_villager_compost": true
-    },
     "concoction:corn": {
       "chance": 0.65,
       "can_villager_compost": true
     },
-    "concoction:spicy_pepper": {
+    "concoction:corn_seeds": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:popcorn": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:cooked_corn": {
       "chance": 0.65,
       "can_villager_compost": true
     },
@@ -16,20 +20,196 @@
       "chance": 0.65,
       "can_villager_compost": true
     },
-    "concoction:green_onion": {
+    "concoction:spicy_pepper": {
       "chance": 0.65,
       "can_villager_compost": true
     },
-    "concoction:cabbage_leaf": {
+    "concoction:spicy_pepper_seeds": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:onion": {
       "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:green_onion": {
+      "chance": 0.5,
+      "can_villager_compost": true
+    },
+    "concoction:cotton": {
+      "chance": 0.5,
+      "can_villager_compost": true
+    },
+    "concoction:sunflower_seeds": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:roasted_sunflower_seeds": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:cabbage_leaf": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "concoction:cabbagehead": {
+      "chance": 0.85,
+      "can_villager_compost": true
+    },
+    "concoction:cabbage_seeds": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:mint": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:mint_seeds": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:mint_chocolate_cake": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:mint_cookie": {
+      "chance": 0.85,
+      "can_villager_compost": true
+    },
+    "concoction:cherry": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:cherry_cookie": {
+      "chance": 0.85,
+      "can_villager_compost": true
+    },
+    "concoction:pinecone": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:roasted_pinecone": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:rice": {
+      "chance": 0.35,
       "can_villager_compost": true
     },
     "concoction:tomato": {
       "chance": 0.65,
       "can_villager_compost": true
     },
+    "concoction:tomato_seeds": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
     "concoction:reapper": {
       "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:reapper_seeds": {
+      "chance": 0.35,
+      "can_villager_compost": true
+    },
+    "concoction:butter_sandwich": {
+      "chance": 0.85,
+      "can_villager_compost": true
+    },
+    "concoction:wild_carrot": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_potato": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_beetroot": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_cotton": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_onion": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_spicy_pepper": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_cabbage": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:wild_tomato": {
+      "chance": 0.65,
+      "can_villager_compost": true
+    },
+    "concoction:corn_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:spicy_pepper_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:onion_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:green_onion_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:cotton_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:sunflower_seed_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:cabbage_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:cabbage_leaves_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:mint_bale": {
+      "chance": 0.85,
+      "can_villager_compost": true
+    },
+    "concoction:cherry_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:tomato_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:pinecone_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:rice_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:soaked_rice_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:reapepper_block": {
+      "chance": 1,
+      "can_villager_compost": true
+    },
+    "concoction:sunflower_crown_helmet": {
+      "chance": 0.5,
       "can_villager_compost": true
     }
   }
