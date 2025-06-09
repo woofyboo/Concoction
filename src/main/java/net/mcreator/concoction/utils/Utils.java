@@ -95,7 +95,7 @@ public class Utils {
 
     public static boolean removeWaterBreadthFirstSearch(Level level, BlockPos blockPos, RiceBlockBlock block) {
         BlockState spongeState = level.getBlockState(blockPos);
-        return BlockPos.breadthFirstTraversal(blockPos, 3, 10, (p_277519_, p_277492_) -> {
+        return BlockPos.breadthFirstTraversal(blockPos, 5, 20, (p_277519_, p_277492_) -> {
             for(Direction direction : ALL_DIRECTIONS) {
                 p_277492_.accept(p_277519_.relative(direction));
             }
@@ -118,7 +118,7 @@ public class Utils {
                     }
 
                     if (blockstate.getBlock() instanceof LiquidBlock) {
-                        level.setBlock(p_294069_, Blocks.AIR.defaultBlockState(), 3);
+                        level.setBlock(p_294069_, Blocks.AIR.defaultBlockState(), 5);
                     } else {
                         if (!blockstate.is(Blocks.KELP) && !blockstate.is(Blocks.KELP_PLANT) && !blockstate.is(Blocks.SEAGRASS) && !blockstate.is(Blocks.TALL_SEAGRASS)) {
                             return false;

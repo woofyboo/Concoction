@@ -25,6 +25,7 @@ public class PillowBlockBlock extends SlimeBlock {
 		super(BlockBehaviour.Properties.of().ignitedByLava().mapColor(MapColor.WOOL).sound(SoundType.WOOL).strength(0.2f, 1f));
 	}
 
+
 	@Override
 	public void updateEntityAfterFallOn(BlockGetter block, Entity entity) {
 		if (entity.isSuppressingBounce()) {

@@ -33,9 +33,10 @@ public class RiceBlockHandler {
                 Block block = fallingBlock.getBlockState().getBlock();
                 if (block == ConcoctionModBlocks.RICE_BLOCK.get()) {
                     if (Utils.touchesLiquid(event.getEntity().level(), event.getEntity().blockPosition(), block.defaultBlockState())) {
-                        Utils.tryAbsorbWater(event.getEntity().level(), event.getEntity().blockPosition(), (RiceBlockBlock) block);
+                        //System.out.println(event.getEntity().blockPosition());
                         fallingBlock.remove(Entity.RemovalReason.DISCARDED);
                         event.getEntity().level().setBlock(event.getEntity().blockPosition(), ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 3);
+                        Utils.tryAbsorbWater(event.getEntity().level(), fallingBlock.getOnPos(), (RiceBlockBlock) block);
                     }
                 }
             }

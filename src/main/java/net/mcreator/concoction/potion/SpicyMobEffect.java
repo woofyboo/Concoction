@@ -6,6 +6,7 @@ import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -18,9 +19,10 @@ import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 
+import java.util.List;
+
 public class SpicyMobEffect extends MobEffect {
 
-	private static int harmfulEffectCount = 0;
 	private static int tickCounter = 0;
 	private static final ResourceLocation SPICY_ATTACK_SPEED = ResourceLocation.fromNamespaceAndPath("concoction", "spicy_attack_speed");
 
@@ -81,22 +83,22 @@ public class SpicyMobEffect extends MobEffect {
 						tickCounter = 0;
 					}
 
-					livEnt.getActiveEffects().stream().map(effect -> new Pair<>(effect.getEffect(), effect.getEffect().value().getCategory())).
-							filter(pair -> pair.getSecond().equals(MobEffectCategory.HARMFUL)).forEach(pair -> {
-								livEnt.removeEffect(pair.getFirst());
-								harmfulEffectCount++;
-							});
+					List<Pair<Holder<MobEffect>, MobEffectCategory>> list = livEnt.getActiveEffects().stream().map(effect -> new Pair<>(effect.getEffect(), effect.getEffect().value().getCategory()))
+							.filter(pair -> pair.getSecond().equals(MobEffectCategory.HARMFUL))
+							.distinct()
+							.toList();
+
+					if (list.size() >= 5) {
+						Utils.addAchievement(player, "concoction:spicy_remove_many_debuffs");
+					}
+					list.forEach(pair -> {
+						livEnt.removeEffect(pair.getFirst());
+					});
 
 
 					if (player.isOnFire()) {
 						Utils.addAchievement(player, "concoction:spicy_on_fire");
 					}
-
-					if (harmfulEffectCount >= 5){
-						Utils.addAchievement(player, "concoction:spicy_remove_many_debuffs");
-						harmfulEffectCount = 0;
-					}
-
 					++tickCounter;
 				}
 			}
