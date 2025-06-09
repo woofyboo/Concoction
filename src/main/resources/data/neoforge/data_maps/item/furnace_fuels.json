@@ -2,7 +2,209 @@
     "values":
     {
         "concoction:reapper": {
-            "burn_time": 200
-        }
+            "burn_time": 100
+        },
+        "concoction:reapepper_block": {
+            "burn_time": 900
+        },
+        "concoction:fabric": {
+            "burn_time": 50
+        },
+        "concoction:pinecone": {
+            "burn_time": 50
+        },
+        "concoction:roasted_pinecone": {
+            "burn_time": 100
+        },
+        "concoction:butter_churn": {
+            "burn_time": 300
+        },
+        "concoction:overgrown_shovel": {
+            "burn_time": 400
+        },
+        "concoction:overgrown_pickaxe": {
+            "burn_time": 400
+        },
+        "concoction:overgrown_axe": {
+            "burn_time": 400
+        },
+        "concoction:overgrown_hoe": {
+            "burn_time": 400
+        },
+        "concoction:overgrown_sword": {
+            "burn_time": 400
+        },
+        "concoction:sunflower_crown_helmet": {
+            "burn_time": 100
+        },
+        "concoction:wild_carrot": {
+            "burn_time": 100
+        },
+        "concoction:wild_potato": {
+            "burn_time": 100
+        },
+        "concoction:wild_beetroot": {
+            "burn_time": 100
+        },
+        "concoction:wild_cotton": {
+            "burn_time": 100
+        },
+        "concoction:wild_onion": {
+            "burn_time": 100
+        },
+        "concoction:wild_cabbage": {
+            "burn_time": 100
+        },
+        "concoction:wild_tomato": {
+            "burn_time": 100
+        },
+        "concoction:wild_spicy_pepper": {
+            "burn_time": 300
+        },
+        "concoction:white_woven_carpet": {
+        	"burn_time": 150
+	    },
+	    "concoction:orange_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:magenta_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:light_blue_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:yellow_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:lime_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:pink_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:gray_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:light_gray_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:cyan_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:purple_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:blue_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:brown_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:green_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:red_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:black_woven_carpet": {
+	        "burn_time": 150
+	    },
+	    "concoction:pillow_block": {
+        	"burn_time": 600
+	    },
+	    "concoction:small_white_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:orange_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_orange_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:magenta_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_magenta_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:light_blue_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_light_blue_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:yellow_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_yellow_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:lime_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_lime_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:pink_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_pink_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:gray_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_gray_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:light_gray_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_light_gray_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:cyan_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_cyan_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:purple_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_purple_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:blue_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_blue_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:brown_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_brown_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:green_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_green_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:red_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_red_pillow_block": {
+	        "burn_time": 300
+	    },
+	    "concoction:black_pillow_block": {
+	        "burn_time": 600
+	    },
+	    "concoction:small_black_pillow_block": {
+	        "burn_time": 300
+	    }
+        
     }
 }
