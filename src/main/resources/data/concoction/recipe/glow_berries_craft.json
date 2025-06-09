@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "glow_berries",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:glow_berries_block"
+    }
+  },
+  "result": {
+    "id": "minecraft:glow_berries",
+    "count": 9
+  }
+}

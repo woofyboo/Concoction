@@ -5627,6 +5627,221 @@
         ]
       },
       "path": "~/salt"
+    },
+    {
+      "name": "SweetBerriesBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_berries_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/sweet_berries_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/sweet_berries_block.json",
+          "src/main/resources/assets/concoction/blockstates/sweet_berries_block.json",
+          "src/main/java/net/mcreator/concoction/block/SweetBerriesBlockBlock.java",
+          "src/main/resources/assets/concoction/models/block/sweet_berries_block.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BeetrootBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "beetroot_block",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/block/BeetrootBlockBlock.java",
+          "src/main/resources/assets/concoction/models/item/beetroot_block.json",
+          "src/main/resources/assets/concoction/models/block/beetroot_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/beetroot_block.json",
+          "src/main/resources/assets/concoction/blockstates/beetroot_block.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CarrotBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "carrot_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/carrot_block.json",
+          "src/main/resources/assets/concoction/blockstates/carrot_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/carrot_block.json",
+          "src/main/java/net/mcreator/concoction/block/CarrotBlockBlock.java",
+          "src/main/resources/assets/concoction/models/block/carrot_block.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "SweetBerriesBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_berries_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/sweet_berries_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "SweetBerriesCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_berries_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/sweet_berries_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BeetrootBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "beetroot_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/beetroot_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "BeetrootCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "beetroot_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/beetroot_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CarrotBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "carrot_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/carrot_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "CarrotCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "carrot_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/carrot_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PotatoBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "potato_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/potato_block.json",
+          "src/main/resources/assets/concoction/models/item/potato_block.json",
+          "src/main/java/net/mcreator/concoction/block/PotatoBlockBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/potato_block.json",
+          "src/main/resources/assets/concoction/blockstates/potato_block.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "GlowBerriesBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "glow_berries_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/loot_table/blocks/glow_berries_block.json",
+          "src/main/resources/assets/concoction/models/block/glow_berries_block.json",
+          "src/main/resources/assets/concoction/blockstates/glow_berries_block.json",
+          "src/main/resources/assets/concoction/models/item/glow_berries_block.json",
+          "src/main/java/net/mcreator/concoction/block/GlowBerriesBlockBlock.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PotatoBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "potato_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/potato_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "PotatoCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "potato_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/potato_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "GlowBerriesBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "glow_berries_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/glow_berries_block_craft.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "GlowBerriesCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "glow_berries_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/glow_berries_craft.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -5974,10 +6189,11 @@
     "ru_ru": {
       "taste.concoction.glow": "• Сияющее",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
+      "block.concoction.beetroot_block": "Блок свеклы",
       "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
-      "block.concoction.mint": "Мята",
-      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "subtitles.butter_thickens": "Масло загустело",
+      "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
+      "block.concoction.mint": "Мята",
       "item.concoction.pinecone": "Шишка",
       "item.concoction.corn_oil": "Кукурузное масло",
       "advancements.special_carpet.title": "Красивая цена",
@@ -5999,8 +6215,9 @@
       "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
-      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
+      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
+      "block.concoction.potato_block": "Блок картошки",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
@@ -6009,8 +6226,8 @@
       "item.concoction.dough": "Тесто",
       "fluid.concoction.weighted_souls": "Призрачная жижа",
       "item.concoction.sea_salt": "Морская соль",
-      "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
+      "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.onion_block": "Блок лука",
       "block.concoction.mint_bale": "Сноп мяты",
       "item.concoction.overgrown_shovel": "Цветущая лопата",
@@ -6032,8 +6249,8 @@
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "item.concoction.tomato_soup": "Томатный суп",
       "block.concoction.black_woven_carpet": "Чёрный тканый ковёр",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "item.concoction.omurice": "Рисовый омлет",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Взрывное зелье мороза",
       "block.concoction.small_light_gray_pillow_block": "Маленькая светло-серая подушка",
       "advancements.unlucky_butter_churn.descr": "Неудачно выкрутите масло двадцать четыре раз подряд",
       "block.concoction.gray_pillow_block": "Серая подушка",
@@ -6058,6 +6275,7 @@
       "advancements.fall_pillow.descr": "Упади на подушку с высоты более ста блоков",
       "death.attack.soul_damage": "%1$s слился с душами",
       "block.concoction.orange_woven_carpet": "Оранжевый тканый ковёр",
+      "block.concoction.sweet_berries_block": "Блок брусники",
       "item.minecraft.tipped_arrow.effect.blooming": "Стрела цветения",
       "subtitles.cauldron_boiling": "Котёл кипит",
       "item.minecraft.splash_potion.effect.blooming_extended": "Взрывное зелье цветения",
@@ -6210,11 +6428,13 @@
       "item.concoction.grilled_fish": "Рыба на гриле",
       "item.minecraft.potion.effect.blooming": "Зелье цветения",
       "item.concoction.overgrown_hoe": "Цветущая мотыга",
+      "block.concoction.glow_berries_block": "Блок светящихся ягод",
       "item.concoction.onion_soup": "Луковый суп",
       "item.concoction.chicken_confit": "Куриное конфи",
       "container.cooking_cauldron": "Варение",
       "advancements.sapling_from_item.title": "Биоразлагаемость",
       "item.minecraft.lingering_potion.effect.flame": "Оседающее зелье жжения",
+      "block.concoction.carrot_block": "Блок моркови",
       "block.concoction.cabbage_leaves_block": "Блок листьев капусты",
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "advancements.special_carpet.descr": "Получи особый ковёр странствующего торговца",
@@ -6245,6 +6465,7 @@
       "taste.concoction.glow": "• Glimmering",
       "block.concoction.lime_pillow_block": "Lime Pillow",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
+      "block.concoction.beetroot_block": "Beetroot Block",
       "block.concoction.mint": "Mint",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "subtitles.butter_thickens": "Butter thickens",
@@ -6271,6 +6492,7 @@
       "item.concoction.corn_soup": "Corn Soup",
       "block.concoction.wild_carrot": "Wild Carrot",
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
+      "block.concoction.potato_block": "Potato Block",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
@@ -6302,8 +6524,8 @@
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "item.concoction.tomato_soup": "Tomato Soup",
       "block.concoction.black_woven_carpet": "Black Woven Carpet",
-      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "item.concoction.omurice": "Omurice",
+      "item.minecraft.splash_potion.effect.snowflake_extended": "Splash Potion of Snowflake",
       "block.concoction.small_light_gray_pillow_block": "Small Light Gray Pillow",
       "advancements.unlucky_butter_churn.descr": "Fail to produce oil or butter twenty four times in a row",
       "block.concoction.gray_pillow_block": "Gray Pillow",
@@ -6328,6 +6550,7 @@
       "advancements.fall_pillow.descr": "Fall over a hundred blocks on pillow",
       "death.attack.soul_damage": "%1$s was consumed by souls",
       "block.concoction.orange_woven_carpet": "Orange Woven Carpet",
+      "block.concoction.sweet_berries_block": "Lingonberry Block",
       "item.minecraft.tipped_arrow.effect.blooming": "Arrow of Potion Of Blooming",
       "subtitles.cauldron_boiling": "Cauldron is boiling",
       "item.minecraft.splash_potion.effect.blooming_extended": "Splash Potion of Blooming",
@@ -6480,11 +6703,13 @@
       "item.concoction.grilled_fish": "Grilled Fish",
       "item.minecraft.potion.effect.blooming": "Potion of Blooming",
       "item.concoction.overgrown_hoe": "Overgrown Hoe",
+      "block.concoction.glow_berries_block": "Glow Berry Block",
       "item.concoction.onion_soup": "Onion Soup",
       "item.concoction.chicken_confit": "Chicken Confit",
       "container.cooking_cauldron": "Boiling",
       "advancements.sapling_from_item.title": "Biodegradable",
       "item.minecraft.lingering_potion.effect.flame": "Lingering Potion of Flame",
+      "block.concoction.carrot_block": "Carrot Block",
       "block.concoction.cabbage_leaves_block": "Cabbage Leaves Block",
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
       "advancements.special_carpet.descr": "Get wandering woven carpet from wandering trader",

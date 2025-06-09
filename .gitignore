@@ -22,3 +22,4 @@ gradle-app.setting
 .classpath
 src/main/resources/assets/concoction/main.py
 /src/main/resources/assets/concoction/.history
+src/main/resources/assets/concoction/lang/zh_cn.json

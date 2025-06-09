@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "carrot_block",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "result": {
+    "id": "concoction:carrot_block",
+    "count": 1
+  }
+}

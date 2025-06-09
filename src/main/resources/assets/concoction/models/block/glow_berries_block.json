@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/glowberry_bottom",
+    "up": "concoction:block/glowberry_top",
+    "north": "concoction:block/glowberry_front",
+    "east": "concoction:block/glowberry_side",
+    "south": "concoction:block/glowberry_front",
+    "west": "concoction:block/glowberry_side",
+    "particle": "concoction:block/glowberry_bottom"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "beetroot",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:beetroot_block"
+    }
+  },
+  "result": {
+    "id": "minecraft:beetroot",
+    "count": 9
+  }
+}
