@@ -3,9 +3,9 @@
   "textures": {
     "down": "concoction:block/cherry_block_bottom",
     "up": "concoction:block/cherry_block_top",
-    "north": "concoction:block/cherry_block_side",
+    "north": "concoction:block/cherry_block_front",
     "east": "concoction:block/cherry_block_side",
-    "south": "concoction:block/cherry_block_side",
+    "south": "concoction:block/cherry_block_front",
     "west": "concoction:block/cherry_block_side",
     "particle": "concoction:block/cherry_block_bottom"
   },
