@@ -3,6 +3,12 @@ package net.mcreator.concoction.block;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModItems;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -39,8 +45,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.CropBlock;
-import net.neoforged.bus.api.ICancellableEvent;
 import oshi.util.tuples.Pair;
+import net.minecraft.world.item.Items;
+import net.minecraft.resources.ResourceLocation;
+import java.util.Objects;
 
 public class SunflowerBlock extends CropBlock {
 	public static final EnumProperty<FacingProperty> FACING = EnumProperty.create("facing", FacingProperty.class);
@@ -137,28 +145,31 @@ public class SunflowerBlock extends CropBlock {
 
 	@Override
     public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
-    	int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
-    	int maxAge = this.getMaxAge();
-        if (pState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-//        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
-			if (nextAge > maxAge) nextAge = maxAge;
-			if (nextAge < FIRST_STAGE_MAX_AGE) 
-				pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
-	        else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
-        	(pLevel.getBlockState(pPos.above(1)).is(this)))) {
-		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, pState.getValue(FACING)), 2);
-		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
-        	}
+        int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
+        int maxAge = this.getMaxAge();
+        if (nextAge > maxAge) nextAge = maxAge;
+        
+        DoubleBlockHalf currentHalf = pState.getValue(HALF);
+        if (currentHalf == DoubleBlockHalf.LOWER) {
+            if (nextAge < FIRST_STAGE_MAX_AGE) 
+                pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
+            else if (nextAge >= FIRST_STAGE_MAX_AGE && (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR) || 
+            (pLevel.getBlockState(pPos.above(1)).is(this)))) {
+                pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER, pState.getValue(FACING)), 2);
+                pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
+            }
+        } else if (currentHalf == DoubleBlockHalf.UPPER) {
+            BlockPos lowerPos = pPos.below();
+            BlockState lowerState = pLevel.getBlockState(lowerPos);
+            if (lowerState.is(this)) {
+                if (nextAge < FIRST_STAGE_MAX_AGE) 
+                    pLevel.setBlock(lowerPos, this.getState(lowerState, nextAge, DoubleBlockHalf.LOWER, lowerState.getValue(FACING)), 2);
+                else if (nextAge >= FIRST_STAGE_MAX_AGE) {
+                    pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.UPPER, lowerState.getValue(FACING)), 2);
+                    pLevel.setBlock(lowerPos, this.getState(lowerState, nextAge, DoubleBlockHalf.LOWER, lowerState.getValue(FACING)), 2);
+                }
+            }
         }
-    
-//    	else {
-//    		nextAge += pLevel.getBlockState(pPos.below(1)).is(this) : this.getAge(pLevel.getBlockState(pPos.below(1))) ? 0;
-//    		if (nextAge > maxAge) nextAge = maxAge;
-//    		if (nextAge >= FIRST_STAGE_MAX_AGE && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
-//		        pLevel.setBlock(pPos.above(1), this.getState(pState, nextAge, DoubleBlockHalf.UPPER), 2);
-//		        pLevel.setBlock(pPos, this.getState(pState, nextAge, DoubleBlockHalf.LOWER), 2);
-//    		}
-//    	}
     }
 
     public BlockState getState(BlockState pState, int age, DoubleBlockHalf half, FacingProperty facing) {
@@ -168,10 +179,7 @@ public class SunflowerBlock extends CropBlock {
     
     @Override
     public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
-		if (pState.getValue(HALF) == DoubleBlockHalf.LOWER)
-			return pState.getValue(AGE) != this.getMaxAge();
-		else
-        	return false;
+        return pState.getValue(AGE) != this.getMaxAge();
     }
     
     @Override
@@ -282,7 +290,41 @@ public class SunflowerBlock extends CropBlock {
     public ItemLike getBaseSeedId() {
         return ConcoctionModItems.SUNFLOWER_SEEDS.get();
     }
-    
+
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
+		if (!pPlayer.isShiftKeyDown() && pState.getValue(AGE) == 5 && pState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+			// Спавним семена подсолнуха
+			if (pLevel instanceof ServerLevel _level) {
+				pLevel.setBlock(pPos.below(1), this.getState(pState, 3, DoubleBlockHalf.LOWER, pState.getValue(FACING)), 2);
+				pLevel.setBlock(pPos, this.getState(pState, 3, DoubleBlockHalf.UPPER, pState.getValue(FACING)), 2);
+
+				if (!_level.isClientSide()) _level.playSound(null, pPos,
+						Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.cave_vines.pick_berries"))),
+						SoundSource.PLAYERS, 1, 1);
+				else _level.playLocalSound(pPos,
+						Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.cave_vines.pick_berries"))),
+						SoundSource.PLAYERS, 1, 1, false);
+
+				ItemEntity entityToSpawn = new ItemEntity(_level,
+						(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+						new ItemStack(ConcoctionModItems.SUNFLOWER_SEEDS.get(), 2));
+				entityToSpawn.setPickUpDelay(10);
+				_level.addFreshEntity(entityToSpawn);
+				if (Math.random() < 0.5) {
+					ItemEntity AdditEntityToSpawn = new ItemEntity(_level,
+							(pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5),
+							new ItemStack(ConcoctionModItems.SUNFLOWER_SEEDS.get()));
+					AdditEntityToSpawn.setPickUpDelay(10);
+					_level.addFreshEntity(AdditEntityToSpawn);
+				}
+			}
+
+			return ItemInteractionResult.SUCCESS;
+		}
+		else return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, p_316595_, p_316140_);
+	}
+
 	public enum FacingProperty implements StringRepresentable {
 		EAST("east"), EASTISH("eastish"), WESTISH("westish"), WEST("west");
 

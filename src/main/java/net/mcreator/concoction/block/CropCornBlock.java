@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
@@ -138,19 +137,29 @@ public class CropCornBlock extends CropBlock {
 	public void growCrops(Level pLevel, BlockPos pPos, BlockState pState) {
 		int nextAge = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
 		int maxAge = this.getMaxAge();
-		if (pState.getValue(PART) == PartProperty.BOTTOM) {
-//        	nextAge += pLevel.getBlockState(pPos.above(1)).is(this) ? this.getAge(pLevel.getBlockState(pPos.above(1))) : 0;
-			if (nextAge > maxAge) nextAge = maxAge;
+		if (nextAge > maxAge) nextAge = maxAge;
+		
+		PartProperty currentPart = pState.getValue(PART);
+		if (currentPart == PartProperty.BOTTOM) {
 			changeAge(pState, (ServerLevel) pLevel, pPos, nextAge);
+		} else if (currentPart == PartProperty.MIDDLE) {
+			BlockPos bottomPos = pPos.below();
+			BlockState bottomState = pLevel.getBlockState(bottomPos);
+			if (bottomState.is(this)) {
+				changeAge(bottomState, (ServerLevel) pLevel, bottomPos, nextAge);
+			}
+		} else if (currentPart == PartProperty.TOP) {
+			BlockPos bottomPos = pPos.below(2);
+			BlockState bottomState = pLevel.getBlockState(bottomPos);
+			if (bottomState.is(this)) {
+				changeAge(bottomState, (ServerLevel) pLevel, bottomPos, nextAge);
+			}
 		}
 	}
 
 	@Override
 	public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState) {
-		if (pState.getValue(PART) == PartProperty.BOTTOM)
-			return pState.getValue(AGE) != this.getMaxAge();
-		else
-			return false;
+		return pState.getValue(AGE) != this.getMaxAge();
 	}
 
 	@Override
