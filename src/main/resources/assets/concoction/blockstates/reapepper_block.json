@@ -1,19 +1,16 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "concoction:block/reapepper_block"
-    },
-    "facing=east": {
+    "axis=x": {
       "model": "concoction:block/reapepper_block",
+      "x": 90,
       "y": 90
     },
-    "facing=south": {
-      "model": "concoction:block/reapepper_block",
-      "y": 180
+    "axis=y": {
+      "model": "concoction:block/reapepper_block"
     },
-    "facing=west": {
+    "axis=z": {
       "model": "concoction:block/reapepper_block",
-      "y": 270
+      "x": 90
     }
   }
 }

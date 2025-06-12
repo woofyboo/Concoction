@@ -5974,6 +5974,7 @@
       "~CUSTOM:WeightedSouls"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:ReapepperBlock",
       "~CUSTOM:SweetBerriesBlock",
       "~CUSTOM:BeetrootBlock",
       "~CUSTOM:CarrotBlock",

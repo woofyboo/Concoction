@@ -1,13 +1,13 @@
 {
   "parent": "block/cube",
   "textures": {
-    "down": "concoction:block/carrot_block_bottom",
+    "down": "concoction:block/carrot_block_top",
     "up": "concoction:block/carrot_block_top",
-    "north": "concoction:block/carrot_block_side03",
-    "east": "concoction:block/carrot_block_side04",
-    "south": "concoction:block/carrot_block_side01",
-    "west": "concoction:block/carrot_block_side02",
-    "particle": "concoction:block/carrot_block_bottom"
+    "north": "concoction:block/carrot_block_side",
+    "east": "concoction:block/carrot_block_side",
+    "south": "concoction:block/carrot_block_side",
+    "west": "concoction:block/carrot_block_side",
+    "particle": "concoction:block/carrot_block_top"
   },
   "render_type": "solid"
 }

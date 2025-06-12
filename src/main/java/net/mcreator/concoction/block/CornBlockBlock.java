@@ -57,12 +57,12 @@ public class CornBlockBlock extends Block {
 
 	@Override
 	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 10;
+		return 0;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		return 10;
+		return 0;
 	}
 
 	public enum TypeProperty implements StringRepresentable {

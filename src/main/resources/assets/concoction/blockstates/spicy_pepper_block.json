@@ -1,19 +1,16 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "concoction:block/spicy_pepper_block"
-    },
-    "facing=east": {
+    "axis=x": {
       "model": "concoction:block/spicy_pepper_block",
+      "x": 90,
       "y": 90
     },
-    "facing=south": {
-      "model": "concoction:block/spicy_pepper_block",
-      "y": 180
+    "axis=y": {
+      "model": "concoction:block/spicy_pepper_block"
     },
-    "facing=west": {
+    "axis=z": {
       "model": "concoction:block/spicy_pepper_block",
-      "y": 270
+      "x": 90
     }
   }
 }
