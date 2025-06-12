@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/chorus_block_bottom",
+    "up": "concoction:block/chorus_block_top",
+    "north": "concoction:block/chorus_block_side",
+    "east": "concoction:block/chorus_block_side",
+    "south": "concoction:block/chorus_block_side",
+    "west": "concoction:block/chorus_block_side",
+    "particle": "concoction:block/chorus_block_bottom"
+  },
+  "render_type": "solid"
+}

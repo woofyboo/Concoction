@@ -126,6 +126,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.BEETROOT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SWEET_BERRIES_BLOCK.get());
 				tabData.accept(ConcoctionModItems.GLOW_BERRIES_BLOCK.get());
+				tabData.accept(ConcoctionModItems.CHORUS_BLOCK.get());
 
 //Функциональные блоки
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());

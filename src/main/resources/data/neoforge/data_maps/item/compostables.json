@@ -231,6 +231,10 @@
     "concoction:potato_block": {
       "chance": 1,
       "can_villager_compost": true
+    },
+    "concoction:chorus_block": {
+      "chance": 1,
+      "can_villager_compost": true
     }
   }
 } 

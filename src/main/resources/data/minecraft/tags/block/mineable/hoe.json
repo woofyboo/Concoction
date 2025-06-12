@@ -1,6 +1,12 @@
 {
   "replace": false,
   "values": [
+    "concoction:sweet_berries_block",
+    "concoction:beetroot_block",
+    "concoction:carrot_block",
+    "concoction:potato_block",
+    "concoction:glow_berries_block",
+    "concoction:chorus_block",
     "concoction:cherry_block",
     "concoction:mint_bale",
     "concoction:tomato_block",

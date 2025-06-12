@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chorus",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:chorus_block"
+    }
+  },
+  "result": {
+    "id": "minecraft:chorus_fruit",
+    "count": 9
+  }
+}

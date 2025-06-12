@@ -64,6 +64,7 @@ import net.mcreator.concoction.block.CropCornBlock;
 import net.mcreator.concoction.block.CropCabbageBlock;
 import net.mcreator.concoction.block.CottonBlockBlock;
 import net.mcreator.concoction.block.CornBlockBlock;
+import net.mcreator.concoction.block.ChorusBlockBlock;
 import net.mcreator.concoction.block.CherryBlockBlock;
 import net.mcreator.concoction.block.CarrotBlockBlock;
 import net.mcreator.concoction.block.CabbageheadBlock;
@@ -141,6 +142,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> CARROT_BLOCK = REGISTRY.register("carrot_block", CarrotBlockBlock::new);
 	public static final DeferredBlock<Block> POTATO_BLOCK = REGISTRY.register("potato_block", PotatoBlockBlock::new);
 	public static final DeferredBlock<Block> GLOW_BERRIES_BLOCK = REGISTRY.register("glow_berries_block", GlowBerriesBlockBlock::new);
+	public static final DeferredBlock<Block> CHORUS_BLOCK = REGISTRY.register("chorus_block", ChorusBlockBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

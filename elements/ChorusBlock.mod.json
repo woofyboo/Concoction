@@ -2,12 +2,12 @@
   "_fv": 73,
   "_type": "block",
   "definition": {
-    "texture": "sweet_berries_block_bottom",
-    "textureTop": "sweet_berries_block_top",
-    "textureLeft": "sweet_berries_block_side",
-    "textureFront": "sweet_berries_block_front",
-    "textureRight": "sweet_berries_block_side",
-    "textureBack": "sweet_berries_block_front",
+    "texture": "chorus_block_bottom",
+    "textureTop": "chorus_block_top",
+    "textureLeft": "chorus_block_side",
+    "textureFront": "chorus_block_side",
+    "textureRight": "chorus_block_side",
+    "textureBack": "chorus_block_side",
     "renderType": 10,
     "customModelName": "Normal",
     "rotationMode": 0,
@@ -34,7 +34,7 @@
       }
     ],
     "customProperties": [],
-    "name": "Lingonberry Block",
+    "name": "Chorus Block",
     "specialInformation": {
       "fixedValue": []
     },
@@ -64,7 +64,7 @@
     "emittedRedstonePower": {
       "fixedValue": 15.0
     },
-    "colorOnMap": "RED",
+    "colorOnMap": "PINK",
     "creativePickItem": {
       "value": ""
     },
@@ -80,7 +80,7 @@
     "isNotColidable": false,
     "isCustomSoundType": false,
     "soundOnStep": {
-      "value": "WET_GRASS"
+      "value": "AZALEA_LEAVES"
     },
     "breakSound": {
       "value": ""
