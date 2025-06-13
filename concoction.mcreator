@@ -5909,6 +5909,30 @@
           "src/main/resources/data/concoction/recipe/cherry_cake_craft_2.json"
         ]
       }
+    },
+    {
+      "name": "CarrotCakeCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "carrot_cake_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/carrot_cake_craft.json"
+        ]
+      }
+    },
+    {
+      "name": "CarrotCakeCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "carrot_cake_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/carrot_cake_craft_2.json"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -5997,10 +6021,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:ReapepperBlock",
       "~CUSTOM:SweetBerriesBlock",
@@ -6020,6 +6040,10 @@
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -6263,8 +6287,8 @@
     "ru_ru": {
       "taste.concoction.glow": "• Сияющее",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "block.concoction.beetroot_block": "Блок свеклы",
+      "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "subtitles.butter_thickens": "Масло загустело",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "block.concoction.mint": "Мята",
@@ -6290,8 +6314,8 @@
       "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
-      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.wild_carrot": "Дикая морковь",
+      "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
       "block.concoction.potato_block": "Блок картошки",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
@@ -6301,8 +6325,8 @@
       "item.concoction.dough": "Тесто",
       "fluid.concoction.weighted_souls": "Призрачная жижа",
       "item.concoction.sea_salt": "Морская соль",
-      "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.orange_pillow_block": "Оранжевая подушка",
+      "block.concoction.green_pillow_block": "Зелёная подушка",
       "block.concoction.onion_block": "Блок лука",
       "block.concoction.mint_bale": "Сноп мяты",
       "item.concoction.overgrown_shovel": "Цветущая лопата",
@@ -6404,6 +6428,7 @@
       "block.concoction.lime_woven_carpet": "Лаймовый тканый ковёр",
       "block.concoction.wild_cabbage": "Дикая капуста",
       "item.minecraft.potion.effect.snowflake_extended": "Зелье мороза",
+      "block.concoction.carrot_cake": "Морковный торт",
       "subtitles.silence": "",
       "block.concoction.wandering_trader_carpet": "Тканый ковёр странника",
       "advancements.eat_dish.descr": "Сьешь что-нибудь поинтереснее чем жареное мясо или овощи",
@@ -6681,6 +6706,7 @@
       "block.concoction.lime_woven_carpet": "Lime Woven Carpet",
       "block.concoction.wild_cabbage": "Wild Cabbage",
       "item.minecraft.potion.effect.snowflake_extended": "Potion of Snowflake",
+      "block.concoction.carrot_cake": "Carrot Cake",
       "subtitles.silence": "",
       "block.concoction.wandering_trader_carpet": "Wandering Woven Carpet",
       "advancements.eat_dish.descr": "Eat something more complex than cooked meat or vegetable",
