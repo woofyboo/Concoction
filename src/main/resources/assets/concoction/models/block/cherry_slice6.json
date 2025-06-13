@@ -1,0 +1,22 @@
+{
+    "textures": {
+       "particle": "concoction:block/cherry_cake_side",
+        "bottom": "concoction:block/cherry_cake_bottom",
+        "top": "concoction:block/cherry_cake_top",
+        "side": "concoction:block/cherry_cake_side",
+        "inside": "concoction:block/cherry_cake_slice"
+    },
+    "elements": [
+        {   "from": [ 13, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:mint_chocolate_cake"
+    "concoction:mint_chocolate_cake",
+    "concoction:cherry_cake"
   ]
 }

@@ -5885,6 +5885,30 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "CherryCakeCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cherry_cake_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cherry_cake_craft.json"
+        ]
+      }
+    },
+    {
+      "name": "CherryCakeCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "cherry_cake_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/cherry_cake_craft_2.json"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -6239,8 +6263,8 @@
     "ru_ru": {
       "taste.concoction.glow": "• Сияющее",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.beetroot_block": "Блок свеклы",
       "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
+      "block.concoction.beetroot_block": "Блок свеклы",
       "subtitles.butter_thickens": "Масло загустело",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "block.concoction.mint": "Мята",
@@ -6266,8 +6290,8 @@
       "item.concoction.popcorn": "Попкорн",
       "block.concoction.brown_pillow_block": "Коричневая подушка",
       "item.concoction.corn_soup": "Кукурузный суп",
-      "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction.small_magenta_pillow_block": "Маленькая пурпурная подушка",
+      "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction.potato_block": "Блок картошки",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
@@ -6277,8 +6301,8 @@
       "item.concoction.dough": "Тесто",
       "fluid.concoction.weighted_souls": "Призрачная жижа",
       "item.concoction.sea_salt": "Морская соль",
-      "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.green_pillow_block": "Зелёная подушка",
+      "block.concoction.orange_pillow_block": "Оранжевая подушка",
       "block.concoction.onion_block": "Блок лука",
       "block.concoction.mint_bale": "Сноп мяты",
       "item.concoction.overgrown_shovel": "Цветущая лопата",
@@ -6499,6 +6523,7 @@
       "block.concoction.light_gray_pillow_block": "Светло-серая подушка",
       "item.concoction.raw_noodles": "Сырая лапша",
       "block.concoction.reapepper_block": "Блок перца-жнеца",
+      "block.concoction.cherry_cake": "Вишнёвый торт",
       "block.concoction.wild_tomato": "Дикий томат",
       "gui.cooking_cauldron.title": "Варение",
       "item.concoction.fungus_stew": "Тушёные поганки",
@@ -6515,8 +6540,8 @@
     "en_us": {
       "taste.concoction.glow": "• Glimmering",
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "block.concoction.beetroot_block": "Beetroot Block",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
+      "block.concoction.beetroot_block": "Beetroot Block",
       "block.concoction.mint": "Mint",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "subtitles.butter_thickens": "Butter thickens",
@@ -6542,8 +6567,8 @@
       "item.concoction.popcorn": "Popcorn",
       "block.concoction.brown_pillow_block": "Brown Pillow",
       "item.concoction.corn_soup": "Corn Soup",
-      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.wild_carrot": "Wild Carrot",
+      "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.potato_block": "Potato Block",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
@@ -6553,8 +6578,8 @@
       "item.concoction.dough": "Dough",
       "fluid.concoction.weighted_souls": "Weighted Souls",
       "item.concoction.sea_salt": "Sea Salt",
-      "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.green_pillow_block": "Green Pillow",
+      "block.concoction.orange_pillow_block": "Orange Pillow",
       "block.concoction.onion_block": "Onion Block",
       "block.concoction.mint_bale": "Mint Bale",
       "item.concoction.overgrown_shovel": "Overgrown Shovel",
@@ -6775,6 +6800,7 @@
       "block.concoction.light_gray_pillow_block": "Light Gray Pillow",
       "item.concoction.raw_noodles": "Raw Noodles",
       "block.concoction.reapepper_block": "Reapper Block",
+      "block.concoction.cherry_cake": "Cherry Cake",
       "block.concoction.wild_tomato": "Wild Tomato",
       "gui.cooking_cauldron.title": "Boiling",
       "item.concoction.fungus_stew": "Fungus Stew",

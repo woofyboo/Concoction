@@ -50,6 +50,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.CHERRY.get());
+				tabData.accept(ConcoctionModBlocks.CHERRY_CAKE.get().asItem());
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 				tabData.accept(ConcoctionModItems.PINECONE.get());
 				tabData.accept(ConcoctionModItems.ROASTED_PINECONE.get());
