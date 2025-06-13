@@ -67,7 +67,7 @@ public class CherryCakeEatingProcedure {
 						if (entity instanceof Player _player)
 							_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 3));
 						if (entity instanceof Player _player)
-							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
+							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.6));
 						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30*20, 0, false, false, true, null));
 						if (event instanceof ICancellableEvent _cancellable) {
@@ -81,7 +81,7 @@ public class CherryCakeEatingProcedure {
 					if (entity instanceof Player _player)
 						_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 3));
 					if (entity instanceof Player _player)
-						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
+						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.6));
 					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30*20, 1-1, false, false, true, null));
 					if (event instanceof ICancellableEvent _cancellable) {

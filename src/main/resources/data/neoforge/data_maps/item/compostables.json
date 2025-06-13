@@ -235,6 +235,10 @@
     "concoction:chorus_block": {
       "chance": 1,
       "can_villager_compost": true
-    }
+    },
+    "concoction:cherry_cake": {
+      "chance": 1,
+      "can_villager_compost": true
+
   }
 } 
