@@ -81,6 +81,14 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModBlocks.LINGONBERRY_CAKE.get().asItem());
 				tabData.accept(ConcoctionModBlocks.GLOWBERRY_CAKE.get().asItem());
 				tabData.accept(ConcoctionModBlocks.CARROT_CAKE.get().asItem());
+				tabData.accept(ConcoctionModItems.CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.CHOCOLATE_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.MINT_CHOCOLATE_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.CHERRY_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.LINGONBERRY_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.GLOWBERRY_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.CARROT_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.PUMPKIN_PIE_SLICE.get());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 

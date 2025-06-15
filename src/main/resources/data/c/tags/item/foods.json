@@ -47,7 +47,14 @@
     "concoction:carrot_cake",
     "concoction:lingonberry_cake",
     "concoction:chocolate_cake",
-    "concoction:glowberry_cake"
+    "concoction:glowberry_cake",
+    "concoction:cherry_cake_slice",
+    "concoction:carrot_cake_slice",
+    "concoction:lingonberry_cake_slice",
+    "concoction:chocolate_cake_slice",
+    "concoction:glowberry_cake_slice",
+    "concoction:cake_slice",
+    "concoction:mint_chocolate_cake_slice"
     
     
     

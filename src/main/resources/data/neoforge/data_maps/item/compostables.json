@@ -255,6 +255,38 @@
 	"concoction:glowberry_cake": {
       "chance": 1,
       "can_villager_compost": true
+	},
+    "concoction:cherry_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:carrot_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:lingonberry_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:chocolate_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:glowberry_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:mint_chocolate_cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:cake_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
+	},
+	"concoction:pumpkin_pie_slice": {
+      "chance": 0.35,
+      "can_villager_compost": true
 	}
   }
 }

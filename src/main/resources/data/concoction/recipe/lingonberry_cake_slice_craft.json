@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "lingonberry_cake_slice",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:lingonberry_cake"
+    }
+  },
+  "result": {
+    "id": "concoction:lingonberry_cake_slice",
+    "count": 6
+  }
+}

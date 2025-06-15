@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cake_slice",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:cake"
+    }
+  },
+  "result": {
+    "id": "concoction:cake_slice",
+    "count": 6
+  }
+}

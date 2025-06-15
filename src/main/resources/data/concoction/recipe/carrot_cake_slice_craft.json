@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "carrot_cake_slice",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:carrot_cake"
+    }
+  },
+  "result": {
+    "id": "concoction:carrot_cake_slice",
+    "count": 6
+  }
+}
