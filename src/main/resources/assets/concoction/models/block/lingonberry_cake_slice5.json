@@ -1,0 +1,22 @@
+{
+    "textures": {
+        "particle": "concoction:block/lingonberry_cake_side",
+        "bottom": "concoction:block/lingonberry_cake_bottom",
+        "top": "concoction:block/lingonberry_cake_top",
+        "side": "concoction:block/lingonberry_cake_side",
+        "inside": "concoction:block/lingonberry_cake_slice"
+    },
+    "elements": [
+        {   "from": [ 11, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

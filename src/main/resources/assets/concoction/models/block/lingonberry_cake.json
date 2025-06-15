@@ -1,0 +1,11 @@
+{
+  "parent": "concoction:custom/cake",
+  "textures": {
+    "all": "concoction:block/lingonberry_cake_top",
+    "particle": "concoction:block/lingonberry_cake_top",
+    "side": "concoction:block/lingonberry_cake_side",
+    "top": "concoction:block/lingonberry_cake_top",
+    "bottom": "concoction:block/lingonberry_cake_bottom"
+  },
+  "render_type": "cutout"
+}
