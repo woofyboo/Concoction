@@ -53,6 +53,7 @@ import net.mcreator.concoction.block.LightBlueWovenCarpetBlock;
 import net.mcreator.concoction.block.GreenWovenCarpetBlock;
 import net.mcreator.concoction.block.GreenOnionBlockBlock;
 import net.mcreator.concoction.block.GrayWovenCarpetBlock;
+import net.mcreator.concoction.block.GlowberryCakeBlock;
 import net.mcreator.concoction.block.GlowBerriesBlockBlock;
 import net.mcreator.concoction.block.CyanWovenCarpetBlock;
 import net.mcreator.concoction.block.CropTomatoBlock;
@@ -151,6 +152,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> CARROT_CAKE = REGISTRY.register("carrot_cake", CarrotCakeBlock::new);
 	public static final DeferredBlock<Block> CHERRY_CAKE = REGISTRY.register("cherry_cake", CherryCakeBlock::new);
+	public static final DeferredBlock<Block> GLOWBERRY_CAKE = REGISTRY.register("glowberry_cake", GlowberryCakeBlock::new);
 	public static final DeferredBlock<Block> LINGONBERRY_CAKE = REGISTRY.register("lingonberry_cake", LingonberryCakeBlock::new);
 	public static final DeferredBlock<Block> CHOCOLATE_CAKE = REGISTRY.register("chocolate_cake", ChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);

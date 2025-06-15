@@ -1,0 +1,22 @@
+{
+    "textures": {
+       "particle": "concoction:block/glowberry_cake_side",
+        "bottom": "concoction:block/glowberry_cake_bottom",
+        "top": "concoction:block/glowberry_cake_top",
+        "side": "concoction:block/glowberry_cake_side",
+        "inside": "concoction:block/glowberry_cake_slice"
+    },
+    "elements": [
+        {   "from": [ 5, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}
