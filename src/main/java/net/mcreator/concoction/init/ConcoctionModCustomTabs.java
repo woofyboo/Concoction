@@ -75,6 +75,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.COD_SUSHI.get());
 				tabData.accept(ConcoctionModItems.SALMON_SUSHI.get());
 				tabData.accept(ConcoctionModItems.TROPICAL_SUSHI.get());
+				tabData.accept(ConcoctionModBlocks.CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get().asItem());
 				tabData.accept(ConcoctionModBlocks.CHERRY_CAKE.get().asItem());
 				tabData.accept(ConcoctionModBlocks.LINGONBERRY_CAKE.get().asItem());

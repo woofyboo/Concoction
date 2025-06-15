@@ -5957,6 +5957,30 @@
           "src/main/resources/data/concoction/recipe/lingonberry_cake_craft_2.json"
         ]
       }
+    },
+    {
+      "name": "ChocolateCakeCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "chocolate_cake_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/chocolate_cake_craft.json"
+        ]
+      }
+    },
+    {
+      "name": "ChocolateCakeCraft2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "chocolate_cake_craft_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/chocolate_cake_craft_2.json"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -6045,10 +6069,6 @@
     "BLOCKS:minecraft:replaceable": [
       "~CUSTOM:WeightedSouls"
     ],
-    "BLOCKS:minecraft:tall_flowers": [
-      "CUSTOM:Mint",
-      "CUSTOM:Sunflower"
-    ],
     "BLOCKS:minecraft:mineable/hoe": [
       "~CUSTOM:ReapepperBlock",
       "~CUSTOM:SweetBerriesBlock",
@@ -6068,6 +6088,10 @@
       "~CUSTOM:CabbageBlock",
       "CUSTOM:SpicyPepperBlock",
       "CUSTOM:CornBlock"
+    ],
+    "BLOCKS:minecraft:tall_flowers": [
+      "CUSTOM:Mint",
+      "CUSTOM:Sunflower"
     ],
     "ITEMS:minecraft:flowers": [
       "CUSTOM:Mint",
@@ -6370,6 +6394,7 @@
       "item.concoction.roasted_sunflower_seeds": "Жареные семена подсолнуха",
       "item.concoction.fried_egg": "Яичница",
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
+      "block.concoction.chocolate_cake": "Шоколадный торт",
       "item.concoction.tomato_soup": "Томатный суп",
       "block.concoction.black_woven_carpet": "Чёрный тканый ковёр",
       "item.concoction.omurice": "Рисовый омлет",
@@ -6649,6 +6674,7 @@
       "item.concoction.roasted_sunflower_seeds": "Roasted Sunflower Seeds",
       "item.concoction.fried_egg": "Fried Egg",
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
+      "block.concoction.chocolate_cake": "Chocolate Cake",
       "item.concoction.tomato_soup": "Tomato Soup",
       "block.concoction.black_woven_carpet": "Black Woven Carpet",
       "item.concoction.omurice": "Omurice",

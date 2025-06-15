@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mint_chocolate_cake_craft",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "bcb",
+    "ddd"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:chocolate"
+    },
+    "b": {
+      "item": "concoction:butter"
+    },
+    "c": {
+      "item": "minecraft:sugar"
+    },
+    "d": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "id": "concoction:chocolate_cake",
+    "count": 1
+  }
+}

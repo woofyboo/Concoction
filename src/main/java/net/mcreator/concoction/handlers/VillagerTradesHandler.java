@@ -124,6 +124,10 @@ public class VillagerTradesHandler {
             trades.get(4).add((entity, randomSource) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 2),
                     new ItemStack(ConcoctionModItems.LINGONBERRY_CAKE.get(), 1), 16, 15, 0.05f));
+                    
+            trades.get(4).add((entity, randomSource) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 2),
+                    new ItemStack(ConcoctionModItems.CHOCOLATE_CAKE.get(), 1), 16, 15, 0.05f));
 
 
             // Уровень 5
