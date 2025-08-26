@@ -246,6 +246,7 @@
   "item.concoction.mushroom_skewer": "蘑菇烤串",
   "item.concoction.music_disc_hot_ice": "音乐唱片",
   "item.concoction.music_disc_hot_ice.desc": "??? - Hot Ice",
+  "item.concoction.noodles_with_cream_sauce": "奶油酱面",
   "item.concoction.noodles_with_meatballs": "肉丸面",
   "item.concoction.obsidian_tears_bottle": "黑曜石泪之瓶",
   "item.concoction.omurice": "蛋包饭",
@@ -335,6 +336,6 @@
   "taste.concoction.minty": "•薄荷味",
   "taste.concoction.saltness": "•咸味",
   "taste.concoction.spicy": "•辣味",
-  "taste.concoction.sweet": "•甜味"
+  "taste.concoction.sweet": "•甜味",
   "taste.concoction.warming": "•温热"
 }
