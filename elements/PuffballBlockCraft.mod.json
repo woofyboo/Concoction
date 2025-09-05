@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "puffball_block",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      },
+      {
+        "value": "CUSTOM:Puffball"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:PuffballBlock"
+    },
+    "name": "puffball_block_craft",
+    "namespace": "mod"
+  }
+}

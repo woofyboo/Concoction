@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:puffball_block",
     "concoction:reapepper_block",
     "concoction:sweet_berries_block",
     "concoction:beetroot_block",

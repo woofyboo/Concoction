@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "puffball",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:puffball_block"
+    }
+  },
+  "result": {
+    "id": "concoction:puffball",
+    "count": 9
+  }
+}
