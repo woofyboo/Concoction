@@ -251,6 +251,12 @@
     },
     "concoction:fried_puffballs": {
       "chance": 0.65
-
-  }
+  	},
+    "concoction:puffball_block": {
+      "chance": 1
+  	},
+    "concoction:boiled_potato": {
+      "chance": 0.85
+  		}
+	}
 }

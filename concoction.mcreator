@@ -7071,6 +7071,77 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "BoiledPotato",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boiled_potato",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/boiled_potato.json",
+          "src/main/java/net/mcreator/concoction/item/BoiledPotatoItem.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "DandelionTea",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "dandelion_tea",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/dandelion_tea.json",
+          "src/main/java/net/mcreator/concoction/item/DandelionTeaItem.java"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "PuffballBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "puffball_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/puffball_block.json",
+          "src/main/java/net/mcreator/concoction/block/PuffballBlockBlock.java",
+          "src/main/resources/data/concoction/loot_table/blocks/puffball_block.json",
+          "src/main/resources/assets/concoction/models/item/puffball_block.json",
+          "src/main/resources/assets/concoction/blockstates/puffball_block.json"
+        ]
+      },
+      "path": "~/puffball"
+    },
+    {
+      "name": "PuffballBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "puffball_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/puffball_block_craft.json"
+        ]
+      },
+      "path": "~/puffball"
+    },
+    {
+      "name": "PuffballBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "puffball_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/puffball_block_uncraft.json"
+        ]
+      },
+      "path": "~/puffball"
     }
   ],
   "variable_elements": [],
@@ -7183,6 +7254,7 @@
       "CUSTOM:Sunflower"
     ],
     "BLOCKS:minecraft:mineable/hoe": [
+      "~CUSTOM:PuffballBlock",
       "~CUSTOM:ReapepperBlock",
       "~CUSTOM:SweetBerriesBlock",
       "~CUSTOM:BeetrootBlock",
@@ -7264,7 +7336,8 @@
       "CUSTOM:MilkBottle",
       "CUSTOM:CreamBottle",
       "CUSTOM:ObsidianTearsBottle",
-      "Items.OMINOUS_BOTTLE"
+      "Items.OMINOUS_BOTTLE",
+      "CUSTOM:DandelionTea"
     ],
     "ITEMS:minecraft:axes": [
       "~CUSTOM:OvergrownAxe"
@@ -7497,8 +7570,8 @@
       "gui.concoction.kitchen_cabinet": "Кухонный шкаф",
       "taste.concoction.glow": "• Сияющее",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "block.concoction.beetroot_block": "Блок свеклы",
+      "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
       "subtitles.butter_thickens": "Масло загустело",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "block.concoction.mint": "Мята",
@@ -7508,11 +7581,11 @@
       "item.minecraft.tipped_arrow.effect.flame_extended": "Стрела жжения",
       "advancements.sunstruck_transformed.title": "Зомби против растений",
       "item.concoction.chocolate_cake_slice": "Кусочек шоколадного торта",
-      "advancements.spicy_on_fire.title": "Ты просто огонь!",
       "advancements.make_soul_soul.title": "Адские сверхурочные",
+      "advancements.spicy_on_fire.title": "Ты просто огонь!",
       "block.concoction.wild_potato": "Дикий картофель",
-      "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.hashbrowns": "Хрустящие оладушки",
+      "item.concoction.cooked_corn": "Жареная кукуруза",
       "item.concoction.cream_bottle": "Бутылочка сливок",
       "item.concoction.cabbage_seeds": "Семена капусты",
       "item.concoction.tomato": "Томат",
@@ -7591,6 +7664,7 @@
       "subtitles.soul_bucket_filled": "Ведро наполнено душами",
       "death.attack.spicy_damage.player": "%1$s был отжарен %2$s",
       "subtitles.butter_churn_spin": "Маслобойка крутится",
+      "block.concoction.puffball_block": "Блок гриба дождевика",
       "effect.concoction.sweetness": "Сладость",
       "item.minecraft.lingering_potion.effect.blooming_buffed": "Оседающие зелье цветения",
       "advancements.spicy_remove_many_debuffs.title": "Синьор Помидор",
@@ -7648,6 +7722,7 @@
       "effect.concoction.spicy": "Жгучесть",
       "message.concoction.cow_is_baby": "Эта корова слишком молода, чтобы давать молоко",
       "effect.concoction.bitterness": "Горькость",
+      "item.concoction.dandelion_tea": "Одуванчиковый чай",
       "taste.concoction.minty": "• Мятное",
       "advancements.giant_corn_witness.descr": "Узнай как электричество влияет на рост кукурузы",
       "block.concoction.blue_pillow_block": "Синяя подушка",
@@ -7698,6 +7773,7 @@
       "taste.concoction.fiery_touch": "• Пылающее",
       "block.concoction.sunflower": "Подсолнух",
       "item.concoction.meat_goulash": "Мясной гуляш",
+      "item.concoction.boiled_potato": "Варёный картофель",
       "block.concoction.light_blue_pillow_block": "Голубая подушка",
       "block.concoction.brown_woven_carpet": "Коричневый тканый ковёр",
       "block.concoction.bamboo_kitchen_cabinet": "Бамбуковый кухонный шкаф",
@@ -7932,6 +8008,7 @@
       "subtitles.soul_bucket_filled": "Bucket is filled with souls",
       "death.attack.spicy_damage.player": "%1$s thought they could handle the spice of %2$s",
       "subtitles.butter_churn_spin": "Butter Churn spins",
+      "block.concoction.puffball_block": "Puffball Block",
       "effect.concoction.sweetness": "Sweetness",
       "item.minecraft.lingering_potion.effect.blooming_buffed": "Lingering Potion of Blooming",
       "item.concoction.cherry_cookie": "Cherry Cookie",
@@ -7989,6 +8066,7 @@
       "effect.concoction.spicy": "Spiciness",
       "message.concoction.cow_is_baby": "This cow is too young to produce milk",
       "effect.concoction.bitterness": "Bitterness",
+      "item.concoction.dandelion_tea": "Dandelion Tea",
       "taste.concoction.minty": "• Minty",
       "advancements.giant_corn_witness.descr": "Witness how lightning affects corn growth",
       "block.concoction.blue_pillow_block": "Blue Pillow",
@@ -8039,6 +8117,7 @@
       "taste.concoction.fiery_touch": "• Flaming",
       "block.concoction.sunflower": "Sunflower",
       "item.concoction.meat_goulash": "Braised Meat",
+      "item.concoction.boiled_potato": "Boiled Potato",
       "block.concoction.light_blue_pillow_block": "Light Blue Pillow",
       "block.concoction.brown_woven_carpet": "Brown Woven Carpet",
       "block.concoction.bamboo_kitchen_cabinet": "Bamboo Kitchen Cabinet",

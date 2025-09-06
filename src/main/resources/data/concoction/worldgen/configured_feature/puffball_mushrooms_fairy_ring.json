@@ -22,7 +22,7 @@
                     "age": "0"
                   }
                 },
-                "weight": 1
+                "weight": 10
               },
               {
                 "data": {
@@ -31,7 +31,7 @@
                     "age": "1"
                   }
                 },
-                "weight": 4
+                "weight": 40
               },
               {
                 "data": {
@@ -40,7 +40,13 @@
                     "age": "2"
                   }
                 },
-                "weight": 3
+                "weight": 30
+              },
+              {
+                "data": {
+                  "Name": "concoction:puffball_block"
+                },
+                "weight": 4
               }
             ]
           }
