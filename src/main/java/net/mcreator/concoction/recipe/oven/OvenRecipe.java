@@ -11,7 +11,10 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
 import java.util.HashMap;
@@ -20,19 +23,25 @@ import java.util.Map;
 
 public class OvenRecipe implements Recipe<OvenRecipeInput> {
     private final int cookingTime;
-    private final List<Ingredient> craftingIngredients; // 6 слотов для крафта
-    private final Ingredient bottleIngredient; // слот с иконкой бутылочки
-    private final Ingredient bowlIngredient; // слот с иконкой миски
+    private final List<Ingredient> craftingIngredients; // 1..6 — слоты для крафта
+    private final Ingredient bottleIngredient;          // слот 0 — бутылочка
+    private final Ingredient bowlIngredient;            // слот 7 — миска
     private final Map<String, String> result;
 
-    public OvenRecipe(int cookingTime, List<Ingredient> craftingIngredients, 
-                     Ingredient bottleIngredient, Ingredient bowlIngredient, 
-                     Map<String, String> result) {
+    public OvenRecipe(int cookingTime,
+                      List<Ingredient> craftingIngredients,
+                      Ingredient bottleIngredient,
+                      Ingredient bowlIngredient,
+                      Map<String, String> result) {
         this.cookingTime = cookingTime;
         this.craftingIngredients = craftingIngredients;
         this.bottleIngredient = bottleIngredient;
         this.bowlIngredient = bowlIngredient;
         this.result = result;
+    }
+
+    public int getCookingTime() {
+        return cookingTime;
     }
 
     public List<Ingredient> getCraftingIngredients() {
@@ -51,79 +60,70 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
         return result;
     }
 
-    public int getCookingTime() {
-        return cookingTime;
+    /** Сколько предметов получится на выходе (по умолчанию 1). Читает result.count/amount. */
+    public int getOutputCount() {
+        if (result == null) return 1;
+        String raw = result.getOrDefault("count", result.getOrDefault("amount", "1"));
+        try {
+            int v = Integer.parseInt(raw.trim());
+            return Math.max(1, v);
+        } catch (NumberFormatException e) {
+            return 1;
+        }
+    }
+
+    /** Сколько мисок требуется списать за одну готовку (0, если миска не нужна). */
+    public int getBowlCost() {
+        return bowlIngredient.isEmpty() ? 0 : getOutputCount();
     }
 
     private boolean matchesIngredients(NonNullList<ItemStack> inventory) {
-        // Проверяем слоты крафта (1-6)
+        // Слоты крафта 1..6
         NonNullList<ItemStack> craftingSlots = NonNullList.withSize(6, ItemStack.EMPTY);
         for (int i = 1; i <= 6; i++) {
-            craftingSlots.set(i-1, inventory.get(i));
+            craftingSlots.set(i - 1, inventory.get(i));
         }
 
-        // Проверяем слот бутылочки (0)
+        // Бутылочка (0) и миска (7)
         ItemStack bottleSlot = inventory.get(0);
-        
-        // Проверяем слот миски (7)
-        ItemStack bowlSlot = inventory.get(7);
+        ItemStack bowlSlot   = inventory.get(7);
 
-        // Проверяем соответствие ингредиентов крафта (порядок не важен)
-        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
-        for (Ingredient ingredient : craftingIngredients) {
-            requiredIngredients.merge(ingredient, 1, Integer::sum);
+        // Проверяем, что количество непустых слотов крафта совпадает с количеством ингредиентов (порядок не важен)
+        int nonEmpty = 0;
+        for (ItemStack st : craftingSlots) if (!st.isEmpty()) nonEmpty++;
+        if (nonEmpty != craftingIngredients.size()) return false;
+
+        // Сопоставление ингредиентов без учёта порядка
+        Map<Ingredient, Integer> needed = new HashMap<>();
+        for (Ingredient ing : craftingIngredients) {
+            needed.merge(ing, 1, Integer::sum);
         }
-
-        // Подсчитываем непустые слоты крафта
-        int nonEmptySlots = 0;
-        for (ItemStack itemStack : craftingSlots) {
-            if (!itemStack.isEmpty()) {
-                nonEmptySlots++;
-            }
-        }
-
-        // Количество непустых слотов должно совпадать с количеством ингредиентов
-        if (nonEmptySlots != craftingIngredients.size()) {
-            return false;
-        }
-
-        // Проверяем каждый слот крафта
-        for (ItemStack itemStack : craftingSlots) {
-            if (itemStack.isEmpty()) continue;
-            
+        for (ItemStack st : craftingSlots) {
+            if (st.isEmpty()) continue;
             boolean matched = false;
-            for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
-                if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
-                    entry.setValue(entry.getValue() - 1);
+            for (Map.Entry<Ingredient, Integer> e : needed.entrySet()) {
+                if (e.getValue() > 0 && e.getKey().test(st)) {
+                    e.setValue(e.getValue() - 1);
                     matched = true;
                     break;
                 }
             }
-            
-            if (!matched) {
-                return false;
-            }
+            if (!matched) return false;
         }
+        if (!needed.values().stream().allMatch(v -> v <= 0)) return false;
 
-        // Проверяем, что все ингредиенты найдены
-        if (!requiredIngredients.values().stream().allMatch(count -> count <= 0)) {
-            return false;
-        }
+        // Проверка бутылочки
+        if (!bottleIngredient.isEmpty() && !bottleIngredient.test(bottleSlot)) return false;
+        if (bottleIngredient.isEmpty() && !bottleSlot.isEmpty()) return false;
 
-        // Проверяем слот бутылочки
-        if (!bottleIngredient.isEmpty() && !bottleIngredient.test(bottleSlot)) {
-            return false;
-        }
-        if (bottleIngredient.isEmpty() && !bottleSlot.isEmpty()) {
-            return false;
-        }
+        // Проверка миски (тип)
+        if (!bowlIngredient.isEmpty() && !bowlIngredient.test(bowlSlot)) return false;
+        if (bowlIngredient.isEmpty() && !bowlSlot.isEmpty()) return false;
 
-        // Проверяем слот миски
-        if (!bowlIngredient.isEmpty() && !bowlIngredient.test(bowlSlot)) {
-            return false;
-        }
-        if (bowlIngredient.isEmpty() && !bowlSlot.isEmpty()) {
-            return false;
+        // Доп. проверка количества мисок относительно выхода
+        if (!bowlIngredient.isEmpty()) {
+            int required = getOutputCount();
+            if (bowlSlot.getCount() < required) return false;
         }
 
         return true;
@@ -131,12 +131,11 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
 
     @Override
     public boolean matches(OvenRecipeInput input, Level level) {
-        if (level.isClientSide()) {
-            return false;
-        }
+        if (level.isClientSide()) return false;
         return matchesIngredients(input.items());
     }
 
+    /** Рецепт не должен менять инвентарь — списание делает BlockEntity. */
     @Override
     public ItemStack assemble(OvenRecipeInput input, HolderLookup.Provider registries) {
         return ItemStack.EMPTY;
@@ -172,6 +171,7 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
         return ConcoctionModRecipes.OVEN_RECIPE_TYPE.get();
     }
 
+    // --- Сериализация
     public static class Serializer implements RecipeSerializer<OvenRecipe> {
         public static final MapCodec<OvenRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Codec.INT.fieldOf("cooking_time").orElse(200).forGetter(OvenRecipe::getCookingTime),
