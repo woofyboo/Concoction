@@ -12,7 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class MeatGoulashItem extends Item {
 	public MeatGoulashItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(16).saturationModifier(0.6f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
 	}
 
 	@Override

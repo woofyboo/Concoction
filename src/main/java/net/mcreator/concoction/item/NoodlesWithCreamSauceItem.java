@@ -12,7 +12,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class NoodlesWithCreamSauceItem extends Item {
 	public NoodlesWithCreamSauceItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.6f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
 	}
 
 	@Override
