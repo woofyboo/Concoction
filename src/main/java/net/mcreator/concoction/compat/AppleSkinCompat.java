@@ -8,8 +8,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiLayerEvent;
 
-@OnlyIn(Dist.CLIENT)
-@EventBusSubscriber
+
+@EventBusSubscriber(Dist.CLIENT)
 public class AppleSkinCompat {
     @SubscribeEvent
     public static void onRenderGuiOverlayPre(RenderGuiLayerEvent.Pre event) {
