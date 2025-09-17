@@ -8357,8 +8357,8 @@
   "workspaceSettings": {
     "modid": "concoction",
     "modName": "Concoction",
-    "version": "1.6.0",
-    "author": "Sebsish, woofyboo",
+    "version": "1.6.1",
+    "author": "Sebsish, woofyboo, AmperLover",
     "websiteURL": "https://www.youtube.com/watch?v\u003ddQw4w9WgXcQ",
     "license": "GNU General Public License version 3 (GPLv3)",
     "serverSideOnly": true,
@@ -8367,7 +8367,7 @@
     "dependants": [],
     "mcreatorDependencies": [],
     "currentGenerator": "neoforge-1.21.1",
-    "credits": "Sebsish, woofyboo",
+    "credits": "Sebsish, woofyboo, AmperLover",
     "modElementsPackage": "net.mcreator.concoction"
   },
   "mcreatorVersion": 202400452410
