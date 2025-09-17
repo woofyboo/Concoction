@@ -54,7 +54,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-@EventBusSubscriber
+import net.neoforged.api.distmarker.Dist;
+
+
+@EventBusSubscriber(Dist.CLIENT)
 public class PlayerHandler {
     private static int tickCounter = 0;
     private static final int UPDATE_INTERVAL = 200;
