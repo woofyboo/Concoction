@@ -133,14 +133,18 @@ public Component getTooltip(int level, int duration, boolean isHidden) {
     MutableComponent effectName;
 
     if (this == HEAL) {
-        // Основная часть названия вкуса — серая
-        effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
+    // Основная часть названия вкуса — серая
+    effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
 
-        // Добавляем красную часть: +число и сердечко
-        MutableComponent healInfo = Component.literal(" +" + level + "❤").withStyle(ChatFormatting.RED);
+    // Текст " (x" и ")" — серые, сердечко — красное
+    MutableComponent healInfo = Component.literal(" (x").withStyle(ChatFormatting.GRAY)
+            .append(Component.literal(String.valueOf(level)).withStyle(ChatFormatting.GRAY)) // число тоже серое
+            .append(Component.literal("❤").withStyle(ChatFormatting.RED)) // только сердечко красное
+            .append(Component.literal(")").withStyle(ChatFormatting.GRAY));
 
-        return effectName.append(healInfo);
-    } else {
+    return effectName.append(healInfo);
+}
+ else {
         // Название эффекта
         effectName = Component.translatable("taste.concoction." + this.name)
                 .withStyle(ChatFormatting.GRAY);
