@@ -42,10 +42,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-
 
 import net.mcreator.concoction.init.ConcoctionModItems;
 import oshi.util.tuples.Pair;
@@ -296,6 +292,11 @@ public class CropCornBlock extends CropBlock {
 		return 0;
 	}
 
+	@Override
+	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
+	}
+
 	private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
 			Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D),
 			Block.box(2.0D, 0.0D, 2.0D, 12.0D, 14.0D, 12.0D),
@@ -370,28 +371,4 @@ public class CropCornBlock extends CropBlock {
 			return this.name;
 		}
 	}
-	@Override
-public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-    if (entity instanceof Player player) {
-        Vec3 motion = player.getDeltaMovement();
-        // блокируем движение внутрь блока по горизонтали
-        player.setDeltaMovement(0, motion.y, 0);
-    }
-    super.entityInside(state, world, pos, entity);
-}
-
-@Override
-public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-    // делаем "тонкую стенку" для вызова entityInside
-    return Block.box(7.5, 0, 7.5, 8.5, 16, 8.5);
-}
-
-@Override
-public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-    return Shapes.empty(); // визуально пусто
-}
-
-
-
-
 }
