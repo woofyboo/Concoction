@@ -9,12 +9,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
-
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
 public class CherryCakeSliceItem extends Item {
 	public CherryCakeSliceItem() {
-		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.2f).build()));
+		super(new Item.Properties().stacksTo(64)
+		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
+		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true))
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.2f).build()));
 	}
 
 	@Override
