@@ -19,6 +19,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.core.particles.ParticleTypes;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
@@ -71,6 +74,29 @@ public class CherryCakeEatingProcedure {
                             _player.getFoodData().setSaturation((float) (_player.getFoodData().getSaturationLevel() + 0.6));
                             // Лечение на 1 сердечко (2 HP)
                             _player.heal(2.0F);
+                             if (_player.level().isClientSide()) {
+        double xPos = _player.getX();
+        double yPos = _player.getY() + _player.getEyeHeight() / 2; // чуть ниже лица
+        double zPos = _player.getZ();
+        int particleCount = 5; // количество частиц
+        double radiusX = 1.5;
+        double radiusY = 1.0;
+        double radiusZ = 1.5;
+
+        for (int i = 0; i < particleCount; i++) {
+            double offsetX = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusX;
+            double offsetY = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusY;
+            double offsetZ = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusZ;
+
+            _player.level().addParticle(
+                net.minecraft.core.particles.ParticleTypes.HEART,
+                xPos + offsetX,
+                yPos + offsetY,
+                zPos + offsetZ,
+                0, 0.05, 0
+            );
+        }
+    }
                         }
 
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
@@ -89,6 +115,29 @@ public class CherryCakeEatingProcedure {
                         _player.getFoodData().setFoodLevel((int) (_player.getFoodData().getFoodLevel() + 3));
                         _player.getFoodData().setSaturation((float) (_player.getFoodData().getSaturationLevel() + 0.6));
                         _player.heal(2.0F); // Лечение на 1 сердечко
+                         if (_player.level().isClientSide()) {
+        double xPos = _player.getX();
+        double yPos = _player.getY() + _player.getEyeHeight() / 2; // чуть ниже лица
+        double zPos = _player.getZ();
+        int particleCount = 5; // количество частиц
+        double radiusX = 1.5;
+        double radiusY = 1.0;
+        double radiusZ = 1.5;
+
+        for (int i = 0; i < particleCount; i++) {
+            double offsetX = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusX;
+            double offsetY = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusY;
+            double offsetZ = (_player.getRandom().nextDouble() - 0.5) * 2 * radiusZ;
+
+            _player.level().addParticle(
+                net.minecraft.core.particles.ParticleTypes.HEART,
+                xPos + offsetX,
+                yPos + offsetY,
+                zPos + offsetZ,
+                0, 0.05, 0
+            );
+        }
+    }
                     }
 
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
