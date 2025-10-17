@@ -45,6 +45,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 
 
 import net.mcreator.concoction.init.ConcoctionModItems;
@@ -61,8 +62,10 @@ public class CropCornBlock extends CropBlock {
 	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 	public static final EnumProperty<PartProperty> PART = EnumProperty.create("part", PartProperty.class);
 
+
+
 	public CropCornBlock() {
-		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().noOcclusion().jumpFactor(0f).randomTicks().pushReaction(PushReaction.DESTROY).isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), 0).setValue(PART, PartProperty.BOTTOM));
 	}
 
@@ -372,19 +375,75 @@ public class CropCornBlock extends CropBlock {
 	}
 	@Override
 public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-    if (entity instanceof Player player) {
+    if (!(entity instanceof Player player)) return;
+
+    int age = state.getValue(AGE);
+    if (age < 3) return;
+
+    boolean shiftDown = player.isShiftKeyDown();
+
+    // Проверяем, стоит ли игрок на кукурузе
+    BlockPos playerPos = new BlockPos(
+    (int)Math.floor(player.getX()), 
+    (int)Math.floor(player.getY() - 0.1), 
+    (int)Math.floor(player.getZ())
+);
+
+    BlockState belowState = world.getBlockState(playerPos);
+    boolean standingOnCorn = belowState.is(this);
+
+    if (shiftDown || standingOnCorn) {
         Vec3 motion = player.getDeltaMovement();
-        // блокируем движение внутрь блока по горизонтали
-        player.setDeltaMovement(0, motion.y, 0);
+        player.setDeltaMovement(motion.x * 0.5, motion.y, motion.z * 0.5);
+    } else {
+        Vec3 motion = player.getDeltaMovement();
+        player.setDeltaMovement(motion.x * 0.05, motion.y, motion.z * 0.05);
     }
+
     super.entityInside(state, world, pos, entity);
 }
 
 @Override
 public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-    // делаем "тонкую стенку" для вызова entityInside
-    return Block.box(7.5, 0, 7.5, 8.5, 16, 8.5);
+    if (!(context instanceof EntityCollisionContext entityContext)) return super.getCollisionShape(state, world, pos, context);
+
+    Entity entity = entityContext.getEntity();
+    if (!(entity instanceof Player player)) return super.getCollisionShape(state, world, pos, context);
+
+    int age = state.getValue(AGE);
+    if (age < 3) return Shapes.empty(); // маленькая кукуруза всегда проходима
+
+    boolean shiftDown = player.isShiftKeyDown();
+
+    // Проверяем, стоит ли игрок на кукурузе
+    BlockPos playerPos = new BlockPos(
+        (int)Math.floor(player.getX()), 
+        (int)Math.floor(player.getY() - 0.1), 
+        (int)Math.floor(player.getZ())
+    );
+
+    BlockState belowState = world.getBlockState(playerPos);
+    boolean standingOnCorn = belowState.is(this);
+
+    if (shiftDown || standingOnCorn) {
+        return Shapes.empty();
+    }
+
+    // Проверяем, окружён ли блок кукурузы с 4 сторон
+    boolean surrounded = world.getBlockState(pos.north()).is(this)
+            && world.getBlockState(pos.south()).is(this)
+            && world.getBlockState(pos.east()).is(this)
+            && world.getBlockState(pos.west()).is(this);
+
+    if (surrounded) {
+        return Block.box(0, 0, 0, 16, 16, 16);
+    }
+
+    return Block.box(6.5, 0, 6.5, 9.5, 16, 9.5);
 }
+
+
+
 
 @Override
 public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
