@@ -129,25 +129,48 @@ public enum FoodEffectType implements StringRepresentable {
     }
 }
 
+public Component getTooltip(int level, int duration, boolean isHidden) {
+    MutableComponent effectName;
 
+    if (this == HEAL) {
+        // Основная часть названия вкуса — серая
+        effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
 
-    /**
-     * Возвращает компонент для тултипа
-     */
-    public Component getTooltip(int level, int duration, boolean isHidden) {
-        MutableComponent effectName;
-        if (this == HEAL) {
-            // Основная часть названия вкуса — серая
-            effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
+        // Добавляем красную часть: +число и сердечко
+        MutableComponent healInfo = Component.literal(" +" + level + "❤").withStyle(ChatFormatting.RED);
 
-            // Добавляем красную часть: +число и сердечко
-            MutableComponent healInfo = Component.literal(" +" + level + "❤").withStyle(ChatFormatting.RED);
+        return effectName.append(healInfo);
+    } else {
+        // Название эффекта
+        effectName = Component.translatable("taste.concoction." + this.name)
+                .withStyle(ChatFormatting.GRAY);
 
-            return effectName.append(healInfo);
-        } else {
-            effectName = Component.translatable("taste.concoction." + this.name)
-                    .withStyle(ChatFormatting.GRAY);
-            return effectName;
-        }
+        // Уровень римскими цифрами, но если уровень = 1, оставляем пустое
+        String romanLevel = (level > 1) ? toRoman(level) : "";
+
+        // Длительность в формате m:ss (duration из секунд)
+        int totalSeconds = duration; // duration уже в секундах
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        String timeFormatted = String.format("%d:%02d", minutes, seconds);
+
+        // Добавляем уровень и длительность к тултипу
+        MutableComponent levelAndTime = Component.literal(
+                (romanLevel.isEmpty() ? "" : " " + romanLevel) + " (" + timeFormatted + ")"
+        ).withStyle(ChatFormatting.GRAY);
+
+        return effectName.append(levelAndTime);
     }
+}
+
+/**
+ * Преобразует число в римскую цифру (1 -> I, 2 -> II, ...)
+ */
+private static String toRoman(int number) {
+    String[] romans = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+    if (number >= 1 && number <= 10) return romans[number - 1];
+    return String.valueOf(number); // на случай числа больше 10
+}
+
+
 }
