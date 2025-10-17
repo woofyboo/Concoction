@@ -9,6 +9,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.core.particles.ParticleTypes;
+
+
+import net.mcreator.concoction.init.ConcoctionModParticles;
 
 public enum FoodEffectType implements StringRepresentable {
     SWEET("sweet"),
@@ -93,11 +99,37 @@ public enum FoodEffectType implements StringRepresentable {
      * Мгновенное действие для HEAL (лечит игрока)
      */
     public static void applyInstantEffect(FoodEffectType type, LivingEntity entity, int level) {
-        if (type == HEAL && entity instanceof Player player) {
-            float healAmount = level; // 1 уровень = 1 сердце
-            player.heal(healAmount * 2.0F);
-        }
+    if (type == HEAL && entity instanceof Player player) {
+        player.heal(level * 2.0F);
+
+        if (!player.level().isClientSide()) return;
+
+    double x = player.getX();
+    double y = player.getY() + player.getEyeHeight() / 2; // чуть ниже лица
+    double z = player.getZ();
+
+    int particleCount = 5; // меньше частиц
+    double radiusX = 1.5;  // горизонтальный разброс
+    double radiusY = 1.0;  // вертикальный разброс
+    double radiusZ = 1.5;
+
+    for (int i = 0; i < particleCount; i++) {
+        double offsetX = (player.getRandom().nextDouble() - 0.5) * 2 * radiusX;
+        double offsetY = (player.getRandom().nextDouble() - 0.5) * 2 * radiusY;
+        double offsetZ = (player.getRandom().nextDouble() - 0.5) * 2 * radiusZ;
+
+        player.level().addParticle(
+            net.minecraft.core.particles.ParticleTypes.HEART,
+            x + offsetX,
+            y + offsetY,
+            z + offsetZ,
+            0, 0.05, 0
+        );
     }
+    }
+}
+
+
 
     /**
      * Возвращает компонент для тултипа
