@@ -1,13 +1,14 @@
 package net.mcreator.concoction.item.food.types;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.init.ConcoctionModPotions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
 public enum FoodEffectType implements StringRepresentable {
     SWEET("sweet"),
@@ -18,11 +19,12 @@ public enum FoodEffectType implements StringRepresentable {
     SALTY("saltness"),
     FLAMING("fiery_touch"),
     WARM("warming"),
-    BITTER("bitterness");
-
+    BITTER("bitterness"),
+    HEAL("heal"); // новый особый вкус
 
     private final String name;
-    private FoodEffectType(String name) {
+
+    FoodEffectType(String name) {
         this.name = name;
     }
 
@@ -42,27 +44,78 @@ public enum FoodEffectType implements StringRepresentable {
             case "fiery_touch" -> FLAMING;
             case "warming" -> WARM;
             case "bitterness" -> BITTER;
+            case "heal" -> HEAL;
             default -> throw new IllegalArgumentException("Invalid name: " + name);
         };
     }
 
-    public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration, boolean isHidden) {
-        return switch (type) {
-            case SWEET -> new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration*20, level-1, false, !isHidden, true, null);
-            case SPICY -> new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration*20, level-1, false, !isHidden, true, null);
-            case MINTY -> new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration*20, level-1, false, !isHidden, true, null);
-            case GLOW ->  new MobEffectInstance(MobEffects.GLOWING, duration*20, level-1, false, !isHidden, true, null);
-            case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration*20, level-1, false, !isHidden, true, null);
-            case SALTY -> new MobEffectInstance(ConcoctionModMobEffects.SALTNESS, duration*20, level-1, false, !isHidden, true, null);
-            case FLAMING -> new MobEffectInstance(ConcoctionModMobEffects.FIERY_TOUCH, duration*20, level*0, false, !isHidden, true, null);
-            case WARM -> new MobEffectInstance(ConcoctionModMobEffects.WARMING, duration*20, level-1, false, !isHidden, true, null);
-            case BITTER -> new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration*20, level-1, false, !isHidden, true, null);
-
-        };
+    /**
+     * Возвращает MobEffectInstance для обычных эффектов.
+     * Для HEAL возвращает null, чтобы не применялся через эффекты.
+     */
+    public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration, boolean isHidden, LivingEntity entity) {
+        switch (type) {
+            case HEAL -> {
+                return null; // мгновальное лечение обрабатывается отдельно
+            }
+            case SWEET -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case SPICY -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case MINTY -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case GLOW -> {
+                return new MobEffectInstance(MobEffects.GLOWING, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case INSTABILITY -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case SALTY -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.SALTNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case FLAMING -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.FIERY_TOUCH, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case WARM -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.WARMING, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case BITTER -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+        }
+        return null;
     }
 
+    /**
+     * Мгновенное действие для HEAL (лечит игрока)
+     */
+    public static void applyInstantEffect(FoodEffectType type, LivingEntity entity, int level) {
+        if (type == HEAL && entity instanceof Player player) {
+            float healAmount = level; // 1 уровень = 1 сердце
+            player.heal(healAmount * 2.0F);
+        }
+    }
+
+    /**
+     * Возвращает компонент для тултипа
+     */
     public Component getTooltip(int level, int duration, boolean isHidden) {
-        MutableComponent effectName = Component.translatable("taste.concoction." + this.name);
-        return effectName.withStyle(ChatFormatting.GRAY);
+        MutableComponent effectName;
+        if (this == HEAL) {
+            // Основная часть названия вкуса — серая
+            effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
+
+            // Добавляем красную часть: +число и сердечко
+            MutableComponent healInfo = Component.literal(" +" + level + "❤").withStyle(ChatFormatting.RED);
+
+            return effectName.append(healInfo);
+        } else {
+            effectName = Component.translatable("taste.concoction." + this.name)
+                    .withStyle(ChatFormatting.GRAY);
+            return effectName;
+        }
     }
 }

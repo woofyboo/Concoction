@@ -20,6 +20,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class CakeBlockMixin {
     @Inject(method = "eat", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;awardStat(Lnet/minecraft/resources/ResourceLocation;)V"))
     private static void addFoodEffect(LevelAccessor p_51186_, BlockPos p_51187_, BlockState p_51188_, Player player, CallbackInfoReturnable<InteractionResult> cir) {
-        player.addEffect(FoodEffectType.getEffect(FoodEffectType.SWEET, 1, 30, true));
+        player.addEffect(FoodEffectType.getEffect(FoodEffectType.SWEET, 1, 30, true, player));
     }
 }

@@ -19,13 +19,19 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.item.ItemExpireEvent;
 import org.jetbrains.annotations.Nullable;
 
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
+import org.jetbrains.annotations.NotNull;
+import java.util.List;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
 @EventBusSubscriber
 public class CherryItem extends Item {
 	public CherryItem() {
-		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3f).build()));
+		super(new Item.Properties().stacksTo(64)
+		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
+		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true))
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3f).build()));
 	}
 	@SubscribeEvent
 	public static void itemEntityDespawn(ItemExpireEvent event) {
