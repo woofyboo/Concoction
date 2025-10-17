@@ -22,7 +22,25 @@
             },
             "countOffer": 1,
             "level": 1,
-            "maxTrades": 10,
+            "maxTrades": 1,
+            "xp": 5,
+            "priceMultiplier": 0.05
+          },
+          {
+            "price1": {
+              "value": "Items.EMERALD"
+            },
+            "countPrice1": 1,
+            "price2": {
+              "value": ""
+            },
+            "countPrice2": 1,
+            "offer": {
+              "value": "CUSTOM:SaponariaRoot"
+            },
+            "countOffer": 2,
+            "level": 1,
+            "maxTrades": 5,
             "xp": 5,
             "priceMultiplier": 0.05
           }

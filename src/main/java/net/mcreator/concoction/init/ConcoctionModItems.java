@@ -26,7 +26,9 @@ import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
 import net.mcreator.concoction.item.SunflowerCrownItem;
 import net.mcreator.concoction.item.SpicyPepperItem;
+import net.mcreator.concoction.item.SoapItem;
 import net.mcreator.concoction.item.SeaSaltItem;
+import net.mcreator.concoction.item.SaponariaRootItem;
 import net.mcreator.concoction.item.SalmonSushiItem;
 import net.mcreator.concoction.item.RockSaltItem;
 import net.mcreator.concoction.item.RoastedSunflowerSeedsItem;
@@ -267,6 +269,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);
 	public static final DeferredItem<Item> DANDELION_TEA = REGISTRY.register("dandelion_tea", DandelionTeaItem::new);
 	public static final DeferredItem<Item> PUFFBALL_BLOCK = block(ConcoctionModBlocks.PUFFBALL_BLOCK);
+	public static final DeferredItem<Item> SAPONARIA_ROOT = REGISTRY.register("saponaria_root", SaponariaRootItem::new);
+	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", SoapItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> CHERRY_CAKE = block(ConcoctionModBlocks.CHERRY_CAKE, 1);
 	public static final DeferredItem<Item> GLOWBERRY_CAKE = block(ConcoctionModBlocks.GLOWBERRY_CAKE, 1);

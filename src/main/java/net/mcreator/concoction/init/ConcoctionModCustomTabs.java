@@ -54,9 +54,11 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.COOKED_PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_SPORES.get());
+				tabData.accept(ConcoctionModItems.SAPONARIA_ROOT.get());
 
 				
 // Пищевые Материалы
+				tabData.accept(ConcoctionModItems.SOAP.get());
 				tabData.accept(ConcoctionModItems.FABRIC.get());
 				tabData.accept(ConcoctionModItems.ANIMAL_FAT.get());
 				tabData.accept(ConcoctionModItems.FLOUR.get());

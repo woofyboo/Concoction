@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "soap",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:saponaria_root"
+    },
+    {
+      "item": "concoction:saponaria_root"
+    },
+    {
+      "item": "concoction:animal_fat"
+    },
+    {
+      "tag": "c:salts"
+    }
+  ],
+  "result": {
+    "id": "concoction:soap",
+    "count": 1
+  }
+}
