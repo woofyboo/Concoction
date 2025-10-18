@@ -39,6 +39,9 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
 
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
@@ -104,14 +107,37 @@ public class PlayerHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerEatItem(LivingEntityUseItemEvent.Finish event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            ItemStack itemStack = event.getItem();
-            if (itemStack.is(SPECIAL_FOOD) || itemStack.is(SPECIAL_SOUP)) {
-                Utils.addAchievement(player, "concoction:eat_dish");
-            }
+public static void onPlayerEatItem(LivingEntityUseItemEvent.Finish event) {
+    if (!(event.getEntity() instanceof ServerPlayer player)) return;
+    ItemStack itemStack = event.getItem();
+
+    // Стандартная логика
+    if (itemStack.is(SPECIAL_FOOD) || itemStack.is(SPECIAL_SOUP)) {
+        Utils.addAchievement(player, "concoction:eat_dish");
+    }
+
+    // --- Проверяем все возможные FOOD_EFFECT компоненты ---
+    FoodEffectComponent[] components = new FoodEffectComponent[] {
+        itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT.value()),
+        itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_2.value()),
+        itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_3.value()),
+        itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_4.value()),
+        itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_5.value())
+    };
+
+    for (FoodEffectComponent comp : components) {
+        if (comp == null) continue;
+
+        if (comp.type() == FoodEffectType.BREAKFAST &&
+            player.getPersistentData().getInt("sleep_timer") > 0) {
+
+            Utils.addAchievement(player, "concoction:breakfast_check");
+            break; // выходим после выдачи ачивки, чтобы не дублировать
         }
     }
+}
+
+
 
     @SubscribeEvent
     public static void playerBreaksBlock(BlockEvent.BreakEvent event) {
@@ -392,18 +418,6 @@ public static void onPlayerHurt(LivingIncomingDamageEvent event) {
         regenCounter = 0;
     }
     player.getPersistentData().putInt("breakfast_regen_counter", regenCounter);
-
-// Ускорение игрока
-double speedBonus = BASE_SPEED_MULTIPLIER * level;
-ResourceLocation id = ResourceLocation.fromNamespaceAndPath("concoction", "breakfast_speed_bonus");
-
-// Получаем атрибут игрока
-var speedAttribute = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
-
-// Проверяем, есть ли уже модификатор
-if (speedAttribute.getModifier(id) == null) {
-    speedAttribute.addTransientModifier(new AttributeModifier(id, speedBonus, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
-}
 
 }
 

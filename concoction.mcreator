@@ -2037,7 +2037,7 @@
       "name": "Hashbrowns",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "hashbrowns",
       "metadata": {
         "files": [
@@ -3018,7 +3018,7 @@
       "name": "Omurice",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "omurice",
       "metadata": {
         "files": [
@@ -7188,7 +7188,7 @@
       "name": "Breakfast",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": true,
+      "locked_code": false,
       "registry_name": "breakfast",
       "metadata": {
         "files": [
@@ -7196,6 +7196,19 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "BreakfastCheck",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "breakfast_check",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/breakfast_check.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -7658,6 +7671,7 @@
       "block.concoction.wild_carrot": "Дикая морковь",
       "block.concoction.potato_block": "Блок картошки",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
+      "advancements.breakfast_check.title": "Завтрак чемпионов",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
@@ -7866,6 +7880,7 @@
       "item.concoction.cherry": "Вишня",
       "block.concoction.crop_tomato": "Томат",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
+      "advancements.breakfast_check.descr": "Сьешь вкусный завтрак, незадолго после того как проснешься",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Варёный рис",
       "item.concoction.flour": "Мука",
@@ -7954,7 +7969,7 @@
       "block.concoction.reapepper_block": "Блок призрачного жнерца",
       "taste.concoction.bitterness": "• Горькое",
       "item.concoction.puffball": "Гриб дождевик",
-      "effect.concoction.breakfast": "Доброе утро",
+      "effect.concoction.breakfast": "Вкусный завтрак",
       "block.concoction.cherry_cake": "Вишнёвый пирог «Наслаждение»",
       "item.concoction.carrot_cake_slice": "Кусочек морковного торта",
       "block.concoction.wild_tomato": "Дикий томат",
@@ -7975,8 +7990,8 @@
       "gui.concoction.kitchen_cabinet": "Kitchen Cabinet",
       "taste.concoction.glow": "• Glimmering",
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
       "block.concoction.beetroot_block": "Beetroot Block",
+      "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
       "subtitles.butter_thickens": "Butter thickens",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",
@@ -7986,11 +8001,11 @@
       "item.minecraft.tipped_arrow.effect.flame_extended": "Arrow of Flame",
       "advancements.sunstruck_transformed.title": "Zombies vs. Plants",
       "item.concoction.chocolate_cake_slice": "Chocolate Cake Slice",
-      "advancements.spicy_on_fire.title": "It Burns, Burns, Burns",
       "advancements.make_soul_soul.title": "Crop \u0027Til You Drop",
+      "advancements.spicy_on_fire.title": "It Burns, Burns, Burns",
       "block.concoction.wild_potato": "Wild Potato",
-      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cooked_corn": "Cooked Corn",
+      "item.concoction.hashbrowns": "Hashbrowns",
       "item.concoction.cream_bottle": "Cream Bottle",
       "item.concoction.cabbage_seeds": "Cabbage Seeds",
       "item.concoction.tomato": "Tomato",
@@ -8009,6 +8024,7 @@
       "block.concoction.small_magenta_pillow_block": "Small Magenta Pillow",
       "block.concoction.potato_block": "Potato Block",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
+      "advancements.breakfast_check.title": "Never Work Before Breakfast",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
@@ -8217,6 +8233,7 @@
       "item.concoction.cherry": "Cherries",
       "block.concoction.crop_tomato": "Crop Tomato",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
+      "advancements.breakfast_check.descr": "Eat a breakfast food not too long after waking up",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Cooked Rice",
       "item.concoction.flour": "Flour",
@@ -8305,7 +8322,7 @@
       "block.concoction.reapepper_block": "Reapper Block",
       "taste.concoction.bitterness": "• Bitter",
       "item.concoction.puffball": "Puffball",
-      "effect.concoction.breakfast": "Good Morning",
+      "effect.concoction.breakfast": "Tasty Breakfast",
       "block.concoction.cherry_cake": "Cherry Delight Cake",
       "item.concoction.carrot_cake_slice": "Carrot Cake Slice",
       "block.concoction.wild_tomato": "Wild Tomato",

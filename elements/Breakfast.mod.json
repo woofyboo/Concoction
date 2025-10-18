@@ -15,6 +15,14 @@
     "isCuredByMilk": true,
     "isProtectedByTotem": true,
     "isCuredbyHoney": false,
-    "modifiers": []
+    "modifiers": [
+      {
+        "attribute": {
+          "value": "MOVEMENT_SPEED"
+        },
+        "amount": 0.1,
+        "operation": "ADD_MULTIPLIED_BASE"
+      }
+    ]
   }
 }

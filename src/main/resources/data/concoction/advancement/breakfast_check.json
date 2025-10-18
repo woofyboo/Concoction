@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:fried_egg"
+    },
+    "title": {
+      "translate": "advancements.breakfast_check.title"
+    },
+    "description": {
+      "translate": "advancements.breakfast_check.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "breakfast_check_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:eat_dish"
+}
