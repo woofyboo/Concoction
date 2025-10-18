@@ -38,6 +38,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.Component;
 
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -62,12 +63,14 @@ public class PlayerHandler {
     private static int tickCounter = 0;
     private static final int UPDATE_INTERVAL = 200;
     private static final int RENDER_DELAY_TICKS = 15;
-    
+    private static final int SLEEP_TIMER_DURATION = 8 * 60 * 20; // 8 минут в тиках
+
     // Хранилище времени выхода из специального состояния для каждого игрока
     private static final Map<UUID, Long> playerSpecialStateExitTimes = new HashMap<>();
     
     // Тоггл для каждого игрока, указывающий, должен ли рендериться эффект
     private static final Map<UUID, Boolean> shouldRenderSpicyEffect = new HashMap<>();
+    
 
     private static final TagKey<Item> SOULLAND_RELATION = TagKey.create(Registries.ITEM, ResourceLocation.parse("concoction:soulland_relation"));
     private static final TagKey<Block> WILDLIFE_PLANTS = TagKey.create(Registries.BLOCK, ResourceLocation.parse("concoction:wildlife_plants"));
@@ -157,6 +160,12 @@ public class PlayerHandler {
             }
         }
     }
+
+    @SubscribeEvent
+public static void onPlayerWakeUp(net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent event) {
+    Player player = event.getEntity();
+    player.getPersistentData().putInt("sleep_timer", 8 * 60 * 20);
+}
 
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
@@ -272,6 +281,14 @@ public class PlayerHandler {
             }
         }
     }
+    @SubscribeEvent
+public static void onPlayerDeath(LivingDeathEvent event) {
+    if (event.getEntity() instanceof Player player) {
+        // Сбрасываем таймер
+        player.getPersistentData().putInt("sleep_timer", 0);
+    }
+}
+
 
     @SubscribeEvent
     public static void entityAttacked(LivingIncomingDamageEvent event) {
@@ -311,6 +328,18 @@ public class PlayerHandler {
         tickCounter++;
         Player player = event.getEntity();
         UUID playerUUID = player.getUUID();
+
+        int timer = player.getPersistentData().getInt("sleep_timer");
+if (timer > 0) {
+    timer--;
+    player.getPersistentData().putInt("sleep_timer", timer);
+     if (timer == 1) {
+            player.displayClientMessage(Component.translatable("message.concoction.tired"), true);
+        } else if (timer == 8 * 60 * 20 - 1) {
+        	player.displayClientMessage(Component.translatable("message.concoction.rested"), true);
+        }
+}
+
         
         // Отслеживаем переход из специального состояния в обычное
         boolean isInSpecialState = player.isFallFlying() || player.isSwimming() || player.getPose() == Pose.SWIMMING;
