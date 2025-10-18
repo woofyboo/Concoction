@@ -40,6 +40,9 @@ import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
+
 import net.minecraft.core.registries.Registries;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -49,6 +52,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.minecraft.world.entity.Pose;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,6 +68,10 @@ public class PlayerHandler {
     private static final int UPDATE_INTERVAL = 200;
     private static final int RENDER_DELAY_TICKS = 15;
     private static final int SLEEP_TIMER_DURATION = 8 * 60 * 20; // 8 минут в тиках
+	// В начале класса
+	private static final int BASE_REGEN_INTERVAL = 80; // 4 секунды (20 тиков = 1 секунда)
+	private static final double BASE_SPEED_MULTIPLIER = 0.1; // 10%
+	private static final int MAX_SURVIVAL_HP = 5; // макс. восстановление при уровне эффекта
 
     // Хранилище времени выхода из специального состояния для каждого игрока
     private static final Map<UUID, Long> playerSpecialStateExitTimes = new HashMap<>();
@@ -287,12 +295,51 @@ public static void onPlayerDeath(LivingDeathEvent event) {
         // Сбрасываем таймер
         player.getPersistentData().putInt("sleep_timer", 0);
     }
+    if (!(event.getEntity() instanceof Player player)) return;
+
+    if (player.hasEffect(ConcoctionModMobEffects.BREAKFAST) &&
+        player.getPersistentData().getInt("sleep_timer") > 0) {
+
+        MobEffectInstance effect = player.getEffect(ConcoctionModMobEffects.BREAKFAST);
+        int level = effect.getAmplifier() + 1;
+        int minHP = Math.min(level, MAX_SURVIVAL_HP);
+
+        // Срабатывает только если здоровье ≥ 90% от максимального
+        if (player.getHealth() >= player.getMaxHealth() * 0.9F) {
+            player.setHealth(minHP);
+            event.setCanceled(true); // отменяем смерть
+            player.level().broadcastEntityEvent(player, (byte) 35); // визуальный эффект "heart"
+        }
+    }
 }
 
+	@SubscribeEvent
+public static void onPlayerHurt(LivingIncomingDamageEvent event) {
+    if (!(event.getEntity() instanceof Player player)) return;
+
+
+    if (player.getPersistentData().getInt("sleep_timer") > 0 &&
+        player.hasEffect(ConcoctionModMobEffects.BREAKFAST)) {
+
+        MobEffectInstance effect = player.getEffect(ConcoctionModMobEffects.BREAKFAST);
+        int level = effect.getAmplifier() + 1;
+
+        // Мгновенная реген после удара
+        player.heal(1.0F);
+
+        // Защита от фатального удара
+        float wouldBeHealth = player.getHealth() - event.getAmount();
+        int minHP = Math.min(level, 5); // 1-5 HP
+        if (wouldBeHealth <= 0 && player.getHealth() > player.getMaxHealth() * 0.9F) {
+            event.setAmount(player.getHealth() - minHP);
+        }
+}
+}
 
     @SubscribeEvent
     public static void entityAttacked(LivingIncomingDamageEvent event) {
         Entity source = event.getSource().getEntity();
+        
 
         if (source instanceof LivingEntity entity) {
             ItemStack itemStack = entity.getItemInHand(InteractionHand.MAIN_HAND);
@@ -328,6 +375,38 @@ public static void onPlayerDeath(LivingDeathEvent event) {
         tickCounter++;
         Player player = event.getEntity();
         UUID playerUUID = player.getUUID();
+
+        if (player.getPersistentData().getInt("sleep_timer") > 0 && player.hasEffect(ConcoctionModMobEffects.BREAKFAST)) {
+    MobEffectInstance effect = player.getEffect(ConcoctionModMobEffects.BREAKFAST);
+    int level = effect.getAmplifier() + 1;
+
+    // Интервал регена уменьшается на 0.5 сек на уровень (10 тиков)
+    int regenInterval = Math.max(1, BASE_REGEN_INTERVAL - 10 * (level - 1));
+
+    // Счётчик регена в PersistentData
+    int regenCounter = player.getPersistentData().getInt("breakfast_regen_counter") + 1;
+    if (regenCounter >= regenInterval) {
+        if (player.getHealth() < player.getMaxHealth()) {
+            player.heal(1.0F); // реген 1 ХП
+        }
+        regenCounter = 0;
+    }
+    player.getPersistentData().putInt("breakfast_regen_counter", regenCounter);
+
+// Ускорение игрока
+double speedBonus = BASE_SPEED_MULTIPLIER * level;
+ResourceLocation id = ResourceLocation.fromNamespaceAndPath("concoction", "breakfast_speed_bonus");
+
+// Получаем атрибут игрока
+var speedAttribute = player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MOVEMENT_SPEED);
+
+// Проверяем, есть ли уже модификатор
+if (speedAttribute.getModifier(id) == null) {
+    speedAttribute.addTransientModifier(new AttributeModifier(id, speedBonus, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+}
+
+}
+
 
         int timer = player.getPersistentData().getInt("sleep_timer");
 if (timer > 0) {
