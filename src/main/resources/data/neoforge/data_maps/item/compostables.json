@@ -257,6 +257,9 @@
   	},
     "concoction:boiled_potato": {
       "chance": 0.85
-  		}
+  	},
+    "concoction:saponaria_root": {
+      "chance": 0.35
+  	}
 	}
 }

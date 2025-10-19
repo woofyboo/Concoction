@@ -22,7 +22,8 @@
     "PlayerMixin",
     "PowderSnowBlockMixin",
     "SnowballMixin",
-    "ZombieMixin"
+    "ZombieMixin",
+    "PlayerCanEatMixin"
   ],
   "client": [
     "GuiMixin"
