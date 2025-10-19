@@ -7221,6 +7221,34 @@
         "type": "logic"
       },
       "path": "~/general"
+    },
+    {
+      "name": "SunflowerSeedsBrew",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunflower_seeds_brew",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/SunflowerSeedsBrewItem.java",
+          "src/main/resources/assets/concoction/models/item/sunflower_seeds_brew.json"
+        ]
+      },
+      "path": "~/mint"
+    },
+    {
+      "name": "HoneyCob",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "honey_cob",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/HoneyCobItem.java",
+          "src/main/resources/assets/concoction/models/item/honey_cob.json"
+        ]
+      },
+      "path": "~/corn"
     }
   ],
   "variable_elements": [],
@@ -7648,9 +7676,10 @@
       "gui.oven.title": "Духовка",
       "gui.concoction.kitchen_cabinet": "Кухонный шкаф",
       "taste.concoction.glow": "• Сияющее",
+      "taste.concoction.photosynthesis": "• Солнечное",
       "block.concoction.lime_pillow_block": "Лаймовая подушка",
-      "block.concoction.beetroot_block": "Блок свеклы",
       "block.concoction.light_gray_woven_carpet": "Светло-серый тканый ковёр",
+      "block.concoction.beetroot_block": "Блок свеклы",
       "subtitles.butter_thickens": "Масло загустело",
       "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
       "block.concoction.mint": "Мята",
@@ -7722,6 +7751,7 @@
       "item.concoction.fried_egg": "Яичница",
       "advancements.cry_worthy_haircut.descr": "Обстреги лук чтобы получить зелёный лук.",
       "block.concoction.chocolate_cake": "Шоколадный торт",
+      "item.concoction.sunflower_seeds_brew": "Отвар из семян подсолнуха",
       "item.concoction.tomato_soup": "Томатный суп",
       "block.concoction.black_woven_carpet": "Чёрный тканый ковёр",
       "block.concoction.oven": "Духовка",
@@ -7799,6 +7829,7 @@
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
       "block.concoction.sunflower_seed_block": "Блок семечек подсолнуха",
       "advancements.new_crops.descr": "Найди новые дикорастущие культуры",
+      "taste.concoction.sunstruck": "• Палящее",
       "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
       "message.concoction.cow_is_baby": "Эта корова слишком молода, чтобы давать молоко",
@@ -7936,6 +7967,7 @@
       "block.concoction.green_onion_block": "Блок зеленого лука",
       "taste.concoction.breakfast": "• Завтрак",
       "item.concoction.fabric": "Ткань",
+      "item.concoction.honey_cob": "Жужжачаток",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
       "block.concoction.wild_cotton": "Дикий хлопок",
       "block.concoction.pink_woven_carpet": "Розовый тканый ковёр",
@@ -8003,9 +8035,10 @@
       "gui.oven.title": "Oven",
       "gui.concoction.kitchen_cabinet": "Kitchen Cabinet",
       "taste.concoction.glow": "• Glimmering",
+      "taste.concoction.photosynthesis": "• Sunny",
       "block.concoction.lime_pillow_block": "Lime Pillow",
-      "block.concoction.beetroot_block": "Beetroot Block",
       "block.concoction.light_gray_woven_carpet": "Light Gray Woven Carpet",
+      "block.concoction.beetroot_block": "Beetroot Block",
       "subtitles.butter_thickens": "Butter thickens",
       "death.attack.spicy_damage": "%1$s thought they could handle the spice",
       "block.concoction.mint": "Mint",
@@ -8077,6 +8110,7 @@
       "item.concoction.fried_egg": "Fried Egg",
       "advancements.cry_worthy_haircut.descr": "Give a new hairstyle to the onion growing on farmland using shears",
       "block.concoction.chocolate_cake": "Chocolate Cake",
+      "item.concoction.sunflower_seeds_brew": "Sunflower Seeds Brew",
       "item.concoction.tomato_soup": "Tomato Soup",
       "block.concoction.black_woven_carpet": "Black Woven Carpet",
       "block.concoction.oven": "Oven",
@@ -8154,6 +8188,7 @@
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
       "block.concoction.sunflower_seed_block": "Sunflower Seed Block",
       "advancements.new_crops.descr": "Find any new wild plants that can be planted and harvested",
+      "taste.concoction.sunstruck": "• Scorching",
       "item.concoction.hanami_dango": "Hanami Dango",
       "effect.concoction.spicy": "Spiciness",
       "message.concoction.cow_is_baby": "This cow is too young to produce milk",
@@ -8291,6 +8326,7 @@
       "block.concoction.green_onion_block": "Green Onion Block",
       "taste.concoction.breakfast": "• Breakfast",
       "item.concoction.fabric": "Fabric",
+      "item.concoction.honey_cob": "Honey Cob",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
       "block.concoction.wild_cotton": "Wild Cotton",
       "block.concoction.pink_woven_carpet": "Pink Woven Carpet",

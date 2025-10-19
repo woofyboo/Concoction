@@ -1,0 +1,27 @@
+{
+  "type": "concoction:oven",
+  "group": "food",
+  "category": "misc",
+  "cooking_time": 200,
+  
+  "crafting_ingredients": [
+    {
+      "item": "concoction:corn"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+
+ "bottle_ingredient": {
+    "item": "concoction:sunflower_oil"
+  },
+  
+  "result": {
+    "id": "concoction:honey_cob",
+    "count": "1"
+  }
+}

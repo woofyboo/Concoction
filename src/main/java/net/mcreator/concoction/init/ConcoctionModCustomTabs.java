@@ -78,6 +78,7 @@ public class ConcoctionModCustomTabs {
 //Сложная еда
 				tabData.accept(ConcoctionModItems.HASHBROWNS.get());
 				tabData.accept(ConcoctionModItems.FRIED_PUFFBALLS.get());
+				tabData.accept(ConcoctionModItems.HONEY_COB.get());
 				tabData.accept(ConcoctionModItems.BOILED_POTATO.get());
 				tabData.accept(ConcoctionModItems.BOILED_EGG.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
@@ -125,6 +126,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.DANDELION_TEA.get());
+				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS_BREW.get());
 
 //Другое
 				tabData.accept(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get());
