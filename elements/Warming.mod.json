@@ -15,6 +15,14 @@
     "isCuredByMilk": true,
     "isProtectedByTotem": true,
     "isCuredbyHoney": false,
-    "modifiers": []
+    "modifiers": [
+      {
+        "attribute": {
+          "value": "STEP_HEIGHT"
+        },
+        "amount": 1.0,
+        "operation": "ADD_VALUE"
+      }
+    ]
   }
 }

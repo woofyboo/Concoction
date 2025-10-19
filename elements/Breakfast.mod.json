@@ -2,7 +2,7 @@
   "_fv": 73,
   "_type": "potioneffect",
   "definition": {
-    "effectName": "Good Morning",
+    "effectName": "Morning Vigor",
     "icon": "breakfast",
     "color": {
       "value": -865098,
@@ -20,7 +20,7 @@
         "attribute": {
           "value": "MOVEMENT_SPEED"
         },
-        "amount": 0.1,
+        "amount": 0.08,
         "operation": "ADD_MULTIPLIED_BASE"
       }
     ]

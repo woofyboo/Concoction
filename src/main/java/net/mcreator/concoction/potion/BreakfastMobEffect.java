@@ -12,6 +12,6 @@ import net.mcreator.concoction.ConcoctionMod;
 public class BreakfastMobEffect extends MobEffect {
 	public BreakfastMobEffect() {
 		super(MobEffectCategory.BENEFICIAL, -865098);
-		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "effect.breakfast_0"), 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "effect.breakfast_0"), 0.08, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
 	}
 }
