@@ -1,0 +1,28 @@
+{
+  "type": "concoction:oven",
+  "group": "food",
+  "category": "misc",
+  "cooking_time": 200,
+  
+  "crafting_ingredients": [
+    {
+      "item": "concoction:roasted_sunflower_seeds"
+    },
+    {
+      "item": "concoction:roasted_sunflower_seeds"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+
+  ],
+  
+  "bottle_ingredient": {
+    "item": "minecraft:honey_bottle"
+  },
+  
+  "result": {
+    "id": "concoction:kozinak",
+    "count": "1"
+  }
+}

@@ -83,6 +83,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.BOILED_EGG.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
 				tabData.accept(ConcoctionModItems.BUTTER_SANDWICH.get());
+				tabData.accept(ConcoctionModItems.KOZINAK.get());
 				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
 				tabData.accept(ConcoctionModItems.MINTY_SLIME_JELLY.get());
 				tabData.accept(ConcoctionModItems.SWEET_SLIME_JELLY.get());

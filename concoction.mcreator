@@ -7290,6 +7290,20 @@
         ]
       },
       "path": "~/sunflower"
+    },
+    {
+      "name": "Kozinak",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "kozinak",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/KozinakItem.java",
+          "src/main/resources/assets/concoction/models/item/kozinak.json"
+        ]
+      },
+      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
@@ -7874,7 +7888,7 @@
       "death.attack.rift.player": "%1$s был нарезан на межпространственные кусочки пытаясь сбежать %2$s",
       "block.concoction.sunflower_seed_block": "Блок семечек подсолнуха",
       "advancements.new_crops.descr": "Найди новые дикорастущие культуры",
-      "taste.concoction.sunstruck": "• Палящее",
+      "taste.concoction.sunstruck": "• Лихорадочное",
       "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
       "message.concoction.cow_is_baby": "Эта корова слишком молода, чтобы давать молоко",
@@ -7970,6 +7984,7 @@
       "block.concoction.crop_tomato": "Томат",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "advancements.breakfast_check.descr": "Сьешь вкусный завтрак, незадолго после того как проснешься",
+      "item.concoction.kozinak": "Козинак",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Варёный рис",
       "item.concoction.flour": "Мука",
@@ -8010,7 +8025,7 @@
       "item.concoction.boiled_noodles": "Варёная лапша",
       "item.concoction.tomato_seeds": "Семена томата",
       "block.concoction.green_onion_block": "Блок зеленого лука",
-      "taste.concoction.breakfast": "• Завтрак",
+      "taste.concoction.breakfast": "• Утреннее",
       "item.concoction.fabric": "Ткань",
       "item.concoction.honey_cob": "Жужжачаток",
       "item.minecraft.splash_potion.effect.flame": "Взрывное зелье жжения",
@@ -8234,7 +8249,7 @@
       "death.attack.rift.player": "%1$s was interdimensionally sliced whilst trying to escape %2$s",
       "block.concoction.sunflower_seed_block": "Sunflower Seed Block",
       "advancements.new_crops.descr": "Find any new wild plants that can be planted and harvested",
-      "taste.concoction.sunstruck": "• Scorching",
+      "taste.concoction.sunstruck": "• Feverish",
       "item.concoction.hanami_dango": "Hanami Dango",
       "effect.concoction.spicy": "Spiciness",
       "message.concoction.cow_is_baby": "This cow is too young to produce milk",
@@ -8330,6 +8345,7 @@
       "block.concoction.crop_tomato": "Crop Tomato",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "advancements.breakfast_check.descr": "Eat a breakfast food not too long after waking up",
+      "item.concoction.kozinak": "Kozinak",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Cooked Rice",
       "item.concoction.flour": "Flour",
@@ -8370,7 +8386,7 @@
       "item.concoction.boiled_noodles": "Boiled Noodles",
       "item.concoction.tomato_seeds": "Tomato Seeds",
       "block.concoction.green_onion_block": "Green Onion Block",
-      "taste.concoction.breakfast": "• Breakfast",
+      "taste.concoction.breakfast": "• Breakfasty",
       "item.concoction.fabric": "Fabric",
       "item.concoction.honey_cob": "Honey Cob",
       "item.minecraft.splash_potion.effect.flame": "Splash Potion of Flame",
