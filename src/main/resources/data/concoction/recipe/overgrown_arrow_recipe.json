@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "overgrown_arrow",
+  "category": "equipment",
+  "pattern": [
+    "abb",
+    "bbb",
+    "bbb"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:sunflower_crown_helmet"
+    },
+    "b": {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result": {
+    "id": "concoction:overgrown_arrow",
+    "count": 8
+  }
+}

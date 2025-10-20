@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 8,
+    "group": "overgrown_arrow",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "EQUIPMENT",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:SunflowerCrown.helmet"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      },
+      {
+        "value": "Items.ARROW"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:OvergrownArrow"
+    },
+    "name": "overgrown_arrow_recipe",
+    "namespace": "mod"
+  }
+}

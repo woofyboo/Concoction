@@ -46,6 +46,7 @@ import net.mcreator.concoction.item.OvergrownShovelItem;
 import net.mcreator.concoction.item.OvergrownPickaxeItem;
 import net.mcreator.concoction.item.OvergrownHoeItem;
 import net.mcreator.concoction.item.OvergrownAxeItem;
+import net.mcreator.concoction.item.OvergrownArrowItem;
 import net.mcreator.concoction.item.OnionSoupItem;
 import net.mcreator.concoction.item.OmuriceItem;
 import net.mcreator.concoction.item.ObsidianTearsBottleItem;
@@ -275,6 +276,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", SoapItem::new);
 	public static final DeferredItem<Item> SUNFLOWER_SEEDS_BREW = REGISTRY.register("sunflower_seeds_brew", SunflowerSeedsBrewItem::new);
 	public static final DeferredItem<Item> HONEY_COB = REGISTRY.register("honey_cob", HoneyCobItem::new);
+	public static final DeferredItem<Item> OVERGROWN_ARROW = REGISTRY.register("overgrown_arrow", OvergrownArrowItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> CHERRY_CAKE = block(ConcoctionModBlocks.CHERRY_CAKE, 1);
 	public static final DeferredItem<Item> GLOWBERRY_CAKE = block(ConcoctionModBlocks.GLOWBERRY_CAKE, 1);

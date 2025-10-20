@@ -7249,6 +7249,33 @@
         ]
       },
       "path": "~/corn"
+    },
+    {
+      "name": "OvergrownArrow",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_arrow",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/OvergrownArrowItem.java",
+          "src/main/resources/assets/concoction/models/item/overgrown_arrow.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "OvergrownArrowRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "overgrown_arrow_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/overgrown_arrow_recipe.json"
+        ]
+      },
+      "path": "~/sunflower"
     }
   ],
   "variable_elements": [],
@@ -7674,6 +7701,7 @@
   "language_map": {
     "ru_ru": {
       "gui.oven.title": "Духовка",
+      "item.concoction.overgrown_arrow": "Цветущая стрела",
       "gui.concoction.kitchen_cabinet": "Кухонный шкаф",
       "taste.concoction.glow": "• Сияющее",
       "taste.concoction.photosynthesis": "• Солнечное",
@@ -8033,6 +8061,7 @@
     },
     "en_us": {
       "gui.oven.title": "Oven",
+      "item.concoction.overgrown_arrow": "Overgrown Arrow",
       "gui.concoction.kitchen_cabinet": "Kitchen Cabinet",
       "taste.concoction.glow": "• Glimmering",
       "taste.concoction.photosynthesis": "• Sunny",

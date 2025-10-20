@@ -255,6 +255,7 @@ if (butcheringEntry != null && butcheringEntry.isPresent()) {
 				tabData.accept(ConcoctionModItems.OVERGROWN_AXE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_HOE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_SWORD.get());
+				tabData.accept(ConcoctionModItems.OVERGROWN_ARROW.get());
 
 				tabData.accept(ConcoctionModItems.SUNFLOWER_CROWN_HELMET.get());
 				tabData.accept(ConcoctionModItems.SUNSTRUCK_SPAWN_EGG.get());
