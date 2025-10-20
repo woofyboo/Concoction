@@ -9,19 +9,22 @@
       "item": "concoction:corn"
     },
     {
-      "item": "minecraft:honeycomb"
+      "item": "concoction:corn"
     },
     {
       "item": "minecraft:sugar"
+    },
+    {
+      "item": "concoction:corn"
     }
   ],
 
  "bottle_ingredient": {
-    "item": "concoction:sunflower_oil"
+    "item": "minecraft:honey_bottle"
   },
   
   "result": {
     "id": "concoction:honey_cob",
-    "count": "1"
+    "count": "3"
   }
 }

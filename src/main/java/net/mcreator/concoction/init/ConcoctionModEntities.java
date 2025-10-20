@@ -17,6 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.concoction.entity.SunstruckEntity;
+import net.mcreator.concoction.entity.SunstruckArrowEntity;
 import net.mcreator.concoction.entity.CordycepsSpiderEntity;
 import net.mcreator.concoction.entity.CordycepsCaveSpiderEntity;
 import net.mcreator.concoction.ConcoctionMod;
@@ -36,6 +37,8 @@ public class ConcoctionModEntities {
 			EntityType.Builder.<CordycepsCaveSpiderEntity>of(CordycepsCaveSpiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.7f, 0.5f));
+	public static final DeferredHolder<EntityType<?>, EntityType<SunstruckArrowEntity>> SUNSTRUCK_ARROW = register("sunstruck_arrow",
+			EntityType.Builder.<SunstruckArrowEntity>of(SunstruckArrowEntity::new, MobCategory.MISC).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
 
 	// Start of user code block custom entities
 	// End of user code block custom entities

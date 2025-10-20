@@ -10,6 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.api.distmarker.Dist;
 
 import net.mcreator.concoction.client.renderer.SunstruckRenderer;
+import net.mcreator.concoction.client.renderer.SunstruckArrowRenderer;
 import net.mcreator.concoction.client.renderer.CordycepsSpiderRenderer;
 import net.mcreator.concoction.client.renderer.CordycepsCaveSpiderRenderer;
 
@@ -20,5 +21,6 @@ public class ConcoctionModEntityRenderers {
 		event.registerEntityRenderer(ConcoctionModEntities.SUNSTRUCK.get(), SunstruckRenderer::new);
 		event.registerEntityRenderer(ConcoctionModEntities.CORDYCEPS_SPIDER.get(), CordycepsSpiderRenderer::new);
 		event.registerEntityRenderer(ConcoctionModEntities.CORDYCEPS_CAVE_SPIDER.get(), CordycepsCaveSpiderRenderer::new);
+		event.registerEntityRenderer(ConcoctionModEntities.SUNSTRUCK_ARROW.get(), SunstruckArrowRenderer::new);
 	}
 }

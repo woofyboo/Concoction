@@ -7254,7 +7254,7 @@
       "name": "OvergrownArrow",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "overgrown_arrow",
       "metadata": {
         "files": [
@@ -7273,6 +7273,20 @@
       "metadata": {
         "files": [
           "src/main/resources/data/concoction/recipe/overgrown_arrow_recipe.json"
+        ]
+      },
+      "path": "~/sunflower"
+    },
+    {
+      "name": "SunstruckArrow",
+      "type": "projectile",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "sunstruck_arrow",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/client/renderer/SunstruckArrowRenderer.java",
+          "src/main/java/net/mcreator/concoction/entity/SunstruckArrowEntity.java"
         ]
       },
       "path": "~/sunflower"
@@ -7531,6 +7545,9 @@
       "Items.GLASS_BOTTLE",
       "Items.BOWL",
       "Items.STICK"
+    ],
+    "ITEMS:minecraft:arrows": [
+      "CUSTOM:OvergrownArrow"
     ],
     "ITEMS:minecraft:head_armor": [
       "~CUSTOM:SunflowerCrown.helmet"
