@@ -7332,6 +7332,19 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "Creamy",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "creamy",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/potion/CreamyMobEffect.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -7789,6 +7802,7 @@
       "block.concoction.crimson_kitchen_cabinet": "Багровый кухонный шкаф",
       "item.concoction.mint_cookie": "Мятное печенье",
       "block.concoction.chorus_block": "Блок хоруса",
+      "effect.concoction.creamy": "Сливочность",
       "block.concoction.crop_onion": "Лук",
       "block.concoction.small_blue_pillow_block": "Маленькая синяя подушка",
       "effect.concoction.fiery_touch": "Испепеляющее касание",
@@ -7925,6 +7939,7 @@
       "message.concoction.tired": "Вы чувствуете легкую усталость",
       "message.concoction.rested": "Вы чувствуете себя отдохнувшим",
       "effect.concoction.bitterness": "Горькость",
+      "taste.concoction.creamy": "• Сливочное",
       "item.concoction.dandelion_tea": "Одуванчиковый чай",
       "taste.concoction.minty": "• Мятное",
       "advancements.giant_corn_witness.descr": "Узнай как электричество влияет на рост кукурузы",
@@ -8014,7 +8029,6 @@
       "block.concoction.crop_tomato": "Томат",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "advancements.breakfast_check.descr": "Сьешь вкусный завтрак, незадолго после того как проснешься",
-      "taste.concoction.nourish": "• Сытное",
       "item.concoction.kozinak": "Козинак",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Варёный рис",
@@ -8093,7 +8107,6 @@
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "advancements.special_carpet.descr": "Получи особый ковёр странствующего торговца",
       "item.concoction.chocolate": "Шоколад",
-      "taste.concoction.tender": "• Нежное",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "advancements.cauldron_boiling.descr": "Свари что-нибудь в котле",
       "message.concoction.cow_not_ready_bottle": "Эта корова ещё не готова к доению бутылочкой",
@@ -8154,6 +8167,7 @@
       "block.concoction.crimson_kitchen_cabinet": "Crimson Kitchen Cabinet",
       "item.concoction.mint_cookie": "Mint Cookie",
       "block.concoction.chorus_block": "Chorus Block",
+      "effect.concoction.creamy": "Creaminess",
       "block.concoction.crop_onion": "Crop Onion",
       "block.concoction.small_blue_pillow_block": "Small Blue Pillow",
       "effect.concoction.fiery_touch": "Fiery Touch",
@@ -8290,6 +8304,7 @@
       "message.concoction.tired": "You feel slightly tired",
       "message.concoction.rested": "You feel well rested",
       "effect.concoction.bitterness": "Bitterness",
+      "taste.concoction.creamy": "• Creamy",
       "item.concoction.dandelion_tea": "Dandelion Tea",
       "taste.concoction.minty": "• Minty",
       "advancements.giant_corn_witness.descr": "Witness how lightning affects corn growth",
@@ -8379,7 +8394,6 @@
       "block.concoction.crop_tomato": "Crop Tomato",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "advancements.breakfast_check.descr": "Eat a breakfast food not too long after waking up",
-      "taste.concoction.nourish": "• Satieting",
       "item.concoction.kozinak": "Kozinak",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Cooked Rice",
@@ -8458,7 +8472,6 @@
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
       "advancements.special_carpet.descr": "Get wandering woven carpet from wandering trader",
       "item.concoction.chocolate": "Chocolate",
-      "taste.concoction.tender": "• Soft",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "advancements.cauldron_boiling.descr": "Boil something in the cauldron",
       "message.concoction.cow_not_ready_bottle": "This cow isn\u0027t ready to be milked with bottle right now",
