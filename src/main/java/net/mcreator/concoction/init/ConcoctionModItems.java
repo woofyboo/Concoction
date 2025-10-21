@@ -26,6 +26,7 @@ import net.mcreator.concoction.item.SweetSlimeJellyItem;
 import net.mcreator.concoction.item.SunflowerSeedsBrewItem;
 import net.mcreator.concoction.item.SunflowerOilItem;
 import net.mcreator.concoction.item.SunflowerCrownItem;
+import net.mcreator.concoction.item.StirFriedFiletItem;
 import net.mcreator.concoction.item.SpicyPepperItem;
 import net.mcreator.concoction.item.SoapItem;
 import net.mcreator.concoction.item.SeaSaltItem;
@@ -281,6 +282,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> OVERGROWN_ARROW = REGISTRY.register("overgrown_arrow", OvergrownArrowItem::new);
 	public static final DeferredItem<Item> KOZINAK = REGISTRY.register("kozinak", KozinakItem::new);
 	public static final DeferredItem<Item> BACON_AND_EGGS = REGISTRY.register("bacon_and_eggs", BaconAndEggsItem::new);
+	public static final DeferredItem<Item> STIR_FRIED_FILET = REGISTRY.register("stir_fried_filet", StirFriedFiletItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<Item> CHERRY_CAKE = block(ConcoctionModBlocks.CHERRY_CAKE, 1);
 	public static final DeferredItem<Item> GLOWBERRY_CAKE = block(ConcoctionModBlocks.GLOWBERRY_CAKE, 1);

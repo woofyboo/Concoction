@@ -115,6 +115,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 				tabData.accept(ConcoctionModItems.BAMBOO_PORKCHOP_SOUP.get());
+				tabData.accept(ConcoctionModItems.STIR_FRIED_FILET.get());
 				tabData.accept(ConcoctionModItems.FISH_AND_CHIPS.get());
 				tabData.accept(ConcoctionModItems.MASHED_POTATOES.get());
 				tabData.accept(ConcoctionModItems.COOKED_RICE.get());

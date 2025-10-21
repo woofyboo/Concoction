@@ -7318,6 +7318,20 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "StirFriedFilet",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "stir_fried_filet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/stir_fried_filet.json",
+          "src/main/java/net/mcreator/concoction/item/StirFriedFiletItem.java"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -7836,6 +7850,7 @@
       "advancements.nether_mutation.descr": "Получи растение, которое сможет вырасти в незере",
       "item.concoction.cherry_cake_slice": "Кусочек вишнёвого пирога «Наслаждение»",
       "block.concoction.small_green_pillow_block": "Маленькая зелёная подушка",
+      "item.concoction.stir_fried_filet": "Жаренное в воке мясо",
       "subtitles.oven_close": "Духовка закрылась",
       "advancements.puffball_accident.descr": "Выпусти споры гриба дождевика, наступив на него",
       "block.concoction.small_gray_pillow_block": "Маленькая серая подушка",
@@ -8200,6 +8215,7 @@
       "advancements.nether_mutation.descr": "Obtain nether-related or nether-mutated crop",
       "item.concoction.cherry_cake_slice": "Cherry Delight Cake Slice",
       "block.concoction.small_green_pillow_block": "Small Green Pillow",
+      "item.concoction.stir_fried_filet": "Stir-Fried Filet",
       "subtitles.oven_close": "Oven closes",
       "advancements.puffball_accident.descr": "Release spores of puffballs by stepping on them",
       "block.concoction.small_gray_pillow_block": "Small Gray Pillow",
