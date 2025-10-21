@@ -9,18 +9,20 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
-
-
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
+import org.jetbrains.annotations.NotNull;
 
-public class OmuriceItem extends Item {
-	public OmuriceItem() {
-		super(new Item.Properties().stacksTo(16)
-.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 1, 480, true))
-.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.5f).build()));
+
+
+public class BaconAndEggsItem extends Item {
+	public BaconAndEggsItem() {
+		super(new Item.Properties().stacksTo(64)
+		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 10, true))
+		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 2, 360, true))
+		.component(FOOD_EFFECT_3.value(), new FoodEffectComponent(FoodEffectType.SALTY, 1, 90, true))
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1f).build()));
 	}
 
 	@Override

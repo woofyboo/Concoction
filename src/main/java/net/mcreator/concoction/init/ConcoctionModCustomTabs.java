@@ -123,6 +123,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.MUSHROOM_CREAM_SOUP.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_SOUP.get());
 				tabData.accept(ConcoctionModItems.OMURICE.get());
+				tabData.accept(ConcoctionModItems.BACON_AND_EGGS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_MEATBALLS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());

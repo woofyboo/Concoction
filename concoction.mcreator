@@ -7304,6 +7304,20 @@
         ]
       },
       "path": "~/sunflower"
+    },
+    {
+      "name": "BaconAndEggs",
+      "type": "item",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "bacon_and_eggs",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/item/BaconAndEggsItem.java",
+          "src/main/resources/assets/concoction/models/item/bacon_and_eggs.json"
+        ]
+      },
+      "path": "~/general"
     }
   ],
   "variable_elements": [],
@@ -7851,6 +7865,7 @@
       "item.concoction.mint_chocolate_cake_slice": "Кусочек мятно-шоколадного торта",
       "item.minecraft.tipped_arrow.effect.blooming": "Стрела цветения",
       "item.concoction.cake_slice": "Кусочек торта",
+      "item.concoction.bacon_and_eggs": "Яичница с беконом",
       "subtitles.cauldron_boiling": "Котёл кипит",
       "item.minecraft.splash_potion.effect.blooming_extended": "Взрывное зелье цветения",
       "block.concoction.soul_ice": "Лёд душ",
@@ -8212,6 +8227,7 @@
       "item.concoction.mint_chocolate_cake_slice": "Mint Chocolate Cake Slice",
       "item.minecraft.tipped_arrow.effect.blooming": "Arrow of Potion Of Blooming",
       "item.concoction.cake_slice": "Cake Slice",
+      "item.concoction.bacon_and_eggs": "Bacon and Eggs",
       "subtitles.cauldron_boiling": "Cauldron is boiling",
       "item.minecraft.splash_potion.effect.blooming_extended": "Splash Potion of Blooming",
       "block.concoction.soul_ice": "Soul Ice",
