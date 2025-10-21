@@ -20,6 +20,7 @@ public class OmuriceItem extends Item {
 	public OmuriceItem() {
 		super(new Item.Properties().stacksTo(16)
 .component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 1, 480, true))
+.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.TENDER, 2, 300, true))
 .rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.5f).build()));
 	}
 

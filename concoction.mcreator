@@ -2132,7 +2132,7 @@
       "name": "MashedPotatoes",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mashed_potatoes",
       "metadata": {
         "files": [
@@ -3032,7 +3032,7 @@
       "name": "MushroomCreamSoup",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "mushroom_cream_soup",
       "metadata": {
         "files": [
@@ -6387,7 +6387,7 @@
       "name": "BoiledEgg",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "boiled_egg",
       "metadata": {
         "files": [
@@ -6779,7 +6779,7 @@
       "name": "NoodlesWithMeatballs",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "noodles_with_meatballs",
       "metadata": {
         "files": [
@@ -7062,7 +7062,7 @@
       "name": "NoodlesWithCreamSauce",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "noodles_with_cream_sauce",
       "metadata": {
         "files": [
@@ -7076,7 +7076,7 @@
       "name": "BoiledPotato",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "boiled_potato",
       "metadata": {
         "files": [
@@ -7315,6 +7315,32 @@
         "files": [
           "src/main/java/net/mcreator/concoction/item/BaconAndEggsItem.java",
           "src/main/resources/assets/concoction/models/item/bacon_and_eggs.json"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "Tender",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tender",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/potion/TenderMobEffect.java"
+        ]
+      },
+      "path": "~/general"
+    },
+    {
+      "name": "Nourishment",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nourishment",
+      "metadata": {
+        "files": [
+          "src/main/java/net/mcreator/concoction/potion/NourishmentMobEffect.java"
         ]
       },
       "path": "~/general"
@@ -7786,6 +7812,7 @@
       "block.concoction.potato_block": "Блок картошки",
       "item.concoction.obsidian_tears_bottle": "Бутылочка обсидиановых слёз",
       "advancements.breakfast_check.title": "Завтрак чемпионов",
+      "effect.concoction.tender": "Нежность",
       "item.minecraft.tipped_arrow.effect.flame": "Стрела жжения",
       "block.concoction.cyan_pillow_block": "Бирюзовая подушка",
       "block.concoction.magenta_pillow_block": "Пурпурная подушка",
@@ -7999,6 +8026,7 @@
       "block.concoction.crop_tomato": "Томат",
       "block.concoction.small_white_pillow_block": "Маленькая белая подушка",
       "advancements.breakfast_check.descr": "Сьешь вкусный завтрак, незадолго после того как проснешься",
+      "taste.concoction.nourish": "• Сытное",
       "item.concoction.kozinak": "Козинак",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Варёный рис",
@@ -8031,6 +8059,7 @@
       "item.concoction.cordyceps_spider_spawn_egg": "Яйцо призыва кордицепс-паука",
       "death.attack.soul_damage.player": "%1$s продал свою душу чтоб больше не видеть %2$s",
       "advancements.eat_dish.title": "Разжевать мысль",
+      "effect.concoction.nourishment": "Сытность",
       "block.concoction.white_woven_carpet": "Белый тканый ковёр",
       "item.concoction.mint_brew": "Мятный отвар",
       "item.concoction.corn_seeds": "Семена кукурузы",
@@ -8077,6 +8106,7 @@
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "advancements.special_carpet.descr": "Получи особый ковёр странствующего торговца",
       "item.concoction.chocolate": "Шоколад",
+      "taste.concoction.tender": "• Нежное",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "advancements.cauldron_boiling.descr": "Свари что-нибудь в котле",
       "message.concoction.cow_not_ready_bottle": "Эта корова ещё не готова к доению бутылочкой",
@@ -8148,6 +8178,7 @@
       "block.concoction.potato_block": "Potato Block",
       "item.concoction.obsidian_tears_bottle": "Bottle o\u0027 Obsidian Tears",
       "advancements.breakfast_check.title": "Never Work Before Breakfast",
+      "effect.concoction.tender": "Tender",
       "block.concoction.cyan_pillow_block": "Cyan Pillow",
       "item.minecraft.tipped_arrow.effect.flame": "Arrow of Flame",
       "block.concoction.magenta_pillow_block": "Magenta Pillow",
@@ -8361,6 +8392,7 @@
       "block.concoction.crop_tomato": "Crop Tomato",
       "block.concoction.small_white_pillow_block": "Small White Pillow",
       "advancements.breakfast_check.descr": "Eat a breakfast food not too long after waking up",
+      "taste.concoction.nourish": "• Nourishing",
       "item.concoction.kozinak": "Kozinak",
       "advancements.core.title": "Concoction",
       "item.concoction.cooked_rice": "Cooked Rice",
@@ -8393,6 +8425,7 @@
       "item.concoction.cordyceps_spider_spawn_egg": "Cordyceps Spider Spawn Egg",
       "death.attack.soul_damage.player": "%1$s sold their soul to never again see %2$s",
       "advancements.eat_dish.title": "Chew It Over",
+      "effect.concoction.nourishment": "Nourishment",
       "block.concoction.white_woven_carpet": "White Woven Carpet",
       "item.concoction.mint_brew": "Mint Brew",
       "item.concoction.corn_seeds": "Corn Seeds",
@@ -8439,6 +8472,7 @@
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
       "advancements.special_carpet.descr": "Get wandering woven carpet from wandering trader",
       "item.concoction.chocolate": "Chocolate",
+      "taste.concoction.tender": "• Tender",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "advancements.cauldron_boiling.descr": "Boil something in the cauldron",
       "message.concoction.cow_not_ready_bottle": "This cow isn\u0027t ready to be milked with bottle right now",

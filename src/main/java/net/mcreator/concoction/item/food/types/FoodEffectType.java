@@ -29,6 +29,8 @@ public enum FoodEffectType implements StringRepresentable {
     BREAKFAST("breakfast"),
     SUNSTRUCK("sunstruck"),
     PHOTOSYNTHESIS("photosynthesis"),
+    NOURISH("nourish"),
+    TENDER("tender"),
     HEAL("heal");
 
     private final String name;
@@ -56,6 +58,8 @@ public enum FoodEffectType implements StringRepresentable {
             case "breakfast" -> BREAKFAST;
             case "sunstruck" -> SUNSTRUCK;
             case "photosynthesis" -> PHOTOSYNTHESIS;
+            case "nourish" -> NOURISH;
+            case "tender" -> TENDER;
             case "heal" -> HEAL;
             default -> throw new IllegalArgumentException("Invalid name: " + name);
         };
@@ -105,6 +109,12 @@ public enum FoodEffectType implements StringRepresentable {
             }
             case PHOTOSYNTHESIS -> {
                 return new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case NOURISH -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.NOURISHMENT, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case TENDER -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.TENDER, duration * 20, level - 1, false, !isHidden, true, null);
             }
         }
         return null;

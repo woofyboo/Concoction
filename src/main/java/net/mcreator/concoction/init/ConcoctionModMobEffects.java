@@ -11,11 +11,13 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.core.registries.Registries;
 
 import net.mcreator.concoction.potion.WarmingMobEffect;
+import net.mcreator.concoction.potion.TenderMobEffect;
 import net.mcreator.concoction.potion.SweetnessMobEffect;
 import net.mcreator.concoction.potion.SunstruckEffectMobEffect;
 import net.mcreator.concoction.potion.SpicyMobEffect;
 import net.mcreator.concoction.potion.SaltnessMobEffect;
 import net.mcreator.concoction.potion.PhotosynthesisMobEffect;
+import net.mcreator.concoction.potion.NourishmentMobEffect;
 import net.mcreator.concoction.potion.MintyBreathMobEffect;
 import net.mcreator.concoction.potion.InstabilityMobEffect;
 import net.mcreator.concoction.potion.FrostTouchMobEffect;
@@ -38,4 +40,6 @@ public class ConcoctionModMobEffects {
 	public static final DeferredHolder<MobEffect, MobEffect> WARMING = REGISTRY.register("warming", () -> new WarmingMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> BITTERNESS = REGISTRY.register("bitterness", () -> new BitternessMobEffect());
 	public static final DeferredHolder<MobEffect, MobEffect> BREAKFAST = REGISTRY.register("breakfast", () -> new BreakfastMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> TENDER = REGISTRY.register("tender", () -> new TenderMobEffect());
+	public static final DeferredHolder<MobEffect, MobEffect> NOURISHMENT = REGISTRY.register("nourishment", () -> new NourishmentMobEffect());
 }
