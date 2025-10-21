@@ -10,17 +10,9 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
-
 public class MashedPotatoesItem extends Item {
 	public MashedPotatoesItem() {
-		super(new Item.Properties().stacksTo(16)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.TENDER, 1, 60, true))
-		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.NOURISH, 1, 12, true))
-		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(2f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(2f).build()));
 	}
 
 	@Override

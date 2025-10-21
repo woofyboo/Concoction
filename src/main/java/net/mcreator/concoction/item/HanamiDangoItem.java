@@ -13,16 +13,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
 
 public class HanamiDangoItem extends Item {
 	public HanamiDangoItem() {
-		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 12, true))
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.TENDER, 2, 30, true))
-		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
+		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 12, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
 	}
 
 	@Override
