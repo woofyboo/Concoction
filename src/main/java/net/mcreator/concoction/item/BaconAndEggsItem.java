@@ -22,7 +22,7 @@ public class BaconAndEggsItem extends Item {
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 10, true))
 		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 2, 360, true))
 		.component(FOOD_EFFECT_3.value(), new FoodEffectComponent(FoodEffectType.SALTY, 1, 90, true))
-		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1f).build()));
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
 	}
 
 	@Override
