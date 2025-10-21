@@ -12,6 +12,6 @@ import net.mcreator.concoction.ConcoctionMod;
 public class CreamyMobEffect extends MobEffect {
 	public CreamyMobEffect() {
 		super(MobEffectCategory.BENEFICIAL, -1291);
-		this.addAttributeModifier(Attributes.MOVEMENT_SPEED, ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "effect.creamy_0"), 0.08, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
+		
 	}
 }

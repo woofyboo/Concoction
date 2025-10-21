@@ -65,7 +65,7 @@ import java.util.UUID;
 import net.neoforged.api.distmarker.Dist;
 
 
-@EventBusSubscriber(Dist.CLIENT)
+@EventBusSubscriber
 public class PlayerHandler {
     private static int tickCounter = 0;
     private static final int UPDATE_INTERVAL = 200;
@@ -78,7 +78,7 @@ public class PlayerHandler {
 
     // Хранилище времени выхода из специального состояния для каждого игрока
     private static final Map<UUID, Long> playerSpecialStateExitTimes = new HashMap<>();
-    
+    private static final ResourceKey<net.minecraft.world.damagesource.DamageType> SPICY_DAMAGE_KEY = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:spicy_damage"));
     // Тоггл для каждого игрока, указывающий, должен ли рендериться эффект
     private static final Map<UUID, Boolean> shouldRenderSpicyEffect = new HashMap<>();
     
@@ -365,6 +365,12 @@ public static void onPlayerHurt(LivingIncomingDamageEvent event) {
     @SubscribeEvent
     public static void entityAttacked(LivingIncomingDamageEvent event) {
         Entity source = event.getSource().getEntity();
+
+        if (event.getEntity() instanceof Player p) {
+        if (p.hasEffect(ConcoctionModMobEffects.CREAMY) && event.getSource().is(SPICY_DAMAGE_KEY)) {
+            event.setCanceled(true); // полностью игнорируем spicy_damage
+            return;
+        }}
         
 
         if (source instanceof LivingEntity entity) {
