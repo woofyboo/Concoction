@@ -14,11 +14,16 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import org.jetbrains.annotations.NotNull;
-
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 public class CreamBottleItem extends Item {
 	public CreamBottleItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0.3f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16)
+		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 60, true))
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(1).saturationModifier(0.3f).alwaysEdible().build()));
 	}
 
 	@Override

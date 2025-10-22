@@ -10,9 +10,15 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
+
 public class NoodlesWithCreamSauceItem extends Item {
 	public NoodlesWithCreamSauceItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
+		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 180, true))
+		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
 	}
 
 	@Override

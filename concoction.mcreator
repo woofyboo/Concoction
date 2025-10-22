@@ -1943,7 +1943,7 @@
       "name": "Butter",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "butter",
       "metadata": {
         "files": [
@@ -3270,7 +3270,7 @@
       "name": "ButterSandwich",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "butter_sandwich",
       "metadata": {
         "files": [

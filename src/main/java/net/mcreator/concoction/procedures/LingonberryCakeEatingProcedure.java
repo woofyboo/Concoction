@@ -68,8 +68,11 @@ public class LingonberryCakeEatingProcedure {
 							_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 2));
 						if (entity instanceof Player _player)
 							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
-						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30*20, 1, false, false, true, null));
+						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide()) {
+    _entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30 * 20, 0, false, false, true, null));
+    _entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.CREAMY,    60 * 20, 0, false, false, true, null));
+}
+
 						if (event instanceof ICancellableEvent _cancellable) {
 							_cancellable.setCanceled(true);
 						}
@@ -82,8 +85,11 @@ public class LingonberryCakeEatingProcedure {
 						_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 2));
 					if (entity instanceof Player _player)
 						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
-					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30*20, 1, false, false, true, null));
+					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide()) {
+    _entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, 30 * 20, 0, false, false, true, null));
+    _entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.CREAMY,    60 * 20, 0, false, false, true, null));
+}
+
 					if (event instanceof ICancellableEvent _cancellable) {
 						_cancellable.setCanceled(true);
 					}
