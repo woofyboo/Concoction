@@ -5,6 +5,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -22,109 +23,155 @@ import java.util.*;
  * CREAMY: разовый буст уровней других эффектов.
  * - При добавлении CREAMY бустит текущие эффекты.
  * - Пока CREAMY активен, на каждом тике бустит любой новый эффект, который ещё не был усилен.
- * - "Память" об усиленных типах хранится в NBT и живёт до снятия САМИХ эффектов (переживает выход/вход).
- * - Сам CREAMY не бустится.
- *
- * Исправления гонок:
- * - во время replace (remove/add) выставляем отметку ДО модификации;
- * - onEffectRemoved игнорирует события, инициированные нами (REENTRY=true).
+ * - Один и тот же тип эффекта бустится не более одного раза (память держится до исчезновения самого усиленного эффекта).
+ * - Сам CREAMY никогда не бустится и не повышает сам себя.
+ * - Память об усиленных эффектах сохраняется в NBT игрока, переживает перезаход и клоны игрока.
  */
 @EventBusSubscriber
 public class CreamyBoostHandler {
 
-    /** защита от рекурсии и внутренних remove/add */
+    /** защита от рекурсии, когда мы сами remove/add эффекты */
     private static final ThreadLocal<Boolean> REENTRY = ThreadLocal.withInitial(() -> false);
 
-    // ==== Работа с NBT-памятью бустов ====
+    /** кэш: для каждого игрока — набор id эффектов, уже усиленных текущим “жизненным циклом” этих эффектов */
+    private static final Map<UUID, Set<String>> BOOSTED = new HashMap<>();
 
-    private static final String MOD_ROOT = "concoction";
-    private static final String BOOSTED_KEY = "creamyBoosted"; // ListTag<String> с id эффектов (e.g. "minecraft:regeneration")
+    /** ключ в PersistentData игрока */
+    private static final String NBT_KEY = "concoction_creamy_boosted";
 
-    private static CompoundTag getOrCreateModRoot(LivingEntity e) {
-        CompoundTag root = e.getPersistentData();
-        CompoundTag mod = root.getCompound(MOD_ROOT);
-        if (!root.contains(MOD_ROOT, Tag.TAG_COMPOUND)) {
-            root.put(MOD_ROOT, mod);
-        }
-        return mod;
-    }
-
-    private static Set<String> loadBoosted(LivingEntity e) {
-        CompoundTag mod = getOrCreateModRoot(e);
-        Set<String> out = new HashSet<>();
-        if (mod.contains(BOOSTED_KEY, Tag.TAG_LIST)) {
-            ListTag list = mod.getList(BOOSTED_KEY, Tag.TAG_STRING);
-            for (int i = 0; i < list.size(); i++) {
-                out.add(list.getString(i));
-            }
-        }
-        return out;
-    }
-
-    private static void saveBoosted(LivingEntity e, Set<String> set) {
-        CompoundTag root = e.getPersistentData();
-        CompoundTag mod = getOrCreateModRoot(e);
-
-        ListTag list = new ListTag();
-        for (String id : set) {
-            list.add(StringTag.valueOf(id));
-        }
-        mod.put(BOOSTED_KEY, list);
-        root.put(MOD_ROOT, mod);
-    }
+    // -------------------- утилиты ключей/наборов --------------------
 
     /** строковый ключ эффекта (minecraft:xxx) либо null */
     private static String keyOf(Holder<MobEffect> holder) {
         return holder.unwrapKey().map(k -> k.location().toString()).orElse(null);
     }
 
+    /** получить кэш-набор (RAM); если его нет — подгрузить из NBT */
+    private static Set<String> getBoostedSet(LivingEntity e) {
+        return BOOSTED.computeIfAbsent(e.getUUID(), u -> new HashSet<>(readPersisted(e)));
+    }
+
+    /** записать кэш в карту + синкнуть в NBT */
+    private static void setBoostedSet(LivingEntity e, Set<String> set) {
+        BOOSTED.put(e.getUUID(), set);
+        writePersisted(e, set);
+    }
+
     private static boolean wasBoosted(LivingEntity e, Holder<MobEffect> holder) {
         String id = keyOf(holder);
-        if (id == null) return true; // перестрахуемся
-        return loadBoosted(e).contains(id);
+        if (id == null) return true; // перестраховка
+        return getBoostedSet(e).contains(id);
     }
 
     private static void markBoosted(LivingEntity e, Holder<MobEffect> holder) {
         String id = keyOf(holder);
         if (id == null) return;
-        Set<String> set = loadBoosted(e);
-        if (set.add(id)) {
-            saveBoosted(e, set);
-        }
+        Set<String> set = getBoostedSet(e);
+        if (set.add(id)) setBoostedSet(e, set);
     }
 
     private static void unmarkBoosted(LivingEntity e, Holder<MobEffect> holder) {
         String id = keyOf(holder);
         if (id == null) return;
-        Set<String> set = loadBoosted(e);
-        if (set.remove(id)) {
-            saveBoosted(e, set);
+        Set<String> set = getBoostedSet(e);
+        if (set.remove(id)) setBoostedSet(e, set);
+    }
+
+    // -------------------- Persisted storage (NBT) --------------------
+
+    private static Set<String> readPersisted(LivingEntity e) {
+        CompoundTag tag = e.getPersistentData();
+        Set<String> out = new HashSet<>();
+        if (tag != null && tag.contains(NBT_KEY, Tag.TAG_LIST)) {
+            ListTag list = tag.getList(NBT_KEY, Tag.TAG_STRING);
+            for (Tag t : list) {
+                if (t instanceof StringTag st) out.add(st.getAsString());
+            }
+        }
+        return out;
+    }
+
+    private static void writePersisted(LivingEntity e, Set<String> set) {
+        CompoundTag tag = e.getPersistentData();
+        ListTag list = new ListTag();
+        for (String s : set) list.add(StringTag.valueOf(s));
+        tag.put(NBT_KEY, list);
+    }
+
+    // -------------------- события жизни игрока --------------------
+
+    /** При логине — подтянуть persisted набор в кэш (на случай холодного старта) */
+    @SubscribeEvent
+    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        Player p = event.getEntity();
+        if (p == null || p.level().isClientSide()) return;
+        BOOSTED.put(p.getUUID(), readPersisted(p));
+    }
+
+    /** При клоне (смерть/измерение) — перенести NBT, обновить кэш */
+    @SubscribeEvent
+    public static void onClone(PlayerEvent.Clone event) {
+        Player oldP = event.getOriginal();
+        Player newP = event.getEntity();
+        if (newP == null || newP.level().isClientSide()) return;
+        if (oldP == null) return;
+
+        CompoundTag oldTag = oldP.getPersistentData();
+        if (oldTag != null && oldTag.contains(NBT_KEY, Tag.TAG_LIST)) {
+            newP.getPersistentData().put(NBT_KEY, oldTag.getList(NBT_KEY, Tag.TAG_STRING).copy());
+        }
+        BOOSTED.put(newP.getUUID(), readPersisted(newP));
+    }
+
+    // -------------------- реакции на эффекты --------------------
+
+    /** Снятие эффектов: если снят НЕ CREAMY — снимаем «усиленный» флаг для этого типа */
+    @SubscribeEvent
+    public static void onEffectRemoved(MobEffectEvent.Remove event) {
+        LivingEntity e = event.getEntity();
+        if (e == null || e.level().isClientSide()) return;
+
+        Holder<MobEffect> removed = event.getEffect();
+        if (!removed.is(ConcoctionModMobEffects.CREAMY)) {
+            // эффект закончился — можно будет вновь усилить при новом появлении
+            unmarkBoosted(e, removed);
+        }
+        // снятие CREAMY здесь память НЕ очищает — так и задумано
+    }
+
+    /** Истёкший эффект: зеркалим логику Remove (не все моды триггерят Remove одинаково) */
+    @SubscribeEvent
+    public static void onEffectExpired(MobEffectEvent.Expired event) {
+        LivingEntity e = event.getEntity();
+        if (e == null || e.level().isClientSide()) return;
+
+        MobEffectInstance inst = event.getEffectInstance();
+        if (inst == null) return;
+        Holder<MobEffect> expired = inst.getEffect();
+
+        if (!expired.is(ConcoctionModMobEffects.CREAMY)) {
+            unmarkBoosted(e, expired);
         }
     }
 
-    // ==== События ====
-
-    /** Снятие эффектов: чистим отметки ТОЛЬКО снятого эффекта; CREAMY не очищает память.
-     *  Если снятие вызвали мы сами (REENTRY=true) — пропускаем, чтобы не потерять отметку посреди replace. */
+    /** Добавление CREAMY — разово бустим все текущие эффекты */
     @SubscribeEvent
-public static void onEffectAdded(MobEffectEvent.Added event) {
-    // ✅ Никакой логики на клиенте
-    if (event.getEntity() == null || event.getEntity().level().isClientSide()) return;
+    public static void onEffectAdded(MobEffectEvent.Added event) {
+        if (Boolean.TRUE.equals(REENTRY.get())) return;
 
-    if (Boolean.TRUE.equals(REENTRY.get())) return;
+        LivingEntity entity = event.getEntity();
+        MobEffectInstance added = event.getEffectInstance();
+        if (entity == null || added == null || entity.level().isClientSide()) return;
 
-    LivingEntity entity = event.getEntity();
-    MobEffectInstance added = event.getEffectInstance();
-    if (added == null) return;
+        Holder<MobEffect> addedHolder = added.getEffect();
+        if (!addedHolder.is(ConcoctionModMobEffects.CREAMY)) return;
 
-    Holder<MobEffect> addedHolder = added.getEffect();
-    if (addedHolder.is(ConcoctionModMobEffects.CREAMY)) {
         int bonus = added.getAmplifier() + 1;
 
-        // Сам creamy не бустим
+        // защитим сам CREAMY
         markBoosted(entity, ConcoctionModMobEffects.CREAMY);
 
-        // Бустим только текущие эффекты на сервере
+        // моментально бустим всё, что уже висит
         List<MobEffectInstance> snapshot = new ArrayList<>(entity.getActiveEffects());
         for (MobEffectInstance inst : snapshot) {
             if (inst == added) continue;
@@ -132,59 +179,41 @@ public static void onEffectAdded(MobEffectEvent.Added event) {
             if (h.is(ConcoctionModMobEffects.CREAMY)) continue;
             if (wasBoosted(entity, h)) continue;
 
-            markBoosted(entity, h);
             boostOnce(entity, inst, bonus);
+            markBoosted(entity, h);
         }
     }
-}
 
-@SubscribeEvent
-public static void onEffectRemoved(MobEffectEvent.Remove event) {
-    // ✅ Никакой логики на клиенте
-    if (event.getEntity() == null || event.getEntity().level().isClientSide()) return;
-
-    if (Boolean.TRUE.equals(REENTRY.get())) return;
-
-    LivingEntity e = event.getEntity();
-    Holder<MobEffect> removed = event.getEffect();
-
-    if (removed.is(ConcoctionModMobEffects.CREAMY)) {
-        return; // снятие creamy память не трогает
-    }
-
-    unmarkBoosted(e, removed);
-}
-
-
-    /** Периодическая проверка: пока CREAMY активен — бустим любые НОВЫЕ эффекты один раз. */
+    /** Пока CREAMY активен — бустим любые новые эффекты, появившиеся ПОСЛЕ него */
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Post event) {
         Player player = event.getEntity();
-        if (player == null || player.level().isClientSide) return;
+        if (player == null || player.level().isClientSide()) return;
 
-        if (!player.hasEffect(ConcoctionModMobEffects.CREAMY)) return;
+        // синхронизируем кэш с NBT иногда (на случай внешних правок)
+        BOOSTED.computeIfAbsent(player.getUUID(), u -> new HashSet<>(readPersisted(player)));
+
         MobEffectInstance creamy = player.getEffect(ConcoctionModMobEffects.CREAMY);
         if (creamy == null) return;
 
         int bonus = creamy.getAmplifier() + 1;
 
-        // Сам CREAMY не должен буститься
+        // сам CREAMY никогда не бустим
         markBoosted(player, ConcoctionModMobEffects.CREAMY);
 
-        // Просматриваем все активные эффекты — если ещё не бустили, бустим
+        // проверяем активные эффекты — бустим те, которых ещё нет в «усиленных»
         List<MobEffectInstance> snapshot = new ArrayList<>(player.getActiveEffects());
         for (MobEffectInstance inst : snapshot) {
             Holder<MobEffect> h = inst.getEffect();
             if (h.is(ConcoctionModMobEffects.CREAMY)) continue;
             if (wasBoosted(player, h)) continue;
 
-            // Сначала помечаем, потом повышаем
-            markBoosted(player, h);
             boostOnce(player, inst, bonus);
+            markBoosted(player, h);
         }
     }
 
-    // ==== Утилита буста ====
+    // -------------------- буст одного инстанса --------------------
 
     /** Выполнить разовое повышение уровня конкретного инстанса эффекта */
     private static void boostOnce(LivingEntity entity, MobEffectInstance inst, int bonus) {
@@ -203,8 +232,8 @@ public static void onEffectRemoved(MobEffectEvent.Remove event) {
 
         REENTRY.set(true);
         try {
-            entity.removeEffect(h);   // это вызовет onEffectRemoved, но он пропустит из-за REENTRY=true
-            entity.addEffect(upgraded); // onEffectAdded тоже пропустит из-за REENTRY=true
+            entity.removeEffect(h);
+            entity.addEffect(upgraded);
         } finally {
             REENTRY.set(false);
         }
