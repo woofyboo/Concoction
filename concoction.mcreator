@@ -7161,7 +7161,7 @@
       "name": "Soap",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "soap",
       "metadata": {
         "files": [
@@ -7175,7 +7175,7 @@
       "name": "SoapCraft",
       "type": "recipe",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "soap_craft",
       "metadata": {
         "files": [
@@ -7345,6 +7345,23 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "SoapLayer",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soap_layer",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/item/soap_layer.json",
+          "src/main/resources/assets/concoction/blockstates/soap_layer.json",
+          "src/main/resources/data/concoction/loot_table/blocks/soap_layer.json",
+          "src/main/resources/assets/concoction/models/block/soap_layer.json",
+          "src/main/java/net/mcreator/concoction/block/SoapLayerBlock.java"
+        ]
+      },
+      "path": "~/soap"
     }
   ],
   "variable_elements": [],
@@ -8016,6 +8033,7 @@
       "block.concoction.gray_woven_carpet": "Серый тканый ковёр",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Стрела цветения",
+      "block.concoction.soap_layer": "Soap Layer",
       "block.concoction.cotton_block": "Блок хлопчатника",
       "item.minecraft.lingering_potion.effect.blooming": "Оседающее зелье цветения",
       "block.concoction.cherry_block": "Блок вишни",
@@ -8381,6 +8399,7 @@
       "block.concoction.gray_woven_carpet": "Gray Woven Carpet",
       "item.minecraft.lingering_potion.effect.snowflake": "Lingering Potion of Snowflake",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Arrow of Potion Of Blooming",
+      "block.concoction.soap_layer": "Soap Layer",
       "block.concoction.cotton_block": "Cotton Bolls Block",
       "item.minecraft.lingering_potion.effect.blooming": "Lingering Potion of Blooming",
       "block.concoction.cherry_block": "Cherry Block",

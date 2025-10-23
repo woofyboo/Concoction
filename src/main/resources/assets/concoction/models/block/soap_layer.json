@@ -1,0 +1,7 @@
+{
+  "parent": "block/carpet",
+  "textures": {
+    "wool": "concoction:block/soap_layer"
+  },
+  "render_type": "cutout"
+}
