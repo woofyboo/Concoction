@@ -23,7 +23,9 @@
     "PowderSnowBlockMixin",
     "SnowballMixin",
     "ZombieMixin",
-    "PlayerCanEatMixin"
+    "PlayerCanEatMixin",
+    "BlockStateFrictionMixin",
+    "ItemEntitySoapFrictionMixin"
   ],
   "client": [
     "GuiMixin"

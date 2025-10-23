@@ -34,4 +34,5 @@ side="BOTH"
 # Start of user code block dependencies configuration
 [[mixins]]
 config="concoction.mixins.json"
+
 # End of user code block dependencies configuration
