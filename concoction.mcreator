@@ -7158,20 +7158,6 @@
       "path": "~/soap"
     },
     {
-      "name": "Soap",
-      "type": "item",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "soap",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/item/soap.json",
-          "src/main/java/net/mcreator/concoction/item/SoapItem.java"
-        ]
-      },
-      "path": "~/soap"
-    },
-    {
       "name": "SoapCraft",
       "type": "recipe",
       "compiles": true,
@@ -7345,23 +7331,6 @@
         ]
       },
       "path": "~/general"
-    },
-    {
-      "name": "SoapLayer",
-      "type": "block",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "soap_layer",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/concoction/models/item/soap_layer.json",
-          "src/main/resources/assets/concoction/blockstates/soap_layer.json",
-          "src/main/resources/data/concoction/loot_table/blocks/soap_layer.json",
-          "src/main/resources/assets/concoction/models/block/soap_layer.json",
-          "src/main/java/net/mcreator/concoction/block/SoapLayerBlock.java"
-        ]
-      },
-      "path": "~/soap"
     }
   ],
   "variable_elements": [],
@@ -8033,7 +8002,7 @@
       "block.concoction.gray_woven_carpet": "Серый тканый ковёр",
       "item.minecraft.lingering_potion.effect.snowflake": "Оседающее зелье мороза",
       "item.minecraft.tipped_arrow.effect.blooming_buffed": "Стрела цветения",
-      "block.concoction.soap_layer": "Soap Layer",
+      "block.concoction.soap_layer": "Слой мыла",
       "block.concoction.cotton_block": "Блок хлопчатника",
       "item.minecraft.lingering_potion.effect.blooming": "Оседающее зелье цветения",
       "block.concoction.cherry_block": "Блок вишни",
