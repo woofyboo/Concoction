@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:soap"
+    },
+    "title": {
+      "translate": "advancements.get_soap.title"
+    },
+    "description": {
+      "translate": "advancements.get_soap.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_soap_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "concoction:soap"
+            ],
+            "count": {
+              "min": 1,
+              "max": 1
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "concoction:new_crops"
+}

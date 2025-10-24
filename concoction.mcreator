@@ -7388,6 +7388,32 @@
         ]
       },
       "path": "~/soap"
+    },
+    {
+      "name": "GetSoap",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "get_soap",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/get_soap.json"
+        ]
+      },
+      "path": "~/achivements"
+    },
+    {
+      "name": "SlipperySlope",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "slippery_slope",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/advancement/slippery_slope.json"
+        ]
+      },
+      "path": "~/achivements"
     }
   ],
   "variable_elements": [],
@@ -7817,6 +7843,7 @@
   "language_map": {
     "ru_ru": {
       "gui.oven.title": "Духовка",
+      "advancements.slippery_slope.title": "Скользкая дорожка",
       "item.concoction.overgrown_arrow": "Цветущая стрела",
       "gui.concoction.kitchen_cabinet": "Кухонный шкаф",
       "taste.concoction.glow": "• Сияющее",
@@ -7929,6 +7956,7 @@
       "block.concoction.spruce_kitchen_cabinet": "Еловый кухонный шкаф",
       "block.concoction.small_black_pillow_block": "Маленькая чёрная подушка",
       "block.concoction.sea_salt_block": "Блок морской соли",
+      "advancements.slippery_slope.descr": "Выброси предмет на слой мыла и наблюдай как он медленно отдаляется от тебя...",
       "advancements.fall_pillow.descr": "Упади на подушку с высоты более ста блоков",
       "death.attack.soul_damage": "%1$s слился с душами",
       "block.concoction.acacia_kitchen_cabinet": "Акациевый кухонный шкаф",
@@ -7964,6 +7992,7 @@
       "gamerule.milkingInterval.description": "Время в тиках которое должно пройти прежде чем будет возможно выдоить бутылочку.",
       "block.concoction.wild_spicy_pepper": "Дикий жгучий перец",
       "item.concoction.pumpkin_pie_slice": "Кусочек тыквенного пирога",
+      "advancements.get_soap.title": "Моем, моем трубочиста...",
       "block.concoction.small_yellow_pillow_block": "Маленькая жёлтая подушка",
       "block.concoction.small_light_blue_pillow_block": "Маленькая голубая подушка",
       "item.concoction.overgrown_axe": "Цветущий топор",
@@ -8152,6 +8181,7 @@
       "block.concoction.cabbage_leaves_block": "Блок листьев капусты",
       "block.concoction.small_purple_pillow_block": "Маленькая фиолетовая подушка",
       "advancements.special_carpet.descr": "Получи особый ковёр странствующего торговца",
+      "advancements.get_soap.descr": "Найди или создай мыло",
       "item.concoction.chocolate": "Шоколад",
       "item.concoction.music_disc_hot_ice": "Пластинка",
       "advancements.cauldron_boiling.descr": "Свари что-нибудь в котле",
@@ -8184,6 +8214,7 @@
     },
     "en_us": {
       "gui.oven.title": "Oven",
+      "advancements.slippery_slope.title": "Slippery Slope",
       "item.concoction.overgrown_arrow": "Overgrown Arrow",
       "gui.concoction.kitchen_cabinet": "Kitchen Cabinet",
       "taste.concoction.glow": "• Glimmering",
@@ -8296,6 +8327,7 @@
       "block.concoction.spruce_kitchen_cabinet": "Spruce Kitchen Cabinet",
       "block.concoction.small_black_pillow_block": "Small Black Pillow",
       "block.concoction.sea_salt_block": "Sea Salt Block",
+      "advancements.slippery_slope.descr": "Drop an item and watch it slip away from you for some time",
       "advancements.fall_pillow.descr": "Fall over a hundred blocks on pillow",
       "death.attack.soul_damage": "%1$s was consumed by souls",
       "block.concoction.acacia_kitchen_cabinet": "Acacia Kitchen Cabinet",
@@ -8331,6 +8363,7 @@
       "gamerule.milkingInterval.description": "Ticks that have to pass to milk one bottle of milk",
       "block.concoction.wild_spicy_pepper": "Wild Spicy Pepper",
       "item.concoction.pumpkin_pie_slice": "Pumpkin Pie Slice",
+      "advancements.get_soap.title": "Soap Opera",
       "block.concoction.small_yellow_pillow_block": "Small Yellow Pillow",
       "block.concoction.small_light_blue_pillow_block": "Small Light Blue Pillow",
       "item.concoction.overgrown_axe": "Overgrown Axe",
@@ -8519,6 +8552,7 @@
       "block.concoction.cabbage_leaves_block": "Cabbage Leaves Block",
       "block.concoction.small_purple_pillow_block": "Small Purple Pillow",
       "advancements.special_carpet.descr": "Get wandering woven carpet from wandering trader",
+      "advancements.get_soap.descr": "Find or craft soap",
       "item.concoction.chocolate": "Chocolate",
       "item.concoction.music_disc_hot_ice": "Music Disc",
       "advancements.cauldron_boiling.descr": "Boil something in the cauldron",

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "id": "concoction:soap_block"
+    },
+    "title": {
+      "translate": "advancements.slippery_slope.title"
+    },
+    "description": {
+      "translate": "advancements.slippery_slope.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "slippery_slope_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "concoction:get_soap"
+}

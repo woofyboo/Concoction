@@ -26,7 +26,8 @@
     "PlayerCanEatMixin",
     "BlockStateFrictionMixin",
     "ItemEntitySoapFrictionMixin",
-    "BoatSoapFrictionMixin"
+    "BoatSoapFrictionMixin",
+    "ItemEntitySlideTrackerMixin"
   ],
   "client": [
     "GuiMixin"
