@@ -40,7 +40,7 @@ public abstract class ItemEntitySoapFrictionMixin {
         if (aboveState.getBlock() instanceof SoapLayerBlock) {
             // У предметов f уже включает *0.98F*, потому подставляем "мыльную" фрикцию 0.98F так же,
             // т.е. f = 0.98F (мыло) * 0.98F (item damping)
-            float soapItemF = 0.9999F * 0.98F;
+            float soapItemF = 1F;
 
             // Берём максимум, чтобы не ухудшать лёд/синий лёд, если вдруг они ещё скользче вашей цели
             return Math.max(original, soapItemF);

@@ -25,7 +25,8 @@
     "ZombieMixin",
     "PlayerCanEatMixin",
     "BlockStateFrictionMixin",
-    "ItemEntitySoapFrictionMixin"
+    "ItemEntitySoapFrictionMixin",
+    "BoatSoapFrictionMixin"
   ],
   "client": [
     "GuiMixin"

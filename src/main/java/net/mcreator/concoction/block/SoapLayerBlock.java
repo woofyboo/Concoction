@@ -34,7 +34,7 @@ public class SoapLayerBlock extends Block {
             .instabreak()
             .noOcclusion()
             .noCollission()
-            .friction(1.2F)                  // скользко как лёд (лед ~0.98F)
+            .friction(1.079F)                  // скользко как лёд (лед ~0.98F)
             .pushReaction(PushReaction.DESTROY)
             .isRedstoneConductor((bs, br, bp) -> false));
         // ВАЖНО: убрали noCollission(), чтобы по слою реально «стояли» и звук шел от него, а не от блока снизу
@@ -84,7 +84,7 @@ public class SoapLayerBlock extends Block {
     @Override
     public float getFriction(BlockState state, LevelReader level, BlockPos pos, Entity entity) {
         // Поддерживаем ледяную «скользкость» даже если поведение в ядре поменяется
-        return 1.2F;
+        return 1.079F;
     }
 
     /* --- Звук шагов по слизи --- */
