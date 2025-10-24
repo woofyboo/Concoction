@@ -19,4 +19,5 @@ public class ConcoctionModParticleTypes {
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MINT_LEAF_PARTICLE_VARIANT_2 = REGISTRY.register("mint_leaf_particle_variant_2", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FEATHER_PARTICLE = REGISTRY.register("feather_particle", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPORE_CLOUD = REGISTRY.register("spore_cloud", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SOAP_BUBBLE = REGISTRY.register("soap_bubble", () -> new SimpleParticleType(false));
 }

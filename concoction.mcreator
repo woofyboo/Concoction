@@ -7331,6 +7331,20 @@
         ]
       },
       "path": "~/general"
+    },
+    {
+      "name": "SoapBubble",
+      "type": "particle",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soap_bubble",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/particles/soap_bubble.json",
+          "src/main/java/net/mcreator/concoction/client/particle/SoapBubbleParticle.java"
+        ]
+      },
+      "path": "~/soap"
     }
   ],
   "variable_elements": [],
