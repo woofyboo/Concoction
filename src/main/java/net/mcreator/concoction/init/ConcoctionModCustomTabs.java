@@ -182,6 +182,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.OVEN.get());
 				tabData.accept(ConcoctionModItems.BUTTER_CHURN.get());
 				tabData.accept(ConcoctionModItems.SOULLAND.get());
+				tabData.accept(ConcoctionModItems.SOAP_BLOCK.get());
+
 
 //Cтроительные блоки
 				tabData.accept(ConcoctionModItems.ROCK_SALT_BLOCK.get());

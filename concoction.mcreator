@@ -7345,6 +7345,49 @@
         ]
       },
       "path": "~/soap"
+    },
+    {
+      "name": "SoapBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soap_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/concoction/models/block/soap_block.json",
+          "src/main/resources/assets/concoction/blockstates/soap_block.json",
+          "src/main/java/net/mcreator/concoction/block/SoapBlockBlock.java",
+          "src/main/resources/assets/concoction/models/item/soap_block.json",
+          "src/main/resources/data/concoction/loot_table/blocks/soap_block.json"
+        ]
+      },
+      "path": "~/soap"
+    },
+    {
+      "name": "SoapBlockCraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soap_block_craft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/soap_block_craft.json"
+        ]
+      },
+      "path": "~/soap"
+    },
+    {
+      "name": "SoapBlockUncraft",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "soap_block_uncraft",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/concoction/recipe/soap_block_uncraft.json"
+        ]
+      },
+      "path": "~/soap"
     }
   ],
   "variable_elements": [],
@@ -7722,6 +7765,7 @@
       "CUSTOM:CropPuffball"
     ],
     "BLOCKS:minecraft:mineable/pickaxe": [
+      "~CUSTOM:SoapBlock",
       "~CUSTOM:RockSaltBlock",
       "~CUSTOM:Oven",
       "~CUSTOM:SoulIce"
@@ -7933,6 +7977,7 @@
       "block.concoction.sunflower_seed_block": "Блок семечек подсолнуха",
       "advancements.new_crops.descr": "Найди новые дикорастущие культуры",
       "taste.concoction.sunstruck": "• Лихорадочное",
+      "block.concoction.soap_block": "Блок мыла",
       "item.concoction.hanami_dango": "Ханами данго",
       "effect.concoction.spicy": "Жгучесть",
       "message.concoction.cow_is_baby": "Эта корова слишком молода, чтобы давать молоко",
@@ -8299,6 +8344,7 @@
       "block.concoction.sunflower_seed_block": "Sunflower Seed Block",
       "advancements.new_crops.descr": "Find any new wild plants that can be planted and harvested",
       "taste.concoction.sunstruck": "• Feverish",
+      "block.concoction.soap_block": "Soap Block",
       "item.concoction.hanami_dango": "Hanami Dango",
       "effect.concoction.spicy": "Spiciness",
       "message.concoction.cow_is_baby": "This cow is too young to produce milk",

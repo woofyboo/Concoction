@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "concoction:soap_block",
     "concoction:rock_salt_block",
     "concoction:oven",
     "concoction:soul_ice"
