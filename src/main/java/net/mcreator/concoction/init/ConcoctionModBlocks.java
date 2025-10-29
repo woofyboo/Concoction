@@ -35,6 +35,7 @@ import net.mcreator.concoction.block.SoapBlockBlock;
 import net.mcreator.concoction.block.SoakedRiceBlockBlock;
 import net.mcreator.concoction.block.SmallPillowBlock;
 import net.mcreator.concoction.block.SeaSaltBlockBlock;
+import net.mcreator.concoction.block.SaponariaBlock;
 import net.mcreator.concoction.block.RockSaltBlockBlock;
 import net.mcreator.concoction.block.RiceBlockBlock;
 import net.mcreator.concoction.block.RedWovenCarpetBlock;
@@ -181,7 +182,9 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WARPED_KITCHEN_CABINET = REGISTRY.register("warped_kitchen_cabinet", WarpedKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> PUFFBALL_BLOCK = REGISTRY.register("puffball_block", PuffballBlockBlock::new);
 	public static final DeferredBlock<Block> SOAP_BLOCK = REGISTRY.register("soap_block", SoapBlockBlock::new);
+	public static final DeferredBlock<Block> SAPONARIA = REGISTRY.register("saponaria", SaponariaBlock::new);
 	// Start of user code block custom blocks
+	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());
 	public static final DeferredBlock<Block> SOAP_LAYER = REGISTRY.register("soap_layer", SoapLayerBlock::new);
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
 	public static final DeferredBlock<Block> CARROT_CAKE = REGISTRY.register("carrot_cake", CarrotCakeBlock::new);

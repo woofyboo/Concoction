@@ -1,0 +1,9 @@
+{
+  "parent": "concoction:custom/saponaria_stage0",
+  "textures": {
+    "all": "concoction:block/saponaria_stage0",
+    "particle": "concoction:block/saponaria_stage0",
+    "0": "concoction:block/saponaria_stage0"
+  },
+  "render_type": "cutout"
+}
