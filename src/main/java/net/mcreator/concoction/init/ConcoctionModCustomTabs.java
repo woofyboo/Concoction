@@ -54,7 +54,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.COOKED_PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_SPORES.get());
-				tabData.accept(ConcoctionModItems.SAPONARIA_ITEM.get());
 				tabData.accept(ConcoctionModItems.SAPONARIA_ROOT.get());
 
 				
