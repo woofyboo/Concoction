@@ -17,7 +17,7 @@ public record ButcheringEnchantmentEffect() implements EnchantmentEntityEffect {
     @Override
     public void apply(ServerLevel serverLevel, int enchantLevel, EnchantedItemInUse enchantedItemInUse, Entity entity, Vec3 vec3) {
     }
-
+//jopa
     @Override
     public MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
