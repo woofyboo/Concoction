@@ -1,0 +1,147 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/saponaria",
+  "pools": [
+
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"up":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"down":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"north":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"south":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"east":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"0"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"west":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"up":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"down":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"north":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"south":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"east":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions": [
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"west":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"up":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"down":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"north":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"south":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"east":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"1"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"west":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"up":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"down":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"north":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"south":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"east":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"west":"true"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"up":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"down":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"north":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"south":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"east":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} },
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"west":"true"} },
+      { "condition":"minecraft:random_chance","chance":0.35 }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria" } ] },
+
+    { "rolls": 1, "conditions":[
+      { "condition":"minecraft:block_state_property","block":"concoction:saponaria","properties":{"age":"2"} }
+    ], "entries":[ { "type":"minecraft:item","name":"concoction:saponaria_root" } ] }
+  ]
+}
