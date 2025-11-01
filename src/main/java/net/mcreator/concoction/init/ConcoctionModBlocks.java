@@ -182,7 +182,6 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WARPED_KITCHEN_CABINET = REGISTRY.register("warped_kitchen_cabinet", WarpedKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> PUFFBALL_BLOCK = REGISTRY.register("puffball_block", PuffballBlockBlock::new);
 	public static final DeferredBlock<Block> SOAP_BLOCK = REGISTRY.register("soap_block", SoapBlockBlock::new);
-	public static final DeferredBlock<Block> SAPONARIA = REGISTRY.register("saponaria", SaponariaBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());
 	public static final DeferredBlock<Block> SOAP_LAYER = REGISTRY.register("soap_layer", SoapLayerBlock::new);

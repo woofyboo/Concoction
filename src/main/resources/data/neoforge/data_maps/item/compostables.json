@@ -260,6 +260,9 @@
   	},
     "concoction:saponaria_root": {
       "chance": 0.35
+  	},
+    "concoction:saponaria": {
+      "chance": 0.5
   	}
 	}
 }
