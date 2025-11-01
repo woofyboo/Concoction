@@ -1,0 +1,9 @@
+{
+  "type": "concoction:saponaria_patch",
+  "config": {
+    "block": "concoction:saponaria",
+    "radius": 7,
+    "spread_tries": 60,
+    "attempts_per_pos": 6
+  }
+}

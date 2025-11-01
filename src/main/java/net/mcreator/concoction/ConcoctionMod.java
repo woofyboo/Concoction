@@ -35,6 +35,7 @@ import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModCustomTabs;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
+import net.mcreator.concoction.worldgen.ModWorldgen;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
@@ -42,6 +43,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Collection;
 import java.util.ArrayList;
+
 
 @Mod("concoction")
 public class ConcoctionMod {
@@ -70,6 +72,7 @@ public class ConcoctionMod {
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
 		ConcoctionModEnchantmentsEffects.register(modEventBus);
+        ModWorldgen.FEATURES.register(modEventBus);
 		//		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
 		// End of user code block mod init
