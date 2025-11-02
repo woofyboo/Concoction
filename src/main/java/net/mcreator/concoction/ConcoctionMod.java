@@ -36,6 +36,7 @@ import net.mcreator.concoction.init.ConcoctionModCustomTabs;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.worldgen.ModWorldgen;
+import net.mcreator.concoction.recipe.ModRecipeSerializers;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Map;
@@ -73,7 +74,8 @@ public class ConcoctionMod {
 		ConcoctionModRecipes.register(modEventBus);
 		ConcoctionModEnchantmentsEffects.register(modEventBus);
         ModWorldgen.FEATURES.register(modEventBus);
-		//		HUDOverlays.register(modEventBus);
+        ModRecipeSerializers.SERIALIZERS.register(modEventBus);
+        //		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
 		// End of user code block mod init
 	}

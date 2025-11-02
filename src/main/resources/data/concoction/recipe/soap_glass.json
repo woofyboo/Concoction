@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "glass",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:soap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    },
+    {
+      "tag": "c:glass_blocks/cheap"
+    }
+
+  ],
+  "result": {
+    "id": "minecraft:glass",
+    "count": 8
+  }
+}

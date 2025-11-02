@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "piston",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:soap"
+    },
+    {
+      "item": "minecraft:sticky_piston"
+    }
+  ],
+  "result": {
+    "id": "minecraft:piston",
+    "count": 1
+  }
+}

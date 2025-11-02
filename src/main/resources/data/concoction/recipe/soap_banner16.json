@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pink_banner",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:soap"
+    },
+    {
+      "item": "minecraft:pink_banner"
+    }
+  ],
+  "result": {
+    "id": "minecraft:pink_banner",
+    "count": 1
+  }
+}

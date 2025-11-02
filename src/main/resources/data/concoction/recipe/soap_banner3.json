@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gray_banner",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:soap"
+    },
+    {
+      "item": "minecraft:gray_banner"
+    }
+  ],
+  "result": {
+    "id": "minecraft:gray_banner",
+    "count": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "arrow",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "concoction:soap"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    },
+    {
+      "item": "minecraft:tipped_arrow"
+    }
+  ],
+  "result": {
+    "id": "minecraft:arrow",
+    "count": 8
+  }
+}
