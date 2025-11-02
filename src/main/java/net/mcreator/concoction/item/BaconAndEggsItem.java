@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BaconAndEggsItem extends Item {
 	public BaconAndEggsItem() {
-		super(new Item.Properties().stacksTo(64)
+		super(new Item.Properties().stacksTo(16)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 10, true))
 		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 2, 360, true))
 		.component(FOOD_EFFECT_3.value(), new FoodEffectComponent(FoodEffectType.SALTY, 1, 90, true))

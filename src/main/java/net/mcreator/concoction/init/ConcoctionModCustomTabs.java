@@ -128,6 +128,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.BACON_AND_EGGS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_MEATBALLS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
+                tabData.accept(ConcoctionModItems.NISHOLDA.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.DANDELION_TEA.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS_BREW.get());

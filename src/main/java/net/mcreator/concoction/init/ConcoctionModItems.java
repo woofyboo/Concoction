@@ -106,6 +106,7 @@ import net.mcreator.concoction.item.BoiledEggItem;
 import net.mcreator.concoction.item.BambooPorkchopSoupItem;
 import net.mcreator.concoction.item.BaconAndEggsItem;
 import net.mcreator.concoction.item.AnimalFatItem;
+import net.mcreator.concoction.item.NisholdaItem;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
@@ -281,6 +282,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> KOZINAK = REGISTRY.register("kozinak", KozinakItem::new);
 	public static final DeferredItem<Item> BACON_AND_EGGS = REGISTRY.register("bacon_and_eggs", BaconAndEggsItem::new);
 	public static final DeferredItem<Item> STIR_FRIED_FILET = REGISTRY.register("stir_fried_filet", StirFriedFiletItem::new);
+    public static final DeferredItem<Item> NISHOLDA = REGISTRY.register("nisholda", NisholdaItem::new);
 	public static final DeferredItem<Item> SOAP_BLOCK = block(ConcoctionModBlocks.SOAP_BLOCK);
 	// Start of user code block custom items
 	public static final DeferredItem<BlockItem> SAPONARIA_ITEM = REGISTRY.register("saponaria", () -> new BlockItem(ConcoctionModBlocks.SAPONARIA.get(), new Item.Properties()));
