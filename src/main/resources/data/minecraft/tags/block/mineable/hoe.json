@@ -19,6 +19,7 @@
     "concoction:onion_block",
     "concoction:cabbage_block",
     "concoction:spicy_pepper_block",
-    "concoction:corn_block"
+    "concoction:corn_block",
+    "concoction:apple_block"
   ]
 }

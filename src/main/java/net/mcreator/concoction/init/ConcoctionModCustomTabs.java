@@ -162,6 +162,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.SOAKED_RICE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.REAPEPPER_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_BLOCK.get());
+                tabData.accept(ConcoctionModItems.APPLE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.POTATO_BLOCK.get());
 				tabData.accept(ConcoctionModItems.CARROT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.BEETROOT_BLOCK.get());

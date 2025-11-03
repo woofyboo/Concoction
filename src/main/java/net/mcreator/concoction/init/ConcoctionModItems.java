@@ -284,6 +284,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> STIR_FRIED_FILET = REGISTRY.register("stir_fried_filet", StirFriedFiletItem::new);
     public static final DeferredItem<Item> NISHOLDA = REGISTRY.register("nisholda", NisholdaItem::new);
 	public static final DeferredItem<Item> SOAP_BLOCK = block(ConcoctionModBlocks.SOAP_BLOCK);
+    public static final DeferredItem<Item> APPLE_BLOCK = block(ConcoctionModBlocks.APPLE_BLOCK);
 	// Start of user code block custom items
 	public static final DeferredItem<BlockItem> SAPONARIA_ITEM = REGISTRY.register("saponaria", () -> new BlockItem(ConcoctionModBlocks.SAPONARIA.get(), new Item.Properties()));
 	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", () -> new ItemNameBlockItem(ConcoctionModBlocks.SOAP_LAYER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

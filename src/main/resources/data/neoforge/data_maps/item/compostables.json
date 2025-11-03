@@ -236,7 +236,8 @@
     },
     "concoction:flour": {
       "chance": 0.35
-    },
+    }
+,
     "concoction:boiled_egg": {
       "chance": 0.5
     },
@@ -251,7 +252,7 @@
     },
     "concoction:fried_puffballs": {
       "chance": 0.65
-  	},
+  	},
     "concoction:puffball_block": {
       "chance": 1
   	},
@@ -263,6 +264,9 @@
   	},
     "concoction:saponaria": {
       "chance": 0.5
-  	}
+  	},
+    "concoction:apple_block": {
+      "chance": 1.0
+    }
 	}
 }
