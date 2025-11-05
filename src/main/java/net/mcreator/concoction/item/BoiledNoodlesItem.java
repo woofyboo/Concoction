@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.item;
 
 import net.minecraft.world.level.Level;
@@ -11,22 +10,41 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
 public class BoiledNoodlesItem extends Item {
-	public BoiledNoodlesItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
-	}
+    public BoiledNoodlesItem() {
+        super(new Item.Properties()
+                .stacksTo(16)
+                .rarity(Rarity.COMMON)
+                .food(new FoodProperties.Builder()
+                        .nutrition(6)
+                        .saturationModifier(0.6f)
+                        .build())
+                // ✅ возвращает миску при крафте
+                .craftRemainder(Items.BOWL));
+    }
 
-	@Override
-	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-		ItemStack retval = new ItemStack(Items.BOWL);
-		super.finishUsingItem(itemstack, world, entity);
-		if (itemstack.isEmpty()) {
-			return retval;
-		} else {
-			if (entity instanceof Player player && !player.getAbilities().instabuild) {
-				if (!player.getInventory().add(retval))
-					player.drop(retval, false);
-			}
-			return itemstack;
-		}
-	}
+    // Явно указываем, что предмет имеет остаток после крафта
+    @Override
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+        return new ItemStack(Items.BOWL);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+        ItemStack retval = new ItemStack(Items.BOWL);
+        super.finishUsingItem(itemstack, world, entity);
+        if (itemstack.isEmpty()) {
+            return retval;
+        } else {
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                if (!player.getInventory().add(retval))
+                    player.drop(retval, false);
+            }
+            return itemstack;
+        }
+    }
 }

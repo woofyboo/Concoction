@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.item;
 
 import net.minecraft.world.level.Level;
@@ -11,22 +10,42 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
 public class CookedRiceItem extends Item {
-	public CookedRiceItem() {
-		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
-	}
+    public CookedRiceItem() {
+        super(new Item.Properties()
+                .stacksTo(16)
+                .rarity(Rarity.COMMON)
+                .food(new FoodProperties.Builder()
+                        .nutrition(6)
+                        .saturationModifier(0.6f)
+                        .build())
+                // ВОТ ЭТО ДАЁТ ПУСТУЮ МИСКУ ПРИ ИСПОЛЬЗОВАНИИ В КРАФТЕ:
+                .craftRemainder(Items.BOWL));
+    }
 
-	@Override
-	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-		ItemStack retval = new ItemStack(Items.BOWL);
-		super.finishUsingItem(itemstack, world, entity);
-		if (itemstack.isEmpty()) {
-			return retval;
-		} else {
-			if (entity instanceof Player player && !player.getAbilities().instabuild) {
-				if (!player.getInventory().add(retval))
-					player.drop(retval, false);
-			}
-			return itemstack;
-		}
-	}
+    // Доп. совместимость: явно сообщаем, что у предмета есть остаток крафта.
+    @Override
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+        return new ItemStack(Items.BOWL);
+    }
+
+    // При поедании возвращаем миску игроку (как и было).
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+        ItemStack retval = new ItemStack(Items.BOWL);
+        super.finishUsingItem(itemstack, world, entity);
+        if (itemstack.isEmpty()) {
+            return retval;
+        } else {
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                if (!player.getInventory().add(retval))
+                    player.drop(retval, false);
+            }
+            return itemstack;
+        }
+    }
 }

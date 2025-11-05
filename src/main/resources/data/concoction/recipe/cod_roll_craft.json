@@ -1,21 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "food",
   "pattern": [
-    "aaa",
-    "aaa",
-    " b "
+    "B",
+    "A"
   ],
   "key": {
-    "a": {
-      "item": "concoction:rice"
-    },
-    "b": {
-      "item": "minecraft:cod"
-    }
+    "A": { "item": "concoction:cooked_rice" },
+    "B": { "item": "minecraft:cod" }
   },
-  "result": {
-    "id": "concoction:cod_sushi",
-    "count": 8
-  }
+  "result": { "id": "concoction:cod_sushi", "count": 8 }
 }

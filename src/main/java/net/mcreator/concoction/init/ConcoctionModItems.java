@@ -107,6 +107,9 @@ import net.mcreator.concoction.item.BambooPorkchopSoupItem;
 import net.mcreator.concoction.item.BaconAndEggsItem;
 import net.mcreator.concoction.item.AnimalFatItem;
 import net.mcreator.concoction.item.NisholdaItem;
+import net.mcreator.concoction.item.MagmaEggItem;
+import net.mcreator.concoction.item.BucketCasseroleItem;
+import net.mcreator.concoction.item.HotChocolateItem;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
@@ -285,6 +288,9 @@ public class ConcoctionModItems {
     public static final DeferredItem<Item> NISHOLDA = REGISTRY.register("nisholda", NisholdaItem::new);
 	public static final DeferredItem<Item> SOAP_BLOCK = block(ConcoctionModBlocks.SOAP_BLOCK);
     public static final DeferredItem<Item> APPLE_BLOCK = block(ConcoctionModBlocks.APPLE_BLOCK);
+    public static final DeferredItem<Item> MAGMA_EGG = REGISTRY.register("magma_egg", MagmaEggItem::new);
+    public static final DeferredItem<Item> BUCKET_CASSEROLE = REGISTRY.register("bucket_casserole", BucketCasseroleItem::new);
+    public static final DeferredItem<Item> HOT_CHOCOLATE = REGISTRY.register("hot_chocolate", HotChocolateItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<BlockItem> SAPONARIA_ITEM = REGISTRY.register("saponaria", () -> new BlockItem(ConcoctionModBlocks.SAPONARIA.get(), new Item.Properties()));
 	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", () -> new ItemNameBlockItem(ConcoctionModBlocks.SOAP_LAYER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

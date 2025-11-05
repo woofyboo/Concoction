@@ -83,6 +83,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.BOILED_POTATO.get());
 				tabData.accept(ConcoctionModItems.BOILED_EGG.get());
 				tabData.accept(ConcoctionModItems.FRIED_EGG.get());
+                tabData.accept(ConcoctionModItems.MAGMA_EGG.get());
 				tabData.accept(ConcoctionModItems.BUTTER_SANDWICH.get());
 				tabData.accept(ConcoctionModItems.KOZINAK.get());
 				tabData.accept(ConcoctionModItems.HANAMI_DANGO.get());
@@ -129,6 +130,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_MEATBALLS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
                 tabData.accept(ConcoctionModItems.NISHOLDA.get());
+                tabData.accept(ConcoctionModItems.BUCKET_CASSEROLE.get());
+                tabData.accept(ConcoctionModItems.HOT_CHOCOLATE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.DANDELION_TEA.get());
 				tabData.accept(ConcoctionModItems.SUNFLOWER_SEEDS_BREW.get());
