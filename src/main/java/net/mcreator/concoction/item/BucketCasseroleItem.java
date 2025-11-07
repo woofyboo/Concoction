@@ -1,8 +1,5 @@
-
 package net.mcreator.concoction.item;
 
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
@@ -12,17 +9,22 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class NoodlesWithMeatballsItem extends TastefulItem {
-	public NoodlesWithMeatballsItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 180, true))
-                .rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
+public class BucketCasseroleItem extends TastefulItem {
+	public BucketCasseroleItem() {
+		super(new Item.Properties().stacksTo(16)
+				.rarity(Rarity.COMMON)
+				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 3, 300, true))
+                .component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 450, true))
+				.food((new FoodProperties.Builder()).nutrition(10).saturationModifier(1.0f).build()));
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-		ItemStack retval = new ItemStack(Items.BOWL);
+		ItemStack retval = new ItemStack(Items.BUCKET);
 		super.finishUsingItem(itemstack, world, entity);
 		if (itemstack.isEmpty()) {
 			return retval;

@@ -107,6 +107,9 @@ import net.mcreator.concoction.item.BambooPorkchopSoupItem;
 import net.mcreator.concoction.item.BaconAndEggsItem;
 import net.mcreator.concoction.item.AnimalFatItem;
 import net.mcreator.concoction.item.NisholdaItem;
+import net.mcreator.concoction.item.MagmaEggItem;
+import net.mcreator.concoction.item.BucketCasseroleItem;
+import net.mcreator.concoction.item.HotChocolateItem;
 import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
@@ -114,14 +117,11 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> MINT = doubleBlock(ConcoctionModBlocks.MINT);
 	public static final DeferredItem<Item> MINT_BREW = REGISTRY.register("mint_brew", MintBrewItem::new);
 	public static final DeferredItem<Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
-	public static final DeferredItem<Item> CROP_MINT = block(ConcoctionModBlocks.CROP_MINT);
 	public static final DeferredItem<Item> MINT_COOKIE = REGISTRY.register("mint_cookie", MintCookieItem::new);
 	public static final DeferredItem<Item> FABRIC = REGISTRY.register("fabric", FabricItem::new);
-	public static final DeferredItem<Item> CROP_COTTON = block(ConcoctionModBlocks.CROP_COTTON);
 	public static final DeferredItem<Item> PILLOW_BLOCK = block(ConcoctionModBlocks.PILLOW_BLOCK);
 	public static final DeferredItem<Item> WILD_COTTON = block(ConcoctionModBlocks.WILD_COTTON);
 	public static final DeferredItem<Item> CHERRY_COOKIE = REGISTRY.register("cherry_cookie", CherryCookieItem::new);
-	public static final DeferredItem<Item> SUNFLOWER = block(ConcoctionModBlocks.SUNFLOWER);
 	public static final DeferredItem<Item> ROASTED_SUNFLOWER_SEEDS = REGISTRY.register("roasted_sunflower_seeds", RoastedSunflowerSeedsItem::new);
 	public static final DeferredItem<Item> SWEET_SLIME_JELLY = REGISTRY.register("sweet_slime_jelly", SweetSlimeJellyItem::new);
 	public static final DeferredItem<Item> MINTY_SLIME_JELLY = REGISTRY.register("minty_slime_jelly", MintySlimeJellyItem::new);
@@ -153,7 +153,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> WILD_SPICY_PEPPER = block(ConcoctionModBlocks.WILD_SPICY_PEPPER);
 	public static final DeferredItem<Item> ONION_SOUP = REGISTRY.register("onion_soup", OnionSoupItem::new);
 	public static final DeferredItem<Item> BAMBOO_PORKCHOP_SOUP = REGISTRY.register("bamboo_porkchop_soup", BambooPorkchopSoupItem::new);
-	public static final DeferredItem<Item> CROP_RICE = block(ConcoctionModBlocks.CROP_RICE);
 	public static final DeferredItem<Item> MUSIC_DISC_HOT_ICE = REGISTRY.register("music_disc_hot_ice", MusicDiscHotIceItem::new);
 	public static final DeferredItem<Item> COOKED_RICE = REGISTRY.register("cooked_rice", CookedRiceItem::new);
 	public static final DeferredItem<Item> HANAMI_DANGO = REGISTRY.register("hanami_dango", HanamiDangoItem::new);
@@ -173,15 +172,11 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> DOUGH = REGISTRY.register("dough", DoughItem::new);
 	public static final DeferredItem<Item> RAW_NOODLES = REGISTRY.register("raw_noodles", RawNoodlesItem::new);
 	public static final DeferredItem<Item> BUTTER_SANDWICH = REGISTRY.register("butter_sandwich", ButterSandwichItem::new);
-	public static final DeferredItem<Item> MUSHROOM_SKEWER = REGISTRY.register("mushroom_skewer", MushroomSkewerItem::new);
-	public static final DeferredItem<Item> GRILLED_FISH = REGISTRY.register("grilled_fish", GrilledFishItem::new);
-	public static final DeferredItem<Item> CROP_CABBAGE = block(ConcoctionModBlocks.CROP_CABBAGE);
 	public static final DeferredItem<Item> CABBAGE_LEAF = REGISTRY.register("cabbage_leaf", CabbageLeafItem::new);
 	public static final DeferredItem<Item> CABBAGE_BLOCK = block(ConcoctionModBlocks.CABBAGE_BLOCK);
 	public static final DeferredItem<Item> CABBAGEHEAD = block(ConcoctionModBlocks.CABBAGEHEAD);
 	public static final DeferredItem<Item> WILD_CABBAGE = block(ConcoctionModBlocks.WILD_CABBAGE);
 	public static final DeferredItem<Item> TOMATO = REGISTRY.register("tomato", TomatoItem::new);
-	public static final DeferredItem<Item> CROP_TOMATO = block(ConcoctionModBlocks.CROP_TOMATO);
 	public static final DeferredItem<Item> WILD_TOMATO = block(ConcoctionModBlocks.WILD_TOMATO);
 	public static final DeferredItem<Item> TOMATO_SOUP = REGISTRY.register("tomato_soup", TomatoSoupItem::new);
 	public static final DeferredItem<Item> CORN_BLOCK = block(ConcoctionModBlocks.CORN_BLOCK);
@@ -189,7 +184,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ONION_BLOCK = block(ConcoctionModBlocks.ONION_BLOCK);
 	public static final DeferredItem<Item> GREEN_ONION_BLOCK = block(ConcoctionModBlocks.GREEN_ONION_BLOCK);
 	public static final DeferredItem<Item> COTTON_BLOCK = block(ConcoctionModBlocks.COTTON_BLOCK);
-	public static final DeferredItem<Item> NETHER_PEPPER_CROP = block(ConcoctionModBlocks.NETHER_PEPPER_CROP);
 	public static final DeferredItem<Item> REAPPER = REGISTRY.register("reapper", ReapperItem::new);
 	public static final DeferredItem<Item> SOULLAND = block(ConcoctionModBlocks.SOULLAND);
 	public static final DeferredItem<Item> WEIGHTED_SOULS_BUCKET = REGISTRY.register("weighted_souls_bucket", WeightedSoulsItem::new);
@@ -250,7 +244,6 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CREAM_BOTTLE = REGISTRY.register("cream_bottle", CreamBottleItem::new);
 	public static final DeferredItem<Item> FLOUR = REGISTRY.register("flour", FlourItem::new);
 	public static final DeferredItem<Item> BOILED_EGG = REGISTRY.register("boiled_egg", BoiledEggItem::new);
-	public static final DeferredItem<Item> CROP_PUFFBALL = block(ConcoctionModBlocks.CROP_PUFFBALL);
 	public static final DeferredItem<Item> PUFFBALL = REGISTRY.register("puffball", PuffballItem::new);
 	public static final DeferredItem<Item> OAK_KITCHEN_CABINET = block(ConcoctionModBlocks.OAK_KITCHEN_CABINET);
 	public static final DeferredItem<Item> SPRUCE_KITCHEN_CABINET = block(ConcoctionModBlocks.SPRUCE_KITCHEN_CABINET);
@@ -285,6 +278,9 @@ public class ConcoctionModItems {
     public static final DeferredItem<Item> NISHOLDA = REGISTRY.register("nisholda", NisholdaItem::new);
 	public static final DeferredItem<Item> SOAP_BLOCK = block(ConcoctionModBlocks.SOAP_BLOCK);
     public static final DeferredItem<Item> APPLE_BLOCK = block(ConcoctionModBlocks.APPLE_BLOCK);
+    public static final DeferredItem<Item> MAGMA_EGG = REGISTRY.register("magma_egg", MagmaEggItem::new);
+    public static final DeferredItem<Item> BUCKET_CASSEROLE = REGISTRY.register("bucket_casserole", BucketCasseroleItem::new);
+    public static final DeferredItem<Item> HOT_CHOCOLATE = REGISTRY.register("hot_chocolate", HotChocolateItem::new);
 	// Start of user code block custom items
 	public static final DeferredItem<BlockItem> SAPONARIA_ITEM = REGISTRY.register("saponaria", () -> new BlockItem(ConcoctionModBlocks.SAPONARIA.get(), new Item.Properties()));
 	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", () -> new ItemNameBlockItem(ConcoctionModBlocks.SOAP_LAYER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

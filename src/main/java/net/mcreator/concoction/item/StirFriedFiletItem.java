@@ -9,12 +9,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
+
+import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
 
-public class StirFriedFiletItem extends Item {
+public class StirFriedFiletItem extends TastefulItem {
 	public StirFriedFiletItem() {
 		super(new Item.Properties().stacksTo(16)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))

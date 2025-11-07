@@ -14,19 +14,19 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class SunflowerSeedsBrewItem extends TastefulItem {
-	public SunflowerSeedsBrewItem() {
+public class HotChocolateItem extends TastefulItem {
+	public HotChocolateItem() {
 		super(new Item.Properties()
 				.stacksTo(16)
 				.rarity(Rarity.COMMON)
 				.food((new FoodProperties.Builder())
-						.nutrition(0)
-						.saturationModifier(0.3f)
+						.nutrition(6)
+						.saturationModifier(0.6f)
 						.alwaysEdible()
 						.build())
-				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.SUNSTRUCK, 2, 300, true))
-				.component(ConcoctionModDataComponents.FOOD_EFFECT_2.get(), new FoodEffectComponent(FoodEffectType.PHOTOSYNTHESIS, 4, 300, true))
-				.component(ConcoctionModDataComponents.FOOD_EFFECT_3.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true))
+				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 90, true))
+				.component(ConcoctionModDataComponents.FOOD_EFFECT_2.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 180, true))
+                .component(ConcoctionModDataComponents.FOOD_EFFECT_3.get(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 90, true))
 		);
 	}
 

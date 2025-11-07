@@ -16,7 +16,7 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class OmuriceItem extends Item {
+public class OmuriceItem extends TastefulItem {
 	public OmuriceItem() {
 		super(new Item.Properties().stacksTo(16)
 .component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 1, 480, true))

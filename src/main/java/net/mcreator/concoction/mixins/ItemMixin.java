@@ -1,66 +1,98 @@
 package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
-import net.mcreator.concoction.utils.FoodTooltipHelper;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.HoneyBottleItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 
 import java.util.List;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-@Mixin({Item.class})
-public class ItemMixin {
-    @Inject(method = "finishUsingItem", at = @At("HEAD"))
-    private void addEatEffect(ItemStack itemStack, Level p_41410_, LivingEntity player, CallbackInfoReturnable<ItemStack> cir) {
-        if (player == null) return;
+@Mixin(Item.class)
+public abstract class ItemMixin {
 
-        // массив компонентов для удобства
-        FoodEffectComponent[] components = new FoodEffectComponent[] {
-            itemStack.get(FOOD_EFFECT.value()),
-            itemStack.get(FOOD_EFFECT_2.value()),
-            itemStack.get(FOOD_EFFECT_3.value()),
-            itemStack.get(FOOD_EFFECT_4.value()),
-            itemStack.get(FOOD_EFFECT_5.value())
-        };
-
-        for (FoodEffectComponent component : components) {
-            if (component == null) continue;
-
-            // мгновенное лечение для HEAL
-            FoodEffectType.applyInstantEffect(component.type(), player, component.level());
-
-            // обычные эффекты
-            MobEffectInstance effect = FoodEffectType.getEffect(
-                component.type(),
-                component.level(),
-                component.duration(),
-                component.isHidden(),
-                player // <-- передаем игрока, теперь метод компилируется
-            );
-
-            if (effect != null) {
-                player.addEffect(effect);
-            }
-        }
-    }
-
+    @OnlyIn(Dist.CLIENT)
     @Inject(method = "appendHoverText", at = @At("TAIL"))
-    private void addFoodEffectTooltip(ItemStack p_41421_, Item.TooltipContext p_339594_, List<Component> p_41423_, TooltipFlag p_41424_, CallbackInfo ci) {
-        FoodTooltipHelper.addFoodEffectTooltip(p_41421_, p_41423_);
+    private void concoction$appendFoodTastesOrDescription(@NotNull ItemStack stack,
+                                                          @NotNull Item.TooltipContext ctx,
+                                                          @NotNull List<Component> tooltip,
+                                                          @NotNull TooltipFlag flag,
+                                                          @NotNull CallbackInfo ci) {
+        // 1) Собираем вкусы
+        FoodEffectComponent[] comps = new FoodEffectComponent[]{
+                stack.get(FOOD_EFFECT.value()),
+                stack.get(FOOD_EFFECT_2.value()),
+                stack.get(FOOD_EFFECT_3.value()),
+                stack.get(FOOD_EFFECT_4.value()),
+                stack.get(FOOD_EFFECT_5.value())
+        };
+        boolean hasAnyTaste = false;
+        for (FoodEffectComponent c : comps) {
+            if (c != null) { hasAnyTaste = true; break; }
+        }
+
+        // 2) Ключ описания для любого предмета
+        Item self = (Item) (Object) this;
+        var id = BuiltInRegistries.ITEM.getKey(self);
+        String descKey = (id != null) ? "description.concoction." + id.getNamespace() + "." + id.getPath() : null;
+        boolean hasDesc = (descKey != null) && I18n.exists(descKey);
+
+        if (hasAnyTaste) {
+            // === ЕСТЬ ВКУСЫ ===
+            if (!Screen.hasShiftDown()) {
+                tooltip.add(Component.translatable(
+                        "tooltip.concoction.hold_key",
+                        Component.keybind("key.sneak")
+                ).withStyle(ChatFormatting.DARK_GRAY));
+                return;
+            }
+            // заголовок
+            tooltip.add(Component.translatable("tooltip.concoction.tastes_header").withStyle(ChatFormatting.DARK_GREEN));
+            // вкусы
+            for (FoodEffectComponent c : comps) {
+                if (c != null) {
+                    tooltip.add(c.type().getTooltip(c.level(), c.duration(), c.isHidden()));
+                }
+            }
+            // описание (если есть)
+            if (hasDesc) {
+                tooltip.add(Component.empty());
+                tooltip.add(Component.translatable(descKey).withStyle(ChatFormatting.GRAY));
+            }
+            return;
+        }
+
+        // === НЕТ ВКУСОВ ===
+        if (!hasDesc) {
+            // Нечего показывать — выходим, не спамим подсказкой.
+            return;
+        }
+
+        // Строка описания ЕСТЬ:
+        if (!Screen.hasShiftDown()) {
+            // Показываем СОВЕТ про Shift (но без заголовков/пустых строк).
+            tooltip.add(Component.translatable(
+                    "tooltip.concoction.hold_key",
+                    Component.keybind("key.sneak")
+            ).withStyle(ChatFormatting.DARK_GRAY));
+            return;
+        }
+
+        // Зажали Shift → показываем ТОЛЬКО описание (без «Вкусы», без пустой строки).
+        tooltip.add(Component.translatable(descKey).withStyle(ChatFormatting.GRAY));
     }
-}
+    }

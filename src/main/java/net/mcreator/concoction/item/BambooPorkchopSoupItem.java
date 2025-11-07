@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 
-public class BambooPorkchopSoupItem extends Item {
+public class BambooPorkchopSoupItem extends TastefulItem {
 	public BambooPorkchopSoupItem() {
 		super(new Item.Properties().stacksTo(16)
 				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 10, true))

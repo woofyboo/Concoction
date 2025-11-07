@@ -13,7 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class MintCookieItem extends Item {
+public class MintCookieItem extends TastefulItem {
 	public MintCookieItem() {
 		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.MINTY, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
 	}

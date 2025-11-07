@@ -12,13 +12,14 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
-public class ReapperItem extends Item {
+public class ReapperItem extends TastefulItem {
 
 	//private final int BURN_TIME = 200;
 
 	public ReapperItem() {
 		super(new Item.Properties().stacksTo(64).
-				component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SPICY, 2, 30, true)).
+				component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SPICY, 2, 30, true))
+.
 				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.FLAMING, 0, 6, true))
 				.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(0.3f).build()));
 	}

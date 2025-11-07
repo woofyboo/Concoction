@@ -21,7 +21,7 @@ import net.mcreator.concoction.procedures.ObsidianTearsBottlePlayerFinishesUsing
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class ObsidianTearsBottleItem extends Item {
+public class ObsidianTearsBottleItem extends TastefulItem {
 	public ObsidianTearsBottleItem() {
 		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.INSTABILITY, 1, 30, true)).rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).alwaysEdible().build()));
 	}

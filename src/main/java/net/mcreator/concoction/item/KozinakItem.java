@@ -10,7 +10,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class KozinakItem extends Item {
+public class KozinakItem extends TastefulItem {
 	public KozinakItem() {
 		super(new Item.Properties().stacksTo(64)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.PHOTOSYNTHESIS, 1, 180, true))

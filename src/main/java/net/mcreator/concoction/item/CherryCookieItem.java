@@ -14,7 +14,7 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.item.food.types.FoodEffectType.SWEET;
 
-public class CherryCookieItem extends Item {
+public class CherryCookieItem extends TastefulItem {
 	public CherryCookieItem() {
 		super(new Item.Properties().stacksTo(64)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
