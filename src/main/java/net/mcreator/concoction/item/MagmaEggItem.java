@@ -6,13 +6,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.LivingEntity;
-
+import net.mcreator.concoction.item.TastefulItem;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class MagmaEggItem extends Item {
+public class MagmaEggItem extends TastefulItem {
     public MagmaEggItem() {
         super(new Item.Properties()
                 .stacksTo(64)

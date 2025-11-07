@@ -12,11 +12,12 @@ import net.minecraft.world.entity.LivingEntity;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
+import net.mcreator.concoction.item.TastefulItem;
 import org.jetbrains.annotations.NotNull;
 
 
 
-public class BaconAndEggsItem extends Item {
+public class BaconAndEggsItem extends TastefulItem {
 	public BaconAndEggsItem() {
 		super(new Item.Properties().stacksTo(16)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 10, true))

@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class NisholdaItem extends Item {
+public class NisholdaItem extends TastefulItem {
 	public NisholdaItem() {
 		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 90, true)).component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8f).build()));

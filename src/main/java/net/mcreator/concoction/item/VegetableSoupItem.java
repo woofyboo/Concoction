@@ -13,7 +13,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class VegetableSoupItem extends Item {
+public class VegetableSoupItem extends TastefulItem {
 	public VegetableSoupItem() {
 		super(new Item.Properties().stacksTo(16)
 				.rarity(Rarity.COMMON)

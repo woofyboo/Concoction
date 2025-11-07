@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 
 import net.mcreator.concoction.procedures.MintBrewDrinkProcedure;
 
-public class MintBrewItem extends Item {
+public class MintBrewItem extends TastefulItem {
 	public MintBrewItem() {
 		super(new Item.Properties()
 				.stacksTo(16)

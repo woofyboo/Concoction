@@ -10,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class SweetSlimeJellyItem extends Item {
+public class SweetSlimeJellyItem extends TastefulItem {
 	public SweetSlimeJellyItem() {
 		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.6f).build()));
 	}

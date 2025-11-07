@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class HotChocolateItem extends Item {
+public class HotChocolateItem extends TastefulItem {
 	public HotChocolateItem() {
 		super(new Item.Properties()
 				.stacksTo(16)

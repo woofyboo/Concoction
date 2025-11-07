@@ -10,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class SpicyPepperItem extends Item {
+public class SpicyPepperItem extends TastefulItem {
 	public SpicyPepperItem() {
 		super(new Item.Properties().stacksTo(64).
 				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 15, true)).

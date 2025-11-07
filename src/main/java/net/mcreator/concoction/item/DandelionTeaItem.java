@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class DandelionTeaItem extends Item {
+public class DandelionTeaItem extends TastefulItem {
 	public DandelionTeaItem() {
 		super(new Item.Properties()
 				.stacksTo(16)

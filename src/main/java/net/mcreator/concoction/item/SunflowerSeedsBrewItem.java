@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class SunflowerSeedsBrewItem extends Item {
+public class SunflowerSeedsBrewItem extends TastefulItem {
 	public SunflowerSeedsBrewItem() {
 		super(new Item.Properties()
 				.stacksTo(16)

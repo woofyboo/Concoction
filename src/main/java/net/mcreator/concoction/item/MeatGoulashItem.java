@@ -15,7 +15,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class MeatGoulashItem extends Item {
+public class MeatGoulashItem extends TastefulItem {
 	public MeatGoulashItem() {
 		super(new Item.Properties().stacksTo(16)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 2, 30, true))

@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class HotSauceBottleItem extends Item {
+public class HotSauceBottleItem extends TastefulItem {
 	public HotSauceBottleItem() {
 		super(new Item.Properties().stacksTo(16).
 				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 30, true))

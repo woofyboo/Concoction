@@ -13,7 +13,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class BucketCasseroleItem extends Item {
+public class BucketCasseroleItem extends TastefulItem {
 	public BucketCasseroleItem() {
 		super(new Item.Properties().stacksTo(16)
 				.rarity(Rarity.COMMON)

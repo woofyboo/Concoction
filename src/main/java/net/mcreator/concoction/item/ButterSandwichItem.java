@@ -12,7 +12,7 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class ButterSandwichItem extends Item {
+public class ButterSandwichItem extends TastefulItem {
 	public ButterSandwichItem() {
 		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 180, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(1f).build()));
 	}

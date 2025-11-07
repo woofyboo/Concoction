@@ -15,7 +15,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class ChickenConfitItem extends Item {
+public class ChickenConfitItem extends TastefulItem {
 	public ChickenConfitItem() {
 		super(new Item.Properties().stacksTo(16)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 2, 30, true))

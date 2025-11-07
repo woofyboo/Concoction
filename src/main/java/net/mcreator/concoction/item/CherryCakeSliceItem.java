@@ -12,7 +12,7 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFE
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
-public class CherryCakeSliceItem extends Item {
+public class CherryCakeSliceItem extends TastefulItem {
 	public CherryCakeSliceItem() {
 		super(new Item.Properties().stacksTo(64)
 		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
