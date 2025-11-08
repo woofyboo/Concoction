@@ -106,6 +106,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.GLOWBERRY_CAKE_SLICE.get());
 				tabData.accept(ConcoctionModItems.CARROT_CAKE_SLICE.get());
 				tabData.accept(ConcoctionModItems.PUMPKIN_PIE_SLICE.get());
+                tabData.accept(ConcoctionModItems.TAHCHIN_SLICE.get());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());
 				tabData.accept(ConcoctionModItems.CHERRY_COOKIE.get());
 
@@ -131,6 +132,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
                 tabData.accept(ConcoctionModItems.NISHOLDA.get());
                 tabData.accept(ConcoctionModItems.BUCKET_CASSEROLE.get());
+                tabData.accept(ConcoctionModItems.TAHCHIN_BUCKET.get());
                 tabData.accept(ConcoctionModItems.HOT_CHOCOLATE.get());
 				tabData.accept(ConcoctionModItems.MINT_BREW.get());
 				tabData.accept(ConcoctionModItems.DANDELION_TEA.get());

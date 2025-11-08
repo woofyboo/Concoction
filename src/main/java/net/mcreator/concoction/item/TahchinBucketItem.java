@@ -13,13 +13,13 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class BucketCasseroleItem extends TastefulItem {
-	public BucketCasseroleItem() {
+public class TahchinBucketItem extends TastefulItem {
+	public TahchinBucketItem() {
 		super(new Item.Properties().stacksTo(16)
 				.rarity(Rarity.COMMON)
-				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 2, 300, true))
-                .component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 360, true))
-				.food((new FoodProperties.Builder()).nutrition(10).saturationModifier(1.0f).build()));
+				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 4, 300, true))
+                .component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true))
+				.food((new FoodProperties.Builder()).nutrition(8).saturationModifier(1.2f).build()));
 	}
 
 	@Override
@@ -40,5 +40,15 @@ public class BucketCasseroleItem extends TastefulItem {
     @Override
     public int getUseDuration(ItemStack itemstack, LivingEntity livingEntity) {
         return 48;
+    }
+
+    @Override
+    public boolean hasCraftingRemainingItem() {
+        return true;
+    }
+
+    @Override
+    public ItemStack getCraftingRemainingItem(ItemStack stack) {
+        return new ItemStack(Items.BUCKET);
     }
 }

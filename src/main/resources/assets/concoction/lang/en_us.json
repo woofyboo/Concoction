@@ -374,6 +374,8 @@
   "item.concoction.magma_egg": "Magma Egg",
   "item.concoction.bucket_casserole": "Bucket Casserole",
   "item.concoction.hot_chocolate": "Hot Chocolate",
+  "item.concoction.tahchin_bucket": "Tahchin",
+  "item.concoction.tahchin_slice": "Tahchin Slice",
   "tooltip.concoction.hold_key": "Hold [%s] for more info",
   "tooltip.concoction.tastes_header": "Main Flavors",
   "description.concoction.concoction.magma_egg": "An egg prepared in a rather unusual way. A raw egg is dropped straight into the blazing, still-hot lava and left to cook for a while. The shell turns black and hard as obsidian — bite carefully, or you might break your teeth... or scorch your tongue. The taste isn’t exactly pleasant: the egg is almost completely burned, leaving little but bitterness behind. Yet somehow, the yolk is cooked to absolute perfection! A bit of mint afterwards helps make the flavor more tolerable.",
@@ -402,7 +404,7 @@
   "description.concoction.concoction.hashbrowns": "Thick potato cakes that crunch pleasantly and carry a warm, pine-scented aroma. Just the thing for those who’ve only just woken up.",
   "description.concoction.concoction.honey_cob": "The name says it all. Juicy roasted corn coated in a thick layer of caramelized, flowing honey and sugar. It’s hard to hold without getting sticky—or dripping on the ground. Still, it fills the stomach quickly and restores your strength.",
   "description.concoction.concoction.hot_chocolate": "Bittersweet chocolate melted into milk, enriched with cream and sugar. Its bitterness is long gone—replaced by a thick, warm sweetness that fills your stomach to the brim. The creamy chocolate aroma makes any meal feel richer. A perfect harmony of flavors.",
-  "description.concoction.concoction.hot_sauce": "A bottle of very spicy, yet incredibly tasty sauce. An ingredient used in certain dishes. It’s said that food seasoned with this sauce can cure any ailment.",
+  "description.concoction.concoction.hot_sauce_bottle": "A bottle of very spicy, yet incredibly tasty sauce. An ingredient used in certain dishes. It’s said that food seasoned with this sauce can cure any ailment.",
   "description.concoction.concoction.kozinak": "A sweet made from roasted sunflower seeds bound together with hardened honey. A small golden brick filled with sunlight and sugar! After a treat like this, you’ll surely feel like going for a walk. Children of some villages love this treat.",
   "description.concoction.concoction.lingonberry_cake_slice": "A slice of lingonberry and cream cake. Several soft layers soaked in fresh cream and the flavor of ripe berries. It’s impossible to stop — you could eat this dessert forever. The way the sweetness of the berries melts into the creamy flavor is beyond words! After a treat like this, everything else seems to taste better.",
   "description.concoction.concoction.meat_goulash": "Large chunks of meat are seared first, followed by the vegetables, before everything is combined. Broth is then added and simmered until thick and rich. After such a long and patient process, the meat turns wonderfully tender and flavorful, its aroma spreading far and wide. A dish sure to heal even the hungriest of souls.",
@@ -428,7 +430,7 @@
   "description.concoction.minecraft.glow_berries": "Berries that softly glow in the dark. Sweet and juicy, as if they absorbed the moonlight itself. They’ll make anyone shine with joy.",
   "description.concoction.minecraft.melon_slice": "A juicy slice of melon — sweet and refreshing. Perfect for quenching thirst on a hot, sunny day.",
   "description.concoction.minecraft.sweet_berries": "A handful of bright red berries. Sweet with a hint of tartness, but be careful — the bushes they grow on bite back! They love the cool and their fresh flavor fills your belly fast.",
-  "description.concoction.minecraft.pumpkin_pie": "A fragrant pumpkin pie with a soft filling. The warm taste of autumn, bringing comfort even on the coldest night.",
+  "description.concoction.minecraft.pumpkin_pie": "A fragrant pumpkin pie with a soft filling. The warm taste of autumn, bringing own sweetness even on the coldest night.",
   "description.concoction.minecraft.cookie": "A crunchy, sweet cookie with chocolate chips — a small piece of happiness. Very sweet and crumbly… easy to ruin your appetite with.",
   "description.concoction.minecraft.honey_bottle": "A bottle of thick honey — sweet, golden, and warm, as if the sun itself hid inside the glass. It’s said to neutralize certain poisons, and its sweetness fills you up fast.",
   "description.concoction.minecraft.apple": "A fresh red apple — crisp and juicy. Simple yet delightfully sweet. Eat it as is, or use it in a recipe — it’ll taste great either way.",
@@ -443,6 +445,8 @@
   "description.concoction.minecraft.potato": "A simple potato — humble yet versatile. It can be cooked a hundred ways, and all of them delicious. Raw, however, it offers nothing but a bitter lesson.",
   "description.concoction.minecraft.poisonous_potato": "A strange, slightly green potato. Its taste is questionable — best not to eat it, unless curiosity gets the better of you. The experience will surely be bitter.",
   "description.concoction.minecraft.suspicious_stew": "A stew that smells oddly mysterious. No one really knows what went into it, but there’s definitely some magic involved. Bitter, unpredictable… and dangerously intriguing.",
-  "description.concoction.concoction.pumpkin_pie_slice": "A fragrant slice of pumpkin pie with a soft filling. The warm taste of autumn, bringing comfort even on the coldest night."
+  "description.concoction.concoction.pumpkin_pie_slice": "A fragrant slice of pumpkin pie with a soft filling. The warm taste of autumn, bringing own sweetness even on the coldest night.",
+  "description.concoction.concoction.tahchin_bucket": "A large serving of tahchin. The meat is marinated in yogurt, then mixed with cooked rice and baked until a crispy crust forms. Before serving, it is often topped with dried fruits. The combination of meat and rice is very filling, which is why tahchin is so popular in some villages. Heals your soul and warms you heart.",
+  "description.concoction.concoction.tahchin_slice": "A small serving of tahchin. The meat is marinated in yogurt, then mixed with cooked rice and baked until a crispy crust forms. Before serving, it is often topped with dried fruits. The combination of meat and rice is very filling, which is why tahchin is so popular in some villages. Heals your soul and warms you heart."
 
 }
