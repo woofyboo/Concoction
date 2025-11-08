@@ -1,10 +1,12 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
@@ -15,9 +17,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 
-
-
-import net.mcreator.concoction.procedures.ObsidianTearsBottlePlayerFinishesUsingItemProcedure;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
@@ -53,7 +52,9 @@ public class ObsidianTearsBottleItem extends TastefulItem {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		ObsidianTearsBottlePlayerFinishesUsingItemProcedure.execute(entity);
+        if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, 3600, 0, false, true));
+
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

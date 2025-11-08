@@ -7,6 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BucketItem;
 
 import net.mcreator.concoction.init.ConcoctionModFluids;
+import net.minecraft.world.level.material.WaterFluid;
 
 public class WeightedSoulsItem extends BucketItem {
 	public WeightedSoulsItem() {

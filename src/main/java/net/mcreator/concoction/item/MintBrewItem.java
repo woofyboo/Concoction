@@ -2,18 +2,18 @@
 package net.mcreator.concoction.item;
 
 import net.mcreator.concoction.init.ConcoctionModDataComponents;
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-
-import net.mcreator.concoction.procedures.MintBrewDrinkProcedure;
 
 public class MintBrewItem extends TastefulItem {
 	public MintBrewItem() {
@@ -57,7 +57,8 @@ public class MintBrewItem extends TastefulItem {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		MintBrewDrinkProcedure.execute(entity);
+		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 60*20, 2-1, false, false, true, null));
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.client.particle;
 
+import net.minecraft.core.BlockPos;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.api.distmarker.Dist;
 
@@ -12,8 +13,6 @@ import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.multiplayer.ClientLevel;
-
-import net.mcreator.concoction.procedures.FeatherParticleAdditionalParticleExpiryConditionProcedure;
 
 @OnlyIn(Dist.CLIENT)
 public class FeatherParticleParticle extends TextureSheetParticle {
@@ -64,7 +63,11 @@ public class FeatherParticleParticle extends TextureSheetParticle {
 		this.roll += this.angularVelocity;
 		this.angularVelocity += this.angularAcceleration;
 		Level world = this.level;
-		if (FeatherParticleAdditionalParticleExpiryConditionProcedure.execute(world, x, y, z))
-			this.remove();
+		boolean condition = false;
+		condition = false;
+		if (world.getBlockState(BlockPos.containing(x, y - 0.05, z)).canOcclude()) {
+			condition = true;
+		}
+		if (condition) this.remove();
 	}
 }

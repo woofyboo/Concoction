@@ -24,8 +24,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.Holder;
 import net.minecraft.Util;
 
-import net.mcreator.concoction.procedures.SunflowerCrownHelmetTickEventProcedure;
-
 import java.util.List;
 import java.util.EnumMap;
 
@@ -73,7 +71,6 @@ public abstract class SunflowerCrownItem extends ArmorItem {
 
 
 			if (!entity.level().isClientSide() && entity instanceof Player player && Iterables.contains(player.getArmorSlots(), itemstack)) {
-				//SunflowerCrownHelmetTickEventProcedure.execute(entity);
 
 				tickCounter++;
 				if (tickCounter % 10 == 0) {

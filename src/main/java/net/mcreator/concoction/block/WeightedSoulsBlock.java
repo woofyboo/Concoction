@@ -1,7 +1,16 @@
 package net.mcreator.concoction.block;
 
-import org.checkerframework.checker.units.qual.s;
+import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.level.WorldGenLevel;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.api.distmarker.Dist;
 
@@ -23,9 +32,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
 
-import net.mcreator.concoction.procedures.WeightedSoulsOnRandomClientDisplayTickProcedure;
-import net.mcreator.concoction.procedures.WeightedSoulsMobplayerCollidesBlockProcedure;
-import net.mcreator.concoction.procedures.WeightedSoulsBlockAddedProcedure;
 import net.mcreator.concoction.init.ConcoctionModFluids;
 
 public class WeightedSoulsBlock extends LiquidBlock {
@@ -37,7 +43,11 @@ public class WeightedSoulsBlock extends LiquidBlock {
 	@Override
 	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
 		super.onPlace(blockstate, world, pos, oldState, moving);
-		WeightedSoulsBlockAddedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+
+		if (!((world instanceof Level level ? level.dimension() :
+				(world instanceof WorldGenLevel wgl ? wgl.getLevel().dimension() : Level.OVERWORLD)) == Level.NETHER)) {
+			world.setBlock(BlockPos.containing(pos.getX(), pos.getY(), pos.getZ()), ConcoctionModBlocks.SOUL_ICE.get().defaultBlockState(), 3);
+		}
 	}
 	
 	@Override
@@ -49,14 +59,46 @@ public class WeightedSoulsBlock extends LiquidBlock {
 	@Override
 	public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
 		super.entityInside(blockstate, world, pos, entity);
-		WeightedSoulsMobplayerCollidesBlockProcedure.execute(world, entity);
+		if (entity == null)
+			return;
+		if (!world.isClientSide()) {
+			if (!entity.isInLava()) {
+				entity.setTicksFrozen(300);
+			}
+			entity.clearFire();
+			entity.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:soul_damage")))), 2);
+		}
 	}
 
 	@Override
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(BlockState blockstate, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(blockstate, world, pos, random);
-		WeightedSoulsOnRandomClientDisplayTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+		double x = pos.getX();
+		double y = pos.getY();
+		double z = pos.getZ();
+		if (world.isEmptyBlock(BlockPos.containing(x, y + 1, z))) {
+			if (Math.random() < 0.015) {
+				world.addParticle(ParticleTypes.SOUL, (x + 0.5), (y + 0.9), (z + 0.5), 0, (Mth.nextDouble(RandomSource.create(), 0.3, 0.45)), 0);
+				if (world instanceof Level _level) {
+					if (!_level.isClientSide()) {
+						_level.playSound(null, BlockPos.containing(x, y, z), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("particle.soul_escape")), SoundSource.BLOCKS, 1, (float) Math.random());
+					} else {
+						_level.playLocalSound(x, y, z, BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("particle.soul_escape")), SoundSource.BLOCKS, 1, (float) Math.random(), false);
+					}
+				}
+				if (Math.random() < 0.5) {
+					world.addParticle(ParticleTypes.SOUL, (x + 0.5), (y + 0.9), (z + 0.5), (Mth.nextDouble(RandomSource.create(), -0.1, 0.1)), (Mth.nextDouble(RandomSource.create(), 0.3, 0.45)), (Mth.nextDouble(RandomSource.create(), -0.1, 0.1)));
+				}
+				if (Math.random() < 0.5) {
+					world.addParticle(ParticleTypes.SOUL, (x + 0.5), (y + 0.9), (z + 0.5), (Mth.nextDouble(RandomSource.create(), -0.1, 0.1)), (Mth.nextDouble(RandomSource.create(), 0.3, 0.45)), (Mth.nextDouble(RandomSource.create(), -0.1, 0.1)));
+				}
+				if (Math.random() < 0.8) {
+					world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, (x + 0.5), (y + 0.9), (z + 0.5), (Mth.nextDouble(RandomSource.create(), -0.1, 0.1)), (Mth.nextDouble(RandomSource.create(), 0.3, 0.45)),
+							(Mth.nextDouble(RandomSource.create(), -0.1, 0.1)));
+				}
+			}
+		}
 	}
 
 	@Override

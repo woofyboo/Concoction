@@ -13,8 +13,6 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.multiplayer.ClientLevel;
 
-import net.mcreator.concoction.procedures.MintLeafParticleVariant1AdditionalParticleExpiryConditionProcedure;
-
 @OnlyIn(Dist.CLIENT)
 public class MintLeafParticleVariant2Particle extends TextureSheetParticle {
 	public static MintLeafParticleVariant2ParticleProvider provider(SpriteSet spriteSet) {
@@ -64,7 +62,6 @@ public class MintLeafParticleVariant2Particle extends TextureSheetParticle {
 		this.roll += this.angularVelocity;
 		this.angularVelocity += this.angularAcceleration;
 		Level world = this.level;
-		if (MintLeafParticleVariant1AdditionalParticleExpiryConditionProcedure.execute(onGround))
-			this.remove();
+		if (onGround) this.remove();
 	}
 }
