@@ -285,6 +285,7 @@
   "item.minecraft.splash_potion.effect.blooming": "Splash Potion of Blooming",
   "advancements.sunstruck_transformed.descr": "Witness zombie get transformed by a sunflower",
   "enchantment.concoction.butchering": "Butchering",
+  "enchantment.concoction.butchering.desc": "Increases damage against farm animals such as cows, pigs, sheep, and others, while also increasing the chance for rarer ingredients to drop.",
   "advancements.make_soul_soul.descr": "Till soul soil with hoe",
   "advancements.brain_freeze_obtain_achievement.descr": "Experience brain freeze by drinking water after eating minty food",
   "item.concoction.butter": "Dairy Butter",

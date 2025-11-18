@@ -6,6 +6,7 @@ import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipeInput;
 import net.mcreator.concoction.world.inventory.OvenGUIMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction; // *** добавлено
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.WorldlyContainer; // *** добавлено
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -52,7 +54,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.*;
 
-public class OvenBlockEntity extends RandomizableContainerBlockEntity {
+public class OvenBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer { // *** добавили implements WorldlyContainer
     // Слоты: 0 бутылочка, 1-6 крафт, 7 миска, 8 результат
     private final int ContainerSize = 9;
     private boolean isCooking = false;
@@ -78,6 +80,12 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
     private static final int SLOT_LAST_CRAFT  = 6;
     private static final int SLOT_BOWL = 7;
     private static final int SLOT_OUTPUT = 8;
+
+    // *** массив крафтовых слотов для удобства (используется для воронок сверху)
+    private static final int[] SLOTS_INGREDIENTS = new int[]{
+            SLOT_FIRST_CRAFT, SLOT_FIRST_CRAFT + 1, SLOT_FIRST_CRAFT + 2,
+            SLOT_FIRST_CRAFT + 3, SLOT_FIRST_CRAFT + 4, SLOT_LAST_CRAFT
+    };
 
     public OvenBlockEntity(BlockPos pos, BlockState state) {
         super(ConcoctionModBlockEntities.OVEN_BLOCK.get(), pos, state);
@@ -116,7 +124,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
 
         boolean wasLit = pState.getValue(OvenBlock.LIT);
         boolean shouldBeLit = isHeated(level, pPos);
-        
+
         if (wasLit != shouldBeLit) {
             level.setBlock(pPos, pState.setValue(OvenBlock.LIT, shouldBeLit), 3);
         }
@@ -129,7 +137,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
         }
 
         Optional<RecipeHolder<OvenRecipe>> currentRecipe = getCurrentRecipe();
-        
+
         if (currentRecipe.isPresent()) {
             if (!isCooking) {
                 // Начинаем готовку
@@ -147,11 +155,11 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
                 setChanged();
                 return;
             }
-            
+
             // Проверяем, можем ли добавить результат
             if (canAddResult()) {
                 increaseCraftingProgress();
-                
+
                 if (hasCraftingFinished()) {
                     craftItem();
                     resetProgress();
@@ -167,30 +175,30 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
 
     private boolean isSameRecipe(RecipeHolder<OvenRecipe> recipe1, RecipeHolder<OvenRecipe> recipe2) {
         if (recipe1 == null || recipe2 == null) return false;
-        
+
         // Сравниваем по ID рецептов (основной способ)
         if (recipe1.id().equals(recipe2.id())) return true;
-        
+
         // Если ID разные, сравниваем по ингредиентам
         List<Ingredient> ingredients1 = recipe1.value().getIngredients();
         List<Ingredient> ingredients2 = recipe2.value().getIngredients();
-        
+
         if (ingredients1.size() != ingredients2.size()) return false;
-        
+
         // Создаем копии списков для сравнения
         List<Ingredient> sorted1 = new ArrayList<>(ingredients1);
         List<Ingredient> sorted2 = new ArrayList<>(ingredients2);
-        
+
         // Сортируем по строковому представлению для сравнения
         sorted1.sort((a, b) -> a.toString().compareTo(b.toString()));
         sorted2.sort((a, b) -> a.toString().compareTo(b.toString()));
-        
+
         for (int i = 0; i < sorted1.size(); i++) {
             if (!sorted1.get(i).toString().equals(sorted2.get(i).toString())) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -198,7 +206,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
         BlockPos below = pos.below();
         BlockState belowState = level.getBlockState(below);
         Block belowBlock = belowState.getBlock();
-        
+
         // Проверяем источники тепла
         if (belowBlock instanceof CampfireBlock) {
             return belowState.getValue(CampfireBlock.LIT);
@@ -209,26 +217,26 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
         if (belowBlock == Blocks.LAVA) {
             return true;
         }
-        
+
         return false;
     }
 
     private boolean canAddResult() {
         if (recipe == null) return false;
-        
+
         ItemStack resultSlot = items.get(SLOT_OUTPUT);
         Map<String, String> recipeResult = recipe.value().getResult();
-        
+
         if (resultSlot.isEmpty()) {
             return true;
         }
-        
+
         // Проверяем, совпадает ли предмет в слоте результата с результатом рецепта
         ResourceLocation resultId = ResourceLocation.parse(recipeResult.get("id"));
         if (!BuiltInRegistries.ITEM.get(resultId).equals(resultSlot.getItem())) {
             return false;
         }
-        
+
         // Проверяем, поместится ли результат
         int resultCount = parseResultCount(recipeResult);
         return resultSlot.getCount() + resultCount <= resultSlot.getMaxStackSize();
@@ -266,14 +274,14 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
 
     private void craftItem() {
         if (recipe == null) return;
-        
+
         Map<String, String> recipeResult = recipe.value().getResult();
         ResourceLocation resultId = ResourceLocation.parse(recipeResult.get("id"));
         int resultCount = parseResultCount(recipeResult);
-        
+
         // Создаем результат
         ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(resultId), resultCount);
-        
+
         // Добавляем в слот результата
         ItemStack resultSlot = items.get(SLOT_OUTPUT);
         if (resultSlot.isEmpty()) {
@@ -281,10 +289,10 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
         } else {
             resultSlot.grow(resultCount);
         }
-        
+
         // Тратим ингредиенты (с учётом количества мисок = числу результата)
         consumeIngredients(recipe);
-        
+
         setChanged();
     }
 
@@ -313,8 +321,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
             if (toRemove <= 0) continue;
 
             // Подготовим список «пустых контейнеров» кратно количеству снимаемого
-            // ВНИМАНИЕ: это повторяет вашу текущую логику (добавляет контейнеры и для bowls тоже).
-            // Если миски должны "уходить" в суп и НЕ возвращаться как пустые — закомментируйте блок с bowls.
             if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bottles")))) {
                 ItemStack drop = new ItemStack(Items.GLASS_BOTTLE, toRemove);
                 containers.add(drop);
@@ -322,7 +328,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
                 ItemStack drop = new ItemStack(Items.BUCKET, toRemove);
                 containers.add(drop);
             } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bowls")))) {
-                // Если НЕ хотите возвращать пустые миски, просто удалите эти две строки:
                 ItemStack drop = new ItemStack(Items.BOWL, toRemove);
                 containers.add(drop);
             }
@@ -396,27 +401,27 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
 
         // Если меняется содержимое слота ингредиентов, это может повлиять на рецепт
         if (isIngredientSlot && (isDifferentItem || isSlotEmpty != isStackEmpty)) {
-            
+
             // Проверяем, какой рецепт будет готовиться после изменения
             ItemStack oldStack = this.items.get(slot);
-            
+
             // Проверяем рецепт с оригинальным количеством (1 предмет)
             ItemStack testStack = oldStack.copy();
             if (!testStack.isEmpty()) {
                 testStack.setCount(1); // Проверяем с 1 предметом
             }
             this.items.set(slot, testStack);
-            
+
             Optional<RecipeHolder<OvenRecipe>> originalRecipe = getCurrentRecipe();
-            
+
             // Теперь проверяем с новым количеством
             this.items.set(slot, stack);
             Optional<RecipeHolder<OvenRecipe>> newRecipe = getCurrentRecipe();
-            
+
             boolean shouldReset = false;
-            
+
             if (this.isCooking && this.recipe != null) {
-                
+
                 // Если с оригинальным количеством рецепт тот же, то с новым количеством он тоже должен быть тот же
                 if (originalRecipe.isPresent() && isSameRecipe(originalRecipe.get(), this.recipe)) {
                     shouldReset = false;
@@ -432,10 +437,10 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
                     shouldReset = true;
                 }
             }
-            
+
             // Возвращаем старый предмет для корректной обработки
             this.items.set(slot, oldStack);
-            
+
             // Сбрасываем прогресс только если нужно
             if (shouldReset) {
                 resetProgressOnly();
@@ -456,8 +461,94 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity {
         this.setChanged();
     }
 
-    // Whether the container is considered "still valid" for the given player. For example, chests and
-    // similar blocks check if the player is still within a given distance of the block here.
+    // *** WorldlyContainer логика для воронок/редстоуна
+
+    /**
+     * Какие слоты доступны с каждой стороны блока.
+     */
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        BlockState state = this.getBlockState();
+        Direction facing = Direction.NORTH;
+        if (state.hasProperty(OvenBlock.FACING)) {
+            facing = state.getValue(OvenBlock.FACING);
+        }
+
+        // Воронка НАД блоком → только 6 крафтовых слотов
+        if (side == Direction.UP) {
+            return SLOTS_INGREDIENTS;
+        }
+
+        // Воронка ПОД блоком → только финальный слот с результатом
+        if (side == Direction.DOWN) {
+            return new int[]{SLOT_OUTPUT};
+        }
+
+        // Сзади блока (противоположно направлению лица) → миска
+        if (side == facing.getOpposite()) {
+            return new int[]{SLOT_BOWL};
+        }
+
+        // Справа или слева от переда → бутылочка
+        if (side == facing.getClockWise() || side == facing.getCounterClockWise()) {
+            return new int[]{SLOT_BOTTLE};
+        }
+
+        // Спереди — ничего недоступно
+        return new int[0];
+    }
+
+    /**
+     * Можно ли КЛАСТЬ предмет в этот слот через указанную сторону.
+     */
+    @Override
+    public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction side) {
+        if (side == null) return false;
+
+        BlockState state = this.getBlockState();
+        Direction facing = Direction.NORTH;
+        if (state.hasProperty(OvenBlock.FACING)) {
+            facing = state.getValue(OvenBlock.FACING);
+        }
+
+        // Воронка сверху → только в крафтовые слоты 1..6
+        if (side == Direction.UP) {
+            return index >= SLOT_FIRST_CRAFT && index <= SLOT_LAST_CRAFT;
+        }
+
+        // Сзади → только миска, и только если предмет валидный для миски
+        if (side == facing.getOpposite()) {
+            if (index != SLOT_BOWL) return false;
+
+            // Разрешаем только "мисочные" предметы
+            return stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "tableware")));
+        }
+
+        // Слева/справа → только бутылочка
+        if (side == facing.getClockWise() || side == facing.getCounterClockWise()) {
+            return index == SLOT_BOTTLE;
+        }
+
+        // Снизу или спереди ничего положить нельзя
+        return false;
+    }
+
+
+    /**
+     * Можно ли ЗАБРАТЬ предмет из слота через указанную сторону.
+     */
+    @Override
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction side) {
+        // Воронка под блоком → забирает только результат
+        if (side == Direction.DOWN) {
+            return index == SLOT_OUTPUT;
+        }
+
+        // Со всех других сторон ничего не забираем
+        return false;
+    }
+
+    // Whether the container is considered "still valid" for the given player.
     @Override
     public boolean stillValid(Player player) {
         return true;

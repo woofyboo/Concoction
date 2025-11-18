@@ -285,6 +285,7 @@
   "item.minecraft.splash_potion.effect.blooming": "Взрывное зелье цветения",
   "advancements.sunstruck_transformed.descr": "Будьте свидетелем превращения зомби подсолнухом",
   "enchantment.concoction.butchering": "Разделка",
+  "enchantment.concoction.butchering.desc": "Увеличивает урон по домашним животным и скоту — коровам, свиньям, овцам и другим. Также повышает шанс выпадения редких ингредиентов.",
   "advancements.make_soul_soul.descr": "Вспахай пашню почвы душ",
   "advancements.brain_freeze_obtain_achievement.descr": "Почувствуй заморозку мозга.",
   "item.concoction.butter": "Сливочное масло",

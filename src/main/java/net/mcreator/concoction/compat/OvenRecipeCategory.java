@@ -126,9 +126,16 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
         );
 
         if (!recipe.getBowlIngredient().hasNoItems()) {
+            int resultCount = Integer.parseInt(recipe.getResult().get("count"));
+
+            // собираем ItemStack нужного размера
+            ItemStack bowlStack = recipe.getBowlIngredient().getItems()[0].copy();
+            bowlStack.setCount(resultCount);
+
             builder.addSlot(RecipeIngredientRole.CATALYST, 101, 9)
-                    .addIngredients(recipe.getBowlIngredient());
+                    .addItemStack(bowlStack); // вместо addIngredients()
         }
+
 
         if (!recipe.getBottleIngredient().hasNoItems()){
             builder.addSlot(RecipeIngredientRole.CATALYST, 16, 29)
