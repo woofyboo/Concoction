@@ -1,7 +1,6 @@
 package net.mcreator.concoction.item;
 
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponentType;
@@ -29,34 +28,39 @@ public class TastefulItem extends Item {
                                 @NotNull TooltipContext context,
                                 @NotNull List<Component> tooltip,
                                 @NotNull TooltipFlag flag) {
-        // если shift не зажат — просто подсказка
-        if (!Screen.hasShiftDown()) {
+
+        // === Зажат ли CTRL? ===
+        boolean ctrlDown = Screen.hasControlDown();
+
+        // Если Ctrl НЕ зажат — подсказываем
+        if (!ctrlDown) {
             tooltip.add(
                     Component.translatable(
                             "tooltip.concoction.hold_key",
-                            Component.keybind("key.sneak")
+                            Component.literal("Ctrl")   // ← всегда пишем CTRL
                     ).withStyle(ChatFormatting.DARK_GRAY)
             );
             return;
         }
 
-        // собираем вкусы в отдельный список
+        // === Ctrl зажат → показываем детали ===
+
         List<Component> tastes = collectTastes(stack);
 
         if (!tastes.isEmpty()) {
-            // добавляем заголовок "Вкусы"
             tooltip.add(Component.translatable("tooltip.concoction.tastes_header")
                     .withStyle(ChatFormatting.DARK_GREEN));
 
-            // добавляем вкусы
             tooltip.addAll(tastes);
 
-            tooltip.add(Component.empty()); // разделительная пустая строка
+            tooltip.add(Component.empty());
         }
 
-        // описание предмета всегда внизу
-        tooltip.add(Component.translatable(getDescriptionKeyForThisItem())
-                .withStyle(ChatFormatting.GRAY));
+        // Описание предмета
+        tooltip.add(
+                Component.translatable(getDescriptionKeyForThisItem())
+                        .withStyle(ChatFormatting.GRAY)
+        );
     }
 
     /** Собирает все вкусы предмета в список */

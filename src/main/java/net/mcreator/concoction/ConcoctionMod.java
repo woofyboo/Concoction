@@ -1,5 +1,8 @@
 package net.mcreator.concoction;
 
+import net.mcreator.concoction.client.OvenRecipeBookClient;
+import net.mcreator.concoction.recipebook.ConcoctionRecipeBooks;
+import net.mcreator.concoction.server.OvenRecipeUnlocker;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -52,10 +55,14 @@ public class ConcoctionMod {
 	public static final String MODID = "concoction";
 
 	public ConcoctionMod(IEventBus modEventBus) {
+
 		// Start of user code block mod constructor
 		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
+        OvenRecipeUnlocker.init();
+
 		modEventBus.addListener(this::registerNetworking);
+
 		ConcoctionModSounds.REGISTRY.register(modEventBus);
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
@@ -69,6 +76,7 @@ public class ConcoctionMod {
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
 		ConcoctionModFluids.REGISTRY.register(modEventBus);
 		ConcoctionModFluidTypes.REGISTRY.register(modEventBus);
+
 		// Start of user code block mod init
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
@@ -77,7 +85,13 @@ public class ConcoctionMod {
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);
         //		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
-		// End of user code block mod init
+        ConcoctionRecipeBooks.register(modEventBus);
+
+
+
+
+        // End of user code block mod init
+
 	}
 
 	// Start of user code block mod methods
@@ -119,4 +133,5 @@ public class ConcoctionMod {
 		actions.forEach(e -> e.getA().run());
 		workQueue.removeAll(actions);
 	}
+
 }

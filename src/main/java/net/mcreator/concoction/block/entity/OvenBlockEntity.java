@@ -298,6 +298,11 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
 
     /** Списывает входные ингредиенты. Учитывает, что из слота миски (7) надо снять столько,
      *  сколько создаётся результата за одну готовку. Также масштабирует «контейнерные» дропы. */
+    /** Списывает входные ингредиенты.
+     *  ВАЖНО: слот миски (SLOT_BOWL) ведёт себя как "посуда для блюда":
+     *  - из него снимаются ведра/миски/бутылки,
+     *  - НО пустые контейнеры за них НЕ возвращаются.
+     *  Контейнеры возвращаются только из обычных слотов (0..6 и слот бутылочки). */
     private void consumeIngredients(RecipeHolder<OvenRecipe> rh) {
         if (rh == null || level == null) return;
 
@@ -305,7 +310,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
 
         List<ItemStack> containers = new ArrayList<>();
 
-        // Списываем слоты 0..7
+        // Списываем слоты 0..7 (включая миску), но контейнеры возвращаем не из миски
         for (int i = 0; i <= SLOT_BOWL; i++) {
             ItemStack stack = items.get(i);
             if (stack.isEmpty()) continue;
@@ -316,21 +321,24 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
                 shrinkAmount = bowlsPerCraft;
             }
 
-            // Реально можно снять не больше, чем есть в стаке
             int toRemove = Math.min(stack.getCount(), shrinkAmount);
             if (toRemove <= 0) continue;
 
-            // Подготовим список «пустых контейнеров» кратно количеству снимаемого
-            if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bottles")))) {
-                ItemStack drop = new ItemStack(Items.GLASS_BOTTLE, toRemove);
-                containers.add(drop);
-            } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "buckets")))) {
-                ItemStack drop = new ItemStack(Items.BUCKET, toRemove);
-                containers.add(drop);
-            } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bowls")))) {
-                ItemStack drop = new ItemStack(Items.BOWL, toRemove);
-                containers.add(drop);
+            // === ВОТ ЗДЕСЬ ГЛАВНОЕ ИЗМЕНЕНИЕ ===
+            // Контейнеры возвращаем ТОЛЬКО если это НЕ слот миски
+            if (i != SLOT_BOWL) {
+                if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bottles")))) {
+                    ItemStack drop = new ItemStack(Items.GLASS_BOTTLE, toRemove);
+                    containers.add(drop);
+                } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "buckets")))) {
+                    ItemStack drop = new ItemStack(Items.BUCKET, toRemove);
+                    containers.add(drop);
+                } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bowls")))) {
+                    ItemStack drop = new ItemStack(Items.BOWL, toRemove);
+                    containers.add(drop);
+                }
             }
+            // === КОНЕЦ ИЗМЕНЕНИЯ ===
 
             stack.shrink(toRemove);
             if (stack.isEmpty()) {
@@ -338,7 +346,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             }
         }
 
-        // Выбрасываем пустые контейнеры в мир одним стеком на тип
+        // Выбрасываем пустые контейнеры в мир
         for (ItemStack container : containers) {
             if (level != null && !level.isClientSide && !container.isEmpty()) {
                 ItemEntity itemEntity = new ItemEntity(level,
@@ -351,6 +359,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             }
         }
     }
+
 
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;

@@ -6,9 +6,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -28,6 +31,9 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
     private final Ingredient bowlIngredient;            // слот 7 — миска
     private final Map<String, String> result;
 
+    // кэш результата для книги рецептов
+    private final ItemStack resultStack;
+
     public OvenRecipe(int cookingTime,
                       List<Ingredient> craftingIngredients,
                       Ingredient bottleIngredient,
@@ -38,6 +44,28 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
         this.bottleIngredient = bottleIngredient;
         this.bowlIngredient = bowlIngredient;
         this.result = result;
+        this.resultStack = createResultStack(result);
+    }
+
+    private static ItemStack createResultStack(Map<String, String> result) {
+        if (result == null) return ItemStack.EMPTY;
+
+        String id = result.getOrDefault("id", "");
+        if (id.isEmpty()) return ItemStack.EMPTY;
+
+        ResourceLocation rl = ResourceLocation.tryParse(id);
+        if (rl == null) return ItemStack.EMPTY;
+
+        Item item = BuiltInRegistries.ITEM.get(rl);
+        if (item == null) return ItemStack.EMPTY;
+
+        int count = 1;
+        String rawCount = result.getOrDefault("count", result.getOrDefault("amount", "1"));
+        try {
+            count = Math.max(1, Integer.parseInt(rawCount.trim()));
+        } catch (NumberFormatException ignored) {}
+
+        return new ItemStack(item, count);
     }
 
     public int getCookingTime() {
@@ -62,14 +90,8 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
 
     /** Сколько предметов получится на выходе (по умолчанию 1). Читает result.count/amount. */
     public int getOutputCount() {
-        if (result == null) return 1;
-        String raw = result.getOrDefault("count", result.getOrDefault("amount", "1"));
-        try {
-            int v = Integer.parseInt(raw.trim());
-            return Math.max(1, v);
-        } catch (NumberFormatException e) {
-            return 1;
-        }
+        if (resultStack.isEmpty()) return 1;
+        return resultStack.getCount();
     }
 
     /** Сколько мисок требуется списать за одну готовку (0, если миска не нужна). */
@@ -135,36 +157,81 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
         return matchesIngredients(input.items());
     }
 
-    /** Рецепт не должен менять инвентарь — списание делает BlockEntity. */
+    /** В книгу рецептов важен этот метод — тут должен быть итоговый стак. */
     @Override
     public ItemStack assemble(OvenRecipeInput input, HolderLookup.Provider registries) {
-        return ItemStack.EMPTY;
+        return resultStack.copy();
     }
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return true;
+        // сколько "клеток" доступно меню (рецептбуку пофиг, где именно они расположены)
+        int gridSlots = width * height;
+
+        // нам нужна хотя бы по одной "клетке" на каждый крафтовый ингредиент
+        // (бутылка и миска тут не считаются — они отдельные слоты)
+        return gridSlots >= this.craftingIngredients.size();
     }
 
+
+    /** Тоже для книги рецептов — превью результата. */
     @Override
     public ItemStack getResultItem(HolderLookup.Provider registries) {
-        return ItemStack.EMPTY;
+        if (result == null) return ItemStack.EMPTY;
+
+        String idStr = result.get("id");
+        if (idStr == null || idStr.isEmpty()) return ItemStack.EMPTY;
+
+        ResourceLocation id = ResourceLocation.parse(idStr);
+        int count = getOutputCount();
+
+        return new ItemStack(BuiltInRegistries.ITEM.get(id), count);
     }
+
+
+
+    /** ВАЖНО: книга берёт список ингредиентов из этого метода. */
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> list = NonNullList.create();
+
+        // основные ингредиенты 1..6
+        list.addAll(this.craftingIngredients);
+
+        // бутылочка, если есть
+        if (!this.bottleIngredient.isEmpty()) {
+            list.add(this.bottleIngredient);
+        }
+
+        // миска/ведро/посуда, если есть
+        if (!this.bowlIngredient.isEmpty()) {
+            list.add(this.bowlIngredient);
+        }
+
+        return list;
+    }
+
+
 
     @Override
     public ItemStack getToastSymbol() {
+        // Можешь заменить на свой предмет духовки, если он есть
         return new ItemStack(Items.FURNACE);
     }
 
+    /** Пусть будут обычными, не "особенными" — так проще с книгой. */
     @Override
     public boolean isSpecial() {
-        return true;
+        return false;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
         return ConcoctionModRecipes.OVEN_RECIPE_SERIALIZER.get();
     }
+
+
+
 
     @Override
     public RecipeType<?> getType() {

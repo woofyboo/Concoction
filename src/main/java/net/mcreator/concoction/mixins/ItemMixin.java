@@ -4,7 +4,6 @@ import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -26,6 +25,12 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 public abstract class ItemMixin {
 
     @OnlyIn(Dist.CLIENT)
+    private static boolean concoction$isCtrlDown() {
+        // Всегда проверяем именно Ctrl, независимо от настроек управления
+        return Screen.hasControlDown();
+    }
+
+    @OnlyIn(Dist.CLIENT)
     @Inject(method = "appendHoverText", at = @At("TAIL"))
     private void concoction$appendFoodTastesOrDescription(@NotNull ItemStack stack,
                                                           @NotNull Item.TooltipContext ctx,
@@ -42,7 +47,10 @@ public abstract class ItemMixin {
         };
         boolean hasAnyTaste = false;
         for (FoodEffectComponent c : comps) {
-            if (c != null) { hasAnyTaste = true; break; }
+            if (c != null) {
+                hasAnyTaste = true;
+                break;
+            }
         }
 
         // 2) Ключ описания для любого предмета
@@ -53,10 +61,11 @@ public abstract class ItemMixin {
 
         if (hasAnyTaste) {
             // === ЕСТЬ ВКУСЫ ===
-            if (!Screen.hasShiftDown()) {
+            if (!concoction$isCtrlDown()) {
                 tooltip.add(Component.translatable(
                         "tooltip.concoction.hold_key",
-                        Component.keybind("key.sneak")
+                        // Жёстко пишем Ctrl, никаких keybind'ов
+                        Component.literal("Ctrl")
                 ).withStyle(ChatFormatting.DARK_GRAY));
                 return;
             }
@@ -83,16 +92,16 @@ public abstract class ItemMixin {
         }
 
         // Строка описания ЕСТЬ:
-        if (!Screen.hasShiftDown()) {
-            // Показываем СОВЕТ про Shift (но без заголовков/пустых строк).
+        if (!concoction$isCtrlDown()) {
+            // Показываем СОВЕТ про Ctrl (но без заголовков/пустых строк).
             tooltip.add(Component.translatable(
                     "tooltip.concoction.hold_key",
-                    Component.keybind("key.sneak")
+                    Component.literal("Ctrl")
             ).withStyle(ChatFormatting.DARK_GRAY));
             return;
         }
 
-        // Зажали Shift → показываем ТОЛЬКО описание (без «Вкусы», без пустой строки).
+        // Зажали Ctrl → показываем ТОЛЬКО описание (без «Вкусы», без пустой строки).
         tooltip.add(Component.translatable(descKey).withStyle(ChatFormatting.GRAY));
     }
-    }
+}

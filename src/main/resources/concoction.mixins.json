@@ -28,6 +28,7 @@
     "ItemEntitySoapFrictionMixin",
     "BoatSoapFrictionMixin",
     "ItemEntitySlideTrackerMixin"
+
   ],
   "client": [
     "GuiMixin"
