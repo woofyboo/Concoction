@@ -27,12 +27,12 @@
     "BlockStateFrictionMixin",
     "ItemEntitySoapFrictionMixin",
     "BoatSoapFrictionMixin",
-    "ItemEntitySlideTrackerMixin",
-    "MixinRecipeBookComponent"
+    "ItemEntitySlideTrackerMixin"
 
   ],
   "client": [
-    "GuiMixin"
+    "GuiMixin",
+    "MixinRecipeBookComponent"
   ],
   "injectors": {
   }
