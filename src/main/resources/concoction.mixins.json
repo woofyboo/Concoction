@@ -27,7 +27,8 @@
     "BlockStateFrictionMixin",
     "ItemEntitySoapFrictionMixin",
     "BoatSoapFrictionMixin",
-    "ItemEntitySlideTrackerMixin"
+    "ItemEntitySlideTrackerMixin",
+    "MixinRecipeBookComponent"
 
   ],
   "client": [
