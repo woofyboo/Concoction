@@ -41,8 +41,7 @@ public class OvenGUIMenu
         implements Supplier<Map<Integer, Slot>> {
 
     public static final HashMap<String, Object> guistate = new HashMap<>();
-    // последний рецепт, который книга разложила в эту духовку
-    private ResourceLocation lastRecipeId = null;
+
     public final Level world;
     public final Player entity;
     public int x, y, z;
@@ -60,6 +59,9 @@ public class OvenGUIMenu
     private int maxProgress = 200;
     private boolean isCooking = false;
     private boolean isLit = false;
+
+    // последний рецепт, который книга разложила в эту духовку
+    private ResourceLocation lastRecipeId = null;
 
     public OvenGUIMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         super(ConcoctionModMenus.OVEN_GUI.get(), id);
@@ -180,7 +182,7 @@ public class OvenGUIMenu
         }));
     }
 
-    // ===== Состояние для GUI (берём из BlockEntity, как раньше) =====
+    // ===== Состояние для GUI (берём из BlockEntity) =====
 
     public int getProgress() {
         if (boundBlockEntity instanceof OvenBlockEntity be) {
@@ -287,13 +289,10 @@ public class OvenGUIMenu
      * Автосборка по клику в книге рецептов.
      *
      * Делает так:
-     * 1) Возвращает все предметы из слотов духовки (бутылка + 3×2 + миска) обратно игроку;
-     * 2) Кладёт:
-     *    - бутылку в слот 36;
-     *    - миски в слот 43 (столько, сколько выдаёт рецепт);
-     *    - крафтовые ингредиенты в слоты 37..42.
-     *
-     * Если чего-то не хватает — ничего не теряется, просто автосборка не полностью проходит.
+     * 1) Если рецепт сменился — возвращает старые ингредиенты игроку.
+     * 2) Если тот же рецепт:
+     *    - обычный клик → +1 порция;
+     *    - shift-клик   → добавляет порции, пока хватает ресурсов.
      */
     @Override
     public void handlePlacement(boolean placeAll, RecipeHolder<?> holder, ServerPlayer player) {
@@ -345,7 +344,6 @@ public class OvenGUIMenu
         lastRecipeId = id;
     }
 
-
     /**
      * Считает, сколько полных порций сейчас лежит в духовке.
      * Берём минимум из:
@@ -396,7 +394,8 @@ public class OvenGUIMenu
      *
      * Например:
      *  - если targetPatterns = 2 и bowlCost = 2, то в слоте миски должно быть 4 штуки;
-     *  - в каждом слоте сетки должно быть targetPatterns предметов.
+     *  - в каждом слоте сетки должно быть targetPatterns предметов;
+     *  - бутылок → по одной на порцию.
      *
      * @return true, если удалось полностью собрать targetPatterns порций
      */
@@ -413,7 +412,6 @@ public class OvenGUIMenu
                 return false;
             }
         }
-
 
         // миски → targetPatterns * bowlCost
         if (!bowlIng.isEmpty() && bowlCost > 0) {
@@ -439,13 +437,12 @@ public class OvenGUIMenu
         return true;
     }
 
-
     /**
      * Гарантирует наличие requiredCount предметов, подходящих под ingredient, в targetSlotIndex.
      *
      * - если слот пустой — тянем предметы из инвентаря игрока, пока не наберём requiredCount;
      * - если в слоте уже лежит подходящий предмет — просто докладываем до requiredCount;
-     * - если там что-то другое — возвращаем false (мы заранее очищаем слоты, так что это маловероятно).
+     * - если там что-то другое — возвращаем false.
      *
      * НИКОГДА не тратит предметы, если не может удовлетворить запрос.
      */
@@ -542,7 +539,7 @@ public class OvenGUIMenu
         }
     }
 
-    // ===== обычная логика меню (как в рабочей версии) =====
+    // ===== обычная логика меню =====
 
     @Override
     public boolean stillValid(Player player) {
@@ -638,17 +635,28 @@ public class OvenGUIMenu
     @Override
     public void removed(Player player) {
         super.removed(player);
-        if (pos != null && world != null) {
-            world.playLocalSound(
-                    pos.getX() + 0.5,
-                    pos.getY() + 0.5,
-                    pos.getZ() + 0.5,
-                    ConcoctionModSounds.OVEN_CLOSE.get(),
-                    SoundSource.BLOCKS,
-                    1.0f,
-                    1.0F,
-                    false
-            );
+
+        // только на сервере
+        if (!player.level().isClientSide && player instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
+            // если игрок уже дисконнектится — не играем звук
+            if (this.pos != null && !serverPlayer.hasDisconnected()) {
+                player.level().playSound(
+                        null,
+                        this.pos,
+                        ConcoctionModSounds.OVEN_CLOSE.get(),
+                        SoundSource.BLOCKS,
+                        1.0F,
+                        1.0F
+                );
+            }
         }
     }
+
+
+
+    // нужно, чтобы экран знал, где печка стоит
+    public BlockPos getBlockPos() {
+        return this.pos;
+    }
+
 }

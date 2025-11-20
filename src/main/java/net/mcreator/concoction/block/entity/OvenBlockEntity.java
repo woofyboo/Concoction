@@ -6,17 +6,23 @@ import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipeInput;
 import net.mcreator.concoction.world.inventory.OvenGUIMenu;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction; // *** добавлено
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.WorldlyContainer; // *** добавлено
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -26,8 +32,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import java.util.List;
-import java.util.ArrayList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CampfireBlock;
@@ -38,23 +42,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
-
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModMenus;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
-import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.util.RandomSource;
 import org.jetbrains.annotations.Nullable;
 import io.netty.buffer.Unpooled;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.*;
 
-public class OvenBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer { // *** добавили implements WorldlyContainer
+public class OvenBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
     // Слоты: 0 бутылочка, 1-6 крафт, 7 миска, 8 результат
     private final int ContainerSize = 9;
     private boolean isCooking = false;
@@ -105,7 +101,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         }
     }
 
-    // Save values into the passed CompoundTag here.
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
@@ -119,57 +114,65 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         }
     }
 
-    public void tick(Level level, BlockPos pPos, BlockState pState) {
+    /**
+     * Тик духовки:
+     *  - БОЛЬШЕ НЕ ЗАВИСИТ ОТ ТЕПЛА СНИЗУ
+     *  - если есть валидный рецепт и есть место под результат → готовим и загораемся
+     *  - иначе прогресс сбрасывается и духовка не горит
+     */
+    public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
 
-        boolean wasLit = pState.getValue(OvenBlock.LIT);
-        boolean shouldBeLit = isHeated(level, pPos);
+        // ищем подходящий рецепт под текущие ингредиенты
+        Optional<RecipeHolder<OvenRecipe>> currentRecipe = getCurrentRecipe();
 
-        if (wasLit != shouldBeLit) {
-            level.setBlock(pPos, pState.setValue(OvenBlock.LIT, shouldBeLit), 3);
-        }
-
-        if (!shouldBeLit) {
-            if (isCooking) {
-                resetProgressOnly();
+        if (currentRecipe.isEmpty()) {
+            // рецепта нет — стоп и гасим
+            if (this.isCooking) {
+                resetProgress();
             }
+            updateLit(level, pos, state, false);
             return;
         }
 
-        Optional<RecipeHolder<OvenRecipe>> currentRecipe = getCurrentRecipe();
+        RecipeHolder<OvenRecipe> rh = currentRecipe.get();
 
-        if (currentRecipe.isPresent()) {
-            if (!isCooking) {
-                // Начинаем готовку
-                this.recipe = currentRecipe.get();
-                this.isCooking = true;
-                this.maxProgress = recipe.value().getCookingTime();
-                setChanged();
-            } else if (!isSameRecipe(currentRecipe.get(), this.recipe)) {
-                // Рецепт изменился - сбрасываем прогресс
-                resetProgress();
-                // Начинаем новый рецепт
-                this.recipe = currentRecipe.get();
-                this.isCooking = true;
-                this.maxProgress = recipe.value().getCookingTime();
-                setChanged();
-                return;
-            }
+        // если рецепт сменился — сбрасываем прогресс и подхватываем новый
+        if (this.recipe == null || !isSameRecipe(rh, this.recipe)) {
+            this.recipe = rh;
+            this.progress = 0;
+            this.maxProgress = rh.value().getCookingTime();
+            this.isCooking = false;
+            setChanged();
+        }
 
-            // Проверяем, можем ли добавить результат
-            if (canAddResult()) {
-                increaseCraftingProgress();
+        // если некуда класть результат — не готовим и не горим
+        if (!canAddResult()) {
+            this.isCooking = false;
+            updateLit(level, pos, state, false);
+            return;
+        }
 
-                if (hasCraftingFinished()) {
-                    craftItem();
-                    resetProgress();
-                }
-            } else {
-                // нет места под результат
-            }
-        } else if (isCooking) {
-            // Рецепт больше не совпадает - сбрасываем
+        // готовим
+        this.isCooking = true;
+        updateLit(level, pos, state, true);
+
+        increaseCraftingProgress();
+
+        if (hasCraftingFinished()) {
+            craftItem();
             resetProgress();
+        }
+    }
+
+    /**
+     * Обновляет флаг LIT у блока в мире.
+     */
+    private void updateLit(Level level, BlockPos pos, BlockState state, boolean shouldBeLit) {
+        if (!state.hasProperty(OvenBlock.LIT)) return;
+        boolean wasLit = state.getValue(OvenBlock.LIT);
+        if (wasLit != shouldBeLit) {
+            level.setBlock(pos, state.setValue(OvenBlock.LIT, shouldBeLit), 3);
         }
     }
 
@@ -200,25 +203,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         }
 
         return true;
-    }
-
-    private boolean isHeated(Level level, BlockPos pos) {
-        BlockPos below = pos.below();
-        BlockState belowState = level.getBlockState(below);
-        Block belowBlock = belowState.getBlock();
-
-        // Проверяем источники тепла
-        if (belowBlock instanceof CampfireBlock) {
-            return belowState.getValue(CampfireBlock.LIT);
-        }
-        if (belowBlock instanceof FireBlock || belowBlock instanceof MagmaBlock) {
-            return true;
-        }
-        if (belowBlock == Blocks.LAVA) {
-            return true;
-        }
-
-        return false;
     }
 
     private boolean canAddResult() {
@@ -296,13 +280,11 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         setChanged();
     }
 
-    /** Списывает входные ингредиенты. Учитывает, что из слота миски (7) надо снять столько,
-     *  сколько создаётся результата за одну готовку. Также масштабирует «контейнерные» дропы. */
-    /** Списывает входные ингредиенты.
-     *  ВАЖНО: слот миски (SLOT_BOWL) ведёт себя как "посуда для блюда":
-     *  - из него снимаются ведра/миски/бутылки,
-     *  - НО пустые контейнеры за них НЕ возвращаются.
-     *  Контейнеры возвращаются только из обычных слотов (0..6 и слот бутылочки). */
+    /**
+     * Списывает входные ингредиенты.
+     *  - слот миски (7) тратит миски/ведра/посуду без возврата контейнера;
+     *  - в остальных слотах контейнеры возвращаются.
+     */
     private void consumeIngredients(RecipeHolder<OvenRecipe> rh) {
         if (rh == null || level == null) return;
 
@@ -315,7 +297,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             ItemStack stack = items.get(i);
             if (stack.isEmpty()) continue;
 
-            // На сколько уменьшать этот слот
             int shrinkAmount = 1;
             if (i == SLOT_BOWL && bowlsPerCraft > 0) {
                 shrinkAmount = bowlsPerCraft;
@@ -324,8 +305,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             int toRemove = Math.min(stack.getCount(), shrinkAmount);
             if (toRemove <= 0) continue;
 
-            // === ВОТ ЗДЕСЬ ГЛАВНОЕ ИЗМЕНЕНИЕ ===
-            // Контейнеры возвращаем ТОЛЬКО если это НЕ слот миски
             if (i != SLOT_BOWL) {
                 if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bottles")))) {
                     ItemStack drop = new ItemStack(Items.GLASS_BOTTLE, toRemove);
@@ -338,7 +317,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
                     containers.add(drop);
                 }
             }
-            // === КОНЕЦ ИЗМЕНЕНИЯ ===
 
             stack.shrink(toRemove);
             if (stack.isEmpty()) {
@@ -346,7 +324,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             }
         }
 
-        // Выбрасываем пустые контейнеры в мир
+        // выбрасываем пустые контейнеры в мир
         for (ItemStack container : containers) {
             if (level != null && !level.isClientSide && !container.isEmpty()) {
                 ItemEntity itemEntity = new ItemEntity(level,
@@ -359,7 +337,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             }
         }
     }
-
 
     private boolean hasCraftingFinished() {
         return this.progress >= this.maxProgress;
@@ -405,60 +382,44 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         boolean isDifferentItem = !isSlotEmpty && !isStackEmpty &&
                 (!ItemStack.matches(previousStack, stack));
 
-        // Проверяем, является ли это слотом ингредиентов (0-7)
         boolean isIngredientSlot = slot >= 0 && slot < 8;
 
-        // Если меняется содержимое слота ингредиентов, это может повлиять на рецепт
         if (isIngredientSlot && (isDifferentItem || isSlotEmpty != isStackEmpty)) {
 
-            // Проверяем, какой рецепт будет готовиться после изменения
             ItemStack oldStack = this.items.get(slot);
 
-            // Проверяем рецепт с оригинальным количеством (1 предмет)
             ItemStack testStack = oldStack.copy();
             if (!testStack.isEmpty()) {
-                testStack.setCount(1); // Проверяем с 1 предметом
+                testStack.setCount(1);
             }
             this.items.set(slot, testStack);
 
             Optional<RecipeHolder<OvenRecipe>> originalRecipe = getCurrentRecipe();
 
-            // Теперь проверяем с новым количеством
             this.items.set(slot, stack);
             Optional<RecipeHolder<OvenRecipe>> newRecipe = getCurrentRecipe();
 
             boolean shouldReset = false;
 
             if (this.isCooking && this.recipe != null) {
-
-                // Если с оригинальным количеством рецепт тот же, то с новым количеством он тоже должен быть тот же
                 if (originalRecipe.isPresent() && isSameRecipe(originalRecipe.get(), this.recipe)) {
                     shouldReset = false;
                 } else if (newRecipe.isPresent()) {
-                    // Если рецепт изменился - сбрасываем прогресс
                     if (!isSameRecipe(newRecipe.get(), this.recipe)) {
                         shouldReset = true;
-                    } else {
-                        // тот же рецепт
                     }
                 } else {
-                    // Если рецепт стал некорректным - сбрасываем прогресс
                     shouldReset = true;
                 }
             }
 
-            // Возвращаем старый предмет для корректной обработки
             this.items.set(slot, oldStack);
 
-            // Сбрасываем прогресс только если нужно
             if (shouldReset) {
                 resetProgressOnly();
-            } else {
-                // без изменений
             }
         }
 
-        // Стандартная обработка (только если не обработали выше)
         stack.limitSize(this.getMaxStackSize(stack));
         this.items.set(slot, stack);
         this.setChanged();
@@ -470,11 +431,8 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         this.setChanged();
     }
 
-    // *** WorldlyContainer логика для воронок/редстоуна
+    // === WorldlyContainer логика ===
 
-    /**
-     * Какие слоты доступны с каждой стороны блока.
-     */
     @Override
     public int[] getSlotsForFace(Direction side) {
         BlockState state = this.getBlockState();
@@ -483,33 +441,25 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             facing = state.getValue(OvenBlock.FACING);
         }
 
-        // Воронка НАД блоком → только 6 крафтовых слотов
         if (side == Direction.UP) {
             return SLOTS_INGREDIENTS;
         }
 
-        // Воронка ПОД блоком → только финальный слот с результатом
         if (side == Direction.DOWN) {
             return new int[]{SLOT_OUTPUT};
         }
 
-        // Сзади блока (противоположно направлению лица) → миска
         if (side == facing.getOpposite()) {
             return new int[]{SLOT_BOWL};
         }
 
-        // Справа или слева от переда → бутылочка
         if (side == facing.getClockWise() || side == facing.getCounterClockWise()) {
             return new int[]{SLOT_BOTTLE};
         }
 
-        // Спереди — ничего недоступно
         return new int[0];
     }
 
-    /**
-     * Можно ли КЛАСТЬ предмет в этот слот через указанную сторону.
-     */
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction side) {
         if (side == null) return false;
@@ -520,50 +470,35 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             facing = state.getValue(OvenBlock.FACING);
         }
 
-        // Воронка сверху → только в крафтовые слоты 1..6
         if (side == Direction.UP) {
             return index >= SLOT_FIRST_CRAFT && index <= SLOT_LAST_CRAFT;
         }
 
-        // Сзади → только миска, и только если предмет валидный для миски
         if (side == facing.getOpposite()) {
             if (index != SLOT_BOWL) return false;
-
-            // Разрешаем только "мисочные" предметы
             return stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "tableware")));
         }
 
-        // Слева/справа → только бутылочка
         if (side == facing.getClockWise() || side == facing.getCounterClockWise()) {
             return index == SLOT_BOTTLE;
         }
 
-        // Снизу или спереди ничего положить нельзя
         return false;
     }
 
-
-    /**
-     * Можно ли ЗАБРАТЬ предмет из слота через указанную сторону.
-     */
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction side) {
-        // Воронка под блоком → забирает только результат
         if (side == Direction.DOWN) {
             return index == SLOT_OUTPUT;
         }
-
-        // Со всех других сторон ничего не забираем
         return false;
     }
 
-    // Whether the container is considered "still valid" for the given player.
     @Override
     public boolean stillValid(Player player) {
         return true;
     }
 
-    // Clear the internal storage, setting all slots to empty again.
     @Override
     public void clearContent() {
         items.clear();
@@ -573,8 +508,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
     @Override
     public void setChanged() {
         super.setChanged();
-        // This will send the block entity data to the client every time the block entity is marked as changed.
-        // This is useful for syncing data between the server and client.
         if (this.level != null && !this.level.isClientSide) {
             this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
         }
@@ -590,16 +523,11 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         return tag;
     }
 
-    // Return our packet here. This method returning a non-null result tells the game to use this packet for syncing.
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        // The packet uses the CompoundTag returned by #getUpdateTag. An alternative overload of #create exists
-        // that allows you to specify a custom update tag, including the ability to omit data the client might not need.
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    // Optionally: Run some custom logic when the packet is received.
-    // The super/default implementation forwards to #loadAdditional.
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
         CompoundTag tag = packet.getTag();
@@ -609,8 +537,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         this.isCooking = tag.getBoolean("IsCooking");
     }
 
-    // Handle a received update tag here. The default implementation calls #loadAdditional here,
-    // so you do not need to override this method if you don't plan to do anything beyond that.
     @Override
     public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
         super.handleUpdateTag(tag, registries);

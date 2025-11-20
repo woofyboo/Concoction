@@ -4,15 +4,12 @@ import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.mcreator.concoction.world.inventory.OvenGUIMenu;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.StateSwitchingButton;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.recipebook.GhostRecipe;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookPage;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
 import net.minecraft.client.gui.screens.recipebook.RecipeCollection;
-import net.minecraft.core.NonNullList;
+import net.minecraft.client.multiplayer.MultiPlayerGameMode;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.RecipeBookMenu;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.Slot;
@@ -20,13 +17,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Iterator;
 import java.util.List;
@@ -34,33 +28,11 @@ import java.util.List;
 @Mixin(RecipeBookComponent.class)
 public abstract class MixinRecipeBookComponent {
 
-    // ====== поля из RecipeBookComponent, которые нам нужны ======
-
     @Shadow protected RecipeBookMenu<?, ?> menu;
     @Shadow protected Minecraft minecraft;
-    @Shadow @Final protected GhostRecipe ghostRecipe;
+    @Shadow protected GhostRecipe ghostRecipe;
 
-    @Shadow protected RecipeBookPage recipeBookPage;
-    @Shadow protected EditBox searchBox;
-    @Shadow protected StateSwitchingButton filterButton;
-    @Shadow @Final protected List<RecipeBookTabButton> tabButtons;
-    @Shadow protected RecipeBookTabButton selectedTab;
-
-    @Shadow protected int xOffset;
-    @Shadow protected int width;
-    @Shadow protected int height;
-
-    // методы, которые мы вызываем из своей реализации mouseClicked
-    @Shadow protected abstract boolean isVisible();
-    @Shadow protected abstract boolean isOffsetNextToMainGUI();
-    @Shadow protected abstract void setVisible(boolean visible);
-    @Shadow protected abstract void updateFilterButtonTooltip();
-    @Shadow protected abstract void sendUpdateSettings();
-    @Shadow protected abstract void updateCollections(boolean reset);
-
-    @Shadow protected abstract boolean toggleFiltering();
-
-    // ====== 1) фильтр коллекций (как у тебя было) ======
+    // ------------------ ФИЛЬТР КОЛЛЕКЦИЙ ------------------
 
     @Redirect(
             method = "updateCollections",
@@ -95,147 +67,201 @@ public abstract class MixinRecipeBookComponent {
         page.updateCollections(collections, resetPage);
     }
 
-    // ====== 2) полная подмена mouseClicked с нашей вставкой призрака ======
+    // ------------------ ХЕЛПЕРЫ ------------------
 
-    @Inject(method = "mouseClicked(DDI)Z", at = @At("HEAD"), cancellable = true)
-    private void concoction$mouseClicked(double mouseX, double mouseY, int button,
-                                         CallbackInfoReturnable<Boolean> cir) {
-        boolean result = concoction$mouseClickedImpl(mouseX, mouseY, button);
-        cir.setReturnValue(result);
-        cir.cancel();
+    /** Сколько всего предметов под ingredient есть в GUI (кроме выходного слота). */
+    private int concoction$countAvailable(Ingredient ingredient, int resultIndex) {
+        if (ingredient == null || ingredient.isEmpty()) return 0;
+        int total = 0;
+
+        for (int i = 0; i < this.menu.slots.size(); i++) {
+            if (i == resultIndex) continue;
+            Slot s = this.menu.slots.get(i);
+            ItemStack stack = s.getItem();
+            if (!stack.isEmpty() && ingredient.test(stack)) {
+                total += stack.getCount();
+            }
+        }
+
+        return total;
+    }
+
+    /** Просто рисуем призрак в указанном GUI-слоте. */
+    private void concoction$addGhostRaw(List<Slot> slots,
+                                        Ingredient ingredient,
+                                        int guiIndex) {
+        if (ingredient == null || ingredient.isEmpty()) return;
+        if (guiIndex < 0 || guiIndex >= slots.size()) return;
+
+        Slot guiSlot = slots.get(guiIndex);
+        this.ghostRecipe.addIngredient(ingredient, guiSlot.x, guiSlot.y);
     }
 
     /**
-     * Почти точная копия ванильного RecipeBookComponent.mouseClicked,
-     * но с одним отличием:
-     *  - после ghostRecipe.clear() мы вызываем buildOvenGhostIfNeeded(...)
-     *    чтобы для нашей духовки заполнить призрачный рецепт.
+     * Возвращаем ВСЕ ингредиенты духовки (бутылка, крафтовые, миска)
+     * обратно игроку через shift-клик, если рецепт неполный.
+     * Топливо не трогаем, выходной слот уже обработан отдельно.
      */
-    private boolean concoction$mouseClickedImpl(double mouseX, double mouseY, int button) {
-        if (this.isVisible() && !this.minecraft.player.isSpectator()) {
-            int left = (this.width - 147) / 2 - this.xOffset;
-            int top = (this.height - 166) / 2;
+    private void concoction$returnOvenInputsToPlayer(MultiPlayerGameMode gameMode,
+                                                     int resultIndex) {
+        if (this.minecraft == null || this.minecraft.player == null) return;
 
-            if (this.recipeBookPage.mouseClicked(mouseX, mouseY, button, left, top, 147, 166)) {
-                RecipeHolder<?> recipeholder = this.recipeBookPage.getLastClickedRecipe();
-                RecipeCollection recipecollection = this.recipeBookPage.getLastClickedRecipeCollection();
-                if (recipeholder != null && recipecollection != null) {
-                    if (!recipecollection.isCraftable(recipeholder) && this.ghostRecipe.getRecipe() == recipeholder) {
-                        return false;
-                    }
+        // наши слоты духовки:
+        // 36 — бутылка
+        // 37..42 — ингредиенты
+        // 43 — миска
+        int[] inputSlots = {36, 37, 38, 39, 40, 41, 42, 43};
 
-                    // ваниль: очищаем предыдущий призрак
-                    this.ghostRecipe.clear();
+        for (int slotIndex : inputSlots) {
+            if (slotIndex == resultIndex) continue;
+            if (slotIndex < 0 || slotIndex >= this.menu.slots.size()) continue;
 
-                    // НАША ВСТАВКА: если это духовка — заполняем ghostRecipe сами
-                    buildOvenGhostIfNeeded(recipeholder);
-
-                    // ваниль: просим MultiPlayerGameMode разложить рецепт
-                    this.minecraft.gameMode.handlePlaceRecipe(
-                            this.minecraft.player.containerMenu.containerId,
-                            recipeholder,
-                            Screen.hasShiftDown()
-                    );
-
-                    if (!this.isOffsetNextToMainGUI()) {
-                        this.setVisible(false);
-                    }
-                }
-
-                return true;
-            } else if (this.searchBox.mouseClicked(mouseX, mouseY, button)) {
-                this.searchBox.setFocused(true);
-                return true;
-            } else {
-                this.searchBox.setFocused(false);
-                if (this.filterButton.mouseClicked(mouseX, mouseY, button)) {
-                    boolean flag = this.toggleFiltering();
-                    this.filterButton.setStateTriggered(flag);
-                    this.updateFilterButtonTooltip();
-                    this.sendUpdateSettings();
-                    this.updateCollections(false);
-                    return true;
-                } else {
-                    for (RecipeBookTabButton tabButton : this.tabButtons) {
-                        if (tabButton.mouseClicked(mouseX, mouseY, button)) {
-                            if (this.selectedTab != tabButton) {
-                                if (this.selectedTab != null) {
-                                    this.selectedTab.setStateTriggered(false);
-                                }
-
-                                this.selectedTab = tabButton;
-                                this.selectedTab.setStateTriggered(true);
-                                this.updateCollections(true);
-                            }
-
-                            return true;
-                        }
-                    }
-
-                    return false;
-                }
+            Slot slot = this.menu.slots.get(slotIndex);
+            if (slot != null && slot.hasItem()) {
+                gameMode.handleInventoryMouseClick(
+                        this.menu.containerId,
+                        slotIndex,
+                        0,
+                        ClickType.QUICK_MOVE,
+                        this.minecraft.player
+                );
             }
-        } else {
-            return false;
         }
     }
 
-    // ====== 3) сборка призрачного рецепта для духовки ======
+    // ------------------ КЛИК ПО РЕЦЕПТУ ------------------
 
-    private void buildOvenGhostIfNeeded(RecipeHolder<?> holder) {
-        if (!(this.menu instanceof OvenGUIMenu)) {
-            return;
-        }
-        if (holder == null || holder.value() == null) {
-            return;
-        }
-        if (!(holder.value() instanceof OvenRecipe ovenRecipe)) {
-            return;
-        }
-        if (ovenRecipe.getType() != ConcoctionModRecipes.OVEN_RECIPE_TYPE.get()) {
+    @Redirect(
+            method = "mouseClicked",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/multiplayer/MultiPlayerGameMode;handlePlaceRecipe(ILnet/minecraft/world/item/crafting/RecipeHolder;Z)V"
+            )
+    )
+    private void concoction$customPlaceRecipe(MultiPlayerGameMode gameMode,
+                                              int containerId,
+                                              RecipeHolder<?> recipeHolder,
+                                              boolean shiftDown) {
+
+        // не наша духовка / не наш рецепт — ваниль
+        if (!(this.menu instanceof OvenGUIMenu)
+                || this.minecraft == null
+                || this.minecraft.level == null
+                || !(recipeHolder.value() instanceof OvenRecipe ovenRecipe)) {
+
+            gameMode.handlePlaceRecipe(containerId, recipeHolder, shiftDown);
             return;
         }
 
-        if (this.minecraft.level == null) {
-            return;
-        }
+        // очищаем предыдущий призрак
+        this.ghostRecipe.clear();
 
-        NonNullList<Slot> menuSlots = this.menu.slots;
-
-        // результат
-        ItemStack resultStack = ovenRecipe.getResultItem(this.minecraft.level.registryAccess());
         int resultIndex = this.menu.getResultSlotIndex();
-        if (resultIndex >= 0 && resultIndex < menuSlots.size()) {
-            Slot resultSlot = menuSlots.get(resultIndex);
-            this.ghostRecipe.addIngredient(Ingredient.of(resultStack), resultSlot.x, resultSlot.y);
+
+        // 1. если в выходном слоте что-то есть — сначала шифткликнем его в инвентарь
+        if (resultIndex >= 0 && resultIndex < this.menu.slots.size()) {
+            Slot resultSlot = this.menu.slots.get(resultIndex);
+            if (resultSlot != null && resultSlot.hasItem()) {
+                gameMode.handleInventoryMouseClick(
+                        this.menu.containerId,
+                        resultIndex,
+                        0,
+                        ClickType.QUICK_MOVE,
+                        this.minecraft.player
+                );
+            }
         }
 
-        // бутылка (слот 36)
-        if (!ovenRecipe.getBottleIngredient().isEmpty() && menuSlots.size() > 36) {
-            Slot s = menuSlots.get(36);
-            this.ghostRecipe.addIngredient(ovenRecipe.getBottleIngredient(), s.x, s.y);
+        // 2. Готовим структуру ингредиентов
+        List<Ingredient> all = ovenRecipe.getIngredients();
+        int craftCount = ovenRecipe.getCraftingIngredients().size();
+
+        int idx = 0;
+        int bottleIndex = -1;
+        int bowlIndex = -1;
+
+        idx = craftCount;
+
+        boolean hasBottle = !ovenRecipe.getBottleIngredient().isEmpty() && idx < all.size();
+        if (hasBottle) {
+            bottleIndex = idx;
+            idx++;
         }
 
-        // миска (слот 43)
-        if (!ovenRecipe.getBowlIngredient().isEmpty() && menuSlots.size() > 43) {
-            Slot s = menuSlots.get(43);
-            this.ghostRecipe.addIngredient(ovenRecipe.getBowlIngredient(), s.x, s.y);
+        boolean hasBowl = !ovenRecipe.getBowlIngredient().isEmpty() && idx < all.size();
+        if (hasBowl) {
+            bowlIndex = idx;
         }
 
-        // 3×2 сетка (слоты 37..42) — берём только craftingIngredients
-        int[] gridSlots = {37, 38, 39, 40, 41, 42};
-        List<Ingredient> craft = ovenRecipe.getCraftingIngredients();
-        int max = Math.min(craft.size(), gridSlots.length);
+        // ---------- ПРОВЕРЯЕМ, ХВАТАЕТ ЛИ ВСЕХ ИНГРЕДИЕНТОВ ----------
 
-        for (int i = 0; i < max; i++) {
-            Ingredient ing = craft.get(i);
-            if (ing.isEmpty()) continue;
+        boolean anyMissing = false;
 
-            int idx = gridSlots[i];
-            if (idx < 0 || idx >= menuSlots.size()) continue;
-
-            Slot s = menuSlots.get(idx);
-            this.ghostRecipe.addIngredient(ing, s.x, s.y);
+        // крафтовые по 1 штуке
+        for (int ci = 0; ci < craftCount; ci++) {
+            Ingredient ing = all.get(ci);
+            int required = 1;
+            int available = concoction$countAvailable(ing, resultIndex);
+            if (available < required) {
+                anyMissing = true;
+            }
         }
+
+        // бутылочка — 1 штука
+        if (hasBottle && bottleIndex >= 0) {
+            Ingredient ing = all.get(bottleIndex);
+            int required = 1;
+            int available = concoction$countAvailable(ing, resultIndex);
+            if (available < required) {
+                anyMissing = true;
+            }
+        }
+
+        // миски — столько, сколько выдаёт рецепт (или минимум 1)
+        int requiredBowls = Math.max(1, ovenRecipe.getOutputCount());
+        if (hasBowl && bowlIndex >= 0) {
+            Ingredient ing = all.get(bowlIndex);
+            int available = concoction$countAvailable(ing, resultIndex);
+            if (available < requiredBowls) {
+                anyMissing = true;
+            }
+        }
+
+        // ---------- ВЕТКА 1: всего хватает → ванильная раскладка, без призраков ----------
+
+        if (!anyMissing) {
+            gameMode.handlePlaceRecipe(containerId, recipeHolder, shiftDown);
+            this.ghostRecipe.clear();
+            return;
+        }
+
+        // ---------- ВЕТКА 2: чего-то не хватает ----------
+        // 2.1. сначала возвращаем ВСЕ входные слоты духовки игроку
+        concoction$returnOvenInputsToPlayer(gameMode, resultIndex);
+
+        // 2.2. рисуем красный макет рецепта
+        this.ghostRecipe.clear();
+        this.ghostRecipe.setRecipe(recipeHolder);
+
+        List<Slot> slots = this.menu.slots;
+
+        // крафтовые 1..6 → GUI 37..42
+        for (int ci = 0; ci < craftCount; ci++) {
+            int guiIndex = 37 + ci;
+            concoction$addGhostRaw(slots, all.get(ci), guiIndex);
+        }
+
+        // бутылочка → GUI 36
+        if (hasBottle && bottleIndex >= 0) {
+            concoction$addGhostRaw(slots, all.get(bottleIndex), 36);
+        }
+
+        // миска → GUI 43
+        if (hasBowl && bowlIndex >= 0) {
+            concoction$addGhostRaw(slots, all.get(bowlIndex), 43);
+        }
+
+        // handlePlaceRecipe тут специально НЕ зовём:
+        // предыдущий рецепт полностью выгружен, новый только подсвечен как "недоступный".
     }
 }
