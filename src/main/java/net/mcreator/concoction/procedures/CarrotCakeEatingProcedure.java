@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,75 +20,104 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModGameRules;
 
 import javax.annotation.Nullable;
 
 @EventBusSubscriber
 public class CarrotCakeEatingProcedure {
+
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         if (event.getHand() != event.getEntity().getUsedItemHand())
             return;
-        if (event.getLevel().isClientSide())
-            return;
 
-        execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(),
-                event.getLevel().getBlockState(event.getPos()), event.getEntity());
+        // Проверяем, стоит ли вообще перехватывать (и на клиенте, и на сервере)
+        if (!shouldEat(event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(),
+                event.getLevel().getBlockState(event.getPos()), event.getEntity())) {
+            return;
+        }
+
+        // Отменяем стандартный обработчик, чтобы не было попытки поставить торт/другой блок
+        if (event instanceof ICancellableEvent cancellable) {
+            cancellable.setCanceled(true);
+        }
+
+        // Логику еды выполняем только на сервере
+        if (!event.getLevel().isClientSide()) {
+            execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(),
+                    event.getLevel().getBlockState(event.getPos()), event.getEntity());
+        }
     }
 
-    public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
+    private static boolean shouldEat(LevelAccessor world, double x, double y, double z,
+                                     BlockState blockstate, Entity entity) {
+        if (entity == null)
+            return false;
+        if (!(entity instanceof Player player))
+            return false;
+
+        if (world.getBlockState(BlockPos.containing(x, y, z)).getBlock() != ConcoctionModBlocks.CARROT_CAKE.get())
+            return false;
+
+        if (entity.isShiftKeyDown())
+            return false;
+
+        boolean canAlwaysEat = false;
+        if (world instanceof Level level) {
+            canAlwaysEat = level.getGameRules().getBoolean(ConcoctionModGameRules.CAN_ALWAYS_EAT);
+        }
+
+        boolean isCreative = player instanceof ServerPlayer sp && sp.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
+        // Используем canEat, но учитываем наш геймрул
+        boolean canEatNow = player.getFoodData().getFoodLevel() < 20 || canAlwaysEat || isCreative;
+
+        return canEatNow;
+    }
+
+    public static void execute(LevelAccessor world, double x, double y, double z,
+                               BlockState blockstate, Entity entity) {
         execute(null, world, x, y, z, blockstate, entity);
     }
 
-    private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
+    private static void execute(@Nullable Event event,
+                                LevelAccessor world,
+                                double x, double y, double z,
+                                BlockState blockstate,
+                                Entity entity) {
         if (entity == null)
             return;
+        if (!(entity instanceof Player player))
+            return;
 
-        if (world.getBlockState(BlockPos.containing(x, y, z)).getBlock() == ConcoctionModBlocks.CARROT_CAKE.get()) {
-            if (!entity.isShiftKeyDown()) {
-                int bites = (blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty ip)
-                        ? blockstate.getValue(ip)
-                        : -1;
+        if (world.getBlockState(BlockPos.containing(x, y, z)).getBlock() != ConcoctionModBlocks.CARROT_CAKE.get())
+            return;
 
-                if (bites != 6) {
-                    boolean isCreative = entity instanceof ServerPlayer sp && sp.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
-                    int food = (entity instanceof Player p) ? p.getFoodData().getFoodLevel() : 0;
+        int bites = blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty prop
+                ? blockstate.getValue(prop)
+                : -1;
 
-                    if (isCreative || food < 20) {
-                        int newBites = bites + 1;
-                        BlockPos pos = BlockPos.containing(x, y, z);
-                        BlockState state = world.getBlockState(pos);
-                        if (state.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty ip &&
-                                ip.getPossibleValues().contains(newBites)) {
-                            world.setBlock(pos, state.setValue(ip, newBites), 3);
-                        }
+        boolean isLastBite = (bites == 6);
 
-                        if (entity instanceof LivingEntity living)
-                            living.swing(InteractionHand.MAIN_HAND, true);
-                        if (entity instanceof Player player) {
-                            player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 4);
-                            player.getFoodData().setSaturation(player.getFoodData().getSaturationLevel() + 1.2F);
-                        }
-
-                        if (event instanceof ICancellableEvent cancellable) {
-                            cancellable.setCanceled(true);
-                        }
-                    }
-                } else {
-                    world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
-
-                    if (entity instanceof LivingEntity living)
-                        living.swing(InteractionHand.MAIN_HAND, true);
-                    if (entity instanceof Player player) {
-                        player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + 4);
-                        player.getFoodData().setSaturation(player.getFoodData().getSaturationLevel() + 1.2F);
-                    }
-
-                    if (event instanceof ICancellableEvent cancellable) {
-                        cancellable.setCanceled(true);
-                    }
+        if (!isLastBite) {
+            if (blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty prop) {
+                int newVal = bites + 1;
+                BlockPos pos = BlockPos.containing(x, y, z);
+                BlockState bs = world.getBlockState(pos);
+                if (bs.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty p
+                        && p.getPossibleValues().contains(newVal)) {
+                    world.setBlock(pos, bs.setValue(p, newVal), 3);
                 }
             }
+        } else {
+            world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
         }
+
+        if (entity instanceof LivingEntity living) {
+            living.swing(InteractionHand.MAIN_HAND, true);
+        }
+
+        // Нормальная ванильная логика еды: тут уже нет переполнения > 20
+        player.getFoodData().eat(4, 1.2F);
     }
 }

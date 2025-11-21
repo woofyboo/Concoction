@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,77 +19,122 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.client.Minecraft;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModGameRules;
 
 import javax.annotation.Nullable;
 
 @EventBusSubscriber
 public class ChocolateMintCakeEatingProcedure {
-	@SubscribeEvent
-	public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-		if (event.getHand() != event.getEntity().getUsedItemHand())
-			return;
-		execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getLevel().getBlockState(event.getPos()), event.getEntity());
-	}
 
-	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
-		execute(null, world, x, y, z, blockstate, entity);
-	}
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getHand() != event.getEntity().getUsedItemHand())
+            return;
 
-	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
-		if (entity == null)
-			return;
-		if ((world.getBlockState(BlockPos.containing(x, y, z))).getBlock() == ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get()) {
-			if (!entity.isShiftKeyDown()) {
-				if ((blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty _getip4 ? blockstate.getValue(_getip4) : -1) != 6) {
-					if (new Object() {
-						public boolean checkGamemode(Entity _ent) {
-							if (_ent instanceof ServerPlayer _serverPlayer) {
-								return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
-							} else if (_ent.level().isClientSide() && _ent instanceof Player _player) {
-								return Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()) != null
-										&& Minecraft.getInstance().getConnection().getPlayerInfo(_player.getGameProfile().getId()).getGameMode() == GameType.CREATIVE;
-							}
-							return false;
-						}
-					}.checkGamemode(entity) || (entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) < 20) {
-						{
-							int _value = (int) ((blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty _getip8 ? blockstate.getValue(_getip8) : -1) + 1);
-							BlockPos _pos = BlockPos.containing(x, y, z);
-							BlockState _bs = world.getBlockState(_pos);
-							if (_bs.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
-								world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
-						}
-						if (entity instanceof LivingEntity _entity)
-							_entity.swing(InteractionHand.MAIN_HAND, true);
-						if (entity instanceof Player _player)
-							_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 2));
-						if (entity instanceof Player _player)
-							_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
-						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 30*20, 1-1, false, false, true, null));
-						if (event instanceof ICancellableEvent _cancellable) {
-							_cancellable.setCanceled(true);
-						}
-					}
-				} else {
-					world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
-					if (entity instanceof LivingEntity _entity)
-						_entity.swing(InteractionHand.MAIN_HAND, true);
-					if (entity instanceof Player _player)
-						_player.getFoodData().setFoodLevel((int) ((entity instanceof Player _plr ? _plr.getFoodData().getFoodLevel() : 0) + 2));
-					if (entity instanceof Player _player)
-						_player.getFoodData().setSaturation((float) ((entity instanceof Player _plr ? _plr.getFoodData().getSaturationLevel() : 0) + 0.4));
-					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, 30*20, 1-1, false, false, true, null));
-					if (event instanceof ICancellableEvent _cancellable) {
-						_cancellable.setCanceled(true);
-					}
-				}
-			}
-		}
-	}
+        if (!shouldEat(event.getLevel(),
+                event.getPos().getX(),
+                event.getPos().getY(),
+                event.getPos().getZ(),
+                event.getLevel().getBlockState(event.getPos()),
+                event.getEntity())) {
+            return;
+        }
+
+        if (event instanceof ICancellableEvent cancellable) {
+            cancellable.setCanceled(true);
+        }
+
+        if (!event.getLevel().isClientSide()) {
+            execute(event,
+                    event.getLevel(),
+                    event.getPos().getX(),
+                    event.getPos().getY(),
+                    event.getPos().getZ(),
+                    event.getLevel().getBlockState(event.getPos()),
+                    event.getEntity());
+        }
+    }
+
+    private static boolean shouldEat(LevelAccessor world, double x, double y, double z,
+                                     BlockState blockstate, Entity entity) {
+        if (entity == null)
+            return false;
+        if (!(entity instanceof Player player))
+            return false;
+
+        if (world.getBlockState(BlockPos.containing(x, y, z)).getBlock() != ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get())
+            return false;
+
+        if (entity.isShiftKeyDown())
+            return false;
+
+        boolean canAlwaysEat = false;
+        if (world instanceof Level level) {
+            canAlwaysEat = level.getGameRules().getBoolean(ConcoctionModGameRules.CAN_ALWAYS_EAT);
+        }
+
+        boolean isCreative = player instanceof ServerPlayer sp && sp.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
+        boolean canEatNow = player.getFoodData().getFoodLevel() < 20 || canAlwaysEat || isCreative;
+
+        return canEatNow;
+    }
+
+    public static void execute(LevelAccessor world, double x, double y, double z,
+                               BlockState blockstate, Entity entity) {
+        execute(null, world, x, y, z, blockstate, entity);
+    }
+
+    private static void execute(@Nullable Event event,
+                                LevelAccessor world,
+                                double x, double y, double z,
+                                BlockState blockstate,
+                                Entity entity) {
+        if (entity == null)
+            return;
+        if (!(entity instanceof Player player))
+            return;
+
+        if (world.getBlockState(BlockPos.containing(x, y, z)).getBlock() != ConcoctionModBlocks.MINT_CHOCOLATE_CAKE.get())
+            return;
+
+        int bites = blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty prop
+                ? blockstate.getValue(prop)
+                : -1;
+        boolean isLastBite = (bites == 6);
+
+        if (!isLastBite) {
+            if (blockstate.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty prop) {
+                int newVal = bites + 1;
+                BlockPos pos = BlockPos.containing(x, y, z);
+                BlockState bs = world.getBlockState(pos);
+                if (bs.getBlock().getStateDefinition().getProperty("bites") instanceof IntegerProperty p
+                        && p.getPossibleValues().contains(newVal)) {
+                    world.setBlock(pos, bs.setValue(p, newVal), 3);
+                }
+            }
+        } else {
+            world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
+        }
+
+        if (entity instanceof LivingEntity living) {
+            living.swing(InteractionHand.MAIN_HAND, true);
+        }
+
+        player.getFoodData().eat(2, 0.4F);
+
+        if (!player.level().isClientSide()) {
+            player.addEffect(new MobEffectInstance(
+                    ConcoctionModMobEffects.MINTY_BREATH,
+                    30 * 20,
+                    0,
+                    false,
+                    false,
+                    true,
+                    null
+            ));
+        }
+    }
 }
