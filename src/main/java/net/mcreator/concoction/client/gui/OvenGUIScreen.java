@@ -2,15 +2,12 @@ package net.mcreator.concoction.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.mcreator.concoction.world.inventory.OvenGUIMenu;
-import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
@@ -19,6 +16,9 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
 
     private static final ResourceLocation TEXTURE =
             ResourceLocation.parse("concoction:textures/gui/hud/oven_gui_playerside.png");
+
+    // индекс слота бутылки (совпадает с меню и миксином)
+    private static final int BOTTLE_SLOT_INDEX = 36;
 
     private final RecipeBookComponent recipeBookComponent = new RecipeBookComponent();
     private boolean widthTooNarrow;
@@ -43,7 +43,6 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
 
         int guiTop = (this.height - this.imageHeight) / 2;
 
-        // кнопка открытия книги рецептов (твоя позиция под бутылочкой)
         this.recipeBookButton = new ImageButton(
                 this.leftPos + 16,
                 guiTop + 52,
@@ -75,17 +74,15 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
         int i = this.leftPos;
         int j = (this.height - this.imageHeight) / 2;
 
-        // фон
         guiGraphics.blit(TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight);
 
         // --- ОГОНЁК ---
         if (this.menu.isLit()) {
             int flameHeight = 14;
-
             guiGraphics.blit(
                     TEXTURE,
-                    i + 56 + 5,                                // смещён на 5px вправо
-                    j + 36 + 14 - flameHeight + 24,           // и на 24px вниз
+                    i + 56 + 5,
+                    j + 36 + 14 - flameHeight + 24,
                     176,
                     14 - flameHeight,
                     14,
@@ -101,7 +98,7 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
             if (width > 0) {
                 guiGraphics.blit(
                         TEXTURE,
-                        i + 79 + 23,   // стрелка сдвинута вправо
+                        i + 79 + 23,
                         j + 34,
                         176,
                         14,
@@ -110,22 +107,35 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
                 );
             }
         }
+
+        // --- МАСКА СЛОТА БУТЫЛКИ ---
+        if (BOTTLE_SLOT_INDEX >= 0 && BOTTLE_SLOT_INDEX < this.menu.slots.size()) {
+            Slot bottleSlot = this.menu.slots.get(BOTTLE_SLOT_INDEX);
+            if (bottleSlot != null && bottleSlot.hasItem()) {
+                guiGraphics.blit(
+                        TEXTURE,
+                        i + bottleSlot.x-1,
+                        j + bottleSlot.y-1,
+                        176,
+                        30,
+                        16,
+                        16
+                );
+            }
+        }
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+
         if (this.recipeBookComponent.isVisible() && this.widthTooNarrow) {
-            // узкий экран + открыта книга:
-            // сами рисуем фон и КНИГУ, но НЕ зовём super.render()
             this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
             this.recipeBookComponent.render(guiGraphics, mouseX, mouseY, partialTick);
         } else {
-            // обычный случай: даём super самому нарисовать фон + GUI
             super.render(guiGraphics, mouseX, mouseY, partialTick);
             this.recipeBookComponent.render(guiGraphics, mouseX, mouseY, partialTick);
         }
 
-        // призрачный рецепт поверх слотов духовки
         this.recipeBookComponent.renderGhostRecipe(
                 guiGraphics,
                 this.leftPos,
@@ -134,7 +144,6 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
                 partialTick
         );
 
-        // тултипы
         this.renderTooltip(guiGraphics, mouseX, mouseY);
         this.recipeBookComponent.renderTooltip(
                 guiGraphics,
@@ -144,7 +153,6 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
                 mouseY
         );
     }
-
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
@@ -181,8 +189,4 @@ public class OvenGUIScreen extends AbstractContainerScreen<OvenGUIMenu> {
         }
         return super.charTyped(codePoint, modifiers);
     }
-
-
-
-
 }

@@ -14,7 +14,6 @@
     "HoneyBootleMixin",
     "HorseMixin",
     "ItemEntityMixin",
-    "ItemMixin",
     "ItemsMixin",
     "LevelMixin",
     "LightningBoltMixin",
@@ -28,11 +27,11 @@
     "ItemEntitySoapFrictionMixin",
     "BoatSoapFrictionMixin",
     "ItemEntitySlideTrackerMixin"
-
   ],
   "client": [
     "GuiMixin",
-    "MixinRecipeBookComponent"
+    "MixinRecipeBookComponent",
+    "ItemMixin"
   ],
   "injectors": {
   }

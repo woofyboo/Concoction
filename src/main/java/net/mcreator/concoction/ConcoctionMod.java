@@ -1,8 +1,6 @@
 package net.mcreator.concoction;
 
-import net.mcreator.concoction.client.OvenRecipeBookClient;
 import net.mcreator.concoction.recipebook.ConcoctionRecipeBooks;
-import net.mcreator.concoction.server.OvenRecipeUnlocker;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -59,7 +57,7 @@ public class ConcoctionMod {
 		// Start of user code block mod constructor
 		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
-        OvenRecipeUnlocker.init();
+
 
 		modEventBus.addListener(this::registerNetworking);
 
