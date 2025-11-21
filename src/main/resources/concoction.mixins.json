@@ -3,35 +3,37 @@
   "package": "net.mcreator.concoction.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AgeableMobMilkMixin",
     "AnvilMenuMixin",
     "BeeMixin",
     "BlocksMixin",
+    "BlockStateFrictionMixin",
+    "BoatSoapFrictionMixin",
     "CakeBlockMixin",
     "CowMixin",
     "EnchantmentMenuMixin",
     "EntityMixin",
     "GoatAiMixin",
+    "GoatMixin",
     "HoneyBootleMixin",
     "HorseMixin",
     "ItemEntityMixin",
+    "ItemEntitySlideTrackerMixin",
+    "ItemEntitySoapFrictionMixin",
     "ItemsMixin",
     "LevelMixin",
     "LightningBoltMixin",
     "LivingEntityMixin",
+    "PlayerCanEatMixin",
     "PlayerMixin",
     "PowderSnowBlockMixin",
     "SnowballMixin",
-    "ZombieMixin",
-    "PlayerCanEatMixin",
-    "BlockStateFrictionMixin",
-    "ItemEntitySoapFrictionMixin",
-    "BoatSoapFrictionMixin",
-    "ItemEntitySlideTrackerMixin"
+    "ZombieMixin"
   ],
   "client": [
     "GuiMixin",
-    "MixinRecipeBookComponent",
-    "ItemMixin"
+    "ItemMixin",
+    "MixinRecipeBookComponent"
   ],
   "injectors": {
   }
