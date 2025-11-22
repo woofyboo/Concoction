@@ -34,10 +34,18 @@ public class GuiMixin {
     }
 
     @Inject(method = "renderHearts", at = @At("HEAD"), cancellable = true)
-private void renderHearts(GuiGraphics p_282497_, Player player, int p_168691_, int p_168692_, int p_168693_, int p_168694_, float p_168695_, int p_168696_, int p_168697_, int p_168698_, boolean p_168699_, CallbackInfo ci) {
-    if (player.hasEffect(ConcoctionModMobEffects.SPICY) || player.hasEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT)) {
-        ci.cancel(); // Cancel vanilla heart rendering
+    private void renderHearts(GuiGraphics p_282497_, Player player, int p_168691_, int p_168692_,
+                              int p_168693_, int p_168694_, float p_168695_, int p_168696_,
+                              int p_168697_, int p_168698_, boolean p_168699_, CallbackInfo ci) {
+        if (player.hasEffect(ConcoctionModMobEffects.SPICY)
+                || player.hasEffect(ConcoctionModMobEffects.SUNSTRUCK_EFFECT)
+                || player.hasEffect(ConcoctionModMobEffects.WEEPING)) {
+            // вообще не рисуем ванильные сердца (ни обычные, ни мигающие)
+            ci.cancel();
+        }
     }
+
+
 }
 
 
@@ -64,4 +72,4 @@ private void renderHearts(GuiGraphics p_282497_, Player player, int p_168691_, i
 //            }
 //        }
 //    }
-}
+

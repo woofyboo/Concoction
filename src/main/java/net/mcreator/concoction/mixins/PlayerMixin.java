@@ -113,15 +113,6 @@ public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
         }
     }
 
-    @Inject(method = "canWalkOnPowderSnow", at = @At("HEAD"), cancellable = true)
-    private void concoction$warmingPowderSnowImmunity(CallbackInfoReturnable<Boolean> cir) {
-        Player self = (Player)(Object)this;
-        if (self.hasEffect(ConcoctionModMobEffects.WARMING)) {
-            int amplifier = self.getEffect(ConcoctionModMobEffects.WARMING).getAmplifier();
-            if (amplifier >= 2) { // 3 уровень и выше
-                cir.setReturnValue(true);
-            }
-        }
-    }
+
 
 }

@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -71,13 +72,39 @@ public class CropSpicyPepperBlock extends CropBlock {
         return p_52302_.getBlock() instanceof FarmBlock || p_52302_.getBlock() instanceof SoullandBlock;
     }
 
-	   protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-	    // Ensure the area is loaded and the block below is a SoullandBlock
-	    if (level.isAreaLoaded(pos, 1) && level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
-	            level.setBlock(pos, NETHER_PEPPER_CROP.get().defaultBlockState(), 2);
-	        }
-	    super.randomTick(state, level, pos, random); // Ensure normal crop growth occurs
-		}
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!level.isAreaLoaded(pos, 1)) {
+            return;
+        }
+
+        // если снизу именно SoullandBlock — превращаемся в адский перец
+        if (level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
+            // текущий возраст обычного перца
+            int currentAge = this.getAge(state);
+
+            // блок адского перца
+            Block netherBlock = NETHER_PEPPER_CROP.get();
+            if (netherBlock instanceof CropBlock netherCrop) {
+                // чтобы не вылезти за максимальный возраст адской версии
+                int maxNetherAge = netherCrop.getMaxAge();
+                int clampedAge = Mth.clamp(currentAge, 0, maxNetherAge);
+
+                BlockState newState = netherCrop.getStateForAge(clampedAge);
+                level.setBlock(pos, newState, 2);
+            } else {
+                // на всякий пожарный, если вдруг что-то пойдёт не так с типом блока
+                level.setBlock(pos, netherBlock.defaultBlockState(), 2);
+            }
+
+            // ВАЖНО: после превращения не даём старому перцу "расти" дальше
+            return;
+        }
+
+        // обычный рост, если не на пашне душ
+        super.randomTick(state, level, pos, random);
+    }
+
 
 
     @Override
