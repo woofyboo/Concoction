@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "concoction:block/cinnamon_log_side",
+    "end":  "concoction:block/cinnamon_log_top"
+  }
+}

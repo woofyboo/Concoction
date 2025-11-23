@@ -46,14 +46,11 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> FISH_AND_CHIPS = REGISTRY.register("fish_and_chips", FishAndChipsItem::new);
 	public static final DeferredItem<Item> CHOCOLATE = REGISTRY.register("chocolate", ChocolateItem::new);
 	public static final DeferredItem<Item> MASHED_POTATOES = REGISTRY.register("mashed_potatoes", MashedPotatoesItem::new);
-	public static final DeferredItem<Item> CROP_ONION = block(ConcoctionModBlocks.CROP_ONION);
 	public static final DeferredItem<Item> WILD_ONION = block(ConcoctionModBlocks.WILD_ONION);
-	public static final DeferredItem<Item> CROP_CORN = block(ConcoctionModBlocks.CROP_CORN);
 	public static final DeferredItem<Item> CORN = REGISTRY.register("corn", CornItem::new);
 	public static final DeferredItem<Item> POPCORN = REGISTRY.register("popcorn", PopcornItem::new);
 	public static final DeferredItem<Item> COOKED_CORN = REGISTRY.register("cooked_corn", CookedCornItem::new);
 	public static final DeferredItem<Item> CORN_SOUP = REGISTRY.register("corn_soup", CornSoupItem::new);
-	public static final DeferredItem<Item> CROP_SPICY_PEPPER = block(ConcoctionModBlocks.CROP_SPICY_PEPPER);
 	public static final DeferredItem<Item> SPICY_PEPPER = REGISTRY.register("spicy_pepper", SpicyPepperItem::new);
 	public static final DeferredItem<Item> GOLDEN_CORN = REGISTRY.register("golden_corn", GoldenCornItem::new);
 	public static final DeferredItem<Item> HOT_SAUCE_BOTTLE = REGISTRY.register("hot_sauce_bottle", HotSauceBottleItem::new);
@@ -169,6 +166,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> BAMBOO_KITCHEN_CABINET = block(ConcoctionModBlocks.BAMBOO_KITCHEN_CABINET);
 	public static final DeferredItem<Item> CRIMSON_KITCHEN_CABINET = block(ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET);
 	public static final DeferredItem<Item> WARPED_KITCHEN_CABINET = block(ConcoctionModBlocks.WARPED_KITCHEN_CABINET);
+    public static final DeferredItem<Item> CINNAMON_LOG = block(ConcoctionModBlocks.CINNAMON_LOG);
 	public static final DeferredItem<Item> CORDYCEPS_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_spider_spawn_egg", () -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_SPIDER, -14280166, -7322299, new Item.Properties()));
 	public static final DeferredItem<Item> CORDYCEPS_CAVE_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_cave_spider_spawn_egg",
 			() -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_CAVE_SPIDER, -15063520, -7978944, new Item.Properties()));
@@ -202,7 +200,9 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
-	public static final DeferredItem<Item> TOMATO_SEEDS = REGISTRY.register("tomato_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_TOMATO.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
+    public static final DeferredItem<Item> WEEPING_ONION =
+            REGISTRY.register("weeping_onion", WeepingOnionItem::new);
+    public static final DeferredItem<Item> TOMATO_SEEDS = REGISTRY.register("tomato_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_TOMATO.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CABBAGE_SEEDS = REGISTRY.register("cabbage_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_CABBAGE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> SPICY_PEPPER_SEEDS = REGISTRY.register("spicy_pepper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_SPICY_PEPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CORN_SEEDS = REGISTRY.register("corn_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_CORN.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));

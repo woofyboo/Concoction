@@ -1,4 +1,3 @@
-
 package net.mcreator.concoction.block;
 
 import java.lang.reflect.Method;
@@ -28,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource; 
+import net.minecraft.util.RandomSource;
 import net.minecraft.server.level.ServerLevel;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -39,174 +38,176 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import javax.annotation.Nullable;
 
 import static net.mcreator.concoction.init.ConcoctionModBlocks.WEIGHTED_SOULS;
-import oshi.driver.unix.solaris.disk.Prtvtoc;
+
 @EventBusSubscriber(modid = ConcoctionMod.MODID)
 public class SoullandBlock extends Block {
-	public static final BooleanProperty SOULCHARGED = BooleanProperty.create("soulcharged");
-//	static {
-//		MOISTURE = BlockStateProperties.MOISTURE;
-//		SHAPE = Block.box((double)0.0F, (double)0.0F, (double)0.0F, (double)16.0F, (double)15.0F, (double)16.0F);
-//	}
-	public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 15, 16);
-	
-	public SoullandBlock() {
-    super(BlockBehaviour.Properties.of()
-            .mapColor(MapColor.COLOR_BROWN)
-            .sound(SoundType.SOUL_SOIL)
-            .strength(0.5f)
-            .randomTicks()
-            .isRedstoneConductor((bs, br, bp) -> false)
-            .lightLevel(state -> state.getValue(SOULCHARGED) ? 3 : 0) // Используйте тернарный оператор для lightLevel
-            .emissiveRendering((state, world, pos) -> state.getValue(SOULCHARGED)) // Эмиссивное освещение зависит от состояния SOULCHARGED
-    );
-    this.registerDefaultState(this.stateDefinition.any().setValue(SOULCHARGED, false));
-}
+    public static final BooleanProperty SOULCHARGED = BooleanProperty.create("soulcharged");
+    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 15, 16);
 
-	@SubscribeEvent
-	public static void onBlockClick(PlayerInteractEvent.RightClickBlock event) {
-		if (!event.getLevel().isClientSide) {
-			if (event.getEntity() instanceof ServerPlayer player && player.getMainHandItem().is(ItemTags.HOES)) {
-				BlockPos pos = event.getPos();
-				Level world = event.getLevel();
-				if (world.getBlockState(pos).is(Blocks.SOUL_SOIL)) {
-					turnToSoil(player, world.getBlockState(pos), world, pos);
-				}
-			}
-		}
-	}
+    public SoullandBlock() {
+        super(BlockBehaviour.Properties.of()
+                .mapColor(MapColor.COLOR_BROWN)
+                .sound(SoundType.SOUL_SOIL)
+                .strength(0.5f)
+                .randomTicks()
+                .isRedstoneConductor((bs, br, bp) -> false)
+                .lightLevel(state -> state.getValue(SOULCHARGED) ? 3 : 0)
+                .emissiveRendering((state, world, pos) -> state.getValue(SOULCHARGED))
+        );
+        this.registerDefaultState(this.stateDefinition.any().setValue(SOULCHARGED, false));
+    }
 
-	@Override
-	protected BlockState updateShape(BlockState p_53276_, Direction p_53277_, BlockState p_53278_, LevelAccessor p_53279_, BlockPos p_53280_, BlockPos p_53281_) {
-		if (p_53277_ == Direction.UP && !p_53276_.canSurvive(p_53279_, p_53280_)) {
-			p_53279_.scheduleTick(p_53280_, this, 1);
-		}
-
-		return super.updateShape(p_53276_, p_53277_, p_53278_, p_53279_, p_53280_, p_53281_);
-	}
-
-	@Override
-	public boolean canSurvive(BlockState p_53272_, LevelReader p_53273_, BlockPos p_53274_) {
-		BlockState blockstate = p_53273_.getBlockState(p_53274_.above());
-		return !blockstate.isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
-	}
-
-
-
-	@Override
-	public void tick(BlockState p_221134_, ServerLevel p_221135_, BlockPos p_221136_, RandomSource p_221137_) {
-		if (!p_221134_.canSurvive(p_221135_, p_221136_)) {
-			turnToSoil((Entity)null, p_221134_, p_221135_, p_221136_);
-		}
-	}
-
-	@Override
-	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-    super.randomTick(blockstate, world, pos, random);
-
-    boolean charged = blockstate.getValue(SOULCHARGED);
-    boolean nearSoul = isNearSoul(world, pos);
-
-    if (!nearSoul) {
-        if (charged) {
-            world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
-        } else if (!shouldMaintainFarmland(world, pos)) {
-            turnToSoil(null, blockstate, world, pos);
+    @SubscribeEvent
+    public static void onBlockClick(PlayerInteractEvent.RightClickBlock event) {
+        if (!event.getLevel().isClientSide) {
+            if (event.getEntity() instanceof ServerPlayer player && player.getMainHandItem().is(ItemTags.HOES)) {
+                BlockPos pos = event.getPos();
+                Level world = event.getLevel();
+                if (world.getBlockState(pos).is(Blocks.SOUL_SOIL)) {
+                    turnToSoil(player, world.getBlockState(pos), world, pos);
+                }
+            }
         }
-    } else {
-        if (!charged) {
-            world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, Direction dir, BlockState neighbor, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+        if (dir == Direction.UP && !state.canSurvive(level, pos)) {
+            level.scheduleTick(pos, this, 1);
         }
 
-        if (charged) {
-            for (BlockPos offset : BlockPos.betweenClosed(pos.offset(-4, 1, -4), pos.offset(4, 2, 4))) {
-                BlockState cropState = world.getBlockState(offset);
-                BlockState belowState = world.getBlockState(offset.below());
+        return super.updateShape(state, dir, neighbor, level, pos, neighborPos);
+    }
 
-                if (cropState.getBlock() instanceof CropBlock && belowState.getBlock() instanceof SoullandBlock) {
-                    if (random.nextFloat() < 0.16f) {
-                        try {
-                            Method randomTickMethod = CropBlock.class.getDeclaredMethod("randomTick", BlockState.class, ServerLevel.class, BlockPos.class, RandomSource.class);
-                            randomTickMethod.setAccessible(true);
-                            randomTickMethod.invoke(cropState.getBlock(), cropState, world, offset, random);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        BlockState blockstate = level.getBlockState(pos.above());
+        return !blockstate.isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(level, pos)) {
+            turnToSoil(null, state, level, pos);
+        }
+    }
+
+    @Override
+    public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+        super.randomTick(blockstate, world, pos, random);
+
+        boolean charged = blockstate.getValue(SOULCHARGED);
+        boolean nearSoul = isNearSoul(world, pos);
+
+        if (!nearSoul) {
+            if (charged) {
+                world.setBlock(pos, blockstate.setValue(SOULCHARGED, false), 2);
+            } else if (!shouldMaintainFarmland(world, pos)) {
+                turnToSoil(null, blockstate, world, pos);
+            }
+        } else {
+            if (!charged) {
+                world.setBlock(pos, blockstate.setValue(SOULCHARGED, true), 2);
+            }
+
+            if (charged) {
+                for (BlockPos offset : BlockPos.betweenClosed(pos.offset(-4, 1, -4), pos.offset(4, 2, 4))) {
+                    BlockState cropState = world.getBlockState(offset);
+                    BlockState belowState = world.getBlockState(offset.below());
+
+                    if (cropState.getBlock() instanceof CropBlock && belowState.getBlock() instanceof SoullandBlock) {
+                        if (random.nextFloat() < 0.16f) {
+                            try {
+                                Method randomTickMethod = CropBlock.class.getDeclaredMethod(
+                                        "randomTick",
+                                        BlockState.class,
+                                        ServerLevel.class,
+                                        BlockPos.class,
+                                        RandomSource.class
+                                );
+                                randomTickMethod.setAccessible(true);
+                                randomTickMethod.invoke(cropState.getBlock(), cropState, world, offset, random);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
 
+    @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (!level.isClientSide && CommonHooks.onFarmlandTrample(level, pos, Blocks.SOUL_SOIL.defaultBlockState(), fallDistance, entity)) {
+            turnToSoil(entity, state, level, pos);
+        }
 
-	
+        super.fallOn(level, state, pos, entity, fallDistance);
+    }
 
+    public static void turnToSoil(@Nullable Entity entity, BlockState state, Level level, BlockPos pos) {
+        BlockState blockstate = pushEntitiesUp(state, Blocks.SOUL_SOIL.defaultBlockState(), level, pos);
+        level.setBlockAndUpdate(pos, blockstate);
+        level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, blockstate));
+    }
 
+    private static boolean shouldMaintainFarmland(BlockGetter level, BlockPos pos) {
+        return level.getBlockState(pos.above()).is(BlockTags.MAINTAINS_FARMLAND);
+    }
 
-	@Override
-	public void fallOn(Level p_153227_, BlockState p_153228_, BlockPos p_153229_, Entity p_153230_, float p_153231_) {
-		if (!p_153227_.isClientSide && CommonHooks.onFarmlandTrample(p_153227_, p_153229_, Blocks.SOUL_SOIL.defaultBlockState(), p_153231_, p_153230_)) {
-			turnToSoil(p_153230_, p_153228_, p_153227_, p_153229_);
-		}
+    private static boolean isNearSoul(LevelReader level, BlockPos pos) {
+        for (BlockPos blockpos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+            if (level.getBlockState(blockpos).getBlock().equals(WEIGHTED_SOULS.get())) {
+                return true;
+            }
+        }
 
-		super.fallOn(p_153227_, p_153228_, p_153229_, p_153230_, p_153231_);
-	}
+        return FarmlandWaterManager.hasBlockWaterTicket(level, pos);
+    }
 
-	public static void turnToSoil(@Nullable Entity p_270981_, BlockState p_270402_, Level p_270568_, BlockPos p_270551_) {
-		BlockState blockstate = pushEntitiesUp(p_270402_, Blocks.SOUL_SOIL.defaultBlockState(), p_270568_, p_270551_);
-		p_270568_.setBlockAndUpdate(p_270551_, blockstate);
-		p_270568_.gameEvent(GameEvent.BLOCK_CHANGE, p_270551_, GameEvent.Context.of(p_270981_, blockstate));
-	}
+    @Override
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(SOULCHARGED);
+    }
 
-	private static boolean shouldMaintainFarmland(BlockGetter p_279219_, BlockPos p_279209_) {
-		return p_279219_.getBlockState(p_279209_.above()).is(BlockTags.MAINTAINS_FARMLAND);
-	}
+    @Override
+    public boolean isPathfindable(BlockState state, PathComputationType type) {
+        return false;
+    }
 
-	private static boolean isNearSoul(LevelReader level, BlockPos pPos) {
-		BlockState state = level.getBlockState(pPos);
+    @Override
+    public boolean useShapeForLightOcclusion(BlockState state) {
+        return true;
+    }
 
-		for(BlockPos blockpos : BlockPos.betweenClosed(pPos.offset(-4, 0, -4), pPos.offset(4, 1, 4))) {
-			if (level.getBlockState(blockpos).getBlock().equals(WEIGHTED_SOULS.get())) {
-				return true;
-			}
-		}
+    @Override
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 0;
+    }
 
-		return FarmlandWaterManager.hasBlockWaterTicket(level, pPos);
-	}
+    @Override
+    public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return Shapes.empty();
+    }
 
-	@Override
-	public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(SOULCHARGED);
-	}
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPE;
+    }
 
-	@Override
-	public boolean isPathfindable(BlockState p_53267_, PathComputationType p_53270_) {
-		return false;
-	}
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context).setValue(SOULCHARGED, false);
+    }
 
-	@Override
-	public boolean useShapeForLightOcclusion(BlockState state) {
-		return true;
-	}
-
-	@Override
-	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return 0;
-	}
-
-	@Override
-	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return Shapes.empty();
-	}
-
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return SHAPE;
-	}
-
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(SOULCHARGED, false);
-	}
+    /**
+     * ВАЖНО: так мы говорим CropBlock'ам, что эта почва "удобренная",
+     * когда SOULCHARGED == true. getGrowthSpeed это учтёт.
+     */
+    @Override
+    public boolean isFertile(BlockState state, BlockGetter level, BlockPos pos) {
+        return state.getValue(SOULCHARGED);
+    }
 }

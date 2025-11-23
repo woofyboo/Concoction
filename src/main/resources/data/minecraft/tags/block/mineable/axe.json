@@ -23,6 +23,8 @@
     "concoction:crop_rice",
     "concoction:butter_churn",
     "concoction:nether_pepper_crop",
-    "concoction:crop_puffball"
+    "concoction:crop_puffball",
+    "concoction:crop_weeping_onion",
+    "concoction:cinnamon_log"
   ]
 }

@@ -4,20 +4,24 @@ import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike; // <-- ВАЖНО: отсюда!
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -34,281 +38,370 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.util.RandomSource;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.item.ItemStack;
 
 
 import java.util.Objects;
 
-// Класс растения, наследующий от CropBlock
 public class NetherPepperCropBlock extends CropBlock {
-	// Максимальный возраст растения
-	public static final int MAX_AGE = 5;
-	// Свойство возраста растения
-	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
+    public static final int MAX_AGE = 5;
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-	public NetherPepperCropBlock() {
-		// Установка свойств блока
-		super(BlockBehaviour.Properties.of()
-				.mapColor(MapColor.PLANT)
-				.sound(SoundType.GRASS)
-				.instabreak()
-				.noCollission()
-				.noOcclusion()
-				.randomTicks()
-				.pushReaction(PushReaction.DESTROY)
-				
-.lightLevel(s -> 3)
-				.noOcclusion()
-				.hasPostProcess((bs, br, bp) -> true)
-				.emissiveRendering((bs, br, bp) -> true)
-				.isRedstoneConductor((bs, br, bp) -> false));
-		// Регистрация состояния по умолчанию
-		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
-		}
+    public NetherPepperCropBlock() {
+        super(BlockBehaviour.Properties.of()
+                .mapColor(MapColor.PLANT)
+                .sound(SoundType.GRASS)
+                .instabreak()
+                .noCollission()
+                .noOcclusion()
+                .randomTicks()
+                .pushReaction(PushReaction.DESTROY)
+                .lightLevel(s -> 3)
+                .hasPostProcess((bs, br, bp) -> true)
+                .emissiveRendering((bs, br, bp) -> true)
+                .isRedstoneConductor((bs, br, bp) -> false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
+    }
 
-		@Override
-		public boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		    // Convert BlockGetter to LevelReader since canSurvive expects that
-		    if (!(worldIn instanceof LevelReader)) return false;
-		    return canSurvive(state, (LevelReader) worldIn, pos);
-		}
+    @Override
+    public boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        if (!(worldIn instanceof LevelReader levelReader)) {
+            return false;
+        }
+        return canSurvive(state, levelReader, pos);
+    }
 
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+        BlockPos below = pos.below();
+        BlockState soil = worldIn.getBlockState(below);
+        // растёт только на Soulland
+        return soil.getBlock() instanceof SoullandBlock;
+    }
 
-	@Override
-	protected boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-	    // Check if the block below can sustain this plant (usually farmland, dirt, etc)
-	    BlockPos blockBelow = pos.below();
-	    BlockState soil = worldIn.getBlockState(blockBelow);
-	    return soil.getBlock() instanceof SoullandBlock;
-	}
+    /**
+     * Рост: ванильная формула, но БЕЗ проверки света и с учётом SoullandBlock.
+     */
+    @Override
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        if (!level.isAreaLoaded(pos, 1)) {
+            return;
+        }
 
-	protected void randomTick(BlockState p_221050_, ServerLevel p_221051_, BlockPos p_221052_, RandomSource p_221053_) {
-		super.randomTick(p_221050_, p_221051_, p_221052_, p_221053_);
-	}
-	@Override
-	public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
-	    super.onPlace(state, world, pos, oldState, isMoving);
-	    if (!world.isClientSide()) {
-	        ((ServerLevel) world).scheduleTick(pos, this, 1);
-	    }
-	}
+        int age = this.getAge(state);
+        int maxAge = this.getMaxAge();
 
-
-	@Override
-	protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
-		if (!pPlayer.isShiftKeyDown() && pState.getBlock() == ConcoctionModBlocks.NETHER_PEPPER_CROP.get()) {
-			if (pState.getValue(AGE) == 5) {
-				pPlayer.swing(InteractionHand.MAIN_HAND, true);
-				if (!pLevel.isClientSide())
-					pLevel.playSound(null, pPos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1, 1);
-				else
-					pLevel.playLocalSound(pPos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1, 1, false);
-
-				if (pLevel instanceof ServerLevel _level) {
-					pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
-					ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.REAPPER.get(), 1));
-					entityToSpawn.setPickUpDelay(10);
-					_level.addFreshEntity(entityToSpawn);
-
-					if (Math.random() < 0.3) {
-					ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.REAPPER.get()));
-						entityToSpawn3.setPickUpDelay(10);
-						_level.addFreshEntity(entityToSpawn3);
-					}
-					return ItemInteractionResult.SUCCESS;
-				}
-			}
-		}
-		return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, p_316595_, p_316140_);
-	}
-
-	@Override
-	public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-		// Пропускает ли блок свет вниз
-		return true;
-	}
-	@Override
-public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-    long time = world.getDayTime() % 24000;
-    if (time >= 17950 && time <= 18050) {
-        for (Player player : world.getEntitiesOfClass(Player.class, new net.minecraft.world.phys.AABB(pos).inflate(8))) {
-            if (player.isAlive()) {
-                // Damage player
-                player.hurt(new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("concoction:soul_damage")))), 4);
-                    double px = player.getX() + world.random.nextDouble() * 0.6 - 0.3;
-					double py = player.getY() + player.getBbHeight() * 0.5 + world.random.nextDouble() * 0.6 - 0.3;
-					double pz = player.getZ() + world.random.nextDouble() * 0.6 - 0.3;
-					double vx = world.random.nextDouble() * 0.26 - 0.13;
-					double vy = world.random.nextDouble() * 0.07 + 0.13;
-					double vz = world.random.nextDouble() * 0.26 - 0.13;
-					world.sendParticles(ParticleTypes.SOUL, px, py, pz, 1, vx, vy, vz, 0.2);
-
-                
+        if (age < maxAge) {
+            float f = getSoullandGrowthSpeed(state, level, pos);
+            if (random.nextInt((int)(25.0F / f) + 1) == 0) {
+                level.setBlock(pos, this.getStateForAge(age + 1), 2);
             }
         }
     }
-    world.scheduleTick(pos, this, 20); // Schedule next tick in 1 second
-}
 
+    /**
+     * Копия ванильного getGrowthSpeed, но:
+     *  - вместо Blocks.FARMLAND используем SoullandBlock;
+     *  - вместо moisture > 0 используем SOULCHARGED = true.
+     */
+    private float getSoullandGrowthSpeed(BlockState state, LevelReader level, BlockPos pos) {
+        float f = 1.0F;
+        Block block = state.getBlock();
+        BlockPos belowPos = pos.below();
 
+        for (int dx = -1; dx <= 1; ++dx) {
+            for (int dz = -1; dz <= 1; ++dz) {
+                float bonus = 0.0F;
+                BlockState soil = level.getBlockState(belowPos.offset(dx, 0, dz));
 
-	@Override
-	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		// Количество блокируемого света
-		return 0;
-	}
+                if (soil.getBlock() instanceof SoullandBlock) {
+                    bonus = 1.0F;
+                    if (soil.getValue(SoullandBlock.SOULCHARGED)) {
+                        bonus = 3.0F; // как влажная пашня
+                    }
+                }
 
-	@Override
-	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		// Визуальная форма блока
-		return Shapes.empty();
-	}
+                if (dx != 0 || dz != 0) {
+                    bonus /= 4.0F;
+                }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		// Форма блока в зависимости от возраста
-		return switch (state.getValue(AGE)) {
-			default -> Block.box(1, 0, 1, 15, 15, 15);
+                f += bonus;
+            }
+        }
 
-			case 0 -> Block.box(4, 0, 4, 12, 8, 12);
-			case 1 -> Block.box(2, 0, 2, 14, 12, 14);
-			case 2 -> Block.box(1, 0, 1, 15, 15, 15);
-			case 3 -> Block.box(1, 0, 1, 15, 15, 15);
-			case 4 -> Block.box(1, 0, 1, 15, 15, 15);
-			case 5 -> Block.box(1, 0, 1, 15, 15, 15);
+        BlockPos north = pos.north();
+        BlockPos south = pos.south();
+        BlockPos west  = pos.west();
+        BlockPos east  = pos.east();
 
-		};
-	}
+        boolean sameX = level.getBlockState(west).is(block) || level.getBlockState(east).is(block);
+        boolean sameZ = level.getBlockState(north).is(block) || level.getBlockState(south).is(block);
 
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		// Добавление свойства возраста в состояние блока
-		builder.add(AGE);
-	}
+        if (sameX && sameZ) {
+            f /= 2.0F;
+        } else {
+            boolean diagonal =
+                    level.getBlockState(west.north()).is(block)
+                            || level.getBlockState(east.north()).is(block)
+                            || level.getBlockState(east.south()).is(block)
+                            || level.getBlockState(west.south()).is(block);
+            if (diagonal) {
+                f /= 2.0F;
+            }
+        }
 
-	@Override
-	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		// Возвращает горючесть блока
-		return 0;
-	}
+        return f;
+    }
 
-	@Override
-	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-		// Предмет, получаемый при копировании блока на колёсико
-		return new ItemStack(
-            ConcoctionModItems.REAPPER_SEEDS.get()
-            );
-	}
+    @Override
+    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, world, pos, oldState, isMoving);
+        if (!world.isClientSide()) {
+            ((ServerLevel) world).scheduleTick(pos, this, 1);
+        }
+    }
 
-	@Override
-	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-		// Скорость распространения огня
-		return 0;
-	}
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos,
+                                              Player pPlayer, InteractionHand hand, BlockHitResult hit) {
+        if (!pPlayer.isShiftKeyDown() && pState.getBlock() == ConcoctionModBlocks.NETHER_PEPPER_CROP.get()) {
+            if (pState.getValue(AGE) == MAX_AGE) {
+                pPlayer.swing(InteractionHand.MAIN_HAND, true);
+                if (!pLevel.isClientSide()) {
+                    pLevel.playSound(
+                            null,
+                            pPos,
+                            Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(
+                                    ResourceLocation.parse("block.sweet_berry_bush.pick_berries")
+                            )),
+                            SoundSource.BLOCKS,
+                            1.0F,
+                            1.0F
+                    );
+                } else {
+                    pLevel.playLocalSound(
+                            pPos,
+                            Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(
+                                    ResourceLocation.parse("block.sweet_berry_bush.pick_berries")
+                            )),
+                            SoundSource.BLOCKS,
+                            1.0F,
+                            1.0F,
+                            false
+                    );
+                }
 
-	@Override
-	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
-		// Тип пути для мобов
-		return PathType.OPEN;
-	}
+                if (pLevel instanceof ServerLevel serverLevel) {
+                    pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
 
-	@Override
-	public int getMaxAge() {
-		// Возвращает максимальный возраст растения
-		return MAX_AGE; // не менять
-	}
+                    ItemEntity drop = new ItemEntity(
+                            serverLevel,
+                            pPos.getX() + 0.5,
+                            pPos.getY() + 0.5,
+                            pPos.getZ() + 0.5,
+                            new ItemStack(ConcoctionModItems.REAPPER.get(), 1)
+                    );
+                    drop.setPickUpDelay(10);
+                    serverLevel.addFreshEntity(drop);
 
-	@Override
-	protected ItemLike getBaseSeedId() {
-		// Возвращает семена для посадки растения
-		return ConcoctionModItems.REAPPER_SEEDS.get();
-	}
+                    if (Math.random() < 0.3) {
+                        ItemEntity extra = new ItemEntity(
+                                serverLevel,
+                                pPos.getX() + 0.5,
+                                pPos.getY() + 0.5,
+                                pPos.getZ() + 0.5,
+                                new ItemStack(ConcoctionModItems.REAPPER.get())
+                        );
+                        extra.setPickUpDelay(10);
+                        serverLevel.addFreshEntity(extra);
+                    }
 
-	@Override
-	public IntegerProperty getAgeProperty() {
-		// Возвращает свойство возраста растения
-		return AGE; // не менять
-	}
-	
-	@Override
-	@OnlyIn(Dist.CLIENT)
-	public void animateTick(BlockState blockstate, Level world, BlockPos pos, RandomSource random) {
-		super.animateTick(blockstate, world, pos, random);
-		double x = pos.getX();
-		double y = pos.getY();
-		double z = pos.getZ();
-		// Normalize to day cycle
-		long time = world.dayTime() % 24000;
-		if (time >= 17950 && time <= 18050) {
-			// Soul particles
-			if (Math.random() < 0.65) {
-				world.addParticle(
-						ParticleTypes.SOUL,
-						x + Mth.nextDouble(RandomSource.create(), 0.2, 0.8),
-						y + Mth.nextDouble(RandomSource.create(), 0.2, 0.8),
-						z + Mth.nextDouble(RandomSource.create(), 0.2, 0.8),
-						Mth.nextDouble(RandomSource.create(), -0.13, 0.13),
-						Mth.nextDouble(RandomSource.create(), 0.13, 0.2),
-						Mth.nextDouble(RandomSource.create(), -0.13, 0.13)
-				);
-			}
-			// Soul escape sound
-			if (Math.random() < 0.1) {
-				if (world instanceof Level _level) {
-					ResourceLocation soulEscape = ResourceLocation.parse("particle.soul_escape");
-					float pitch = (float)(0.8 + Math.random() * 0.4); // Random pitch between 0.8 and 1.2
-					if (!_level.isClientSide()) {
-						_level.playSound(
-								null,
-								BlockPos.containing(x, y, z),
-								BuiltInRegistries.SOUND_EVENT.get(soulEscape),
-								SoundSource.BLOCKS,
-								0.6F, // 60% volume
-								pitch
-						);
-					} else {
-						_level.playLocalSound(
-								x, y, z,
-								BuiltInRegistries.SOUND_EVENT.get(soulEscape),
-								SoundSource.BLOCKS,
-								0.6F,
-								pitch,
-								false
-						);
-					}
-				}
-			}
-			// Small chance for Ghast scream
-			if (Math.random() < 0.02) {
-				if (world instanceof Level _level) {
-					float pitch = (float)(0.5 + ( Math.random() * 0.5 )); // Random pitch between 0.8 and 1.2
-					if (!_level.isClientSide()) {
-						_level.playSound(
-								null,
-								BlockPos.containing(x, y, z),
-								SoundEvents.GHAST_HURT,
-								SoundSource.HOSTILE,
-								0.4F, // 60% volume
-								pitch
-						);
-					} else {
-						_level.playLocalSound(
-								x, y, z,
-								SoundEvents.GHAST_HURT,
-								SoundSource.HOSTILE,
-								0.4F,
-								pitch,
-								false
-						);
-					}
-				}
-			}
-		}
-	}
+                    return ItemInteractionResult.SUCCESS;
+                }
+            }
+        }
+        return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, hand, hit);
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+        return true;
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        long time = world.getDayTime() % 24000;
+        if (time >= 17950 && time <= 18050) {
+            for (Player player : world.getEntitiesOfClass(
+                    Player.class,
+                    new net.minecraft.world.phys.AABB(pos).inflate(8)
+            )) {
+                if (player.isAlive()) {
+                    player.hurt(
+                            new DamageSource(
+                                    world.holderOrThrow(
+                                            ResourceKey.create(
+                                                    Registries.DAMAGE_TYPE,
+                                                    ResourceLocation.parse("concoction:soul_damage")
+                                            )
+                                    )
+                            ),
+                            4.0F
+                    );
+
+                    double px = player.getX() + world.random.nextDouble() * 0.6 - 0.3;
+                    double py = player.getY() + player.getBbHeight() * 0.5 + world.random.nextDouble() * 0.6 - 0.3;
+                    double pz = player.getZ() + world.random.nextDouble() * 0.6 - 0.3;
+                    double vx = world.random.nextDouble() * 0.26 - 0.13;
+                    double vy = world.random.nextDouble() * 0.07 + 0.13;
+                    double vz = world.random.nextDouble() * 0.26 - 0.13;
+
+                    world.sendParticles(ParticleTypes.SOUL, px, py, pz, 1, vx, vy, vz, 0.2);
+                }
+            }
+        }
+
+        world.scheduleTick(pos, this, 20);
+    }
+
+    @Override
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 0;
+    }
+
+    @Override
+    public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return Shapes.empty();
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return switch (state.getValue(AGE)) {
+            default -> Block.box(1, 0, 1, 15, 15, 15);
+            case 0 -> Block.box(4, 0, 4, 12, 8, 12);
+            case 1 -> Block.box(2, 0, 2, 14, 12, 14);
+            case 2 -> Block.box(1, 0, 1, 15, 15, 15);
+            case 3 -> Block.box(1, 0, 1, 15, 15, 15);
+            case 4 -> Block.box(1, 0, 1, 15, 15, 15);
+            case 5 -> Block.box(1, 0, 1, 15, 15, 15);
+        };
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+        return 0;
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        return new ItemStack(ConcoctionModItems.REAPPER_SEEDS.get());
+    }
+
+    @Override
+    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+        return 0;
+    }
+
+    @Override
+    public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
+        return PathType.OPEN;
+    }
+
+    @Override
+    public int getMaxAge() {
+        return MAX_AGE;
+    }
+
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return ConcoctionModItems.REAPPER_SEEDS.get();
+    }
+
+    @Override
+    public IntegerProperty getAgeProperty() {
+        return AGE;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState blockstate, Level world, BlockPos pos, RandomSource random) {
+        super.animateTick(blockstate, world, pos, random);
+
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+
+        long time = world.dayTime() % 24000;
+        if (time >= 17950 && time <= 18050) {
+            if (Math.random() < 0.65) {
+                world.addParticle(
+                        ParticleTypes.SOUL,
+                        x + Mth.nextDouble(random, 0.2, 0.8),
+                        y + Mth.nextDouble(random, 0.2, 0.8),
+                        z + Mth.nextDouble(random, 0.2, 0.8),
+                        Mth.nextDouble(random, -0.13, 0.13),
+                        Mth.nextDouble(random, 0.13, 0.2),
+                        Mth.nextDouble(random, -0.13, 0.13)
+                );
+            }
+
+            if (Math.random() < 0.1) {
+                if (world instanceof Level level) {
+                    ResourceLocation soulEscape = ResourceLocation.parse("particle.soul_escape");
+                    float pitch = (float)(0.8 + Math.random() * 0.4);
+                    if (!level.isClientSide()) {
+                        level.playSound(
+                                null,
+                                BlockPos.containing(x, y, z),
+                                BuiltInRegistries.SOUND_EVENT.get(soulEscape),
+                                SoundSource.BLOCKS,
+                                0.6F,
+                                pitch
+                        );
+                    } else {
+                        level.playLocalSound(
+                                x, y, z,
+                                BuiltInRegistries.SOUND_EVENT.get(soulEscape),
+                                SoundSource.BLOCKS,
+                                0.6F,
+                                pitch,
+                                false
+                        );
+                    }
+                }
+            }
+
+            if (Math.random() < 0.02) {
+                if (world instanceof Level level) {
+                    float pitch = (float)(0.5 + Math.random() * 0.5);
+                    if (!level.isClientSide()) {
+                        level.playSound(
+                                null,
+                                BlockPos.containing(x, y, z),
+                                SoundEvents.GHAST_HURT,
+                                SoundSource.HOSTILE,
+                                0.4F,
+                                pitch
+                        );
+                    } else {
+                        level.playLocalSound(
+                                x, y, z,
+                                SoundEvents.GHAST_HURT,
+                                SoundSource.HOSTILE,
+                                0.4F,
+                                pitch,
+                                false
+                        );
+                    }
+                }
+            }
+        }
+    }
 }

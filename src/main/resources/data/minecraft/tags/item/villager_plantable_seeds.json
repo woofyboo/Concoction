@@ -2,12 +2,14 @@
   "replace": false,
   "values": [
     "concoction:mint_seeds",
-    "concoction:cotton",
+    "concoction:cotton",
     "concoction:sunflower_seeds",
     "concoction:onion",
     "concoction:corn_seeds",
     "concoction:spicy_pepper_seeds",
     "concoction:cabbage_seeds",
-    "concoction:puffball_spores"
+    "concoction:puffball_spores",
+    "concoction:weeping_onion"
+
   ]
 }

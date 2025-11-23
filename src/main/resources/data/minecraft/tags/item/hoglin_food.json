@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
-    "minecraft:sunflower",
-    "concoction:reapper"
+    "minecraft:sunflower",
+    "concoction:reapper",
+    "concoction:weeping_onion"
+
   ]
 }

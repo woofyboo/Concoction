@@ -51,6 +51,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.TOMATO_SEEDS.get());
 				tabData.accept(ConcoctionModItems.REAPPER.get());
 				tabData.accept(ConcoctionModItems.REAPPER_SEEDS.get());
+                tabData.accept(ConcoctionModItems.WEEPING_ONION.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.COOKED_PUFFBALL.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_SPORES.get());
@@ -194,6 +195,7 @@ public class ConcoctionModCustomTabs {
 
 
 //Cтроительные блоки
+                tabData.accept(ConcoctionModItems.CINNAMON_LOG.get());
 				tabData.accept(ConcoctionModItems.ROCK_SALT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SEA_SALT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());

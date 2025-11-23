@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "concoction:reapper",
-    "concoction:reapper_seeds"
+    "concoction:reapper_seeds",
+    "concoction:weeping_onion"
+
   ]
 }

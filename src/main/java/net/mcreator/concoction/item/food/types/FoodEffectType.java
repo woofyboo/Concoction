@@ -16,6 +16,8 @@ import net.minecraft.core.particles.ParticleTypes;
 
 import net.mcreator.concoction.init.ConcoctionModParticles;
 
+import static net.mcreator.concoction.init.ConcoctionModMobEffects.WEEPING;
+
 public enum FoodEffectType implements StringRepresentable {
     SWEET("sweet"),
     SPICY("spicy"),
@@ -30,7 +32,8 @@ public enum FoodEffectType implements StringRepresentable {
     SUNSTRUCK("sunstruck"),
     PHOTOSYNTHESIS("photosynthesis"),
     CREAMY("creamy"),
-    HEAL("heal");
+    HEAL("heal"),
+    WEEPING("weeping");
 
     private final String name;
 
@@ -59,6 +62,7 @@ public enum FoodEffectType implements StringRepresentable {
             case "photosynthesis" -> PHOTOSYNTHESIS;
             case "creamy" -> CREAMY;
             case "heal" -> HEAL;
+            case "weeping" -> WEEPING;
             default -> throw new IllegalArgumentException("Invalid name: " + name);
         };
     }
@@ -110,6 +114,9 @@ public enum FoodEffectType implements StringRepresentable {
             }
             case CREAMY -> {
                 return new MobEffectInstance(ConcoctionModMobEffects.CREAMY, duration * 20, level - 1, false, !isHidden, true, null);
+            }
+            case WEEPING -> {
+                return new MobEffectInstance(ConcoctionModMobEffects.WEEPING, duration * 20, level - 1, false, !isHidden, true, null);
             }
 
         }

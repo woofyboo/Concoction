@@ -267,6 +267,10 @@
   	},
     "concoction:apple_block": {
       "chance": 1.0
+    },
+    "concoction:weeping_onion": {
+      "chance": 0.35
     }
+
 	}
 }

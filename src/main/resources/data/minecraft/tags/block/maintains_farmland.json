@@ -11,6 +11,7 @@
     "concoction:crop_tomato",
     "concoction:nether_pepper_crop",
     "concoction:crop_rice",
-    "concoction:crop_puffball"
+    "concoction:crop_puffball",
+    "concoction:crop_weeping_onion"
   ]
 }

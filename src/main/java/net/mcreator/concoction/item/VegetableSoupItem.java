@@ -14,25 +14,36 @@ import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
 public class VegetableSoupItem extends TastefulItem {
-	public VegetableSoupItem() {
-		super(new Item.Properties().stacksTo(16)
-				.rarity(Rarity.COMMON)
-				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 300, true))
-				.food((new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8f).build()));
-	}
+    public VegetableSoupItem() {
+        super(new Item.Properties().stacksTo(16)
+                .rarity(Rarity.COMMON)
+                .component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 300, true))
+                .food((new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8f).build()));
+    }
 
-	@Override
-	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-		ItemStack retval = new ItemStack(Items.BOWL);
-		super.finishUsingItem(itemstack, world, entity);
-		if (itemstack.isEmpty()) {
-			return retval;
-		} else {
-			if (entity instanceof Player player && !player.getAbilities().instabuild) {
-				if (!player.getInventory().add(retval))
-					player.drop(retval, false);
-			}
-			return itemstack;
-		}
-	}
+    @Override
+    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+        ItemStack retval = new ItemStack(Items.BOWL);
+
+        // сначала стандартное поведение еды (хил, насыщение, эффекты и т.д.)
+        ItemStack result = super.finishUsingItem(itemstack, world, entity);
+
+        // СБРОС ЗАМОРОЗКИ
+        if (!world.isClientSide) {
+            // моментально размораживаем сущность (порошковый снег, холод и т.п.)
+            entity.setTicksFrozen(0);
+        }
+
+        // дальше ванильная логика с миской
+        if (itemstack.isEmpty()) {
+            return retval;
+        } else {
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                if (!player.getInventory().add(retval)) {
+                    player.drop(retval, false);
+                }
+            }
+            return itemstack;
+        }
+    }
 }

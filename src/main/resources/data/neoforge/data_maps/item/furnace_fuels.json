@@ -3,7 +3,8 @@
     {
         "concoction:reapper": {
             "burn_time": 200
-        },
+        }
+,
         "concoction:reapepper_block": {
             "burn_time": 2000
         },
@@ -237,6 +238,9 @@
 	    },
 	    "concoction:warped_kitchen_cabinet": {
 	        "burn_time": 300
-	    }          
+	    },
+	    "concoction:cinnamon_log": {
+	        "burn_time": 300
+	    }             
     }
 }
