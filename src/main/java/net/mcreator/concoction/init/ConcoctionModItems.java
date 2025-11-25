@@ -166,6 +166,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> BAMBOO_KITCHEN_CABINET = block(ConcoctionModBlocks.BAMBOO_KITCHEN_CABINET);
 	public static final DeferredItem<Item> CRIMSON_KITCHEN_CABINET = block(ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET);
 	public static final DeferredItem<Item> WARPED_KITCHEN_CABINET = block(ConcoctionModBlocks.WARPED_KITCHEN_CABINET);
+    public static final DeferredItem<Item> CINNAMON_SAPLING = block(ConcoctionModBlocks.CINNAMON_SAPLING);
     public static final DeferredItem<Item> CINNAMON_LEAVES = block(ConcoctionModBlocks.CINNAMON_LEAVES);
     public static final DeferredItem<Item> CINNAMON_LOG = block(ConcoctionModBlocks.CINNAMON_LOG);
     public static final DeferredItem<Item> CINNAMON_PLANKS = block(ConcoctionModBlocks.CINNAMON_PLANKS);

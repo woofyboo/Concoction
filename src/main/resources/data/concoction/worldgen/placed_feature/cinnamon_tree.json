@@ -2,8 +2,8 @@
   "feature": "concoction:cinnamon_tree",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 30
+      "type": "minecraft:rarity_filter",
+      "chance": 30
     },
     {
       "type": "minecraft:in_square"
