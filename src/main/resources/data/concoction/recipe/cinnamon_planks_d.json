@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "cinnamon_planks",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "concoction:cinnamon_bark_wood"
+    }
+  },
+  "result": {
+    "id": "concoction:cinnamon_planks",
+    "count": 4
+  }
+}

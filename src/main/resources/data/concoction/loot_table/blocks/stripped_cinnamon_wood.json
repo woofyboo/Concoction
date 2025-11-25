@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/stripped_cinnamon_wood",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:stripped_cinnamon_wood"
+        }
+      ]
+    }
+  ]
+}

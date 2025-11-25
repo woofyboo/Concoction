@@ -195,7 +195,14 @@ public class ConcoctionModCustomTabs {
 
 
 //Cтроительные блоки
+                tabData.accept(ConcoctionModItems.CINNAMON_LEAVES.get());
                 tabData.accept(ConcoctionModItems.CINNAMON_LOG.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_WOOD.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_BARK_LOG.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_BARK_WOOD.get());
+                tabData.accept(ConcoctionModItems.STRIPPED_CINNAMON_LOG.get());
+                tabData.accept(ConcoctionModItems.STRIPPED_CINNAMON_WOOD.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_PLANKS.get());
 				tabData.accept(ConcoctionModItems.ROCK_SALT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SEA_SALT_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PILLOW_BLOCK.get());

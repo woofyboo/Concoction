@@ -97,6 +97,13 @@ public class ConcoctionModBlocks {
     public static final DeferredBlock<Block> APPLE_BLOCK = REGISTRY.register("apple_block", AppleBlockBlock::new);
     public static final DeferredBlock<Block> CROP_WEEPING_ONION = REGISTRY.register("crop_weeping_onion", WeepingOnionsCropBlock::new);
     public static final DeferredBlock<Block> CINNAMON_LOG = REGISTRY.register("cinnamon_log", CinnamonLogBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_PLANKS = REGISTRY.register("cinnamon_planks", CinnamonLogBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_WOOD = REGISTRY.register("cinnamon_wood", CinnamonWoodBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_BARK_LOG = REGISTRY.register("cinnamon_bark_log", CinnamonBarkLogBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_BARK_WOOD = REGISTRY.register("cinnamon_bark_wood", CinnamonBarkWoodBlock::new);
+    public static final DeferredBlock<Block> STRIPPED_CINNAMON_LOG = REGISTRY.register("stripped_cinnamon_log", StrippedCinnamonLogBlock::new);
+    public static final DeferredBlock<Block> STRIPPED_CINNAMON_WOOD = REGISTRY.register("stripped_cinnamon_wood", StrippedCinnamonWoodBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", CinnamonLeavesBlock::new);
 	// Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());
 	public static final DeferredBlock<Block> SOAP_LAYER = REGISTRY.register("soap_layer", SoapLayerBlock::new);

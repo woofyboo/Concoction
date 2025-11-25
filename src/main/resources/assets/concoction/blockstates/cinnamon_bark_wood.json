@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "concoction:block/cinnamon_bark_wood"
+    },
+    "axis=z": {
+      "model": "concoction:block/cinnamon_bark_wood",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "concoction:block/cinnamon_bark_wood",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

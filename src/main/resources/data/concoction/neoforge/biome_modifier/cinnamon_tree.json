@@ -1,0 +1,8 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": [
+    "plains"
+  ],
+  "features": "concoction:cinnamon_tree",
+  "step": "vegetal_decoration"
+}

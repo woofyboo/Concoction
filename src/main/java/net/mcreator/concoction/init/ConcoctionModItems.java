@@ -166,7 +166,14 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> BAMBOO_KITCHEN_CABINET = block(ConcoctionModBlocks.BAMBOO_KITCHEN_CABINET);
 	public static final DeferredItem<Item> CRIMSON_KITCHEN_CABINET = block(ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET);
 	public static final DeferredItem<Item> WARPED_KITCHEN_CABINET = block(ConcoctionModBlocks.WARPED_KITCHEN_CABINET);
+    public static final DeferredItem<Item> CINNAMON_LEAVES = block(ConcoctionModBlocks.CINNAMON_LEAVES);
     public static final DeferredItem<Item> CINNAMON_LOG = block(ConcoctionModBlocks.CINNAMON_LOG);
+    public static final DeferredItem<Item> CINNAMON_PLANKS = block(ConcoctionModBlocks.CINNAMON_PLANKS);
+    public static final DeferredItem<Item> CINNAMON_WOOD = block(ConcoctionModBlocks.CINNAMON_WOOD);
+    public static final DeferredItem<Item> CINNAMON_BARK_LOG = block(ConcoctionModBlocks.CINNAMON_BARK_LOG);
+    public static final DeferredItem<Item> CINNAMON_BARK_WOOD = block(ConcoctionModBlocks.CINNAMON_BARK_WOOD);
+    public static final DeferredItem<Item> STRIPPED_CINNAMON_WOOD = block(ConcoctionModBlocks.STRIPPED_CINNAMON_WOOD);
+    public static final DeferredItem<Item> STRIPPED_CINNAMON_LOG = block(ConcoctionModBlocks.STRIPPED_CINNAMON_LOG);
 	public static final DeferredItem<Item> CORDYCEPS_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_spider_spawn_egg", () -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_SPIDER, -14280166, -7322299, new Item.Properties()));
 	public static final DeferredItem<Item> CORDYCEPS_CAVE_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_cave_spider_spawn_egg",
 			() -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_CAVE_SPIDER, -15063520, -7978944, new Item.Properties()));

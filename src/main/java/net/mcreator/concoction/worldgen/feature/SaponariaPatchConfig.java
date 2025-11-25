@@ -1,4 +1,4 @@
-package net.mcreator.concoction.worldgen;
+package net.mcreator.concoction.worldgen.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

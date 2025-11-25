@@ -1,6 +1,13 @@
 {
   "replace": false,
   "values": [
-    "concoction:cinnamon_log"
+    "concoction:cinnamon_log",
+    "concoction:cinnamon_wood",
+    "concoction:cinnamon_bark_log",
+    "concoction:cinnamon_bark_wood",
+    "concoction:stripped_cinnamon_wood",
+    "concoction:stripped_cinnamon_log",
+    "concoction:cinnamon_leaves"
+
   ]
 }

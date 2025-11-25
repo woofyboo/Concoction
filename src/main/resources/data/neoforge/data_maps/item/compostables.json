@@ -270,6 +270,9 @@
     },
     "concoction:weeping_onion": {
       "chance": 0.35
+    },
+    "concoction:cinnamon_leaves": {
+      "chance": 0.3
     }
 
 	}

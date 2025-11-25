@@ -1,5 +1,6 @@
 package net.mcreator.concoction;
 
+import net.mcreator.concoction.init.*;
 import net.mcreator.concoction.recipebook.ConcoctionRecipeBooks;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -20,22 +21,6 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.mcreator.concoction.world.features.StructureFeature;
-import net.mcreator.concoction.init.ConcoctionModTabs;
-import net.mcreator.concoction.init.ConcoctionModSounds;
-import net.mcreator.concoction.init.ConcoctionModRecipes;
-import net.mcreator.concoction.init.ConcoctionModPotions;
-import net.mcreator.concoction.init.ConcoctionModParticleTypes;
-import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.init.ConcoctionModMenus;
-import net.mcreator.concoction.init.ConcoctionModItems;
-import net.mcreator.concoction.init.ConcoctionModFluids;
-import net.mcreator.concoction.init.ConcoctionModFluidTypes;
-import net.mcreator.concoction.init.ConcoctionModEntities;
-import net.mcreator.concoction.init.ConcoctionModEnchantmentsEffects;
-import net.mcreator.concoction.init.ConcoctionModDataComponents;
-import net.mcreator.concoction.init.ConcoctionModCustomTabs;
-import net.mcreator.concoction.init.ConcoctionModBlocks;
-import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.worldgen.ModWorldgen;
 import net.mcreator.concoction.recipe.ModRecipeSerializers;
 
@@ -79,6 +64,7 @@ public class ConcoctionMod {
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
 		ConcoctionModEnchantmentsEffects.register(modEventBus);
+
         ModWorldgen.FEATURES.register(modEventBus);
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);
         //		HUDOverlays.register(modEventBus);
