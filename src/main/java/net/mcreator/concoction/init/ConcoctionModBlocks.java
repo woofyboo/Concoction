@@ -5,7 +5,9 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.block.*;
+import net.mcreator.concoction.worldgen.CinnamonTreeGrower;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -109,14 +111,16 @@ public class ConcoctionModBlocks {
     public static final DeferredBlock<Block> CINNAMON_LEAVES = REGISTRY.register("cinnamon_leaves", CinnamonLeavesBlock::new);
     public static final DeferredBlock<Block> CINNAMON_SAPLING =
             REGISTRY.register("cinnamon_sapling",
-                    () -> new CinnamonSaplingBlock(
+                    () -> new SaplingBlock(
+                            CinnamonTreeGrower.CINNAMON,
                             BlockBehaviour.Properties.of()
-                                    .noCollission()          // нет коллизии, как у травы/саженца
-                                    .instabreak()           // ломается мгновенно
-                                    .randomTicks()          // нужны рандомные тики для роста
-                                    .noOcclusion()          // не блокирует свет/видимость
-                                    .sound(SoundType.GRASS) // звук как у травы/саженцев
+                                    .noCollission()
+                                    .instabreak()
+                                    .randomTicks()
+                                    .noOcclusion()
+                                    .sound(SoundType.GRASS)
                     ));
+
     // Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());
 	public static final DeferredBlock<Block> SOAP_LAYER = REGISTRY.register("soap_layer", SoapLayerBlock::new);
