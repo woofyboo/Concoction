@@ -160,6 +160,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> PUFFBALL_SOUP = REGISTRY.register("puffball_soup", PuffballSoupItem::new);
 	public static final DeferredItem<Item> BOILED_NOODLES = REGISTRY.register("boiled_noodles", BoiledNoodlesItem::new);
 	public static final DeferredItem<Item> NOODLES_WITH_MEATBALLS = REGISTRY.register("noodles_with_meatballs", NoodlesWithMeatballsItem::new);
+    public static final DeferredItem<Item> CINNAMON_BARK = REGISTRY.register("cinnamon_bark", CinnamonBarkItem::new);
+    public static final DeferredItem<Item> CINNAMON = REGISTRY.register("cinnamon", CinnamonItem::new);
 	public static final DeferredItem<Item> DARK_OAK_KITCHEN_CABINET = block(ConcoctionModBlocks.DARK_OAK_KITCHEN_CABINET);
 	public static final DeferredItem<Item> MANGROVE_KITCHEN_CABINET = block(ConcoctionModBlocks.MANGROVE_KITCHEN_CABINET);
 	public static final DeferredItem<Item> CHERRY_KITCHEN_CABINET = block(ConcoctionModBlocks.CHERRY_KITCHEN_CABINET);

@@ -24,6 +24,8 @@ public class ModWorldgen {
     public static final DeferredHolder<Feature<?>, Feature<SaponariaPatchConfig>> SAPONARIA_PATCH =
             FEATURES.register("saponaria_patch", () -> new SaponariaPatchFeature(SaponariaPatchConfig.CODEC));
 
+
+
     public static void register(IEventBus bus) {
         FEATURES.register(bus);
     }

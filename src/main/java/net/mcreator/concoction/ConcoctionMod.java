@@ -2,6 +2,9 @@ package net.mcreator.concoction;
 
 import net.mcreator.concoction.init.*;
 import net.mcreator.concoction.recipebook.ConcoctionRecipeBooks;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -45,8 +48,8 @@ public class ConcoctionMod {
 
 
 		modEventBus.addListener(this::registerNetworking);
-
-		ConcoctionModSounds.REGISTRY.register(modEventBus);
+        modEventBus.addListener(this::commonSetup);
+        ConcoctionModSounds.REGISTRY.register(modEventBus);
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.REGISTRY.register(modEventBus);
@@ -70,6 +73,7 @@ public class ConcoctionMod {
         //		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
         ConcoctionRecipeBooks.register(modEventBus);
+
 
 
 
@@ -117,5 +121,18 @@ public class ConcoctionMod {
 		actions.forEach(e -> e.getA().run());
 		workQueue.removeAll(actions);
 	}
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+
+            pot.addPlant(
+                    // id твоего саженца
+                    ConcoctionModBlocks.CINNAMON_SAPLING.getId(),
+                    // Supplier блока "горшок с корицей"
+                    ConcoctionModBlocks.POTTED_CINNAMON_SAPLING
+            );
+        });
+    }
 
 }

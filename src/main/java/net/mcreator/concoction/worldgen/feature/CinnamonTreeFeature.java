@@ -91,9 +91,7 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
         // маленькая проверка пространства вокруг ствола — 3×3×2
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
-                for (int dy = 0; dy <= 1; dy++) {
-                    if (dx == 0 && dz == 0 && dy == 0) continue;
-
+                for (int dy = 1; dy <= 2; dy++) { // проверяем только над стволом
                     BlockPos checkPos = trunkSurface.offset(dx, dy, dz);
                     BlockState existing = level.getBlockState(checkPos);
 
@@ -101,7 +99,15 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
                     if (existing.is(BlockTags.LEAVES) || existing.is(BlockTags.LOGS)) continue;
                     if (existing.canBeReplaced()) continue;
 
-                    return false;
+                    // берём форму коллизии
+                    var shape = existing.getCollisionShape(level, checkPos);
+
+                    // если это НЕ пустая форма и это ПОЛНЫЙ блок (как камень/доски/земля) — считаем препятствием
+                    if (!shape.isEmpty() && Block.isShapeFullBlock(shape)) {
+                        return false;
+                    }
+
+                    // всё, что не full-block (горшок, факел, маленький декор) – игнорируем
                 }
             }
         }

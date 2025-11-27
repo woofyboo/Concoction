@@ -384,13 +384,17 @@
   "taste.concoction.weeping": "• Угнетающее",
   "block.concoction.cinnamon_log": "Бревно корицы",
   "block.concoction.cinnamon_planks": "Доски из корицы",
-  "block.concoction.cinnamon_wood": "Коричное дерево",
-  "block.concoction.cinnamon_bark_log": "Бревно окорённой корицы",
-  "block.concoction.cinnamon_bark_wood": "Окорённая коричная древесина",
-  "block.concoction.stripped_cinnamon_log": "Обтёсанное коричное бревно",
-  "block.concoction.stripped_cinnamon_wood": "Обтёсанная коричная древесина",
-  "block.concoction.cinnamon_leaves": "Листья дерева корицы",
+  "block.concoction.cinnamon_wood": "Древесина корицы",
+  "block.concoction.cinnamon_bark_log": "Окорённое бревно корицы",
+  "block.concoction.cinnamon_bark_wood": "Окорённая древесина корицы",
+  "block.concoction.stripped_cinnamon_log": "Обтёсанное бревно корицы",
+  "block.concoction.stripped_cinnamon_wood": "Обтёсанная древесина корицы",
+  "block.concoction.cinnamon_leaves": "Листья корицы",
   "block.concoction.cinnamon_sapling": "Саженец корицы",
+  "item.concoction.cinnamon_bark": "Кора корицы",
+  "item.concoction.cinnamon": "Корица",
+  "block.concoction.cinnamon_slab": "Коричная плита",
+  "block.concoction.cinnamon_stairs": "Коричные ступеньки",
   "description.concoction.concoction.magma_egg": "Нет особых эффектов.",
   "description.concoction.concoction.bacon_and_eggs": "Нет особых эффектов.",
   "description.concoction.concoction.bamboo_porkchop_soup": "Нет особых эффектов.",
@@ -461,6 +465,7 @@
   "description.concoction.concoction.pumpkin_pie_slice": "Нет особых эффектов.",
   "description.concoction.concoction.tahchin_bucket": "Нет особых эффектов.",
   "description.concoction.concoction.tahchin_slice": "Нет особых эффектов.",
-  "description.concoction.concoction.weeping_onion": "Нет особых эффектов."
+  "description.concoction.concoction.weeping_onion": "Нет особых эффектов.",
+  "block.concoction.potted_cinnamon_sapling": "Саженец корицы в горшке"
 
 }

@@ -1,11 +1,17 @@
 package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -34,8 +40,35 @@ public class CinnamonBarkWoodBlock extends RotatedPillarBlock {
             return super.getToolModifiedState(state, context, ability, simulate);
         }
 
+        if (!simulate && !context.getLevel().isClientSide()) {
+            var level = context.getLevel();
+            BlockPos pos = context.getClickedPos();
+
+            var enchantmentRegistry = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT);
+            var fortuneHolder = enchantmentRegistry.getOrThrow(Enchantments.FORTUNE);
+
+            int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(fortuneHolder, context.getItemInHand());
+
+            float extraChance = 0.10F + 0.20F * fortuneLevel;
+            if (extraChance > 1.0F) {
+                extraChance = 1.0F;
+            }
+
+            int count = 1;
+            var random = level.getRandom();
+            if (random.nextFloat() < extraChance) {
+                count++;
+            }
+
+            if (count > 0) {
+                Block.popResource(level, pos,
+                        new ItemStack(ConcoctionModItems.CINNAMON_BARK.get(), count));
+            }
+        }
+
         // bark-wood → stripped-wood
-        BlockState stripped = ConcoctionModBlocks.STRIPPED_CINNAMON_WOOD.get().defaultBlockState()
+        BlockState stripped = ConcoctionModBlocks.STRIPPED_CINNAMON_WOOD.get()
+                .defaultBlockState()
                 .setValue(AXIS, state.getValue(AXIS));
 
         return stripped;

@@ -6,14 +6,10 @@ package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.block.*;
 import net.mcreator.concoction.worldgen.CinnamonTreeGrower;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredBlock;
-
-import net.minecraft.world.level.block.Block;
 
 import net.mcreator.concoction.ConcoctionMod;
 
@@ -119,6 +115,16 @@ public class ConcoctionModBlocks {
                                     .randomTicks()
                                     .noOcclusion()
                                     .sound(SoundType.GRASS)
+                    ));
+    public static final DeferredBlock<Block> POTTED_CINNAMON_SAPLING =
+            REGISTRY.register("potted_cinnamon_sapling",
+                    () -> new FlowerPotBlock(
+                            () -> (FlowerPotBlock) Blocks.FLOWER_POT,
+                            ConcoctionModBlocks.CINNAMON_SAPLING,
+                            BlockBehaviour.Properties.of()
+                                    .instabreak()
+                                    .noOcclusion()
+                                    .sound(SoundType.STONE)
                     ));
 
     // Start of user code block custom blocks

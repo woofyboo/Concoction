@@ -391,6 +391,10 @@
   "block.concoction.stripped_cinnamon_wood": "Stripped Cinnamon Woods",
   "block.concoction.cinnamon_leaves": "Cinnamon Leaves",
   "block.concoction.cinnamon_sapling": "Cinnamon Sapling",
+  "item.concoction.cinnamon_bark": "Cinnamon Bark",
+  "item.concoction.cinnamon": "Cinnamon",
+  "block.concoction.cinnamon_slab": "Cinnamon Slab",
+  "block.concoction.cinnamon_stairs": "Cinnamon Stairs",
   "description.concoction.concoction.magma_egg": "No unique effects.",
   "description.concoction.concoction.bacon_and_eggs": "No unique effects.",
   "description.concoction.concoction.bamboo_porkchop_soup": "No unique effects.",
@@ -458,9 +462,10 @@
   "description.concoction.minecraft.potato": "No unique effects.",
   "description.concoction.minecraft.poisonous_potato": "No unique effects.",
   "description.concoction.minecraft.suspicious_stew": "No unique effects.",
-
   "description.concoction.concoction.pumpkin_pie_slice": "No unique effects.",
   "description.concoction.concoction.tahchin_bucket": "No unique effects.",
   "description.concoction.concoction.tahchin_slice": "No unique effects.",
-  "description.concoction.concoction.weeping_onion": "No unique effects."
+  "description.concoction.concoction.weeping_onion": "No unique effects.",
+  "block.concoction.potted_cinnamon_sapling": "Potted Cinnamon Sapling"
+
 }
