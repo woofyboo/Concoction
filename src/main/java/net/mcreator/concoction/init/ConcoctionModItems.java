@@ -180,6 +180,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CORDYCEPS_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_spider_spawn_egg", () -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_SPIDER, -14280166, -7322299, new Item.Properties()));
 	public static final DeferredItem<Item> CORDYCEPS_CAVE_SPIDER_SPAWN_EGG = REGISTRY.register("cordyceps_cave_spider_spawn_egg",
 			() -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_CAVE_SPIDER, -15063520, -7978944, new Item.Properties()));
+    public static final DeferredItem<Item> CINNAMON_STAIRS = block(ConcoctionModBlocks.CINNAMON_STAIRS);
+    public static final DeferredItem<Item> CINNAMON_SLAB = block(ConcoctionModBlocks.CINNAMON_SLAB);
 	public static final DeferredItem<Item> NOODLES_WITH_CREAM_SAUCE = REGISTRY.register("noodles_with_cream_sauce", NoodlesWithCreamSauceItem::new);
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);
 	public static final DeferredItem<Item> DANDELION_TEA = REGISTRY.register("dandelion_tea", DandelionTeaItem::new);

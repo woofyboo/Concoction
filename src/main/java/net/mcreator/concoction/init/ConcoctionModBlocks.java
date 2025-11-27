@@ -126,6 +126,8 @@ public class ConcoctionModBlocks {
                                     .noOcclusion()
                                     .sound(SoundType.STONE)
                     ));
+    public static final DeferredBlock<Block> CINNAMON_SLAB = REGISTRY.register("cinnamon_slab", CinnamonSlabBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_STAIRS = REGISTRY.register("cinnamon_stairs", CinnamonStairsBlock::new);
 
     // Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());

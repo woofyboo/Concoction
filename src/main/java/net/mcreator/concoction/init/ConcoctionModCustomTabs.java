@@ -163,6 +163,8 @@ public class ConcoctionModCustomTabs {
                 tabData.accept(ConcoctionModItems.STRIPPED_CINNAMON_LOG.get());
                 tabData.accept(ConcoctionModItems.STRIPPED_CINNAMON_WOOD.get());
                 tabData.accept(ConcoctionModItems.CINNAMON_PLANKS.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_STAIRS.get());
+                tabData.accept(ConcoctionModItems.CINNAMON_SLAB.get());
 				tabData.accept(ConcoctionModItems.CORN_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SPICY_PEPPER_BLOCK.get());
 				tabData.accept(ConcoctionModItems.ONION_BLOCK.get());
