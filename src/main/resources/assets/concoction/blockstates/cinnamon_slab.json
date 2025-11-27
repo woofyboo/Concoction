@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "concoction:block/cinnamon_slab" },
+    "type=top":    { "model": "concoction:block/cinnamon_slab_top" },
+    "type=double": { "model": "concoction:block/cinnamon_planks" }
+  }
+}

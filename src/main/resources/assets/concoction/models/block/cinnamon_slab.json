@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "concoction:block/cinnamon_planks",
+    "top":    "concoction:block/cinnamon_planks",
+    "side":   "concoction:block/cinnamon_planks"
+  }
+}
