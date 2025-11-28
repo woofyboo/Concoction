@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_trapdoor_bottom",
+  "textures": {
+    "texture": "concoction:block/cinnamon_trapdoor"
+  },
+  "render_type": "cutout"
+}

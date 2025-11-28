@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/cinnamon_door",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "concoction:cinnamon_door",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:cinnamon_door"
+        }
+      ]
+    }
+  ]
+}

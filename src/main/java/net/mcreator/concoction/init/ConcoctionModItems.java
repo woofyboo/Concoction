@@ -182,6 +182,13 @@ public class ConcoctionModItems {
 			() -> new DeferredSpawnEggItem(ConcoctionModEntities.CORDYCEPS_CAVE_SPIDER, -15063520, -7978944, new Item.Properties()));
     public static final DeferredItem<Item> CINNAMON_STAIRS = block(ConcoctionModBlocks.CINNAMON_STAIRS);
     public static final DeferredItem<Item> CINNAMON_SLAB = block(ConcoctionModBlocks.CINNAMON_SLAB);
+    public static final DeferredItem<Item> CINNAMON_FENCE = block(ConcoctionModBlocks.CINNAMON_FENCE);
+    public static final DeferredItem<Item> CINNAMON_FENCE_GATE = block(ConcoctionModBlocks.CINNAMON_FENCE_GATE);
+    public static final DeferredItem<Item> CINNAMON_DOOR = block(ConcoctionModBlocks.CINNAMON_DOOR);
+    public static final DeferredItem<Item> CINNAMON_TRAPDOOR = block(ConcoctionModBlocks.CINNAMON_TRAPDOOR);
+    public static final DeferredItem<Item> CINNAMON_PRESSURE_PLATE = block(ConcoctionModBlocks.CINNAMON_PRESSURE_PLATE);
+    public static final DeferredItem<Item> CINNAMON_BUTTON = block(ConcoctionModBlocks.CINNAMON_BUTTON);
+    public static final DeferredItem<Item> CINNAMON_SIGN = block(ConcoctionModBlocks.CINNAMON_SIGN);
 	public static final DeferredItem<Item> NOODLES_WITH_CREAM_SAUCE = REGISTRY.register("noodles_with_cream_sauce", NoodlesWithCreamSauceItem::new);
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);
 	public static final DeferredItem<Item> DANDELION_TEA = REGISTRY.register("dandelion_tea", DandelionTeaItem::new);

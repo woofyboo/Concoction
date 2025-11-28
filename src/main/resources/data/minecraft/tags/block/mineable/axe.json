@@ -34,7 +34,17 @@
     "concoction:stripped_cinnamon_log",
     "concoction:cinnamon_sapling",
     "concoction:cinnamon_slab",
-    "concoction:cinnamon_stairs"
+    "concoction:cinnamon_stairs",
+    "concoction:cinnamon_fence",
+    "concoction:cinnamon_fence_gate",
+    "concoction:cinnamon_door",
+    "concoction:cinnamon_trapdoor",
+    "concoction:cinnamon_pressure_plate",
+    "concoction:cinnamon_button"
+
+
+
+
 
   ]
 }

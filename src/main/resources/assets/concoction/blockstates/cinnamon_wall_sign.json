@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "concoction:block/cinnamon_wall_sign" },
+    "facing=south": { "model": "concoction:block/cinnamon_wall_sign", "y": 180 },
+    "facing=west":  { "model": "concoction:block/cinnamon_wall_sign", "y": 270 },
+    "facing=east":  { "model": "concoction:block/cinnamon_wall_sign", "y": 90 }
+  }
+}

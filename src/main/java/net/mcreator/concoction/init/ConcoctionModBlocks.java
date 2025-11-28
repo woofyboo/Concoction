@@ -128,6 +128,18 @@ public class ConcoctionModBlocks {
                     ));
     public static final DeferredBlock<Block> CINNAMON_SLAB = REGISTRY.register("cinnamon_slab", CinnamonSlabBlock::new);
     public static final DeferredBlock<Block> CINNAMON_STAIRS = REGISTRY.register("cinnamon_stairs", CinnamonStairsBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_FENCE = REGISTRY.register("cinnamon_fence", CinnamonFenceBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_FENCE_GATE = REGISTRY.register("cinnamon_fence_gate", CinnamonFenceGateBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_DOOR = REGISTRY.register("cinnamon_door", CinnamonDoorBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_TRAPDOOR = REGISTRY.register("cinnamon_trapdoor", CinnamonTrapdoorBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_PRESSURE_PLATE = REGISTRY.register("cinnamon_pressure_plate", CinnamonPressurePlateBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_BUTTON = REGISTRY.register("cinnamon_button", CinnamonButtonBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_SIGN =
+            REGISTRY.register("cinnamon_sign", CinnamonSignBlock::new);
+
+    public static final DeferredBlock<Block> CINNAMON_WALL_SIGN =
+            REGISTRY.register("cinnamon_wall_sign", CinnamonWallSignBlock::new);
+
 
     // Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());

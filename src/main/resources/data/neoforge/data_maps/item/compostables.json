@@ -276,6 +276,12 @@
     },
     "concoction:cinnamon_sapling": {
       "chance": 0.3
+    },
+    "concoction:cinnamon": {
+      "chance": 0.3
+    },
+    "concoction:cinnamon_bark": {
+      "chance": 0.3
     }
 
 	}

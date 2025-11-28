@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "concoction:blocks/cinnamon_sign",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        { "condition": "minecraft:survives_explosion" }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "concoction:cinnamon_sign"
+        }
+      ]
+    }
+  ]
+}

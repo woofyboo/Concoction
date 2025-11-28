@@ -24,6 +24,7 @@ import net.mcreator.concoction.ConcoctionMod;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
 public class ConcoctionModEntities {
+
 	public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(Registries.ENTITY_TYPE, ConcoctionMod.MODID);
 	public static final DeferredHolder<EntityType<?>, EntityType<SunstruckEntity>> SUNSTRUCK = register("sunstruck",
 			EntityType.Builder.<SunstruckEntity>of(SunstruckEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
@@ -45,6 +46,7 @@ public class ConcoctionModEntities {
 	private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
 		return REGISTRY.register(registryname, () -> (EntityType<T>) entityTypeBuilder.build(registryname));
 	}
+
 
 	@SubscribeEvent
 	public static void init(RegisterSpawnPlacementsEvent event) {

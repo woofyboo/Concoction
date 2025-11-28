@@ -4,6 +4,8 @@
 */
 package net.mcreator.concoction.init;
 
+import net.mcreator.concoction.block.entity.*;
+import net.mcreator.concoction.block.entity.CinnamonSignBlockEntity;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -16,21 +18,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.BuiltInRegistries;
 
-import net.mcreator.concoction.block.entity.WarpedKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.SpruceKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.OvenBlockEntity;
-import net.mcreator.concoction.block.entity.OakKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.MangroveKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.JungleKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.DarkOakKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.CropMintBlockEntity;
-import net.mcreator.concoction.block.entity.CrimsonKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.CookingCauldronEntity;
-import net.mcreator.concoction.block.entity.CherryKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.ButterChurnEntity;
-import net.mcreator.concoction.block.entity.BirchKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.BambooKitchenCabinetBlockEntity;
-import net.mcreator.concoction.block.entity.AcaciaKitchenCabinetBlockEntity;
 import net.mcreator.concoction.ConcoctionMod;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD)
@@ -52,8 +39,17 @@ public class ConcoctionModBlockEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> COOKING_CAULDRON = register("cooking_cauldron", Blocks.WATER_CAULDRON, CookingCauldronEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> OVEN_BLOCK = register("oven_block", ConcoctionModBlocks.OVEN, OvenBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> BUTTER_CHURN = register("butter_churn", ConcoctionModBlocks.BUTTER_CHURN, ButterChurnEntity::new);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CinnamonSignBlockEntity>> CINNAMON_SIGN =
+            REGISTRY.register("cinnamon_sign", () ->
+                    BlockEntityType.Builder.of(
+                            CinnamonSignBlockEntity::new,
+                            ConcoctionModBlocks.CINNAMON_SIGN.get(),
+                            ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()
+                    ).build(null)
+            );
 
-	private static DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> register(String registryname, Block block, BlockEntityType.BlockEntitySupplier<?> supplier) {
+
+    private static DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> register(String registryname, Block block, BlockEntityType.BlockEntitySupplier<?> supplier) {
 		return REGISTRY.register(registryname, () -> BlockEntityType.Builder.of(supplier, block).build(null));
 	}
 
