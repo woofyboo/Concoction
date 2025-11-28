@@ -5,17 +5,13 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.item.*;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.DoubleHighBlockItem;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.food.FoodProperties;
 
 import net.mcreator.concoction.ConcoctionMod;
@@ -188,7 +184,12 @@ public class ConcoctionModItems {
     public static final DeferredItem<Item> CINNAMON_TRAPDOOR = block(ConcoctionModBlocks.CINNAMON_TRAPDOOR);
     public static final DeferredItem<Item> CINNAMON_PRESSURE_PLATE = block(ConcoctionModBlocks.CINNAMON_PRESSURE_PLATE);
     public static final DeferredItem<Item> CINNAMON_BUTTON = block(ConcoctionModBlocks.CINNAMON_BUTTON);
-    public static final DeferredItem<Item> CINNAMON_SIGN = block(ConcoctionModBlocks.CINNAMON_SIGN);
+    public static final DeferredHolder<Item, Item> CINNAMON_SIGN = REGISTRY.register("cinnamon_sign",
+            () -> new SignItem(
+                    new Item.Properties().stacksTo(16),               // как у ванильной таблички
+                    ConcoctionModBlocks.CINNAMON_SIGN.get(),          // стоячая
+                    ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()      // настенная
+            ));
 	public static final DeferredItem<Item> NOODLES_WITH_CREAM_SAUCE = REGISTRY.register("noodles_with_cream_sauce", NoodlesWithCreamSauceItem::new);
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);
 	public static final DeferredItem<Item> DANDELION_TEA = REGISTRY.register("dandelion_tea", DandelionTeaItem::new);

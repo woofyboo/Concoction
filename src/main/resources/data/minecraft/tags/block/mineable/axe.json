@@ -40,7 +40,11 @@
     "concoction:cinnamon_door",
     "concoction:cinnamon_trapdoor",
     "concoction:cinnamon_pressure_plate",
-    "concoction:cinnamon_button"
+    "concoction:cinnamon_button",
+    "concoction:cinnamon_sign",
+    "concoction:cinnamon_wall_sign"
+
+
 
 
 

@@ -7,5 +7,4 @@ public class ConcoctionWoodTypes {
 
     public static final WoodType CINNAMON =
             WoodType.register(new WoodType("cinnamon", BlockSetType.OAK));
-
 }

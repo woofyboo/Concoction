@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_wall_sign",
-  "textures": {
-    "texture": "concoction:block/cinnamon_sign"
-  }
-}

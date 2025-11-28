@@ -5,13 +5,13 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.block.entity.*;
-import net.mcreator.concoction.block.entity.CinnamonSignBlockEntity;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.mcreator.concoction.block.entity.CinnamonSignBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.Blocks;
@@ -47,6 +47,7 @@ public class ConcoctionModBlockEntities {
                             ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()
                     ).build(null)
             );
+
 
 
     private static DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> register(String registryname, Block block, BlockEntityType.BlockEntitySupplier<?> supplier) {

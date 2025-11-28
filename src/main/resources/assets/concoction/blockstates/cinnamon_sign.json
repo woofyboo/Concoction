@@ -1,20 +1,20 @@
 {
   "variants": {
-    "rotation=0":  { "model": "concoction:block/cinnamon_sign" },
-    "rotation=1":  { "model": "concoction:block/cinnamon_sign", "y": 22.5 },
-    "rotation=2":  { "model": "concoction:block/cinnamon_sign", "y": 45 },
-    "rotation=3":  { "model": "concoction:block/cinnamon_sign", "y": 67.5 },
-    "rotation=4":  { "model": "concoction:block/cinnamon_sign", "y": 90 },
-    "rotation=5":  { "model": "concoction:block/cinnamon_sign", "y": 112.5 },
-    "rotation=6":  { "model": "concoction:block/cinnamon_sign", "y": 135 },
-    "rotation=7":  { "model": "concoction:block/cinnamon_sign", "y": 157.5 },
-    "rotation=8":  { "model": "concoction:block/cinnamon_sign", "y": 180 },
-    "rotation=9":  { "model": "concoction:block/cinnamon_sign", "y": 202.5 },
-    "rotation=10": { "model": "concoction:block/cinnamon_sign", "y": 225 },
-    "rotation=11": { "model": "concoction:block/cinnamon_sign", "y": 247.5 },
-    "rotation=12": { "model": "concoction:block/cinnamon_sign", "y": 270 },
-    "rotation=13": { "model": "concoction:block/cinnamon_sign", "y": 292.5 },
-    "rotation=14": { "model": "concoction:block/cinnamon_sign", "y": 315 },
-    "rotation=15": { "model": "concoction:block/cinnamon_sign", "y": 337.5 }
+    "rotation=0":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=1":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=2":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=3":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=4":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=5":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=6":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=7":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=8":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=9":  { "model": "concoction:block/cinnamon_particles" },
+    "rotation=10": { "model": "concoction:block/cinnamon_particles" },
+    "rotation=11": { "model": "concoction:block/cinnamon_particles" },
+    "rotation=12": { "model": "concoction:block/cinnamon_particles" },
+    "rotation=13": { "model": "concoction:block/cinnamon_particles" },
+    "rotation=14": { "model": "concoction:block/cinnamon_particles" },
+    "rotation=15": { "model": "concoction:block/cinnamon_particles" }
   }
 }
