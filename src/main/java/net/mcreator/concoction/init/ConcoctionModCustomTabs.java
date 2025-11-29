@@ -118,7 +118,6 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.TOMATO_SOUP.get());
 				tabData.accept(ConcoctionModItems.CORN_SOUP.get());
 				tabData.accept(ConcoctionModItems.ONION_SOUP.get());
-				tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
 				tabData.accept(ConcoctionModItems.MEAT_GOULASH.get());
 				tabData.accept(ConcoctionModItems.BAMBOO_PORKCHOP_SOUP.get());
 				tabData.accept(ConcoctionModItems.STIR_FRIED_FILET.get());
@@ -134,6 +133,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_MEATBALLS.get());
 				tabData.accept(ConcoctionModItems.NOODLES_WITH_CREAM_SAUCE.get());
                 tabData.accept(ConcoctionModItems.NISHOLDA.get());
+                tabData.accept(ConcoctionModItems.FUNGUS_STEW.get());
+                tabData.accept(ConcoctionModItems.NETHER_SLOP.get());
                 tabData.accept(ConcoctionModItems.BUCKET_CASSEROLE.get());
                 tabData.accept(ConcoctionModItems.TAHCHIN_BUCKET.get());
                 tabData.accept(ConcoctionModItems.HOT_CHOCOLATE.get());

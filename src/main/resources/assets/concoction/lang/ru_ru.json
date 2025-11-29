@@ -376,6 +376,7 @@
   "item.concoction.hot_chocolate": "Горячий шоколад",
   "item.concoction.tahchin_bucket": "Тахчин",
   "item.concoction.tahchin_slice": "Кусочек тахчина",
+  "item.concoction.nether_slop": "Незерское хрючево",
   "tooltip.concoction.hold_key": "Удерживайте [%s] для подробностей",
   "tooltip.concoction.tastes_header": "Основные вкусы",
   "effect.concoction.weeping": "Угнетение",
@@ -448,7 +449,7 @@
   "description.concoction.concoction.spicy_pepper": "Нет особых эффектов.",
   "description.concoction.concoction.stir_fried_filet": "Нет особых эффектов.",
   "description.concoction.concoction.sweet_slime_jelly": "Нет особых эффектов.",
-  "description.concoction.concoction.vegetable_soup": "После употребления мгновенно снимает накопленную заморозку.",
+  "description.concoction.concoction.vegetable_soup": "Мгновенно снимает любое замерзание после съедания.",
   "description.concoction.concoction.tomato_soup": "Нет особых эффектов.",
   "description.concoction.concoction.sunflower_seeds_brew": "Нет особых эффектов.",
   "description.concoction.minecraft.chorus_fruit": "Нет особых эффектов.",
@@ -474,6 +475,7 @@
   "description.concoction.concoction.tahchin_bucket": "Нет особых эффектов.",
   "description.concoction.concoction.tahchin_slice": "Нет особых эффектов.",
   "description.concoction.concoction.weeping_onion": "Нет особых эффектов.",
+  "description.concoction.concoction.nether_slop": "Сначала накладывает Тошноту и Отравление, но по мере привыкания становится безопаснее и сытнее. Любая другая еда ослабляет эту выработанную стойкость.",
   "block.concoction.potted_cinnamon_sapling": "Саженец корицы в горшке"
 
 }

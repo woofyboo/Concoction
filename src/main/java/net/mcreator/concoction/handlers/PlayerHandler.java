@@ -100,6 +100,7 @@ public class PlayerHandler {
 
     @SubscribeEvent
     public static void onPlayerEatItem(LivingEntityUseItemEvent.Finish event) {
+
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         ItemStack itemStack = event.getItem();
 

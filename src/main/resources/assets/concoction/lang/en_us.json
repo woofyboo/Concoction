@@ -376,6 +376,7 @@
   "item.concoction.hot_chocolate": "Hot Chocolate",
   "item.concoction.tahchin_bucket": "Tahchin",
   "item.concoction.tahchin_slice": "Tahchin Slice",
+  "item.concoction.nether_slop": "Nether Slop",
   "tooltip.concoction.hold_key": "Hold [%s] for more info",
   "tooltip.concoction.tastes_header": "Main Flavors",
   "effect.concoction.weeping": "Weeping",
@@ -448,7 +449,7 @@
   "description.concoction.concoction.spicy_pepper": "No unique effects.",
   "description.concoction.concoction.stir_fried_filet": "No unique effects.",
   "description.concoction.concoction.sweet_slime_jelly": "No unique effects.",
-  "description.concoction.concoction.vegetable_soup": "Resets your freezing progress to zero, instantly warming you up.",
+  "description.concoction.concoction.vegetable_soup": "Instantly warms you up and cleanses all freezing.",
   "description.concoction.concoction.tomato_soup": "No unique effects.",
   "description.concoction.concoction.sunflower_seeds_brew": "No unique effects.",
   "description.concoction.minecraft.chorus_fruit": "No unique effects.",
@@ -474,6 +475,7 @@
   "description.concoction.concoction.tahchin_bucket": "No unique effects.",
   "description.concoction.concoction.tahchin_slice": "No unique effects.",
   "description.concoction.concoction.weeping_onion": "No unique effects.",
+  "description.concoction.concoction.nether_slop": "Starts off by inflicting Nausea and Poison, but grows safer and more filling as you acquire the taste. Eating other foods sets your tolerance back.",
   "block.concoction.potted_cinnamon_sapling": "Potted Cinnamon Sapling"
 
 }

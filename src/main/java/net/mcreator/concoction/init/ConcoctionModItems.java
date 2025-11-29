@@ -190,6 +190,7 @@ public class ConcoctionModItems {
                     ConcoctionModBlocks.CINNAMON_SIGN.get(),          // стоячая
                     ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()      // настенная
             ));
+    public static final DeferredItem<Item> NETHER_SLOP = REGISTRY.register("nether_slop", NetherSlopItem::new);
 	public static final DeferredItem<Item> NOODLES_WITH_CREAM_SAUCE = REGISTRY.register("noodles_with_cream_sauce", NoodlesWithCreamSauceItem::new);
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);
 	public static final DeferredItem<Item> DANDELION_TEA = REGISTRY.register("dandelion_tea", DandelionTeaItem::new);
