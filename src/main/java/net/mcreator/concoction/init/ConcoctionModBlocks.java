@@ -141,6 +141,10 @@ public class ConcoctionModBlocks {
 
     public static final DeferredBlock<Block> CINNAMON_WALL_SIGN =
             REGISTRY.register("cinnamon_wall_sign", CinnamonWallSignBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_HANGING_SIGN =
+            REGISTRY.register("cinnamon_hanging_sign", CinnamonHangingSignBlock::new);
+    public static final DeferredBlock<Block> CINNAMON_WALL_HANGING_SIGN =
+            REGISTRY.register("cinnamon_wall_hanging_sign", CinnamonWallHangingSignBlock::new);
 
 
     // Start of user code block custom blocks

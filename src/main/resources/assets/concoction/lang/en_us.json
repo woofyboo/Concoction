@@ -481,6 +481,8 @@
   "description.concoction.concoction.tahchin_slice": "No unique effects.",
   "description.concoction.concoction.weeping_onion": "No unique effects.",
   "description.concoction.concoction.nether_slop": "Starts off by inflicting Nausea and Poison, but grows safer and more filling as you acquire the taste. Eating other foods sets your tolerance back.",
-  "block.concoction.potted_cinnamon_sapling": "Potted Cinnamon Sapling"
+  "block.concoction.potted_cinnamon_sapling": "Potted Cinnamon Sapling",
+  "block.concoction.cinnamon_hanging_sign": "Cinnamon Hanging Sign",
+  "block.concoction.cinnamon_wall_hanging_sign": "Cinnamon Wall Hanging Sign"
 
 }

@@ -449,4 +449,7 @@
   "taste.concoction.warming": "•温热",
   "tooltip.concoction.hold_key": "按[%s]显示更多",
   "tooltip.concoction.tastes_header": "主要风味"
+,
+  "block.concoction.cinnamon_hanging_sign": "肉桂木悬挂告示牌",
+  "block.concoction.cinnamon_wall_hanging_sign": "肉桂木墙挂告示牌"
 }

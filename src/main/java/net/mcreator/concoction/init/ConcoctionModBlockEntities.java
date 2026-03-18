@@ -48,6 +48,14 @@ public class ConcoctionModBlockEntities {
                             ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()
                     ).build(null)
             );
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CinnamonHangingSignBlockEntity>> CINNAMON_HANGING_SIGN =
+            REGISTRY.register("cinnamon_hanging_sign", () ->
+                    BlockEntityType.Builder.of(
+                            CinnamonHangingSignBlockEntity::new,
+                            ConcoctionModBlocks.CINNAMON_HANGING_SIGN.get(),
+                            ConcoctionModBlocks.CINNAMON_WALL_HANGING_SIGN.get()
+                    ).build(null)
+            );
 
 
 

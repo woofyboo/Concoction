@@ -191,6 +191,12 @@ public class ConcoctionModItems {
                     ConcoctionModBlocks.CINNAMON_SIGN.get(),          // стоячая
                     ConcoctionModBlocks.CINNAMON_WALL_SIGN.get()      // настенная
             ));
+    public static final DeferredHolder<Item, Item> CINNAMON_HANGING_SIGN = REGISTRY.register("cinnamon_hanging_sign",
+            () -> new HangingSignItem(
+                    ConcoctionModBlocks.CINNAMON_HANGING_SIGN.get(),
+                    ConcoctionModBlocks.CINNAMON_WALL_HANGING_SIGN.get(),
+                    new Item.Properties().stacksTo(16)
+            ));
     public static final DeferredItem<Item> NETHER_SLOP = REGISTRY.register("nether_slop", NetherSlopItem::new);
 	public static final DeferredItem<Item> NOODLES_WITH_CREAM_SAUCE = REGISTRY.register("noodles_with_cream_sauce", NoodlesWithCreamSauceItem::new);
 	public static final DeferredItem<Item> BOILED_POTATO = REGISTRY.register("boiled_potato", BoiledPotatoItem::new);

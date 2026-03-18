@@ -6,6 +6,7 @@ import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 
 import net.neoforged.api.distmarker.Dist;
@@ -30,6 +31,10 @@ public class ConcoctionClientSetup {
             BlockEntityRenderers.register(
                     ConcoctionModBlockEntities.CINNAMON_SIGN.get(),
                     SignRenderer::new
+            );
+            BlockEntityRenderers.register(
+                    ConcoctionModBlockEntities.CINNAMON_HANGING_SIGN.get(),
+                    HangingSignRenderer::new
             );
         });
     }

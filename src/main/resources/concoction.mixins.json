@@ -33,6 +33,7 @@
   "client": [
     "GuiMixin",
     "ItemMixin",
+    "LocalPlayerHangingSignMixin",
     "MixinRecipeBookComponent"
   ],
   "injectors": {

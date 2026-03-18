@@ -483,4 +483,7 @@
   "description.concoction.concoction.nether_slop": "Сначала накладывает Тошноту и Отравление, но по мере привыкания становится безопаснее и сытнее. Любая другая еда ослабляет эту выработанную стойкость.",
   "block.concoction.potted_cinnamon_sapling": "Саженец корицы в горшке"
 
+,
+  "block.concoction.cinnamon_hanging_sign": "Коричная подвесная табличка",
+  "block.concoction.cinnamon_wall_hanging_sign": "Коричная настенная подвесная табличка"
 }

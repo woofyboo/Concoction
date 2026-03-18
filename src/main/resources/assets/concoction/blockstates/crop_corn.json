@@ -1,15 +1,30 @@
 {
   "variants": {
-    "age=0": {
+    "age=0,part=bottom": {
       "model": "concoction:block/corn_stage0"
     },
-    "age=1": {
+    "age=0,part=middle": {
+      "model": "concoction:block/corn_stage0"
+    },
+    "age=0,part=top": {
+      "model": "concoction:block/corn_stage0"
+    },
+    "age=1,part=bottom": {
+      "model": "concoction:block/corn_stage1"
+    },
+    "age=1,part=middle": {
+      "model": "concoction:block/corn_stage1"
+    },
+    "age=1,part=top": {
       "model": "concoction:block/corn_stage1"
     },
     "age=2,part=bottom": {
       "model": "concoction:block/corn_stage2_bottom"
     },
     "age=2,part=middle": {
+      "model": "concoction:block/corn_stage2_middle"
+    },
+    "age=2,part=top": {
       "model": "concoction:block/corn_stage2_middle"
     },
     "age=3,part=bottom": {
@@ -39,5 +54,5 @@
     "age=5,part=top": {
       "model": "concoction:block/corn_stage3_top"
     }
-}
+  }
 }
