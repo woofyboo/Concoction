@@ -2,6 +2,7 @@ package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,12 +13,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -37,185 +36,145 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.SpecialPlantable;
-import net.neoforged.neoforge.common.util.TriState;
 
 import java.util.Objects;
 
 import static net.mcreator.concoction.init.ConcoctionModBlocks.NETHER_PEPPER_CROP;
-import net.minecraft.world.level.block.Blocks; // Added import
 
-// Класс растения, наследующий от CropBlock
 public class CropSpicyPepperBlock extends CropBlock {
-    // Максимальный возраст растения
-    public static final int MAX_AGE = 5;
-    // Свойство возраста растения
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
+	public static final int MAX_AGE = 5;
+	public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-    public CropSpicyPepperBlock() {
-        // Установка свойств блока
-        super(BlockBehaviour.Properties.of()
-                .mapColor(MapColor.PLANT)
-                .sound(SoundType.GRASS)
-                .instabreak()
-                .noCollission()
-                .noOcclusion()
-                .randomTicks()
-                .pushReaction(PushReaction.DESTROY)
-                .isRedstoneConductor((bs, br, bp) -> false));
-        // Регистрация состояния по умолчанию
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
-    }
+	public CropSpicyPepperBlock() {
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).instabreak().noCollission().noOcclusion().randomTicks().pushReaction(PushReaction.DESTROY)
+				.isRedstoneConductor((bs, br, bp) -> false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
+	}
 
-    @Override
-    public boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-        return p_52302_.getBlock() instanceof FarmBlock || p_52302_.getBlock() instanceof SoullandBlock;
-    }
+	@Override
+	public boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
+		return state.getBlock() instanceof FarmBlock || state.getBlock() instanceof SoullandBlock;
+	}
 
-    @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (!level.isAreaLoaded(pos, 1)) {
-            return;
-        }
+	@Override
+	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (!level.isAreaLoaded(pos, 1)) {
+			return;
+		}
 
-        // если снизу именно SoullandBlock — превращаемся в адский перец
-        if (level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
-            // текущий возраст обычного перца
-            int currentAge = this.getAge(state);
+		if (level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
+			int currentAge = this.getAge(state);
+			Block netherBlock = NETHER_PEPPER_CROP.get();
 
-            // блок адского перца
-            Block netherBlock = NETHER_PEPPER_CROP.get();
-            if (netherBlock instanceof CropBlock netherCrop) {
-                // чтобы не вылезти за максимальный возраст адской версии
-                int maxNetherAge = netherCrop.getMaxAge();
-                int clampedAge = Mth.clamp(currentAge, 0, maxNetherAge);
+			if (netherBlock instanceof CropBlock netherCrop) {
+				int maxNetherAge = netherCrop.getMaxAge();
+				int clampedAge = Mth.clamp(currentAge, 0, maxNetherAge);
+				level.setBlock(pos, netherCrop.getStateForAge(clampedAge), 2);
+			} else {
+				level.setBlock(pos, netherBlock.defaultBlockState(), 2);
+			}
 
-                BlockState newState = netherCrop.getStateForAge(clampedAge);
-                level.setBlock(pos, newState, 2);
-            } else {
-                // на всякий пожарный, если вдруг что-то пойдёт не так с типом блока
-                level.setBlock(pos, netherBlock.defaultBlockState(), 2);
-            }
+			Utils.playSoulMutationEffect(level, pos);
+			return;
+		}
 
-            // ВАЖНО: после превращения не даём старому перцу "расти" дальше
-            return;
-        }
+		super.randomTick(state, level, pos, random);
+	}
 
-        // обычный рост, если не на пашне душ
-        super.randomTick(state, level, pos, random);
-    }
+	@Override
+	protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+		if (!player.isShiftKeyDown() && state.getBlock() == ConcoctionModBlocks.CROP_SPICY_PEPPER.get() && state.getValue(AGE) == MAX_AGE) {
+			player.swing(InteractionHand.MAIN_HAND, true);
+			if (!level.isClientSide()) {
+				level.playSound(null, pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1.0F, 1.0F);
+			} else {
+				level.playLocalSound(pos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1.0F, 1.0F, false);
+			}
 
+			if (level instanceof ServerLevel serverLevel) {
+				level.setBlock(pos, state.setValue(AGE, 2), 3);
+				ItemEntity drop = new ItemEntity(serverLevel, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ConcoctionModItems.SPICY_PEPPER.get(), 1));
+				drop.setPickUpDelay(10);
+				serverLevel.addFreshEntity(drop);
 
+				if (Math.random() < 0.3) {
+					ItemEntity extra = new ItemEntity(serverLevel, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
+					extra.setPickUpDelay(10);
+					serverLevel.addFreshEntity(extra);
+				}
 
-    @Override
-    protected ItemInteractionResult useItemOn(ItemStack pItem, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand p_316595_, BlockHitResult p_316140_) {
-        if (!pPlayer.isShiftKeyDown() && pState.getBlock() == ConcoctionModBlocks.CROP_SPICY_PEPPER.get()) {
-            if (pState.getValue(AGE) == 5) {
-                pPlayer.swing(InteractionHand.MAIN_HAND, true);
-                if (!pLevel.isClientSide())
-                    pLevel.playSound(null, pPos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1, 1);
-                else
-                    pLevel.playLocalSound(pPos, Objects.requireNonNull(BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.sweet_berry_bush.pick_berries"))), SoundSource.BLOCKS, 1, 1, false);
+				return ItemInteractionResult.SUCCESS;
+			}
+		}
 
-                if (pLevel instanceof ServerLevel _level) {
-                    pLevel.setBlock(pPos, pState.setValue(AGE, 2), 3);
-                    ItemEntity entityToSpawn = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get(), 1));
-                    entityToSpawn.setPickUpDelay(10);
-                    _level.addFreshEntity(entityToSpawn);
+		return super.useItemOn(itemStack, state, level, pos, player, hand, hit);
+	}
 
-                    if (Math.random() < 0.3) {
-                        ItemEntity entityToSpawn3 = new ItemEntity(_level, (pPos.getX() + 0.5), (pPos.getY() + 0.5), (pPos.getZ() + 0.5), new ItemStack(ConcoctionModItems.SPICY_PEPPER.get()));
-                        entityToSpawn3.setPickUpDelay(10);
-                        _level.addFreshEntity(entityToSpawn3);
-                    }
-                    return ItemInteractionResult.SUCCESS;
-                }
-            }
-        }
-        return super.useItemOn(pItem, pState, pLevel, pPos, pPlayer, p_316595_, p_316140_);
-    }
+	@Override
+	public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+		return true;
+	}
 
-    @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-        // Пропускает ли блок свет вниз
-        return true;
-    }
+	@Override
+	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+		return 0;
+	}
 
-    @Override
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        // Количество блокируемого света
-        return 0;
-    }
+	@Override
+	public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return Shapes.empty();
+	}
 
-    @Override
-    public VoxelShape getVisualShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        // Визуальная форма блока
-        return Shapes.empty();
-    }
+	@Override
+	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+		return switch (state.getValue(AGE)) {
+			default -> Block.box(1, 0, 1, 15, 15, 15);
+			case 0 -> Block.box(4, 0, 4, 12, 8, 12);
+			case 1 -> Block.box(2, 0, 2, 14, 12, 14);
+			case 2 -> Block.box(1, 0, 1, 15, 15, 15);
+			case 3 -> Block.box(1, 0, 1, 15, 15, 15);
+			case 4 -> Block.box(1, 0, 1, 15, 15, 15);
+			case 5 -> Block.box(1, 0, 1, 15, 15, 15);
+		};
+	}
 
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        // Форма блока в зависимости от возраста
-        return switch (state.getValue(AGE)) {
-            default -> Block.box(1, 0, 1, 15, 15, 15);
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(AGE);
+	}
 
-            case 0 -> Block.box(4, 0, 4, 12, 8, 12);
-            case 1 -> Block.box(2, 0, 2, 14, 12, 14);
-            case 2 -> Block.box(1, 0, 1, 15, 15, 15);
-            case 3 -> Block.box(1, 0, 1, 15, 15, 15);
-            case 4 -> Block.box(1, 0, 1, 15, 15, 15);
-            case 5 -> Block.box(1, 0, 1, 15, 15, 15);
+	@Override
+	public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		return 100;
+	}
 
-        };
-    }
+	@Override
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+		return new ItemStack(ConcoctionModItems.SPICY_PEPPER_SEEDS.get());
+	}
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        // Добавление свойства возраста в состояние блока
-        builder.add(AGE);
-    }
+	@Override
+	public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+		return 25;
+	}
 
-    @Override
-    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        // Возвращает горючесть блока
-        return 100;
-    }
+	@Override
+	public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
+		return PathType.OPEN;
+	}
 
-    @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        // Предмет, получаемый при копировании блока на колёсико
-        return new ItemStack(
-            ConcoctionModItems.SPICY_PEPPER_SEEDS.get()
-        );
-    }
+	@Override
+	public int getMaxAge() {
+		return MAX_AGE;
+	}
 
-    @Override
-    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        // Скорость распространения огня
-        return 25;
-    }
+	@Override
+	protected ItemLike getBaseSeedId() {
+		return ConcoctionModItems.SPICY_PEPPER_SEEDS.get();
+	}
 
-    @Override
-    public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
-        // Тип пути для мобов
-        return PathType.OPEN;
-    }
-
-    @Override
-    public int getMaxAge() {
-        // Возвращает максимальный возраст растения
-        return MAX_AGE; // не менять
-    }
-
-    @Override
-    protected ItemLike getBaseSeedId() {
-        // Возвращает семена для посадки растения
-        return ConcoctionModItems.SPICY_PEPPER_SEEDS.get();
-    }
-
-    @Override
-    public IntegerProperty getAgeProperty() {
-        // Возвращает свойство возраста растения
-        return AGE; // не менять
-    }
+	@Override
+	public IntegerProperty getAgeProperty() {
+		return AGE;
+	}
 }

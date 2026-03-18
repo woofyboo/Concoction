@@ -14,6 +14,7 @@ import net.mcreator.concoction.client.particle.SoapBubbleParticle;
 import net.mcreator.concoction.client.particle.MintLeafParticleVariant2Particle;
 import net.mcreator.concoction.client.particle.MintLeafParticleVariant1Particle;
 import net.mcreator.concoction.client.particle.FeatherParticleParticle;
+import net.mcreator.concoction.client.particle.WeepingParticle;
 
 @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ConcoctionModParticles {
@@ -24,5 +25,6 @@ public class ConcoctionModParticles {
 		event.registerSpriteSet(ConcoctionModParticleTypes.FEATHER_PARTICLE.get(), FeatherParticleParticle::provider);
 		event.registerSpriteSet(ConcoctionModParticleTypes.SPORE_CLOUD.get(), SporeCloudParticle::provider);
 		event.registerSpriteSet(ConcoctionModParticleTypes.SOAP_BUBBLE.get(), SoapBubbleParticle::provider);
+		event.registerSpriteSet(ConcoctionModParticleTypes.WEEPING_PARTICLE.get(), WeepingParticle::provider);
 	}
 }

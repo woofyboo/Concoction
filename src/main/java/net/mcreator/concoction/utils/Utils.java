@@ -2,6 +2,7 @@ package net.mcreator.concoction.utils;
 
 import net.mcreator.concoction.block.RiceBlockBlock;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.*;
@@ -9,6 +10,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -32,6 +34,7 @@ import net.minecraft.world.level.material.FluidState;
 public class Utils {
 
     private static final Direction[] ALL_DIRECTIONS = Direction.values();
+    private static final ResourceLocation SOUL_ESCAPE_SOUND = ResourceLocation.parse("particle.soul_escape");
 
     public static void addAchievement(ServerPlayer player, String achievement) {
         AdvancementHolder adv = player.server.getAdvancements().get(ResourceLocation.parse(achievement));
@@ -91,6 +94,28 @@ public class Utils {
             level.setBlock(blockPos, ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 2);
             level.playSound((Player)null, blockPos, SoundEvents.SPONGE_ABSORB, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
+    }
+
+    public static void playSoulMutationEffect(ServerLevel level, BlockPos pos) {
+        level.playSound(
+                null,
+                pos,
+                BuiltInRegistries.SOUND_EVENT.get(SOUL_ESCAPE_SOUND),
+                SoundSource.BLOCKS,
+                0.85F,
+                0.85F + level.random.nextFloat() * 0.3F
+        );
+        level.sendParticles(
+                ConcoctionModParticleTypes.WEEPING_PARTICLE.get(),
+                pos.getX() + 0.5D,
+                pos.getY() + 0.45D,
+                pos.getZ() + 0.5D,
+                5,
+                0.18D,
+                0.2D,
+                0.18D,
+                0.01D
+        );
     }
 
     public static boolean removeWaterBreadthFirstSearch(Level level, BlockPos blockPos, RiceBlockBlock block) {
