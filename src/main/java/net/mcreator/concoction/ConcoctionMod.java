@@ -53,7 +53,9 @@ public class ConcoctionMod {
 		ConcoctionModBlocks.REGISTRY.register(modEventBus);
 		ConcoctionModBlockEntities.REGISTRY.register(modEventBus);
 		ConcoctionModItems.REGISTRY.register(modEventBus);
+		ConcoctionBoatItems.REGISTRY.register(modEventBus);
 		ConcoctionModEntities.REGISTRY.register(modEventBus);
+		ConcoctionBoatEntities.REGISTRY.register(modEventBus);
 		ConcoctionModTabs.REGISTRY.register(modEventBus);
 		StructureFeature.REGISTRY.register(modEventBus);
 		ConcoctionModPotions.REGISTRY.register(modEventBus);
@@ -125,6 +127,7 @@ public class ConcoctionMod {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+			ConcoctionBoatItems.registerDispenserBehaviors();
 
             pot.addPlant(
                     // id твоего саженца

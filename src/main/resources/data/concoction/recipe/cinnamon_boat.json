@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "transportation",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "concoction:cinnamon_planks"
+    }
+  },
+  "result": {
+    "id": "concoction:cinnamon_boat"
+  }
+}

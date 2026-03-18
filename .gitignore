@@ -1,4 +1,6 @@
 .gradle
+.gradle-user-home/
+.tmp-minecraft_1.21.1_client.jar
 **/build/
 !src/**/build/
 runs/

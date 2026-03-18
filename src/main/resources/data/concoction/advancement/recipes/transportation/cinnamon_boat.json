@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "concoction:cinnamon_boat"
+      }
+    },
+    "in_water": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:water"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "in_water"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "concoction:cinnamon_boat"
+    ]
+  }
+}
