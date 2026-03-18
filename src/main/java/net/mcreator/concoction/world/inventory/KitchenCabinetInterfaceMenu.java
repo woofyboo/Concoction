@@ -125,6 +125,13 @@ public class KitchenCabinetInterfaceMenu extends AbstractContainerMenu implement
                     world.setBlock(cabinetPos, state.setValue(WarpedKitchenCabinetBlock.OPEN, true), 3);
                     world.playSound(null, cabinetPos, SoundEvents.NETHER_WOOD_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1.0f, 1.0f);
                 }
+            } else if (world.getBlockEntity(cabinetPos) instanceof CinnamonKitchenCabinetBlockEntity be) {
+                this.blockEntity = be;
+                this.bound = true;
+                if (state.hasProperty(CinnamonKitchenCabinetBlock.OPEN)) {
+                    world.setBlock(cabinetPos, state.setValue(CinnamonKitchenCabinetBlock.OPEN, true), 3);
+                    world.playSound(null, cabinetPos, SoundEvents.WOODEN_TRAPDOOR_OPEN, SoundSource.BLOCKS, 1.0f, 1.0f);
+                }
             } else {
                 this.blockEntity = null;
             }
@@ -222,7 +229,8 @@ public class KitchenCabinetInterfaceMenu extends AbstractContainerMenu implement
                 || state.hasProperty(CherryKitchenCabinetBlock.OPEN)
                 || state.hasProperty(BambooKitchenCabinetBlock.OPEN)
                 || state.hasProperty(CrimsonKitchenCabinetBlock.OPEN)
-                || state.hasProperty(WarpedKitchenCabinetBlock.OPEN)) {
+                || state.hasProperty(WarpedKitchenCabinetBlock.OPEN)
+                || state.hasProperty(CinnamonKitchenCabinetBlock.OPEN)) {
 
                 SoundSource source = SoundSource.BLOCKS;
                 if (state.getBlock() instanceof BambooKitchenCabinetBlock) {

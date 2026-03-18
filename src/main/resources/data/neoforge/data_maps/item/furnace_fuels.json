@@ -239,6 +239,9 @@
 	    "concoction:warped_kitchen_cabinet": {
 	        "burn_time": 300
 	    },
+	    "concoction:cinnamon_kitchen_cabinet": {
+	        "burn_time": 300
+	    },
 	    "concoction:cinnamon_log": {
 	        "burn_time": 300
 	    }             

@@ -93,6 +93,7 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> BAMBOO_KITCHEN_CABINET = REGISTRY.register("bamboo_kitchen_cabinet", BambooKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> CRIMSON_KITCHEN_CABINET = REGISTRY.register("crimson_kitchen_cabinet", CrimsonKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> WARPED_KITCHEN_CABINET = REGISTRY.register("warped_kitchen_cabinet", WarpedKitchenCabinetBlock::new);
+	public static final DeferredBlock<Block> CINNAMON_KITCHEN_CABINET = REGISTRY.register("cinnamon_kitchen_cabinet", CinnamonKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> PUFFBALL_BLOCK = REGISTRY.register("puffball_block", PuffballBlockBlock::new);
 	public static final DeferredBlock<Block> SOAP_BLOCK = REGISTRY.register("soap_block", SoapBlockBlock::new);
     public static final DeferredBlock<Block> APPLE_BLOCK = REGISTRY.register("apple_block", AppleBlockBlock::new);

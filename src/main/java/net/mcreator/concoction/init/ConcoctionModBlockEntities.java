@@ -35,6 +35,7 @@ public class ConcoctionModBlockEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> BAMBOO_KITCHEN_CABINET = register("bamboo_kitchen_cabinet", ConcoctionModBlocks.BAMBOO_KITCHEN_CABINET, BambooKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CRIMSON_KITCHEN_CABINET = register("crimson_kitchen_cabinet", ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET, CrimsonKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> WARPED_KITCHEN_CABINET = register("warped_kitchen_cabinet", ConcoctionModBlocks.WARPED_KITCHEN_CABINET, WarpedKitchenCabinetBlockEntity::new);
+	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CINNAMON_KITCHEN_CABINET = register("cinnamon_kitchen_cabinet", ConcoctionModBlocks.CINNAMON_KITCHEN_CABINET, CinnamonKitchenCabinetBlockEntity::new);
 	// Start of user code block custom block entities
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> COOKING_CAULDRON = register("cooking_cauldron", Blocks.WATER_CAULDRON, CookingCauldronEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> OVEN_BLOCK = register("oven_block", ConcoctionModBlocks.OVEN, OvenBlockEntity::new);
@@ -73,5 +74,6 @@ public class ConcoctionModBlockEntities {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BAMBOO_KITCHEN_CABINET.get(), (blockEntity, side) -> ((BambooKitchenCabinetBlockEntity) blockEntity).getItemHandler());
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CRIMSON_KITCHEN_CABINET.get(), (blockEntity, side) -> ((CrimsonKitchenCabinetBlockEntity) blockEntity).getItemHandler());
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, WARPED_KITCHEN_CABINET.get(), (blockEntity, side) -> ((WarpedKitchenCabinetBlockEntity) blockEntity).getItemHandler());
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CINNAMON_KITCHEN_CABINET.get(), (blockEntity, side) -> ((CinnamonKitchenCabinetBlockEntity) blockEntity).getItemHandler());
 	}
 }
