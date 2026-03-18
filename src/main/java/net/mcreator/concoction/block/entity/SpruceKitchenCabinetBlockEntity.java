@@ -86,7 +86,7 @@ public class SpruceKitchenCabinetBlockEntity extends RandomizableContainerBlockE
 	public void onLoad() {
 	    super.onLoad();
 	
-	    if (!this.level.isClientSide) {
+	    if (!this.level.isClientSide && this.getBlockState().getValue(SpruceKitchenCabinetBlock.OPEN)) {
 	        this.level.getServer().execute(() -> {
 	            this.level.scheduleTick(this.getBlockPos(), this.getBlockState().getBlock(), 20); 
 	        });

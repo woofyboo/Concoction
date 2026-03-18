@@ -86,7 +86,7 @@ public class BambooKitchenCabinetBlockEntity extends RandomizableContainerBlockE
 	public void onLoad() {
 	    super.onLoad();
 	
-	    if (!this.level.isClientSide) {
+	    if (!this.level.isClientSide && this.getBlockState().getValue(BambooKitchenCabinetBlock.OPEN)) {
 	        this.level.getServer().execute(() -> {
 	            this.level.scheduleTick(this.getBlockPos(), this.getBlockState().getBlock(), 20); 
 	        });

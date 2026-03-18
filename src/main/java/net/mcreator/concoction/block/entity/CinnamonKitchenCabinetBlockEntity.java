@@ -1,6 +1,7 @@
 package net.mcreator.concoction.block.entity;
 
 import io.netty.buffer.Unpooled;
+import net.mcreator.concoction.block.CinnamonKitchenCabinetBlock;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.world.inventory.KitchenCabinetInterfaceMenu;
 import net.minecraft.core.BlockPos;
@@ -81,7 +82,7 @@ public class CinnamonKitchenCabinetBlockEntity extends RandomizableContainerBloc
 	@Override
 	public void onLoad() {
 		super.onLoad();
-		if (!this.level.isClientSide) {
+		if (!this.level.isClientSide && this.getBlockState().getValue(CinnamonKitchenCabinetBlock.OPEN)) {
 			this.level.getServer().execute(() -> this.level.scheduleTick(this.getBlockPos(), this.getBlockState().getBlock(), 20));
 		}
 	}
