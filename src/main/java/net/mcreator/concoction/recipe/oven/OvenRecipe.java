@@ -3,6 +3,7 @@ package net.mcreator.concoction.recipe.oven;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.recipe.RecipeIngredientMatcher;
 import net.mcreator.concoction.recipe.RecipeOutputData;
@@ -12,7 +13,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -22,6 +22,8 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 
 public class OvenRecipe implements Recipe<OvenRecipeInput> {
+    private final String group;
+    private final OvenRecipeBookCategory category;
     private final int cookingTime;
     private final List<Ingredient> craftingIngredients;
     private final Ingredient bottleIngredient;
@@ -29,17 +31,25 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
     private final RecipeOutputData result;
     private final ItemStack resultStack;
 
-    public OvenRecipe(int cookingTime,
+    public OvenRecipe(String group,
+                      OvenRecipeBookCategory category,
+                      int cookingTime,
                       List<Ingredient> craftingIngredients,
                       Ingredient bottleIngredient,
                       Ingredient bowlIngredient,
                       RecipeOutputData result) {
+        this.group = group;
         this.cookingTime = cookingTime;
         this.craftingIngredients = craftingIngredients;
         this.bottleIngredient = bottleIngredient;
         this.bowlIngredient = bowlIngredient;
         this.result = result;
+        this.category = OvenRecipeBookCategory.resolve(category, bottleIngredient, bowlIngredient, result);
         this.resultStack = result.toStack();
+    }
+
+    public OvenRecipeBookCategory getCategory() {
+        return this.category;
     }
 
     public int getCookingTime() {
@@ -145,7 +155,12 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
 
     @Override
     public ItemStack getToastSymbol() {
-        return new ItemStack(Items.FURNACE);
+        return new ItemStack(ConcoctionModItems.OVEN.get());
+    }
+
+    @Override
+    public String getGroup() {
+        return this.group;
     }
 
     @Override
@@ -164,7 +179,12 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
     }
 
     public static class Serializer implements RecipeSerializer<OvenRecipe> {
+        private static final StreamCodec<RegistryFriendlyByteBuf, List<Ingredient>> INGREDIENT_LIST_STREAM_CODEC =
+                Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list());
+
         public static final MapCodec<OvenRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                Codec.STRING.optionalFieldOf("group", "").forGetter(OvenRecipe::getGroup),
+                OvenRecipeBookCategory.CODEC.optionalFieldOf("category", OvenRecipeBookCategory.UNKNOWN).forGetter(OvenRecipe::getCategory),
                 Codec.INT.fieldOf("cooking_time").orElse(200).forGetter(OvenRecipe::getCookingTime),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("crafting_ingredients").forGetter(OvenRecipe::getCraftingIngredients),
                 Ingredient.CODEC.optionalFieldOf("bottle_ingredient", Ingredient.EMPTY).forGetter(OvenRecipe::getBottleIngredient),
@@ -173,17 +193,40 @@ public class OvenRecipe implements Recipe<OvenRecipeInput> {
         ).apply(inst, OvenRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, OvenRecipe> STREAM_CODEC =
-                StreamCodec.composite(
-                        ByteBufCodecs.INT, OvenRecipe::getCookingTime,
-                        Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), OvenRecipe::getCraftingIngredients,
-                        Ingredient.CONTENTS_STREAM_CODEC, OvenRecipe::getBottleIngredient,
-                        Ingredient.CONTENTS_STREAM_CODEC, OvenRecipe::getBowlIngredient,
-                        RecipeOutputData.STREAM_CODEC, OvenRecipe::getResult,
-                        OvenRecipe::new);
+                StreamCodec.of(
+                        Serializer::writeToNetwork,
+                        Serializer::readFromNetwork
+                );
 
         @Override
         public MapCodec<OvenRecipe> codec() {
             return CODEC;
+        }
+
+        private static OvenRecipeBookCategory readCategory(String name) {
+            return OvenRecipeBookCategory.fromSerializedName(name);
+        }
+
+        private static void writeToNetwork(RegistryFriendlyByteBuf buf, OvenRecipe recipe) {
+            ByteBufCodecs.STRING_UTF8.encode(buf, recipe.getGroup());
+            ByteBufCodecs.STRING_UTF8.encode(buf, recipe.getCategory().getSerializedName());
+            ByteBufCodecs.INT.encode(buf, recipe.getCookingTime());
+            INGREDIENT_LIST_STREAM_CODEC.encode(buf, recipe.getCraftingIngredients());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.getBottleIngredient());
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buf, recipe.getBowlIngredient());
+            RecipeOutputData.STREAM_CODEC.encode(buf, recipe.getResult());
+        }
+
+        private static OvenRecipe readFromNetwork(RegistryFriendlyByteBuf buf) {
+            return new OvenRecipe(
+                    ByteBufCodecs.STRING_UTF8.decode(buf),
+                    readCategory(ByteBufCodecs.STRING_UTF8.decode(buf)),
+                    ByteBufCodecs.INT.decode(buf),
+                    INGREDIENT_LIST_STREAM_CODEC.decode(buf),
+                    Ingredient.CONTENTS_STREAM_CODEC.decode(buf),
+                    Ingredient.CONTENTS_STREAM_CODEC.decode(buf),
+                    RecipeOutputData.STREAM_CODEC.decode(buf)
+            );
         }
 
         @Override

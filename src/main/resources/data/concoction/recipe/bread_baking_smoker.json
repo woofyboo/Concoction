@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "category": "misc",
-  "experience": 0.25,
-  "cookingtime": 100,
-  "ingredient": {
-    "item": "concoction:dough"
-  },
-  "result": {
-    "id": "minecraft:bread"
-  }
+    "type":  "minecraft:smoking",
+    "category":  "food",
+    "experience":  0.25,
+    "cookingtime":  100,
+    "ingredient":  {
+                       "item":  "concoction:dough"
+                   },
+    "result":  {
+                   "id":  "minecraft:bread"
+               },
+    "group":  "bread"
 }

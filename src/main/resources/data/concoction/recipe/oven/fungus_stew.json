@@ -1,26 +1,21 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "minecraft:crimson_fungus"
-    },
-    {
-      "item": "minecraft:warped_fungus"
-    }
-
-
-  ],
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:fungus_stew",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "fungus_stew",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "minecraft:crimson_fungus"
+                                 },
+                                 {
+                                     "item":  "minecraft:warped_fungus"
+                                 }
+                             ],
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:fungus_stew",
+                   "count":  "2"
+               }
 }

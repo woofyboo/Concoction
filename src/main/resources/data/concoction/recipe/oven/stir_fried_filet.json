@@ -1,37 +1,30 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "tag": "c:foods/raw_meat"
-    },
-    {
-      "item": "concoction:spicy_pepper"
-    },
-    {
-      "item": "concoction:green_onion"
-    },
-    {
-      "tag": "c:salts"
-    }
-
-
-
-  ],
- "bottle_ingredient": {
-    "item": "concoction:hot_sauce_bottle"
-  },
-
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:stir_fried_filet",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "stir_fried_filet",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "tag":  "c:foods/raw_meat"
+                                 },
+                                 {
+                                     "item":  "concoction:spicy_pepper"
+                                 },
+                                 {
+                                     "item":  "concoction:green_onion"
+                                 },
+                                 {
+                                     "tag":  "c:salts"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "concoction:hot_sauce_bottle"
+                          },
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:stir_fried_filet",
+                   "count":  "2"
+               }
 }

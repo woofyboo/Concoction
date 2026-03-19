@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "cherry_cookie_craft",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:dough"
-    },
-    {
-      "item": "concoction:cherry"
-    }
-  ],
-  "result": {
-    "id": "concoction:cherry_cookie",
-    "count": 8
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "cherry_cookie",
+    "category":  "food",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:dough"
+                        },
+                        {
+                            "item":  "concoction:cherry"
+                        }
+                    ],
+    "result":  {
+                   "id":  "concoction:cherry_cookie",
+                   "count":  8
+               }
 }

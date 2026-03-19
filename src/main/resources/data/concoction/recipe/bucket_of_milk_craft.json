@@ -1,23 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "bucket_of_milk",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "minecraft:bucket"
-    },
-    {
-      "item": "concoction:milk_bottle"
-    },
-    {
-      "item": "concoction:milk_bottle"
-    },
-    {
-      "item": "concoction:milk_bottle"
-    }
-  ],
-  "result": {
-    "id": "minecraft:milk_bucket",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "milk_bucket",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:bucket"
+                        },
+                        {
+                            "item":  "concoction:milk_bottle"
+                        },
+                        {
+                            "item":  "concoction:milk_bottle"
+                        },
+                        {
+                            "item":  "concoction:milk_bottle"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:milk_bucket",
+                   "count":  1
+               }
 }

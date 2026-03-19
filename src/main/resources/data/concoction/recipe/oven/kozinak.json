@@ -1,34 +1,30 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "concoction:roasted_sunflower_seeds"
-    },
-    {
-      "item": "concoction:roasted_sunflower_seeds"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "concoction:roasted_sunflower_seeds"
-    },
-    {
-      "item": "concoction:roasted_sunflower_seeds"
-    }
-
-  ],
-  
-  "bottle_ingredient": {
-    "item": "minecraft:honey_bottle"
-  },
-  
-  "result": {
-    "id": "concoction:kozinak",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "kozinak",
+    "category":  "beverages_and_condiments",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:roasted_sunflower_seeds"
+                                 },
+                                 {
+                                     "item":  "concoction:roasted_sunflower_seeds"
+                                 },
+                                 {
+                                     "item":  "minecraft:sugar"
+                                 },
+                                 {
+                                     "item":  "concoction:roasted_sunflower_seeds"
+                                 },
+                                 {
+                                     "item":  "concoction:roasted_sunflower_seeds"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "minecraft:honey_bottle"
+                          },
+    "result":  {
+                   "id":  "concoction:kozinak",
+                   "count":  "2"
+               }
 }

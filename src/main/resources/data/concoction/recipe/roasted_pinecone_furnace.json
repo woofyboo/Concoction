@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:smelting",
-  "category": "food",
-  "experience": 0.1,
-  "cookingtime": 200,
-  "ingredient": {
-    "item": "concoction:pinecone"
-  },
-  "result": {
-    "id": "concoction:roasted_pinecone"
-  }
+    "type":  "minecraft:smelting",
+    "category":  "food",
+    "experience":  0.1,
+    "cookingtime":  200,
+    "ingredient":  {
+                       "item":  "concoction:pinecone"
+                   },
+    "result":  {
+                   "id":  "concoction:roasted_pinecone"
+               },
+    "group":  "roasted_pinecone"
 }

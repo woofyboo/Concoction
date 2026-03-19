@@ -1,17 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "##",
-    "##"
-  ],
-  "key": {
-    "#": {
-      "item": "concoction:cinnamon_log"
-    }
-  },
-  "result": {
-    "id": "concoction:cinnamon_wood",
-    "count": 3
-  },
-  "group": "cinnamon_wood"
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "##",
+                    "##"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "concoction:cinnamon_log"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:cinnamon_wood",
+                   "count":  3
+               },
+    "group":  "bark",
+    "category":  "building"
 }

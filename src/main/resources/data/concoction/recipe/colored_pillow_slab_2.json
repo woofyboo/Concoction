@@ -1,37 +1,38 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "misc",
-  "ingredients": [
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "tag": "concoction:small_pillows"
-    },
-    {
-      "item": "minecraft:black_dye"
-    }
-  ],
-  "result": {
-    "id": "concoction:small_black_pillow_block",
-    "count": 8
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "category":  "building",
+    "ingredients":  [
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "tag":  "concoction:small_pillows"
+                        },
+                        {
+                            "item":  "minecraft:black_dye"
+                        }
+                    ],
+    "result":  {
+                   "id":  "concoction:small_black_pillow_block",
+                   "count":  8
+               },
+    "group":  "small_pillow_dyeing"
 }

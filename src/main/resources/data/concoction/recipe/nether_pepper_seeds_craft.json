@@ -1,16 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "a"
-  ],
-  "key": {
-    "a": {
-      "item": "concoction:reapper"
-    }
-  },
-  "result": {
-    "id": "concoction:reapper_seeds",
-    "count": 2
-  }
+    "type":  "minecraft:crafting_shaped",
+    "category":  "misc",
+    "pattern":  [
+                    "a"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "concoction:reapper"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:reapper_seeds",
+                   "count":  2
+               },
+    "group":  "reapper_seeds"
 }

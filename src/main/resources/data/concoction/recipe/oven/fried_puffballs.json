@@ -1,27 +1,24 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-  {
-      "item": "concoction:flour"
-    },
-    {
-      "item": "concoction:puffball"
-    },
-    {
-      "tag": "c:salts"
-    }
-  ],
-  
-  "bottle_ingredient": {
-    "tag": "concoction:oils"
-  },
-  
-  "result": {
-    "id": "concoction:fried_puffballs",
-    "count": "4"
-  }
+    "type":  "concoction:oven",
+    "group":  "fried_puffballs",
+    "category":  "snacks_and_pastry",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:flour"
+                                 },
+                                 {
+                                     "item":  "concoction:puffball"
+                                 },
+                                 {
+                                     "tag":  "c:salts"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "tag":  "concoction:oils"
+                          },
+    "result":  {
+                   "id":  "concoction:fried_puffballs",
+                   "count":  "4"
+               }
 }

@@ -6,10 +6,21 @@
   "overrides": [
     {
       "predicate": {
-        "damaged": 1,
-        "damage": 0.992
+        "concoction:overgrown_state": 0.34
+      },
+      "model": "concoction:item/overgrown_shovel_charged"
+    },
+    {
+      "predicate": {
+        "concoction:overgrown_state": 0.67
       },
       "model": "concoction:item/overgrown_shovel_broken"
+    },
+    {
+      "predicate": {
+        "concoction:overgrown_state": 1.0
+      },
+      "model": "concoction:item/overgrown_shovel_broken_charged"
     }
   ]
 }

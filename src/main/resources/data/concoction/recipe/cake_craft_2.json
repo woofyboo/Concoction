@@ -1,23 +1,23 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "cake",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "item": "concoction:dough"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:egg"
-    }
-  ],
-  "result": {
-    "id": "minecraft:cake",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "cake",
+    "category":  "food",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:milk_bucket"
+                        },
+                        {
+                            "item":  "concoction:dough"
+                        },
+                        {
+                            "item":  "minecraft:sugar"
+                        },
+                        {
+                            "item":  "minecraft:egg"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:cake",
+                   "count":  1
+               }
 }

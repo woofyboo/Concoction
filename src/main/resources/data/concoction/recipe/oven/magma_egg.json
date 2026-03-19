@@ -1,24 +1,21 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "minecraft:egg"
-    },
-    {
-      "item": "concoction:mint"
-    }
-  ],
-  
-  "bottle_ingredient": {
-    "item": "minecraft:lava_bucket"
-  },
-  
-  "result": {
-    "id": "concoction:magma_egg",
-    "count": "1"
-  }
+    "type":  "concoction:oven",
+    "group":  "magma_egg",
+    "category":  "beverages_and_condiments",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "minecraft:egg"
+                                 },
+                                 {
+                                     "item":  "concoction:mint"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "minecraft:lava_bucket"
+                          },
+    "result":  {
+                   "id":  "concoction:magma_egg",
+                   "count":  "1"
+               }
 }

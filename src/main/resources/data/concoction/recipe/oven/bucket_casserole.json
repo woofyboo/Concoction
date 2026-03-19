@@ -1,37 +1,33 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-
-  "crafting_ingredients": [
-    {
-      "item": "minecraft:egg"
-    },
-    {
-      "item": "minecraft:potato"
-    },
-    {
-      "tag": "c:foods/raw_meat"
-    },
-    {
-      "item": "concoction:cabbagehead"
-    },
-    {
-      "item": "concoction:milk_bottle"
-    }
-  ],
-
-  "bottle_ingredient": {
-    "item": "concoction:butter"
-  },
-
-  "bowl_ingredient": {
-    "item": "minecraft:bucket"
-  },
-
-  "result": {
-    "id": "concoction:bucket_casserole",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "bucket_casserole",
+    "category":  "feasts",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "minecraft:egg"
+                                 },
+                                 {
+                                     "item":  "minecraft:potato"
+                                 },
+                                 {
+                                     "tag":  "c:foods/raw_meat"
+                                 },
+                                 {
+                                     "item":  "concoction:cabbagehead"
+                                 },
+                                 {
+                                     "item":  "concoction:milk_bottle"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "concoction:butter"
+                          },
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bucket"
+                        },
+    "result":  {
+                   "id":  "concoction:bucket_casserole",
+                   "count":  "2"
+               }
 }

@@ -1,33 +1,27 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "concoction:tomato"
-    },
-    {
-      "item": "concoction:tomato"
-    },
-    {
-      "item": "concoction:onion"
-    },
-    {
-      "tag": "c:salts"
-    }
-
-
-
-  ],
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:tomato_soup",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "tomato_soup",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:tomato"
+                                 },
+                                 {
+                                     "item":  "concoction:tomato"
+                                 },
+                                 {
+                                     "item":  "concoction:onion"
+                                 },
+                                 {
+                                     "tag":  "c:salts"
+                                 }
+                             ],
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:tomato_soup",
+                   "count":  "2"
+               }
 }

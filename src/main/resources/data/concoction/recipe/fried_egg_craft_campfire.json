@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:campfire_cooking",
-  "category": "food",
-  "experience": 6,
-  "cookingtime": 600,
-  "ingredient": {
-    "item": "minecraft:egg"
-  },
-  "result": {
-    "id": "concoction:fried_egg"
-  }
+    "type":  "minecraft:campfire_cooking",
+    "category":  "food",
+    "experience":  6,
+    "cookingtime":  600,
+    "ingredient":  {
+                       "item":  "minecraft:egg"
+                   },
+    "result":  {
+                   "id":  "concoction:fried_egg"
+               },
+    "group":  "fried_egg"
 }

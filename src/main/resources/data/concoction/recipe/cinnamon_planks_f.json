@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "cinnamon_planks",
-  "category": "misc",
-  "pattern": [
-    "a"
-  ],
-  "key": {
-    "a": {
-      "item": "concoction:stripped_cinnamon_log"
-    }
-  },
-  "result": {
-    "id": "concoction:cinnamon_planks",
-    "count": 4
-  }
+    "type":  "minecraft:crafting_shaped",
+    "group":  "planks",
+    "category":  "building",
+    "pattern":  [
+                    "a"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "concoction:stripped_cinnamon_log"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:cinnamon_planks",
+                   "count":  4
+               }
 }

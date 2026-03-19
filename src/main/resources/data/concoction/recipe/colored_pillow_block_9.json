@@ -1,38 +1,38 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "blue_pillow",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "minecraft:blue_dye"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    },
-    {
-      "tag": "concoction:pillows"
-    }
-  ],
-  "result": {
-    "id": "concoction:blue_pillow_block",
-    "count": 8
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "pillow_dyeing",
+    "category":  "building",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:blue_dye"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        },
+                        {
+                            "tag":  "concoction:pillows"
+                        }
+                    ],
+    "result":  {
+                   "id":  "concoction:blue_pillow_block",
+                   "count":  8
+               }
 }

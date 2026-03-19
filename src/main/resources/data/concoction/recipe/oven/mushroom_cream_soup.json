@@ -1,36 +1,30 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "tag": "c:mushrooms"
-    },
-    {
-      "tag": "c:mushrooms"
-    },
-    {
-      "item": "minecraft:potato"
-    },
-    {
-      "item": "concoction:green_onion"
-    }
-
-  ],
-
- "bottle_ingredient": {
-    "item": "concoction:cream_bottle"
-  },
-
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:mushroom_cream_soup",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "mushroom_cream_soup",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "tag":  "c:mushrooms"
+                                 },
+                                 {
+                                     "tag":  "c:mushrooms"
+                                 },
+                                 {
+                                     "item":  "minecraft:potato"
+                                 },
+                                 {
+                                     "item":  "concoction:green_onion"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "concoction:cream_bottle"
+                          },
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:mushroom_cream_soup",
+                   "count":  "2"
+               }
 }

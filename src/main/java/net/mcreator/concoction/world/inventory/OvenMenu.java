@@ -6,6 +6,7 @@ import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipeInput;
+import net.mcreator.concoction.recipebook.OvenRecipeBookClientCategories;
 import net.mcreator.concoction.utils.Utils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -89,13 +90,6 @@ public class OvenMenu
         }
 
         // SERVER: выдаём рецепты духовки
-        if (!world.isClientSide && this.entity instanceof ServerPlayer serverPlayer) {
-            var ovenType = ConcoctionModRecipes.OVEN_RECIPE_TYPE.get();
-            var mgr = serverPlayer.server.getRecipeManager();
-            var ovenRecipes = mgr.getAllRecipesFor(ovenType);
-            serverPlayer.awardRecipes((java.util.Collection) ovenRecipes);
-        }
-
         // === bind к BlockEntity ===
         if (this.pos != null && world.getBlockEntity(this.pos) instanceof OvenBlockEntity blockEntity) {
             this.boundBlockEntity = blockEntity;
@@ -218,7 +212,7 @@ public class OvenMenu
     @OnlyIn(Dist.CLIENT)
     @Override
     public List<RecipeBookCategories> getRecipeBookCategories() {
-        return List.of(RecipeBookCategories.FURNACE_FOOD);
+        return OvenRecipeBookClientCategories.OVEN_CATEGORIES;
     }
 
     @Override

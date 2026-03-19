@@ -1,13 +1,21 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "food",
-  "pattern": [
-    "B",
-    "A"
-  ],
-  "key": {
-    "A": { "item": "concoction:cooked_rice" },
-    "B": { "item": "minecraft:salmon" }
-  },
-  "result": { "id": "concoction:salmon_sushi", "count": 8 }
+    "type":  "minecraft:crafting_shaped",
+    "category":  "food",
+    "pattern":  [
+                    "B",
+                    "A"
+                ],
+    "key":  {
+                "A":  {
+                          "item":  "concoction:cooked_rice"
+                      },
+                "B":  {
+                          "item":  "minecraft:salmon"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:salmon_sushi",
+                   "count":  8
+               },
+    "group":  "salmon_sushi"
 }

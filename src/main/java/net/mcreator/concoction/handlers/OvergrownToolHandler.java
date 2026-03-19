@@ -73,13 +73,11 @@ public final class OvergrownToolHandler {
     @SubscribeEvent
     public static void onPlayerTick(PlayerTickEvent.Pre event) {
         Player player = event.getEntity();
-        if (player.tickCount % UPDATE_INTERVAL != 0) {
+        if (player.level().isClientSide() || !(player instanceof ServerPlayer)) {
             return;
         }
 
-        if (!player.level().isClientSide()
-                && player instanceof ServerPlayer
-                && Utils.isPlayerSunPowered(player)) {
+        if (player.tickCount % UPDATE_INTERVAL == 0 && Utils.isPlayerSunPowered(player)) {
             int multiplier = player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS) ? 2 : 1;
             repairInventoryIfPossible(player, multiplier, player.level());
         }

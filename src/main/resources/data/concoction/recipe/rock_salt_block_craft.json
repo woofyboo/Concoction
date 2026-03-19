@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "rock_salt_block",
-  "category": "misc",
-  "pattern": [
-    "aa",
-    "aa"
-  ],
-  "key": {
-    "a": {
-      "item": "concoction:rock_salt"
-    }
-  },
-  "result": {
-    "id": "concoction:rock_salt_block",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shaped",
+    "group":  "rock_salt_block",
+    "category":  "building",
+    "pattern":  [
+                    "aa",
+                    "aa"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "concoction:rock_salt"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:rock_salt_block",
+                   "count":  1
+               }
 }

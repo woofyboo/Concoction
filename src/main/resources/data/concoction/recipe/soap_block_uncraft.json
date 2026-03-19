@@ -1,14 +1,14 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "soap",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:soap_block"
-    }
-  ],
-  "result": {
-    "id": "concoction:soap",
-    "count": 4
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "soap",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:soap_block"
+                        }
+                    ],
+    "result":  {
+                   "id":  "concoction:soap",
+                   "count":  4
+               }
 }

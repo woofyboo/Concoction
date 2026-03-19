@@ -1,30 +1,24 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "concoction:saponaria_root"
-    },
-    {
-      "item": "minecraft:sugar"
-    },
-    {
-      "item": "minecraft:egg"
-    }
-
-
-
-  ],
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:nisholda",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "nisholda",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:saponaria_root"
+                                 },
+                                 {
+                                     "item":  "minecraft:sugar"
+                                 },
+                                 {
+                                     "item":  "minecraft:egg"
+                                 }
+                             ],
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:nisholda",
+                   "count":  "2"
+               }
 }

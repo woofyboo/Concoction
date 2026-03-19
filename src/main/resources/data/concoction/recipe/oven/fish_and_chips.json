@@ -1,34 +1,30 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "concoction:flour"
-    },
-    {
-      "item": "minecraft:potato"
-    },
-    {
-      "tag": "c:foods/raw_fish"
-    },
-    {
-      "tag": "c:salts"
-    }
-  ],
-  
-  "bottle_ingredient": {
-    "tag": "concoction:oils"
-  },
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "concoction:fish_and_chips",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "fish_and_chips",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:flour"
+                                 },
+                                 {
+                                     "item":  "minecraft:potato"
+                                 },
+                                 {
+                                     "tag":  "c:foods/raw_fish"
+                                 },
+                                 {
+                                     "tag":  "c:salts"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "tag":  "concoction:oils"
+                          },
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "concoction:fish_and_chips",
+                   "count":  "2"
+               }
 }

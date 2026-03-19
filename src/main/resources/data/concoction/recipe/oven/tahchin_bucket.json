@@ -1,23 +1,36 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-
-  "crafting_ingredients": [
-    { "item": "minecraft:egg" },
-    { "item": "concoction:rice" },
-    { "item": "concoction:rice" },
-    { "item": "minecraft:chicken" },
-    { "item": "concoction:onion" },
-    { "item": "minecraft:sunflower" }
-  ],
-
-  "bottle_ingredient": { "item": "concoction:cream_bottle" },
-  "bowl_ingredient": { "item": "minecraft:bucket" },
-
-  "result": {
-    "id": "concoction:tahchin_bucket",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "tahchin_bucket",
+    "category":  "feasts",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "minecraft:egg"
+                                 },
+                                 {
+                                     "item":  "concoction:rice"
+                                 },
+                                 {
+                                     "item":  "concoction:rice"
+                                 },
+                                 {
+                                     "item":  "minecraft:chicken"
+                                 },
+                                 {
+                                     "item":  "concoction:onion"
+                                 },
+                                 {
+                                     "item":  "minecraft:sunflower"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "item":  "concoction:cream_bottle"
+                          },
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bucket"
+                        },
+    "result":  {
+                   "id":  "concoction:tahchin_bucket",
+                   "count":  "2"
+               }
 }

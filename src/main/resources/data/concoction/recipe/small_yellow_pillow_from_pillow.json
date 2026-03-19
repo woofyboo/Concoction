@@ -1,16 +1,17 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "aaa"
-  ],
-  "key": {
-    "a": {
-      "item": "concoction:yellow_pillow_block"
-    }
-  },
-  "result": {
-    "id": "concoction:small_yellow_pillow_block",
-    "count": 6
-  }
+    "type":  "minecraft:crafting_shaped",
+    "category":  "building",
+    "pattern":  [
+                    "aaa"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "concoction:yellow_pillow_block"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:small_yellow_pillow_block",
+                   "count":  6
+               },
+    "group":  "small_pillow_conversion"
 }

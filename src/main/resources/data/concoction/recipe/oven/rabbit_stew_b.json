@@ -1,32 +1,27 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "minecraft:potato"
-    },
-    {
-      "item": "minecraft:rabbit"
-    },
-    {
-      "item": "minecraft:carrot"
-    },
-    {
-      "item": "minecraft:red_mushroom"
-    }
-
-
-  ],
-  
-  "bowl_ingredient": {
-    "item": "minecraft:bowl"
-  },
-  
-  "result": {
-    "id": "minecraft:rabbit_stew",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "rabbit_stew",
+    "category":  "dishes_and_soups",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "minecraft:potato"
+                                 },
+                                 {
+                                     "item":  "minecraft:rabbit"
+                                 },
+                                 {
+                                     "item":  "minecraft:carrot"
+                                 },
+                                 {
+                                     "item":  "minecraft:red_mushroom"
+                                 }
+                             ],
+    "bowl_ingredient":  {
+                            "item":  "minecraft:bowl"
+                        },
+    "result":  {
+                   "id":  "minecraft:rabbit_stew",
+                   "count":  "2"
+               }
 }

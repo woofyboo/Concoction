@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "category": "food",
-  "experience": 0.1,
-  "cookingtime": 100,
-  "ingredient": {
-    "item": "minecraft:egg"
-  },
-  "result": {
-    "id": "concoction:fried_egg"
-  }
+    "type":  "minecraft:smoking",
+    "category":  "food",
+    "experience":  0.1,
+    "cookingtime":  100,
+    "ingredient":  {
+                       "item":  "minecraft:egg"
+                   },
+    "result":  {
+                   "id":  "concoction:fried_egg"
+               },
+    "group":  "fried_egg"
 }

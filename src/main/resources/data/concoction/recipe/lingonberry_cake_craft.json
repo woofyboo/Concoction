@@ -1,28 +1,28 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "mint_chocolate_cake_craft",
-  "category": "misc",
-  "pattern": [
-    "aaa",
-    "bcb",
-    "ddd"
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:sweet_berries"
-    },
-    "b": {
-      "item": "concoction:cream_bottle"
-    },
-    "c": {
-      "item": "minecraft:sugar"
-    },
-    "d": {
-      "item": "minecraft:wheat"
-    }
-  },
-  "result": {
-    "id": "concoction:lingonberry_cake",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shaped",
+    "group":  "lingonberry_cake",
+    "category":  "food",
+    "pattern":  [
+                    "aaa",
+                    "bcb",
+                    "ddd"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "minecraft:sweet_berries"
+                      },
+                "b":  {
+                          "item":  "concoction:cream_bottle"
+                      },
+                "c":  {
+                          "item":  "minecraft:sugar"
+                      },
+                "d":  {
+                          "item":  "minecraft:wheat"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:lingonberry_cake",
+                   "count":  1
+               }
 }

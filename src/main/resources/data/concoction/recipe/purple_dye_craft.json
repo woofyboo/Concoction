@@ -1,14 +1,14 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "mint_seeds",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:mint"
-    }
-  ],
-  "result": {
-    "id": "concoction:mint_seeds",
-    "count": 2
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "mint_seeds",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:mint"
+                        }
+                    ],
+    "result":  {
+                   "id":  "concoction:mint_seeds",
+                   "count":  2
+               }
 }

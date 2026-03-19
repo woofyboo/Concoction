@@ -1,0 +1,7 @@
+﻿{
+    "parent":  "item/handheld",
+    "textures":  {
+                     "layer0":  "concoction:item/overgrown_hoe",
+                     "layer1":  "concoction:item/overgrown_hoe_charge_overlay"
+                 }
+}

@@ -1,24 +1,25 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "aba",
-    "a a",
-    "aca"
-  ],
-  "key": {
-    "a": {
-      "tag": "minecraft:planks"
-    },
-    "b": {
-      "item": "minecraft:stick"
-    },
-    "c": {
-      "tag": "minecraft:wooden_slabs"
-    }
-  },
-  "result": {
-    "id": "concoction:butter_churn",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shaped",
+    "category":  "building",
+    "pattern":  [
+                    "aba",
+                    "a a",
+                    "aca"
+                ],
+    "key":  {
+                "a":  {
+                          "tag":  "minecraft:planks"
+                      },
+                "b":  {
+                          "item":  "minecraft:stick"
+                      },
+                "c":  {
+                          "tag":  "minecraft:wooden_slabs"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:butter_churn",
+                   "count":  1
+               },
+    "group":  "churn"
 }

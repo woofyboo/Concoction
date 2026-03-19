@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:smoking",
-  "category": "food",
-  "experience": 0.1,
-  "cookingtime": 100,
-  "ingredient": {
-    "item": "concoction:corn"
-  },
-  "result": {
-    "id": "concoction:cooked_corn"
-  }
+    "type":  "minecraft:smoking",
+    "category":  "food",
+    "experience":  0.1,
+    "cookingtime":  100,
+    "ingredient":  {
+                       "item":  "concoction:corn"
+                   },
+    "result":  {
+                   "id":  "concoction:cooked_corn"
+               },
+    "group":  "cooked_corn"
 }

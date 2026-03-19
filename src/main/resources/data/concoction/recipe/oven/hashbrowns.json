@@ -1,24 +1,21 @@
 {
-  "type": "concoction:oven",
-  "group": "food",
-  "category": "misc",
-  "cooking_time": 200,
-  
-  "crafting_ingredients": [
-    {
-      "item": "concoction:pinecone"
-    },
-    {
-      "item": "minecraft:potato"
-    }
-  ],
-  
-  "bottle_ingredient": {
-    "tag": "concoction:oils"
-  },
-  
-  "result": {
-    "id": "concoction:hashbrowns",
-    "count": "2"
-  }
+    "type":  "concoction:oven",
+    "group":  "hashbrowns",
+    "category":  "snacks_and_pastry",
+    "cooking_time":  200,
+    "crafting_ingredients":  [
+                                 {
+                                     "item":  "concoction:pinecone"
+                                 },
+                                 {
+                                     "item":  "minecraft:potato"
+                                 }
+                             ],
+    "bottle_ingredient":  {
+                              "tag":  "concoction:oils"
+                          },
+    "result":  {
+                   "id":  "concoction:hashbrowns",
+                   "count":  "2"
+               }
 }

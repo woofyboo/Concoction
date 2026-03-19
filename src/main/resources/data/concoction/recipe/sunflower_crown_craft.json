@@ -1,18 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "sunflower_crown",
-  "category": "equipment",
-  "pattern": [
-    "aa",
-    "aa"
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:sunflower"
-    }
-  },
-  "result": {
-    "id": "concoction:sunflower_crown_helmet",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shaped",
+    "group":  "sunflower_crown_helmet",
+    "category":  "equipment",
+    "pattern":  [
+                    "aa",
+                    "aa"
+                ],
+    "key":  {
+                "a":  {
+                          "item":  "minecraft:sunflower"
+                      }
+            },
+    "result":  {
+                   "id":  "concoction:sunflower_crown_helmet",
+                   "count":  1
+               }
 }

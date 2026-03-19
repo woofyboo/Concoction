@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "cookie",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:dough"
-    },
-    {
-      "item": "minecraft:cocoa_beans"
-    }
-  ],
-  "result": {
-    "id": "minecraft:cookie",
-    "count": 8
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "cookie",
+    "category":  "food",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:dough"
+                        },
+                        {
+                            "item":  "minecraft:cocoa_beans"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:cookie",
+                   "count":  8
+               }
 }

@@ -34,7 +34,8 @@
     "GuiMixin",
     "ItemMixin",
     "LocalPlayerHangingSignMixin",
-    "MixinRecipeBookComponent"
+    "MixinRecipeBookComponent",
+    "RecipeBookTabButtonMixin"
   ],
   "injectors": {
   }
