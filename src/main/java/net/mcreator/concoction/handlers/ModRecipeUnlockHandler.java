@@ -3,6 +3,7 @@ package net.mcreator.concoction.handlers;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.recipe.SoapCleaningRecipe;
+import net.mcreator.concoction.recipe.SoapShieldCleaningRecipe;
 import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
@@ -168,7 +169,7 @@ public final class ModRecipeUnlockHandler {
             return butterChurnRecipe.getInputItems();
         }
 
-        if (recipe instanceof SoapCleaningRecipe) {
+        if (recipe instanceof SoapCleaningRecipe || recipe instanceof SoapShieldCleaningRecipe) {
             return List.of(Ingredient.of(ConcoctionModItems.SOAP.get()));
         }
 

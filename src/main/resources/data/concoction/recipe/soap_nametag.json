@@ -1,6 +1,6 @@
 {
     "type":  "minecraft:crafting_shapeless",
-    "group":  "soap_cleaning",
+    "group":  "soap_cleaning_nametag",
     "category":  "misc",
     "ingredients":  [
                         {
