@@ -39,6 +39,7 @@ import io.netty.buffer.Unpooled;
 import java.util.*;
 
 public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implements WorldlyContainer {
+    private static final int CLIENT_SYNC_INTERVAL = 4;
     private static final String PROGRESS_TAG = "cooking.progress";
     private static final String MAX_PROGRESS_TAG = "cooking.max_progress";
     private static final String IS_COOKING_TAG = "cooking.is_cooking";
@@ -281,7 +282,10 @@ public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implemen
 
     private void increaseCraftingProgress() {
         progress++;
-        setChanged();
+        markChangedLocal();
+        if (this.progress == 1 || this.progress >= this.maxProgress || this.progress % CLIENT_SYNC_INTERVAL == 0) {
+            syncClientState();
+        }
     }
 
     private Optional<RecipeHolder<OvenRecipe>> getCurrentRecipe() {

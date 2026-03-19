@@ -18,7 +18,15 @@ public abstract class AbstractSyncedContainerBlockEntity extends RandomizableCon
 
     @Override
     public void setChanged() {
+        this.markChangedLocal();
+        this.syncClientState();
+    }
+
+    protected final void markChangedLocal() {
         super.setChanged();
+    }
+
+    protected final void syncClientState() {
         if (this.level != null && !this.level.isClientSide) {
             this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
         }

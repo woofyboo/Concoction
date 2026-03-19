@@ -66,6 +66,7 @@ public class BoilingCauldronMenu extends AbstractContainerMenu implements Suppli
 		// Получаем доступ к блок-сущности котла
 		if (pos != null && world.getBlockEntity(pos) instanceof CookingCauldronEntity cauldron) {
 			this.boundBlockEntity = cauldron;
+			this.bound = true;
 			// Создаем обертку InvWrapper для инвентаря котла
 			this.internal = new InvWrapper(cauldron);
 		}
@@ -204,7 +205,7 @@ public class BoilingCauldronMenu extends AbstractContainerMenu implements Suppli
 
 			// Забор результата
 			if (index == 41) {
-				if (!this.moveItemStackTo(stackInSlot, 0, 35, true)) {
+				if (!this.moveItemStackTo(stackInSlot, 0, 36, true)) {
 					return ItemStack.EMPTY;
 				}
 				slot.onTake(playerIn, stackInSlot);
@@ -268,7 +269,7 @@ public class BoilingCauldronMenu extends AbstractContainerMenu implements Suppli
 			}
 			// Из слотов котла (36-40) в инвентарь игрока
 			else if (index >= 36 && index <= 40) {
-				if (!this.moveItemStackTo(stackInSlot, 0, 35, true)) {
+				if (!this.moveItemStackTo(stackInSlot, 0, 36, true)) {
 					return ItemStack.EMPTY;
 				}
 			}

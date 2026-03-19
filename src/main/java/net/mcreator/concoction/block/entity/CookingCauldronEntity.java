@@ -49,6 +49,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import java.util.*;
 
 public class CookingCauldronEntity extends AbstractSyncedContainerBlockEntity implements WorldlyContainer {
+    private static final int CLIENT_SYNC_INTERVAL = 4;
     private static final String PROGRESS_TAG = "cooking.progress";
     private static final String MAX_PROGRESS_TAG = "cooking.max_progress";
     private static final String CRAFT_RESULT_TAG = "cooking.craft_result";
@@ -299,7 +300,10 @@ public class CookingCauldronEntity extends AbstractSyncedContainerBlockEntity im
 
     private void increaseCraftingProgress() {
         progress++;
-        setChanged();
+        markChangedLocal();
+        if (this.progress == 1 || this.progress >= this.maxProgress || this.progress % CLIENT_SYNC_INTERVAL == 0) {
+            syncClientState();
+        }
     }
 
     public boolean hasCraftedResult() {

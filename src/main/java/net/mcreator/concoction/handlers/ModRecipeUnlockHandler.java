@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.ArrayList;
@@ -60,20 +61,30 @@ public final class ModRecipeUnlockHandler {
         awardMatchingModRecipes(player);
     }
 
+    @SubscribeEvent
+    public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        INVENTORY_SIGNATURES.remove(event.getEntity().getUUID());
+    }
+
     private static void awardMatchingModRecipes(ServerPlayer player) {
         UnlockIndex unlockIndex = getUnlockIndex(player.server.getRecipeManager());
         if (unlockIndex.isEmpty()) {
             return;
         }
 
-        Set<Item> inventoryItems = collectInventoryItems(player);
+        List<ItemStack> inventoryStacks = collectInventoryStacks(player);
+        Set<Item> inventoryItems = collectInventoryItems(inventoryStacks);
         if (inventoryItems.isEmpty()) {
             return;
         }
 
         Set<RecipeHolder<?>> recipesToAward = new LinkedHashSet<>();
         for (Item item : inventoryItems) {
-            recipesToAward.addAll(unlockIndex.byIngredient().getOrDefault(item, List.of()));
+            for (RecipeHolder<?> holder : unlockIndex.byIngredient().getOrDefault(item, List.of())) {
+                if (hasMatchingInventoryIngredient(unlockIndex, holder, inventoryStacks)) {
+                    recipesToAward.add(holder);
+                }
+            }
         }
 
         if (recipesToAward.isEmpty()) {
@@ -87,6 +98,7 @@ public final class ModRecipeUnlockHandler {
         if (recipeManager != cachedRecipeManager) {
             cachedRecipeManager = recipeManager;
             cachedUnlockIndex = buildUnlockIndex(recipeManager);
+            INVENTORY_SIGNATURES.clear();
         }
 
         return cachedUnlockIndex;
@@ -94,6 +106,7 @@ public final class ModRecipeUnlockHandler {
 
     private static UnlockIndex buildUnlockIndex(RecipeManager recipeManager) {
         Map<Item, Set<RecipeHolder<?>>> mutableIndex = new HashMap<>();
+        Map<RecipeHolder<?>, List<Ingredient>> ingredientsByRecipe = new HashMap<>();
 
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
             ResourceLocation recipeId = holder.id();
@@ -101,11 +114,16 @@ public final class ModRecipeUnlockHandler {
                 continue;
             }
 
-            for (Ingredient ingredient : extractIngredients(holder.value())) {
-                if (ingredient == null || ingredient.isEmpty()) {
-                    continue;
-                }
+            List<Ingredient> ingredients = extractIngredients(holder.value()).stream()
+                    .filter(ingredient -> ingredient != null && !ingredient.isEmpty())
+                    .toList();
+            if (ingredients.isEmpty()) {
+                continue;
+            }
 
+            ingredientsByRecipe.put(holder, ingredients);
+
+            for (Ingredient ingredient : ingredients) {
                 for (ItemStack stack : ingredient.getItems()) {
                     if (stack.isEmpty()) {
                         continue;
@@ -127,7 +145,10 @@ public final class ModRecipeUnlockHandler {
             immutableIndex.put(entry.getKey(), List.copyOf(entry.getValue()));
         }
 
-        return new UnlockIndex(Collections.unmodifiableMap(immutableIndex));
+        return new UnlockIndex(
+                Collections.unmodifiableMap(immutableIndex),
+                Collections.unmodifiableMap(new HashMap<>(ingredientsByRecipe))
+        );
     }
 
     private static Collection<Ingredient> extractIngredients(Recipe<?> recipe) {
@@ -135,9 +156,6 @@ public final class ModRecipeUnlockHandler {
             List<Ingredient> ingredients = new ArrayList<>(ovenRecipe.getCraftingIngredients());
             if (!ovenRecipe.getBottleIngredient().isEmpty()) {
                 ingredients.add(ovenRecipe.getBottleIngredient());
-            }
-            if (!ovenRecipe.getBowlIngredient().isEmpty()) {
-                ingredients.add(ovenRecipe.getBowlIngredient());
             }
             return ingredients;
         }
@@ -157,22 +175,41 @@ public final class ModRecipeUnlockHandler {
         return recipe.getIngredients();
     }
 
-    private static Set<Item> collectInventoryItems(ServerPlayer player) {
-        Set<Item> items = new LinkedHashSet<>();
-
-        for (ItemStack stack : player.getInventory().items) {
-            if (!stack.isEmpty()) {
-                items.add(stack.getItem());
+    private static boolean hasMatchingInventoryIngredient(UnlockIndex unlockIndex,
+                                                          RecipeHolder<?> holder,
+                                                          List<ItemStack> inventoryStacks) {
+        for (Ingredient ingredient : unlockIndex.ingredientsByRecipe().getOrDefault(holder, List.of())) {
+            for (ItemStack stack : inventoryStacks) {
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    return true;
+                }
             }
         }
+        return false;
+    }
 
-        for (ItemStack stack : player.getInventory().offhand) {
+    private static Set<Item> collectInventoryItems(List<ItemStack> inventoryStacks) {
+        Set<Item> items = new LinkedHashSet<>();
+
+        for (ItemStack stack : inventoryStacks) {
             if (!stack.isEmpty()) {
                 items.add(stack.getItem());
             }
         }
 
         return items;
+    }
+
+    private static List<ItemStack> collectInventoryStacks(ServerPlayer player) {
+        List<ItemStack> stacks = new ArrayList<>(
+                player.getInventory().items.size()
+                        + player.getInventory().offhand.size()
+                        + player.getInventory().armor.size()
+        );
+        stacks.addAll(player.getInventory().items);
+        stacks.addAll(player.getInventory().offhand);
+        stacks.addAll(player.getInventory().armor);
+        return stacks;
     }
 
     private static long inventorySignature(ServerPlayer player) {
@@ -183,6 +220,10 @@ public final class ModRecipeUnlockHandler {
         }
 
         for (ItemStack stack : player.getInventory().offhand) {
+            hash = mixStack(hash, stack);
+        }
+
+        for (ItemStack stack : player.getInventory().armor) {
             hash = mixStack(hash, stack);
         }
 
@@ -207,8 +248,9 @@ public final class ModRecipeUnlockHandler {
         return hash;
     }
 
-    private record UnlockIndex(Map<Item, List<RecipeHolder<?>>> byIngredient) {
-        private static final UnlockIndex EMPTY = new UnlockIndex(Map.of());
+    private record UnlockIndex(Map<Item, List<RecipeHolder<?>>> byIngredient,
+                               Map<RecipeHolder<?>, List<Ingredient>> ingredientsByRecipe) {
+        private static final UnlockIndex EMPTY = new UnlockIndex(Map.of(), Map.of());
 
         private boolean isEmpty() {
             return this.byIngredient.isEmpty();

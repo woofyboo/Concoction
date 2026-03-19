@@ -27,7 +27,7 @@ import java.util.List;
 @JeiPlugin
 public class ConcoctionJeiPlugin implements IModPlugin {
     private static final ResourceLocation UID =
-            ResourceLocation.fromNamespaceAndPath("concoction", "jei_plugin");
+            ResourceLocation.fromNamespaceAndPath("concoction", "soap_cleaning_jei_plugin");
 
     @Override
     public ResourceLocation getPluginUid() { return UID; }
