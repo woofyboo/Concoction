@@ -1,15 +1,12 @@
 {
-    "type":  "minecraft:crafting_shaped",
+    "type":  "minecraft:crafting_shapeless",
     "group":  "wooden_button",
     "category":  "redstone",
-    "pattern":  [
-                    "#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "concoction:cinnamon_planks"
-                      }
-            },
+    "ingredients":  [
+                        {
+                            "item":  "concoction:cinnamon_planks"
+                        }
+                    ],
     "result":  {
                    "id":  "concoction:cinnamon_button",
                    "count":  1

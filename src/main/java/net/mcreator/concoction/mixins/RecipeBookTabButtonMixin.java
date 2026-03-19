@@ -15,6 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.List;
+
 @Mixin(RecipeBookTabButton.class)
 public abstract class RecipeBookTabButtonMixin {
     @Shadow public abstract RecipeBookCategories getCategory();
@@ -26,13 +28,18 @@ public abstract class RecipeBookTabButtonMixin {
             return;
         }
 
-        ItemStack icon = OvenRecipeBookClientCategories.getIcon(this.getCategory());
-        if (icon.isEmpty()) {
+        List<ItemStack> icons = OvenRecipeBookClientCategories.getIcons(this.getCategory());
+        if (icons.isEmpty()) {
             return;
         }
 
         AbstractWidget widget = (AbstractWidget) (Object) this;
-        guiGraphics.renderItem(icon, widget.getX() + 9, widget.getY() + 5);
+        if (icons.size() == 1) {
+            guiGraphics.renderItem(icons.get(0), widget.getX() + 9, widget.getY() + 5);
+        } else {
+            guiGraphics.renderItem(icons.get(0), widget.getX() + 3, widget.getY() + 5);
+            guiGraphics.renderItem(icons.get(1), widget.getX() + 14, widget.getY() + 5);
+        }
         ci.cancel();
     }
 }

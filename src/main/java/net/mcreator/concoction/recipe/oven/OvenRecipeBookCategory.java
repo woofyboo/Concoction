@@ -70,7 +70,7 @@ public enum OvenRecipeBookCategory {
             return SNACKS_AND_PASTRY;
         }
 
-        if (looksLikeBottleFood(result) || !bottleIngredient.isEmpty()) {
+        if (looksLikeBottleFood(result)) {
             return BEVERAGES_AND_CONDIMENTS;
         }
 

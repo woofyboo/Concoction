@@ -1,7 +1,7 @@
 {
     "type":  "concoction:oven",
     "group":  "kozinak",
-    "category":  "beverages_and_condiments",
+    "category":  "snacks_and_pastry",
     "cooking_time":  200,
     "crafting_ingredients":  [
                                  {

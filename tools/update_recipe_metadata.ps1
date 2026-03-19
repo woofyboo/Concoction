@@ -105,6 +105,14 @@ function Get-RecipeGroup($json, [string]$resultPath, [string]$existingGroup) {
     $containsDye = Test-ContainsDye $references
     $isWoodenFamily = Test-WoodenRecipeFamily $resultPath $references
 
+    if ($references.Contains("concoction:soap") -and $resultPath -notlike "soap*") {
+        return "soap_cleaning"
+    }
+
+    if ($resultPath -eq "white_woven_carpet" -and -not $containsDye) {
+        return "woven_carpet"
+    }
+
     if ($resultPath -like "*_woven_carpet") {
         return "woven_carpet_dyeing"
     }
@@ -130,7 +138,7 @@ function Get-RecipeGroup($json, [string]$resultPath, [string]$existingGroup) {
     }
 
     if ($resultPath -match "_sign$") {
-        return "sign"
+        return "wooden_sign"
     }
 
     if ($resultPath -match "_chest_boat$") {
@@ -201,6 +209,22 @@ function Get-RecipeGroup($json, [string]$resultPath, [string]$existingGroup) {
 }
 
 function Get-CraftingCategory([string]$resultPath, [string]$existingCategory) {
+    if ($resultPath -match "_boat$" -or $resultPath -match "_chest_boat$") {
+        return "transportation"
+    }
+
+    if ($resultPath -match "_door$" -or $resultPath -match "_trapdoor$" -or $resultPath -match "_fence_gate$" -or $resultPath -match "_button$" -or $resultPath -match "_pressure_plate$") {
+        return "redstone"
+    }
+
+    if ($resultPath -match "_sign$" -or $resultPath -match "_hanging_sign$") {
+        return "misc"
+    }
+
+    if ($resultPath -match "_fence$") {
+        return "decorations"
+    }
+
     if ($resultPath -like "*_seeds" -and $resultPath -ne "sunflower_seeds") {
         return "misc"
     }
@@ -241,10 +265,6 @@ function Get-CookingCategory([string]$resultPath, [string]$existingCategory) {
 }
 
 function Get-OvenCategory($json, [string]$resultPath, [string]$existingCategory) {
-    if ($existingCategory -and $existingCategory -notin @("", "food", "blocks", "misc")) {
-        return $existingCategory
-    }
-
     $bottleItem = ""
     $bowlItem = ""
 
@@ -262,6 +282,16 @@ function Get-OvenCategory($json, [string]$resultPath, [string]$existingCategory)
         }
     }
 
+    $looksLikeBeverage = $resultPath -match "(^|_)(tea|brew|oil|sauce|drink|juice|bottle|condiment|syrup)($|_)"
+
+    if ($existingCategory -and $existingCategory -notin @("", "food", "blocks", "misc")) {
+        if ($existingCategory -eq "beverages_and_condiments" -and -not $looksLikeBeverage) {
+            return "snacks_and_pastry"
+        }
+
+        return $existingCategory
+    }
+
     if ($bowlItem -eq "minecraft:bucket" -or $resultPath -like "*bucket*" -or $resultPath -like "*casserole*") {
         return "feasts"
     }
@@ -274,7 +304,7 @@ function Get-OvenCategory($json, [string]$resultPath, [string]$existingCategory)
         return "snacks_and_pastry"
     }
 
-    if ($resultPath -match "(^|_)(tea|brew|oil|sauce|drink|juice|bottle|condiment|syrup)($|_)" -or -not [string]::IsNullOrWhiteSpace($bottleItem)) {
+    if ($looksLikeBeverage) {
         return "beverages_and_condiments"
     }
 

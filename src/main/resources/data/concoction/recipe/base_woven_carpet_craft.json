@@ -1,6 +1,6 @@
 {
     "type":  "minecraft:crafting_shaped",
-    "group":  "woven_carpet_dyeing",
+    "group":  "woven_carpet",
     "category":  "building",
     "pattern":  [
                     "aaa"

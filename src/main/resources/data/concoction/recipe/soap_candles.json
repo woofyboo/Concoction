@@ -1,39 +1,38 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "candle",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:soap"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    },
-    {
-      "tag": "minecraft:candles"
-    }
-
-  ],
-  "result": {
-    "id": "minecraft:candle",
-    "count": 8
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "soap_cleaning",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:soap"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        },
+                        {
+                            "tag":  "minecraft:candles"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:candle",
+                   "count":  8
+               }
 }

@@ -1,17 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "black_banner",
-  "category": "misc",
-  "ingredients": [
-    {
-      "item": "concoction:soap"
-    },
-    {
-      "item": "minecraft:black_banner"
-    }
-  ],
-  "result": {
-    "id": "minecraft:black_banner",
-    "count": 1
-  }
+    "type":  "minecraft:crafting_shapeless",
+    "group":  "soap_cleaning",
+    "category":  "misc",
+    "ingredients":  [
+                        {
+                            "item":  "concoction:soap"
+                        },
+                        {
+                            "item":  "minecraft:black_banner"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:black_banner",
+                   "count":  1
+               }
 }

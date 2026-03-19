@@ -1,7 +1,7 @@
 {
     "type":  "minecraft:crafting_shaped",
     "group":  "wooden_fence_gate",
-    "category":  "building",
+    "category":  "redstone",
     "pattern":  [
                     "X#X",
                     "X#X"

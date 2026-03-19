@@ -1,9 +1,9 @@
 package net.mcreator.concoction.recipebook;
 
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.recipe.oven.OvenRecipeBookCategory;
 import net.minecraft.client.RecipeBookCategories;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 
 import java.util.List;
 
@@ -41,23 +41,35 @@ public final class OvenRecipeBookClientCategories {
         };
     }
 
-    public static ItemStack getIcon(RecipeBookCategories category) {
+    public static List<ItemStack> getIcons(RecipeBookCategories category) {
         if (category == DISHES_AND_SOUPS) {
-            return new ItemStack(Items.BOWL);
+            return List.of(
+                    new ItemStack(ConcoctionModItems.NOODLES_WITH_MEATBALLS.get()),
+                    new ItemStack(ConcoctionModItems.CHICKEN_CONFIT.get())
+            );
         }
 
         if (category == BEVERAGES_AND_CONDIMENTS) {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return List.of(
+                    new ItemStack(ConcoctionModItems.HOT_CHOCOLATE.get()),
+                    new ItemStack(ConcoctionModItems.MINT_BREW.get())
+            );
         }
 
         if (category == SNACKS_AND_PASTRY) {
-            return new ItemStack(Items.COOKIE);
+            return List.of(
+                    new ItemStack(ConcoctionModItems.HASHBROWNS.get()),
+                    new ItemStack(ConcoctionModItems.HONEY_COB.get())
+            );
         }
 
         if (category == FEASTS) {
-            return new ItemStack(Items.CAKE);
+            return List.of(
+                    new ItemStack(ConcoctionModItems.BUCKET_CASSEROLE.get()),
+                    new ItemStack(ConcoctionModItems.TAHCHIN_BUCKET.get())
+            );
         }
 
-        return ItemStack.EMPTY;
+        return List.<ItemStack>of();
     }
 }

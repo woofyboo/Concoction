@@ -1,15 +1,12 @@
 {
-    "type":  "minecraft:crafting_shaped",
+    "type":  "minecraft:crafting_shapeless",
     "group":  "planks",
     "category":  "building",
-    "pattern":  [
-                    "a"
-                ],
-    "key":  {
-                "a":  {
-                          "item":  "concoction:cinnamon_log"
-                      }
-            },
+    "ingredients":  [
+                        {
+                            "tag":  "minecraft:cinnamon_logs"
+                        }
+                    ],
     "result":  {
                    "id":  "concoction:cinnamon_planks",
                    "count":  4
