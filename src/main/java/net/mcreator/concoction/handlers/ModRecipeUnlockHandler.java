@@ -5,7 +5,6 @@ import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.recipe.SoapCleaningRecipe;
 import net.mcreator.concoction.recipe.SoapShieldCleaningRecipe;
 import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -159,10 +158,6 @@ public final class ModRecipeUnlockHandler {
                 ingredients.add(ovenRecipe.getBottleIngredient());
             }
             return ingredients;
-        }
-
-        if (recipe instanceof CauldronBrewingRecipe cauldronRecipe) {
-            return cauldronRecipe.getInputItems();
         }
 
         if (recipe instanceof ButterChurnRecipe butterChurnRecipe) {

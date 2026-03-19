@@ -6,7 +6,6 @@
     "AgeableMobMilkMixin",
     "AnvilMenuMixin",
     "BeeMixin",
-    "BlocksMixin",
     "BlockStateFrictionMixin",
     "BoatSoapFrictionMixin",
     "CakeBlockMixin",

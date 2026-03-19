@@ -3,8 +3,6 @@
   "advancements.brain_freeze_obtain_achievement.title": "沁爽一下",
   "advancements.breakfast_check.descr": "起床后不久吃一份早餐",
   "advancements.breakfast_check.title": "不吃早饭不干活",
-  "advancements.cauldron_boiling.descr": "在炼药锅里煮些什么",
-  "advancements.cauldron_boiling.title": "只需加水",
   "advancements.core.descr": "吃饱了才有力气上路！",
   "advancements.core.title": "田园调酿",
   "advancements.cry_about_it.descr": "喝下黑曜石泪并为你的选择承担后果",
@@ -167,7 +165,6 @@
   "block.concoction.yellow_pillow_block": "黄色枕头",
   "block.concoction.yellow_woven_carpet": "黄色织毯",
   "block.concoction_brew.mint": "薄荷",
-  "container.cooking_cauldron": "煮",
   "container.oven": "烤箱",
   "death.attack.rift": "%1$s被维度斩开了",
   "death.attack.rift.item": "%1$s被%2$s用%3$s维度斩开了",
@@ -273,8 +270,7 @@
   "gui.butter_churn.chance": "20%",
   "gui.butter_churn.title": "翻搅",
   "gui.concoction.kitchen_cabinet": "厨柜",
-  "gui.cooking_cauldron.time.seconds": "%s秒",
-  "gui.cooking_cauldron.title": "煮",
+  "gui.oven.time.seconds": "%s秒",
   "gui.oven.title": "烤箱",
   "item.concoction.animal_fat": "动物脂肪",
   "item.concoction.bacon_and_eggs": "培根煎蛋",
@@ -425,8 +421,6 @@
   "subtitles.barrel_overfilled": "装满了",
   "subtitles.butter_churn_spin": "搅油桶：旋转",
   "subtitles.butter_thickens": "油：稠化",
-  "subtitles.cauldron_boiling": "炼药锅：沸腾",
-  "subtitles.cauldron_cooking": "炼药锅：咕嘟冒泡",
   "subtitles.music_disc_hotice": "音乐唱片：播放",
   "subtitles.oven_close": "烤箱：关闭",
   "subtitles.oven_open": "烤箱：打开",
@@ -453,3 +447,4 @@
   "block.concoction.cinnamon_hanging_sign": "肉桂木悬挂告示牌",
   "block.concoction.cinnamon_wall_hanging_sign": "肉桂木墙挂告示牌"
 }
+

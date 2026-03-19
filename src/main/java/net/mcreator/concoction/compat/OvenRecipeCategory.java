@@ -84,7 +84,7 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
         if (isCursorInsideBounds(100, 31, 24, 16, mouseX, mouseY)) {
             int cookTimeSeconds = recipe.getCookingTime() / 20;
             if (cookTimeSeconds > 0) {
-                tooltip.add(Component.translatable("gui.cooking_cauldron.time.seconds", cookTimeSeconds));
+                tooltip.add(Component.translatable("gui.oven.time.seconds", cookTimeSeconds));
             }
         }
     }

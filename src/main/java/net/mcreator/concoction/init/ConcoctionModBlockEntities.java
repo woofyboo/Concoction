@@ -11,7 +11,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.mcreator.concoction.block.entity.CinnamonSignBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.core.registries.BuiltInRegistries;
 
@@ -33,7 +32,6 @@ public class ConcoctionModBlockEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CRIMSON_KITCHEN_CABINET = register("crimson_kitchen_cabinet", ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET, CrimsonKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> WARPED_KITCHEN_CABINET = register("warped_kitchen_cabinet", ConcoctionModBlocks.WARPED_KITCHEN_CABINET, WarpedKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CINNAMON_KITCHEN_CABINET = register("cinnamon_kitchen_cabinet", ConcoctionModBlocks.CINNAMON_KITCHEN_CABINET, CinnamonKitchenCabinetBlockEntity::new);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> COOKING_CAULDRON = register("cooking_cauldron", Blocks.WATER_CAULDRON, CookingCauldronEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> OVEN_BLOCK = register("oven_block", ConcoctionModBlocks.OVEN, OvenBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> BUTTER_CHURN = register("butter_churn", ConcoctionModBlocks.BUTTER_CHURN, ButterChurnEntity::new);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CinnamonSignBlockEntity>> CINNAMON_SIGN =

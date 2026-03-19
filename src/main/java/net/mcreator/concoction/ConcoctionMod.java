@@ -60,8 +60,7 @@ public class ConcoctionMod {
 		ConcoctionModFluidTypes.REGISTRY.register(modEventBus);
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
-		ConcoctionModEnchantmentsEffects.register(modEventBus);
-        ModWorldgen.FEATURES.register(modEventBus);
+		ModWorldgen.FEATURES.register(modEventBus);
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
         ConcoctionRecipeBooks.register(modEventBus);

@@ -7,15 +7,6 @@
       }
     ]
   },
-  "cauldron_cooking": {
-    "subtitle": "subtitles.cauldron_cooking",
-    "sounds": [
-      {
-        "name": "concoction:witches_cauldron_boiling_bubbling_50871-_mp3cut.net_",
-        "stream": false
-      }
-    ]
-  },
   "silence": {
     "sounds": [
       {
@@ -85,23 +76,6 @@
       },
       {
         "name": "concoction:fill_lava_bucket3",
-        "stream": false
-      }
-    ]
-  },
-  "cauldron_boiling": {
-    "subtitle": "subtitles.cauldron_boiling",
-    "sounds": [
-      {
-        "name": "concoction:water_boiling01",
-        "stream": false
-      },
-      {
-        "name": "concoction:water_boiling02",
-        "stream": false
-      },
-      {
-        "name": "concoction:water_boiling03",
         "stream": false
       }
     ]

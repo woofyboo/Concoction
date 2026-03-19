@@ -1,7 +1,6 @@
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.ConcoctionMod;
-import net.mcreator.concoction.enchantments.ButcheringEnchantmentEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -10,16 +9,11 @@ import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
-import net.minecraft.world.item.enchantment.EnchantmentTarget;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
-
-import java.rmi.registry.Registry;
 
 public class ConcoctionModEnchantments {
 
     public static final ResourceKey<Enchantment> BUTCHERING = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "butchering"));
+    public static final ResourceKey<Enchantment> GREEN_THUMB = ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, "green_thumb"));
 
     public static void bootstrap(BootstrapContext<Enchantment> context) {
         var enchantment = context.lookup(Registries.ENCHANTMENT);
@@ -34,9 +28,18 @@ public class ConcoctionModEnchantments {
                 Enchantment.dynamicCost(25,7),
                 2,
                 EquipmentSlotGroup.MAINHAND
-        )).exclusiveWith(enchantment.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
-                .withEffect(EnchantmentEffectComponents.POST_ATTACK, EnchantmentTarget.ATTACKER,
-                        EnchantmentTarget.VICTIM, new ButcheringEnchantmentEffect()));
+        )).exclusiveWith(enchantment.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE)));
+
+        register(context, GREEN_THUMB, Enchantment.enchantment(Enchantment.definition(
+                items.getOrThrow(ItemTags.MINING_ENCHANTABLE),
+                items.getOrThrow(ItemTags.HOES),
+                1,
+                1,
+                Enchantment.dynamicCost(10, 12),
+                Enchantment.dynamicCost(18, 12),
+                1,
+                EquipmentSlotGroup.MAINHAND
+        )));
 
     }
 
