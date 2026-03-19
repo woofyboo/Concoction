@@ -1,0 +1,27 @@
+{
+  "type": "concoction:oven",
+  "group": "hot_sauce",
+  "category": "beverages_and_condiments",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:spicy_pepper"
+    },
+    {
+      "item": "concoction:spicy_pepper"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "tag": "c:salts"
+    }
+  ],
+  "bowl_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "concoction:hot_sauce_bottle",
+    "count": "1"
+  }
+}

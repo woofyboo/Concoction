@@ -1,0 +1,15 @@
+{
+  "type": "concoction:oven",
+  "group": "boiled_sniffer_egg",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:sniffer_egg"
+    }
+  ],
+  "result": {
+    "id": "concoction:boiled_egg",
+    "count": "4"
+  }
+}

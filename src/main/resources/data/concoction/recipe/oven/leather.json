@@ -1,0 +1,18 @@
+{
+  "type": "concoction:oven",
+  "group": "leather",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "tag": "c:salts"
+    }
+  ],
+  "result": {
+    "id": "minecraft:leather",
+    "count": "1"
+  }
+}

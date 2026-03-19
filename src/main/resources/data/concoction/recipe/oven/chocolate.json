@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "chocolate",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "bottle_ingredient": {
+    "item": "concoction:butter"
+  },
+  "result": {
+    "id": "concoction:chocolate",
+    "count": "2"
+  }
+}

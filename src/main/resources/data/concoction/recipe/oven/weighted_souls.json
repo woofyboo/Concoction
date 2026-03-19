@@ -1,0 +1,27 @@
+{
+  "type": "concoction:oven",
+  "group": "weighted_souls",
+  "category": "feasts",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:soul_sand"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "bottle_ingredient": {
+    "item": "concoction:obsidian_tears_bottle"
+  },
+  "bowl_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "result": {
+    "id": "concoction:weighted_souls_bucket",
+    "count": "1"
+  }
+}

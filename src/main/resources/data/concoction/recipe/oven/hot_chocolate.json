@@ -1,0 +1,27 @@
+{
+  "type": "concoction:oven",
+  "group": "hot_chocolate",
+  "category": "beverages_and_condiments",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:chocolate"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "concoction:cinnamon"
+    }
+  ],
+  "bottle_ingredient": {
+    "item": "concoction:milk_bottle"
+  },
+  "bowl_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "concoction:hot_chocolate",
+    "count": "1"
+  }
+}

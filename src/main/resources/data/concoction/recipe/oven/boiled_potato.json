@@ -1,0 +1,15 @@
+{
+  "type": "concoction:oven",
+  "group": "boiled_potato",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "result": {
+    "id": "concoction:boiled_potato",
+    "count": "1"
+  }
+}

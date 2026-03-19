@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "sunflower_seeds_brew",
+  "category": "beverages_and_condiments",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    },
+    {
+      "item": "concoction:sunflower_seeds"
+    }
+  ],
+  "bowl_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "concoction:sunflower_seeds_brew",
+    "count": "1"
+  }
+}

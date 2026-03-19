@@ -289,6 +289,15 @@ if (butcheringEntry != null && butcheringEntry.isPresent()) {
 }
 
 //Инструменты, оружие, броня
+var greenThumbEntry = parameters.holders().holder(ConcoctionModEnchantments.GREEN_THUMB);
+if (greenThumbEntry != null && greenThumbEntry.isPresent()) {
+    Enchantment greenThumb = greenThumbEntry.get().value();
+    int maxLevel = greenThumb.getMaxLevel();
+    for (int level = 1; level <= maxLevel; level++) {
+        tabData.accept(EnchantedBookItem.createForEnchantment(new EnchantmentInstance(Holder.direct(greenThumb), level)));
+    }
+}
+
 				tabData.accept(ConcoctionModItems.OVERGROWN_SHOVEL.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_PICKAXE.get());
 				tabData.accept(ConcoctionModItems.OVERGROWN_AXE.get());

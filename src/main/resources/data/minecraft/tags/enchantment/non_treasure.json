@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "concoction:butchering"
+    "concoction:butchering",
+    "concoction:green_thumb"
   ]
 }

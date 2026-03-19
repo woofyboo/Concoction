@@ -1,0 +1,18 @@
+{
+  "type": "concoction:oven",
+  "group": "sweet_jelly",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:slime_ball"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "concoction:sweet_slime_jelly",
+    "count": "1"
+  }
+}

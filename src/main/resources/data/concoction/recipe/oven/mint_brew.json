@@ -1,0 +1,21 @@
+{
+  "type": "concoction:oven",
+  "group": "mint_brew",
+  "category": "beverages_and_condiments",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "concoction:mint"
+    }
+  ],
+  "bowl_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "concoction:mint_brew",
+    "count": "1"
+  }
+}
