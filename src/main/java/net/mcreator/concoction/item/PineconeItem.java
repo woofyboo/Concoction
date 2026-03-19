@@ -33,7 +33,7 @@ public class PineconeItem extends Item {
 				((ServerLevel) event.getEntity().level()).getPlayers(player ->
 						player.distanceToSqr(event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ()) <= 256
 				).forEach(player -> {
-					Utils.addAchievement(player, "concoction:sapling_from_item");
+					Utils.grantAdvancement(player, "concoction:sapling_from_item");
 				});
 			}
 //			if (itemSt.getCount() < 4) {}

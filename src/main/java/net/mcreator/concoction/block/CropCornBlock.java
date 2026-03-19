@@ -82,7 +82,7 @@ public class CropCornBlock extends CropBlock {
 					((ServerLevel) pLevel).getPlayers(player ->
 							player.distanceToSqr(pPos.getX(), pPos.getY(), pPos.getZ()) <= 256
 					).forEach(player -> {
-						Utils.addAchievement(player, "concoction:giant_corn_witness");
+						Utils.grantAdvancement(player, "concoction:giant_corn_witness");
 					});
 
 				}

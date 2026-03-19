@@ -9,15 +9,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.core.particles.ParticleTypes;
-
-
-import net.mcreator.concoction.init.ConcoctionModParticles;
-
-import static net.mcreator.concoction.init.ConcoctionModMobEffects.WEEPING;
-
 public enum FoodEffectType implements StringRepresentable {
     SWEET("sweet"),
     SPICY("spicy"),

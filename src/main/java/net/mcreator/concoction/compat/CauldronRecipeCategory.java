@@ -16,13 +16,11 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
-import net.minecraft.core.registries.BuiltInRegistries;
-
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import org.jetbrains.annotations.Nullable;
 import javax.annotation.Nonnull;
 
@@ -87,23 +85,16 @@ public class CauldronRecipeCategory implements IRecipeCategory<CauldronBrewingRe
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, CauldronBrewingRecipe recipe, IFocusGroup focuses) {
+        RecipeOutputData output = recipe.getOutput();
+
         builder.addSlot(RecipeIngredientRole.INPUT, 11, 20).addIngredients(recipe.getIngredient(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 29, 20).addIngredients(recipe.getIngredient(1));
         builder.addSlot(RecipeIngredientRole.INPUT, 11, 38).addIngredients(recipe.getIngredient(2));
         builder.addSlot(RecipeIngredientRole.INPUT, 29, 38).addIngredients(recipe.getIngredient(3));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 31).addItemStack(
-                new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(recipe.getOutput().get("id"))),
-                        Integer.parseInt(recipe.getOutput().get("count")) )
-        );
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 103, 31).addItemStack(output.toStack());
 
-        ItemStack catalyst = switch (recipe.getOutput().get("interactionType")) {
-            case "hand" -> ItemStack.EMPTY;
-            case "bucket" -> new ItemStack(Items.BUCKET);
-            case "bottle" -> new ItemStack(Items.GLASS_BOTTLE);
-            case "bowl" -> new ItemStack(Items.BOWL);
-            default -> ItemStack.EMPTY;
-        };
+        ItemStack catalyst = output.interaction().catalystStack();
         builder.addSlot(RecipeIngredientRole.CATALYST, 63, 8).addItemStack(catalyst);
     }
 }

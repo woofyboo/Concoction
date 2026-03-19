@@ -1,22 +1,19 @@
 package net.mcreator.concoction.block.entity;
 
-import com.google.gson.Gson;
 import net.mcreator.concoction.block.OvenBlock;
+import net.mcreator.concoction.recipe.ContainerRemainderHelper;
+import net.mcreator.concoction.recipe.RecipeHolderUtils;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipeInput;
-import net.mcreator.concoction.world.inventory.OvenGUIMenu;
+import net.mcreator.concoction.world.inventory.OvenMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
@@ -28,18 +25,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CampfireBlock;
-import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.MagmaBlock;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
@@ -50,16 +38,15 @@ import io.netty.buffer.Unpooled;
 
 import java.util.*;
 
-public class OvenBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implements WorldlyContainer {
+    private static final String PROGRESS_TAG = "cooking.progress";
+    private static final String MAX_PROGRESS_TAG = "cooking.max_progress";
+    private static final String IS_COOKING_TAG = "cooking.is_cooking";
+
     // Слоты: 0 бутылочка, 1-6 крафт, 7 миска, 8 результат
     private final int ContainerSize = 9;
     private boolean isCooking = false;
     private RecipeHolder<OvenRecipe> recipe = null;
-    private Map<String, String> craftResult = Map.ofEntries(
-            Map.entry("id",""),
-            Map.entry("count",""),
-            Map.entry("interactionType","")
-    );
 
     private int progress = 0;
     private int maxProgress = 200;
@@ -87,15 +74,13 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         super(ConcoctionModBlockEntities.OVEN_BLOCK.get(), pos, state);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        this.progress = tag.getInt("cooking.progress");
-        this.maxProgress = tag.getInt("cooking.max_progress");
-        this.isCooking = tag.getBoolean("cooking.is_cooking");
+        this.progress = tag.getInt(PROGRESS_TAG);
+        this.maxProgress = tag.getInt(MAX_PROGRESS_TAG);
+        this.isCooking = tag.getBoolean(IS_COOKING_TAG);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        this.craftResult = (new Gson()).fromJson(tag.getString("cooking.craft_result"), HashMap.class);
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
         }
@@ -104,10 +89,9 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putInt("cooking.progress", this.progress);
-        tag.putInt("cooking.max_progress", this.maxProgress);
-        tag.putBoolean("cooking.is_cooking", this.isCooking);
-        tag.putString("cooking.craft_result", (new Gson()).toJson(this.craftResult));
+        tag.putInt(PROGRESS_TAG, this.progress);
+        tag.putInt(MAX_PROGRESS_TAG, this.maxProgress);
+        tag.putBoolean(IS_COOKING_TAG, this.isCooking);
 
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
@@ -138,7 +122,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         RecipeHolder<OvenRecipe> rh = currentRecipe.get();
 
         // если рецепт сменился — сбрасываем прогресс и подхватываем новый
-        if (this.recipe == null || !isSameRecipe(rh, this.recipe)) {
+        if (this.recipe == null || !RecipeHolderUtils.sameRecipe(rh, this.recipe, OvenRecipe::getIngredients)) {
             this.recipe = rh;
             this.progress = 0;
             this.maxProgress = rh.value().getCookingTime();
@@ -177,68 +161,35 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
     }
 
     private boolean isSameRecipe(RecipeHolder<OvenRecipe> recipe1, RecipeHolder<OvenRecipe> recipe2) {
-        if (recipe1 == null || recipe2 == null) return false;
+        return RecipeHolderUtils.sameRecipe(recipe1, recipe2, OvenRecipe::getIngredients);
 
         // Сравниваем по ID рецептов (основной способ)
-        if (recipe1.id().equals(recipe2.id())) return true;
 
         // Если ID разные, сравниваем по ингредиентам
-        List<Ingredient> ingredients1 = recipe1.value().getIngredients();
-        List<Ingredient> ingredients2 = recipe2.value().getIngredients();
 
-        if (ingredients1.size() != ingredients2.size()) return false;
 
         // Создаем копии списков для сравнения
-        List<Ingredient> sorted1 = new ArrayList<>(ingredients1);
-        List<Ingredient> sorted2 = new ArrayList<>(ingredients2);
 
         // Сортируем по строковому представлению для сравнения
-        sorted1.sort((a, b) -> a.toString().compareTo(b.toString()));
-        sorted2.sort((a, b) -> a.toString().compareTo(b.toString()));
 
-        for (int i = 0; i < sorted1.size(); i++) {
-            if (!sorted1.get(i).toString().equals(sorted2.get(i).toString())) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private boolean canAddResult() {
         if (recipe == null) return false;
 
-        ItemStack resultSlot = items.get(SLOT_OUTPUT);
-        Map<String, String> recipeResult = recipe.value().getResult();
+        return recipe.value().getResult().canMergeInto(items.get(SLOT_OUTPUT));
 
-        if (resultSlot.isEmpty()) {
-            return true;
-        }
 
         // Проверяем, совпадает ли предмет в слоте результата с результатом рецепта
-        ResourceLocation resultId = ResourceLocation.parse(recipeResult.get("id"));
-        if (!BuiltInRegistries.ITEM.get(resultId).equals(resultSlot.getItem())) {
-            return false;
-        }
 
         // Проверяем, поместится ли результат
-        int resultCount = parseResultCount(recipeResult);
-        return resultSlot.getCount() + resultCount <= resultSlot.getMaxStackSize();
-    }
-
-    private int parseResultCount(Map<String, String> recipeResult) {
-        try {
-            return Math.max(1, Integer.parseInt(recipeResult.getOrDefault("count","1").trim()));
-        } catch (Exception e) {
-            return 1;
-        }
     }
 
     /** Сколько мисок нужно списывать за одну готовку (если миска требуется рецептом). */
     private int bowlsToConsumePerCraft(RecipeHolder<OvenRecipe> rh) {
         if (rh == null) return 0;
         if (rh.value().getBowlIngredient() == null || rh.value().getBowlIngredient().isEmpty()) return 0;
-        return parseResultCount(rh.value().getResult());
+        return rh.value().getOutputCount();
     }
 
     private void resetProgress() {
@@ -246,7 +197,6 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
         this.maxProgress = recipe == null ? DEFAULT_MAX_PROGRESS : recipe.value().getCookingTime();
         this.isCooking = false;
         this.recipe = null;
-        this.craftResult = Map.of("id", "", "count", "", "interactionType", "");
         setChanged();
     }
 
@@ -259,20 +209,13 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
     private void craftItem() {
         if (recipe == null) return;
 
-        Map<String, String> recipeResult = recipe.value().getResult();
-        ResourceLocation resultId = ResourceLocation.parse(recipeResult.get("id"));
-        int resultCount = parseResultCount(recipeResult);
-
-        // Создаем результат
-        ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(resultId), resultCount);
+        RecipeOutputData result = recipe.value().getResult();
+        if (result.isEmpty()) {
+            return;
+        }
+        items.set(SLOT_OUTPUT, result.mergeInto(items.get(SLOT_OUTPUT)));
 
         // Добавляем в слот результата
-        ItemStack resultSlot = items.get(SLOT_OUTPUT);
-        if (resultSlot.isEmpty()) {
-            items.set(SLOT_OUTPUT, result);
-        } else {
-            resultSlot.grow(resultCount);
-        }
 
         // Тратим ингредиенты (с учётом количества мисок = числу результата)
         consumeIngredients(recipe);
@@ -306,14 +249,8 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             if (toRemove <= 0) continue;
 
             if (i != SLOT_BOWL) {
-                if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bottles")))) {
-                    ItemStack drop = new ItemStack(Items.GLASS_BOTTLE, toRemove);
-                    containers.add(drop);
-                } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "buckets")))) {
-                    ItemStack drop = new ItemStack(Items.BUCKET, toRemove);
-                    containers.add(drop);
-                } else if (stack.is(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "bowls")))) {
-                    ItemStack drop = new ItemStack(Items.BOWL, toRemove);
+                ItemStack drop = ContainerRemainderHelper.getRemainder(stack, toRemove, true);
+                if (!drop.isEmpty()) {
                     containers.add(drop);
                 }
             }
@@ -402,10 +339,10 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
             boolean shouldReset = false;
 
             if (this.isCooking && this.recipe != null) {
-                if (originalRecipe.isPresent() && isSameRecipe(originalRecipe.get(), this.recipe)) {
+                if (originalRecipe.isPresent() && RecipeHolderUtils.sameRecipe(originalRecipe.get(), this.recipe, OvenRecipe::getIngredients)) {
                     shouldReset = false;
                 } else if (newRecipe.isPresent()) {
-                    if (!isSameRecipe(newRecipe.get(), this.recipe)) {
+                    if (!RecipeHolderUtils.sameRecipe(newRecipe.get(), this.recipe, OvenRecipe::getIngredients)) {
                         shouldReset = true;
                     }
                 } else {
@@ -501,46 +438,19 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
 
     @Override
     public void clearContent() {
-        items.clear();
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         this.setChanged();
     }
 
     @Override
-    public void setChanged() {
-        super.setChanged();
-        if (this.level != null && !this.level.isClientSide) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
-        }
-    }
-
-    @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = super.getUpdateTag(registries);
-        saveAdditional(tag, registries);
+    protected void writeClientState(CompoundTag tag) {
         tag.putInt("Progress", this.progress);
         tag.putInt("MaxProgress", this.maxProgress);
         tag.putBoolean("IsCooking", this.isCooking);
-        return tag;
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
-        CompoundTag tag = packet.getTag();
-        handleUpdateTag(tag, registries);
-        this.progress = tag.getInt("Progress");
-        this.maxProgress = tag.getInt("MaxProgress");
-        this.isCooking = tag.getBoolean("IsCooking");
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-        super.handleUpdateTag(tag, registries);
-        loadAdditional(tag, registries);
+    protected void readClientState(CompoundTag tag) {
         this.progress = tag.getInt("Progress");
         this.maxProgress = tag.getInt("MaxProgress");
         this.isCooking = tag.getBoolean("IsCooking");
@@ -554,7 +464,7 @@ public class OvenBlockEntity extends RandomizableContainerBlockEntity implements
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new OvenGUIMenu(pContainerId, pPlayerInventory,
+        return new OvenMenu(pContainerId, pPlayerInventory,
                 new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(this.worldPosition));
     }
 

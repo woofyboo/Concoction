@@ -1,22 +1,16 @@
 package net.mcreator.concoction.recipe.butterChurn;
 
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.mcreator.concoction.block.ButterChurnBlock;
-import net.mcreator.concoction.block.CookingCauldron;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -24,17 +18,13 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.mcreator.concoction.ConcoctionMod;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
     private final BlockState inputState;
     private final List<Ingredient> inputItems;
-    private final Map<String, String> result;
+    private final RecipeOutputData result;
 
     public BlockState getInputState() {
         return inputState;
@@ -51,11 +41,11 @@ public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
         return this.inputItems.get(index);
     }
 
-    public Map<String, String> getResult() {
+    public RecipeOutputData getResult() {
         return result;
     }
 
-    public ButterChurnRecipe(BlockState inputState, List<Ingredient> inputItems, Map<String, String> result) {
+    public ButterChurnRecipe(BlockState inputState, List<Ingredient> inputItems, RecipeOutputData result) {
         this.inputState = inputState;
         this.inputItems = inputItems;
         this.result = result;
@@ -68,9 +58,8 @@ public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
         }
 
         boolean stateMatches = this.inputState.getValue(ButterChurnBlock.FULL).equals(pInput.state().getValue(ButterChurnBlock.FULL));
-        boolean itemMatches = this.inputItems.getFirst().getItems()[0].getItem().equals(pInput.getItem(0).getItem());
+        boolean itemMatches = this.inputItems.stream().allMatch(ingredient -> ingredient.test(pInput.getItem(0)));
         boolean countMatches = this.inputItems.size() == pInput.count();
-        ConcoctionMod.LOGGER.info(String.format("Matching recipe for %s with count %d. State: %b, Item: %b, Count: %b", pInput.getItem(0), pInput.count(), stateMatches, itemMatches, countMatches));
 
         if (stateMatches) {
             return itemMatches && countMatches;
@@ -90,7 +79,7 @@ public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider p_336125_) {
-        return null;
+        return this.result.toStack();
     }
 
     @Override
@@ -98,7 +87,7 @@ public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
         return new ItemStack(ConcoctionModItems.BUTTER_CHURN.get());
     }
 
-    public Map<String, String> getOutput() {
+    public RecipeOutputData getOutput() {
         return result;
     }
 
@@ -120,14 +109,14 @@ public class ButterChurnRecipe implements Recipe<ButterChurnRecipeInput> {
         public static final MapCodec<ButterChurnRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 BlockState.CODEC.fieldOf("state").forGetter(ButterChurnRecipe::getInputState),
                 Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").forGetter(ButterChurnRecipe::getInputItems),
-                Codec.unboundedMap(Codec.STRING, Codec.STRING).fieldOf("result").forGetter(ButterChurnRecipe::getResult)
+                RecipeOutputData.CODEC.fieldOf("result").forGetter(ButterChurnRecipe::getResult)
         ).apply(inst, ButterChurnRecipe::new));
 
         public static final StreamCodec<RegistryFriendlyByteBuf, ButterChurnRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), ButterChurnRecipe::getInputState,
                         Ingredient.CONTENTS_STREAM_CODEC.apply(ByteBufCodecs.list()), ButterChurnRecipe::getInputItems,
-                        ByteBufCodecs.map(HashMap::new, ByteBufCodecs.STRING_UTF8, ByteBufCodecs.STRING_UTF8), ButterChurnRecipe::getResult,
+                        RecipeOutputData.STREAM_CODEC, ButterChurnRecipe::getResult,
                         ButterChurnRecipe::new);
 
         @Override

@@ -1,10 +1,14 @@
 .gradle
 .gradle-user-home/
+.idea/
+.eclipse/
+.mcreator/
+run/
+runs/
+.tmp-*/
 .tmp-minecraft_1.21.1_client.jar
 **/build/
 !src/**/build/
-runs/
-run/
 # Ignore Gradle GUI config
 gradle-app.setting
 .mcreator/workspaceBackups/

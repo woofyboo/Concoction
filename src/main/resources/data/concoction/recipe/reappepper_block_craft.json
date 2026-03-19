@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "reapepper_block",
+  "group": "reapper_block",
   "category": "misc",
   "pattern": [
     "aaa",
@@ -13,7 +13,7 @@
     }
   },
   "result": {
-    "id": "concoction:reapepper_block",
+    "id": "concoction:reapper_block",
     "count": 1
   }
 }

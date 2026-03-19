@@ -1,6 +1,6 @@
 package net.mcreator.concoction.compat;
 
-import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -15,7 +15,7 @@ public class AppleSkinCompat {
     public static void onRenderGuiOverlayPre(RenderGuiLayerEvent.Pre event) {
         if (event.getName().toString().equals("appleskin:saturation_level")) {
             Minecraft mc = Minecraft.getInstance();
-            if (mc.player != null && mc.player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
+            if (mc.player != null && Utils.isPhotosynthesisActive(mc.player)) {
                 event.setCanceled(true);
             }
         }

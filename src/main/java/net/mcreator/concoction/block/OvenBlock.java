@@ -3,7 +3,7 @@ package net.mcreator.concoction.block;
 import io.netty.buffer.Unpooled;
 import net.mcreator.concoction.block.entity.OvenBlockEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
-import net.mcreator.concoction.world.inventory.OvenGUIMenu;
+import net.mcreator.concoction.world.inventory.OvenMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -96,7 +96,7 @@ public class OvenBlock extends Block implements EntityBlock {
                 public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player playerEntity) {
                     FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
                     packetBuffer.writeBlockPos(pos);
-                    return new OvenGUIMenu(windowId, inventory, packetBuffer);
+                    return new OvenMenu(windowId, inventory, packetBuffer);
                 }
             };
 

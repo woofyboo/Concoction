@@ -1,11 +1,9 @@
 
-/*
-*    MCreator note: This file will be REGENERATED on each build.
-*/
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.block.*;
 import net.mcreator.concoction.worldgen.CinnamonTreeGrower;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -15,10 +13,23 @@ import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModBlocks {
 	public static final DeferredRegister.Blocks REGISTRY = DeferredRegister.createBlocks(ConcoctionMod.MODID);
+
+	static {
+		REGISTRY.addAlias(
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.LEGACY_REAPPER_CROP),
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.REAPPER_CROP));
+		REGISTRY.addAlias(
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.ANCIENT_REAPPER_CROP),
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.REAPPER_CROP));
+		REGISTRY.addAlias(
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.LEGACY_REAPPER_BLOCK),
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.REAPPER_BLOCK));
+	}
+
 	public static final DeferredBlock<Block> MINT = REGISTRY.register("mint", MintBlock::new);
 	public static final DeferredBlock<Block> CROP_MINT = REGISTRY.register("crop_mint", CropMintBlock::new);
 	public static final DeferredBlock<Block> CROP_COTTON = REGISTRY.register("crop_cotton", CropCottonBlock::new);
-	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlockBlock::new);
+	public static final DeferredBlock<Block> PILLOW_BLOCK = REGISTRY.register("pillow_block", PillowBlock::new);
 	public static final DeferredBlock<Block> WILD_COTTON = REGISTRY.register("wild_cotton", WildCottonBlock::new);
 	public static final DeferredBlock<Block> SUNFLOWER = REGISTRY.register("sunflower", SunflowerBlock::new);
 	public static final DeferredBlock<Block> WILD_CARROT = REGISTRY.register("wild_carrot", WildCarrotBlock::new);
@@ -32,17 +43,17 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> WILD_POTATO = REGISTRY.register("wild_potato", WildPotatoBlock::new);
 	public static final DeferredBlock<Block> BUTTER_CHURN = REGISTRY.register("butter_churn", ButterChurnBlock::new);
 	public static final DeferredBlock<Block> CROP_CABBAGE = REGISTRY.register("crop_cabbage", CropCabbageBlock::new);
-	public static final DeferredBlock<Block> CABBAGE_BLOCK = REGISTRY.register("cabbage_block", CabbageBlockBlock::new);
+	public static final DeferredBlock<Block> CABBAGE_BLOCK = REGISTRY.register("cabbage_block", CabbageBlock::new);
 	public static final DeferredBlock<Block> CABBAGEHEAD = REGISTRY.register("cabbagehead", CabbageheadBlock::new);
 	public static final DeferredBlock<Block> WILD_CABBAGE = REGISTRY.register("wild_cabbage", WildCabbageBlock::new);
 	public static final DeferredBlock<Block> CROP_TOMATO = REGISTRY.register("crop_tomato", CropTomatoBlock::new);
 	public static final DeferredBlock<Block> WILD_TOMATO = REGISTRY.register("wild_tomato", WildTomatoBlock::new);
-	public static final DeferredBlock<Block> CORN_BLOCK = REGISTRY.register("corn_block", CornBlockBlock::new);
-	public static final DeferredBlock<Block> SPICY_PEPPER_BLOCK = REGISTRY.register("spicy_pepper_block", SpicyPepperBlockBlock::new);
-	public static final DeferredBlock<Block> ONION_BLOCK = REGISTRY.register("onion_block", OnionBlockBlock::new);
-	public static final DeferredBlock<Block> GREEN_ONION_BLOCK = REGISTRY.register("green_onion_block", GreenOnionBlockBlock::new);
-	public static final DeferredBlock<Block> COTTON_BLOCK = REGISTRY.register("cotton_block", CottonBlockBlock::new);
-	public static final DeferredBlock<Block> NETHER_PEPPER_CROP = REGISTRY.register("nether_pepper_crop", NetherPepperCropBlock::new);
+	public static final DeferredBlock<Block> CORN_BLOCK = REGISTRY.register("corn_block", CornBlock::new);
+	public static final DeferredBlock<Block> SPICY_PEPPER_BLOCK = REGISTRY.register("spicy_pepper_block", SpicyPepperBlock::new);
+	public static final DeferredBlock<Block> ONION_BLOCK = REGISTRY.register("onion_block", OnionBlock::new);
+	public static final DeferredBlock<Block> GREEN_ONION_BLOCK = REGISTRY.register("green_onion_block", GreenOnionBlock::new);
+	public static final DeferredBlock<Block> COTTON_BLOCK = REGISTRY.register("cotton_block", CottonBlock::new);
+	public static final DeferredBlock<Block> CROP_REAPPER = REGISTRY.register(LegacyReapperIds.REAPPER_CROP, ReapperCropBlock::new);
 	public static final DeferredBlock<Block> SOULLAND = REGISTRY.register("soulland", SoullandBlock::new);
 	public static final DeferredBlock<Block> WEIGHTED_SOULS = REGISTRY.register("weighted_souls", WeightedSoulsBlock::new);
 	public static final DeferredBlock<Block> SOUL_ICE = REGISTRY.register("soul_ice", SoulIceBlock::new);
@@ -63,24 +74,24 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> PURPLE_WOVEN_CARPET = REGISTRY.register("purple_woven_carpet", PurpleWovenCarpetBlock::new);
 	public static final DeferredBlock<Block> MAGENTA_WOVEN_CARPET = REGISTRY.register("magenta_woven_carpet", MagentaWovenCarpetBlock::new);
 	public static final DeferredBlock<Block> PINK_WOVEN_CARPET = REGISTRY.register("pink_woven_carpet", PinkWovenCarpetBlock::new);
-	public static final DeferredBlock<Block> CABBAGE_LEAVES_BLOCK = REGISTRY.register("cabbage_leaves_block", CabbageLeavesBlockBlock::new);
-	public static final DeferredBlock<Block> SUNFLOWER_SEED_BLOCK = REGISTRY.register("sunflower_seed_block", SunflowerSeedBlockBlock::new);
-	public static final DeferredBlock<Block> TOMATO_BLOCK = REGISTRY.register("tomato_block", TomatoBlockBlock::new);
-	public static final DeferredBlock<Block> RICE_BLOCK = REGISTRY.register("rice_block", RiceBlockBlock::new);
-	public static final DeferredBlock<Block> SOAKED_RICE_BLOCK = REGISTRY.register("soaked_rice_block", SoakedRiceBlockBlock::new);
+	public static final DeferredBlock<Block> CABBAGE_LEAVES_BLOCK = REGISTRY.register("cabbage_leaves_block", CabbageLeavesBlock::new);
+	public static final DeferredBlock<Block> SUNFLOWER_SEED_BLOCK = REGISTRY.register("sunflower_seed_block", SunflowerSeedBlock::new);
+	public static final DeferredBlock<Block> TOMATO_BLOCK = REGISTRY.register("tomato_block", TomatoBlock::new);
+	public static final DeferredBlock<Block> RICE_BLOCK = REGISTRY.register("rice_block", RiceBlock::new);
+	public static final DeferredBlock<Block> SOAKED_RICE_BLOCK = REGISTRY.register("soaked_rice_block", SoakedRiceBlock::new);
 	public static final DeferredBlock<Block> MINT_BALE = REGISTRY.register("mint_bale", MintBaleBlock::new);
-	public static final DeferredBlock<Block> PINECONE_BLOCK = REGISTRY.register("pinecone_block", PineconeBlockBlock::new);
-	public static final DeferredBlock<Block> REAPEPPER_BLOCK = REGISTRY.register("reapepper_block", ReapepperBlockBlock::new);
-	public static final DeferredBlock<Block> CHERRY_BLOCK = REGISTRY.register("cherry_block", CherryBlockBlock::new);
-	public static final DeferredBlock<Block> SWEET_BERRIES_BLOCK = REGISTRY.register("sweet_berries_block", SweetBerriesBlockBlock::new);
-	public static final DeferredBlock<Block> BEETROOT_BLOCK = REGISTRY.register("beetroot_block", BeetrootBlockBlock::new);
-	public static final DeferredBlock<Block> CARROT_BLOCK = REGISTRY.register("carrot_block", CarrotBlockBlock::new);
-	public static final DeferredBlock<Block> POTATO_BLOCK = REGISTRY.register("potato_block", PotatoBlockBlock::new);
-	public static final DeferredBlock<Block> GLOW_BERRIES_BLOCK = REGISTRY.register("glow_berries_block", GlowBerriesBlockBlock::new);
-	public static final DeferredBlock<Block> CHORUS_BLOCK = REGISTRY.register("chorus_block", ChorusBlockBlock::new);
+	public static final DeferredBlock<Block> PINECONE_BLOCK = REGISTRY.register("pinecone_block", PineconeBlock::new);
+	public static final DeferredBlock<Block> REAPPER_BLOCK = REGISTRY.register(LegacyReapperIds.REAPPER_BLOCK, ReapperBlock::new);
+	public static final DeferredBlock<Block> CHERRY_BLOCK = REGISTRY.register("cherry_block", CherryBlock::new);
+	public static final DeferredBlock<Block> SWEET_BERRIES_BLOCK = REGISTRY.register("sweet_berries_block", SweetBerriesBlock::new);
+	public static final DeferredBlock<Block> BEETROOT_BLOCK = REGISTRY.register("beetroot_block", net.mcreator.concoction.block.BeetrootBlock::new);
+	public static final DeferredBlock<Block> CARROT_BLOCK = REGISTRY.register("carrot_block", net.mcreator.concoction.block.CarrotBlock::new);
+	public static final DeferredBlock<Block> POTATO_BLOCK = REGISTRY.register("potato_block", net.mcreator.concoction.block.PotatoBlock::new);
+	public static final DeferredBlock<Block> GLOW_BERRIES_BLOCK = REGISTRY.register("glow_berries_block", GlowBerriesBlock::new);
+	public static final DeferredBlock<Block> CHORUS_BLOCK = REGISTRY.register("chorus_block", ChorusBlock::new);
 	public static final DeferredBlock<Block> OVEN = REGISTRY.register("oven", OvenBlock::new);
-	public static final DeferredBlock<Block> SEA_SALT_BLOCK = REGISTRY.register("sea_salt_block", SeaSaltBlockBlock::new);
-	public static final DeferredBlock<Block> ROCK_SALT_BLOCK = REGISTRY.register("rock_salt_block", RockSaltBlockBlock::new);
+	public static final DeferredBlock<Block> SEA_SALT_BLOCK = REGISTRY.register("sea_salt_block", SeaSaltBlock::new);
+	public static final DeferredBlock<Block> ROCK_SALT_BLOCK = REGISTRY.register("rock_salt_block", RockSaltBlock::new);
 	public static final DeferredBlock<Block> CROP_PUFFBALL = REGISTRY.register("crop_puffball", CropPuffballBlock::new);
 	public static final DeferredBlock<Block> OAK_KITCHEN_CABINET = REGISTRY.register("oak_kitchen_cabinet", OakKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> SPRUCE_KITCHEN_CABINET = REGISTRY.register("spruce_kitchen_cabinet", SpruceKitchenCabinetBlock::new);
@@ -94,9 +105,9 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> CRIMSON_KITCHEN_CABINET = REGISTRY.register("crimson_kitchen_cabinet", CrimsonKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> WARPED_KITCHEN_CABINET = REGISTRY.register("warped_kitchen_cabinet", WarpedKitchenCabinetBlock::new);
 	public static final DeferredBlock<Block> CINNAMON_KITCHEN_CABINET = REGISTRY.register("cinnamon_kitchen_cabinet", CinnamonKitchenCabinetBlock::new);
-	public static final DeferredBlock<Block> PUFFBALL_BLOCK = REGISTRY.register("puffball_block", PuffballBlockBlock::new);
-	public static final DeferredBlock<Block> SOAP_BLOCK = REGISTRY.register("soap_block", SoapBlockBlock::new);
-    public static final DeferredBlock<Block> APPLE_BLOCK = REGISTRY.register("apple_block", AppleBlockBlock::new);
+	public static final DeferredBlock<Block> PUFFBALL_BLOCK = REGISTRY.register("puffball_block", PuffballBlock::new);
+	public static final DeferredBlock<Block> SOAP_BLOCK = REGISTRY.register("soap_block", SoapBlock::new);
+    public static final DeferredBlock<Block> APPLE_BLOCK = REGISTRY.register("apple_block", AppleBlock::new);
     public static final DeferredBlock<Block> CROP_WEEPING_ONION = REGISTRY.register("crop_weeping_onion", WeepingOnionsCropBlock::new);
     public static final DeferredBlock<Block> CINNAMON_LOG = REGISTRY.register("cinnamon_log", CinnamonLogBlock::new);
     public static final DeferredBlock<Block> CINNAMON_PLANKS = REGISTRY.register("cinnamon_planks", CinnamonLogBlock::new);
@@ -147,7 +158,6 @@ public class ConcoctionModBlocks {
             REGISTRY.register("cinnamon_wall_hanging_sign", CinnamonWallHangingSignBlock::new);
 
 
-    // Start of user code block custom blocks
 	public static final DeferredBlock<SaponariaBlock> SAPONARIA = REGISTRY.register("saponaria", () -> new SaponariaBlock());
 	public static final DeferredBlock<Block> SOAP_LAYER = REGISTRY.register("soap_layer", SoapLayerBlock::new);
 	public static final DeferredBlock<Block> MINT_CHOCOLATE_CAKE = REGISTRY.register("mint_chocolate_cake", MintChocolateCakeBlock::new);
@@ -156,21 +166,21 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> GLOWBERRY_CAKE = REGISTRY.register("glowberry_cake", GlowberryCakeBlock::new);
 	public static final DeferredBlock<Block> LINGONBERRY_CAKE = REGISTRY.register("lingonberry_cake", LingonberryCakeBlock::new);
 	public static final DeferredBlock<Block> CHOCOLATE_CAKE = REGISTRY.register("chocolate_cake", ChocolateCakeBlock::new);
-	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> BROWN_PILLOW_BLOCK = REGISTRY.register("brown_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> YELLOW_PILLOW_BLOCK = REGISTRY.register("yellow_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> LIME_PILLOW_BLOCK = REGISTRY.register("lime_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> GREEN_PILLOW_BLOCK = REGISTRY.register("green_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> CYAN_PILLOW_BLOCK = REGISTRY.register("cyan_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("light_blue_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> BLUE_PILLOW_BLOCK = REGISTRY.register("blue_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> PURPLE_PILLOW_BLOCK = REGISTRY.register("purple_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> MAGENTA_PILLOW_BLOCK = REGISTRY.register("magenta_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> PINK_PILLOW_BLOCK = REGISTRY.register("pink_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("light_gray_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> GRAY_PILLOW_BLOCK = REGISTRY.register("gray_pillow_block", PillowBlockBlock::new);
-	public static final DeferredBlock<Block> BLACK_PILLOW_BLOCK = REGISTRY.register("black_pillow_block", PillowBlockBlock::new);
+	public static final DeferredBlock<Block> RED_PILLOW_BLOCK = REGISTRY.register("red_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> ORANGE_PILLOW_BLOCK = REGISTRY.register("orange_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> BROWN_PILLOW_BLOCK = REGISTRY.register("brown_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> YELLOW_PILLOW_BLOCK = REGISTRY.register("yellow_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> LIME_PILLOW_BLOCK = REGISTRY.register("lime_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> GREEN_PILLOW_BLOCK = REGISTRY.register("green_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> CYAN_PILLOW_BLOCK = REGISTRY.register("cyan_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> LIGHT_BLUE_PILLOW_BLOCK = REGISTRY.register("light_blue_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> BLUE_PILLOW_BLOCK = REGISTRY.register("blue_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> PURPLE_PILLOW_BLOCK = REGISTRY.register("purple_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> MAGENTA_PILLOW_BLOCK = REGISTRY.register("magenta_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> PINK_PILLOW_BLOCK = REGISTRY.register("pink_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("light_gray_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> GRAY_PILLOW_BLOCK = REGISTRY.register("gray_pillow_block", PillowBlock::new);
+	public static final DeferredBlock<Block> BLACK_PILLOW_BLOCK = REGISTRY.register("black_pillow_block", PillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_WHITE_PILLOW_BLOCK = REGISTRY.register("small_white_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_RED_PILLOW_BLOCK = REGISTRY.register("small_red_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_ORANGE_PILLOW_BLOCK = REGISTRY.register("small_orange_pillow_block", SmallPillowBlock::new);
@@ -187,5 +197,4 @@ public class ConcoctionModBlocks {
 	public static final DeferredBlock<Block> SMALL_LIGHT_GRAY_PILLOW_BLOCK = REGISTRY.register("small_light_gray_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_GRAY_PILLOW_BLOCK = REGISTRY.register("small_gray_pillow_block", SmallPillowBlock::new);
 	public static final DeferredBlock<Block> SMALL_BLACK_PILLOW_BLOCK = REGISTRY.register("small_black_pillow_block", SmallPillowBlock::new);
-	// End of user code block custom blocks
 }

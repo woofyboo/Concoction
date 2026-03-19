@@ -10,7 +10,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.tags.TagKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
-import org.spongepowered.asm.mixin.Unique;
 
 public class OvergrownHoeItem extends HoeItem {
 
@@ -91,5 +90,14 @@ public class OvergrownHoeItem extends HoeItem {
 	@Override
 	public int getBarColor(ItemStack stack) {
 		return Utils.getColor(stack);
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		if (slotChanged || oldStack.getItem() != newStack.getItem()) {
+			return true;
+		}
+
+		return newStack.getDamageValue() > oldStack.getDamageValue();
 	}
 }

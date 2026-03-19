@@ -1,10 +1,7 @@
-
-/*
-*    MCreator note: This file will be REGENERATED on each build.
-*/
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.item.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -18,6 +15,13 @@ import net.mcreator.concoction.ConcoctionMod;
 
 public class ConcoctionModItems {
 	public static final DeferredRegister.Items REGISTRY = DeferredRegister.createItems(ConcoctionMod.MODID);
+
+	static {
+		REGISTRY.addAlias(
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.LEGACY_REAPPER_BLOCK),
+				ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID, LegacyReapperIds.REAPPER_BLOCK));
+	}
+
 	public static final DeferredItem<Item> MINT = doubleBlock(ConcoctionModBlocks.MINT);
 	public static final DeferredItem<Item> MINT_BREW = REGISTRY.register("mint_brew", MintBrewItem::new);
 	public static final DeferredItem<Item> CHERRY = REGISTRY.register("cherry", CherryItem::new);
@@ -85,7 +89,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> ONION_BLOCK = block(ConcoctionModBlocks.ONION_BLOCK);
 	public static final DeferredItem<Item> GREEN_ONION_BLOCK = block(ConcoctionModBlocks.GREEN_ONION_BLOCK);
 	public static final DeferredItem<Item> COTTON_BLOCK = block(ConcoctionModBlocks.COTTON_BLOCK);
-	public static final DeferredItem<Item> REAPPER = REGISTRY.register("reapper", ReapperItem::new);
+	public static final DeferredItem<Item> REAPPER = REGISTRY.register(LegacyReapperIds.REAPPER, ReapperItem::new);
 	public static final DeferredItem<Item> SOULLAND = block(ConcoctionModBlocks.SOULLAND);
 	public static final DeferredItem<Item> WEIGHTED_SOULS_BUCKET = REGISTRY.register("weighted_souls_bucket", WeightedSoulsItem::new);
 	public static final DeferredItem<Item> SOUL_ICE = block(ConcoctionModBlocks.SOUL_ICE);
@@ -120,7 +124,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> SOAKED_RICE_BLOCK = block(ConcoctionModBlocks.SOAKED_RICE_BLOCK);
 	public static final DeferredItem<Item> MINT_BALE = block(ConcoctionModBlocks.MINT_BALE);
 	public static final DeferredItem<Item> PINECONE_BLOCK = block(ConcoctionModBlocks.PINECONE_BLOCK);
-	public static final DeferredItem<Item> REAPEPPER_BLOCK = block(ConcoctionModBlocks.REAPEPPER_BLOCK);
+	public static final DeferredItem<Item> REAPPER_BLOCK = block(ConcoctionModBlocks.REAPPER_BLOCK);
 	public static final DeferredItem<Item> CHERRY_BLOCK = block(ConcoctionModBlocks.CHERRY_BLOCK);
 	public static final DeferredItem<Item> SEA_SALT = REGISTRY.register("sea_salt", SeaSaltItem::new);
 	public static final DeferredItem<Item> SWEET_BERRIES_BLOCK = block(ConcoctionModBlocks.SWEET_BERRIES_BLOCK);
@@ -217,7 +221,6 @@ public class ConcoctionModItems {
     public static final DeferredItem<Item> HOT_CHOCOLATE = REGISTRY.register("hot_chocolate", HotChocolateItem::new);
     public static final DeferredItem<Item> TAHCHIN_BUCKET = REGISTRY.register("tahchin_bucket", TahchinBucketItem::new);
     public static final DeferredItem<Item> TAHCHIN_SLICE = REGISTRY.register("tahchin_slice", TahchinSliceItem::new);
-	// Start of user code block custom items
 	public static final DeferredItem<BlockItem> SAPONARIA_ITEM = REGISTRY.register("saponaria", () -> new BlockItem(ConcoctionModBlocks.SAPONARIA.get(), new Item.Properties()));
 	public static final DeferredItem<Item> SOAP = REGISTRY.register("soap", () -> new ItemNameBlockItem(ConcoctionModBlocks.SOAP_LAYER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> CHERRY_CAKE = block(ConcoctionModBlocks.CHERRY_CAKE, 1);
@@ -225,7 +228,7 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CHOCOLATE_CAKE = block(ConcoctionModBlocks.CHOCOLATE_CAKE, 1);
 	public static final DeferredItem<Item> CARROT_CAKE = block(ConcoctionModBlocks.CARROT_CAKE, 1);
 	public static final DeferredItem<Item> LINGONBERRY_CAKE = block(ConcoctionModBlocks.LINGONBERRY_CAKE, 1);
-	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register("reapper_seeds", () -> new ItemNameBlockItem(ConcoctionModBlocks.NETHER_PEPPER_CROP.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
+	public static final DeferredItem<Item> REAPPER_SEEDS = REGISTRY.register(LegacyReapperIds.REAPPER_SEEDS, () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_REAPPER.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> RICE = REGISTRY.register("rice", () -> new ItemNameBlockItem(ConcoctionModBlocks.CROP_RICE.get(), new Item.Properties().stacksTo(64).rarity(Rarity.COMMON)));
 	public static final DeferredItem<Item> MINT_CHOCOLATE_CAKE = block(ConcoctionModBlocks.MINT_CHOCOLATE_CAKE, 1);
     public static final DeferredItem<Item> WEEPING_ONION =
@@ -276,7 +279,6 @@ public class ConcoctionModItems {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().stacksTo(stackSize)));
 	}
 
-	// End of user code block custom items
 	private static DeferredItem<Item> block(DeferredHolder<Block, Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
 	}

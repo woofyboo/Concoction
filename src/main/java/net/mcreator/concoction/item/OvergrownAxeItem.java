@@ -51,7 +51,6 @@ public class OvergrownAxeItem extends AxeItem {
 
 	@Override
 	public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-		System.out.println(itemstack.getDamageValue() + " / AXE HIT / " + itemstack.getMaxDamage());
 
 		// Если прочность равна 1, инструмент не работает
 		if (itemstack.getMaxDamage() - itemstack.getDamageValue() <= 1) {
@@ -60,7 +59,6 @@ public class OvergrownAxeItem extends AxeItem {
 
 		// Проверяем после нанесения урона, не достигла ли прочность максимума
 		if (itemstack.getMaxDamage() - itemstack.getDamageValue() <= 2) {
-			System.out.println(itemstack.getDamageValue() + " / AXE ! HIT / " + itemstack.getMaxDamage());
 			itemstack.setDamageValue(itemstack.getMaxDamage() - 1);
 			return false;
 		}
@@ -70,7 +68,6 @@ public class OvergrownAxeItem extends AxeItem {
 
 	@Override
 	public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-		System.out.println(itemstack.getDamageValue() + " / AXE BLOCK / " + itemstack.getMaxDamage());
 
 		// Если прочность равна 1, инструмент не работает
 		if (itemstack.getMaxDamage() - itemstack.getDamageValue() <= 1) {
@@ -79,7 +76,6 @@ public class OvergrownAxeItem extends AxeItem {
 
 		// Проверяем после использования, не достигла ли прочность максимума
 		if (itemstack.getMaxDamage() - itemstack.getDamageValue() <= 2) {
-			System.out.println(itemstack.getDamageValue() + " / AXE ! BLOCK / " + itemstack.getMaxDamage());
 			itemstack.setDamageValue(itemstack.getMaxDamage() - 1);
 			return false;
 		}
@@ -90,5 +86,14 @@ public class OvergrownAxeItem extends AxeItem {
 	@Override
 	public int getBarColor(ItemStack stack) {
 		return Utils.getColor(stack);
+	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		if (slotChanged || oldStack.getItem() != newStack.getItem()) {
+			return true;
+		}
+
+		return newStack.getDamageValue() > oldStack.getDamageValue();
 	}
 }

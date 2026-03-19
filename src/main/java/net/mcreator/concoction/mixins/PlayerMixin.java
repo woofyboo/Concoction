@@ -94,15 +94,11 @@ public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;addExhaustion(F)V"), cancellable = true)
     private void onCauseFoodExhaustion(float exhaustionValue, CallbackInfo ci) {
         Player player = (Player) (Object) this;
-        if (player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
-            int dayTime = Math.floorMod(player.level().dayTime(), 24000);
-            if (((dayTime >= 0 && dayTime < 13000) || (dayTime >= 23000 && dayTime < 24000)) &&
-                    player.level().canSeeSky(player.blockPosition().above())) {
-                int effectLevel = Objects.requireNonNull(player.getEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)).getAmplifier();
-                player.getFoodData().addExhaustion(Math.max(exhaustionValue - (exhaustionValue * (0.3f + (effectLevel * 0.2f))), 0));
-                ci.cancel();
-                return;
-            }
+        if (Utils.isPhotosynthesisActive(player)) {
+            int effectLevel = Objects.requireNonNull(player.getEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)).getAmplifier();
+            player.getFoodData().addExhaustion(Math.max(exhaustionValue - (exhaustionValue * (0.3f + (effectLevel * 0.2f))), 0));
+            ci.cancel();
+            return;
         }
         if (player.hasEffect(ConcoctionModMobEffects.BITTERNESS)) {
             int effectLevel = player.getEffect(ConcoctionModMobEffects.BITTERNESS).getAmplifier();

@@ -39,7 +39,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Objects;
 
-import static net.mcreator.concoction.init.ConcoctionModBlocks.NETHER_PEPPER_CROP;
+import static net.mcreator.concoction.init.ConcoctionModBlocks.CROP_REAPPER;
 
 public class CropSpicyPepperBlock extends CropBlock {
 	public static final int MAX_AGE = 5;
@@ -64,7 +64,7 @@ public class CropSpicyPepperBlock extends CropBlock {
 
 		if (level.getBlockState(pos.below()).getBlock() instanceof SoullandBlock) {
 			int currentAge = this.getAge(state);
-			Block netherBlock = NETHER_PEPPER_CROP.get();
+			Block netherBlock = CROP_REAPPER.get();
 
 			if (netherBlock instanceof CropBlock netherCrop) {
 				int maxNetherAge = netherCrop.getMaxAge();

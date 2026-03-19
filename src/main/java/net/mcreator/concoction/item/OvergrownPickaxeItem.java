@@ -84,4 +84,13 @@ public class OvergrownPickaxeItem extends PickaxeItem {
 	public int getBarColor(ItemStack stack) {
 		return Utils.getColor(stack);
 	}
+
+	@Override
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		if (slotChanged || oldStack.getItem() != newStack.getItem()) {
+			return true;
+		}
+
+		return newStack.getDamageValue() > oldStack.getDamageValue();
+	}
 }

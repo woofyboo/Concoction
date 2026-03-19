@@ -2,18 +2,11 @@ package net.mcreator.concoction.block;
 
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.ButterChurnEntity;
-import net.mcreator.concoction.block.entity.CookingCauldronEntity;
-import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
 import net.mcreator.concoction.interfaces.IPlayerUnsuccessfulAttempts;
-import net.mcreator.concoction.mixins.PlayerMixin;
+import net.mcreator.concoction.recipe.RecipeInteractionType;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.mcreator.concoction.utils.Utils;
-import net.minecraft.advancements.AdvancementHolder;
-import net.minecraft.advancements.AdvancementProgress;
-import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -21,6 +14,7 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -43,8 +37,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
 
 public class ButterChurnBlock extends Block implements EntityBlock {
 	public static final DirectionProperty FACING = DirectionalBlock.FACING;
@@ -82,15 +74,8 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 
 			if (blockentity instanceof ButterChurnEntity butterChurn && pItem.getItem() instanceof ShovelItem &&
 					!butterChurn.hasCraftedResult() && butterChurn.hasRecipe()) {
-				if (pPlayer instanceof ServerPlayer _player) {
-					AdvancementHolder _adv = _player.server.getAdvancements().get(ResourceLocation.parse("concoction:you_spin_me_round"));
-					if (_adv != null) {
-						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
-						if (!_ap.isDone()) {
-							for (String criteria : _ap.getRemainingCriteria())
-								_player.getAdvancements().award(_adv, criteria);
-						}
-					}
+				if (pPlayer instanceof ServerPlayer serverPlayer) {
+					Utils.grantAdvancement(serverPlayer, "concoction:you_spin_me_round");
 				}
 				pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_CHURN_SPIN.get(),
 						SoundSource.BLOCKS, 1.0F, (float)Math.random()+0.5F);
@@ -105,7 +90,6 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 					countPlayer.concoction$setUnsuccessfulAttempts(0);
 
 					butterChurn.craftItem();
-//                            LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
 					pLevel.playSound(null, pPos, ConcoctionModSounds.BUTTER_THICKENS.get(),
 							SoundSource.BLOCKS, 1.0F, 1.0F);
 					pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, true));
@@ -122,7 +106,7 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 						countPlayer.concoction$incrementUnsuccessfulAttempts();
 
 						if (countPlayer.concoction$getUnsuccessfulAttempts() >= 24) {
-							Utils.addAchievement(player, "concoction:unlucky_butter_churn");
+							Utils.grantAdvancement(player, "concoction:unlucky_butter_churn");
 							countPlayer.concoction$setUnsuccessfulAttempts(0);
 						}
 					}
@@ -131,17 +115,18 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 			}
 
 			else if (blockentity instanceof ButterChurnEntity butterChurn && butterChurn.hasCraftedResult()) {
-				Map<String, String> result = butterChurn.getCraftResult();
-				Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(result.get("id")));
-				switch (result.get("interactionType")) {
-					case "hand":
+				RecipeOutputData result = butterChurn.getCraftResult();
+				Item item = result.item();
+				switch (result.interaction()) {
+					case HAND:
 						if (pItem.getItem().equals(Items.AIR) || (pItem.getItem().equals(item) && pItem.getCount() < pItem.getMaxStackSize())) {
-							if (!pPlayer.addItem(new ItemStack(item)))
-								pPlayer.drop(new ItemStack(item), false);
+							ItemStack extractedItem = result.toSingleStack();
+							if (!pPlayer.addItem(extractedItem))
+								pPlayer.drop(extractedItem, false);
 							pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP,
 									SoundSource.BLOCKS, 1.0F, (float)Math.random());
-							result = this.decreesItemCountFromResult(result);
-							if (result.get("count").isEmpty()) {
+							result = result.decrement();
+							if (result.isEmpty()) {
 								pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, false));
 								butterChurn.setChanged();
 							}
@@ -149,16 +134,16 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 						}
 						break;
 
-					case "bottle":
+					case BOTTLE:
 						if (pItem.getItem().equals(Items.GLASS_BOTTLE)) {
-							if (!pPlayer.addItem(new ItemStack(item)))
-								pPlayer.drop(new ItemStack(item), false);
+							ItemStack extractedItem = result.toSingleStack();
+							if (!pPlayer.addItem(extractedItem))
+								pPlayer.drop(extractedItem, false);
 							if (!pPlayer.isCreative()) pItem.shrink(1);
-//							LayeredCauldronBlock.lowerFillLevel(pState, pLevel, pPos);
 							pLevel.playSound(null, pPos, SoundEvents.BOTTLE_FILL,
 									SoundSource.BLOCKS, 1.0F, (float)Math.random()+0.5F);
-							result = this.decreesItemCountFromResult(result);
-							if (result.get("count").isEmpty()) {
+							result = result.decrement();
+							if (result.isEmpty()) {
 								pLevel.setBlockAndUpdate(pPos, pState.setValue(FULL, false));
 								butterChurn.setChanged();
 							}
@@ -167,22 +152,19 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 						break;
 
 					default:
-						ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", butterChurn.getCraftResult().get("interactionType"));
+						ConcoctionMod.LOGGER.warn("Unknown interaction type: {}", butterChurn.getCraftResult().interactionType());
 						break;
 				}
-//                if (cauldron.getCraftResult().get("id").isEmpty()) pLevel.setBlockAndUpdate(pPos, pState.setValue(LIT, false));
 				return ItemInteractionResult.CONSUME;
 			}
 
 			if (blockentity instanceof ButterChurnEntity butter) {
 				if (pItem.getItem().equals(Items.AIR)) {
-//                    if (pPlayer.isShiftKeyDown()) pPlayer.addItem(cauldron.takeItemOnClick(true));
 					if (pPlayer.addItem(butter.takeItemOnClick(true)))
 						pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP,
 							SoundSource.BLOCKS, 1.0F, (float)Math.random());
 				} else {
-//                    if (pPlayer.isShiftKeyDown()) cauldron.addItemOnClick(pItem, pItem.getCount(), pPlayer.isCreative());
-					if (butter.addItemOnClick(pItem, 1, pPlayer.isCreative()))
+					if (butter.addItemOnClick(pItem, pItem.getCount(), pPlayer.isCreative()))
 						pLevel.playSound(null, pPos, SoundEvents.ITEM_PICKUP,
 							SoundSource.BLOCKS, 1.0F, (float)Math.random());
 					else pLevel.playSound(null, pPos, ConcoctionModSounds.BARREL_OVERFILLED.get(),
@@ -191,24 +173,6 @@ public class ButterChurnBlock extends Block implements EntityBlock {
 			}
 
 			return ItemInteractionResult.CONSUME;
-		}
-	}
-
-	public Map<String, String>  decreesItemCountFromResult(Map<String, String> result) {
-		int new_count = Integer.parseInt(result.get("count"))-1;
-		if (new_count <= 0) {
-			return Map.ofEntries(
-					Map.entry("id",""),
-					Map.entry("count",""),
-					Map.entry("interactionType","")
-			);
-
-		} else {
-			return Map.ofEntries(
-					Map.entry("id",result.get("id")),
-					Map.entry("count",String.valueOf(new_count)),
-					Map.entry("interactionType",result.get("interactionType"))
-			);
 		}
 	}
 

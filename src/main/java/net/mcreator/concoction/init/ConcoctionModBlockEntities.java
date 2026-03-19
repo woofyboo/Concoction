@@ -1,7 +1,4 @@
 
-/*
-*    MCreator note: This file will be REGENERATED on each build.
-*/
 package net.mcreator.concoction.init;
 
 import net.mcreator.concoction.block.entity.*;
@@ -36,7 +33,6 @@ public class ConcoctionModBlockEntities {
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CRIMSON_KITCHEN_CABINET = register("crimson_kitchen_cabinet", ConcoctionModBlocks.CRIMSON_KITCHEN_CABINET, CrimsonKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> WARPED_KITCHEN_CABINET = register("warped_kitchen_cabinet", ConcoctionModBlocks.WARPED_KITCHEN_CABINET, WarpedKitchenCabinetBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> CINNAMON_KITCHEN_CABINET = register("cinnamon_kitchen_cabinet", ConcoctionModBlocks.CINNAMON_KITCHEN_CABINET, CinnamonKitchenCabinetBlockEntity::new);
-	// Start of user code block custom block entities
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> COOKING_CAULDRON = register("cooking_cauldron", Blocks.WATER_CAULDRON, CookingCauldronEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> OVEN_BLOCK = register("oven_block", ConcoctionModBlocks.OVEN, OvenBlockEntity::new);
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> BUTTER_CHURN = register("butter_churn", ConcoctionModBlocks.BUTTER_CHURN, ButterChurnEntity::new);
@@ -63,7 +59,6 @@ public class ConcoctionModBlockEntities {
 		return REGISTRY.register(registryname, () -> BlockEntityType.Builder.of(supplier, block).build(null));
 	}
 
-	// End of user code block custom block entities
 	private static DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> register(String registryname, DeferredHolder<Block, Block> block, BlockEntityType.BlockEntitySupplier<?> supplier) {
 		return REGISTRY.register(registryname, () -> BlockEntityType.Builder.of(supplier, block.get()).build(null));
 	}
@@ -71,17 +66,21 @@ public class ConcoctionModBlockEntities {
 	@SubscribeEvent
 	public static void registerCapabilities(RegisterCapabilitiesEvent event) {
 		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CROP_MINT.get(), (blockEntity, side) -> ((CropMintBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, OAK_KITCHEN_CABINET.get(), (blockEntity, side) -> ((OakKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, SPRUCE_KITCHEN_CABINET.get(), (blockEntity, side) -> ((SpruceKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BIRCH_KITCHEN_CABINET.get(), (blockEntity, side) -> ((BirchKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ACACIA_KITCHEN_CABINET.get(), (blockEntity, side) -> ((AcaciaKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, JUNGLE_KITCHEN_CABINET.get(), (blockEntity, side) -> ((JungleKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, DARK_OAK_KITCHEN_CABINET.get(), (blockEntity, side) -> ((DarkOakKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, MANGROVE_KITCHEN_CABINET.get(), (blockEntity, side) -> ((MangroveKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CHERRY_KITCHEN_CABINET.get(), (blockEntity, side) -> ((CherryKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, BAMBOO_KITCHEN_CABINET.get(), (blockEntity, side) -> ((BambooKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CRIMSON_KITCHEN_CABINET.get(), (blockEntity, side) -> ((CrimsonKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, WARPED_KITCHEN_CABINET.get(), (blockEntity, side) -> ((WarpedKitchenCabinetBlockEntity) blockEntity).getItemHandler());
-		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, CINNAMON_KITCHEN_CABINET.get(), (blockEntity, side) -> ((CinnamonKitchenCabinetBlockEntity) blockEntity).getItemHandler());
+		registerKitchenCabinetCapability(event, OAK_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, SPRUCE_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, BIRCH_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, ACACIA_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, JUNGLE_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, DARK_OAK_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, MANGROVE_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, CHERRY_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, BAMBOO_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, CRIMSON_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, WARPED_KITCHEN_CABINET);
+		registerKitchenCabinetCapability(event, CINNAMON_KITCHEN_CABINET);
+	}
+
+	private static void registerKitchenCabinetCapability(RegisterCapabilitiesEvent event, DeferredHolder<BlockEntityType<?>, BlockEntityType<?>> blockEntityType) {
+		event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, blockEntityType.get(), (blockEntity, side) -> ((AbstractKitchenCabinetBlockEntity) blockEntity).getItemHandler());
 	}
 }

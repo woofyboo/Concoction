@@ -1,19 +1,15 @@
 package net.mcreator.concoction.block;
 
 import io.netty.buffer.Unpooled;
-import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.block.entity.CookingCauldronEntity;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModSounds;
-import net.mcreator.concoction.utils.Utils;
-import net.mcreator.concoction.world.inventory.BoilingCauldronInterfaceMenu;
+import net.mcreator.concoction.world.inventory.BoilingCauldronMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
@@ -35,12 +31,10 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.biome.Biome;
 
-
-import java.util.Map;
-
 import static java.lang.Math.pow;
 
 public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock {
+    public static final int REQUIRED_WATER_LEVEL = 3;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty COOKING = BooleanProperty.create("cooking");
     private long lastBoilingSoundTime = 0;
@@ -60,18 +54,25 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
     }
 
     private boolean isHotBlock(BlockState state) {
-    Block block = state.getBlock();
+        Block block = state.getBlock();
 
-    return block instanceof FireBlock
-            || block == Blocks.LAVA
-            || block instanceof MagmaBlock
-            || CampfireBlock.isLitCampfire(state)
-            || block == Blocks.SOUL_FIRE
-            || block == Blocks.SOUL_CAMPFIRE;
-}
+        return block instanceof FireBlock
+                || block == Blocks.LAVA
+                || block instanceof MagmaBlock
+                || CampfireBlock.isLitCampfire(state)
+                || block == Blocks.SOUL_FIRE
+                || block == Blocks.SOUL_CAMPFIRE;
+    }
 
+    public static boolean isReadyForCooking(BlockState state) {
+        return state.hasProperty(LEVEL) && state.getValue(LEVEL) >= REQUIRED_WATER_LEVEL;
+    }
 
-
+    private static void dropCookingInventoryIfInvalid(Level level, BlockPos pos, BlockState state) {
+        if (!level.isClientSide && !isReadyForCooking(state) && level.getBlockEntity(pos) instanceof CookingCauldronEntity cauldron) {
+            cauldron.dropAllContents();
+        }
+    }
 
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
@@ -82,6 +83,10 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
 
         if (lit && !state.getValue(LIT)) {
             level.setBlock(pos, state.setValue(LIT, true), Block.UPDATE_CLIENTS);
+        }
+
+        if (oldState.is(this) && isReadyForCooking(oldState) && !isReadyForCooking(state)) {
+            dropCookingInventoryIfInvalid(level, pos, state);
         }
     }
 
@@ -182,9 +187,25 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
 
     @Override
     public ItemInteractionResult useItemOn(ItemStack item, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        boolean isBoiling = state.getValue(COOKING);
+        boolean wasReadyForCooking = isReadyForCooking(state);
+        if (!isBoiling) {
+            ItemInteractionResult vanillaResult = super.useItemOn(item, state, level, pos, player, hand, hit);
+            BlockState currentState = level.getBlockState(pos);
+            if (wasReadyForCooking && currentState.is(this) && !isReadyForCooking(currentState)) {
+                dropCookingInventoryIfInvalid(level, pos, currentState);
+            }
+            if (vanillaResult.consumesAction()) {
+                return vanillaResult;
+            }
+            if (!isReadyForCooking(currentState)) {
+                return vanillaResult;
+            }
+        }
+
         if (level.isClientSide) {
             return ItemInteractionResult.SUCCESS;
-        } else if (!player.isShiftKeyDown()) {
+        } else if (!player.isShiftKeyDown() && isReadyForCooking(level.getBlockState(pos))) {
             MenuProvider containerProvider = new MenuProvider() {
                 @Override
                 public Component getDisplayName() {
@@ -195,7 +216,7 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
                 public AbstractContainerMenu createMenu(int windowId, Inventory inventory, Player playerEntity) {
                     FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
                     packetBuffer.writeBlockPos(pos);
-                    return new BoilingCauldronInterfaceMenu(windowId, inventory, packetBuffer);
+                    return new BoilingCauldronMenu(windowId, inventory, packetBuffer);
                 }
             };
 
@@ -203,29 +224,10 @@ public class CookingCauldron extends LayeredCauldronBlock implements EntityBlock
             return ItemInteractionResult.SUCCESS;
         }
 
-        return ItemInteractionResult.CONSUME;
+        return isBoiling ? ItemInteractionResult.CONSUME : super.useItemOn(item, level.getBlockState(pos), level, pos, player, hand, hit);
     }
 
-    public Map<String, String> decreesItemCountFromResult(Map<String, String> result) {
-        int newCount = Integer.parseInt(result.get("count")) - 1;
-        if (newCount <= 0) {
-            return Map.of(
-                    "id", "",
-                    "count", "",
-                    "interactionType", "",
-                    "experience", "0"
-            );
-        } else {
-            return Map.of(
-                    "id", result.get("id"),
-                    "count", String.valueOf(newCount),
-                    "interactionType", result.get("interactionType"),
-                    "experience", result.get("experience")
-            );
-        }
-    }
-
-        @Override
+    @Override
     public void onRemove(BlockState oldState, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         Containers.dropContentsOnDestroy(oldState, newState, level, pos);
         super.onRemove(oldState, level, pos, newState, isMoving);

@@ -1,6 +1,6 @@
 package net.mcreator.concoction.utils;
 
-import net.mcreator.concoction.block.RiceBlockBlock;
+import net.mcreator.concoction.block.RiceBlock;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.minecraft.advancements.AdvancementHolder;
@@ -23,6 +23,7 @@ import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BucketPickup;
@@ -35,9 +36,12 @@ public class Utils {
 
     private static final Direction[] ALL_DIRECTIONS = Direction.values();
     private static final ResourceLocation SOUL_ESCAPE_SOUND = ResourceLocation.parse("particle.soul_escape");
+    private static final int SUNLIGHT_SEARCH_RADIUS = 2;
+    private static final int SUNLIGHT_SEARCH_HEIGHT = 2;
+    private static final int MIN_SOFT_SKYLIGHT = 13;
 
-    public static void addAchievement(ServerPlayer player, String achievement) {
-        AdvancementHolder adv = player.server.getAdvancements().get(ResourceLocation.parse(achievement));
+    public static void grantAdvancement(ServerPlayer player, String advancementId) {
+        AdvancementHolder adv = player.server.getAdvancements().get(ResourceLocation.parse(advancementId));
         if (adv != null) {
             AdvancementProgress _ap = player.getAdvancements().getOrStartProgress(adv);
             if (!_ap.isDone()) {
@@ -47,21 +51,72 @@ public class Utils {
         }
     }
 
+    @Deprecated(forRemoval = false)
+    public static void addAchievement(ServerPlayer player, String achievement) {
+        grantAdvancement(player, achievement);
+    }
+
     public static int getColor(ItemStack stack) {
-        float durabilityPercent = 1.0f - (float)stack.getDamageValue() / stack.getMaxDamage();
-        if (durabilityPercent < 0.2f) {
+        if (stack.getMaxDamage() <= 0) {
+            return 0xFFCB4C;
+        }
+
+        int barWidth = Math.round(13.0f - (float) stack.getDamageValue() * 13.0f / stack.getMaxDamage());
+        float displayedPercent = barWidth / 13.0f;
+
+        if (displayedPercent < 0.2f) {
             return 0x5E4E87;
-        } else if (durabilityPercent < 0.36f) {
+        } else if (displayedPercent < 0.36f) {
             return 0x847799;
-        } else if (durabilityPercent < 0.52f) {
+        } else if (displayedPercent < 0.52f) {
             return 0xB6ACAF;
-        } else if (durabilityPercent < 0.68f) {
+        } else if (displayedPercent < 0.68f) {
             return 0xD0C4B1;
-        } else if (durabilityPercent < 0.84f) {
+        } else if (displayedPercent < 0.84f) {
             return 0xDBC89E;
         } else {
             return 0xFFCB4C;
         }
+    }
+
+    public static boolean isSunPoweredTime(Level level) {
+        return level.isDay();
+    }
+
+    public static boolean hasSoftSunExposure(Level level, BlockPos origin) {
+        BlockPos headPos = origin.above();
+        if (level.canSeeSky(headPos) || level.getBrightness(LightLayer.SKY, headPos) >= MIN_SOFT_SKYLIGHT) {
+            return true;
+        }
+
+        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+        int radiusSquared = SUNLIGHT_SEARCH_RADIUS * SUNLIGHT_SEARCH_RADIUS;
+
+        for (int dy = 0; dy <= SUNLIGHT_SEARCH_HEIGHT; dy++) {
+            for (int dx = -SUNLIGHT_SEARCH_RADIUS; dx <= SUNLIGHT_SEARCH_RADIUS; dx++) {
+                for (int dz = -SUNLIGHT_SEARCH_RADIUS; dz <= SUNLIGHT_SEARCH_RADIUS; dz++) {
+                    if (dx * dx + dz * dz > radiusSquared) {
+                        continue;
+                    }
+
+                    cursor.set(origin.getX() + dx, origin.getY() + dy, origin.getZ() + dz);
+                    if (level.canSeeSky(cursor)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isPlayerSunPowered(Player player) {
+        return isSunPoweredTime(player.level()) && hasSoftSunExposure(player.level(), player.blockPosition());
+    }
+
+    public static boolean isPhotosynthesisActive(Player player) {
+        return player.hasEffect(net.mcreator.concoction.init.ConcoctionModMobEffects.PHOTOSYNTHESIS)
+                && isPlayerSunPowered(player);
     }
 
     public static boolean touchesLiquid(BlockGetter level, BlockPos blockPos, BlockState state) {
@@ -89,7 +144,7 @@ public class Utils {
     
     
 
-    public static void tryAbsorbWater(Level level, BlockPos blockPos, RiceBlockBlock block) {
+    public static void tryAbsorbWater(Level level, BlockPos blockPos, RiceBlock block) {
         if (removeWaterBreadthFirstSearch(level, blockPos, block)) {
             level.setBlock(blockPos, ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 2);
             level.playSound((Player)null, blockPos, SoundEvents.SPONGE_ABSORB, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -118,7 +173,7 @@ public class Utils {
         );
     }
 
-    public static boolean removeWaterBreadthFirstSearch(Level level, BlockPos blockPos, RiceBlockBlock block) {
+    public static boolean removeWaterBreadthFirstSearch(Level level, BlockPos blockPos, RiceBlock block) {
         BlockState spongeState = level.getBlockState(blockPos);
         return BlockPos.breadthFirstTraversal(blockPos, 5, 20, (p_277519_, p_277492_) -> {
             for(Direction direction : ALL_DIRECTIONS) {

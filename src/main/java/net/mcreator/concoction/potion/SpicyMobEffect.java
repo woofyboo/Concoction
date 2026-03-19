@@ -92,14 +92,14 @@ public class SpicyMobEffect extends MobEffect {
                     .toList();
 
                 if (harmful.size() >= 5) {
-                    Utils.addAchievement(player, "concoction:spicy_remove_many_debuffs");
+                    Utils.grantAdvancement(player, "concoction:spicy_remove_many_debuffs");
                 }
 
                 // Снимаем вредные эффекты (эффект «острое очищает»)
                 harmful.forEach(pair -> entity.removeEffect(pair.getFirst()));
 
                 if (player.isOnFire()) {
-                    Utils.addAchievement(player, "concoction:spicy_on_fire");
+                    Utils.grantAdvancement(player, "concoction:spicy_on_fire");
                 }
             }
         }

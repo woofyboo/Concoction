@@ -3,6 +3,7 @@ package net.mcreator.concoction.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -94,19 +95,15 @@ public class ConcoctionHUDOverlays {
                             && player.isHurt()
                             && stats.getFoodLevel() >= 18;
 
-            if (player.hasEffect(ConcoctionModMobEffects.PHOTOSYNTHESIS)) {
-                int dayTime = Math.floorMod(player.level().dayTime(), 24000);
-                if (((dayTime >= 0 && dayTime < 13000) || (dayTime >= 23000 && dayTime < 24000))
-                        && player.level().canSeeSky(player.blockPosition().above())) {
-                    drawPhotosynthesisOverlay(
-                            stats,
-                            minecraft,
-                            guiGraphics,
-                            right,
-                            top - foodIconsOffset,
-                            isPlayerHealingWithSaturation
-                    );
-                }
+            if (Utils.isPhotosynthesisActive(player)) {
+                drawPhotosynthesisOverlay(
+                        stats,
+                        minecraft,
+                        guiGraphics,
+                        right,
+                        top - foodIconsOffset,
+                        isPlayerHealingWithSaturation
+                );
             }
         }
     }

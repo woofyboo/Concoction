@@ -10,9 +10,6 @@ displayURL="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 credits="Sebsish, woofyboo"
 authors="Sebsish, woofyboo"
 
-# Start of user code block mod configuration
-# End of user code block mod configuration
-
 [[dependencies.concoction]]
     modId="neoforge"
     type="required"
@@ -26,6 +23,3 @@ authors="Sebsish, woofyboo"
     versionRange="[1.20.4]"
     ordering="NONE"
     side="BOTH"
-
-
-

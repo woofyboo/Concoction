@@ -59,7 +59,7 @@ public abstract class ItemEntitySlideTrackerMixin {
             UUID ownerId = nbt.getUUID("concoction_owner");
             ServerPlayer owner = level.getServer().getPlayerList().getPlayer(ownerId);
             if (owner != null) {
-                Utils.addAchievement(owner, "concoction:slippery_slope");
+                Utils.grantAdvancement(owner, "concoction:slippery_slope");
             }
             // очищаем, чтобы не спамить повторно
             nbt.remove("concoction_owner");

@@ -1,50 +1,35 @@
 package net.mcreator.concoction.block.entity;
 
-import com.google.gson.Gson;
-import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
+import net.mcreator.concoction.recipe.ContainerRemainderHelper;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
 import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipeInput;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
-import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static java.lang.Math.min;
 
-public class ButterChurnEntity extends RandomizableContainerBlockEntity {
+public class ButterChurnEntity extends AbstractSyncedContainerBlockEntity {
+    private static final String CRAFT_RESULT_TAG = "churn.craft_result";
+
     private final int ContainerSize = 1;
     private RecipeHolder<ButterChurnRecipe> recipe = null;
-    private Map<String, String> craftResult = Map.ofEntries(
-            Map.entry("id",""),
-            Map.entry("count",""),
-            Map.entry("interactionType","")
-    );
+    private RecipeOutputData craftResult = RecipeOutputData.EMPTY;
 
     private NonNullList<ItemStack> items = NonNullList.withSize(
             this.ContainerSize,
@@ -55,12 +40,11 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
         super(ConcoctionModBlockEntities.BUTTER_CHURN.get(), pos, state);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        this.craftResult = (new Gson()).fromJson(tag.getString("churn.craft_result"), HashMap.class);
+        this.craftResult = RecipeOutputData.fromContainerTag(tag, CRAFT_RESULT_TAG);
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
         }
@@ -70,7 +54,7 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putString("churn.craft_result", (new Gson()).toJson(this.craftResult));
+        this.craftResult.saveToContainerTag(tag, CRAFT_RESULT_TAG);
 
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
@@ -113,25 +97,27 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
     //Item add to container methods
     @SuppressWarnings("UnusedReturnValue")
     public boolean addItemOnClick(ItemStack addedItem, int count, boolean isCreative) {
-        boolean flag = false;
-        ItemStack itemstack = this.getItem(0);
-        if (itemstack.isEmpty()) {
-            this.setItem(0, isCreative ? addedItem.copyWithCount(1) : addedItem.split(count));
-            flag = true;
+        int toAdd = getAddableCount(addedItem, count);
+        if (toAdd <= 0) {
+            return false;
         }
 
-        else if (ItemStack.isSameItemSameComponents(itemstack, addedItem) && itemstack.getCount() < 8) {
-            int to_add = min(count, 8-itemstack.getCount());
-            itemstack.grow(to_add);
-            if (!isCreative) addedItem.shrink(to_add);
-            flag = true;
+        ItemStack currentStack = this.getItem(0);
+        if (currentStack.isEmpty()) {
+            this.setItem(0, addedItem.copyWithCount(toAdd));
+        } else {
+            currentStack.grow(toAdd);
+            this.setChanged();
         }
-//        if (flag) this.resetProgress();
-        return flag;
+
+        if (!isCreative) {
+            addedItem.shrink(toAdd);
+        }
+
+        return true;
     }
 
     public ItemStack takeItemOnClick(boolean takeAll) {
-//        if (this.isCooking) return ItemStack.EMPTY;
         ItemStack returnStack = ItemStack.EMPTY;
 
         ItemStack itemstack = this.items.get(0);
@@ -143,7 +129,6 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
                 returnStack = itemstack.split(1);
             }
             this.setChanged();
-//                this.resetProgress();
             return returnStack;
         }
 
@@ -151,64 +136,45 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
     }
 
     public void craftItem() {
-        //ConcoctionMod.LOGGER.info("Attempting to craft...");
         NonNullList<ItemStack> returned_items = checkReturnedItems();
         this.clearContent();
         if (!returned_items.stream().allMatch(ItemStack::isEmpty)) {
             this.setItems(returned_items);
-            //ConcoctionMod.LOGGER.info("Returned items to churn: " + returned_items);
         }
         this.craftResult = this.recipe.value().getOutput();
-        //ConcoctionMod.LOGGER.info("Crafting result: " + this.craftResult);
     }
 
     private NonNullList<ItemStack> checkReturnedItems() {
-        //ConcoctionMod.LOGGER.info("Checking for items to return...");
         NonNullList<ItemStack> returned_items = NonNullList.withSize(this.ContainerSize, ItemStack.EMPTY);
         ItemStack itemstack = this.items.getFirst();
-        //ConcoctionMod.LOGGER.info("Item in churn: " + itemstack);
 
-        if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:buckets")))) {
-            returned_items.set(0, new ItemStack(Items.BUCKET, itemstack.getCount()));
-            //ConcoctionMod.LOGGER.info("Returning " + itemstack.getCount() + " buckets");
-        } else if (itemstack.is(ItemTags.create(ResourceLocation.parse("c:bottles")))) {
-            returned_items.set(0, new ItemStack(Items.GLASS_BOTTLE, itemstack.getCount()));
-            //ConcoctionMod.LOGGER.info("Returning " + itemstack.getCount() + " glass bottles");
-        } else if (itemstack.getItem().hasCraftingRemainingItem()) { // Fallback for other items
-            Item remainder = itemstack.getItem().getCraftingRemainingItem();
-            if (remainder != null) {
-                ItemStack returnedItem = new ItemStack(remainder, itemstack.getCount());
-                returned_items.set(0, returnedItem);
-                //ConcoctionMod.LOGGER.info("Crafting remainder from hasCraftingRemainingItem(): " + returnedItem);
-            } else {
-                //ConcoctionMod.LOGGER.warn("Item " + itemstack.getItem() + " has hasCraftingRemainingItem() but returns null. Not returning anything.");
-            }
+        ItemStack returnedItem = ContainerRemainderHelper.getRemainder(itemstack, itemstack.getCount(), false);
+        if (!returnedItem.isEmpty()) {
+            returned_items.set(0, returnedItem);
         }
         return returned_items;
     }
 
     public boolean hasCraftedResult() {
-        return !this.craftResult.get("id").isEmpty();
+        return !this.craftResult.isEmpty();
     }
 
-    public Map<String, String> getCraftResult() {
+    public RecipeOutputData getCraftResult() {
         return this.craftResult;
     }
 
-    public void setCraftResult(Map<String, String> result) {
-        this.craftResult = result;
+    public void setCraftResult(RecipeOutputData result) {
+        this.craftResult = result == null ? RecipeOutputData.EMPTY : result;
         this.setChanged();
     }
 
     public boolean hasRecipe() {
         Optional<RecipeHolder<ButterChurnRecipe>> recipe = getCurrentRecipe();
         if(recipe.isEmpty()) {
-            //ConcoctionMod.LOGGER.info("No recipe found for: " + this.getItems());
             return false;
         }
 
         this.recipe = recipe.get();
-        //ConcoctionMod.LOGGER.info("Recipe found: " + this.recipe.id());
         return true;
     }
 
@@ -216,6 +182,32 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
         return this.level.getRecipeManager()
                 .getRecipeFor(ConcoctionModRecipes.BUTTER_CHURN_RECIPE_TYPE.get(),
                         new ButterChurnRecipeInput(this.getBlockState(), this.getItems()), level);
+    }
+
+    private int getAddableCount(ItemStack addedItem, int requestedCount) {
+        if (addedItem.isEmpty() || requestedCount <= 0 || this.level == null || this.hasCraftedResult()) {
+            return 0;
+        }
+
+        if (!isRecipeIngredient(addedItem)) {
+            return 0;
+        }
+
+        ItemStack currentStack = this.getItem(0);
+        if (!currentStack.isEmpty() && !ItemStack.isSameItemSameComponents(currentStack, addedItem)) {
+            return 0;
+        }
+
+        int freeSpace = currentStack.isEmpty() ? 8 : 8 - currentStack.getCount();
+        return Math.max(0, Math.min(requestedCount, freeSpace));
+    }
+
+    private boolean isRecipeIngredient(ItemStack stack) {
+        return this.level.getRecipeManager()
+                .getAllRecipesFor(ConcoctionModRecipes.BUTTER_CHURN_RECIPE_TYPE.get())
+                .stream()
+                .map(RecipeHolder::value)
+                .anyMatch(recipe -> recipe.getInputItems().stream().anyMatch(ingredient -> ingredient.test(stack)));
     }
 
     // Whether the container is considered "still valid" for the given player. For example, chests and
@@ -228,48 +220,16 @@ public class ButterChurnEntity extends RandomizableContainerBlockEntity {
     // Clear the internal storage, setting all slots to empty again.
     @Override
     public void clearContent() {
-        items.clear();
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         this.setChanged();
     }
 
     @Override
-    public void setChanged() {
-        super.setChanged();
-        // This will send the block entity data to the client every time the block entity is marked as changed.
-        // This is useful for syncing data between the server and client.
-        if (this.level != null && !this.level.isClientSide) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
-        }
+    protected void writeClientState(CompoundTag tag) {
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag, registries);
-        return tag;
-    }
-
-    // Return our packet here. This method returning a non-null result tells the game to use this packet for syncing.
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        // The packet uses the CompoundTag returned by #getUpdateTag. An alternative overload of #create exists
-        // that allows you to specify a custom update tag, including the ability to omit data the client might not need.
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    // Optionally: Run some custom logic when the packet is received.
-    // The super/default implementation forwards to #loadAdditional.
-    @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
-        super.onDataPacket(connection, packet, registries);
-        // Do whatever you need to do here.
-    }
-
-    // Handle a received update tag here. The default implementation calls #loadAdditional here,
-    // so you do not need to override this method if you don't plan to do anything beyond that.
-    @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-        super.handleUpdateTag(tag, registries);
+    protected void readClientState(CompoundTag tag) {
     }
 
     @Override

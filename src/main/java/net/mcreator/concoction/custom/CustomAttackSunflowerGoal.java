@@ -94,7 +94,7 @@ public class CustomAttackSunflowerGoal extends Goal {
                         serverLevel.getPlayers(player ->
                                 player.distanceToSqr(zombiePos.getX(), zombiePos.getY(), zombiePos.getZ()) <= 64
                         ).forEach(player -> {
-                            Utils.addAchievement(player, "concoction:sunstruck_transformed");
+                            Utils.grantAdvancement(player, "concoction:sunstruck_transformed");
                         });
                         if (this.zombie.isBaby() && sunstruck instanceof SunstruckEntity sunstruckEntity){
                             sunstruckEntity.setBaby(true);

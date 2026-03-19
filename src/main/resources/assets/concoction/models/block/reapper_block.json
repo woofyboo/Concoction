@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "concoction:block/repepper_top",
+    "up": "concoction:block/repepper_top",
+    "north": "concoction:block/repepper_side",
+    "east": "concoction:block/repepper_side",
+    "south": "concoction:block/repepper_side",
+    "west": "concoction:block/repepper_side",
+    "particle": "concoction:block/repepper_top"
+  },
+  "render_type": "solid"
+}

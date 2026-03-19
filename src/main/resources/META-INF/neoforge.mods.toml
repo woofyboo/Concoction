@@ -11,9 +11,6 @@ credits="Sebsish, woofyboo, AmperLover"
 authors="Sebsish, woofyboo, AmperLover"
 displayTest="IGNORE_SERVER_VERSION"
 
-# Start of user code block mod configuration
-# End of user code block mod configuration
-
 [[dependencies.concoction]]
 modId="neoforge"
 type="required"
@@ -28,11 +25,5 @@ versionRange="[1.21.1]"
 ordering="AFTER"
 side="BOTH"
 
-
-
-
-# Start of user code block dependencies configuration
 [[mixins]]
 config="concoction.mixins.json"
-
-# End of user code block dependencies configuration

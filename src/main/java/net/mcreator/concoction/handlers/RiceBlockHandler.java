@@ -1,6 +1,6 @@
 package net.mcreator.concoction.handlers;
 
-import net.mcreator.concoction.block.RiceBlockBlock;
+import net.mcreator.concoction.block.RiceBlock;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.init.ConcoctionModEntities;
@@ -33,10 +33,9 @@ public class RiceBlockHandler {
                 Block block = fallingBlock.getBlockState().getBlock();
                 if (block == ConcoctionModBlocks.RICE_BLOCK.get()) {
                     if (Utils.touchesLiquid(event.getEntity().level(), event.getEntity().blockPosition(), block.defaultBlockState())) {
-                        //System.out.println(event.getEntity().blockPosition());
                         fallingBlock.remove(Entity.RemovalReason.DISCARDED);
                         event.getEntity().level().setBlock(event.getEntity().blockPosition(), ConcoctionModBlocks.SOAKED_RICE_BLOCK.get().defaultBlockState(), 3);
-                        Utils.tryAbsorbWater(event.getEntity().level(), fallingBlock.getOnPos(), (RiceBlockBlock) block);
+                        Utils.tryAbsorbWater(event.getEntity().level(), fallingBlock.getOnPos(), (RiceBlock) block);
                     }
                 }
             }

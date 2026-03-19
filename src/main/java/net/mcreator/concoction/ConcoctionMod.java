@@ -34,19 +34,13 @@ import java.util.HashMap;
 import java.util.Collection;
 import java.util.ArrayList;
 
-
 @Mod("concoction")
 public class ConcoctionMod {
 	public static final Logger LOGGER = LogManager.getLogger(ConcoctionMod.class);
 	public static final String MODID = "concoction";
 
 	public ConcoctionMod(IEventBus modEventBus) {
-
-		// Start of user code block mod constructor
-		// End of user code block mod constructor
 		NeoForge.EVENT_BUS.register(this);
-
-
 		modEventBus.addListener(this::registerNetworking);
         modEventBus.addListener(this::commonSetup);
         ConcoctionModSounds.REGISTRY.register(modEventBus);
@@ -64,28 +58,14 @@ public class ConcoctionMod {
 		ConcoctionModParticleTypes.REGISTRY.register(modEventBus);
 		ConcoctionModFluids.REGISTRY.register(modEventBus);
 		ConcoctionModFluidTypes.REGISTRY.register(modEventBus);
-
-		// Start of user code block mod init
 		ConcoctionModCustomTabs.REGISTRY.register(modEventBus);
 		ConcoctionModRecipes.register(modEventBus);
 		ConcoctionModEnchantmentsEffects.register(modEventBus);
-
         ModWorldgen.FEATURES.register(modEventBus);
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);
-        //		HUDOverlays.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
         ConcoctionRecipeBooks.register(modEventBus);
-
-
-
-
-
-        // End of user code block mod init
-
 	}
-
-	// Start of user code block mod methods
-	// End of user code block mod methods
 	private static boolean networkingRegistered = false;
 	private static final Map<CustomPacketPayload.Type<?>, NetworkMessage<?>> MESSAGES = new HashMap<>();
 

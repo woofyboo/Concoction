@@ -190,7 +190,7 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.PINECONE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.RICE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.SOAKED_RICE_BLOCK.get());
-				tabData.accept(ConcoctionModItems.REAPEPPER_BLOCK.get());
+				tabData.accept(ConcoctionModItems.REAPPER_BLOCK.get());
 				tabData.accept(ConcoctionModItems.PUFFBALL_BLOCK.get());
                 tabData.accept(ConcoctionModItems.APPLE_BLOCK.get());
 				tabData.accept(ConcoctionModItems.POTATO_BLOCK.get());

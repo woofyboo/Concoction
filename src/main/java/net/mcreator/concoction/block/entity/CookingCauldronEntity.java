@@ -1,6 +1,5 @@
 package net.mcreator.concoction.block.entity;
 
-import com.google.gson.Gson;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -22,9 +21,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CampfireBlock;
+import net.minecraft.world.Containers;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.MagmaBlock;
-import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -34,32 +33,31 @@ import net.mcreator.concoction.block.CookingCauldron;
 import net.mcreator.concoction.init.ConcoctionModBlockEntities;
 import net.mcreator.concoction.init.ConcoctionModMenus;
 import net.mcreator.concoction.init.ConcoctionModRecipes;
+import net.mcreator.concoction.recipe.ContainerRemainderHelper;
+import net.mcreator.concoction.recipe.RecipeHolderUtils;
+import net.mcreator.concoction.recipe.RecipeIngredientMatcher;
+import net.mcreator.concoction.recipe.RecipeInteractionType;
+import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipe;
 import net.mcreator.concoction.recipe.cauldron.CauldronBrewingRecipeInput;
-import net.mcreator.concoction.world.inventory.BoilingCauldronInterfaceMenu;
-import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.mcreator.concoction.world.inventory.BoilingCauldronMenu;
 import net.minecraft.util.RandomSource;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.jetbrains.annotations.Nullable;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.*;
 
-public class CookingCauldronEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
+public class CookingCauldronEntity extends AbstractSyncedContainerBlockEntity implements WorldlyContainer {
+    private static final String PROGRESS_TAG = "cooking.progress";
+    private static final String MAX_PROGRESS_TAG = "cooking.max_progress";
+    private static final String CRAFT_RESULT_TAG = "cooking.craft_result";
+
     // Слоты: 0-3 ингредиенты, 4 "миска"/половник, 5 результат
     private final int ContainerSize = 6;
     private boolean isCooking = false;
     private RecipeHolder<CauldronBrewingRecipe> recipe = null;
-    private Map<String, String> craftResult = Map.ofEntries(
-            Map.entry("id",""),
-            Map.entry("count",""),
-            Map.entry("interactionType","")
-    );
+    private RecipeOutputData craftResult = RecipeOutputData.EMPTY;
 
     private int progress = 0;
     private int maxProgress = 200;
@@ -91,14 +89,13 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
         super(ConcoctionModBlockEntities.COOKING_CAULDRON.get(), pos, state);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        this.progress = tag.getInt("cooking.progress");
-        this.maxProgress = tag.getInt("cooking.max_progress");
+        this.progress = tag.getInt(PROGRESS_TAG);
+        this.maxProgress = tag.getInt(MAX_PROGRESS_TAG);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        this.craftResult = (new Gson()).fromJson(tag.getString("cooking.craft_result"), HashMap.class);
+        this.craftResult = RecipeOutputData.fromContainerTag(tag, CRAFT_RESULT_TAG);
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items, registries);
         }
@@ -107,9 +104,9 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putInt("cooking.progress", this.progress);
-        tag.putInt("cooking.max_progress", this.maxProgress);
-        tag.putString("cooking.craft_result", (new Gson()).toJson(this.craftResult));
+        tag.putInt(PROGRESS_TAG, this.progress);
+        tag.putInt(MAX_PROGRESS_TAG, this.maxProgress);
+        this.craftResult.saveToContainerTag(tag, CRAFT_RESULT_TAG);
 
         if (!this.trySaveLootTable(tag)) {
             ContainerHelper.saveAllItems(tag, this.items, registries);
@@ -146,6 +143,19 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
     public void tick(Level level, BlockPos pPos, BlockState pState) {
         if (!level.isClientSide) {
+            if (!CookingCauldron.isReadyForCooking(pState)) {
+                if (!this.isEmpty() || this.hasCraftedResult()) {
+                    dropAllContents();
+                } else {
+                    resetProgress();
+                }
+
+                if (pState.getValue(CookingCauldron.COOKING)) {
+                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                }
+                return;
+            }
+
             checkHeatSource(level, pPos, pState);
 
             if (pState.getValue(CookingCauldron.LIT)) {
@@ -159,24 +169,11 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
                     if (this.recipe != null) {
                         ItemStack resultSlot = this.items.get(SLOT_OUTPUT);
                         if (!resultSlot.isEmpty()) {
-                            String recipeResultId = this.recipe.value().getOutput().get("id");
-                            if (!recipeResultId.isEmpty()) {
-                                ResourceLocation recipeItemId = ResourceLocation.parse(recipeResultId);
-                                ResourceLocation currentItemId = BuiltInRegistries.ITEM.getKey(resultSlot.getItem());
-
-                                if (!currentItemId.equals(recipeItemId)) {
-                                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
-                                    resetProgress();
-                                    return;
-                                }
-
-                                int currentCount = resultSlot.getCount();
-                                int recipeCount = Integer.parseInt(this.recipe.value().getOutput().get("count"));
-                                if (currentCount + recipeCount > resultSlot.getMaxStackSize()) {
-                                    level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
-                                    resetProgressOnly();
-                                    return;
-                                }
+                            RecipeOutputData recipeOutput = this.recipe.value().getOutput();
+                            if (!recipeOutput.canMergeInto(resultSlot)) {
+                                level.setBlockAndUpdate(pPos, pState.setValue(CookingCauldron.COOKING, false));
+                                resetProgressOnly();
+                                return;
                             }
                         }
                     }
@@ -203,31 +200,12 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     private boolean validateCurrentRecipe() {
         if (this.recipe == null) return false;
 
-        String interactionType = this.recipe.value().getOutput().get("interactionType");
-        if (!interactionType.equals("hand")) {
-            ItemStack ladleStack = this.items.get(4);
-            if (ladleStack.isEmpty()) {
-                return false;
-            }
+        RecipeInteractionType interactionType = this.recipe.value().getOutput().interaction();
+        if (interactionType.requiresContainer() && !interactionType.matchesContainer(this.items.get(SLOT_BOWL))) {
+            return false;
         }
 
-        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
-        for (Ingredient ingredient : this.recipe.value().getInputItems()) {
-            requiredIngredients.merge(ingredient, 1, Integer::sum);
-        }
-
-        for (ItemStack itemStack : this.items.subList(0, 4)) {
-            if (itemStack.isEmpty()) continue;
-
-            for (Map.Entry<Ingredient, Integer> entry : requiredIngredients.entrySet()) {
-                if (entry.getValue() > 0 && entry.getKey().test(itemStack)) {
-                    entry.setValue(entry.getValue() - 1);
-                    break;
-                }
-            }
-        }
-
-        return requiredIngredients.values().stream().allMatch(count -> count <= 0);
+        return RecipeIngredientMatcher.matchesExactly(this.recipe.value().getInputItems(), RecipeIngredientMatcher.slice(this.items, SLOT_INGREDIENT_FIRST, SLOT_BOWL));
     }
 
     private void resetProgress() {
@@ -235,7 +213,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
         this.maxProgress = recipe == null ? DEFAULT_MAX_PROGRESS : recipe.value().getCookingTime();
         this.isCooking = false;
         this.recipe = null;
-        this.craftResult = Map.of("id", "", "count", "", "interactionType", "");
+        this.craftResult = RecipeOutputData.EMPTY;
         setChanged();
     }
 
@@ -246,10 +224,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     }
 
     private void craftItem() {
-        Map<Ingredient, Integer> requiredIngredients = new HashMap<>();
-        for (Ingredient ingredient : this.recipe.value().getInputItems()) {
-            requiredIngredients.merge(ingredient, 1, Integer::sum);
-        }
+        Map<Ingredient, Integer> requiredIngredients = RecipeIngredientMatcher.createRequirements(this.recipe.value().getInputItems());
 
         NonNullList<ItemStack> newItems = NonNullList.withSize(this.ContainerSize, ItemStack.EMPTY);
         List<ItemStack> itemsToSpawn = new ArrayList<>();
@@ -265,10 +240,9 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
                     used = true;
 
                     if (itemStack.getCount() > 1) {
-                        if (itemStack.is(ItemTags.create(ResourceLocation.parse("c:buckets")))) {
-                            itemsToSpawn.add(new ItemStack(Items.BUCKET));
-                        } else if (itemStack.is(ItemTags.create(ResourceLocation.parse("c:bottles")))) {
-                            itemsToSpawn.add(new ItemStack(Items.GLASS_BOTTLE));
+                        ItemStack remainder = ContainerRemainderHelper.getRemainder(itemStack, 1, false);
+                        if (!remainder.isEmpty()) {
+                            itemsToSpawn.add(remainder);
                         }
                     }
                     break;
@@ -284,26 +258,14 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
             }
         }
 
-        String interactionType = this.recipe.value().getOutput().get("interactionType");
+        RecipeInteractionType interactionType = this.recipe.value().getOutput().interaction();
 
-        if (!interactionType.equals("hand")) {
+        if (interactionType.requiresContainer()) {
             ItemStack ladleStack = this.items.get(4);
-            if (!ladleStack.isEmpty()) {
-                boolean isCorrectLadleItem = switch (interactionType) {
-                    case "bottle" -> ladleStack.getItem() == Items.GLASS_BOTTLE;
-                    case "stick" -> ladleStack.getItem() == Items.STICK;
-                    case "bucket" -> ladleStack.getItem() == Items.BUCKET;
-                    case "bowl" -> ladleStack.getItem() == Items.BOWL;
-                    default -> false;
-                };
-
-                if (isCorrectLadleItem) {
-                    if (ladleStack.getCount() > 1) {
-                        ItemStack remainingLadle = ladleStack.copy();
-                        remainingLadle.shrink(1);
-                        newItems.set(4, remainingLadle);
-                    }
-                }
+            if (interactionType.matchesContainer(ladleStack) && ladleStack.getCount() > 1) {
+                ItemStack remainingLadle = ladleStack.copy();
+                remainingLadle.shrink(1);
+                newItems.set(4, remainingLadle);
             }
         } else {
             newItems.set(4, this.items.get(4).copy());
@@ -311,25 +273,9 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
         this.craftResult = this.recipe.value().getOutput();
 
-        if (!this.craftResult.get("id").isEmpty()) {
-            ResourceLocation itemId = ResourceLocation.parse(this.craftResult.get("id"));
-            int craftedCount = Integer.parseInt(this.craftResult.get("count"));
-
+        if (!this.craftResult.isEmpty()) {
             ItemStack currentResult = this.items.get(SLOT_OUTPUT);
-            ItemStack newResult;
-
-            if (!currentResult.isEmpty() && currentResult.is(BuiltInRegistries.ITEM.get(itemId))) {
-                newResult = currentResult.copy();
-                int spaceLeft = newResult.getMaxStackSize() - newResult.getCount();
-                int toAdd = Math.min(craftedCount, spaceLeft);
-                if (toAdd > 0) {
-                    newResult.grow(toAdd);
-                }
-            } else {
-                newResult = new ItemStack(BuiltInRegistries.ITEM.get(itemId), craftedCount);
-            }
-
-            newItems.set(SLOT_OUTPUT, newResult);
+            newItems.set(SLOT_OUTPUT, this.craftResult.mergeInto(currentResult));
         }
 
         this.setItems(newItems);
@@ -357,41 +303,16 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     }
 
     public boolean hasCraftedResult() {
-        return !this.craftResult.get("id").isEmpty();
+        return !this.craftResult.isEmpty();
     }
 
-    public Map<String, String> getCraftResult() {
+    public RecipeOutputData getCraftResult() {
         return this.craftResult;
     }
 
-    public void setCraftResult(Map<String, String> result) {
-        this.craftResult = result;
+    public void setCraftResult(RecipeOutputData result) {
+        this.craftResult = result == null ? RecipeOutputData.EMPTY : result;
         this.setChanged();
-    }
-
-    private boolean isSameRecipe(RecipeHolder<CauldronBrewingRecipe> recipe1, RecipeHolder<CauldronBrewingRecipe> recipe2) {
-        if (recipe1 == null || recipe2 == null) return false;
-
-        if (recipe1.id().equals(recipe2.id())) return true;
-
-        List<Ingredient> ingredients1 = recipe1.value().getInputItems();
-        List<Ingredient> ingredients2 = recipe2.value().getInputItems();
-
-        if (ingredients1.size() != ingredients2.size()) return false;
-
-        List<Ingredient> sorted1 = new ArrayList<>(ingredients1);
-        List<Ingredient> sorted2 = new ArrayList<>(ingredients2);
-
-        sorted1.sort((a, b) -> a.toString().compareTo(b.toString()));
-        sorted2.sort((a, b) -> a.toString().compareTo(b.toString()));
-
-        for (int i = 0; i < sorted1.size(); i++) {
-            if (!sorted1.get(i).toString().equals(sorted2.get(i).toString())) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     private boolean hasRecipe() {
@@ -402,46 +323,25 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
         RecipeHolder<CauldronBrewingRecipe> newRecipe = recipe.get();
 
-        if (this.recipe != null && !isSameRecipe(this.recipe, newRecipe)) {
+        if (this.recipe != null && !RecipeHolderUtils.sameRecipe(this.recipe, newRecipe, CauldronBrewingRecipe::getInputItems)) {
             this.resetProgress();
             return false;
         }
 
-        ItemStack resultSlot = this.items.get(SLOT_OUTPUT);
-        if (!resultSlot.isEmpty()) {
-            String recipeResultId = newRecipe.value().getOutput().get("id");
-            if (!recipeResultId.isEmpty()) {
-                ResourceLocation recipeItemId = ResourceLocation.parse(recipeResultId);
-                ResourceLocation currentItemId = BuiltInRegistries.ITEM.getKey(resultSlot.getItem());
-
-                if (!currentItemId.equals(recipeItemId)) {
-                    return false;
-                }
-
-                int currentCount = resultSlot.getCount();
-                int recipeCount = Integer.parseInt(newRecipe.value().getOutput().get("count"));
-                if (currentCount + recipeCount > resultSlot.getMaxStackSize()) {
-                    return false;
-                }
-            }
+        if (!newRecipe.value().getOutput().canMergeInto(this.items.get(SLOT_OUTPUT))) {
+            return false;
         }
 
-        String interactionType = newRecipe.value().getOutput().get("interactionType");
+        RecipeInteractionType interactionType = newRecipe.value().getOutput().interaction();
         ItemStack ladleItem = this.items.get(4);
 
-        if (interactionType.equals("hand")) {
+        if (!interactionType.requiresContainer()) {
             this.recipe = newRecipe;
             this.maxProgress = newRecipe.value().getCookingTime();
             return true;
         }
 
-        boolean hasCorrectLadle = switch (interactionType) {
-            case "bottle" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.GLASS_BOTTLE;
-            case "stick" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.STICK;
-            case "bucket" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.BUCKET;
-            case "bowl" -> !ladleItem.isEmpty() && ladleItem.getItem() == Items.BOWL;
-            default -> false;
-        };
+        boolean hasCorrectLadle = interactionType.matchesContainer(ladleItem);
 
         if (hasCorrectLadle) {
             this.recipe = newRecipe;
@@ -509,10 +409,10 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
             if (this.isCooking && this.recipe != null) {
 
-                if (originalRecipe.isPresent() && isSameRecipe(originalRecipe.get(), this.recipe)) {
+                if (originalRecipe.isPresent() && RecipeHolderUtils.sameRecipe(originalRecipe.get(), this.recipe, CauldronBrewingRecipe::getInputItems)) {
                     shouldReset = false;
                 } else if (newRecipe.isPresent()) {
-                    if (!isSameRecipe(newRecipe.get(), this.recipe)) {
+                    if (!RecipeHolderUtils.sameRecipe(newRecipe.get(), this.recipe, CauldronBrewingRecipe::getInputItems)) {
                         shouldReset = true;
                     }
                 } else {
@@ -604,46 +504,34 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
 
     @Override
     public void clearContent() {
-        items.clear();
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        this.setChanged();
+    }
+
+    public void dropAllContents() {
+        if (this.level == null || this.level.isClientSide) {
+            return;
+        }
+
+        Containers.dropContents(this.level, this.worldPosition, this);
+        this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        this.craftResult = RecipeOutputData.EMPTY;
+        this.recipe = null;
+        this.progress = 0;
+        this.maxProgress = DEFAULT_MAX_PROGRESS;
+        this.isCooking = false;
         this.setChanged();
     }
 
     @Override
-    public void setChanged() {
-        super.setChanged();
-        if (this.level != null && !this.level.isClientSide) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 3);
-        }
-    }
-
-    @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = super.getUpdateTag(registries);
-        saveAdditional(tag, registries);
+    protected void writeClientState(CompoundTag tag) {
         tag.putInt("Progress", this.progress);
         tag.putInt("MaxProgress", this.maxProgress);
         tag.putBoolean("IsCooking", this.isCooking);
-        return tag;
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
-        CompoundTag tag = packet.getTag();
-        handleUpdateTag(tag, registries);
-        this.progress = tag.getInt("Progress");
-        this.maxProgress = tag.getInt("MaxProgress");
-        this.isCooking = tag.getBoolean("IsCooking");
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-        super.handleUpdateTag(tag, registries);
-        loadAdditional(tag, registries);
+    protected void readClientState(CompoundTag tag) {
         this.progress = tag.getInt("Progress");
         this.maxProgress = tag.getInt("MaxProgress");
         this.isCooking = tag.getBoolean("IsCooking");
@@ -657,7 +545,7 @@ public class CookingCauldronEntity extends RandomizableContainerBlockEntity impl
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
-        return new BoilingCauldronInterfaceMenu(pContainerId, pPlayerInventory,
+        return new BoilingCauldronMenu(pContainerId, pPlayerInventory,
                 new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(this.worldPosition));
     }
 

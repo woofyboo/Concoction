@@ -179,7 +179,7 @@ public class CropPuffballBlock extends CropBlock {
 
                 livingEntity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 40, 0));
                 if (livingEntity instanceof ServerPlayer serverPlayer) {
-                    Utils.addAchievement(serverPlayer, "concoction:puffball_accident");
+                    Utils.grantAdvancement(serverPlayer, "concoction:puffball_accident");
                 }
 
                 world.setBlock(pos, state.setValue(AGE, age - 2), 3);

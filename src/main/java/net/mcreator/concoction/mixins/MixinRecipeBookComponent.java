@@ -2,7 +2,7 @@ package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.init.ConcoctionModRecipes;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
-import net.mcreator.concoction.world.inventory.OvenGUIMenu;
+import net.mcreator.concoction.world.inventory.OvenMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.recipebook.GhostRecipe;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -45,7 +45,7 @@ public abstract class MixinRecipeBookComponent {
                                                   List<RecipeCollection> collections,
                                                   boolean resetPage) {
 
-        if (this.menu instanceof OvenGUIMenu
+        if (this.menu instanceof OvenMenu
                 && this.menu.getRecipeBookType() == RecipeBookType.FURNACE) {
 
             RecipeType<?> ovenType = ConcoctionModRecipes.OVEN_RECIPE_TYPE.get();
@@ -144,7 +144,7 @@ public abstract class MixinRecipeBookComponent {
                                               boolean shiftDown) {
 
         // не наша духовка / не наш рецепт — ваниль
-        if (!(this.menu instanceof OvenGUIMenu)
+        if (!(this.menu instanceof OvenMenu)
                 || this.minecraft == null
                 || this.minecraft.level == null
                 || !(recipeHolder.value() instanceof OvenRecipe ovenRecipe)) {

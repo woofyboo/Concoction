@@ -5,7 +5,7 @@
  *
  * If you want to make a plain independent class, create it using
  * Project Browser -> New... and make sure to make the class
- * outside net.mcreator.concoction as this package is managed by MCreator.
+ * outside net.mcreator.concoction so loot injections stay isolated from the main mod package.
  *
  * If you change workspace package, modid or prefix, you will need
  * to manually adapt this file to these changes or remake it.

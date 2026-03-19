@@ -3,11 +3,11 @@ package net.mcreator.concoction.handlers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.utils.ColoredVertexConsumer;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
-import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Pose;
@@ -16,7 +16,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent; // ← правильный импорт
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,16 +24,11 @@ import java.util.UUID;
 
 @EventBusSubscriber(value = Dist.CLIENT)
 public class PlayerClientHandler {
-
     private static final int RENDER_DELAY_TICKS = 15;
 
-    // когда игрок вышел из "особого состояния" (полет/плавание/ползание)
+    // Avoid abrupt spicy overlay flicker when the player exits swimming or flight poses.
     private static final Map<UUID, Long> playerSpecialStateExitTimes = new HashMap<>();
-
-    // надо ли рисовать поверх головы SPICY-эффект
     private static final Map<UUID, Boolean> shouldRenderSpicyEffect = new HashMap<>();
-
-    // ===== Tick-клиент: обновляем флаги для SPICY рендера =====
 
     @SubscribeEvent
     public static void playerTickClient(PlayerTickEvent.Pre event) {
@@ -43,22 +38,16 @@ public class PlayerClientHandler {
         boolean currentlyInSpecialState = player.isFallFlying()
                 || player.isSwimming()
                 || player.getPose() == Pose.SWIMMING;
-
-        // читаем прошлое состояние
         boolean wasInSpecial = player.getPersistentData().getBoolean("was_in_special_state_client");
 
-        // переход из спец состояния -> обычное
         if (!currentlyInSpecialState && wasInSpecial) {
             playerSpecialStateExitTimes.put(playerUUID, player.level().getGameTime());
         }
 
-        // сохраняем флаг для следующего тика
         player.getPersistentData().putBoolean("was_in_special_state_client", currentlyInSpecialState);
 
-        // обновляем флаг отрисовки эффекта
         if (player.hasEffect(ConcoctionModMobEffects.SPICY)) {
-            boolean shouldRender = !isPlayerInSpecialStateWithDelay(player);
-            shouldRenderSpicyEffect.put(playerUUID, shouldRender);
+            shouldRenderSpicyEffect.put(playerUUID, !isPlayerInSpecialStateWithDelay(player));
         } else {
             shouldRenderSpicyEffect.remove(playerUUID);
         }
@@ -76,16 +65,13 @@ public class PlayerClientHandler {
                 long currentTime = player.level().getGameTime();
                 if (currentTime - exitTime < RENDER_DELAY_TICKS) {
                     return true;
-                } else {
-                    playerSpecialStateExitTimes.remove(playerUUID);
                 }
+                playerSpecialStateExitTimes.remove(playerUUID);
             }
         }
 
         return currently;
     }
-
-    // ===== Рендер головы при SPICY =====
 
     @SubscribeEvent
     public static void onRenderPlayerPre(RenderPlayerEvent.Pre event) {
@@ -137,8 +123,7 @@ public class PlayerClientHandler {
         int packedLight = event.getPackedLight();
 
         poseStack.pushPose();
-        float scale = 1.0f;
-        poseStack.scale(scale, -scale, -scale);
+        poseStack.scale(1.0F, -1.0F, -1.0F);
         poseStack.translate(0, -1.4, 0);
 
         AbstractClientPlayer clientPlayer = (AbstractClientPlayer) player;
@@ -164,7 +149,6 @@ public class PlayerClientHandler {
 
         model.head.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
         model.hat.render(poseStack, coloredConsumer, packedLight, OverlayTexture.NO_OVERLAY);
-
         poseStack.popPose();
     }
 }
