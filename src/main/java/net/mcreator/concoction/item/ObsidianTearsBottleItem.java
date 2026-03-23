@@ -1,12 +1,8 @@
 
 package net.mcreator.concoction.item;
 
-import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
@@ -16,9 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
-
-
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
 public class ObsidianTearsBottleItem extends Item {
 	public ObsidianTearsBottleItem() {
@@ -49,12 +42,6 @@ public class ObsidianTearsBottleItem extends Item {
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
 		ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
 		super.finishUsingItem(itemstack, world, entity);
-		double x = entity.getX();
-		double y = entity.getY();
-		double z = entity.getZ();
-        if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, 3600, 0, false, true));
-
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {
