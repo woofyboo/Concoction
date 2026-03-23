@@ -27,6 +27,7 @@ import java.util.List;
 @EventBusSubscriber
 public final class GreenThumbHandler {
     private static final int SEARCH_RADIUS = 6;
+    private static final float HARVEST_BONEMEAL_CHANCE = 0.45F;
 
     private GreenThumbHandler() {
     }
@@ -47,9 +48,13 @@ public final class GreenThumbHandler {
             return;
         }
 
-        getNearestImmatureCrops((ServerLevel) player.level(), event.getPos(), greenThumbLevel).forEach(target ->
-                applyBonemealWithoutConsuming((ServerLevel) player.level(), target)
-        );
+        List<BlockPos> nearbyCrops = getNearestImmatureCrops((ServerLevel) player.level(), event.getPos(), greenThumbLevel);
+        if (nearbyCrops.isEmpty() || player.getRandom().nextFloat() >= HARVEST_BONEMEAL_CHANCE) {
+            return;
+        }
+
+        BlockPos target = nearbyCrops.get(player.getRandom().nextInt(nearbyCrops.size()));
+        applyBonemealWithoutConsuming((ServerLevel) player.level(), target);
     }
 
     @SubscribeEvent

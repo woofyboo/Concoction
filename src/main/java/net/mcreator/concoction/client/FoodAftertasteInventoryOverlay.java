@@ -38,7 +38,7 @@ public final class FoodAftertasteInventoryOverlay {
     private static final int ICON_OFFSET_Y = 3;
     private static final int COLUMN_TOP_OFFSET = 2;
     private static final int COLUMN_GAP = 2;
-    private static final int CELL_GAP = 2;
+    private static final int CELL_GAP = 5;
     private static final int BACKGROUND_COLOR = 0xC0100010;
     private static final int BORDER_LIGHT = 0x505000FF;
     private static final int BORDER_DARK = 0x5028007F;
@@ -189,11 +189,19 @@ public final class FoodAftertasteInventoryOverlay {
     }
 
     private static float getItemAlpha(Minecraft minecraft, FoodAftertasteHandler.ActiveAftertasteEntry entry) {
+        if (entry.disabled()) {
+            if (!entry.imminentExpiration()) {
+                return 0.5F;
+            }
+
+            return 0.25F + 0.25F * Mth.sin(minecraft.player.tickCount * 0.35F);
+        }
+
         if (!entry.imminentExpiration()) {
             return 1.0F;
         }
 
-        return 0.05F + 0.95F * (0.5F + 0.5F * Mth.sin(minecraft.player.tickCount * 0.35F));
+        return 0.5F + 0.5F * Mth.sin(minecraft.player.tickCount * 0.35F);
     }
 
     private static void renderAlphaItem(

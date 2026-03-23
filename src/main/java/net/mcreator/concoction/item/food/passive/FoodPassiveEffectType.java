@@ -1,5 +1,6 @@
 package net.mcreator.concoction.item.food.passive;
 
+import net.mcreator.concoction.handlers.FoodAftertasteHandler;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -8,10 +9,17 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum FoodPassiveEffectType implements StringRepresentable {
     SPICE_INFUSED_MEAT("spice_infused_meat", false),
     HOT_BROTH("hot_broth", false),
-    CRISPY_CRUST("crispy_crust", true);
+    CRISPY_CRUST("crispy_crust", true),
+    JITTERING_JELLY("jittering_jelly", true),
+    STICKY_VISCOSITY("sticky_viscosity", true),
+    GENTLE_CLEANSING("gentle_cleansing", false),
+    GENTLE_CLEANSING_PLUS("gentle_cleansing_plus", false);
 
     private static final int SPICE_DURATION_SECONDS = 30;
     private static final int SPICE_LEVEL = 1;
@@ -45,7 +53,9 @@ public enum FoodPassiveEffectType implements StringRepresentable {
         switch (this) {
             case SPICE_INFUSED_MEAT -> applySpiceInfusedMeat(entity);
             case HOT_BROTH -> applyHotBroth(entity);
-            case CRISPY_CRUST -> {
+            case GENTLE_CLEANSING -> applyGentleCleansing(entity);
+            case GENTLE_CLEANSING_PLUS -> applyGentleCleansingPlus(entity);
+            case CRISPY_CRUST, JITTERING_JELLY, STICKY_VISCOSITY -> {
             }
         }
     }
@@ -90,5 +100,32 @@ public enum FoodPassiveEffectType implements StringRepresentable {
 
     private static void applyHotBroth(LivingEntity entity) {
         entity.setTicksFrozen(0);
+    }
+
+    private static void applyGentleCleansing(LivingEntity entity) {
+        removeRandomMobEffect(entity);
+        FoodAftertasteHandler.removeOldestAftertasteFoodOrOldestFood(entity);
+    }
+
+    private static void applyGentleCleansingPlus(LivingEntity entity) {
+        removeAllMobEffects(entity);
+        FoodAftertasteHandler.clearFoodHistory(entity);
+    }
+
+    private static void removeRandomMobEffect(LivingEntity entity) {
+        List<MobEffectInstance> activeEffects = new ArrayList<>(entity.getActiveEffects());
+        if (activeEffects.isEmpty()) {
+            return;
+        }
+
+        MobEffectInstance removedEffect = activeEffects.get(entity.getRandom().nextInt(activeEffects.size()));
+        entity.removeEffect(removedEffect.getEffect());
+    }
+
+    private static void removeAllMobEffects(LivingEntity entity) {
+        List<MobEffectInstance> activeEffects = new ArrayList<>(entity.getActiveEffects());
+        for (MobEffectInstance activeEffect : activeEffects) {
+            entity.removeEffect(activeEffect.getEffect());
+        }
     }
 }

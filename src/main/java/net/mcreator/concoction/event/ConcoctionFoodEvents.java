@@ -2,9 +2,9 @@ package net.mcreator.concoction.event;
 
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.handlers.FoodAftertasteHandler;
-import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffects;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -42,8 +42,9 @@ public final class ConcoctionFoodEvents {
     public static void onLivingUseItemStart(LivingEntityUseItemEvent.Start event) {
         LivingEntity living = event.getEntity();
         ItemStack stack = event.getItem();
+        boolean hasPassiveEffects = !FoodPassiveEffects.get(stack).isEmpty();
 
-        if (living.hasEffect(MobEffects.CONFUSION) && stack.has(DataComponents.FOOD)) {
+        if (living.hasEffect(MobEffects.CONFUSION) && (stack.has(DataComponents.FOOD) || hasPassiveEffects)) {
             if (living instanceof Player player) {
                 player.getCooldowns().addCooldown(stack.getItem(), 20);
             }
@@ -66,15 +67,15 @@ public final class ConcoctionFoodEvents {
         ItemStack used = event.getItem();
         restoreDefaultConsumeState(living, used);
         applyBrainFreeze(living, used);
-        applyPassiveFoodEffects(living, used);
         FoodAftertasteHandler.recordConsumedFood(living, used);
+        applyPassiveFoodEffects(living, used);
     }
 
     private static boolean shouldSuppressDefaultConsumeEffects(LivingEntity living, ItemStack used) {
         if (used.is(Items.OMINOUS_BOTTLE) || used.is(Items.SUSPICIOUS_STEW) || used.is(Items.CHORUS_FRUIT)) {
             return false;
         }
-        return used.getFoodProperties(living) != null;
+        return used.getFoodProperties(living) != null || !FoodPassiveEffects.get(used).isEmpty();
     }
 
     public static void captureForcedConsumeSnapshot(LivingEntity living) {
@@ -171,14 +172,10 @@ public final class ConcoctionFoodEvents {
     }
 
     private static void applyPassiveFoodEffects(LivingEntity living, ItemStack used) {
-        if (used.getFoodProperties(living) == null) {
+        List<FoodPassiveEffectComponent> passiveEffects = FoodPassiveEffects.get(used);
+        if (passiveEffects.isEmpty()) {
             return;
         }
-
-        List<FoodPassiveEffectComponent> passiveEffects = used.getOrDefault(
-                ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
-                List.of()
-        );
         for (FoodPassiveEffectComponent passiveEffect : passiveEffects) {
             passiveEffect.applyOnConsume(living);
         }

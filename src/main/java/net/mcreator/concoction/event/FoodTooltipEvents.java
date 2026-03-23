@@ -2,8 +2,8 @@ package net.mcreator.concoction.event;
 
 import net.mcreator.concoction.client.FoodTooltipClientSettings;
 import net.mcreator.concoction.ConcoctionMod;
-import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffects;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
@@ -106,6 +106,10 @@ public final class FoodTooltipEvents {
 	}
 
 	private static boolean shouldShowFoodTooltip(ItemStack stack) {
+		if (!getPassiveEffects(stack).isEmpty()) {
+			return true;
+		}
+
 		if (stack.has(DataComponents.FOOD)) {
 			return true;
 		}
@@ -153,10 +157,7 @@ public final class FoodTooltipEvents {
 	}
 
 	private static List<FoodPassiveEffectComponent> getPassiveEffects(ItemStack stack) {
-		return stack.getOrDefault(
-				ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
-				List.of()
-		);
+		return FoodPassiveEffects.get(stack);
 	}
 
 	private static void handleAltToggle(ItemStack stack) {
