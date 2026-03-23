@@ -1,18 +1,9 @@
 
 package net.mcreator.concoction.item;
 
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
-
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
-
-
-
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
-import static net.mcreator.concoction.item.food.types.FoodEffectType.SWEET;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 public class CherryCookieItem extends Item {
 	public CherryCookieItem() {

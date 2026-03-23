@@ -11,16 +11,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
 public enum FoodEffectType implements StringRepresentable {
-    SWEET("sweet"),
     SPICY("spicy"),
     MINTY("minty"),
     GLOW("glow"),
     INSTABILITY("instability"),
-    SALTY("saltness"),
-    WARM("warming"),
     BITTER("bitterness"),
-    BREAKFAST("breakfast"),
-    CREAMY("creamy"),
     HEAL("heal"),
     WEEPING("weeping");
 
@@ -37,16 +32,11 @@ public enum FoodEffectType implements StringRepresentable {
 
     public static FoodEffectType getByName(String name) {
         return switch (name) {
-            case "sweet" -> SWEET;
             case "spicy" -> SPICY;
             case "minty" -> MINTY;
             case "glow" -> GLOW;
             case "instability" -> INSTABILITY;
-            case "saltness" -> SALTY;
-            case "warming" -> WARM;
             case "bitterness" -> BITTER;
-            case "breakfast" -> BREAKFAST;
-            case "creamy" -> CREAMY;
             case "heal" -> HEAL;
             case "weeping" -> WEEPING;
             default -> throw new IllegalArgumentException("Invalid name: " + name);
@@ -56,16 +46,11 @@ public enum FoodEffectType implements StringRepresentable {
     public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration, boolean isHidden, LivingEntity entity) {
         return switch (type) {
             case HEAL -> null;
-            case SWEET -> new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration * 20, level - 1, false, !isHidden, true, null);
             case SPICY -> new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration * 20, level - 1, false, !isHidden, true, null);
             case MINTY -> new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration * 20, level - 1, false, !isHidden, true, null);
             case GLOW -> new MobEffectInstance(MobEffects.GLOWING, duration * 20, level - 1, false, !isHidden, true, null);
             case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration * 20, level - 1, false, !isHidden, true, null);
-            case SALTY -> new MobEffectInstance(ConcoctionModMobEffects.SALTNESS, duration * 20, level - 1, false, !isHidden, true, null);
-            case WARM -> new MobEffectInstance(ConcoctionModMobEffects.WARMING, duration * 20, level - 1, false, !isHidden, true, null);
             case BITTER -> new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, !isHidden, true, null);
-            case BREAKFAST -> new MobEffectInstance(ConcoctionModMobEffects.BREAKFAST, duration * 20, level - 1, false, !isHidden, true, null);
-            case CREAMY -> new MobEffectInstance(ConcoctionModMobEffects.CREAMY, duration * 20, level - 1, false, !isHidden, true, null);
             case WEEPING -> new MobEffectInstance(ConcoctionModMobEffects.WEEPING, duration * 20, level - 1, false, !isHidden, true, null);
         };
     }

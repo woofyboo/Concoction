@@ -58,12 +58,6 @@ public class SpicyMobEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-        // Если есть CREAMY — «молочность» гасит остроту: снимаем SPICY и выходим
-        if (entity.hasEffect(ConcoctionModMobEffects.CREAMY)) {
-            entity.removeEffect(ConcoctionModMobEffects.SPICY);
-            return false;
-        }
-
         LevelAccessor world = entity.level();
 
         if (entity.hasEffect(ConcoctionModMobEffects.SPICY)) {

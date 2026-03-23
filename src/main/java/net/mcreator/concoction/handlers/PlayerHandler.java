@@ -97,13 +97,6 @@ public class PlayerHandler {
     public static void entityAttacked(LivingIncomingDamageEvent event) {
         Entity source = event.getSource().getEntity();
 
-        if (event.getEntity() instanceof Player player
-                && player.hasEffect(ConcoctionModMobEffects.CREAMY)
-                && event.getSource().is(SPICY_DAMAGE_KEY)) {
-            event.setCanceled(true);
-            return;
-        }
-
         if (source instanceof LivingEntity attacker) {
             int butcheringLevel = getButcheringLevel(attacker);
             if (butcheringLevel > 0 && qualifiesForButchering(event.getEntity())) {
