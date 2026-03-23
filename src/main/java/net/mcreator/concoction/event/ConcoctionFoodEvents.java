@@ -1,6 +1,7 @@
 package net.mcreator.concoction.event;
 
 import net.mcreator.concoction.ConcoctionMod;
+import net.mcreator.concoction.handlers.FoodAftertasteHandler;
 import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
@@ -66,6 +67,7 @@ public final class ConcoctionFoodEvents {
         restoreDefaultConsumeState(living, used);
         applyBrainFreeze(living, used);
         applyPassiveFoodEffects(living, used);
+        FoodAftertasteHandler.recordConsumedFood(living, used);
     }
 
     private static boolean shouldSuppressDefaultConsumeEffects(LivingEntity living, ItemStack used) {

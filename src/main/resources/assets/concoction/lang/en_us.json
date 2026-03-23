@@ -218,6 +218,9 @@
   "food_passive_effect.concoction.hot_broth": "Hot Broth",
   "food_passive_effect.concoction.hot_broth.desc": "Instantly clears all accumulated freezing.",
   "food_passive_effect.concoction.hot_broth.simple_desc": "Completely removes accumulated freezing.",
+  "food_passive_effect.concoction.crispy_crust": "Crispy Crust",
+  "food_passive_effect.concoction.crispy_crust.desc": "Blocks break 50% faster when you use the correct tool for them.",
+  "food_passive_effect.concoction.crispy_crust.simple_desc": "Proper tools break blocks noticeably faster.",
   "enchantment.concoction.butchering": "Butchering",
   "enchantment.concoction.butchering.desc": "Increases damage against farm animals such as cows, pigs, sheep, and others, while also increasing the chance for rarer ingredients to drop.",
   "enchantment.concoction.green_thumb": "Green Thumb",
@@ -399,6 +402,8 @@
   "subtitles.soul_bucket_filled": "Bucket is filled with souls",
   "tooltip.concoction.alt_for_detailed_view": "Press [%s] for detailed view",
   "tooltip.concoction.alt_for_simple_view": "Press [%s] for simplified view",
+  "tooltip.concoction.active_aftertastes": "Aftertastes",
+  "tooltip.concoction.aftertaste_suffix": " (Aftertaste)",
   "tooltip.concoction.hold_key": "Hold [%s] for more info",
   "tooltip.concoction.no_special_effects": "This food has no special effects.",
   "tooltip.concoction.properties_title": "Properties"

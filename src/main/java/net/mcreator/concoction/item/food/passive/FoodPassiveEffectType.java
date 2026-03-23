@@ -3,13 +3,15 @@ package net.mcreator.concoction.item.food.passive;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
 public enum FoodPassiveEffectType implements StringRepresentable {
-    SPICE_INFUSED_MEAT("spice_infused_meat"),
-    HOT_BROTH("hot_broth");
+    SPICE_INFUSED_MEAT("spice_infused_meat", false),
+    HOT_BROTH("hot_broth", false),
+    CRISPY_CRUST("crispy_crust", true);
 
     private static final int SPICE_DURATION_SECONDS = 30;
     private static final int SPICE_LEVEL = 1;
@@ -18,9 +20,11 @@ public enum FoodPassiveEffectType implements StringRepresentable {
     private static final float LOW_HEALTH_THRESHOLD = 0.5F;
 
     private final String name;
+    private final boolean aftertaste;
 
-    FoodPassiveEffectType(String name) {
+    FoodPassiveEffectType(String name, boolean aftertaste) {
         this.name = name;
+        this.aftertaste = aftertaste;
     }
 
     @Override
@@ -29,23 +33,37 @@ public enum FoodPassiveEffectType implements StringRepresentable {
     }
 
     public static FoodPassiveEffectType getByName(String name) {
-        return switch (name) {
-            case "spice_infused_meat" -> SPICE_INFUSED_MEAT;
-            case "hot_broth" -> HOT_BROTH;
-            default -> throw new IllegalArgumentException("Invalid passive food effect name: " + name);
-        };
+        for (FoodPassiveEffectType type : values()) {
+            if (type.name.equals(name)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Invalid passive food effect name: " + name);
     }
 
     public void applyOnConsume(LivingEntity entity) {
         switch (this) {
             case SPICE_INFUSED_MEAT -> applySpiceInfusedMeat(entity);
             case HOT_BROTH -> applyHotBroth(entity);
+            case CRISPY_CRUST -> {
+            }
         }
     }
 
+    public boolean isAftertaste() {
+        return this.aftertaste;
+    }
+
     public Component getTooltipTitle() {
-        return Component.translatable("food_passive_effect.concoction." + this.name)
+        MutableComponent title = Component.translatable("food_passive_effect.concoction." + this.name)
                 .withStyle(ChatFormatting.YELLOW);
+        if (!this.aftertaste) {
+            return title;
+        }
+
+        return Component.empty()
+                .append(title)
+                .append(Component.translatable("tooltip.concoction.aftertaste_suffix").withStyle(ChatFormatting.DARK_GRAY));
     }
 
     public Component getTooltipDescription(boolean detailed) {

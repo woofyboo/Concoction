@@ -1,21 +1,22 @@
-
 package net.mcreator.concoction.item;
 
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.Item;
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectType;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
-import org.jetbrains.annotations.NotNull;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.LivingEntity;
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
-
+import java.util.List;
 
 public class FriedPuffballsItem extends Item {
-	public FriedPuffballsItem() {
-		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.6f).build()));
-	}
+    public FriedPuffballsItem() {
+        super(new Item.Properties().stacksTo(64)
+                .rarity(Rarity.COMMON)
+                .food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.6f).build())
+                .component(
+                        ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+                        List.of(FoodPassiveEffectComponent.of(FoodPassiveEffectType.CRISPY_CRUST))
+                ));
+    }
 }
-

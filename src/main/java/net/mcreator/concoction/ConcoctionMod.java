@@ -1,6 +1,7 @@
 package net.mcreator.concoction;
 
 import net.mcreator.concoction.init.*;
+import net.mcreator.concoction.network.FoodAftertasteSyncPayload;
 import net.mcreator.concoction.recipebook.ConcoctionRecipeBooks;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -64,6 +65,7 @@ public class ConcoctionMod {
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);
 		ConcoctionModDataComponents.REGISTRY.register(modEventBus);
         ConcoctionRecipeBooks.register(modEventBus);
+		FoodAftertasteSyncPayload.register();
 	}
 	private static boolean networkingRegistered = false;
 	private static final Map<CustomPacketPayload.Type<?>, NetworkMessage<?>> MESSAGES = new HashMap<>();

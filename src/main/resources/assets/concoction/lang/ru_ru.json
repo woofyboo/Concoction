@@ -218,6 +218,9 @@
   "food_passive_effect.concoction.hot_broth": "Горячий бульон",
   "food_passive_effect.concoction.hot_broth.desc": "При съедании моментально снимает всю накопленную заморозку.",
   "food_passive_effect.concoction.hot_broth.simple_desc": "Полностью снимает накопленную заморозку.",
+  "food_passive_effect.concoction.crispy_crust": "Хрустящая корочка",
+  "food_passive_effect.concoction.crispy_crust.desc": "Все блоки ломаются на 50% быстрее, если для их разрушения используется подходящий инструмент.",
+  "food_passive_effect.concoction.crispy_crust.simple_desc": "Подходящими инструментами вы ломаете блоки заметно быстрее.",
   "enchantment.concoction.butchering": "Разделка",
   "enchantment.concoction.butchering.desc": "Увеличивает урон по домашним животным и скоту — коровам, свиньям, овцам и другим. Также повышает шанс выпадения редких ингредиентов.",
   "enchantment.concoction.green_thumb": "Зелёный палец",
@@ -399,6 +402,8 @@
   "subtitles.soul_bucket_filled": "Ведро наполнено душами",
   "tooltip.concoction.alt_for_detailed_view": "Нажмите [%s] для детального вида",
   "tooltip.concoction.alt_for_simple_view": "Нажмите [%s] для упрощённого вида",
+  "tooltip.concoction.active_aftertastes": "Послевкусия",
+  "tooltip.concoction.aftertaste_suffix": " (Послевкусие)",
   "tooltip.concoction.hold_key": "Удерживайте [%s] для подробностей",
   "tooltip.concoction.no_special_effects": "У этой еды нет особых эффектов.",
   "tooltip.concoction.properties_title": "Свойства"
