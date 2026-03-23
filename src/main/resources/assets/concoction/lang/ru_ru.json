@@ -391,6 +391,8 @@
   "subtitles.silence": "",
   "subtitles.soul_bucket_empty": "Ведро с душами опустошено",
   "subtitles.soul_bucket_filled": "Ведро наполнено душами",
-  "tooltip.concoction.hold_key": "Удерживайте [%s] для подробностей"
+  "tooltip.concoction.hold_key": "Удерживайте [%s] для подробностей",
+  "tooltip.concoction.no_special_effects": "У этой еды нет особых эффектов.",
+  "tooltip.concoction.properties_title": "Свойства"
 }
 

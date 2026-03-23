@@ -391,6 +391,8 @@
   "subtitles.silence": "",
   "subtitles.soul_bucket_empty": "Soul bucket is emptied",
   "subtitles.soul_bucket_filled": "Bucket is filled with souls",
-  "tooltip.concoction.hold_key": "Hold [%s] for more info"
+  "tooltip.concoction.hold_key": "Hold [%s] for more info",
+  "tooltip.concoction.no_special_effects": "This food has no special effects.",
+  "tooltip.concoction.properties_title": "Properties"
 }
 
