@@ -1,26 +1,31 @@
 package net.mcreator.concoction.item;
 
 import net.mcreator.concoction.init.ConcoctionModDataComponents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.entity.player.Player;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectType;
 import net.minecraft.world.entity.LivingEntity;
-
-import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
-
 
 public class BambooPorkchopSoupItem extends Item {
 	public BambooPorkchopSoupItem() {
 		super(new Item.Properties().stacksTo(16)
 				.rarity(Rarity.COMMON)
-				.food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
+				.food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build())
+				.component(
+						ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+						List.of(
+								FoodPassiveEffectComponent.of(FoodPassiveEffectType.SPICE_INFUSED_MEAT),
+								FoodPassiveEffectComponent.of(FoodPassiveEffectType.HOT_BROTH)
+						)
+				));
 	}
 
 	@Override

@@ -1,9 +1,9 @@
 package net.mcreator.concoction.event;
 
 import net.mcreator.concoction.ConcoctionMod;
-import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.item.NetherSlopItem;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -21,6 +21,8 @@ import net.neoforged.bus.api.ICancellableEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = ConcoctionMod.MODID, bus = EventBusSubscriber.Bus.GAME)
 public final class ConcoctionFoodEvents {
@@ -49,24 +51,7 @@ public final class ConcoctionFoodEvents {
 
         ItemStack used = event.getItem();
         applyBrainFreeze(living, used);
-
-        if (living instanceof Player player && used.getFoodProperties(living) != null) {
-            updateNetherSlopProgress(player, used);
-        }
-    }
-
-    private static void updateNetherSlopProgress(Player player, ItemStack used) {
-        if (used.is(ConcoctionModItems.NETHER_SLOP.get())) {
-            return;
-        }
-
-        int current = NetherSlopItem.getNetherSlopStack(player);
-        if (current <= 0) {
-            NetherSlopItem.setNetherSlopStack(player, 0);
-            return;
-        }
-
-        NetherSlopItem.setNetherSlopStack(player, current - 3);
+        applyPassiveFoodEffects(living, used);
     }
 
     private static void applyBrainFreeze(LivingEntity living, ItemStack used) {
@@ -90,6 +75,20 @@ public final class ConcoctionFoodEvents {
             ));
             BlockPos hitPos = hitResult.getBlockPos();
             serverLevel.sendParticles(ParticleTypes.CLOUD, hitPos.getX(), hitPos.getY(), hitPos.getZ(), 12, 0.3D, 0.3D, 0.3D, 0.0001D);
+        }
+    }
+
+    private static void applyPassiveFoodEffects(LivingEntity living, ItemStack used) {
+        if (used.getFoodProperties(living) == null) {
+            return;
+        }
+
+        List<FoodPassiveEffectComponent> passiveEffects = used.getOrDefault(
+                ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+                List.of()
+        );
+        for (FoodPassiveEffectComponent passiveEffect : passiveEffects) {
+            passiveEffect.applyOnConsume(living);
         }
     }
 }

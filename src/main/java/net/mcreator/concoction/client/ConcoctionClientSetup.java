@@ -21,6 +21,7 @@ public class ConcoctionClientSetup {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
+            FoodTooltipClientSettings.load();
             Sheets.addWoodType(ConcoctionWoodTypes.CINNAMON);
 
             BlockEntityRenderers.register(

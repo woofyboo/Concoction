@@ -1,17 +1,17 @@
 package net.mcreator.concoction.event;
 
+import net.mcreator.concoction.client.FoodTooltipClientSettings;
 import net.mcreator.concoction.ConcoctionMod;
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.CakeBlock;
@@ -31,37 +31,59 @@ public final class FoodTooltipEvents {
 	private static final int PANEL_MAX_WIDTH = 180;
 	private static final int PANEL_PADDING_X = 6;
 	private static final int PANEL_PADDING_Y = 6;
+	private static final int DESCRIPTION_INDENT = 10;
 	private static final int LINE_SPACING = 2;
 	private static final int BACKGROUND_COLOR = 0xF0100010;
 	private static final int BORDER_LIGHT = 0x505000FF;
 	private static final int BORDER_DARK = 0x5028007F;
 	private static final int TOOLTIP_Z_OFFSET = 400;
+	private static boolean altWasDown = false;
 
 	private FoodTooltipEvents() {
 	}
 
 	@SubscribeEvent
 	public static void onItemTooltip(ItemTooltipEvent event) {
-		if (Screen.hasControlDown() || !shouldShowFoodTooltip(event.getItemStack())) {
+		if (!shouldShowFoodTooltip(event.getItemStack())) {
+			altWasDown = false;
 			return;
 		}
 
-		event.getToolTip().add(
-				Component.translatable(
-						"tooltip.concoction.hold_key",
-						Component.literal("Ctrl")
-					).withStyle(ChatFormatting.DARK_GRAY)
-		);
+		if (!Screen.hasControlDown()) {
+			event.getToolTip().add(
+					Component.translatable(
+							"tooltip.concoction.hold_key",
+							Component.literal("Ctrl")
+						).withStyle(ChatFormatting.DARK_GRAY)
+			);
+			altWasDown = false;
+			return;
+		}
+
+		if (!getPassiveEffects(event.getItemStack()).isEmpty()) {
+			String hintKey = FoodTooltipClientSettings.isDetailedView()
+					? "tooltip.concoction.alt_for_simple_view"
+					: "tooltip.concoction.alt_for_detailed_view";
+			event.getToolTip().add(
+					Component.translatable(
+							hintKey,
+							Component.literal("Alt")
+						).withStyle(ChatFormatting.DARK_GRAY)
+			);
+		}
 	}
 
 	@SubscribeEvent
 	public static void onRenderTooltip(RenderTooltipEvent.Pre event) {
 		if (!Screen.hasControlDown() || !shouldShowFoodTooltip(event.getItemStack())) {
+			altWasDown = false;
 			return;
 		}
 
+		handleAltToggle(event.getItemStack());
+
 		Font font = event.getFont();
-		List<FormattedText> panelLines = getPropertyTexts(event.getItemStack());
+		List<PanelLine> panelLines = getPropertyTexts(event.getItemStack());
 		List<WrappedLine> wrappedLines = wrapLines(font, panelLines);
 		if (wrappedLines.isEmpty()) {
 			return;
@@ -95,31 +117,66 @@ public final class FoodTooltipEvents {
 		return false;
 	}
 
-	private static List<FormattedText> getPropertyTexts(ItemStack stack) {
-		List<FormattedText> lines = new ArrayList<>();
-		lines.add(Component.translatable("tooltip.concoction.properties_title").withStyle(ChatFormatting.GOLD));
+	private static List<PanelLine> getPropertyTexts(ItemStack stack) {
+		List<PanelLine> lines = new ArrayList<>();
+		lines.add(new PanelLine(
+				Component.translatable("tooltip.concoction.properties_title").withStyle(ChatFormatting.GOLD),
+				0,
+				1
+		));
 
-		ResourceLocation key = BuiltInRegistries.ITEM.getKey(stack.getItem());
-		String descriptionKey = "description.concoction." + key.getNamespace() + "." + key.getPath();
-		if (Language.getInstance().has(descriptionKey)) {
-			lines.add(Component.translatable(descriptionKey).withStyle(ChatFormatting.GRAY));
-		} else {
-			lines.add(Component.translatable("tooltip.concoction.no_special_effects").withStyle(ChatFormatting.GRAY));
+		List<FoodPassiveEffectComponent> passiveEffects = getPassiveEffects(stack);
+		if (passiveEffects.isEmpty()) {
+			lines.add(new PanelLine(
+					Component.translatable("tooltip.concoction.no_special_effects").withStyle(ChatFormatting.GRAY),
+					0,
+					0
+			));
+			return lines;
+		}
+
+		for (int i = 0; i < passiveEffects.size(); i++) {
+			FoodPassiveEffectComponent passiveEffect = passiveEffects.get(i);
+			lines.add(new PanelLine(
+					Component.literal("- ").withStyle(ChatFormatting.DARK_GRAY).append(passiveEffect.type().getTooltipTitle()),
+					0,
+					0
+			));
+			lines.add(new PanelLine(
+					passiveEffect.type().getTooltipDescription(FoodTooltipClientSettings.isDetailedView()),
+					DESCRIPTION_INDENT,
+					i < passiveEffects.size() - 1 ? 1 : 0
+			));
 		}
 
 		return lines;
 	}
 
-	private static List<WrappedLine> wrapLines(Font font, List<FormattedText> texts) {
+	private static List<FoodPassiveEffectComponent> getPassiveEffects(ItemStack stack) {
+		return stack.getOrDefault(
+				ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+				List.of()
+		);
+	}
+
+	private static void handleAltToggle(ItemStack stack) {
+		boolean altDown = Screen.hasAltDown();
+		if (altDown && !altWasDown && !getPassiveEffects(stack).isEmpty()) {
+			FoodTooltipClientSettings.toggleDetailedView();
+		}
+		altWasDown = altDown;
+	}
+
+	private static List<WrappedLine> wrapLines(Font font, List<PanelLine> texts) {
 		List<WrappedLine> result = new ArrayList<>();
-		for (int i = 0; i < texts.size(); i++) {
-			FormattedText text = texts.get(i);
-			List<net.minecraft.util.FormattedCharSequence> split = font.split(text, PANEL_MAX_WIDTH);
+		for (PanelLine text : texts) {
+			int availableWidth = Math.max(1, PANEL_MAX_WIDTH - text.indent());
+			List<net.minecraft.util.FormattedCharSequence> split = font.split(text.text(), availableWidth);
 			if (split.isEmpty()) {
 				continue;
 			}
 
-			result.add(new WrappedLine(split, i == 0 ? 1 : 0));
+			result.add(new WrappedLine(split, text.indent(), text.extraSpacing()));
 		}
 		return result;
 	}
@@ -136,7 +193,7 @@ public final class FoodTooltipEvents {
 		int width = 0;
 		for (WrappedLine line : lines) {
 			for (net.minecraft.util.FormattedCharSequence sequence : line.lines()) {
-				width = Math.max(width, font.width(sequence));
+				width = Math.max(width, font.width(sequence) + line.indent());
 			}
 		}
 		return width + PANEL_PADDING_X * 2;
@@ -194,7 +251,7 @@ public final class FoodTooltipEvents {
 		int textY = top + PANEL_PADDING_Y;
 		for (WrappedLine line : lines) {
 			for (net.minecraft.util.FormattedCharSequence sequence : line.lines()) {
-				graphics.drawString(font, sequence, left + PANEL_PADDING_X, textY, 0xFFFFFF, false);
+				graphics.drawString(font, sequence, left + PANEL_PADDING_X + line.indent(), textY, 0xFFFFFF, false);
 				textY += font.lineHeight;
 			}
 			textY += line.extraSpacing() * LINE_SPACING;
@@ -202,6 +259,9 @@ public final class FoodTooltipEvents {
 		graphics.pose().popPose();
 	}
 
-	private record WrappedLine(List<net.minecraft.util.FormattedCharSequence> lines, int extraSpacing) {
+	private record PanelLine(FormattedText text, int indent, int extraSpacing) {
+	}
+
+	private record WrappedLine(List<net.minecraft.util.FormattedCharSequence> lines, int indent, int extraSpacing) {
 	}
 }
