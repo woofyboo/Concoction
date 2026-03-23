@@ -9,6 +9,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+
 public enum FoodEffectType implements StringRepresentable {
     SWEET("sweet"),
     SPICY("spicy"),
@@ -16,12 +17,9 @@ public enum FoodEffectType implements StringRepresentable {
     GLOW("glow"),
     INSTABILITY("instability"),
     SALTY("saltness"),
-    FLAMING("fiery_touch"),
     WARM("warming"),
     BITTER("bitterness"),
     BREAKFAST("breakfast"),
-    SUNSTRUCK("sunstruck"),
-    PHOTOSYNTHESIS("photosynthesis"),
     CREAMY("creamy"),
     HEAL("heal"),
     WEEPING("weeping");
@@ -45,12 +43,9 @@ public enum FoodEffectType implements StringRepresentable {
             case "glow" -> GLOW;
             case "instability" -> INSTABILITY;
             case "saltness" -> SALTY;
-            case "fiery_touch" -> FLAMING;
             case "warming" -> WARM;
             case "bitterness" -> BITTER;
             case "breakfast" -> BREAKFAST;
-            case "sunstruck" -> SUNSTRUCK;
-            case "photosynthesis" -> PHOTOSYNTHESIS;
             case "creamy" -> CREAMY;
             case "heal" -> HEAL;
             case "weeping" -> WEEPING;
@@ -58,142 +53,93 @@ public enum FoodEffectType implements StringRepresentable {
         };
     }
 
-    /**
-     * Возвращает MobEffectInstance для обычных эффектов.
-     * Для HEAL возвращает null, чтобы не применялся через эффекты.
-     */
     public static MobEffectInstance getEffect(FoodEffectType type, int level, int duration, boolean isHidden, LivingEntity entity) {
-        switch (type) {
-            case HEAL -> {
-                return null; // мгновальное лечение обрабатывается отдельно
-            }
-            case SWEET -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case SPICY -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case MINTY -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case GLOW -> {
-                return new MobEffectInstance(MobEffects.GLOWING, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case INSTABILITY -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case SALTY -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.SALTNESS, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case FLAMING -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.FIERY_TOUCH, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case WARM -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.WARMING, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case BITTER -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case BREAKFAST -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.BREAKFAST, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case SUNSTRUCK -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.SUNSTRUCK_EFFECT, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case PHOTOSYNTHESIS -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case CREAMY -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.CREAMY, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-            case WEEPING -> {
-                return new MobEffectInstance(ConcoctionModMobEffects.WEEPING, duration * 20, level - 1, false, !isHidden, true, null);
-            }
-
-        }
-        return null;
+        return switch (type) {
+            case HEAL -> null;
+            case SWEET -> new MobEffectInstance(ConcoctionModMobEffects.SWEETNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            case SPICY -> new MobEffectInstance(ConcoctionModMobEffects.SPICY, duration * 20, level - 1, false, !isHidden, true, null);
+            case MINTY -> new MobEffectInstance(ConcoctionModMobEffects.MINTY_BREATH, duration * 20, level - 1, false, !isHidden, true, null);
+            case GLOW -> new MobEffectInstance(MobEffects.GLOWING, duration * 20, level - 1, false, !isHidden, true, null);
+            case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration * 20, level - 1, false, !isHidden, true, null);
+            case SALTY -> new MobEffectInstance(ConcoctionModMobEffects.SALTNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            case WARM -> new MobEffectInstance(ConcoctionModMobEffects.WARMING, duration * 20, level - 1, false, !isHidden, true, null);
+            case BITTER -> new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            case BREAKFAST -> new MobEffectInstance(ConcoctionModMobEffects.BREAKFAST, duration * 20, level - 1, false, !isHidden, true, null);
+            case CREAMY -> new MobEffectInstance(ConcoctionModMobEffects.CREAMY, duration * 20, level - 1, false, !isHidden, true, null);
+            case WEEPING -> new MobEffectInstance(ConcoctionModMobEffects.WEEPING, duration * 20, level - 1, false, !isHidden, true, null);
+        };
     }
 
-    /**
-     * Мгновенное действие для HEAL (лечит игрока)
-     */
     public static void applyInstantEffect(FoodEffectType type, LivingEntity entity, int level) {
-    if (type == HEAL && entity instanceof Player player) {
-        player.heal(level * 2.0F);
+        if (type == HEAL && entity instanceof Player player) {
+            player.heal(level * 2.0F);
 
-        if (!player.level().isClientSide()) return;
+            if (!player.level().isClientSide()) {
+                return;
+            }
 
-    double x = player.getX();
-    double y = player.getY() + player.getEyeHeight() / 2; // чуть ниже лица
-    double z = player.getZ();
+            double x = player.getX();
+            double y = player.getY() + player.getEyeHeight() / 2;
+            double z = player.getZ();
 
-    int particleCount = 5; // меньше частиц
-    double radiusX = 1.5;  // горизонтальный разброс
-    double radiusY = 1.0;  // вертикальный разброс
-    double radiusZ = 1.5;
+            int particleCount = 5;
+            double radiusX = 1.5;
+            double radiusY = 1.0;
+            double radiusZ = 1.5;
 
-    for (int i = 0; i < particleCount; i++) {
-        double offsetX = (player.getRandom().nextDouble() - 0.5) * 2 * radiusX;
-        double offsetY = (player.getRandom().nextDouble() - 0.5) * 2 * radiusY;
-        double offsetZ = (player.getRandom().nextDouble() - 0.5) * 2 * radiusZ;
+            for (int i = 0; i < particleCount; i++) {
+                double offsetX = (player.getRandom().nextDouble() - 0.5) * 2 * radiusX;
+                double offsetY = (player.getRandom().nextDouble() - 0.5) * 2 * radiusY;
+                double offsetZ = (player.getRandom().nextDouble() - 0.5) * 2 * radiusZ;
 
-        player.level().addParticle(
-            net.minecraft.core.particles.ParticleTypes.HEART,
-            x + offsetX,
-            y + offsetY,
-            z + offsetZ,
-            0, 0.05, 0
-        );
+                player.level().addParticle(
+                        net.minecraft.core.particles.ParticleTypes.HEART,
+                        x + offsetX,
+                        y + offsetY,
+                        z + offsetZ,
+                        0,
+                        0.05,
+                        0
+                );
+            }
+        }
     }
+
+    public Component getTooltip(int level, int duration, boolean isHidden) {
+        MutableComponent effectName;
+
+        if (this == HEAL) {
+            effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
+
+            MutableComponent healInfo = Component.literal(" (x").withStyle(ChatFormatting.GRAY)
+                    .append(Component.literal(String.valueOf(level)).withStyle(ChatFormatting.GRAY))
+                    .append(Component.literal("❤").withStyle(ChatFormatting.RED))
+                    .append(Component.literal(")").withStyle(ChatFormatting.GRAY));
+
+            return effectName.append(healInfo);
+        } else {
+            effectName = Component.translatable("taste.concoction." + this.name)
+                    .withStyle(ChatFormatting.GRAY);
+
+            String romanLevel = (level > 1) ? toRoman(level) : "";
+            int totalSeconds = duration;
+            int minutes = totalSeconds / 60;
+            int seconds = totalSeconds % 60;
+            String timeFormatted = String.format("%d:%02d", minutes, seconds);
+
+            MutableComponent levelAndTime = Component.literal(
+                    (romanLevel.isEmpty() ? "" : " " + romanLevel) + " (" + timeFormatted + ")"
+            ).withStyle(ChatFormatting.GRAY);
+
+            return effectName.append(levelAndTime);
+        }
     }
-}
 
-public Component getTooltip(int level, int duration, boolean isHidden) {
-    MutableComponent effectName;
-
-    if (this == HEAL) {
-    // Основная часть названия вкуса — серая
-    effectName = Component.translatable("taste.concoction.heal").withStyle(ChatFormatting.GRAY);
-
-    // Текст " (x" и ")" — серые, сердечко — красное
-    MutableComponent healInfo = Component.literal(" (x").withStyle(ChatFormatting.GRAY)
-            .append(Component.literal(String.valueOf(level)).withStyle(ChatFormatting.GRAY)) // число тоже серое
-            .append(Component.literal("❤").withStyle(ChatFormatting.RED)) // только сердечко красное
-            .append(Component.literal(")").withStyle(ChatFormatting.GRAY));
-
-    return effectName.append(healInfo);
-}
- else {
-        // Название эффекта
-        effectName = Component.translatable("taste.concoction." + this.name)
-                .withStyle(ChatFormatting.GRAY);
-
-        // Уровень римскими цифрами, но если уровень = 1, оставляем пустое
-        String romanLevel = (level > 1) ? toRoman(level) : "";
-
-        // Длительность в формате m:ss (duration из секунд)
-        int totalSeconds = duration; // duration уже в секундах
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
-        String timeFormatted = String.format("%d:%02d", minutes, seconds);
-
-        // Добавляем уровень и длительность к тултипу
-        MutableComponent levelAndTime = Component.literal(
-                (romanLevel.isEmpty() ? "" : " " + romanLevel) + " (" + timeFormatted + ")"
-        ).withStyle(ChatFormatting.GRAY);
-
-        return effectName.append(levelAndTime);
+    private static String toRoman(int number) {
+        String[] romans = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+        if (number >= 1 && number <= 10) {
+            return romans[number - 1];
+        }
+        return String.valueOf(number);
     }
-}
-
-/**
- * Преобразует число в римскую цифру (1 -> I, 2 -> II, ...)
- */
-private static String toRoman(int number) {
-    String[] romans = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-    if (number >= 1 && number <= 10) return romans[number - 1];
-    return String.valueOf(number); // на случай числа больше 10
-}
-
-
 }

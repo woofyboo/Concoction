@@ -23,6 +23,7 @@
     "LevelMixin",
     "LightningBoltMixin",
     "LivingEntityMixin",
+    "NisholdaFrictionMixin",
     "PlayerCanEatMixin",
     "PlayerMixin",
     "PowderSnowBlockMixin",

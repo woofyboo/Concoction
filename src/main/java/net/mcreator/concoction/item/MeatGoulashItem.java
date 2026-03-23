@@ -2,6 +2,8 @@
 package net.mcreator.concoction.item;
 
 import net.minecraft.world.level.Level;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
@@ -24,8 +26,13 @@ public class MeatGoulashItem extends TastefulItem {
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+		boolean lowHealthBeforeUse = entity.getHealth() < entity.getMaxHealth() * 0.5F;
 		ItemStack retval = new ItemStack(Items.BOWL);
 		super.finishUsingItem(itemstack, world, entity);
+		if (lowHealthBeforeUse && !world.isClientSide()) {
+			entity.setHealth(entity.getMaxHealth());
+			entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 12 * 20, 0));
+		}
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

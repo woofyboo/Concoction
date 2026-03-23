@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.handlers.PuffballSoupBlindnessHandler;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Items;
@@ -10,7 +11,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-public class PuffballSoupItem extends Item {
+public class PuffballSoupItem extends TastefulItem {
 	public PuffballSoupItem() {
 		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build()));
 	}
@@ -19,6 +20,9 @@ public class PuffballSoupItem extends Item {
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
 		ItemStack retval = new ItemStack(Items.BOWL);
 		super.finishUsingItem(itemstack, world, entity);
+		if (!world.isClientSide()) {
+			PuffballSoupBlindnessHandler.grantBlindnessGuard(entity);
+		}
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {
