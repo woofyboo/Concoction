@@ -1,10 +1,17 @@
 package net.mcreator.concoction.client;
 
+import com.mojang.blaze3d.platform.Lighting;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.handlers.FoodAftertasteHandler;
+import net.mcreator.concoction.utils.AlphaVertexConsumer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
@@ -13,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -22,7 +30,6 @@ import net.neoforged.neoforge.client.event.ScreenEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @EventBusSubscriber(modid = ConcoctionMod.MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public final class FoodAftertasteInventoryOverlay {
@@ -177,25 +184,56 @@ public final class FoodAftertasteInventoryOverlay {
             int itemX,
             int itemY
     ) {
-        graphics.renderItem(entry.sourceStack(), itemX, itemY);
-
-        int fadeOverlay = getItemFadeOverlayColor(minecraft, entry);
-        if (fadeOverlay != 0) {
-            graphics.pose().pushPose();
-            graphics.pose().translate(0.0F, 0.0F, 10.0F);
-            graphics.fill(itemX, itemY, itemX + 16, itemY + 16, fadeOverlay);
-            graphics.pose().popPose();
-        }
+        float alpha = getItemAlpha(minecraft, entry);
+        renderAlphaItem(graphics, minecraft, entry, itemX, itemY, alpha);
     }
 
-    private static int getItemFadeOverlayColor(Minecraft minecraft, FoodAftertasteHandler.ActiveAftertasteEntry entry) {
+    private static float getItemAlpha(Minecraft minecraft, FoodAftertasteHandler.ActiveAftertasteEntry entry) {
         if (!entry.imminentExpiration()) {
-            return 0;
+            return 1.0F;
         }
 
-        float pulse = 0.15F + 0.75F * (0.5F + 0.5F * Mth.sin(minecraft.player.tickCount * 0.35F));
-        int alpha = Mth.clamp((int) (pulse * 220.0F), 0, 255);
-        return (alpha << 24) | 0x101010;
+        return 0.05F + 0.95F * (0.5F + 0.5F * Mth.sin(minecraft.player.tickCount * 0.35F));
+    }
+
+    private static void renderAlphaItem(
+            GuiGraphics graphics,
+            Minecraft minecraft,
+            FoodAftertasteHandler.ActiveAftertasteEntry entry,
+            int itemX,
+            int itemY,
+            float alpha
+    ) {
+        ItemRenderer itemRenderer = minecraft.getItemRenderer();
+        BakedModel bakedModel = itemRenderer.getModel(entry.sourceStack(), minecraft.level, minecraft.player, 0);
+
+        graphics.pose().pushPose();
+        graphics.pose().translate(itemX + 8.0F, itemY + 8.0F, 150.0F + (bakedModel.isGui3d() ? 0.0F : 0.0F));
+        graphics.pose().scale(16.0F, -16.0F, 16.0F);
+
+        boolean flatLighting = !bakedModel.usesBlockLight();
+        if (flatLighting) {
+            Lighting.setupForFlatItems();
+        }
+
+        MultiBufferSource alphaBuffers = new AlphaMultiBufferSource(graphics.bufferSource(), alpha);
+        itemRenderer.render(
+                entry.sourceStack(),
+                ItemDisplayContext.GUI,
+                false,
+                graphics.pose(),
+                alphaBuffers,
+                LightTexture.FULL_BRIGHT,
+                OverlayTexture.NO_OVERLAY,
+                bakedModel
+        );
+        graphics.flush();
+
+        if (flatLighting) {
+            Lighting.setupFor3DItems();
+        }
+
+        graphics.pose().popPose();
     }
 
     private static List<FormattedCharSequence> buildTooltip(Minecraft minecraft, FoodAftertasteHandler.ActiveAftertasteEntry entry) {
@@ -234,5 +272,12 @@ public final class FoodAftertasteInventoryOverlay {
     }
 
     private record ColumnLayout(int x, int y) {
+    }
+
+    private record AlphaMultiBufferSource(MultiBufferSource delegate, float alphaMultiplier) implements MultiBufferSource {
+        @Override
+        public com.mojang.blaze3d.vertex.VertexConsumer getBuffer(net.minecraft.client.renderer.RenderType renderType) {
+            return new AlphaVertexConsumer(delegate.getBuffer(renderType), alphaMultiplier);
+        }
     }
 }
