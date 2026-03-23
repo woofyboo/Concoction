@@ -12,12 +12,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class SunflowerSeedsBrewItem extends TastefulItem {
+public class SunflowerSeedsBrewItem extends Item {
     public SunflowerSeedsBrewItem() {
         super(new net.minecraft.world.item.Item.Properties()
                 .stacksTo(16)
@@ -26,8 +27,7 @@ public class SunflowerSeedsBrewItem extends TastefulItem {
                         .nutrition(0)
                         .saturationModifier(0.3f)
                         .alwaysEdible()
-                        .build())
-                .component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true)));
+                        .build()));
     }
 
     @Override
@@ -54,10 +54,6 @@ public class SunflowerSeedsBrewItem extends TastefulItem {
     public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.GLASS_BOTTLE);
         super.finishUsingItem(itemstack, world, entity);
-        if (!world.isClientSide()) {
-            entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.SUNSTRUCK_EFFECT, 300 * 20, 1, false, false, true, null));
-            entity.addEffect(new MobEffectInstance(ConcoctionModMobEffects.PHOTOSYNTHESIS, 300 * 20, 3, false, false, true, null));
-        }
         if (itemstack.isEmpty()) {
             return retval;
         } else {
@@ -70,3 +66,4 @@ public class SunflowerSeedsBrewItem extends TastefulItem {
         }
     }
 }
+

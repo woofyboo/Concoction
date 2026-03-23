@@ -15,7 +15,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
-public class MintBrewItem extends TastefulItem {
+public class MintBrewItem extends Item {
 	public MintBrewItem() {
 		super(new Item.Properties()
 				.stacksTo(16)
@@ -25,8 +25,6 @@ public class MintBrewItem extends TastefulItem {
 						.saturationModifier(0.3f)
 						.alwaysEdible()
 						.build())
-				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.MINTY, 2, 90, true))
-				.component(ConcoctionModDataComponents.FOOD_EFFECT_2.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true))
 		);
 	}
 
@@ -70,3 +68,4 @@ public class MintBrewItem extends TastefulItem {
 		}
 	}
 }
+

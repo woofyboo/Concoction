@@ -10,10 +10,10 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class HashbrownsItem extends TastefulItem {
+public class HashbrownsItem extends Item {
 	public HashbrownsItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 2, 180, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
 	}
 }
+

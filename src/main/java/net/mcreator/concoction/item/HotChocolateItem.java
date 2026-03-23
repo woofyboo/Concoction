@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class HotChocolateItem extends TastefulItem {
+public class HotChocolateItem extends Item {
 	public HotChocolateItem() {
 		super(new Item.Properties()
 				.stacksTo(16)
@@ -24,9 +24,6 @@ public class HotChocolateItem extends TastefulItem {
 						.saturationModifier(0.6f)
 						.alwaysEdible()
 						.build())
-				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 90, true))
-				.component(ConcoctionModDataComponents.FOOD_EFFECT_2.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 180, true))
-                .component(ConcoctionModDataComponents.FOOD_EFFECT_3.get(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 90, true))
 		);
 	}
 
@@ -68,3 +65,4 @@ public class HotChocolateItem extends TastefulItem {
 		}
 	}
 }
+

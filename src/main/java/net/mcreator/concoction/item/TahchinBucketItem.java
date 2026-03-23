@@ -13,12 +13,10 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class TahchinBucketItem extends TastefulItem {
+public class TahchinBucketItem extends Item {
 	public TahchinBucketItem() {
 		super(new Item.Properties().stacksTo(16)
 				.rarity(Rarity.COMMON)
-				.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 4, 300, true))
-                .component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true))
 				.food((new FoodProperties.Builder()).nutrition(8).saturationModifier(1.2f).build()));
 	}
 
@@ -52,3 +50,4 @@ public class TahchinBucketItem extends TastefulItem {
         return new ItemStack(Items.BUCKET);
     }
 }
+

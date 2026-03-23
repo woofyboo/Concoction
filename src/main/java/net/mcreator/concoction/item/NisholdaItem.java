@@ -1,7 +1,5 @@
 
 package net.mcreator.concoction.item;
-
-import net.mcreator.concoction.handlers.NisholdaSlipHandler;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -18,9 +16,9 @@ import org.jetbrains.annotations.NotNull;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class NisholdaItem extends TastefulItem {
+public class NisholdaItem extends Item {
 	public NisholdaItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 1, 90, true)).component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true))
+		super(new Item.Properties().stacksTo(16)
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8f).build()));
 	}
 
@@ -28,9 +26,6 @@ public class NisholdaItem extends TastefulItem {
     public @NotNull ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.BOWL);
         super.finishUsingItem(itemstack, world, entity);
-        if (entity instanceof Player player) {
-            NisholdaSlipHandler.grantSlipNormalization(player);
-        }
         if (itemstack.isEmpty()) {
             return retval;
         } else {
@@ -42,3 +37,4 @@ public class NisholdaItem extends TastefulItem {
         }
     }
 }
+

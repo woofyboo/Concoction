@@ -15,12 +15,9 @@ import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
 
-public class StirFriedFiletItem extends TastefulItem {
+public class StirFriedFiletItem extends Item {
 	public StirFriedFiletItem() {
 		super(new Item.Properties().stacksTo(16)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
-		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SPICY, 1, 30, true))
-		.component(FOOD_EFFECT_3.value(), new FoodEffectComponent(FoodEffectType.SALTY, 1, 90, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(1f).build()));
 	}
 
@@ -39,3 +36,4 @@ public class StirFriedFiletItem extends TastefulItem {
 		}
 	}
 }
+

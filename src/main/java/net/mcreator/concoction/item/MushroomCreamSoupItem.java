@@ -15,9 +15,9 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
-public class MushroomCreamSoupItem extends TastefulItem {
+public class MushroomCreamSoupItem extends Item {
 	public MushroomCreamSoupItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.CREAMY, 2, 180, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
 	}
 
 	@Override
@@ -35,3 +35,4 @@ public class MushroomCreamSoupItem extends TastefulItem {
 		}
 	}
 }
+

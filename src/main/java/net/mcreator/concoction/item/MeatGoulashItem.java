@@ -17,22 +17,16 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class MeatGoulashItem extends TastefulItem {
+public class MeatGoulashItem extends Item {
 	public MeatGoulashItem() {
 		super(new Item.Properties().stacksTo(16)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 2, 30, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-		boolean lowHealthBeforeUse = entity.getHealth() < entity.getMaxHealth() * 0.5F;
 		ItemStack retval = new ItemStack(Items.BOWL);
 		super.finishUsingItem(itemstack, world, entity);
-		if (lowHealthBeforeUse && !world.isClientSide()) {
-			entity.setHealth(entity.getMaxHealth());
-			entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 12 * 20, 0));
-		}
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {
@@ -44,3 +38,4 @@ public class MeatGoulashItem extends TastefulItem {
 		}
 	}
 }
+

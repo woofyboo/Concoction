@@ -14,7 +14,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 
-public class DandelionTeaItem extends TastefulItem {
+public class DandelionTeaItem extends Item {
 	public DandelionTeaItem() {
 		super(new Item.Properties()
 				.stacksTo(16)
@@ -24,8 +24,6 @@ public class DandelionTeaItem extends TastefulItem {
 						.saturationModifier(0.3f)
 						.alwaysEdible()
 						.build())
-				.component(ConcoctionModDataComponents.FOOD_EFFECT.get(), new FoodEffectComponent(FoodEffectType.BITTER, 2, 180, true))
-				.component(ConcoctionModDataComponents.FOOD_EFFECT_2.get(), new FoodEffectComponent(FoodEffectType.WARM, 1, 120, true))
 		);
 	}
 
@@ -67,3 +65,4 @@ public class DandelionTeaItem extends TastefulItem {
 		}
 	}
 }
+

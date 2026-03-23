@@ -11,9 +11,9 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
 
-public class GlowberryCakeSliceItem extends TastefulItem {
+public class GlowberryCakeSliceItem extends Item {
 	public GlowberryCakeSliceItem() {
-		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.GLOW, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
+		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
 	}
 
 	@Override
@@ -21,3 +21,4 @@ public class GlowberryCakeSliceItem extends TastefulItem {
 		return 24;
 	}
 }
+

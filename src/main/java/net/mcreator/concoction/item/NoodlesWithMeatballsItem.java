@@ -14,9 +14,9 @@ import net.minecraft.world.entity.LivingEntity;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class NoodlesWithMeatballsItem extends TastefulItem {
+public class NoodlesWithMeatballsItem extends Item {
 	public NoodlesWithMeatballsItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 180, true))
+		super(new Item.Properties().stacksTo(16)
                 .rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(9).saturationModifier(0.8f).build()));
 	}
 
@@ -35,3 +35,4 @@ public class NoodlesWithMeatballsItem extends TastefulItem {
 		}
 	}
 }
+

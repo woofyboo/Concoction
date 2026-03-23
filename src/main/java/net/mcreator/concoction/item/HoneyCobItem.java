@@ -10,11 +10,10 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class HoneyCobItem extends TastefulItem {
+public class HoneyCobItem extends Item {
 	public HoneyCobItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 90, true))
-		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 90, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build()));
 	}
 }
+

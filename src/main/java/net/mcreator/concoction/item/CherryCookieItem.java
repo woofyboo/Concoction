@@ -14,11 +14,10 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 import static net.mcreator.concoction.item.food.types.FoodEffectType.SWEET;
 
-public class CherryCookieItem extends TastefulItem {
+public class CherryCookieItem extends Item {
 	public CherryCookieItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
-		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(SWEET, 1, 30, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.4f).build()));
 	}
 }
+

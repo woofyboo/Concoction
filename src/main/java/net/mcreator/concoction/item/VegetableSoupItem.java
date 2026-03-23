@@ -13,11 +13,10 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class VegetableSoupItem extends TastefulItem {
+public class VegetableSoupItem extends Item {
     public VegetableSoupItem() {
         super(new Item.Properties().stacksTo(16)
                 .rarity(Rarity.COMMON)
-                .component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 300, true))
                 .food((new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8f).build()));
     }
 
@@ -25,16 +24,16 @@ public class VegetableSoupItem extends TastefulItem {
     public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.BOWL);
 
-        // сначала стандартное поведение еды (хил, насыщение, эффекты и т.д.)
+        // СЃРЅР°С‡Р°Р»Р° СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ РµРґС‹ (С…РёР», РЅР°СЃС‹С‰РµРЅРёРµ, СЌС„С„РµРєС‚С‹ Рё С‚.Рґ.)
         ItemStack result = super.finishUsingItem(itemstack, world, entity);
 
-        // СБРОС ЗАМОРОЗКИ
+        // РЎР‘Р РћРЎ Р—РђРњРћР РћР—РљР
         if (!world.isClientSide) {
-            // моментально размораживаем сущность (порошковый снег, холод и т.п.)
+            // РјРѕРјРµРЅС‚Р°Р»СЊРЅРѕ СЂР°Р·РјРѕСЂР°Р¶РёРІР°РµРј СЃСѓС‰РЅРѕСЃС‚СЊ (РїРѕСЂРѕС€РєРѕРІС‹Р№ СЃРЅРµРі, С…РѕР»РѕРґ Рё С‚.Рї.)
             entity.setTicksFrozen(0);
         }
 
-        // дальше ванильная логика с миской
+        // РґР°Р»СЊС€Рµ РІР°РЅРёР»СЊРЅР°СЏ Р»РѕРіРёРєР° СЃ РјРёСЃРєРѕР№
         if (itemstack.isEmpty()) {
             return retval;
         } else {
@@ -47,3 +46,4 @@ public class VegetableSoupItem extends TastefulItem {
         }
     }
 }
+

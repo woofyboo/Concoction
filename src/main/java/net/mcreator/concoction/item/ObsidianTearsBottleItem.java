@@ -20,9 +20,9 @@ import net.minecraft.world.item.*;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class ObsidianTearsBottleItem extends TastefulItem {
+public class ObsidianTearsBottleItem extends Item {
 	public ObsidianTearsBottleItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.INSTABILITY, 1, 30, true)).rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).alwaysEdible().build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(0).saturationModifier(0f).alwaysEdible().build()));
 	}
 	
 	@Override
@@ -66,3 +66,4 @@ public class ObsidianTearsBottleItem extends TastefulItem {
 		}
 	}
 }
+

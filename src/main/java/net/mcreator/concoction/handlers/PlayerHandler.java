@@ -2,12 +2,9 @@ package net.mcreator.concoction.handlers;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModEnchantments;
 import net.mcreator.concoction.init.ConcoctionModItems;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
-import net.mcreator.concoction.item.food.types.FoodEffectComponent;
-import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -93,23 +90,6 @@ public class PlayerHandler {
         ItemStack itemStack = event.getItem();
         if (itemStack.is(SPECIAL_FOOD) || itemStack.is(SPECIAL_SOUP)) {
             Utils.grantAdvancement(player, "concoction:eat_dish");
-        }
-
-        FoodEffectComponent[] components = new FoodEffectComponent[]{
-                itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT.value()),
-                itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_2.value()),
-                itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_3.value()),
-                itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_4.value()),
-                itemStack.get(ConcoctionModDataComponents.FOOD_EFFECT_5.value())
-        };
-
-        for (FoodEffectComponent component : components) {
-            if (component != null
-                    && component.type() == FoodEffectType.BREAKFAST
-                    && player.getPersistentData().getInt(BreakfastPlayerHandler.SLEEP_TIMER_KEY) > 0) {
-                Utils.grantAdvancement(player, "concoction:breakfast_check");
-                break;
-            }
         }
     }
 

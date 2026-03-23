@@ -18,10 +18,9 @@ import org.jetbrains.annotations.NotNull;
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
-public class FishAndChipsItem extends TastefulItem {
+public class FishAndChipsItem extends Item {
 	public FishAndChipsItem() {
-		super(new Item.Properties().stacksTo(16).
-				component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SALTY, 2, 180, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.5f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.5f).build()));
 	}
 
 	@Override
@@ -39,3 +38,4 @@ public class FishAndChipsItem extends TastefulItem {
 		}
 	}
 }
+

@@ -13,10 +13,9 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class FriedEggItem extends TastefulItem {
+public class FriedEggItem extends Item {
 	public FriedEggItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BREAKFAST, 1, 90, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(4).saturationModifier(1.2f).build()));
 	}
 	
@@ -25,5 +24,6 @@ public class FriedEggItem extends TastefulItem {
 		return 32;
 	}
 }
+
 
 

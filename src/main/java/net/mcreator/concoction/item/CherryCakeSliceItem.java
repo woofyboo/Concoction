@@ -12,11 +12,9 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFE
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.*;
 
 
-public class CherryCakeSliceItem extends TastefulItem {
+public class CherryCakeSliceItem extends Item {
 	public CherryCakeSliceItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
-		.component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.SWEET, 1, 30, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationModifier(0.2f).build()));
 	}
 
@@ -25,3 +23,4 @@ public class CherryCakeSliceItem extends TastefulItem {
 		return 24;
 	}
 }
+

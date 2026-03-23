@@ -1,4 +1,4 @@
-﻿{
+{
     "parent":  "item/handheld",
     "textures":  {
                      "layer0":  "concoction:item/overgrown_sword_broken",

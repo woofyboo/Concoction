@@ -17,10 +17,9 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFE
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 
-public class GoldenCornItem extends TastefulItem {
+public class GoldenCornItem extends Item {
 	public GoldenCornItem() {
 		super(new Item.Properties().stacksTo(64)
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.HEAL, 1, 30, true))
 		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8f).alwaysEdible().build()));
 	}
 
@@ -35,3 +34,4 @@ public class GoldenCornItem extends TastefulItem {
 		return retval;
 	}
 }
+

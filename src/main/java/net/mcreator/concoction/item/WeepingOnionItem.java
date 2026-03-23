@@ -17,8 +17,6 @@ public class WeepingOnionItem extends ItemNameBlockItem {
                 ConcoctionModBlocks.CROP_WEEPING_ONION.get(), // какой блок сажать
                 new Item.Properties()
                         .stacksTo(64)
-                        .component(FOOD_EFFECT.value(),
-                                new FoodEffectComponent(FoodEffectType.WEEPING, 1, 90, false))
                         .rarity(Rarity.COMMON)
                         .food(new FoodProperties.Builder()
                                 .nutrition(5)

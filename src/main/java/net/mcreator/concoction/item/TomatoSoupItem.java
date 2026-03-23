@@ -15,10 +15,9 @@ import net.mcreator.concoction.item.food.types.FoodEffectType;
 
 
 
-public class TomatoSoupItem extends TastefulItem {
+public class TomatoSoupItem extends Item {
 	public TomatoSoupItem() {
-		super(new Item.Properties().stacksTo(16).component(FOOD_EFFECT_2.value(), new FoodEffectComponent(FoodEffectType.WARM, 1, 90, true))
-		.component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.SALTY, 1, 180, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8f).build()));
+		super(new Item.Properties().stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(8).saturationModifier(0.8f).build()));
 	}
 
 	@Override
@@ -36,3 +35,4 @@ public class TomatoSoupItem extends TastefulItem {
 		}
 	}
 }
+

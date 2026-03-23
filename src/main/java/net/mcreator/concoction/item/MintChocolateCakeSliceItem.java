@@ -12,9 +12,9 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFE
 
 
 
-public class MintChocolateCakeSliceItem extends TastefulItem {
+public class MintChocolateCakeSliceItem extends Item {
 	public MintChocolateCakeSliceItem() {
-		super(new Item.Properties().stacksTo(64).component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.MINTY, 1, 30, true)).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
+		super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2f).build()));
 	}
 
 	@Override
@@ -22,3 +22,4 @@ public class MintChocolateCakeSliceItem extends TastefulItem {
 		return 24;
 	}
 }
+

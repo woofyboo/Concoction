@@ -17,10 +17,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 
 
-public class FungusStewItem extends TastefulItem {
+public class FungusStewItem extends Item {
 	public FungusStewItem() {
 		super(new Item.Properties().stacksTo(16)
-                        .component(FOOD_EFFECT.value(), new FoodEffectComponent(FoodEffectType.BITTER, 1, 60, true))
                 .rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).effect(() -> new MobEffectInstance(MobEffects.BLINDNESS, 230, 0), 0.6F).build()));
 	}
 
@@ -42,3 +41,4 @@ public class FungusStewItem extends TastefulItem {
 		}
 	}
 }
+

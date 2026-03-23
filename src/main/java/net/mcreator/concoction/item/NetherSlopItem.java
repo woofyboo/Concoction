@@ -17,9 +17,9 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFECT;
 
-public class NetherSlopItem extends TastefulItem {
+public class NetherSlopItem extends Item {
 
-    // тег в persistentData игрока
+    // С‚РµРі РІ persistentData РёРіСЂРѕРєР°
     public static final String NETHER_SLOP_STACK_TAG = "concoction_nether_slop_stack";
     private static final int MAX_STACKS = 10;
 
@@ -27,18 +27,16 @@ public class NetherSlopItem extends TastefulItem {
         super(new Item.Properties()
                 .stacksTo(16)
                 .rarity(Rarity.COMMON)
-                // можешь убрать/поменять эффект, если он больше не нужен
-                .component(FOOD_EFFECT.value(),
-                        new FoodEffectComponent(FoodEffectType.HEAL, 1, 180, true))
+                // РјРѕР¶РµС€СЊ СѓР±СЂР°С‚СЊ/РїРѕРјРµРЅСЏС‚СЊ СЌС„С„РµРєС‚, РµСЃР»Рё РѕРЅ Р±РѕР»СЊС€Рµ РЅРµ РЅСѓР¶РµРЅ
                 .food(new FoodProperties.Builder()
-                        .nutrition(8)              // базовое восстановление голода
-                        .saturationModifier(0.6f)  // базовое насыщение
+                        .nutrition(8)              // Р±Р°Р·РѕРІРѕРµ РІРѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ РіРѕР»РѕРґР°
+                        .saturationModifier(0.6f)  // Р±Р°Р·РѕРІРѕРµ РЅР°СЃС‹С‰РµРЅРёРµ
                         .build()
                 )
         );
     }
 
-    // ========= Работа со стеками в NBT =========
+    // ========= Р Р°Р±РѕС‚Р° СЃРѕ СЃС‚РµРєР°РјРё РІ NBT =========
 
     public static int getNetherSlopStack(Player player) {
         if (player == null) return 0;
@@ -60,11 +58,11 @@ public class NetherSlopItem extends TastefulItem {
         int stacks = getNetherSlopStack(player);
 
         if (stacks == 0) {
-            // При стеке 0: 100% тошнота 30 сек + яд II на 8 сек
+            // РџСЂРё СЃС‚РµРєРµ 0: 100% С‚РѕС€РЅРѕС‚Р° 30 СЃРµРє + СЏРґ II РЅР° 8 СЃРµРє
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 30 * 20));
             player.addEffect(new MobEffectInstance(MobEffects.POISON, 8 * 20, 1));
         } else {
-            // Шанс тошноты 18 сек: 50% - 10% * stacks, минимум 0
+            // РЁР°РЅСЃ С‚РѕС€РЅРѕС‚С‹ 18 СЃРµРє: 50% - 10% * stacks, РјРёРЅРёРјСѓРј 0
             int chancePercent = 50 - stacks * 10;
             if (chancePercent < 0) {
                 chancePercent = 0;
@@ -75,19 +73,19 @@ public class NetherSlopItem extends TastefulItem {
                 player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 18 * 20));
             }
 
-            // Бонус голода и насыщения:
-            // +1 голода и +0.5 насыщения за каждый стак, до MAX_STACKS
+            // Р‘РѕРЅСѓСЃ РіРѕР»РѕРґР° Рё РЅР°СЃС‹С‰РµРЅРёСЏ:
+            // +1 РіРѕР»РѕРґР° Рё +0.5 РЅР°СЃС‹С‰РµРЅРёСЏ Р·Р° РєР°Р¶РґС‹Р№ СЃС‚Р°Рє, РґРѕ MAX_STACKS
             int effectiveStacks = Math.min(stacks, MAX_STACKS);
             if (effectiveStacks > 0) {
-                int extraFood = effectiveStacks;                // +1 за стак
-                float extraSaturation = effectiveStacks * 0.5f; // +0.5 за стак
+                int extraFood = effectiveStacks;                // +1 Р·Р° СЃС‚Р°Рє
+                float extraSaturation = effectiveStacks * 0.5f; // +0.5 Р·Р° СЃС‚Р°Рє
 
-                // vanilla сама ограничит foodLevel ≤ 20 и saturation ≤ foodLevel
+                // vanilla СЃР°РјР° РѕРіСЂР°РЅРёС‡РёС‚ foodLevel в‰¤ 20 Рё saturation в‰¤ foodLevel
                 player.getFoodData().eat(extraFood, extraSaturation);
             }
         }
 
-        // После съедания этого блюда: +1 стак (0..10)
+        // РџРѕСЃР»Рµ СЃСЉРµРґР°РЅРёСЏ СЌС‚РѕРіРѕ Р±Р»СЋРґР°: +1 СЃС‚Р°Рє (0..10)
         int newStacks = stacks + 1;
         if (newStacks > MAX_STACKS) {
             newStacks = MAX_STACKS;
@@ -99,15 +97,15 @@ public class NetherSlopItem extends TastefulItem {
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
         ItemStack bowl = new ItemStack(Items.BOWL);
 
-        // стандартное поведение еды (голод, насыщение, компоненты)
+        // СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ РµРґС‹ (РіРѕР»РѕРґ, РЅР°СЃС‹С‰РµРЅРёРµ, РєРѕРјРїРѕРЅРµРЅС‚С‹)
         super.finishUsingItem(stack, level, entity);
 
-        // наша логика — только на сервере и только для игроков
+        // РЅР°С€Р° Р»РѕРіРёРєР° вЂ” С‚РѕР»СЊРєРѕ РЅР° СЃРµСЂРІРµСЂРµ Рё С‚РѕР»СЊРєРѕ РґР»СЏ РёРіСЂРѕРєРѕРІ
         if (!level.isClientSide && entity instanceof Player player) {
             applyNetherSlopEffectsAndProgress(player);
         }
 
-        // поведение миски как у супов
+        // РїРѕРІРµРґРµРЅРёРµ РјРёСЃРєРё РєР°Рє Сѓ СЃСѓРїРѕРІ
         if (entity instanceof Player player && !player.getAbilities().instabuild) {
             if (stack.isEmpty()) {
                 return bowl;
@@ -121,3 +119,4 @@ public class NetherSlopItem extends TastefulItem {
         return stack;
     }
 }
+
