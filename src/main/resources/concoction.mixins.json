@@ -17,6 +17,7 @@
     "ItemEntitySoapFrictionMixin",
     "ItemsMixin",
     "LivingEntityJumpMixin",
+    "LivingEntityMobEffectMixin",
     "LevelMixin",
     "LightningBoltMixin",
     "MilkBucketMixin",

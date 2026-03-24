@@ -92,6 +92,15 @@ public final class ConcoctionFoodEvents {
         restoreConsumeSnapshot(FORCED_CONSUME_SNAPSHOTS.remove(living.getUUID()), living, used, true);
     }
 
+    public static void handleVirtualConsumedFood(LivingEntity living, ItemStack consumedStack) {
+        if (living.level().isClientSide() || consumedStack.isEmpty()) {
+            return;
+        }
+
+        FoodAftertasteHandler.recordConsumedFood(living, consumedStack);
+        applyPassiveFoodEffects(living, consumedStack);
+    }
+
     private static void restoreDefaultConsumeState(LivingEntity living, ItemStack used) {
         restoreConsumeSnapshot(CONSUME_SNAPSHOTS.remove(living.getUUID()), living, used, false);
     }
@@ -177,7 +186,7 @@ public final class ConcoctionFoodEvents {
             return;
         }
         for (FoodPassiveEffectComponent passiveEffect : passiveEffects) {
-            passiveEffect.applyOnConsume(living);
+            passiveEffect.applyOnConsume(living, used);
         }
     }
 

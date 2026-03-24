@@ -1,7 +1,10 @@
 
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
 import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectType;
 import net.mcreator.concoction.item.food.types.FoodEffectComponent;
 import net.mcreator.concoction.item.food.types.FoodEffectType;
 import net.mcreator.concoction.utils.Utils;
@@ -30,7 +33,14 @@ import static net.mcreator.concoction.init.ConcoctionModDataComponents.FOOD_EFFE
 public class CherryItem extends Item {
 	public CherryItem() {
 		super(new Item.Properties().stacksTo(64)
-		.rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3f).build()));
+		.rarity(Rarity.COMMON)
+		.food((new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3f).build())
+		.component(
+				ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+				List.of(
+						FoodPassiveEffectComponent.of(FoodPassiveEffectType.CHERRY_JUICE)
+				)
+		));
 	}
 	@SubscribeEvent
 	public static void itemEntityDespawn(ItemExpireEvent event) {

@@ -21,7 +21,10 @@ public class PuffballSoupItem extends Item {
 				.food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6f).build())
 				.component(
 						ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
-						List.of(FoodPassiveEffectComponent.of(FoodPassiveEffectType.HOT_BROTH))
+						List.of(
+								FoodPassiveEffectComponent.of(FoodPassiveEffectType.HOT_BROTH),
+								FoodPassiveEffectComponent.of(FoodPassiveEffectType.SPORE_SEDIMENT)
+						)
 				));
 	}
 

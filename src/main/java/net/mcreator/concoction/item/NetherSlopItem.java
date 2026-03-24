@@ -1,5 +1,8 @@
 package net.mcreator.concoction.item;
 
+import net.mcreator.concoction.init.ConcoctionModDataComponents;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -10,6 +13,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class NetherSlopItem extends Item {
     public NetherSlopItem() {
         super(new Item.Properties()
@@ -18,7 +23,11 @@ public class NetherSlopItem extends Item {
                 .food(new FoodProperties.Builder()
                         .nutrition(8)
                         .saturationModifier(0.6f)
-                        .build()));
+                        .build())
+                .component(
+                        ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
+                        List.of(FoodPassiveEffectComponent.of(FoodPassiveEffectType.NAUSEATINGLY_VILE))
+                ));
     }
 
     @Override

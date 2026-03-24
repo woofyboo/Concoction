@@ -1,12 +1,16 @@
 package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.block.ConcoctionCakeBlock;
+import net.mcreator.concoction.event.ConcoctionFoodEvents;
+import net.mcreator.concoction.init.ConcoctionModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,7 +39,7 @@ public abstract class CakeBlockMixin {
 
 	@Inject(method = "eat", at = @At("RETURN"))
 	private static void concoction$runCustomCakeHooks(LevelAccessor level, BlockPos pos, BlockState state, Player player, CallbackInfoReturnable<InteractionResult> cir) {
-		if (!(state.getBlock() instanceof ConcoctionCakeBlock cakeBlock)) {
+		if (!(state.getBlock() instanceof ConcoctionCakeBlock)) {
 			return;
 		}
 
@@ -47,11 +51,29 @@ public abstract class CakeBlockMixin {
 			return;
 		}
 
+		ConcoctionFoodEvents.handleVirtualConsumedFood(player, concoction$getConsumedSliceStack(state));
+
+		if (!(state.getBlock() instanceof ConcoctionCakeBlock cakeBlock)) {
+			return;
+		}
+
 		boolean lastSlice = state.getValue(CakeBlock.BITES) >= 6;
 		cakeBlock.onSliceEaten(actualLevel, pos, state, player);
 
 		if (lastSlice) {
 			cakeBlock.onCakeFinished(actualLevel, pos, player);
 		}
+	}
+
+	private static ItemStack concoction$getConsumedSliceStack(BlockState state) {
+		if (state.getBlock() instanceof ConcoctionCakeBlock cakeBlock) {
+			return cakeBlock.getConsumedSliceStack();
+		}
+
+		if (state.is(Blocks.CAKE)) {
+			return new ItemStack(ConcoctionModItems.CAKE_SLICE.get());
+		}
+
+		return ItemStack.EMPTY;
 	}
 }

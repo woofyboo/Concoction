@@ -96,6 +96,50 @@ public final class FoodAftertasteHandler {
                 .toList();
     }
 
+    public static int countRecentFoodsWithPassiveEffect(LivingEntity living, FoodPassiveEffectType type) {
+        int count = 0;
+        for (FoodHistoryEntry entry : readHistoryEntries(living, getHistoryTag(living))) {
+            if (entry.passiveEffects().contains(type)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int countRecentFoodsMatchingStack(LivingEntity living, ItemStack stack) {
+        if (stack.isEmpty()) {
+            return 0;
+        }
+
+        String targetSignature = stack.copyWithCount(1).save(living.level().registryAccess(), new CompoundTag()).toString();
+        int count = 0;
+        for (FoodHistoryEntry entry : readHistoryEntries(living, getHistoryTag(living))) {
+            if (entry.foodSignature().equals(targetSignature)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean hasOnlyConsumedMatchingFoodRecently(LivingEntity living, ItemStack stack) {
+        if (stack.isEmpty()) {
+            return false;
+        }
+
+        List<FoodHistoryEntry> entries = readHistoryEntries(living, getHistoryTag(living));
+        if (entries.isEmpty()) {
+            return false;
+        }
+
+        String targetSignature = stack.copyWithCount(1).save(living.level().registryAccess(), new CompoundTag()).toString();
+        for (FoodHistoryEntry entry : entries) {
+            if (!entry.foodSignature().equals(targetSignature)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static List<ActiveAftertasteEntry> getActiveAftertasteEntries(LivingEntity living) {
         if (living.level().isClientSide()) {
             return readClientActiveAftertasteEntries(living);
@@ -205,6 +249,55 @@ public final class FoodAftertasteHandler {
         living.getPersistentData().remove(DISABLED_PERMANENT_AFTERTASTES_TAG);
         living.getPersistentData().remove(FOOD_HISTORY_TAG);
         refreshAftertasteState(living);
+    }
+
+    public static boolean reactivateExhaustedAftertastes(LivingEntity living) {
+        if (living.level().isClientSide()) {
+            return false;
+        }
+
+        boolean changed = false;
+
+        EnumSet<FoodPassiveEffectType> disabledPermanent = getDisabledPermanentAftertastes(living);
+        EnumSet<FoodPassiveEffectType> reactivatedPermanent = EnumSet.noneOf(FoodPassiveEffectType.class);
+        for (FoodPassiveEffectType type : disabledPermanent) {
+            if (type.canBeReactivated()) {
+                reactivatedPermanent.add(type);
+            }
+        }
+        if (!reactivatedPermanent.isEmpty()) {
+            disabledPermanent.removeAll(reactivatedPermanent);
+            setDisabledPermanentAftertastes(living, disabledPermanent);
+            changed = true;
+        }
+
+        ListTag history = getHistoryTag(living);
+        for (int i = 0; i < history.size(); i++) {
+            CompoundTag entry = history.getCompound(i).copy();
+            EnumSet<FoodPassiveEffectType> disabled = readDisabledAftertastes(entry);
+            EnumSet<FoodPassiveEffectType> reactivated = EnumSet.noneOf(FoodPassiveEffectType.class);
+            for (FoodPassiveEffectType type : disabled) {
+                if (type.canBeReactivated()) {
+                    reactivated.add(type);
+                }
+            }
+
+            if (reactivated.isEmpty()) {
+                continue;
+            }
+
+            disabled.removeAll(reactivated);
+            entry.put(FOOD_DISABLED_AFTERTASTES_TAG, writeEffectNames(disabled));
+            history.set(i, entry);
+            changed = true;
+        }
+
+        if (changed) {
+            setHistory(living, history);
+            refreshAftertasteState(living);
+        }
+
+        return changed;
     }
 
     public static boolean disableActiveAftertaste(LivingEntity living, FoodPassiveEffectType type) {

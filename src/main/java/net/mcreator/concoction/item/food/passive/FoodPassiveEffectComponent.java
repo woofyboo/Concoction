@@ -6,6 +6,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 
 public record FoodPassiveEffectComponent(FoodPassiveEffectType type) {
     public static final Codec<FoodPassiveEffectComponent> CODEC = RecordCodecBuilder.create(instance ->
@@ -28,5 +29,9 @@ public record FoodPassiveEffectComponent(FoodPassiveEffectType type) {
 
     public void applyOnConsume(LivingEntity entity) {
         this.type.applyOnConsume(entity);
+    }
+
+    public void applyOnConsume(LivingEntity entity, ItemStack consumedStack) {
+        this.type.applyOnConsume(entity, consumedStack);
     }
 }

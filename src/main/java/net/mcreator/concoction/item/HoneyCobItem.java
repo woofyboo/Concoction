@@ -17,7 +17,10 @@ public class HoneyCobItem extends Item {
                 .food((new FoodProperties.Builder()).nutrition(6).saturationModifier(1.2f).build())
                 .component(
                         ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get(),
-                        List.of(FoodPassiveEffectComponent.of(FoodPassiveEffectType.STICKY_VISCOSITY))
+                        List.of(
+                                FoodPassiveEffectComponent.of(FoodPassiveEffectType.STICKY_VISCOSITY),
+                                FoodPassiveEffectComponent.of(FoodPassiveEffectType.HONEY_BENEFIT)
+                        )
                 ));
     }
 }
