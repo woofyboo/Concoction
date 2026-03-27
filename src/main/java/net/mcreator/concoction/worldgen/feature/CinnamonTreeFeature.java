@@ -69,10 +69,11 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-        WorldGenLevel level = context.level();
+        return placeSingleTree(context.level(), context.random(), context.origin());
+    }
+
+    public static boolean placeSingleTree(WorldGenLevel level, RandomSource random, BlockPos trunkSurface) {
         ServerLevel serverLevel = level.getLevel();
-        RandomSource random = context.random();
-        BlockPos trunkSurface = context.origin(); // позиция саженца / ствола
 
         // --- проверка почвы под стволом ---
         BlockPos groundPos = trunkSurface.below();
@@ -174,7 +175,7 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
      * 2) если листва пересекается с чем-то незаменяемым и это не листва — нельзя расти;
      * 3) воздух / structural void внутри шаблона не проверяем вообще.
      */
-    private boolean canPlaceTemplate(
+    private static boolean canPlaceTemplate(
             WorldGenLevel level,
             StructureTemplate template,
             BlockPos structureOrigin,

@@ -1,6 +1,7 @@
 package net.mcreator.concoction.worldgen;
 
 import net.mcreator.concoction.ConcoctionMod;
+import net.mcreator.concoction.worldgen.feature.CinnamonTreeClusterFeature;
 import net.mcreator.concoction.worldgen.feature.CinnamonTreeFeature;
 import net.mcreator.concoction.worldgen.feature.SaponariaPatchConfig;
 import net.mcreator.concoction.worldgen.feature.SaponariaPatchFeature;
@@ -19,6 +20,8 @@ public class ModWorldgen {
     // коричное дерево
     public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> CINNAMON_TREE =
             FEATURES.register("cinnamon_tree", CinnamonTreeFeature::new);
+    public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> CINNAMON_TREE_CLUSTER =
+            FEATURES.register("cinnamon_tree_cluster", CinnamonTreeClusterFeature::new);
 
     // сапонария (как у тебя было)
     public static final DeferredHolder<Feature<?>, Feature<SaponariaPatchConfig>> SAPONARIA_PATCH =

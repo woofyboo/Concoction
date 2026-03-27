@@ -2,12 +2,7 @@
   "type": "neoforge:add_features",
   "biomes": [
     "minecraft:jungle",
-    "minecraft:bamboo_jungle",
-    "minecraft:sparse_jungle",
-    "minecraft:dark_forest",
-    "minecraft:flower_forest",
-    "minecraft:birch_forest",
-    "minecraft:old_growth_birch_forest"
+    "minecraft:bamboo_jungle"
   ],
   "features": [
     "concoction:cinnamon_tree"
