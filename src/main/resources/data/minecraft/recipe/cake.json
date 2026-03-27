@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:egg"
+    }
+  ],
+  "bottle_ingredient": {
+    "item": "minecraft:milk_bucket"
+  },
+  "result": {
+    "id": "minecraft:cake",
+    "count": 1
+  }
+}

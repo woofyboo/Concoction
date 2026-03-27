@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "chocolate_cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:chocolate"
+    },
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "concoction:butter"
+    }
+  ],
+  "result": {
+    "id": "concoction:chocolate_cake",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "glowberry_cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:glow_berries"
+    },
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:slime_ball"
+    }
+  ],
+  "result": {
+    "id": "concoction:glowberry_cake",
+    "count": 1
+  }
+}

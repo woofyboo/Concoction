@@ -1,0 +1,18 @@
+{
+  "type": "concoction:oven",
+  "group": "mint_cookie",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "concoction:mint"
+    }
+  ],
+  "result": {
+    "id": "concoction:mint_cookie",
+    "count": 8
+  }
+}

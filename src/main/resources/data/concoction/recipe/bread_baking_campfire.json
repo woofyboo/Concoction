@@ -1,7 +1,7 @@
 {
     "type":  "minecraft:campfire_cooking",
     "category":  "food",
-    "experience":  4,
+    "experience":  2,
     "cookingtime":  600,
     "ingredient":  {
                        "item":  "concoction:dough"

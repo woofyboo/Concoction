@@ -1,22 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "concoction:oven",
   "group": "pumpkin_pie",
-  "category": "misc",
-  "pattern": [
-    "ab",
-    "c "
-  ],
-  "key": {
-    "a": {
+  "category": "snacks_and_pastry",
+  "cooking_time": 220,
+  "crafting_ingredients": [
+    {
       "item": "minecraft:pumpkin"
     },
-    "b": {
+    {
       "item": "minecraft:sugar"
     },
-    "c": {
+    {
       "item": "concoction:dough"
     }
-  },
+  ],
   "result": {
     "id": "minecraft:pumpkin_pie",
     "count": 1

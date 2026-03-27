@@ -110,11 +110,16 @@ public final class ModRecipeUnlockHandler {
 
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
             ResourceLocation recipeId = holder.id();
-            if (!ConcoctionMod.MODID.equals(recipeId.getNamespace())) {
+            Recipe<?> recipe = holder.value();
+            boolean includeRegardlessOfNamespace = recipe instanceof OvenRecipe
+                    || recipe instanceof ButterChurnRecipe
+                    || recipe instanceof SoapCleaningRecipe
+                    || recipe instanceof SoapShieldCleaningRecipe;
+            if (!includeRegardlessOfNamespace && !ConcoctionMod.MODID.equals(recipeId.getNamespace())) {
                 continue;
             }
 
-            List<Ingredient> ingredients = extractIngredients(holder.value()).stream()
+            List<Ingredient> ingredients = extractIngredients(recipe).stream()
                     .filter(ingredient -> ingredient != null && !ingredient.isEmpty())
                     .toList();
             if (ingredients.isEmpty()) {
@@ -156,6 +161,9 @@ public final class ModRecipeUnlockHandler {
             List<Ingredient> ingredients = new ArrayList<>(ovenRecipe.getCraftingIngredients());
             if (!ovenRecipe.getBottleIngredient().isEmpty()) {
                 ingredients.add(ovenRecipe.getBottleIngredient());
+            }
+            if (!ovenRecipe.getBowlIngredient().isEmpty()) {
+                ingredients.add(ovenRecipe.getBowlIngredient());
             }
             return ingredients;
         }

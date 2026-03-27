@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "mint_chocolate_cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:mint"
+    },
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "concoction:chocolate"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "concoction:mint_chocolate_cake",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:false"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "group": "beetroot_soup",
+  "category": "food",
+  "pattern": [
+    "###",
+    "#B#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:beetroot"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "id": "minecraft:beetroot_soup",
+    "count": 1
+  }
+}

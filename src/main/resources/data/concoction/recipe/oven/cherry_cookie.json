@@ -1,0 +1,18 @@
+{
+  "type": "concoction:oven",
+  "group": "cherry_cookie",
+  "category": "snacks_and_pastry",
+  "cooking_time": 200,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "concoction:cherry"
+    }
+  ],
+  "result": {
+    "id": "concoction:cherry_cookie",
+    "count": 8
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "lingonberry_cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "bottle_ingredient": {
+    "item": "concoction:cream_bottle"
+  },
+  "result": {
+    "id": "concoction:lingonberry_cake",
+    "count": 1
+  }
+}

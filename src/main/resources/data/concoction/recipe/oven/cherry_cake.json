@@ -1,0 +1,24 @@
+{
+  "type": "concoction:oven",
+  "group": "cherry_cake",
+  "category": "feasts",
+  "cooking_time": 240,
+  "crafting_ingredients": [
+    {
+      "item": "concoction:cherry"
+    },
+    {
+      "item": "concoction:dough"
+    },
+    {
+      "item": "concoction:chocolate"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "concoction:cherry_cake",
+    "count": 1
+  }
+}
