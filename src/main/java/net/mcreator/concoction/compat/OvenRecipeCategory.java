@@ -7,7 +7,6 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
@@ -15,16 +14,21 @@ import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
 import net.mcreator.concoction.recipe.RecipeOutputData;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
+import java.util.Comparator;
 import java.util.List;
-
 public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
     public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ConcoctionMod.MODID,
             "textures/gui/oven_gui_jei.png");
@@ -90,7 +94,7 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, OvenRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, OvenRecipe recipe, mezz.jei.api.recipe.IFocusGroup focuses) {
         List<Ingredient> ingredients = recipe.getCraftingIngredients();
         RecipeOutputData output = recipe.getResult();
 
@@ -109,7 +113,7 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
             i++;
         }
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 136, 30).addItemStack(output.toStack());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 136, 30).addItemStacks(getJeiOutputStacks(recipe, output));
 
         if (!recipe.getBowlIngredient().hasNoItems()) {
             ItemStack bowlStack = recipe.getBowlIngredient().getItems()[0].copy();
@@ -122,5 +126,30 @@ public class OvenRecipeCategory implements IRecipeCategory<OvenRecipe> {
                     .setBackground(slot, 0, 0)
                     .addIngredients(recipe.getBottleIngredient());
         }
+    }
+
+    public static List<ItemStack> getJeiOutputStacks(OvenRecipe recipe, RecipeOutputData output) {
+        if (recipe instanceof JeiOvenRecipe jeiRecipe) {
+            return List.of(jeiRecipe.getJeiOutputStack());
+        }
+
+        ItemStack outputStack = output.toStack();
+        if (!outputStack.is(Items.SUSPICIOUS_STEW)) {
+            return List.of(outputStack);
+        }
+
+        return BuiltInRegistries.ITEM.stream()
+                .map(SuspiciousEffectHolder::tryGet)
+                .filter(holder -> holder != null)
+                .map(SuspiciousEffectHolder::getSuspiciousEffects)
+                .filter(effects -> !effects.equals(SuspiciousStewEffects.EMPTY))
+                .distinct()
+                .map(effects -> {
+                    ItemStack suspiciousStew = output.toStack();
+                    suspiciousStew.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, effects);
+                    return suspiciousStew;
+                })
+                .sorted(Comparator.comparing(stack -> stack.getComponents().toString()))
+                .toList();
     }
 }

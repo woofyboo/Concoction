@@ -10,6 +10,7 @@ import net.mcreator.concoction.world.inventory.OvenMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -25,8 +26,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
@@ -177,8 +181,18 @@ public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implemen
 
     private boolean canAddResult() {
         if (recipe == null) return false;
+        ItemStack resultStack = createResultStack(recipe);
+        if (resultStack.isEmpty()) {
+            return false;
+        }
 
-        return recipe.value().getResult().canMergeInto(items.get(SLOT_OUTPUT));
+        ItemStack currentStack = items.get(SLOT_OUTPUT);
+        if (currentStack.isEmpty()) {
+            return true;
+        }
+
+        return ItemStack.isSameItemSameComponents(resultStack, currentStack)
+                && currentStack.getCount() + resultStack.getCount() <= currentStack.getMaxStackSize();
 
 
         // Проверяем, совпадает ли предмет в слоте результата с результатом рецепта
@@ -210,11 +224,18 @@ public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implemen
     private void craftItem() {
         if (recipe == null) return;
 
-        RecipeOutputData result = recipe.value().getResult();
-        if (result.isEmpty()) {
+        ItemStack resultStack = createResultStack(recipe);
+        if (resultStack.isEmpty()) {
             return;
         }
-        items.set(SLOT_OUTPUT, result.mergeInto(items.get(SLOT_OUTPUT)));
+
+        ItemStack outputStack = items.get(SLOT_OUTPUT);
+        if (outputStack.isEmpty()) {
+            items.set(SLOT_OUTPUT, resultStack);
+        } else if (ItemStack.isSameItemSameComponents(outputStack, resultStack)) {
+            outputStack.grow(resultStack.getCount());
+            items.set(SLOT_OUTPUT, outputStack);
+        }
 
         // Добавляем в слот результата
 
@@ -222,6 +243,47 @@ public class OvenBlockEntity extends AbstractSyncedContainerBlockEntity implemen
         consumeIngredients(recipe);
 
         setChanged();
+    }
+
+    private ItemStack createResultStack(RecipeHolder<OvenRecipe> recipeHolder) {
+        if (recipeHolder == null) {
+            return ItemStack.EMPTY;
+        }
+
+        RecipeOutputData result = recipeHolder.value().getResult();
+        ItemStack resultStack = result.toStack();
+        if (resultStack.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        if (!resultStack.is(Items.SUSPICIOUS_STEW)) {
+            return resultStack;
+        }
+
+        SuspiciousStewEffects suspiciousStewEffects = findSuspiciousStewEffects();
+        if (suspiciousStewEffects == null || suspiciousStewEffects.equals(SuspiciousStewEffects.EMPTY)) {
+            return ItemStack.EMPTY;
+        }
+
+        resultStack.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, suspiciousStewEffects);
+        return resultStack;
+    }
+
+    @Nullable
+    private SuspiciousStewEffects findSuspiciousStewEffects() {
+        for (int slot = SLOT_FIRST_CRAFT; slot <= SLOT_LAST_CRAFT; slot++) {
+            ItemStack stack = items.get(slot);
+            if (stack.isEmpty()) {
+                continue;
+            }
+
+            SuspiciousEffectHolder holder = SuspiciousEffectHolder.tryGet(stack.getItem());
+            if (holder != null) {
+                return holder.getSuspiciousEffects();
+            }
+        }
+
+        return null;
     }
 
     /**

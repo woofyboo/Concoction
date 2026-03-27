@@ -18,13 +18,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Objects;
 
 @Mixin(net.minecraft.world.entity.player.Player.class)
 public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
 
-
+    @Unique
+    private static final float concoction$healthEpsilon = 0.001F;
 
     @Unique
     private int concoction$unsuccessfulAttempts = 0;
@@ -48,6 +50,11 @@ public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
         concoction$unsuccessfulAttempts--;
     }
 
+    @Inject(method = "isHurt", at = @At("HEAD"), cancellable = true)
+    private void concoction$usePreciseIsHurtCheck(CallbackInfoReturnable<Boolean> cir) {
+        Player player = (Player) (Object) this;
+        cir.setReturnValue(player.getHealth() > 0.0F && player.getHealth() < player.getMaxHealth() - concoction$healthEpsilon);
+    }
 
     @Redirect(method = "eat", at = @At(value = "INVOKE",
                                     target = "Lnet/minecraft/world/level/Level;playSound(Lnet/minecraft/world/entity/player/Player;DDDLnet/minecraft/sounds/SoundEvent;Lnet/minecraft/sounds/SoundSource;FF)V"))

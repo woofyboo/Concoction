@@ -19,18 +19,24 @@ import net.mcreator.concoction.recipe.butterChurn.ButterChurnRecipe;
 import net.mcreator.concoction.recipe.oven.OvenRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.SuspiciousStewEffects;
 import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.level.block.SuspiciousEffectHolder;
 import net.neoforged.neoforge.common.brewing.BrewingRecipe;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -63,7 +69,10 @@ public class JEIPlugin implements IModPlugin {
 
         List<OvenRecipe> ovenRecipes = recipeManager
                 .getAllRecipesFor(ConcoctionModRecipes.OVEN_RECIPE_TYPE.get())
-                .stream().map(RecipeHolder::value).toList();
+                .stream()
+                .map(RecipeHolder::value)
+                .flatMap(recipe -> expandOvenRecipeForJei(recipe).stream())
+                .toList();
         registration.addRecipes(OvenRecipeCategory.OVEN_RECIPE_TYPE, ovenRecipes);
 
 //        registration.getIngredientManager().addIngredientsAtRuntime(VanillaTypes.ITEM_STACK, List.of( new ItemStack(ConcoctionModItems.MINT.get())));
@@ -91,5 +100,62 @@ public class JEIPlugin implements IModPlugin {
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ConcoctionModItems.BUTTER_CHURN.get()), ButterChurnRecipeCategory.BUTTER_CHURN_RECIPE_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ConcoctionModItems.OVEN.get()), OvenRecipeCategory.OVEN_RECIPE_TYPE);
+    }
+
+    private static List<OvenRecipe> expandOvenRecipeForJei(OvenRecipe recipe) {
+        List<ItemStack> outputStacks = OvenRecipeCategory.getJeiOutputStacks(recipe, recipe.getResult());
+        if (outputStacks.size() <= 1) {
+            return List.of(recipe);
+        }
+
+        List<OvenRecipe> expandedRecipes = new ArrayList<>(outputStacks.size());
+        for (ItemStack outputStack : outputStacks) {
+            expandedRecipes.add(new JeiOvenRecipe(recipe, outputStack, getJeiCraftingIngredients(recipe, outputStack)));
+        }
+        return expandedRecipes;
+    }
+
+    private static List<Ingredient> getJeiCraftingIngredients(OvenRecipe recipe, ItemStack outputStack) {
+        if (!outputStack.is(Items.SUSPICIOUS_STEW)) {
+            return recipe.getCraftingIngredients();
+        }
+
+        SuspiciousStewEffects suspiciousEffects = outputStack.getOrDefault(DataComponents.SUSPICIOUS_STEW_EFFECTS, SuspiciousStewEffects.EMPTY);
+        if (suspiciousEffects.equals(SuspiciousStewEffects.EMPTY)) {
+            return recipe.getCraftingIngredients();
+        }
+
+        List<ItemStack> matchingFlowers = BuiltInRegistries.ITEM.stream()
+                .filter(item -> {
+                    SuspiciousEffectHolder holder = SuspiciousEffectHolder.tryGet(item);
+                    return holder != null && holder.getSuspiciousEffects().equals(suspiciousEffects);
+                })
+                .map(ItemStack::new)
+                .toList();
+        if (matchingFlowers.isEmpty()) {
+            return recipe.getCraftingIngredients();
+        }
+
+        List<Ingredient> ingredients = new ArrayList<>(recipe.getCraftingIngredients().size());
+        boolean replacedFlowerIngredient = false;
+        for (Ingredient ingredient : recipe.getCraftingIngredients()) {
+            if (!replacedFlowerIngredient && containsSuspiciousFlower(ingredient)) {
+                ingredients.add(Ingredient.of(matchingFlowers.stream()));
+                replacedFlowerIngredient = true;
+            } else {
+                ingredients.add(ingredient);
+            }
+        }
+
+        return ingredients;
+    }
+
+    private static boolean containsSuspiciousFlower(Ingredient ingredient) {
+        for (ItemStack stack : ingredient.getItems()) {
+            if (SuspiciousEffectHolder.tryGet(stack.getItem()) != null) {
+                return true;
+            }
+        }
+        return false;
     }
 }

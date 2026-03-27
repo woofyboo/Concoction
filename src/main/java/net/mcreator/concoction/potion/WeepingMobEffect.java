@@ -1,5 +1,6 @@
 package net.mcreator.concoction.potion;
 
+import net.mcreator.concoction.handlers.WeepingStateHandler;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
@@ -47,6 +48,7 @@ public class WeepingMobEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
+            WeepingStateHandler.ensureWeepingState(entity);
             clampHealthToCap(entity);
         }
         // true = эффект что-то сделал, можно, например, обновлять рендер эффектов
@@ -56,6 +58,7 @@ public class WeepingMobEffect extends MobEffect {
     @Override
     public void onEffectAdded(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
+            WeepingStateHandler.ensureWeepingState(entity);
             clampHealthToCap(entity);
         }
     }
@@ -63,6 +66,7 @@ public class WeepingMobEffect extends MobEffect {
     @Override
     public void onEffectStarted(LivingEntity entity, int amplifier) {
         if (!entity.level().isClientSide) {
+            WeepingStateHandler.ensureWeepingState(entity);
             clampHealthToCap(entity);
         }
     }

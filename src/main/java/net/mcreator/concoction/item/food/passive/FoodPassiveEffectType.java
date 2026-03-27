@@ -25,12 +25,15 @@ public enum FoodPassiveEffectType implements StringRepresentable {
     SPICINESS("spiciness", false),
     CONCENTRATED_SPICINESS("concentrated_spiciness", false),
     HONEY_BENEFIT("honey_benefit", false),
+    ROTTEN_MEAT("rotten_meat", false),
     TETRODOTOXIN("tetrodotoxin", false),
     SPRING_MOOD("spring_mood", false),
     CHERRY_JUICE("cherry_juice", false),
     NAUSEATINGLY_VILE("nauseatingly_vile", false),
     LIGHT_SNACK("light_snack", false),
+    GOOD_MORNING("good_morning", true),
     CRISPY_CRUST("crispy_crust", true, true),
+    SUGAR_CRYSTALLIZATION("sugar_crystallization", true),
     SPORE_SEDIMENT("spore_sediment", true),
     JITTERING_JELLY("jittering_jelly", true, true),
     STICKY_VISCOSITY("sticky_viscosity", true, true),
@@ -91,6 +94,7 @@ public enum FoodPassiveEffectType implements StringRepresentable {
             case SPICINESS -> applySpiciness(entity);
             case CONCENTRATED_SPICINESS -> applyConcentratedSpiciness(entity);
             case HONEY_BENEFIT -> applyHoneyBenefit(entity);
+            case ROTTEN_MEAT -> applyRottenMeat(entity);
             case TETRODOTOXIN -> applyTetrodotoxin(entity);
             case SPRING_MOOD -> applySpringMood(entity);
             case CHERRY_JUICE -> applyCherryJuice(entity);
@@ -98,7 +102,7 @@ public enum FoodPassiveEffectType implements StringRepresentable {
             case LIGHT_SNACK -> applyLightSnack(entity);
             case GENTLE_CLEANSING -> applyGentleCleansing(entity);
             case GENTLE_CLEANSING_PLUS -> applyGentleCleansingPlus(entity);
-            case CRISPY_CRUST, SPORE_SEDIMENT, JITTERING_JELLY, STICKY_VISCOSITY -> {
+            case CRISPY_CRUST, SUGAR_CRYSTALLIZATION, SPORE_SEDIMENT, JITTERING_JELLY, STICKY_VISCOSITY, GOOD_MORNING -> {
             }
         }
     }
@@ -164,6 +168,14 @@ public enum FoodPassiveEffectType implements StringRepresentable {
 
     private static void applyHoneyBenefit(LivingEntity entity) {
         entity.removeEffect(MobEffects.POISON);
+    }
+
+    private static void applyRottenMeat(LivingEntity entity) {
+        if (entity.getRandom().nextFloat() >= 0.8F) {
+            return;
+        }
+
+        entity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 30 * 20, 0, false, true, true));
     }
 
     private static void applyTetrodotoxin(LivingEntity entity) {

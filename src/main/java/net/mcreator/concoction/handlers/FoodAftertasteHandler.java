@@ -18,16 +18,22 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDropsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +48,7 @@ public final class FoodAftertasteHandler {
     private static final String PERMANENT_AFTERTASTES_TAG = "concoction_permanent_aftertastes";
     private static final String DISABLED_PERMANENT_AFTERTASTES_TAG = "concoction_disabled_permanent_aftertastes";
     private static final String CLIENT_ACTIVE_AFTERTASTE_ENTRIES_TAG = "concoction_active_aftertaste_entries_client";
+    private static final String GOOD_MORNING_SAVED_ITEMS_TAG = "concoction_good_morning_saved_items";
     private static final int FOOD_HISTORY_LIMIT = 8;
     private static final int ACTIVE_AFTERTASTE_FOOD_LIMIT = 3;
     private static final float CRISPY_CRUST_BREAK_SPEED_MULTIPLIER = 1.5F;
@@ -51,6 +58,7 @@ public final class FoodAftertasteHandler {
     private static final double STICKY_MOVEMENT_SPEED_MULTIPLIER = -0.15D;
     private static final double STICKY_KNOCKBACK_RESISTANCE_BONUS = 0.75D;
     private static final double STICKY_JUMP_MULTIPLIER = 0.9D;
+    private static final double SUGAR_CRYSTALLIZATION_ARMOR_BONUS = 1.0D;
     private static final ResourceLocation STICKY_SPEED_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(
             ConcoctionMod.MODID,
             "aftertaste_sticky_movement_speed"
@@ -58,6 +66,10 @@ public final class FoodAftertasteHandler {
     private static final ResourceLocation STICKY_KNOCKBACK_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(
             ConcoctionMod.MODID,
             "aftertaste_sticky_knockback_resistance"
+    );
+    private static final ResourceLocation SUGAR_CRYSTALLIZATION_ARMOR_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(
+            ConcoctionMod.MODID,
+            "aftertaste_sugar_crystallization_armor"
     );
 
     private FoodAftertasteHandler() {
@@ -424,8 +436,107 @@ public final class FoodAftertasteHandler {
             newPlayer.getPersistentData().remove(FOOD_HISTORY_TAG);
         }
 
+        restoreSavedDeathInventory(oldPlayer, newPlayer);
         newPlayer.getPersistentData().remove(CLIENT_ACTIVE_AFTERTASTE_ENTRIES_TAG);
         refreshAftertasteState(newPlayer);
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+        if (!(event.getEntity() instanceof Player player) || player.level().isClientSide()) {
+            return;
+        }
+
+        if (!hasEnabledAftertaste(player, FoodPassiveEffectType.GOOD_MORNING)) {
+            getPersistedPlayerData(player).remove(GOOD_MORNING_SAVED_ITEMS_TAG);
+            return;
+        }
+
+        CompoundTag savedItems = captureSavedDeathInventory(player);
+        if (savedItems.isEmpty()) {
+            getPersistedPlayerData(player).remove(GOOD_MORNING_SAVED_ITEMS_TAG);
+            return;
+        }
+
+        getPersistedPlayerData(player).put(GOOD_MORNING_SAVED_ITEMS_TAG, savedItems);
+    }
+
+    @SubscribeEvent
+    public static void onLivingDrops(LivingDropsEvent event) {
+        if (!(event.getEntity() instanceof Player player) || player.level().isClientSide()) {
+            return;
+        }
+
+        CompoundTag savedItems = getPersistedPlayerData(player).getCompound(GOOD_MORNING_SAVED_ITEMS_TAG);
+        if (savedItems.isEmpty()) {
+            return;
+        }
+
+        removeSavedDrops(player, event.getDrops(), savedItems.getList("hotbar", Tag.TAG_COMPOUND));
+        removeSavedDrops(player, event.getDrops(), savedItems.getList("armor", Tag.TAG_COMPOUND));
+    }
+
+    private static CompoundTag captureSavedDeathInventory(Player player) {
+        CompoundTag savedItems = new CompoundTag();
+
+        ListTag savedHotbar = new ListTag();
+        for (int slot = 0; slot < Math.min(9, player.getInventory().items.size()); slot++) {
+            ItemStack stack = player.getInventory().items.get(slot);
+            if (stack.isEmpty() || EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) {
+                continue;
+            }
+
+            savedHotbar.add(writeSavedInventoryEntry(player, slot, stack));
+        }
+
+        ListTag savedArmor = new ListTag();
+        for (int slot = 0; slot < player.getInventory().armor.size(); slot++) {
+            ItemStack stack = player.getInventory().armor.get(slot);
+            if (stack.isEmpty() || EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) {
+                continue;
+            }
+
+            savedArmor.add(writeSavedInventoryEntry(player, slot, stack));
+        }
+
+        if (!savedHotbar.isEmpty()) {
+            savedItems.put("hotbar", savedHotbar);
+        }
+        if (!savedArmor.isEmpty()) {
+            savedItems.put("armor", savedArmor);
+        }
+
+        return savedItems;
+    }
+
+    private static void removeSavedDrops(Player player, Collection<ItemEntity> drops, ListTag savedEntries) {
+        for (int i = 0; i < savedEntries.size(); i++) {
+            CompoundTag entry = savedEntries.getCompound(i);
+            if (!entry.contains("stack", Tag.TAG_COMPOUND)) {
+                continue;
+            }
+
+            ItemStack savedStack = ItemStack.parseOptional(player.level().registryAccess(), entry.getCompound("stack"));
+            if (savedStack.isEmpty()) {
+                continue;
+            }
+
+            ItemEntity matchingDrop = null;
+            for (ItemEntity drop : drops) {
+                ItemStack dropStack = drop.getItem();
+                if (dropStack.getCount() != savedStack.getCount()) {
+                    continue;
+                }
+                if (ItemStack.isSameItemSameComponents(dropStack, savedStack)) {
+                    matchingDrop = drop;
+                    break;
+                }
+            }
+
+            if (matchingDrop != null) {
+                drops.remove(matchingDrop);
+            }
+        }
     }
 
     private static void refreshAftertasteState(LivingEntity living) {
@@ -434,6 +545,7 @@ public final class FoodAftertasteHandler {
         }
 
         boolean stickyActive = hasEnabledAftertasteInState(living, FoodPassiveEffectType.STICKY_VISCOSITY);
+        boolean sugarCrystallizationActive = hasEnabledAftertasteInState(living, FoodPassiveEffectType.SUGAR_CRYSTALLIZATION);
         updateAttributeModifier(
                 living,
                 Attributes.MOVEMENT_SPEED,
@@ -450,10 +562,61 @@ public final class FoodAftertasteHandler {
                 AttributeModifier.Operation.ADD_VALUE,
                 stickyActive
         );
+        updateAttributeModifier(
+                living,
+                Attributes.ARMOR,
+                SUGAR_CRYSTALLIZATION_ARMOR_MODIFIER_ID,
+                SUGAR_CRYSTALLIZATION_ARMOR_BONUS,
+                AttributeModifier.Operation.ADD_VALUE,
+                sugarCrystallizationActive
+        );
 
         if (living instanceof ServerPlayer serverPlayer) {
             syncToClient(serverPlayer);
         }
+    }
+
+    private static CompoundTag writeSavedInventoryEntry(Player player, int slot, ItemStack stack) {
+        CompoundTag entry = new CompoundTag();
+        entry.putInt("slot", slot);
+        entry.put("stack", stack.copy().save(player.level().registryAccess(), new CompoundTag()));
+        return entry;
+    }
+
+    private static void restoreSavedDeathInventory(Player oldPlayer, Player newPlayer) {
+        CompoundTag savedItems = getPersistedPlayerData(newPlayer).getCompound(GOOD_MORNING_SAVED_ITEMS_TAG);
+        if (savedItems.isEmpty()) {
+            savedItems = getPersistedPlayerData(oldPlayer).getCompound(GOOD_MORNING_SAVED_ITEMS_TAG);
+        }
+        if (savedItems.isEmpty()) {
+            return;
+        }
+
+        restoreSavedInventoryList(newPlayer, newPlayer.getInventory().items, savedItems.getList("hotbar", Tag.TAG_COMPOUND));
+        restoreSavedInventoryList(newPlayer, newPlayer.getInventory().armor, savedItems.getList("armor", Tag.TAG_COMPOUND));
+        newPlayer.getInventory().setChanged();
+        getPersistedPlayerData(newPlayer).remove(GOOD_MORNING_SAVED_ITEMS_TAG);
+        getPersistedPlayerData(oldPlayer).remove(GOOD_MORNING_SAVED_ITEMS_TAG);
+    }
+
+    private static void restoreSavedInventoryList(Player player, List<ItemStack> destination, ListTag savedEntries) {
+        for (int i = 0; i < savedEntries.size(); i++) {
+            CompoundTag entry = savedEntries.getCompound(i);
+            int slot = entry.getInt("slot");
+            if (slot < 0 || slot >= destination.size() || !entry.contains("stack", Tag.TAG_COMPOUND)) {
+                continue;
+            }
+
+            destination.set(slot, ItemStack.parseOptional(player.level().registryAccess(), entry.getCompound("stack")));
+        }
+    }
+
+    private static CompoundTag getPersistedPlayerData(Player player) {
+        CompoundTag persistentData = player.getPersistentData();
+        if (!persistentData.contains(Player.PERSISTED_NBT_TAG, Tag.TAG_COMPOUND)) {
+            persistentData.put(Player.PERSISTED_NBT_TAG, new CompoundTag());
+        }
+        return persistentData.getCompound(Player.PERSISTED_NBT_TAG);
     }
 
     private static void updateAttributeModifier(

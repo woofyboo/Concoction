@@ -1,6 +1,7 @@
 
 package net.mcreator.concoction.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.Vec3;
@@ -10,16 +11,22 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-public class WildBeetrootBlock extends FlowerBlock {
+public class WildBeetrootBlock extends BushBlock {
+	public static final MapCodec<WildBeetrootBlock> CODEC = simpleCodec(properties -> new WildBeetrootBlock());
+
 	public WildBeetrootBlock() {
-		super(MobEffects.MOVEMENT_SPEED, 0, BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
+		super(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
+	}
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

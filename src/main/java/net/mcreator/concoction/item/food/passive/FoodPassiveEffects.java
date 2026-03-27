@@ -21,8 +21,14 @@ public final class FoodPassiveEffects {
     private static final List<FoodPassiveEffectComponent> PUFFERFISH_EFFECTS = List.of(
             FoodPassiveEffectComponent.of(FoodPassiveEffectType.TETRODOTOXIN)
     );
+    private static final List<FoodPassiveEffectComponent> ROTTEN_FLESH_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.ROTTEN_MEAT)
+    );
     private static final List<FoodPassiveEffectComponent> BEETROOT_SOUP_EFFECTS = List.of(
             FoodPassiveEffectComponent.of(FoodPassiveEffectType.HOT_BROTH)
+    );
+    private static final List<FoodPassiveEffectComponent> KOZINAK_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.SUGAR_CRYSTALLIZATION)
     );
 
     private FoodPassiveEffects() {
@@ -46,8 +52,16 @@ public final class FoodPassiveEffects {
             return PUFFERFISH_EFFECTS;
         }
 
+        if (stack.is(Items.ROTTEN_FLESH)) {
+            return ROTTEN_FLESH_EFFECTS;
+        }
+
         if (stack.is(Items.BEETROOT_SOUP)) {
             return BEETROOT_SOUP_EFFECTS;
+        }
+
+        if (stack.is(ConcoctionModItems.KOZINAK.get())) {
+            return KOZINAK_EFFECTS;
         }
 
         if (stack.getItem() instanceof BlockItem blockItem) {
@@ -66,6 +80,7 @@ public final class FoodPassiveEffects {
     public static ItemStack getRepresentativeStack(FoodPassiveEffectType type) {
         return switch (type) {
             case CRISPY_CRUST -> new ItemStack(ConcoctionModItems.HASHBROWNS.get());
+            case SUGAR_CRYSTALLIZATION -> new ItemStack(ConcoctionModItems.KOZINAK.get());
             case JITTERING_JELLY -> new ItemStack(ConcoctionModItems.SWEET_SLIME_JELLY.get());
             case STICKY_VISCOSITY -> new ItemStack(Items.HONEY_BOTTLE);
             case LIGHT_SNACK -> new ItemStack(ConcoctionModItems.POPCORN.get());
@@ -75,12 +90,14 @@ public final class FoodPassiveEffects {
             case SPICINESS -> new ItemStack(ConcoctionModItems.SPICY_PEPPER.get());
             case CONCENTRATED_SPICINESS -> new ItemStack(ConcoctionModItems.HOT_SAUCE_BOTTLE.get());
             case HONEY_BENEFIT -> new ItemStack(Items.HONEY_BOTTLE);
+            case ROTTEN_MEAT -> new ItemStack(Items.ROTTEN_FLESH);
             case TETRODOTOXIN -> new ItemStack(Items.PUFFERFISH);
             case SPRING_MOOD, CHERRY_JUICE -> new ItemStack(ConcoctionModItems.CHERRY.get());
             case NAUSEATINGLY_VILE -> new ItemStack(ConcoctionModItems.NETHER_SLOP.get());
             case GENTLE_CLEANSING -> new ItemStack(ConcoctionModItems.MILK_BOTTLE.get());
             case GENTLE_CLEANSING_PLUS -> new ItemStack(Items.MILK_BUCKET);
             case SPORE_SEDIMENT -> new ItemStack(ConcoctionModItems.PUFFBALL_SOUP.get());
+            case GOOD_MORNING -> new ItemStack(ConcoctionModItems.BACON_AND_EGGS.get());
         };
     }
 }
