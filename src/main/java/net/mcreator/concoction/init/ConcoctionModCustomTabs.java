@@ -108,6 +108,8 @@ public class ConcoctionModCustomTabs {
 				tabData.accept(ConcoctionModItems.LINGONBERRY_CAKE_SLICE.get());
 				tabData.accept(ConcoctionModItems.GLOWBERRY_CAKE_SLICE.get());
 				tabData.accept(ConcoctionModItems.CARROT_CAKE_SLICE.get());
+				tabData.accept(ConcoctionModItems.APPLE_PIE.get());
+				tabData.accept(ConcoctionModItems.APPLE_PIE_SLICE.get());
 				tabData.accept(ConcoctionModItems.PUMPKIN_PIE_SLICE.get());
                 tabData.accept(ConcoctionModItems.TAHCHIN_SLICE.get());
 				tabData.accept(ConcoctionModItems.MINT_COOKIE.get());

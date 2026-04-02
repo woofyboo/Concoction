@@ -1,5 +1,7 @@
 package net.mcreator.concoction.mixins;
 
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffectType;
+import net.mcreator.concoction.item.food.passive.FoodPassiveEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -17,6 +19,12 @@ public abstract class ChorusFruitMixin extends Item {
 
     @Inject(method = "finishUsingItem", at = @At("HEAD"), cancellable = true)
     private void concoction$disableChorusTeleport(ItemStack stack, Level level, LivingEntity entity, CallbackInfoReturnable<ItemStack> cir) {
+        boolean allowTeleport = FoodPassiveEffects.get(stack).stream()
+                .anyMatch(passiveEffect -> passiveEffect.type() == FoodPassiveEffectType.OTHERWORLDLY_MALADAPTATION);
+        if (allowTeleport) {
+            return;
+        }
+
         cir.setReturnValue(super.finishUsingItem(stack, level, entity));
     }
 }

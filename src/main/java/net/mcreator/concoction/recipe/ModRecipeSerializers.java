@@ -15,4 +15,8 @@ public class ModRecipeSerializers {
             SERIALIZERS.register("soap_cleaning", SoapCleaningRecipe.Serializer::new);
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<SoapShieldCleaningRecipe>> SOAP_SHIELD_CLEANING =
             SERIALIZERS.register("soap_shield_cleaning", SoapShieldCleaningRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<HotSauceAdditionRecipe>> HOT_SAUCE_ADDITION =
+            SERIALIZERS.register("hot_sauce_addition", HotSauceAdditionRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<FoodSplitRecipe>> FOOD_SPLIT =
+            SERIALIZERS.register("food_split", FoodSplitRecipe.Serializer::new);
 }

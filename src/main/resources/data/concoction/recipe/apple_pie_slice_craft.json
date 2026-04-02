@@ -1,12 +1,12 @@
 {
     "type":  "concoction:food_split",
-    "group":  "tahchin_slice",
+    "group":  "apple_pie_slice",
     "category":  "misc",
     "source":  {
-                   "item":  "concoction:tahchin_bucket"
+                   "item":  "concoction:apple_pie"
                },
     "result":  {
-                   "id":  "concoction:tahchin_slice",
+                   "id":  "concoction:apple_pie_slice",
                    "count":  4
                }
 }

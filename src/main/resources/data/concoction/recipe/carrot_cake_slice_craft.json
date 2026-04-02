@@ -1,15 +1,10 @@
 {
-    "type":  "minecraft:crafting_shaped",
+    "type":  "concoction:food_split",
     "group":  "carrot_cake_slice",
-    "category":  "food",
-    "pattern":  [
-                    "a"
-                ],
-    "key":  {
-                "a":  {
-                          "item":  "concoction:carrot_cake"
-                      }
-            },
+    "category":  "misc",
+    "source":  {
+                   "item":  "concoction:carrot_cake"
+               },
     "result":  {
                    "id":  "concoction:carrot_cake_slice",
                    "count":  6

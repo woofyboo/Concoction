@@ -1,0 +1,21 @@
+{
+  "type": "concoction:oven",
+  "group": "apple_pie",
+  "category": "snacks_and_pastry",
+  "cooking_time": 220,
+  "crafting_ingredients": [
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "concoction:dough"
+    }
+  ],
+  "result": {
+    "id": "concoction:apple_pie",
+    "count": 1
+  }
+}

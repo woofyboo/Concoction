@@ -12,6 +12,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
 
@@ -31,6 +32,12 @@ public enum FoodPassiveEffectType implements StringRepresentable {
     CHERRY_JUICE("cherry_juice", false),
     NAUSEATINGLY_VILE("nauseatingly_vile", false),
     LIGHT_SNACK("light_snack", false),
+    SPIDER_VENOM("spider_venom", false),
+    SALMONELLOSIS("salmonellosis", false),
+    BLIGHTED_POTATO("blighted_potato", false),
+    OTHERWORLDLY_MALADAPTATION("otherworldly_maladaptation", false),
+    GILDED_RESTORATION("gilded_restoration", false),
+    GILDED_RESTORATION_PLUS("gilded_restoration_plus", false),
     GOOD_MORNING("good_morning", true),
     CRISPY_CRUST("crispy_crust", true, true),
     SUGAR_CRYSTALLIZATION("sugar_crystallization", true),
@@ -100,6 +107,12 @@ public enum FoodPassiveEffectType implements StringRepresentable {
             case CHERRY_JUICE -> applyCherryJuice(entity);
             case NAUSEATINGLY_VILE -> applyNauseatinglyVile(entity, consumedStack);
             case LIGHT_SNACK -> applyLightSnack(entity);
+            case SPIDER_VENOM -> applySpiderVenom(entity);
+            case SALMONELLOSIS -> applySalmonellosis(entity);
+            case BLIGHTED_POTATO -> applyBlightedPotato(entity);
+            case OTHERWORLDLY_MALADAPTATION -> applyOtherworldlyMaladaptation(entity, consumedStack);
+            case GILDED_RESTORATION -> applyGildedRestoration(entity);
+            case GILDED_RESTORATION_PLUS -> applyGildedRestorationPlus(entity);
             case GENTLE_CLEANSING -> applyGentleCleansing(entity);
             case GENTLE_CLEANSING_PLUS -> applyGentleCleansingPlus(entity);
             case CRISPY_CRUST, SUGAR_CRYSTALLIZATION, SPORE_SEDIMENT, JITTERING_JELLY, STICKY_VISCOSITY, GOOD_MORNING -> {
@@ -116,8 +129,12 @@ public enum FoodPassiveEffectType implements StringRepresentable {
     }
 
     public Component getTooltipTitle() {
+        return getTooltipTitle(ChatFormatting.YELLOW);
+    }
+
+    public Component getTooltipTitle(ChatFormatting color) {
         MutableComponent title = Component.translatable("food_passive_effect.concoction." + this.name)
-                .withStyle(ChatFormatting.YELLOW);
+                .withStyle(color);
         if (!this.aftertaste) {
             return title;
         }
@@ -235,6 +252,46 @@ public enum FoodPassiveEffectType implements StringRepresentable {
 
     private static void applyLightSnack(LivingEntity entity) {
         FoodAftertasteHandler.reactivateExhaustedAftertastes(entity);
+    }
+
+    private static void applySpiderVenom(LivingEntity entity) {
+        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 4 * 20, 0, false, true, true));
+    }
+
+    private static void applySalmonellosis(LivingEntity entity) {
+        if (entity.getRandom().nextFloat() >= 0.30F) {
+            return;
+        }
+
+        entity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 30 * 20, 0, false, true, true));
+    }
+
+    private static void applyBlightedPotato(LivingEntity entity) {
+        if (entity.getRandom().nextFloat() >= 0.60F) {
+            return;
+        }
+
+        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 4 * 20, 0, false, true, true));
+    }
+
+    private static void applyOtherworldlyMaladaptation(LivingEntity entity, ItemStack consumedStack) {
+        if (consumedStack.is(Items.CHORUS_FRUIT)) {
+            return;
+        }
+
+        ChorusTeleportHelper.tryTeleportLikeChorusFruit(entity);
+    }
+
+    private static void applyGildedRestoration(LivingEntity entity) {
+        entity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 120 * 20, 0, false, true, true));
+        entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 5 * 20, 1, false, true, true));
+    }
+
+    private static void applyGildedRestorationPlus(LivingEntity entity) {
+        entity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 120 * 20, 3, false, true, true));
+        entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20 * 20, 1, false, true, true));
+        entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300 * 20, 0, false, true, true));
+        entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300 * 20, 0, false, true, true));
     }
 
     private static void applyGentleCleansing(LivingEntity entity) {

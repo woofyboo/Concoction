@@ -4,6 +4,8 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.mcreator.concoction.init.ConcoctionModItems;
+import net.mcreator.concoction.recipe.HotSauceAdditionRecipe;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -74,6 +76,22 @@ public class ConcoctionJeiPlugin implements IModPlugin {
                         Ingredient.of(item)
                 ));
             }
+        }
+
+        for (ItemStack targetStack : Ingredient.of(HotSauceAdditionRecipe.SPICY_SAUCE_TARGETS).getItems()) {
+            ItemStack result = HotSauceAdditionRecipe.createResultStack(targetStack);
+            if (result.isEmpty()) {
+                continue;
+            }
+
+            ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(targetStack.getItem());
+            recipes.add(makeShapelessCraftPreview(
+                    id("hot_sauce_addition/" + itemId.getNamespace() + "_" + itemId.getPath()),
+                    "hot_sauce_addition",
+                    result,
+                    Ingredient.of(ConcoctionModItems.HOT_SAUCE_BOTTLE.get()),
+                    Ingredient.of(targetStack.getItem())
+            ));
         }
 
         reg.addRecipes(RecipeTypes.CRAFTING, recipes);

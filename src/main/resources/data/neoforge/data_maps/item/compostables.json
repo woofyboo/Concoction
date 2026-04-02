@@ -231,6 +231,12 @@
     "concoction:cake_slice": {
       "chance": 0.35
     },
+    "concoction:apple_pie": {
+      "chance": 1
+    },
+    "concoction:apple_pie_slice": {
+      "chance": 0.35
+    },
     "concoction:pumpkin_pie_slice": {
       "chance": 0.35
     },

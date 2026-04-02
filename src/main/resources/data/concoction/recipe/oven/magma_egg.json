@@ -6,9 +6,6 @@
     "crafting_ingredients":  [
                                  {
                                      "item":  "minecraft:egg"
-                                 },
-                                 {
-                                     "item":  "concoction:mint"
                                  }
                              ],
     "bottle_ingredient":  {

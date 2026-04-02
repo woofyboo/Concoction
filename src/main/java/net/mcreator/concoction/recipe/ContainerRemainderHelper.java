@@ -29,10 +29,12 @@ public final class ContainerRemainderHelper {
         if (includeBowls && stack.is(BOWLS)) {
             return new ItemStack(Items.BOWL, count);
         }
-        if (stack.getItem().hasCraftingRemainingItem()) {
-            Item remainder = stack.getItem().getCraftingRemainingItem();
-            if (remainder != null) {
-                return new ItemStack(remainder, count);
+        if (stack.hasCraftingRemainingItem()) {
+            ItemStack remainder = stack.getCraftingRemainingItem();
+            if (!remainder.isEmpty()) {
+                ItemStack countedRemainder = remainder.copy();
+                countedRemainder.setCount(count);
+                return countedRemainder;
             }
         }
 

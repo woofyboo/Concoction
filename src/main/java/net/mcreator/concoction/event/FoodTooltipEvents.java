@@ -23,7 +23,9 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.joml.Vector2ic;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @EventBusSubscriber(modid = ConcoctionMod.MODID, bus = EventBusSubscriber.Bus.GAME, value = Dist.CLIENT)
 public final class FoodTooltipEvents {
@@ -130,6 +132,7 @@ public final class FoodTooltipEvents {
 		));
 
 		List<FoodPassiveEffectComponent> passiveEffects = getPassiveEffects(stack);
+		Set<FoodPassiveEffectComponent> basePassiveEffects = new HashSet<>(FoodPassiveEffects.getBase(stack));
 		if (passiveEffects.isEmpty()) {
 			lines.add(new PanelLine(
 					Component.translatable("tooltip.concoction.no_special_effects").withStyle(ChatFormatting.GRAY),
@@ -141,8 +144,9 @@ public final class FoodTooltipEvents {
 
 		for (int i = 0; i < passiveEffects.size(); i++) {
 			FoodPassiveEffectComponent passiveEffect = passiveEffects.get(i);
+			ChatFormatting titleColor = basePassiveEffects.contains(passiveEffect) ? ChatFormatting.YELLOW : ChatFormatting.AQUA;
 			lines.add(new PanelLine(
-					Component.literal("- ").withStyle(ChatFormatting.DARK_GRAY).append(passiveEffect.type().getTooltipTitle()),
+					Component.literal("- ").withStyle(ChatFormatting.DARK_GRAY).append(passiveEffect.type().getTooltipTitle(titleColor)),
 					0,
 					0
 			));

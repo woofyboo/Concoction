@@ -1,15 +1,10 @@
 {
-    "type":  "minecraft:crafting_shaped",
+    "type":  "concoction:food_split",
     "group":  "cake_slice",
-    "category":  "food",
-    "pattern":  [
-                    "a"
-                ],
-    "key":  {
-                "a":  {
-                          "item":  "minecraft:cake"
-                      }
-            },
+    "category":  "misc",
+    "source":  {
+                   "item":  "minecraft:cake"
+               },
     "result":  {
                    "id":  "concoction:cake_slice",
                    "count":  6

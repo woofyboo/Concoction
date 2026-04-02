@@ -21,8 +21,29 @@ public final class FoodPassiveEffects {
     private static final List<FoodPassiveEffectComponent> PUFFERFISH_EFFECTS = List.of(
             FoodPassiveEffectComponent.of(FoodPassiveEffectType.TETRODOTOXIN)
     );
+    private static final List<FoodPassiveEffectComponent> SPIDER_EYE_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.SPIDER_VENOM)
+    );
+    private static final List<FoodPassiveEffectComponent> RAW_CHICKEN_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.SALMONELLOSIS)
+    );
+    private static final List<FoodPassiveEffectComponent> POISONOUS_POTATO_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.BLIGHTED_POTATO)
+    );
+    private static final List<FoodPassiveEffectComponent> CHORUS_FRUIT_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.OTHERWORLDLY_MALADAPTATION)
+    );
+    private static final List<FoodPassiveEffectComponent> OBSIDIAN_TEARS_BOTTLE_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.OTHERWORLDLY_MALADAPTATION)
+    );
     private static final List<FoodPassiveEffectComponent> ROTTEN_FLESH_EFFECTS = List.of(
             FoodPassiveEffectComponent.of(FoodPassiveEffectType.ROTTEN_MEAT)
+    );
+    private static final List<FoodPassiveEffectComponent> GOLDEN_APPLE_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.GILDED_RESTORATION)
+    );
+    private static final List<FoodPassiveEffectComponent> ENCHANTED_GOLDEN_APPLE_EFFECTS = List.of(
+            FoodPassiveEffectComponent.of(FoodPassiveEffectType.GILDED_RESTORATION_PLUS)
     );
     private static final List<FoodPassiveEffectComponent> BEETROOT_SOUP_EFFECTS = List.of(
             FoodPassiveEffectComponent.of(FoodPassiveEffectType.HOT_BROTH)
@@ -35,11 +56,27 @@ public final class FoodPassiveEffects {
     }
 
     public static List<FoodPassiveEffectComponent> get(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return List.of();
+        }
+
         List<FoodPassiveEffectComponent> passiveEffects = stack.get(ConcoctionModDataComponents.FOOD_PASSIVE_EFFECTS.get());
         if (passiveEffects != null) {
             return passiveEffects;
         }
 
+        return getIntrinsicEffects(stack);
+    }
+
+    public static List<FoodPassiveEffectComponent> getBase(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return List.of();
+        }
+
+        return get(stack.getItem().getDefaultInstance());
+    }
+
+    private static List<FoodPassiveEffectComponent> getIntrinsicEffects(ItemStack stack) {
         if (stack.is(Items.HONEY_BOTTLE)) {
             return HONEY_BOTTLE_EFFECTS;
         }
@@ -52,8 +89,32 @@ public final class FoodPassiveEffects {
             return PUFFERFISH_EFFECTS;
         }
 
+        if (stack.is(Items.SPIDER_EYE)) {
+            return SPIDER_EYE_EFFECTS;
+        }
+
+        if (stack.is(Items.CHICKEN)) {
+            return RAW_CHICKEN_EFFECTS;
+        }
+
+        if (stack.is(Items.POISONOUS_POTATO)) {
+            return POISONOUS_POTATO_EFFECTS;
+        }
+
+        if (stack.is(Items.CHORUS_FRUIT)) {
+            return CHORUS_FRUIT_EFFECTS;
+        }
+
         if (stack.is(Items.ROTTEN_FLESH)) {
             return ROTTEN_FLESH_EFFECTS;
+        }
+
+        if (stack.is(Items.GOLDEN_APPLE)) {
+            return GOLDEN_APPLE_EFFECTS;
+        }
+
+        if (stack.is(Items.ENCHANTED_GOLDEN_APPLE)) {
+            return ENCHANTED_GOLDEN_APPLE_EFFECTS;
         }
 
         if (stack.is(Items.BEETROOT_SOUP)) {
@@ -62,6 +123,10 @@ public final class FoodPassiveEffects {
 
         if (stack.is(ConcoctionModItems.KOZINAK.get())) {
             return KOZINAK_EFFECTS;
+        }
+
+        if (stack.is(ConcoctionModItems.OBSIDIAN_TEARS_BOTTLE.get())) {
+            return OBSIDIAN_TEARS_BOTTLE_EFFECTS;
         }
 
         if (stack.getItem() instanceof BlockItem blockItem) {
@@ -92,6 +157,12 @@ public final class FoodPassiveEffects {
             case HONEY_BENEFIT -> new ItemStack(Items.HONEY_BOTTLE);
             case ROTTEN_MEAT -> new ItemStack(Items.ROTTEN_FLESH);
             case TETRODOTOXIN -> new ItemStack(Items.PUFFERFISH);
+            case SPIDER_VENOM -> new ItemStack(Items.SPIDER_EYE);
+            case SALMONELLOSIS -> new ItemStack(Items.CHICKEN);
+            case BLIGHTED_POTATO -> new ItemStack(Items.POISONOUS_POTATO);
+            case OTHERWORLDLY_MALADAPTATION -> new ItemStack(Items.CHORUS_FRUIT);
+            case GILDED_RESTORATION -> new ItemStack(Items.GOLDEN_APPLE);
+            case GILDED_RESTORATION_PLUS -> new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
             case SPRING_MOOD, CHERRY_JUICE -> new ItemStack(ConcoctionModItems.CHERRY.get());
             case NAUSEATINGLY_VILE -> new ItemStack(ConcoctionModItems.NETHER_SLOP.get());
             case GENTLE_CLEANSING -> new ItemStack(ConcoctionModItems.MILK_BOTTLE.get());

@@ -140,6 +140,8 @@ public class ConcoctionModItems {
 	public static final DeferredItem<Item> CHOCOLATE_CAKE_SLICE = REGISTRY.register("chocolate_cake_slice", ChocolateCakeSliceItem::new);
 	public static final DeferredItem<Item> GLOWBERRY_CAKE_SLICE = REGISTRY.register("glowberry_cake_slice", GlowberryCakeSliceItem::new);
 	public static final DeferredItem<Item> CARROT_CAKE_SLICE = REGISTRY.register("carrot_cake_slice", CarrotCakeSliceItem::new);
+	public static final DeferredItem<Item> APPLE_PIE = REGISTRY.register("apple_pie", ApplePieItem::new);
+	public static final DeferredItem<Item> APPLE_PIE_SLICE = REGISTRY.register("apple_pie_slice", ApplePieSliceItem::new);
 	public static final DeferredItem<Item> PUMPKIN_PIE_SLICE = REGISTRY.register("pumpkin_pie_slice", PumpkinPieSliceItem::new);
 	public static final DeferredItem<Item> OVEN = block(ConcoctionModBlocks.OVEN);
 	public static final DeferredItem<Item> SEA_SALT_BLOCK = block(ConcoctionModBlocks.SEA_SALT_BLOCK);
