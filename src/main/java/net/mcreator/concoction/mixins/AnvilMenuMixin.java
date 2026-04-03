@@ -1,6 +1,7 @@
 package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
@@ -24,12 +25,13 @@ public class AnvilMenuMixin {
 
     @Inject(method = "onTake", at = @At("TAIL"))
     private void concoction$onTake(Player player, ItemStack stack, CallbackInfo ci) {
-        if (player.hasEffect(ConcoctionModMobEffects.BITTERNESS)) {
+        if (Utils.isBitternessActive(player)) {
             MobEffectInstance bitterness = player.getEffect(ConcoctionModMobEffects.BITTERNESS);
             int amplifier = bitterness.getAmplifier();
             int cashback = (int)(concoction$lastCost * (0.2 + 0.1 * amplifier));
             if (cashback > 0) {
                 player.giveExperienceLevels(cashback);
+                Utils.spawnBitternessProcParticles(player, cashback);
             }
         }
     }

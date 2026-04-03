@@ -5,6 +5,8 @@ import net.mcreator.concoction.handlers.FoodAftertasteHandler;
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffects;
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffects;
 import net.mcreator.concoction.utils.Utils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
@@ -67,6 +69,7 @@ public final class ConcoctionFoodEvents {
         ItemStack used = event.getItem();
         restoreDefaultConsumeState(living, used);
         applyBrainFreeze(living, used);
+        applyFoodEffects(living, used);
         FoodAftertasteHandler.recordConsumedFood(living, used);
         applyPassiveFoodEffects(living, used);
     }
@@ -97,6 +100,7 @@ public final class ConcoctionFoodEvents {
             return;
         }
 
+        applyFoodEffects(living, consumedStack);
         FoodAftertasteHandler.recordConsumedFood(living, consumedStack);
         applyPassiveFoodEffects(living, consumedStack);
     }
@@ -187,6 +191,17 @@ public final class ConcoctionFoodEvents {
         }
         for (FoodPassiveEffectComponent passiveEffect : passiveEffects) {
             passiveEffect.applyOnConsume(living, used);
+        }
+    }
+
+    private static void applyFoodEffects(LivingEntity living, ItemStack used) {
+        List<FoodEffectComponent> effects = FoodEffects.get(used);
+        if (effects.isEmpty()) {
+            return;
+        }
+
+        for (FoodEffectComponent effect : effects) {
+            effect.applyOnConsume(living);
         }
     }
 

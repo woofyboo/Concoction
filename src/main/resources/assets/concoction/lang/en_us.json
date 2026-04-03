@@ -478,6 +478,15 @@
   "tooltip.concoction.hold_key": "Hold [%s] for more info",
   "tooltip.concoction.no_special_effects": "This food has no special effects.",
   "tooltip.concoction.properties_title": "Properties",
+  "food_effect.concoction.light_bitterness": "Light Bitterness",
+  "food_effect.concoction.light_bitterness.desc": "After eating, briefly applies Bitterness.",
+  "food_effect.concoction.light_bitterness.simple_desc": "Briefly applies Bitterness.",
+  "food_effect.concoction.tart_bitterness": "Tart Bitterness",
+  "food_effect.concoction.tart_bitterness.desc": "After eating, applies a stronger Bitterness for a long time.",
+  "food_effect.concoction.tart_bitterness.simple_desc": "Applies a stronger, long-lasting Bitterness.",
+  "food_effect.concoction.bitterish": "Bitterish",
+  "food_effect.concoction.bitterish.desc": "After eating, applies Bitterness for a long time.",
+  "food_effect.concoction.bitterish.simple_desc": "Applies long-lasting Bitterness.",
   "jei.concoction.hot_sauce_addition": "Hot Sauce Addition"
 }
 

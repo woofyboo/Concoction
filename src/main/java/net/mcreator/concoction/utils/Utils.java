@@ -2,12 +2,14 @@ package net.mcreator.concoction.utils;
 
 import net.mcreator.concoction.block.RiceBlock;
 import net.mcreator.concoction.init.ConcoctionModBlocks;
+import net.mcreator.concoction.init.ConcoctionModMobEffects;
 import net.mcreator.concoction.init.ConcoctionModParticleTypes;
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -33,6 +35,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class Utils {
+    public static final int BITTERNESS_MIN_FOOD_LEVEL = 6;
 
     private static final Direction[] ALL_DIRECTIONS = Direction.values();
     private static final ResourceLocation SOUL_ESCAPE_SOUND = ResourceLocation.parse("particle.soul_escape");
@@ -117,6 +120,42 @@ public class Utils {
     public static boolean isPhotosynthesisActive(Player player) {
         return player.hasEffect(net.mcreator.concoction.init.ConcoctionModMobEffects.PHOTOSYNTHESIS)
                 && isPlayerSunPowered(player);
+    }
+
+    public static boolean isBitternessActive(Player player) {
+        return player.hasEffect(ConcoctionModMobEffects.BITTERNESS)
+                && player.getFoodData().getFoodLevel() > BITTERNESS_MIN_FOOD_LEVEL;
+    }
+
+    public static float clampBitternessXpExhaustion(Player player, float exhaustionToAdd) {
+        if (exhaustionToAdd <= 0.0F) {
+            return 0.0F;
+        }
+
+        int availableFoodBuffer = Math.max(player.getFoodData().getFoodLevel() - BITTERNESS_MIN_FOOD_LEVEL, 0);
+        int availableSaturationBuffer = Mth.ceil(player.getFoodData().getSaturationLevel());
+        float exhaustionCap = 4.0F * (1 + availableFoodBuffer + availableSaturationBuffer);
+        float remainingCapacity = Math.max(exhaustionCap - player.getFoodData().getExhaustionLevel(), 0.0F);
+        return Math.min(exhaustionToAdd, remainingCapacity);
+    }
+
+    public static void spawnBitternessProcParticles(Player player, int intensity) {
+        if (!(player.level() instanceof ServerLevel serverLevel) || intensity <= 0) {
+            return;
+        }
+
+        int particleCount = Math.min(Math.max(intensity, 3), 12);
+        serverLevel.sendParticles(
+                ParticleTypes.HAPPY_VILLAGER,
+                player.getX(),
+                player.getY() + player.getBbHeight() * 0.55D,
+                player.getZ(),
+                particleCount,
+                0.35D,
+                0.45D,
+                0.35D,
+                0.02D
+        );
     }
 
     public static boolean touchesLiquid(BlockGetter level, BlockPos blockPos, BlockState state) {

@@ -4,6 +4,8 @@ import net.mcreator.concoction.client.FoodTooltipClientSettings;
 import net.mcreator.concoction.ConcoctionMod;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffectComponent;
 import net.mcreator.concoction.item.food.passive.FoodPassiveEffects;
+import net.mcreator.concoction.item.food.types.FoodEffectComponent;
+import net.mcreator.concoction.item.food.types.FoodEffects;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
@@ -62,7 +64,7 @@ public final class FoodTooltipEvents {
 			return;
 		}
 
-		if (!getPassiveEffects(event.getItemStack()).isEmpty()) {
+		if (!getFoodEffects(event.getItemStack()).isEmpty() || !getPassiveEffects(event.getItemStack()).isEmpty()) {
 			String hintKey = FoodTooltipClientSettings.isDetailedView()
 					? "tooltip.concoction.alt_for_simple_view"
 					: "tooltip.concoction.alt_for_detailed_view";
@@ -108,6 +110,10 @@ public final class FoodTooltipEvents {
 	}
 
 	private static boolean shouldShowFoodTooltip(ItemStack stack) {
+		if (!getFoodEffects(stack).isEmpty()) {
+			return true;
+		}
+
 		if (!getPassiveEffects(stack).isEmpty()) {
 			return true;
 		}
@@ -131,15 +137,33 @@ public final class FoodTooltipEvents {
 				1
 		));
 
+		List<FoodEffectComponent> foodEffects = getFoodEffects(stack);
+		Set<FoodEffectComponent> baseFoodEffects = new HashSet<>(FoodEffects.getBase(stack));
 		List<FoodPassiveEffectComponent> passiveEffects = getPassiveEffects(stack);
 		Set<FoodPassiveEffectComponent> basePassiveEffects = new HashSet<>(FoodPassiveEffects.getBase(stack));
-		if (passiveEffects.isEmpty()) {
+		if (foodEffects.isEmpty() && passiveEffects.isEmpty()) {
 			lines.add(new PanelLine(
 					Component.translatable("tooltip.concoction.no_special_effects").withStyle(ChatFormatting.GRAY),
 					0,
 					0
 			));
 			return lines;
+		}
+
+		for (int i = 0; i < foodEffects.size(); i++) {
+			FoodEffectComponent foodEffect = foodEffects.get(i);
+			ChatFormatting titleColor = baseFoodEffects.contains(foodEffect) ? ChatFormatting.YELLOW : ChatFormatting.AQUA;
+			lines.add(new PanelLine(
+					Component.literal("- ").withStyle(ChatFormatting.DARK_GRAY)
+							.append(foodEffect.getTooltipTitle().copy().withStyle(titleColor)),
+					0,
+					0
+			));
+			lines.add(new PanelLine(
+					foodEffect.getTooltipDescription(FoodTooltipClientSettings.isDetailedView()),
+					DESCRIPTION_INDENT,
+					i < foodEffects.size() - 1 || !passiveEffects.isEmpty() ? 1 : 0
+			));
 		}
 
 		for (int i = 0; i < passiveEffects.size(); i++) {
@@ -160,13 +184,17 @@ public final class FoodTooltipEvents {
 		return lines;
 	}
 
+	private static List<FoodEffectComponent> getFoodEffects(ItemStack stack) {
+		return FoodEffects.get(stack);
+	}
+
 	private static List<FoodPassiveEffectComponent> getPassiveEffects(ItemStack stack) {
 		return FoodPassiveEffects.get(stack);
 	}
 
 	private static void handleAltToggle(ItemStack stack) {
 		boolean altDown = Screen.hasAltDown();
-		if (altDown && !altWasDown && !getPassiveEffects(stack).isEmpty()) {
+		if (altDown && !altWasDown && (!getFoodEffects(stack).isEmpty() || !getPassiveEffects(stack).isEmpty())) {
 			FoodTooltipClientSettings.toggleDetailedView();
 		}
 		altWasDown = altDown;

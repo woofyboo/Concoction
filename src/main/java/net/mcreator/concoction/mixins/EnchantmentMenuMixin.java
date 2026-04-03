@@ -1,6 +1,7 @@
 package net.mcreator.concoction.mixins;
 
 import net.mcreator.concoction.init.ConcoctionModMobEffects;
+import net.mcreator.concoction.utils.Utils;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.EnchantmentMenu;
@@ -33,7 +34,7 @@ public class EnchantmentMenuMixin {
             int xpAfter = getTotalXp(player);
             int xpSpent = concoction$cachedXpBefore - xpAfter;
 
-            if (xpSpent > 0 && player.hasEffect(ConcoctionModMobEffects.BITTERNESS)) {
+            if (xpSpent > 0 && Utils.isBitternessActive(player)) {
                 MobEffectInstance bitterness = player.getEffect(ConcoctionModMobEffects.BITTERNESS);
                 int amplifier = bitterness.getAmplifier();
                 double multiplier = 0.2 + 0.1 * amplifier;
@@ -41,6 +42,7 @@ public class EnchantmentMenuMixin {
 
                 if (cashback > 0) {
                     player.giveExperiencePoints(cashback);
+                    Utils.spawnBitternessProcParticles(player, cashback);
                 }
             }
         }

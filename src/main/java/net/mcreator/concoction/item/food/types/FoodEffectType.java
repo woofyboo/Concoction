@@ -16,6 +16,9 @@ public enum FoodEffectType implements StringRepresentable {
     GLOW("glow"),
     INSTABILITY("instability"),
     BITTER("bitterness"),
+    LIGHT_BITTERNESS("light_bitterness"),
+    TART_BITTERNESS("tart_bitterness"),
+    BITTERISH("bitterish"),
     HEAL("heal"),
     WEEPING("weeping");
 
@@ -37,6 +40,9 @@ public enum FoodEffectType implements StringRepresentable {
             case "glow" -> GLOW;
             case "instability" -> INSTABILITY;
             case "bitterness" -> BITTER;
+            case "light_bitterness" -> LIGHT_BITTERNESS;
+            case "tart_bitterness" -> TART_BITTERNESS;
+            case "bitterish" -> BITTERISH;
             case "heal" -> HEAL;
             case "weeping" -> WEEPING;
             default -> throw new IllegalArgumentException("Invalid name: " + name);
@@ -51,6 +57,7 @@ public enum FoodEffectType implements StringRepresentable {
             case GLOW -> new MobEffectInstance(MobEffects.GLOWING, duration * 20, level - 1, false, !isHidden, true, null);
             case INSTABILITY -> new MobEffectInstance(ConcoctionModMobEffects.INSTABILITY, duration * 20, level - 1, false, !isHidden, true, null);
             case BITTER -> new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, !isHidden, true, null);
+            case LIGHT_BITTERNESS, TART_BITTERNESS, BITTERISH -> new MobEffectInstance(ConcoctionModMobEffects.BITTERNESS, duration * 20, level - 1, false, false, true, null);
             case WEEPING -> new MobEffectInstance(ConcoctionModMobEffects.WEEPING, duration * 20, level - 1, false, !isHidden, true, null);
         };
     }
@@ -118,6 +125,17 @@ public enum FoodEffectType implements StringRepresentable {
 
             return effectName.append(levelAndTime);
         }
+    }
+
+    public Component getTooltipTitle() {
+        return Component.translatable("food_effect.concoction." + this.name)
+                .withStyle(ChatFormatting.YELLOW);
+    }
+
+    public Component getTooltipDescription(boolean detailed) {
+        String suffix = detailed ? ".desc" : ".simple_desc";
+        return Component.translatable("food_effect.concoction." + this.name + suffix)
+                .withStyle(ChatFormatting.GRAY);
     }
 
     private static String toRoman(int number) {

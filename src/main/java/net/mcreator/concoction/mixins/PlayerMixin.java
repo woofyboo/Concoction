@@ -78,7 +78,7 @@ public abstract class PlayerMixin implements IPlayerUnsuccessfulAttempts {
             ci.cancel();
             return;
         }
-        if (player.hasEffect(ConcoctionModMobEffects.BITTERNESS)) {
+        if (Utils.isBitternessActive(player)) {
             int effectLevel = player.getEffect(ConcoctionModMobEffects.BITTERNESS).getAmplifier();
             float multiplier = 1.2f + 0.1f * effectLevel;
             player.getFoodData().addExhaustion(exhaustionValue * multiplier);

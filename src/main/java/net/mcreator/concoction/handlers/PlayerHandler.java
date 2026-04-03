@@ -128,13 +128,24 @@ public class PlayerHandler {
     @SubscribeEvent
     public static void onGiveExperience(PlayerXpEvent.PickupXp event) {
         Player player = event.getEntity();
-        if (!player.hasEffect(ConcoctionModMobEffects.BITTERNESS)) {
+        if (!Utils.isBitternessActive(player)) {
             return;
         }
 
         MobEffectInstance bitternessEffect = player.getEffect(ConcoctionModMobEffects.BITTERNESS);
+        int amplifier = bitternessEffect.getAmplifier();
         int experience = event.getOrb().getValue();
-        event.getOrb().value = (int) (experience * (1 + (0.5 * (bitternessEffect.getAmplifier() + 1))));
+        float exhaustionMultiplier = 0.333F + 0.111F * amplifier;
+        float clampedExhaustion = Utils.clampBitternessXpExhaustion(player, experience * exhaustionMultiplier);
+        if (clampedExhaustion > 0.0F) {
+            player.getFoodData().addExhaustion(clampedExhaustion);
+        }
+
+        int boostedExperience = (int) (experience * (1 + (0.5 * (amplifier + 1))));
+        event.getOrb().value = boostedExperience;
+        if (boostedExperience > experience) {
+            Utils.spawnBitternessProcParticles(player, boostedExperience - experience);
+        }
     }
 
     private static int getButcheringLevel(LivingEntity attacker) {

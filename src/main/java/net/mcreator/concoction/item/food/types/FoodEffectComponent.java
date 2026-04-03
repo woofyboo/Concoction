@@ -5,6 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
 import org.jetbrains.annotations.NotNull;
 
 public record FoodEffectComponent(FoodEffectType type, int level, int duration, boolean isHidden) {
@@ -25,6 +27,27 @@ public record FoodEffectComponent(FoodEffectType type, int level, int duration, 
             FoodEffectComponent::new
     );
 
+    public static FoodEffectComponent of(FoodEffectType type, int level, int duration) {
+        return new FoodEffectComponent(type, level, duration, false);
+    }
+
+    public void applyOnConsume(LivingEntity entity) {
+        var effect = FoodEffectType.getEffect(type, level, duration, isHidden, entity);
+        if (effect != null) {
+            entity.addEffect(effect);
+            return;
+        }
+
+        FoodEffectType.applyInstantEffect(type, entity, level);
+    }
+
+    public Component getTooltipTitle() {
+        return type.getTooltipTitle();
+    }
+
+    public Component getTooltipDescription(boolean detailed) {
+        return type.getTooltipDescription(detailed);
+    }
 
 
 //    // Unit stream codec if nothing should be sent across the network

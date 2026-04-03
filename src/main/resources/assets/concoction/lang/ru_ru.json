@@ -198,7 +198,7 @@
   "death.attack.spicy_damage": "%1$s больсе не смозет выговаливать букву \"Р\"",
   "death.attack.spicy_damage.item": "%1$s был отжарен %2$s с помощью %3$s",
   "death.attack.spicy_damage.player": "%1$s был отжарен %2$s",
-  "effect.concoction.bitterness": "Горькость",
+  "effect.concoction.bitterness": "Горечь",
   "effect.concoction.breakfast": "Утренняя бодрость",
   "effect.concoction.creamy": "Сливочность",
   "effect.concoction.fiery_touch": "Испепеляющее касание",
@@ -478,6 +478,15 @@
   "tooltip.concoction.hold_key": "Удерживайте [%s] для подробностей",
   "tooltip.concoction.no_special_effects": "У этой еды нет особых эффектов.",
   "tooltip.concoction.properties_title": "Свойства",
+  "food_effect.concoction.light_bitterness": "Легкая горчинка",
+  "food_effect.concoction.light_bitterness.desc": "После съедания ненадолго накладывает Горечь.",
+  "food_effect.concoction.light_bitterness.simple_desc": "Ненадолго накладывает Горечь.",
+  "food_effect.concoction.tart_bitterness": "Терпкая горькость",
+  "food_effect.concoction.tart_bitterness.desc": "После съедания надолго накладывает усиленную Горечь.",
+  "food_effect.concoction.tart_bitterness.simple_desc": "Надолго накладывает усиленную Горечь.",
+  "food_effect.concoction.bitterish": "Горьковато",
+  "food_effect.concoction.bitterish.desc": "После съедания надолго накладывает Горечь.",
+  "food_effect.concoction.bitterish.simple_desc": "Надолго накладывает Горечь.",
   "jei.concoction.hot_sauce_addition": "Добавление острого соуса"
 }
 
