@@ -2,6 +2,7 @@ package net.mcreator.concoction.worldgen.feature;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -19,6 +20,7 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
     private static final int MIN_CLUSTER_DISTANCE = 256;
     private static final int REGION_SIZE_CHUNKS = MIN_CLUSTER_DISTANCE / 16;
     private static final int REGION_CENTER_OFFSET_BLOCKS = MIN_CLUSTER_DISTANCE / 2;
+    private static final int SAFE_CHUNK_PADDING = 4;
 
     public CinnamonTreeClusterFeature() {
         super(NoneFeatureConfiguration.CODEC);
@@ -33,7 +35,8 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
             return false;
         }
 
-        BlockPos center = getClusterCenter(level, origin);
+        ChunkPos chunkPos = new ChunkPos(origin);
+        BlockPos center = clampToSafeChunk(level, getClusterCenter(level, origin), chunkPos);
 
         int targetCount = MIN_TREES + random.nextInt(MAX_TREES - MIN_TREES + 1);
         int attemptBudget = Math.max(40, targetCount * 20);
@@ -44,7 +47,7 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
         }
 
         for (int attempt = 0; attempt < attemptBudget && placedTrees.size() < targetCount; attempt++) {
-            BlockPos candidate = randomClusterPosition(level, center, random);
+            BlockPos candidate = randomClusterPosition(level, center, chunkPos, random);
             if (isTooClose(candidate, placedTrees)) {
                 continue;
             }
@@ -85,7 +88,7 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
         return true;
     }
 
-    private static BlockPos randomClusterPosition(WorldGenLevel level, BlockPos center, RandomSource random) {
+    private static BlockPos randomClusterPosition(WorldGenLevel level, BlockPos center, ChunkPos chunkPos, RandomSource random) {
         int dx;
         int dz;
         do {
@@ -93,7 +96,9 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
             dz = random.nextInt(CLUSTER_RADIUS * 2 + 1) - CLUSTER_RADIUS;
         } while (dx * dx + dz * dz > CLUSTER_RADIUS * CLUSTER_RADIUS);
 
-        BlockPos sample = center.offset(dx, 0, dz);
+        int sampleX = clamp(center.getX() + dx, chunkPos.getMinBlockX() + SAFE_CHUNK_PADDING, chunkPos.getMaxBlockX() - SAFE_CHUNK_PADDING);
+        int sampleZ = clamp(center.getZ() + dz, chunkPos.getMinBlockZ() + SAFE_CHUNK_PADDING, chunkPos.getMaxBlockZ() - SAFE_CHUNK_PADDING);
+        BlockPos sample = new BlockPos(sampleX, center.getY(), sampleZ);
         return level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, sample);
     }
 
@@ -104,5 +109,15 @@ public class CinnamonTreeClusterFeature extends Feature<NoneFeatureConfiguration
             }
         }
         return false;
+    }
+
+    private static BlockPos clampToSafeChunk(WorldGenLevel level, BlockPos pos, ChunkPos chunkPos) {
+        int x = clamp(pos.getX(), chunkPos.getMinBlockX() + SAFE_CHUNK_PADDING, chunkPos.getMaxBlockX() - SAFE_CHUNK_PADDING);
+        int z = clamp(pos.getZ(), chunkPos.getMinBlockZ() + SAFE_CHUNK_PADDING, chunkPos.getMaxBlockZ() - SAFE_CHUNK_PADDING);
+        return level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BlockPos(x, pos.getY(), z));
+    }
+
+    private static int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -136,6 +137,9 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
 
             // origin структуры в мире: так, чтобы ствол встал ровно в trunkSurface
             BlockPos structureOrigin = trunkSurface.subtract(rotatedOffset);
+            if (!fitsWithinChunk(template, structureOrigin, settings, new ChunkPos(trunkSurface))) {
+                continue;
+            }
 
             // сначала симулируем пересечения — можно ли ставить такую структуру?
             if (!canPlaceTemplate(level, template, structureOrigin, settings, trunkSurface)) {
@@ -248,6 +252,37 @@ public class CinnamonTreeFeature extends Feature<NoneFeatureConfiguration> {
      *
      * Всё остальное = жёсткое препятствие.
      */
+    private static boolean fitsWithinChunk(
+            StructureTemplate template,
+            BlockPos structureOrigin,
+            StructurePlaceSettings settings,
+            ChunkPos chunkPos
+    ) {
+        for (Supplier<Block> sup : CINNAMON_LOG_BLOCKS) {
+            Block block = sup.get();
+            if (block == null) continue;
+
+            for (StructureTemplate.StructureBlockInfo info : template.filterBlocks(structureOrigin, settings, block)) {
+                if (!chunkPos.equals(new ChunkPos(info.pos()))) {
+                    return false;
+                }
+            }
+        }
+
+        for (Supplier<Block> sup : CINNAMON_LEAF_BLOCKS) {
+            Block block = sup.get();
+            if (block == null) continue;
+
+            for (StructureTemplate.StructureBlockInfo info : template.filterBlocks(structureOrigin, settings, block)) {
+                if (!chunkPos.equals(new ChunkPos(info.pos()))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     private static boolean isAllowedToReplaceForTree(BlockState existing) {
         // воздух — ок
         if (existing.isAir()) {
